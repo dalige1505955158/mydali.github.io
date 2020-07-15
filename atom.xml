@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-07-15T05:08:15.548Z</updated>
+  <updated>2020-07-15T09:54:55.625Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,160 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>toolVsCode</title>
+    <link href="http://yoursite.com/2020/07/15/toolVsCode/"/>
+    <id>http://yoursite.com/2020/07/15/toolVsCode/</id>
+    <published>2020-07-15T09:21:27.000Z</published>
+    <updated>2020-07-15T09:54:55.625Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;下载&quot;&gt;&lt;a href=&quot;#下载&quot; class=&quot;headerlink&quot; title=&quot;下载&quot;&gt;&lt;/a&gt;下载&lt;/h4&gt;&lt;blockquote&gt;
+&lt;p&gt;官网下载：&lt;a href=&quot;https://code.visualstudio.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://code.visualstudio.com/&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="mysoft" scheme="http://yoursite.com/categories/mysoft/"/>
+    
+      <category term="tool" scheme="http://yoursite.com/categories/mysoft/tool/"/>
+    
+    
+      <category term="soft" scheme="http://yoursite.com/tags/soft/"/>
+    
+      <category term="tool" scheme="http://yoursite.com/tags/tool/"/>
+    
+      <category term="vscode" scheme="http://yoursite.com/tags/vscode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>toolVs</title>
+    <link href="http://yoursite.com/2020/07/15/toolVs/"/>
+    <id>http://yoursite.com/2020/07/15/toolVs/</id>
+    <published>2020-07-15T09:03:08.000Z</published>
+    <updated>2020-07-15T09:55:00.505Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;快捷键&quot;&gt;&lt;a href=&quot;#快捷键&quot; class=&quot;headerlink&quot; title=&quot;快捷键&quot;&gt;&lt;/a&gt;快捷键&lt;/h4&gt;&lt;p&gt;1.复制/剪切/删除整行代码&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1)如果你想复制一整行代码，只需将光标移至该行，再使用组合键“Ctrl+C”来完成复制操作，而无需选择整行。&lt;/p&gt;
+&lt;p&gt;2)如果你想剪切一整行代码，只需将光标移至该行，再使用组合键“Ctrl+X”来完成剪切操作，而无需选择整行。&lt;/p&gt;
+&lt;p&gt;3)如果你想删除一整行代码，只需将光标移至该行，再使用组合键“Ctrl+L”来完成剪切操作，而无需选择整行。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="mysoft" scheme="http://yoursite.com/categories/mysoft/"/>
+    
+      <category term="tool" scheme="http://yoursite.com/categories/mysoft/tool/"/>
+    
+    
+      <category term="soft" scheme="http://yoursite.com/tags/soft/"/>
+    
+      <category term="tool" scheme="http://yoursite.com/tags/tool/"/>
+    
+      <category term="vs" scheme="http://yoursite.com/tags/vs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexoQuest</title>
+    <link href="http://yoursite.com/2020/07/15/hexoQuest/"/>
+    <id>http://yoursite.com/2020/07/15/hexoQuest/</id>
+    <published>2020-07-15T08:29:58.000Z</published>
+    <updated>2020-07-15T09:55:27.806Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;hexo开发过程中遇到的小坑大坑各种坑合集&lt;/p&gt;
+&lt;p&gt;部署失败时（deploy处将https改为SSH）&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;repository: https:&amp;#x2F;&amp;#x2F;github.com&amp;#x2F;username&amp;#x2F;username.github.io.git&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;修改为&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;repository：git@github.com:username&amp;#x2F;username.github.io.git&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="mysoft" scheme="http://yoursite.com/categories/mysoft/"/>
+    
+      <category term="hexo" scheme="http://yoursite.com/categories/mysoft/hexo/"/>
+    
+    
+      <category term="soft" scheme="http://yoursite.com/tags/soft/"/>
+    
+      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexoTheme</title>
+    <link href="http://yoursite.com/2020/07/15/hexoTheme/"/>
+    <id>http://yoursite.com/2020/07/15/hexoTheme/</id>
+    <published>2020-07-15T07:14:52.000Z</published>
+    <updated>2020-07-15T08:11:05.363Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;在 Hexo 中有两份主要的配置文件，其名称都是 _config.yml。 其中，一份位于站点根目录下，主要包含 Hexo 本身的配置；&lt;/p&gt;
+&lt;p&gt;另一份位于主题目录下，这份配置由主题作者提供，主要用于配置主题相关的选项。&lt;br&gt;为了描述方便，在以下说明中，将前者称为&lt;strong&gt;站点配置文件&lt;/strong&gt;， 后者称为&lt;strong&gt;主题配置文件&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;备注: 以下所有终端执行的命令都在你的Hexo根目录下&lt;/p&gt;
+&lt;h4 id=&quot;1、基本信息配置&quot;&gt;&lt;a href=&quot;#1、基本信息配置&quot; class=&quot;headerlink&quot; title=&quot;1、基本信息配置&quot;&gt;&lt;/a&gt;1、基本信息配置&lt;/h4&gt;&lt;p&gt;打开 &lt;strong&gt;站点配置文件&lt;/strong&gt; ，找到Site模块&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;title: 标题&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;subtitle: 副标题&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;description: 描述&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;author: 作者&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;language: 语言（简体中文是zh-Hans）&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;timezone: 网站时区（Hexo 默认使用您电脑的时区，不用写）&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;hr&gt;
+    
+    </summary>
+    
+    
+      <category term="mysoft" scheme="http://yoursite.com/categories/mysoft/"/>
+    
+      <category term="hexo" scheme="http://yoursite.com/categories/mysoft/hexo/"/>
+    
+    
+      <category term="soft" scheme="http://yoursite.com/tags/soft/"/>
+    
+      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexoStart</title>
+    <link href="http://yoursite.com/2020/07/15/hexoStart/"/>
+    <id>http://yoursite.com/2020/07/15/hexoStart/</id>
+    <published>2020-07-15T06:36:46.000Z</published>
+    <updated>2020-07-15T08:55:32.931Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://links.jianshu.com/go?to=https%3A%2F%2Fhexo.io%2Fzh-cn%2Fdocs%2Findex.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;框架，基于Node.js，搭建博客首先需要有一个GitHub账号并且配置了SSH Keys&lt;/p&gt;
+&lt;h3 id=&quot;准备&quot;&gt;&lt;a href=&quot;#准备&quot; class=&quot;headerlink&quot; title=&quot;准备&quot;&gt;&lt;/a&gt;准备&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;github仓库创建&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="mysoft" scheme="http://yoursite.com/categories/mysoft/"/>
+    
+      <category term="hexo" scheme="http://yoursite.com/categories/mysoft/hexo/"/>
+    
+    
+      <category term="soft" scheme="http://yoursite.com/tags/soft/"/>
+    
+      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
     <title>mdIntro</title>
     <link href="http://yoursite.com/2020/07/15/mdIntro/"/>
     <id>http://yoursite.com/2020/07/15/mdIntro/</id>
     <published>2020-07-15T04:24:18.000Z</published>
-    <updated>2020-07-15T05:08:15.548Z</updated>
+    <updated>2020-07-15T06:39:05.438Z</updated>
     
     <summary type="html">
     
