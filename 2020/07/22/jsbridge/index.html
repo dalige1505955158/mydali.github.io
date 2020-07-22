@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="js,jsbridge," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="DaliBlogs" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="介绍前言h5 与原生 app 的交互，本质上说，就是两种调用：  app 调用 h5 的代码 h5 调用 app 的代码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jsbridge">
+<meta property="og:url" content="http://yoursite.com/2020/07/22/jsbridge/index.html">
+<meta property="og:site_name" content="DaliBlogs">
+<meta property="og:description" content="介绍前言h5 与原生 app 的交互，本质上说，就是两种调用：  app 调用 h5 的代码 h5 调用 app 的代码">
+<meta property="og:image" content="https://img2018.cnblogs.com/blog/1661048/201908/1661048-20190805104711293-168785251.jpg">
+<meta property="og:image" content="https://img2018.cnblogs.com/blog/1661048/201908/1661048-20190805105140875-2098346635.jpg">
+<meta property="article:published_time" content="2020-07-22T05:43:05.000Z">
+<meta property="article:modified_time" content="2020-07-22T07:09:29.280Z">
+<meta property="article:author" content="Dali">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="jsbridge">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img2018.cnblogs.com/blog/1661048/201908/1661048-20190805104711293-168785251.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/07/22/jsbridge/"/>
+
+
+
+
+
+  <title>jsbridge | DaliBlogs</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DaliBlogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/22/jsbridge/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">jsbridge</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-22T13:43:05+08:00">
+                2020-07-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>h5 与原生 app 的交互，本质上说，就是两种调用：</p>
+<ol>
+<li>app 调用 h5 的代码</li>
+<li>h5 调用 app 的代码</li>
+</ol>
+<a id="more"></a>
+
+<p><strong>1. app 调用 h5 的代码</strong></p>
+<p>因为 app 是宿主，可以直接访问 h5，所以这种调用比较简单，就是在 h5 中曝露一些全局对象（包括方法），然后在原生 app 中调用这些对</p>
+<p><img src="https://img2018.cnblogs.com/blog/1661048/201908/1661048-20190805104711293-168785251.jpg" alt="img"></p>
+<p><strong>javascript</strong></p>
+<p><code>window.sdk = {</code></p>
+<p><code>``double = value =&gt; value * 2,</code></p>
+<p><code>``triple = value =&gt; value * 3,</code></p>
+<p><code>};</code></p>
+<p><strong>android：</strong></p>
+<p><code>webview.evaluateJavascript(``&#39;window.sdk.double(10)&#39;``, ``new</code> <code>ValueCallback&lt;String&gt;() {</code></p>
+<p><code>``@Override</code></p>
+<p><code>``public</code> <code>void onReceiveValue(String s) {</code></p>
+<p><code>``// 20</code></p>
+<p><code>``}</code></p>
+<p><code>});</code></p>
+<p><strong>ios：</strong></p>
+<p><code>NSString *func = @``&quot;window.sdk.double(10)&quot;``;</code></p>
+<p><code>NSString *str = [webview stringByEvaluatingJavaScriptFromString:func]; ``// 20</code></p>
+<p><strong>2. h5 调用 app 的代码</strong></p>
+<p>因为 h5 不能直接访问宿主 app，所以这种调用就相对复杂一点。</p>
+<p>这种调用常用有两种方式：</p>
+<ol>
+<li>由app向h5注入一个全局js对象，然后在h5直接访问这个对象</li>
+<li>由h5发起一个自定义协议请求，app拦截这个请求后，再由app调用 h5 中的回调函数</li>
+</ol>
+<p><strong>2.1 由 app 向 h5 注入一个全局 js 对象</strong></p>
+<p>这种方式沟通机制简单，比较好理解，并且对于 h5 来说，没有新的东西，所以是比较推荐的一种方式。但这种方式可能存在安全隐患，详细查看 你不知道的 Android WebView 使用漏洞。</p>
+<p><img src="https://img2018.cnblogs.com/blog/1661048/201908/1661048-20190805105140875-2098346635.jpg" alt="img"></p>
+<p><strong>android</strong></p>
+<p><code>webview.addJavascriptInterface(``new</code> <code>Object() {</code></p>
+<p><code>``@JavascriptInterface</code></p>
+<p><code>``public</code> <code>int double(value) {</code></p>
+<p><code>``return</code> <code>value * 2;</code></p>
+<p><code>``}</code></p>
+<p><code></code> </p>
+<p><code>``@JavascriptInterface</code></p>
+<p><code>``public</code> <code>int triple(value) {</code></p>
+<p><code>``return</code> <code>value * 3;</code></p>
+<p><code>``}</code></p>
+<p><code>}, ``&quot;appSdk&quot;``);</code></p>
+<hr>
+<p><strong>ios</strong></p>
+<p><code>NSString *scripts = @``&quot;window.appSdk = {double: value =&gt; value * 2, triple: value =&gt; value * 3}&quot;``;</code></p>
+<p><code>[webview stringByEvaluatingJavaScriptFromString:scripts];</code></p>
+<p><strong>javascript</strong></p>
+<p><strong>window.appSdk.double(10); // 20</strong></p>
+<hr>
+<h3 id="JS-Bridge"><a href="#JS-Bridge" class="headerlink" title="JS Bridge"></a>JS Bridge</h3><h4 id="什么是JS-Bridge"><a href="#什么是JS-Bridge" class="headerlink" title="什么是JS Bridge"></a>什么是JS Bridge</h4><p>在移动开发中为了加快开发进度(0.0)很多页面会用H5来开发，这样一来可以快速完成节约，二来APP内嵌WebView可以较少APP更新频率。因此，成本现在大多数公司的首选，但是部分功能JavaScript的权限受到严格限制，比如拍照，读写权限，获取GPS等等，这些native功能，这时候我们需要去委托原生去实现，原生实现后再告知js。这个时候就需要一个中间桥梁，于是就有了<strong>WebViewJavascriptBridge</strong>，简称 <strong>JS bridge</strong>。</p>
+<h4 id="重点叙述在vue中如何调用"><a href="#重点叙述在vue中如何调用" class="headerlink" title="重点叙述在vue中如何调用"></a>重点叙述在vue中如何调用</h4><ul>
+<li>创建 src/config/bridge.js 文件，用于封装 WebViewJavascriptBridge</li>
+<li>将以下代码拷贝到 bridge.js 文件中</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> u = navigator.userAgent;</span><br><span class="line"><span class="built_in">window</span>.isAndroid = u.indexOf(<span class="string">'Android'</span>) &gt; <span class="number">-1</span> || u.indexOf(<span class="string">'Adr'</span>) &gt; <span class="number">-1</span>; <span class="comment">//android终端 </span></span><br><span class="line"><span class="built_in">window</span>.isIOS = !!u.match(<span class="regexp">/\(i[^;]+;( U;)? CPU.+Mac OS X/</span>); <span class="comment">//ios终端 </span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setupWebViewJavascriptBridge</span>(<span class="params">callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">window</span>.WebViewJavascriptBridge) &#123;</span><br><span class="line">    <span class="keyword">return</span> callback(WebViewJavascriptBridge);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">document</span>.addEventListener(</span><br><span class="line">      <span class="string">'WebViewJavascriptBridgeReady'</span>,</span><br><span class="line">      <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        callback(WebViewJavascriptBridge)</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="literal">false</span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">window</span>.isIOS) &#123;</span><br><span class="line">    <span class="comment">// old ios method</span></span><br><span class="line">    <span class="comment">//setTimeout(function () &#123;</span></span><br><span class="line">    <span class="comment">//    if (window.WVJBCallbacks) &#123;</span></span><br><span class="line">    <span class="comment">//        return window.WVJBCallbacks.push(callback);</span></span><br><span class="line">    <span class="comment">//    &#125;</span></span><br><span class="line">    <span class="comment">//&#125;, 500)</span></span><br><span class="line">    <span class="comment">//window.WVJBCallbacks = [callback];</span></span><br><span class="line">    <span class="comment">//var WVJBIframe = document.createElement('iframe');</span></span><br><span class="line">    <span class="comment">//WVJBIframe.style.display = 'none';</span></span><br><span class="line">    <span class="comment">//WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';</span></span><br><span class="line">    <span class="comment">//document.documentElement.appendChild(WVJBIframe);</span></span><br><span class="line">    <span class="comment">//setTimeout(function () &#123;</span></span><br><span class="line">    <span class="comment">//    document.documentElement.removeChild(WVJBIframe)</span></span><br><span class="line">    <span class="comment">//&#125;, 0)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// new ios method</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.WKWebViewJavascriptBridge) &#123; <span class="keyword">return</span> callback(WKWebViewJavascriptBridge); &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.WKWVJBCallbacks) &#123; <span class="keyword">return</span> <span class="built_in">window</span>.WKWVJBCallbacks.push(callback); &#125;</span><br><span class="line">    <span class="built_in">window</span>.WKWVJBCallbacks = [callback];</span><br><span class="line">    <span class="built_in">window</span>.webkit.messageHandlers.iOS_Native_InjectJavascript.postMessage(<span class="literal">null</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (!<span class="built_in">window</span>.isIOS) &#123;</span><br><span class="line">    setupWebViewJavascriptBridge(<span class="function"><span class="keyword">function</span> (<span class="params">bridge</span>) </span>&#123;</span><br><span class="line">      bridge.init(<span class="function"><span class="keyword">function</span> (<span class="params">message, responseCallback</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> data = &#123;&#125;;</span><br><span class="line">        responseCallback(data);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  callhandler(name, data, callback) &#123;</span><br><span class="line">    setupWebViewJavascriptBridge(<span class="function"><span class="keyword">function</span> (<span class="params">bridge</span>) </span>&#123;</span><br><span class="line">      bridge.callHandler(name, data, callback)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  registerhandler(name, callback) &#123;</span><br><span class="line">    setupWebViewJavascriptBridge(<span class="function"><span class="keyword">function</span> (<span class="params">bridge</span>) </span>&#123;</span><br><span class="line">      bridge.registerHandler(name, <span class="function"><span class="keyword">function</span> (<span class="params">data, responseCallback</span>) </span>&#123;</span><br><span class="line">        callback(data, responseCallback)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 main.js 中引入该文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import Bridge from &#39;.&#x2F;config&#x2F;bridge.js&#39;</span><br><span class="line">Vue.prototype.$bridge &#x3D; Bridge</span><br></pre></td></tr></table></figure>
+
+<p>在需要调用客户端方法的组件中（ObjC Echo是VUE端调用APP端的方法名）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; params是向app端传的参数</span><br><span class="line">&#x2F;&#x2F; iOS端</span><br><span class="line">this.$bridge.callhandler(&#39;ObjC Echo&#39;, params, (data) &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; 处理返回数据</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; Android端</span><br><span class="line">JSAndroid.requestPaySupportWithPayWay(params);</span><br></pre></td></tr></table></figure>
+
+<p>当app端需要调用 js 函数时,在mounted钩子中事先注册约定好的函数即可（JS Echo是APP端调用VUE端方法名称，博主没用过）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; iOS端</span><br><span class="line">this.$bridge.registerhandler(&#39;JS Echo&#39;, (data, responseCallback) &#x3D;&gt; &#123;</span><br><span class="line">  alert(&#39;JS Echo called with:&#39;, data)</span><br><span class="line">  responseCallback(data)</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; Android端</span><br><span class="line">window[&#39;JS Echo&#39;] &#x3D; (data, responseCallback) &#x3D;&gt; &#123;</span><br><span class="line">   alert(&#39;JS Echo called with:&#39;, data)</span><br><span class="line">   responseCallback(data)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="html中如何使用封装"><a href="#html中如何使用封装" class="headerlink" title="html中如何使用封装"></a>html中如何使用封装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><span class="line">var u &#x3D; navigator.userAgent;</span><br><span class="line">window.isAndroid &#x3D; u.indexOf(&#39;Android&#39;) &gt; -1 || u.indexOf(&#39;Adr&#39;) &gt; -1; &#x2F;&#x2F;android终端 </span><br><span class="line">window.isIOS &#x3D; !!u.match(&#x2F;\(i[^;]+;( U;)? CPU.+Mac OS X&#x2F;); &#x2F;&#x2F;ios终端 </span><br><span class="line">window.jsbridge &#x3D; function (callback) &#123;</span><br><span class="line">    if (window.WebViewJavascriptBridge) &#123;</span><br><span class="line">        return callback(WebViewJavascriptBridge);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        document.addEventListener(</span><br><span class="line">            &#39;WebViewJavascriptBridgeReady&#39;,</span><br><span class="line">            function () &#123;</span><br><span class="line">                callback(WebViewJavascriptBridge)</span><br><span class="line">            &#125;,</span><br><span class="line">            false</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">    if (window.isIOS) &#123;</span><br><span class="line">        &#x2F;&#x2F; old ios method</span><br><span class="line">        &#x2F;&#x2F;setTimeout(function () &#123;</span><br><span class="line">        &#x2F;&#x2F;    if (window.WVJBCallbacks) &#123;</span><br><span class="line">        &#x2F;&#x2F;        return window.WVJBCallbacks.push(callback);</span><br><span class="line">        &#x2F;&#x2F;    &#125;</span><br><span class="line">        &#x2F;&#x2F;&#125;, 500)</span><br><span class="line">        &#x2F;&#x2F;window.WVJBCallbacks &#x3D; [callback];</span><br><span class="line">        &#x2F;&#x2F;var WVJBIframe &#x3D; document.createElement(&#39;iframe&#39;);</span><br><span class="line">        &#x2F;&#x2F;WVJBIframe.style.display &#x3D; &#39;none&#39;;</span><br><span class="line">        &#x2F;&#x2F;WVJBIframe.src &#x3D; &#39;wvjbscheme:&#x2F;&#x2F;__BRIDGE_LOADED__&#39;;</span><br><span class="line">        &#x2F;&#x2F;document.documentElement.appendChild(WVJBIframe);</span><br><span class="line">        &#x2F;&#x2F;setTimeout(function () &#123;</span><br><span class="line">        &#x2F;&#x2F;    document.documentElement.removeChild(WVJBIframe)</span><br><span class="line">        &#x2F;&#x2F;&#125;, 0)</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; new ios method</span><br><span class="line">        if (window.WKWebViewJavascriptBridge) &#123; return callback(WKWebViewJavascriptBridge); &#125;</span><br><span class="line">        if (window.WKWVJBCallbacks) &#123; return window.WKWVJBCallbacks.push(callback); &#125;</span><br><span class="line">        window.WKWVJBCallbacks &#x3D; [callback];</span><br><span class="line">        window.webkit.messageHandlers.iOS_Native_InjectJavascript.postMessage(null)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if (!window.isIOS) &#123;</span><br><span class="line">    jsbridge(function (bridge) &#123;</span><br><span class="line">        bridge.init(function (message, responseCallback) &#123;</span><br><span class="line">            var data &#x3D; &#123;&#125;;</span><br><span class="line">            responseCallback(data);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * @param  &#123;option对象&#125;</span><br><span class="line"> * method: 调用的方法</span><br><span class="line"> * data: 传递的参数</span><br><span class="line"> * callback: 回掉方法</span><br><span class="line"> * @return &#123;[type]&#125;</span><br><span class="line"> *&#x2F;</span><br><span class="line">function bridgeCallHandler(option) &#123;</span><br><span class="line">    &#x2F;&#x2F; alert(option.method)</span><br><span class="line">    jsbridge(function (bridge) &#123;</span><br><span class="line">        bridge.callHandler(</span><br><span class="line">            option.method,</span><br><span class="line">            option.data || &#123;&#125;,</span><br><span class="line">            function (responseData) &#123;</span><br><span class="line">                if (option.callback) &#123;</span><br><span class="line">                    option.callback(responseData)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        );</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">window.callNativePage &#x3D; function (option) &#123;</span><br><span class="line">    bridgeCallHandler(&#123;</span><br><span class="line">        method: &#39;callNativePage&#39;,</span><br><span class="line">        data: option.data,</span><br><span class="line">        callback: function (responseData) &#123;</span><br><span class="line">            if (option.callback) &#123;</span><br><span class="line">                option.callback(responseData);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">js调用app</span><br><span class="line">callNativePage(&#123;</span><br><span class="line">    data: &#123; msg : &#39;test send msg&#39; &#125;,</span><br><span class="line">    callback:function(responseData)&#123;</span><br><span class="line">        console.log(&#39;来源于app的反馈信息&#39;,responseData)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;app调js</span><br><span class="line">window.bridgeRegisterHandler &#x3D; function (option) &#123;</span><br><span class="line">    &#x2F;&#x2F; alert(option.method);</span><br><span class="line">    jsbridge(function (bridge) &#123;</span><br><span class="line">        bridge.registerHandler(</span><br><span class="line">            option.method,</span><br><span class="line">            function (data, responseCallback) &#123;</span><br><span class="line">                if (option.callback) &#123;</span><br><span class="line">                    option.callback(data);</span><br><span class="line">                &#125;</span><br><span class="line">                responseCallback(option.data || &#123;&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        );</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">window.bridgeRegisterHandler(&#123;</span><br><span class="line">    method:&quot;提供给app调用的方法名&quot;,</span><br><span class="line">    callback:function(data)&#123;</span><br><span class="line">        &#x2F;&#x2F; data : app传递给前端的data</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>参考链接</p>
+<p><a href="https://www.cnblogs.com/tu-front-end/p/11301685.html" target="_blank" rel="noopener">jsbridge</a></p>
+<p><a href="https://blog.csdn.net/daipianpian/article/details/90714502" target="_blank" rel="noopener">vue项目使用WebViewJavascriptBridge</a></p>
+<p><a href="https://www.jianshu.com/p/2fa0b6cdca17" target="_blank" rel="noopener">H5调用封装</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag"># js</a>
+          
+            <a href="/tags/jsbridge/" rel="tag"># jsbridge</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/22/vantweapp/" rel="next" title="vantweapp">
+                <i class="fa fa-chevron-left"></i> vantweapp
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/07/22/google/" rel="prev" title="google">
+                google <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="Dali" />
+            
+              <p class="site-author-name" itemprop="name">Dali</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">2.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JS-Bridge"><span class="nav-number">3.</span> <span class="nav-text">JS Bridge</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是JS-Bridge"><span class="nav-number">3.1.</span> <span class="nav-text">什么是JS Bridge</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重点叙述在vue中如何调用"><span class="nav-number">3.2.</span> <span class="nav-text">重点叙述在vue中如何调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#html中如何使用封装"><span class="nav-number">3.3.</span> <span class="nav-text">html中如何使用封装</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dali</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

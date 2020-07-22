@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-07-15T09:54:55.625Z</updated>
+  <updated>2020-07-22T09:16:54.108Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,120 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>google</title>
+    <link href="http://yoursite.com/2020/07/22/google/"/>
+    <id>http://yoursite.com/2020/07/22/google/</id>
+    <published>2020-07-22T07:35:53.000Z</published>
+    <updated>2020-07-22T09:16:54.108Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;你不知道的隐藏快捷方式&quot;&gt;&lt;a href=&quot;#你不知道的隐藏快捷方式&quot; class=&quot;headerlink&quot; title=&quot;你不知道的隐藏快捷方式&quot;&gt;&lt;/a&gt;你不知道的隐藏快捷方式&lt;/h3&gt;&lt;p&gt;1.曾经，在线调伪类样式困扰过你？&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;C:/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/3e37c87949354fd1ab4bee1ed8676af4/640.webp&quot; alt=&quot;img&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="soft" scheme="http://yoursite.com/categories/soft/"/>
+    
+    
+      <category term="soft" scheme="http://yoursite.com/tags/soft/"/>
+    
+      <category term="浏览器" scheme="http://yoursite.com/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>jsbridge</title>
+    <link href="http://yoursite.com/2020/07/22/jsbridge/"/>
+    <id>http://yoursite.com/2020/07/22/jsbridge/</id>
+    <published>2020-07-22T05:43:05.000Z</published>
+    <updated>2020-07-22T07:09:29.280Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;介绍&quot;&gt;&lt;a href=&quot;#介绍&quot; class=&quot;headerlink&quot; title=&quot;介绍&quot;&gt;&lt;/a&gt;介绍&lt;/h3&gt;&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;h5 与原生 app 的交互，本质上说，就是两种调用：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;app 调用 h5 的代码&lt;/li&gt;
+&lt;li&gt;h5 调用 app 的代码&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+    
+      <category term="js" scheme="http://yoursite.com/categories/js/"/>
+    
+    
+      <category term="js" scheme="http://yoursite.com/tags/js/"/>
+    
+      <category term="jsbridge" scheme="http://yoursite.com/tags/jsbridge/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vantweapp</title>
+    <link href="http://yoursite.com/2020/07/22/vantweapp/"/>
+    <id>http://yoursite.com/2020/07/22/vantweapp/</id>
+    <published>2020-07-22T01:47:40.000Z</published>
+    <updated>2020-07-22T02:07:33.269Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;小程序插件–vantWeapp&quot;&gt;&lt;a href=&quot;#小程序插件–vantWeapp&quot; class=&quot;headerlink&quot; title=&quot;小程序插件–vantWeapp&quot;&gt;&lt;/a&gt;小程序插件–vantWeapp&lt;/h3&gt;&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;新建个项目&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;找到项目文件夹 npm init 初始化一个叫package.json的文件一路回车即可&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;继续执行命令安装 Vant Weapp&lt;br&gt;&lt;code&gt;npm i @vant/weapp -S --production&lt;/code&gt; &lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;ol start=&quot;4&quot;&gt;
+&lt;li&gt;点击 开发者菜单里面的工具 &amp;gt;构建npm 如下图&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="plugins" scheme="http://yoursite.com/categories/plugins/"/>
+    
+    
+      <category term="plugins" scheme="http://yoursite.com/tags/plugins/"/>
+    
+      <category term="小程序" scheme="http://yoursite.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>plugins</title>
+    <link href="http://yoursite.com/2020/07/17/plugins/"/>
+    <id>http://yoursite.com/2020/07/17/plugins/</id>
+    <published>2020-07-17T07:16:47.000Z</published>
+    <updated>2020-07-22T02:11:22.206Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;vs和vsCode插件&quot;&gt;&lt;a href=&quot;#vs和vsCode插件&quot; class=&quot;headerlink&quot; title=&quot;vs和vsCode插件&quot;&gt;&lt;/a&gt;vs和vsCode插件&lt;/h3&gt;
+    
+    </summary>
+    
+    
+      <category term="plugins" scheme="http://yoursite.com/categories/plugins/"/>
+    
+    
+      <category term="plugins" scheme="http://yoursite.com/tags/plugins/"/>
+    
+  </entry>
   
   <entry>
     <title>toolVsCode</title>
@@ -197,7 +311,7 @@
     <link href="http://yoursite.com/2020/07/14/mdUse/"/>
     <id>http://yoursite.com/2020/07/14/mdUse/</id>
     <published>2020-07-14T06:50:52.000Z</published>
-    <updated>2020-07-15T06:17:54.912Z</updated>
+    <updated>2020-07-17T07:19:46.679Z</updated>
     
     <summary type="html">
     
