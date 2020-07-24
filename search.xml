@@ -1,14 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>introduction</title>
-    <url>/2020/07/09/introduction/</url>
-    <content><![CDATA[<h6 id=""><a href="#" class="headerlink" title=""></a></h6><h5 id="一个入门两年的小前端，日常总结和感悟，目的就是方便自己，方便他人。"><a href="#一个入门两年的小前端，日常总结和感悟，目的就是方便自己，方便他人。" class="headerlink" title="一个入门两年的小前端，日常总结和感悟，目的就是方便自己，方便他人。"></a>一个入门两年的小前端，日常总结和感悟，目的就是方便自己，方便他人。</h5><h5 id="这个博客将会记录我的前端生涯中，不管是鸡毛蒜皮，还是令人头秃的bug和自己记不住的知识点和方法。"><a href="#这个博客将会记录我的前端生涯中，不管是鸡毛蒜皮，还是令人头秃的bug和自己记不住的知识点和方法。" class="headerlink" title="这个博客将会记录我的前端生涯中，不管是鸡毛蒜皮，还是令人头秃的bug和自己记不住的知识点和方法。"></a>这个博客将会记录我的前端生涯中，不管是鸡毛蒜皮，还是令人头秃的bug和自己记不住的知识点和方法。</h5><h5 id="做一行，爱一行，菜鸟也会有飞起的那天，加油鸭！！！"><a href="#做一行，爱一行，菜鸟也会有飞起的那天，加油鸭！！！" class="headerlink" title="做一行，爱一行，菜鸟也会有飞起的那天，加油鸭！！！"></a>做一行，爱一行，菜鸟也会有飞起的那天，加油鸭！！！</h5>]]></content>
+    <title>HTML5</title>
+    <url>/2020/07/22/HTML5/</url>
+    <content><![CDATA[<h3 id="h5知识点整理"><a href="#h5知识点整理" class="headerlink" title="h5知识点整理"></a>h5知识点整理</h3><blockquote>
+<ol>
+<li>任何class和id里都不能包含”ad” 这个关键字,否则会被一些广告屏蔽软件给过滤了</li>
+</ol>
+</blockquote>
+<a id="more"></a>
+
+<blockquote>
+<ol start="2">
+<li><input type="tel" placeholder="输入手机号" pattern="1[3-8][0-9]{9}" title="输入正确的手机号">
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="3">
+<li><meter min="0" low="40" high="90" max="100" value="95"></meter></li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="4">
+<li><p contenteditable="true">这里的内容可以编辑</p>
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="5">
+<li><p>使用input数字number类型的时候maxlength无效，假设需要控制输入数量为5，可以用以下方式：</p>
+<p>无效： <input type="number" maxlength="5" /></p>
+<p>有效：<input type="number" oninput="if(value.length>5)value=value.slice(0,5)" /> </p>
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="6">
+<li><p>tel、email</p>
+<p>例如说当type=tel的时候,在手机上打开页面会出现电话键盘(不是数字键盘,两者并不一样,电话键盘还包括*和#)</p>
+<p>当type=email的时候,会出现带@和.com符号的全键盘(各设配各系统实现貌似有差异)</p>
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="7">
+<li><a href="http://www.baidu.com/link?url=gFF8MX53uYP6kl_JnWUbWmEEIn6gA5irf5C_fBWwLtTEccOmxfwGpe899O79mYaM" target="_blank" rel="noopener">HTML页面顶部出现空白部分(&amp;#65279)字符的完美解决办法</a></li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;	</span><br><span class="line">   <span class="keyword">var</span> a=<span class="built_in">document</span>.body.innerHTML;   </span><br><span class="line">   <span class="built_in">document</span>.body.innerHTML=a.replace(<span class="regexp">/\ufeff/g</span>,<span class="string">''</span>);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<ol start="8">
+<li><p>ios的readonly不兼容</p>
+<p>unselectable=”on” onfocus=”this.blur()”</p>
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="9">
+<li><p>form表单获取input</p>
+<p><img src="C:/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/2bb1822c99ae4a2c8ea984da3389235a/clipboard.png" alt="img"></p>
+<p>document.tmform.tmtext.value</p>
+<p>document.tmform.halou.value</p>
+</li>
+</ol>
+</blockquote>
+]]></content>
       <categories>
-        <category>introduction</category>
+        <category>html</category>
       </categories>
       <tags>
-        <tag>introduction</tag>
+        <tag>html</tag>
       </tags>
   </entry>
   <entry>
@@ -43,6 +105,14 @@
 <p>12.不想加载某个文件了？</p>
 <p><img src="C:/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/42fac284b98e42af811338fb0308ee56/640.webp" alt="img"></p>
 <p><img src="C:/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/738dadd5d10b4d4e8b6ee39090f9c4a4/640.webp" alt="img"></p>
+<p>13.手动改定位信息</p>
+<p>Chrome中模拟定位信息，清除定位信息</p>
+<p>chrome  F12进入调试模式后，点击右上角的 三个点的标志，如下图</p>
+<p><img src="C:/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/3f4cb2ddc5e940449e5f524c505cca45/723102529524.png" alt="img"></p>
+<p>将其Geolocation中的下拉更改为Custom Location（或者直接选择other），在下方填入经纬度信息即可模拟当前位置；</p>
+<p>如果要清除位置信息，需将Geolocation修改为No override，并且关闭浏览器，重启启动后才会生效，</p>
+<p>切记重启浏览器，否则你可以在调试时看到你传入的经纬度信息依旧是你之前设置的数据，</p>
+<p>如果再没有生效，可将浏览器数据清除重试</p>
 ]]></content>
       <categories>
         <category>soft</category>
@@ -50,6 +120,247 @@
       <tags>
         <tag>soft</tag>
         <tag>浏览器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>css3</title>
+    <url>/2020/07/23/css3/</url>
+    <content><![CDATA[<h3 id="日常积累"><a href="#日常积累" class="headerlink" title="日常积累"></a>日常积累</h3><a id="more"></a>
+
+<ol>
+<li><p>介绍一下标准的CSS的盒子模型？与低版本IE的盒子模型有什么不同的？</p>
+<blockquote>
+<ul>
+<li>标准盒子模型：宽度=内容的宽度（content）+ border + padding + margin </li>
+<li>低版本IE盒子模型：宽度=内容宽度（content+border+padding）+ margin</li>
+</ul>
+</blockquote>
+</li>
+<li><p>box-sizing属性</p>
+<blockquote>
+<p>用来控制元素的盒子模型的解析模式，默认为content-box </p>
+<ul>
+<li>context-box：W3C的标准盒子模型，设置元素的 height/width 属性指的是content部分的高/宽 </li>
+<li>border-box：IE传统盒子模型。设置元素的height/width属性指的是border + padding + content部分的高/宽</li>
+</ul>
+</blockquote>
+</li>
+<li><p>CSS选择器有哪些？哪些属性可以继承？</p>
+<blockquote>
+<ul>
+<li>CSS选择符：id选择器(#myid)、类选择器(.myclassname)、标签选择器(div, h1, p)、相邻选择器(h1 + p)、子选择器（ul &gt; li）、后代选择器（li a）、通配符选择器（*）、属性选择器（a[rel=”external”]）、伪类选择器（a:hover, li:nth-child）</li>
+<li>可继承的属性：font-size, font-family, color</li>
+<li>不可继承的样式：border, padding, margin, width, height</li>
+<li>优先级（就近原则）：!important &gt; [ id &gt; class &gt; tag ] </li>
+<li>!important 比内联优先级高</li>
+</ul>
+</blockquote>
+</li>
+<li><p>CSS优先级算法如何计算？</p>
+<blockquote>
+<p>元素选择符： 1 </p>
+<p>class选择符： 10 </p>
+<p>id选择符：100 </p>
+<p>元素标签：1000</p>
+<p>!important声明的样式优先级最高，如果冲突再进行计算。 </p>
+<p>如果优先级相同，则选择最后出现的样式。 </p>
+<p>继承得到的样式的优先级最低。</p>
+</blockquote>
+</li>
+<li><p>CSS3伪类有那些?</p>
+<blockquote>
+<ul>
+<li><p>p:first-of-type 选择属于其父元素的首个元素 </p>
+</li>
+<li><p>p:last-of-type 选择属于其父元素的最后元素 </p>
+</li>
+<li><p>p:only-of-type 选择属于其父元素唯一的元素 </p>
+</li>
+<li><p>p:only-child 选择属于其父元素的唯一子元素 </p>
+</li>
+<li><p>p:nth-child(2) 选择属于其父元素的第二个子元素 </p>
+</li>
+<li><p>plate:nth-of-type(even) 或 plate:nth-of-type(2n)  选中所有偶数的plate</p>
+<p>plate:nth-of-type(odd) 或 plate:nth-of-type(2n+1)  奇数项</p>
+<p>plate:nth-of-type(2n+3) 选择偶数项并从第三个开始</p>
+<p>plate:nth-of-type(3n) 选择3的倍数</p>
+</li>
+<li><p>:enabled :disabled 表单控件的禁用状态。 </p>
+</li>
+<li><p>:checked 单选框或复选框被选中。</p>
+</li>
+<li><p>bento ~ pickle  bento旁边的pickle元素  </p>
+</li>
+</ul>
+</blockquote>
+</li>
+<li><p>如何居中div？如何居中一个浮动元素？如何让绝对定位的div居中？</p>
+<blockquote>
+<ul>
+<li><p>div：</p>
+<p>border: 1px solid red; </p>
+<p>margin: 0 auto; </p>
+<p>height: 50px; </p>
+<p>width: 80px; </p>
+</li>
+<li><p>浮动元素的上下左右居中：</p>
+<p>border: 1px solid red; </p>
+<p>float: left; </p>
+<p>position: absolute; </p>
+<p>width: 200px; </p>
+<p>height: 100px; </p>
+<p>left: 50%; </p>
+<p>top: 50%; </p>
+<p>margin: -50px 0 0 -100px; </p>
+</li>
+<li><p>绝对定位的左右居中：</p>
+<p>border: 1px solid black; </p>
+<p>position: absolute; </p>
+<p>width: 200px; </p>
+<p>height: 100px; </p>
+<p>margin: 0 auto; </p>
+<p>left: 0; </p>
+<p>right: 0;</p>
+</li>
+<li><p>flex布局所有元素在范围内水平垂直分布</p>
+</li>
+</ul>
+<p>​      display: flex;</p>
+<p>​      flex-wrap: wrap;</p>
+<p>​      align-items: center;</p>
+<p>​      justify-content: center;</p>
+<p>​     所有子级元素</p>
+<p>​    &gt; h1, &gt; h2, p {</p>
+<p>​           width: 100%;</p>
+<p>​           text-align: center;</p>
+<p>​     }</p>
+</blockquote>
+</li>
+<li><p>position的值</p>
+<blockquote>
+<ul>
+<li>static（默认）：按照正常文档流进行排列； </li>
+<li>relative（相对定位）：不脱离文档流，参考自身静态位置通过 top, bottom, left, right 定位； </li>
+<li>absolute(绝对定位)：参考距其最近一个不为static的父级元素通过top, bottom, left, right 定位； </li>
+<li>fixed(固定定位)：所固定的参照对像是可视窗口。</li>
+</ul>
+</blockquote>
+</li>
+<li><p>CSS3有哪些新特性</p>
+<blockquote>
+<ul>
+<li><p>对长的不可分割单词换行 word-wrap：break-word </p>
+</li>
+<li><p>英文和数字不换行 word-break: break-all;</p>
+</li>
+<li><p>文字超出行数以省略号显示</p>
+<p>display: -webkit-box !important;</p>
+<p>-ms-text-overflow: ellipsis;</p>
+<p>text-overflow: ellipsis;</p>
+<p>overflow: hidden;</p>
+<p>word-break: break-all;</p>
+<p>-webkit-box-orient: vertical;</p>
+<p>-webkit-line-clamp: 3; // 可显示行数</p>
+</li>
+<li><p>取消a标签在移动端点击时的蓝色</p>
+<p>-webkit-tap-highlight-color: rgba(255, 255, 255, 0);</p>
+<p>-webkit-user-select: none;</p>
+<p>-moz-user-focus: none;</p>
+<p>-moz-user-select: none;</p>
+</li>
+<li><p>指定位置剪切图片</p>
+<p>img{</p>
+<p>position:absolute; </p>
+<p>​    clip:rect(0px 500px 150px 0px); </p>
+<p>}</p>
+</li>
+<li><p>阻止旋转屏幕时自动调整字体大小</p>
+<p>移动端开发时，屏幕有竖屏和横屏模式，当屏幕进行旋转时，字体大小则有可能会发生变化，从而影响页面布局的整体样式，为避免此类情况发生，只需设置如下样式即可</p>
+<p>1 * {2   -webkit-text-size-adjust: none;3 }</p>
+</li>
+<li><p>修改移动端难看的点击的高亮效果，iOS和安卓下都有效</p>
+<p> -webkit-tap-highlight-color: rgba(0,0,0,0);</p>
+</li>
+<li><p>禁止在input中输入中文</p>
+<p>用文本框的CSS属性ime-mode实现。 </p>
+<input onpaste="return false" ondragenter="return false"  style="ime-mode:disabled"> 
+
+<p> 提示：设置ime-mode为disabled的意思是禁止在输入时禁止用户激活输入中文，韩文，日文等的输入法（IME）状态，因为这个只能检测到键盘的输入，对通过鼠标操作的粘贴和拖放无效。 </p>
+</li>
+</ul>
+</blockquote>
+</li>
+<li><p>icon字体</p>
+<blockquote>
+<p>1.引入css</p>
+<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_918569_2pxb1owlzc1.css" />
+
+<p>2.使用</p>
+<p><span class="iconfont icon-xiaoxi"></span></p>
+</blockquote>
+</li>
+<li><p>三角</p>
+<blockquote>
+<p><img src="C:/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/27ee901899f54804a9b25ca43d7a1577/clipboard.png" alt="img"></p>
+<p>width: 0;<br>height: 0;<br>border: 50px solid;<br>border-color: red yellow green blue;</p>
+<p><img src="C:/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/ab651a41b1784e39a74d4ee18fc03bfa/clipboard.png" alt="img"></p>
+<p>width: 0;<br>height: 0;<br>border: 50px solid;<br>border-color: red transparent transparent transparent;</p>
+</blockquote>
+</li>
+<li><p>对勾</p>
+<blockquote>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"tesy"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">  <span class="selector-class">.tesy</span> &#123;</span></span><br><span class="line">    width: 60px;</span><br><span class="line">    height: 30px;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    position: absolute;</span><br><span class="line">    right: 110px;</span><br><span class="line">    top: 0;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="css">、  <span class="selector-class">.tesy</span><span class="selector-pseudo">:before</span> &#123;</span></span><br><span class="line">    position: relative;</span><br><span class="line">    content: '';</span><br><span class="line">    position: absolute;</span><br><span class="line">    width: 6px;</span><br><span class="line">    height: 15px;</span><br><span class="line"><span class="css">    <span class="selector-tag">color</span>: <span class="selector-id">#1137a0</span>;</span></span><br><span class="line">    border-bottom: 1px solid;</span><br><span class="line">    border-right: 1px solid;</span><br><span class="line">    left: 50%;</span><br><span class="line">    top: 50%;</span><br><span class="line">    -webkit-transform-origin: center;</span><br><span class="line">            transform-origin: center;</span><br><span class="line">    transform: translate(-50%, -30%) rotate(45deg);</span><br><span class="line">    -webkit-transform: translate(-50%, -30%) rotate(45deg);</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>三角突出效果</p>
+<blockquote>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"rongpi"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"wenan"</span>&gt;</span>跟团游<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"sanjiao"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span><br><span class="line">.rongpi&#123;</span><br><span class="line">			height: 15px;</span><br><span class="line">			overflow: hidden;</span><br><span class="line">			position: absolute;</span><br><span class="line">			top:0;</span><br><span class="line">			left: 0;</span><br><span class="line">		&#125;</span><br><span class="line">		.wenan&#123;</span><br><span class="line">			float: left;</span><br><span class="line">			position: relative;</span><br><span class="line">			z-index: 3;</span><br><span class="line">			height: 15px;</span><br><span class="line">			padding-left: 4px;</span><br><span class="line">			line-height: 16px;</span><br><span class="line">			color:white;</span><br><span class="line">			background: red;</span><br><span class="line">			font-size: 10px;</span><br><span class="line">		&#125;</span><br><span class="line">		.sanjiao&#123;</span><br><span class="line">			width:0;</span><br><span class="line">			height: 0;</span><br><span class="line">			border-right: 20px solid transparent;</span><br><span class="line">			border-top: 30px solid red;</span><br><span class="line">			float: right;</span><br><span class="line">			margin-left: -9px;</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>渐变</p>
+<blockquote>
+<ul>
+<li><p>背景颜色渐变色</p>
+<p>background:linear-gradient(116deg,rgba(247,209,177,1) 0%,rgba(210,162,122,1) 100%);</p>
+<p><a href="https://blog.csdn.net/qq_36538012/article/details/79467097" target="_blank" rel="noopener">https://blog.csdn.net/qq_36538012/article/details/79467097</a></p>
+<p><a href="https://blog.csdn.net/qq_16390749/article/details/77718834" target="_blank" rel="noopener">https://blog.csdn.net/qq_16390749/article/details/77718834</a></p>
+</li>
+<li><p>字体颜色渐变色</p>
+<p><a href="https://blog.csdn.net/qq_34122603/article/details/78684445" target="_blank" rel="noopener">https://blog.csdn.net/qq_34122603/article/details/78684445</a></p>
+</li>
+</ul>
+</blockquote>
+</li>
+<li><p>判断机型（页面大小）</p>
+<blockquote>
+<ul>
+<li><p>iphoneX</p>
+<p>@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {</p>
+<p>​     .BottomProgress {</p>
+<p>​        bottom: 34px !important;</p>
+<p>​    }</p>
+<p>}</p>
+</li>
+</ul>
+</blockquote>
+</li>
+<li><p>彩色进度条</p>
+<blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">progress: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">  <span class="keyword">var</span> i = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">var</span> filldiv = $(<span class="string">"#filldiv"</span>);</span><br><span class="line">  <span class="keyword">var</span> percent = $(<span class="string">"#percent"</span>);</span><br><span class="line">  <span class="keyword">var</span> timer = setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    $(<span class="string">"#filldiv"</span>).css(<span class="string">"width"</span>, i++ + <span class="string">'%'</span>)</span><br><span class="line">    $(<span class="string">"#filldiv"</span>).css(<span class="string">"background"</span>, self.getColor())</span><br><span class="line">    $(<span class="string">"#percent"</span>).innerHTML = <span class="built_in">parseInt</span>(i * <span class="number">100</span> / <span class="number">500</span>);</span><br><span class="line">    <span class="keyword">if</span> (i &gt; <span class="number">100</span>) &#123;</span><br><span class="line">      clearInterval(timer);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, <span class="number">100</span>)</span><br><span class="line">&#125;,</span><br><span class="line"><span class="comment">////获取十六进制的随机颜色值</span></span><br><span class="line">getColor: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">  <span class="keyword">var</span> str = <span class="string">"0123456789abcdef"</span>;</span><br><span class="line">  <span class="keyword">var</span> color = <span class="string">"#"</span>;</span><br><span class="line">  <span class="keyword">var</span> rand;</span><br><span class="line">  <span class="comment">//str有下标 0-15</span></span><br><span class="line">  <span class="comment">//获取0-15的随机数</span></span><br><span class="line">  <span class="comment">//通过这个随机数作为str的下标，</span></span><br><span class="line">  <span class="comment">//获取随机字符</span></span><br><span class="line">  <span class="comment">//获取六个随机字符拼成一个字符串</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++) &#123;</span><br><span class="line">    rand = self.getRand(<span class="number">0</span>, <span class="number">15</span>);</span><br><span class="line">    color += str.charAt(rand);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> color;</span><br><span class="line"></span><br><span class="line">&#125;,</span><br><span class="line"><span class="comment">//获取min-max之间的随机整数</span></span><br><span class="line">getRand: <span class="function"><span class="keyword">function</span> (<span class="params">min, max</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">parseInt</span>(<span class="built_in">Math</span>.random() * (max - min + <span class="number">1</span>) + min);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>条纹滚动进度条</p>
+<p><img src="C:/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/a9c3115c2406484ea92d78187053848c/1c0ba1a3675e9eeb2b43efe126b06d4.png" alt="img"></p>
+<blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">progressBar: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">  <span class="keyword">var</span> i = <span class="number">0</span>;</span><br><span class="line">  self.progressText = <span class="string">''</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">$</span>(<span class="params">d</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">document</span>.getElementById(d);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> timer = setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    $(<span class="string">"progress-container "</span>).style.width = i++ + <span class="string">'%'</span>;</span><br><span class="line">    self.progressText = $(<span class="string">"progress-container "</span>).style.width</span><br><span class="line">    <span class="keyword">if</span> ($(<span class="string">"progress-container "</span>).style.width &gt;= <span class="string">"98%"</span>) &#123;</span><br><span class="line">      clearInterval(timer);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, <span class="number">100</span>)</span><br><span class="line">&#125;,</span><br><span class="line">html</span><br><span class="line">  &lt; div <span class="class"><span class="keyword">class</span></span>=<span class="string">"progress-container"</span> id = <span class="string">"progress-container "</span> &gt;</span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"progress-cont"</span>&gt;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span> &gt;</span><br><span class="line">  样式</span><br><span class="line">    .progress - container &#123;</span><br><span class="line">  height: <span class="number">100</span> %;</span><br><span class="line">  width: <span class="number">100</span> %;</span><br><span class="line">  overflow: hidden;</span><br><span class="line">  position: absolute;</span><br><span class="line">&#125;</span><br><span class="line">.progress - cont &#123;</span><br><span class="line">  position: absolute;</span><br><span class="line">  left: <span class="number">-1000</span>px;</span><br><span class="line">  height: <span class="number">100</span> %;</span><br><span class="line">  width: <span class="number">2000</span>px;</span><br><span class="line">  background - image: linear - gradient(90deg, transparent 0rem, transparent 2rem, #FFEBEC 2em, #FFEBEC 4rem, transparent 4rem);</span><br><span class="line">  background - color: #FFF2F2;</span><br><span class="line">  background - size: <span class="number">40</span>px <span class="number">100</span> %;</span><br><span class="line">  background - repeat: repeat - x;</span><br><span class="line">  transform: skewX(<span class="number">-30</span>deg)!important;</span><br><span class="line">&#125;</span><br><span class="line">.progress - cont &#123;</span><br><span class="line">  animation: reverse progress - bar - stripes <span class="number">0.40</span>s linear infinite;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@keyframes progress - bar - stripes &#123;</span><br><span class="line">  <span class="keyword">from</span> &#123;</span><br><span class="line">    background - position: <span class="number">40</span>px <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  to &#123;</span><br><span class="line">    background - position: <span class="number">0</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></blockquote>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>css</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
       </tags>
   </entry>
   <entry>
@@ -109,93 +420,126 @@
       </tags>
   </entry>
   <entry>
-    <title>jsbridge</title>
-    <url>/2020/07/22/jsbridge/</url>
-    <content><![CDATA[<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>h5 与原生 app 的交互，本质上说，就是两种调用：</p>
-<ol>
-<li>app 调用 h5 的代码</li>
-<li>h5 调用 app 的代码</li>
-</ol>
-<a id="more"></a>
-
-<p><strong>1. app 调用 h5 的代码</strong></p>
-<p>因为 app 是宿主，可以直接访问 h5，所以这种调用比较简单，就是在 h5 中曝露一些全局对象（包括方法），然后在原生 app 中调用这些对</p>
-<p><img src="https://img2018.cnblogs.com/blog/1661048/201908/1661048-20190805104711293-168785251.jpg" alt="img"></p>
-<p><strong>javascript</strong></p>
-<p><code>window.sdk = {</code></p>
-<p><code>``double = value =&gt; value * 2,</code></p>
-<p><code>``triple = value =&gt; value * 3,</code></p>
-<p><code>};</code></p>
-<p><strong>android：</strong></p>
-<p><code>webview.evaluateJavascript(``&#39;window.sdk.double(10)&#39;``, ``new</code> <code>ValueCallback&lt;String&gt;() {</code></p>
-<p><code>``@Override</code></p>
-<p><code>``public</code> <code>void onReceiveValue(String s) {</code></p>
-<p><code>``// 20</code></p>
-<p><code>``}</code></p>
-<p><code>});</code></p>
-<p><strong>ios：</strong></p>
-<p><code>NSString *func = @``&quot;window.sdk.double(10)&quot;``;</code></p>
-<p><code>NSString *str = [webview stringByEvaluatingJavaScriptFromString:func]; ``// 20</code></p>
-<p><strong>2. h5 调用 app 的代码</strong></p>
-<p>因为 h5 不能直接访问宿主 app，所以这种调用就相对复杂一点。</p>
-<p>这种调用常用有两种方式：</p>
-<ol>
-<li>由app向h5注入一个全局js对象，然后在h5直接访问这个对象</li>
-<li>由h5发起一个自定义协议请求，app拦截这个请求后，再由app调用 h5 中的回调函数</li>
-</ol>
-<p><strong>2.1 由 app 向 h5 注入一个全局 js 对象</strong></p>
-<p>这种方式沟通机制简单，比较好理解，并且对于 h5 来说，没有新的东西，所以是比较推荐的一种方式。但这种方式可能存在安全隐患，详细查看 你不知道的 Android WebView 使用漏洞。</p>
-<p><img src="https://img2018.cnblogs.com/blog/1661048/201908/1661048-20190805105140875-2098346635.jpg" alt="img"></p>
-<p><strong>android</strong></p>
-<p><code>webview.addJavascriptInterface(``new</code> <code>Object() {</code></p>
-<p><code>``@JavascriptInterface</code></p>
-<p><code>``public</code> <code>int double(value) {</code></p>
-<p><code>``return</code> <code>value * 2;</code></p>
-<p><code>``}</code></p>
-<p><code></code> </p>
-<p><code>``@JavascriptInterface</code></p>
-<p><code>``public</code> <code>int triple(value) {</code></p>
-<p><code>``return</code> <code>value * 3;</code></p>
-<p><code>``}</code></p>
-<p><code>}, ``&quot;appSdk&quot;``);</code></p>
-<hr>
-<p><strong>ios</strong></p>
-<p><code>NSString *scripts = @``&quot;window.appSdk = {double: value =&gt; value * 2, triple: value =&gt; value * 3}&quot;``;</code></p>
-<p><code>[webview stringByEvaluatingJavaScriptFromString:scripts];</code></p>
-<p><strong>javascript</strong></p>
-<p><strong>window.appSdk.double(10); // 20</strong></p>
-<hr>
-<h3 id="JS-Bridge"><a href="#JS-Bridge" class="headerlink" title="JS Bridge"></a>JS Bridge</h3><h4 id="什么是JS-Bridge"><a href="#什么是JS-Bridge" class="headerlink" title="什么是JS Bridge"></a>什么是JS Bridge</h4><p>在移动开发中为了加快开发进度(0.0)很多页面会用H5来开发，这样一来可以快速完成节约，二来APP内嵌WebView可以较少APP更新频率。因此，成本现在大多数公司的首选，但是部分功能JavaScript的权限受到严格限制，比如拍照，读写权限，获取GPS等等，这些native功能，这时候我们需要去委托原生去实现，原生实现后再告知js。这个时候就需要一个中间桥梁，于是就有了<strong>WebViewJavascriptBridge</strong>，简称 <strong>JS bridge</strong>。</p>
-<h4 id="重点叙述在vue中如何调用"><a href="#重点叙述在vue中如何调用" class="headerlink" title="重点叙述在vue中如何调用"></a>重点叙述在vue中如何调用</h4><ul>
-<li>创建 src/config/bridge.js 文件，用于封装 WebViewJavascriptBridge</li>
-<li>将以下代码拷贝到 bridge.js 文件中</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> u = navigator.userAgent;</span><br><span class="line"><span class="built_in">window</span>.isAndroid = u.indexOf(<span class="string">'Android'</span>) &gt; <span class="number">-1</span> || u.indexOf(<span class="string">'Adr'</span>) &gt; <span class="number">-1</span>; <span class="comment">//android终端 </span></span><br><span class="line"><span class="built_in">window</span>.isIOS = !!u.match(<span class="regexp">/\(i[^;]+;( U;)? CPU.+Mac OS X/</span>); <span class="comment">//ios终端 </span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setupWebViewJavascriptBridge</span>(<span class="params">callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">window</span>.WebViewJavascriptBridge) &#123;</span><br><span class="line">    <span class="keyword">return</span> callback(WebViewJavascriptBridge);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">document</span>.addEventListener(</span><br><span class="line">      <span class="string">'WebViewJavascriptBridgeReady'</span>,</span><br><span class="line">      <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        callback(WebViewJavascriptBridge)</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="literal">false</span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">window</span>.isIOS) &#123;</span><br><span class="line">    <span class="comment">// old ios method</span></span><br><span class="line">    <span class="comment">//setTimeout(function () &#123;</span></span><br><span class="line">    <span class="comment">//    if (window.WVJBCallbacks) &#123;</span></span><br><span class="line">    <span class="comment">//        return window.WVJBCallbacks.push(callback);</span></span><br><span class="line">    <span class="comment">//    &#125;</span></span><br><span class="line">    <span class="comment">//&#125;, 500)</span></span><br><span class="line">    <span class="comment">//window.WVJBCallbacks = [callback];</span></span><br><span class="line">    <span class="comment">//var WVJBIframe = document.createElement('iframe');</span></span><br><span class="line">    <span class="comment">//WVJBIframe.style.display = 'none';</span></span><br><span class="line">    <span class="comment">//WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';</span></span><br><span class="line">    <span class="comment">//document.documentElement.appendChild(WVJBIframe);</span></span><br><span class="line">    <span class="comment">//setTimeout(function () &#123;</span></span><br><span class="line">    <span class="comment">//    document.documentElement.removeChild(WVJBIframe)</span></span><br><span class="line">    <span class="comment">//&#125;, 0)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// new ios method</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.WKWebViewJavascriptBridge) &#123; <span class="keyword">return</span> callback(WKWebViewJavascriptBridge); &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.WKWVJBCallbacks) &#123; <span class="keyword">return</span> <span class="built_in">window</span>.WKWVJBCallbacks.push(callback); &#125;</span><br><span class="line">    <span class="built_in">window</span>.WKWVJBCallbacks = [callback];</span><br><span class="line">    <span class="built_in">window</span>.webkit.messageHandlers.iOS_Native_InjectJavascript.postMessage(<span class="literal">null</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (!<span class="built_in">window</span>.isIOS) &#123;</span><br><span class="line">    setupWebViewJavascriptBridge(<span class="function"><span class="keyword">function</span> (<span class="params">bridge</span>) </span>&#123;</span><br><span class="line">      bridge.init(<span class="function"><span class="keyword">function</span> (<span class="params">message, responseCallback</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> data = &#123;&#125;;</span><br><span class="line">        responseCallback(data);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  callhandler(name, data, callback) &#123;</span><br><span class="line">    setupWebViewJavascriptBridge(<span class="function"><span class="keyword">function</span> (<span class="params">bridge</span>) </span>&#123;</span><br><span class="line">      bridge.callHandler(name, data, callback)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  registerhandler(name, callback) &#123;</span><br><span class="line">    setupWebViewJavascriptBridge(<span class="function"><span class="keyword">function</span> (<span class="params">bridge</span>) </span>&#123;</span><br><span class="line">      bridge.registerHandler(name, <span class="function"><span class="keyword">function</span> (<span class="params">data, responseCallback</span>) </span>&#123;</span><br><span class="line">        callback(data, responseCallback)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在 main.js 中引入该文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Bridge from &#39;.&#x2F;config&#x2F;bridge.js&#39;</span><br><span class="line">Vue.prototype.$bridge &#x3D; Bridge</span><br></pre></td></tr></table></figure>
-
-<p>在需要调用客户端方法的组件中（ObjC Echo是VUE端调用APP端的方法名）</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; params是向app端传的参数</span><br><span class="line">&#x2F;&#x2F; iOS端</span><br><span class="line">this.$bridge.callhandler(&#39;ObjC Echo&#39;, params, (data) &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; 处理返回数据</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; Android端</span><br><span class="line">JSAndroid.requestPaySupportWithPayWay(params);</span><br></pre></td></tr></table></figure>
-
-<p>当app端需要调用 js 函数时,在mounted钩子中事先注册约定好的函数即可（JS Echo是APP端调用VUE端方法名称，博主没用过）</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; iOS端</span><br><span class="line">this.$bridge.registerhandler(&#39;JS Echo&#39;, (data, responseCallback) &#x3D;&gt; &#123;</span><br><span class="line">  alert(&#39;JS Echo called with:&#39;, data)</span><br><span class="line">  responseCallback(data)</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; Android端</span><br><span class="line">window[&#39;JS Echo&#39;] &#x3D; (data, responseCallback) &#x3D;&gt; &#123;</span><br><span class="line">   alert(&#39;JS Echo called with:&#39;, data)</span><br><span class="line">   responseCallback(data)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="html中如何使用封装"><a href="#html中如何使用封装" class="headerlink" title="html中如何使用封装"></a>html中如何使用封装</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var u &#x3D; navigator.userAgent;</span><br><span class="line">window.isAndroid &#x3D; u.indexOf(&#39;Android&#39;) &gt; -1 || u.indexOf(&#39;Adr&#39;) &gt; -1; &#x2F;&#x2F;android终端 </span><br><span class="line">window.isIOS &#x3D; !!u.match(&#x2F;\(i[^;]+;( U;)? CPU.+Mac OS X&#x2F;); &#x2F;&#x2F;ios终端 </span><br><span class="line">window.jsbridge &#x3D; function (callback) &#123;</span><br><span class="line">    if (window.WebViewJavascriptBridge) &#123;</span><br><span class="line">        return callback(WebViewJavascriptBridge);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        document.addEventListener(</span><br><span class="line">            &#39;WebViewJavascriptBridgeReady&#39;,</span><br><span class="line">            function () &#123;</span><br><span class="line">                callback(WebViewJavascriptBridge)</span><br><span class="line">            &#125;,</span><br><span class="line">            false</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">    if (window.isIOS) &#123;</span><br><span class="line">        &#x2F;&#x2F; old ios method</span><br><span class="line">        &#x2F;&#x2F;setTimeout(function () &#123;</span><br><span class="line">        &#x2F;&#x2F;    if (window.WVJBCallbacks) &#123;</span><br><span class="line">        &#x2F;&#x2F;        return window.WVJBCallbacks.push(callback);</span><br><span class="line">        &#x2F;&#x2F;    &#125;</span><br><span class="line">        &#x2F;&#x2F;&#125;, 500)</span><br><span class="line">        &#x2F;&#x2F;window.WVJBCallbacks &#x3D; [callback];</span><br><span class="line">        &#x2F;&#x2F;var WVJBIframe &#x3D; document.createElement(&#39;iframe&#39;);</span><br><span class="line">        &#x2F;&#x2F;WVJBIframe.style.display &#x3D; &#39;none&#39;;</span><br><span class="line">        &#x2F;&#x2F;WVJBIframe.src &#x3D; &#39;wvjbscheme:&#x2F;&#x2F;__BRIDGE_LOADED__&#39;;</span><br><span class="line">        &#x2F;&#x2F;document.documentElement.appendChild(WVJBIframe);</span><br><span class="line">        &#x2F;&#x2F;setTimeout(function () &#123;</span><br><span class="line">        &#x2F;&#x2F;    document.documentElement.removeChild(WVJBIframe)</span><br><span class="line">        &#x2F;&#x2F;&#125;, 0)</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; new ios method</span><br><span class="line">        if (window.WKWebViewJavascriptBridge) &#123; return callback(WKWebViewJavascriptBridge); &#125;</span><br><span class="line">        if (window.WKWVJBCallbacks) &#123; return window.WKWVJBCallbacks.push(callback); &#125;</span><br><span class="line">        window.WKWVJBCallbacks &#x3D; [callback];</span><br><span class="line">        window.webkit.messageHandlers.iOS_Native_InjectJavascript.postMessage(null)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if (!window.isIOS) &#123;</span><br><span class="line">    jsbridge(function (bridge) &#123;</span><br><span class="line">        bridge.init(function (message, responseCallback) &#123;</span><br><span class="line">            var data &#x3D; &#123;&#125;;</span><br><span class="line">            responseCallback(data);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * @param  &#123;option对象&#125;</span><br><span class="line"> * method: 调用的方法</span><br><span class="line"> * data: 传递的参数</span><br><span class="line"> * callback: 回掉方法</span><br><span class="line"> * @return &#123;[type]&#125;</span><br><span class="line"> *&#x2F;</span><br><span class="line">function bridgeCallHandler(option) &#123;</span><br><span class="line">    &#x2F;&#x2F; alert(option.method)</span><br><span class="line">    jsbridge(function (bridge) &#123;</span><br><span class="line">        bridge.callHandler(</span><br><span class="line">            option.method,</span><br><span class="line">            option.data || &#123;&#125;,</span><br><span class="line">            function (responseData) &#123;</span><br><span class="line">                if (option.callback) &#123;</span><br><span class="line">                    option.callback(responseData)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        );</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">window.callNativePage &#x3D; function (option) &#123;</span><br><span class="line">    bridgeCallHandler(&#123;</span><br><span class="line">        method: &#39;callNativePage&#39;,</span><br><span class="line">        data: option.data,</span><br><span class="line">        callback: function (responseData) &#123;</span><br><span class="line">            if (option.callback) &#123;</span><br><span class="line">                option.callback(responseData);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">js调用app</span><br><span class="line">callNativePage(&#123;</span><br><span class="line">    data: &#123; msg : &#39;test send msg&#39; &#125;,</span><br><span class="line">    callback:function(responseData)&#123;</span><br><span class="line">        console.log(&#39;来源于app的反馈信息&#39;,responseData)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;app调js</span><br><span class="line">window.bridgeRegisterHandler &#x3D; function (option) &#123;</span><br><span class="line">    &#x2F;&#x2F; alert(option.method);</span><br><span class="line">    jsbridge(function (bridge) &#123;</span><br><span class="line">        bridge.registerHandler(</span><br><span class="line">            option.method,</span><br><span class="line">            function (data, responseCallback) &#123;</span><br><span class="line">                if (option.callback) &#123;</span><br><span class="line">                    option.callback(data);</span><br><span class="line">                &#125;</span><br><span class="line">                responseCallback(option.data || &#123;&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        );</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">window.bridgeRegisterHandler(&#123;</span><br><span class="line">    method:&quot;提供给app调用的方法名&quot;,</span><br><span class="line">    callback:function(data)&#123;</span><br><span class="line">        &#x2F;&#x2F; data : app传递给前端的data</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>参考链接</p>
-<p><a href="https://www.cnblogs.com/tu-front-end/p/11301685.html" target="_blank" rel="noopener">jsbridge</a></p>
-<p><a href="https://blog.csdn.net/daipianpian/article/details/90714502" target="_blank" rel="noopener">vue项目使用WebViewJavascriptBridge</a></p>
-<p><a href="https://www.jianshu.com/p/2fa0b6cdca17" target="_blank" rel="noopener">H5调用封装</a></p>
-]]></content>
+    <title>introduction</title>
+    <url>/2020/07/09/introduction/</url>
+    <content><![CDATA[<h6 id=""><a href="#" class="headerlink" title=""></a></h6><h5 id="一个入门两年的小前端，日常总结和感悟，目的就是方便自己，方便他人。"><a href="#一个入门两年的小前端，日常总结和感悟，目的就是方便自己，方便他人。" class="headerlink" title="一个入门两年的小前端，日常总结和感悟，目的就是方便自己，方便他人。"></a>一个入门两年的小前端，日常总结和感悟，目的就是方便自己，方便他人。</h5><h5 id="这个博客将会记录我的前端生涯中，不管是鸡毛蒜皮，还是令人头秃的bug和自己记不住的知识点和方法。"><a href="#这个博客将会记录我的前端生涯中，不管是鸡毛蒜皮，还是令人头秃的bug和自己记不住的知识点和方法。" class="headerlink" title="这个博客将会记录我的前端生涯中，不管是鸡毛蒜皮，还是令人头秃的bug和自己记不住的知识点和方法。"></a>这个博客将会记录我的前端生涯中，不管是鸡毛蒜皮，还是令人头秃的bug和自己记不住的知识点和方法。</h5><h5 id="做一行，爱一行，菜鸟也会有飞起的那天，加油鸭！！！"><a href="#做一行，爱一行，菜鸟也会有飞起的那天，加油鸭！！！" class="headerlink" title="做一行，爱一行，菜鸟也会有飞起的那天，加油鸭！！！"></a>做一行，爱一行，菜鸟也会有飞起的那天，加油鸭！！！</h5>]]></content>
       <categories>
-        <category>js</category>
+        <category>introduction</category>
       </categories>
       <tags>
-        <tag>js</tag>
-        <tag>jsbridge</tag>
+        <tag>introduction</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexoTheme</title>
+    <url>/2020/07/15/hexoTheme/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 Hexo 中有两份主要的配置文件，其名称都是 _config.yml。 其中，一份位于站点根目录下，主要包含 Hexo 本身的配置；</p>
+<p>另一份位于主题目录下，这份配置由主题作者提供，主要用于配置主题相关的选项。<br>为了描述方便，在以下说明中，将前者称为<strong>站点配置文件</strong>， 后者称为<strong>主题配置文件</strong>。</p>
+<p>备注: 以下所有终端执行的命令都在你的Hexo根目录下</p>
+<h4 id="1、基本信息配置"><a href="#1、基本信息配置" class="headerlink" title="1、基本信息配置"></a>1、基本信息配置</h4><p>打开 <strong>站点配置文件</strong> ，找到Site模块</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">title: 标题</span><br><span class="line">subtitle: 副标题</span><br><span class="line">description: 描述</span><br><span class="line">author: 作者</span><br><span class="line">language: 语言（简体中文是zh-Hans）</span><br><span class="line">timezone: 网站时区（Hexo 默认使用您电脑的时区，不用写）</span><br></pre></td></tr></table></figure>
+
+<hr>
+<a id="more"></a>
+
+<h4 id="2、菜单设置"><a href="#2、菜单设置" class="headerlink" title="2、菜单设置"></a>2、菜单设置</h4><p>我们刚开始默认的菜单只有首页和归档两个，不能够满足我们的要求，所以需要添加菜单，打开 <strong>主题配置文件</strong> 找到<code>Menu Settings</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: &#x2F; || home                          &#x2F;&#x2F;首页</span><br><span class="line">  archives: &#x2F;archives&#x2F; || archive          &#x2F;&#x2F;归档</span><br><span class="line">  categories: &#x2F;categories&#x2F; || th           &#x2F;&#x2F;分类</span><br><span class="line">  tags: &#x2F;tags&#x2F; || tags                     &#x2F;&#x2F;标签</span><br><span class="line">  about: &#x2F;about&#x2F; || user                   &#x2F;&#x2F;关于</span><br><span class="line">  #schedule: &#x2F;schedule&#x2F; || calendar        &#x2F;&#x2F;日程表</span><br><span class="line">  #sitemap: &#x2F;sitemap.xml || sitemap        &#x2F;&#x2F;站点地图</span><br><span class="line">  #commonweal: &#x2F;404&#x2F; || heartbeat          &#x2F;&#x2F;公益404</span><br></pre></td></tr></table></figure>
+
+<p>备注：看看你需要哪个菜单就把哪个取消注释打开就行了；</p>
+<p>关于后面的格式，以<code>archives: /archives/ || archive</code>为例：</p>
+<p><code>||</code> 之前的<code>/archives/</code>表示标题“归档”，关于标题的格式可以去<code>themes/next/languages/zh-Hans.yml</code>中参考或修改</p>
+<p><code>||</code>之后的<code>archive</code>表示图标，可以去<a href="https://links.jianshu.com/go?to=http%3A%2F%2Ffontawesome.io%2Ficons%2F" target="_blank" rel="noopener">Font Awesome</a>中查看或修改，Next主题所有的图标都来自Font Awesome。</p>
+<hr>
+<h4 id="3、Next主题样式设置"><a href="#3、Next主题样式设置" class="headerlink" title="3、Next主题样式设置"></a>3、Next主题样式设置</h4><p>我们百里挑一选择了Next主题，不过Next主题还有4种风格供我们选择，打开 <strong>主题配置文件</strong> 找到<code>Scheme Settings</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Schemes</span><br><span class="line"># scheme: Muse</span><br><span class="line"># scheme: Mist</span><br><span class="line"># scheme: Pisces</span><br><span class="line">scheme: Gemini</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="4、侧栏设置"><a href="#4、侧栏设置" class="headerlink" title="4、侧栏设置"></a>4、侧栏设置</h4><p>打开 <strong>主题配置文件</strong> 找到<code>sidebar</code>字段</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sidebar:</span><br><span class="line"># Sidebar Position - 侧栏位置（只对Pisces | Gemini两种风格有效）</span><br><span class="line">  position: left        &#x2F;&#x2F;靠左放置</span><br><span class="line">  #position: right      &#x2F;&#x2F;靠右放置</span><br><span class="line"># Sidebar Display - 侧栏显示时机（只对Muse | Mist两种风格有效）</span><br><span class="line">  #display: post        &#x2F;&#x2F;默认行为，在文章页面（拥有目录列表）时显示</span><br><span class="line">  display: always       &#x2F;&#x2F;在所有页面中都显示</span><br><span class="line">  #display: hide        &#x2F;&#x2F;在所有页面中都隐藏（可以手动展开）</span><br><span class="line">  #display: remove      &#x2F;&#x2F;完全移除</span><br><span class="line">  offset: 12            &#x2F;&#x2F;文章间距（只对Pisces | Gemini两种风格有效）</span><br><span class="line">  b2t: false            &#x2F;&#x2F;返回顶部按钮（只对Pisces | Gemini两种风格有效）</span><br><span class="line">  scrollpercent: true   &#x2F;&#x2F;返回顶部按钮的百分比</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="5、头像设置"><a href="#5、头像设置" class="headerlink" title="5、头像设置"></a>5、头像设置</h4><p>打开 <strong>主题配置文件</strong> 找到<code>Sidebar Avatar</code>字段</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Sidebar Avatar</span><br><span class="line">avatar: &#x2F;images&#x2F;header.jpg</span><br></pre></td></tr></table></figure>
+
+<p>这是头像的路径，只需把你的头像命名为<code>header.jpg</code>（随便命名）放入<code>themes/next/source/images</code>中，将<code>avatar</code>的路径名改成你的头像名就OK啦！</p>
+<hr>
+<h4 id="6、设置RSS"><a href="#6、设置RSS" class="headerlink" title="6、设置RSS"></a>6、设置RSS</h4><p>1、先安装 <a href="https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2Fhexojs%2Fhexo-generator-feed" target="_blank" rel="noopener">hexo-generator-feed</a> 插件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-generator-feed --save</span><br></pre></td></tr></table></figure>
+
+<p>2、打开 <strong>站点配置文件</strong> 找到<code>Extensions</code>在下面添加</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># RSS订阅</span><br><span class="line">feed:</span><br><span class="line">  type: atom</span><br><span class="line">  path: atom.xml</span><br><span class="line">  limit: 20</span><br><span class="line">  hub:</span><br><span class="line">  content:</span><br><span class="line">  content_limit: 140</span><br><span class="line">  content_limit_delim: &#39; &#39;</span><br></pre></td></tr></table></figure>
+
+<p>3、打开 <strong>主题配置文件</strong> 找到<code>rss</code>，设置为</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rss: &#x2F;atom.xml</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="7、添加分类模块"><a href="#7、添加分类模块" class="headerlink" title="7、添加分类模块"></a>7、添加分类模块</h4><p>1、新建一个分类页面</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ hexo new page categories</span><br></pre></td></tr></table></figure>
+
+<p>2、你会发现你的<code>source</code>文件夹下有了<code>categorcies/index.md</code>，打开<code>index.md</code>文件将title设置为<code>title: 分类</code><br>3、打开 <strong>主题配置文件</strong> 找到<code>menu</code>，将categorcies取消注释<br>4、把文章归入分类只需在文章的顶部标题下方添加<code>categories</code>字段，即可自动创建分类名并加入对应的分类中<br>举个栗子：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">title: 分类测试文章标题</span><br><span class="line">categories: 分类名</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="8、添加标签模块"><a href="#8、添加标签模块" class="headerlink" title="8、添加标签模块"></a>8、添加标签模块</h4><p>1、新建一个标签页面</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ hexo new page tags</span><br></pre></td></tr></table></figure>
+
+<p>2、你会发现你的<code>source</code>文件夹下有了<code>tags/index.md</code>，打开<code>index.md</code>文件将title设置为<code>title: 标签</code><br>3、打开 <strong>主题配置文件</strong> 找到<code>menu</code>，将tags取消注释<br>4、把文章添加标签只需在文章的顶部标题下方添加<code>tags</code>字段，即可自动创建标签名并归入对应的标签中<br>举个栗子：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">title: 标签测试文章标题</span><br><span class="line">tags: </span><br><span class="line">  - 标签1</span><br><span class="line">  - 标签2</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="9、添加关于模块"><a href="#9、添加关于模块" class="headerlink" title="9、添加关于模块"></a>9、添加关于模块</h4><p>1、新建一个关于页面</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ hexo new page about</span><br></pre></td></tr></table></figure>
+
+<p>2、你会发现你的<code>source</code>文件夹下有了<code>about/index.md</code>，打开<code>index.md</code>文件即可编辑关于你的信息，可以随便编辑。<br>3、打开 <strong>主题配置文件</strong> 找到<code>menu</code>，将about取消注释</p>
+<hr>
+<h4 id="10、添加搜索功能"><a href="#10、添加搜索功能" class="headerlink" title="10、添加搜索功能"></a>10、添加搜索功能</h4><p>1、安装 <a href="https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2Fflashlab%2Fhexo-generator-search" target="_blank" rel="noopener">hexo-generator-searchdb</a> 插件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
+
+<p>2、打开 <strong>站点配置文件</strong> 找到<code>Extensions</code>在下面添加</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 搜索</span><br><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  format: html</span><br><span class="line">  limit: 10000</span><br></pre></td></tr></table></figure>
+
+<p>3、打开 <strong>主题配置文件</strong> 找到<code>Local search</code>，将<code>enable</code>设置为<code>true</code></p>
+<hr>
+<h4 id="11、添加阅读全文按钮"><a href="#11、添加阅读全文按钮" class="headerlink" title="11、添加阅读全文按钮"></a>11、添加阅读全文按钮</h4><p>因为在你的博客主页会有多篇文章，如果你想让你的文章只显示一部分，多余的可以点击阅读全文来查看，那么你需要在你的文章中添加</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!--more--&gt;</span><br></pre></td></tr></table></figure>
+
+<p>其后面的部分就不会显示了，只能点击阅读全文才能看</p>
+<hr>
+<h4 id="12、修改文章内链接文本样式"><a href="#12、修改文章内链接文本样式" class="headerlink" title="12、修改文章内链接文本样式"></a>12、修改文章内链接文本样式</h4><p><img src="http://upload-images.jianshu.io/upload_images/4120931-9cd87c2cc2d0c78f.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/360/format/webp" alt="img"></p>
+<p>效果图</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">themes&#x2F;next&#x2F;source&#x2F;css&#x2F;_common&#x2F;components&#x2F;post&#x2F;post.styl</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.post-body p a &#123;</span><br><span class="line">  color: #0593d3;</span><br><span class="line">  border-bottom: none;</span><br><span class="line">  border-bottom: 1px solid #0593d3;</span><br><span class="line">  &amp;:hover &#123;</span><br><span class="line">    color: #fc6423;</span><br><span class="line">    border-bottom: none;</span><br><span class="line">    border-bottom: 1px solid #fc6423;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中选择 .post-body 是为了不影响标题，选择 p 是为了不影响首页“阅读全文”的显示样式,颜色可以自己定义。</p>
+<hr>
+<h4 id="13、设置网站缩略图标"><a href="#13、设置网站缩略图标" class="headerlink" title="13、设置网站缩略图标"></a>13、设置网站缩略图标</h4><blockquote>
+<p>从网上看了很多设置方法都是说把favicon.ico放到站点目录的source目录下就可以了，可是我试了好多遍，并不行。</p>
+</blockquote>
+<p>我的设置方法是这样的：把你的图片（png或jpg格式，不是favicon.ico）放在<code>themes/next/source/images</code>里，然后打开 <strong>主题配置文件</strong> 找到<code>favicon</code>，将<code>small、medium、apple_touch_icon</code>三个字段的值都设置成<code>/images/图片名.jpg</code>就可以了，其他字段都注释掉。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4120931-61a0cc555a25548e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/344/format/webp" alt="img"></p>
+<hr>
+<h4 id="14、设置文章字体的颜色、大小"><a href="#14、设置文章字体的颜色、大小" class="headerlink" title="14、设置文章字体的颜色、大小"></a>14、设置文章字体的颜色、大小</h4><p><img src="http://upload-images.jianshu.io/upload_images/4120931-e471abbb2b1f459f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/477/format/webp" alt="img"></p>
+<p>效果图</p>
+<p>如果想设置某一句的颜色或大小，只需用html语法写出来就行了</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">接下来就是见证奇迹的时刻</span><br><span class="line">&lt;font color&#x3D;&quot;#FF0000&quot;&gt; 我可以设置这一句的颜色哈哈 &lt;&#x2F;font&gt; </span><br><span class="line">&lt;font size&#x3D;6&gt; 我还可以设置这一句的大小嘻嘻 &lt;&#x2F;font&gt; </span><br><span class="line">&lt;font size&#x3D;5 color&#x3D;&quot;#FF0000&quot;&gt; 我甚至可以设置这一句的颜色和大小呵呵&lt;&#x2F;font&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="15、设置文字居中"><a href="#15、设置文字居中" class="headerlink" title="15、设置文字居中"></a>15、设置文字居中</h4><p>设置方法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;center&gt;这一行需要居中&lt;&#x2F;center&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：简书中此方法无效</p>
+</blockquote>
+<hr>
+<h4 id="16、添加评论系统"><a href="#16、添加评论系统" class="headerlink" title="16、添加评论系统"></a>16、添加评论系统</h4>]]></content>
+      <categories>
+        <category>mysoft</category>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>soft</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -320,276 +664,16 @@
       </tags>
   </entry>
   <entry>
-    <title>plugins</title>
-    <url>/2020/07/17/plugins/</url>
-    <content><![CDATA[<h3 id="vs和vsCode插件"><a href="#vs和vsCode插件" class="headerlink" title="vs和vsCode插件"></a>vs和vsCode插件</h3><a id="more"></a>
-
-<ol>
-<li><p>vs</p>
-<blockquote>
-<ul>
-<li>web compiler  将less和js编译成css和es5</li>
-<li>force UTF-8 （No Bom）  将文档编译成utf-8的文档格式输出(也可以用记事本打开另存为,解决页面打开出现&amp;#65279，显示多余空白)</li>
-<li>force UTF-8 （With Bom）</li>
-</ul>
-</blockquote>
-<p>​</p>
-</li>
-<li><p>​</p>
-<blockquote>
-<ul>
-<li>Auto Close Tag  自动闭合标签</li>
-<li>Auto Rename Tag 自动重命名标签</li>
-<li>Auto-Save on Window Change 关闭窗口自动保存</li>
-<li>Chinese (Simplified) Language Pack for Visual Studio Code 中文包</li>
-<li>CSS Tree 选中标签生成css文件树（Ctrl + shift + p选择 Generate CSS tree）</li>
-<li>Easy LESS 可直接生成小程序wxss</li>
-<li>filesize 查看文件大小</li>
-<li>Path Intellisense 自动提示文件路径</li>
-<li>Git Histroy/Local Histroy 文件历史记录</li>
-<li>Material Icon Theme 文件图标</li>
-<li>vscode-icons 图标插件</li>
-<li>Bracket Pair Colorizer 括号颜色高亮</li>
-<li>open in browser 在浏览器中打开</li>
-<li>vscode-fileheader 文件头部信息</li>
-<li>Vue 2 Snippets vue代码片段提示</li>
-<li>vetur  vue语法高亮/格式化/代码片段/语法检查等</li>
-<li>minapp 微信小程序标签、属性的智能补全（同时支持原生小程序、mpvue 和 wepy 框架，并提供 snippets）</li>
-<li>Stylus Language  基于Node.js的CSS的预处理框架</li>
-<li>live-server 实时简易服务器</li>
-<li>Live Share 实时共享（vs 和vscode）</li>
-<li>Live Share Audio 实时共享音频</li>
-</ul>
-</blockquote>
-</li>
-</ol>
-<p><a href="https://marketplace.visualstudio.com/search?term=%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E5%8A%A9%E6%89%8B&target=VSCode&category=Programming%20Languages&sortBy=Relevance">插件官网地址</a></p>
-<p><a href="https://mp.weixin.qq.com/s/LAe29D9nZvCcvs_Kr_PWZQ" target="_blank" rel="noopener">更多插件</a></p>
+    <title>ipAndDNS</title>
+    <url>/2020/07/22/ipAndDNS/</url>
+    <content><![CDATA[<h3 id="怎么查找ip地址"><a href="#怎么查找ip地址" class="headerlink" title="怎么查找ip地址"></a>怎么查找ip地址</h3><p>方式一  电脑输入cmd，再输入ipconfig</p>
+<p>方式二  本地连接的网络–属性–IPv4 地址 </p>
+<h3 id="设置自动获取DNS服务器地址"><a href="#设置自动获取DNS服务器地址" class="headerlink" title="设置自动获取DNS服务器地址"></a>设置自动获取DNS服务器地址</h3><p><img src="C:/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/fc8553c2386b4b2d92f520dcc620dd05/clipboard.png" alt="img"></p>
+<p><img src="C:/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/89ca4cf297cd4b3491dbcafccbbc09b4/clipboard.png" alt="img"></p>
+<p><img src="C:/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/eb35dfdceb814e4ab8082799a655dd93/clipboard.png" alt="img"></p>
+<p><img src="C:/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/f6f7dd86fd3e4311a08ebaaa82217aba/clipboard.png" alt="img"></p>
+<p><img src="C:/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/46d287f01a334ea9b61f7a1d87d1201f/clipboard.png" alt="img"></p>
 ]]></content>
-      <categories>
-        <category>plugins</category>
-      </categories>
-      <tags>
-        <tag>plugins</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexoTheme</title>
-    <url>/2020/07/15/hexoTheme/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 Hexo 中有两份主要的配置文件，其名称都是 _config.yml。 其中，一份位于站点根目录下，主要包含 Hexo 本身的配置；</p>
-<p>另一份位于主题目录下，这份配置由主题作者提供，主要用于配置主题相关的选项。<br>为了描述方便，在以下说明中，将前者称为<strong>站点配置文件</strong>， 后者称为<strong>主题配置文件</strong>。</p>
-<p>备注: 以下所有终端执行的命令都在你的Hexo根目录下</p>
-<h4 id="1、基本信息配置"><a href="#1、基本信息配置" class="headerlink" title="1、基本信息配置"></a>1、基本信息配置</h4><p>打开 <strong>站点配置文件</strong> ，找到Site模块</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">title: 标题</span><br><span class="line">subtitle: 副标题</span><br><span class="line">description: 描述</span><br><span class="line">author: 作者</span><br><span class="line">language: 语言（简体中文是zh-Hans）</span><br><span class="line">timezone: 网站时区（Hexo 默认使用您电脑的时区，不用写）</span><br></pre></td></tr></table></figure>
-
-<hr>
-<a id="more"></a>
-
-<h4 id="2、菜单设置"><a href="#2、菜单设置" class="headerlink" title="2、菜单设置"></a>2、菜单设置</h4><p>我们刚开始默认的菜单只有首页和归档两个，不能够满足我们的要求，所以需要添加菜单，打开 <strong>主题配置文件</strong> 找到<code>Menu Settings</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: &#x2F; || home                          &#x2F;&#x2F;首页</span><br><span class="line">  archives: &#x2F;archives&#x2F; || archive          &#x2F;&#x2F;归档</span><br><span class="line">  categories: &#x2F;categories&#x2F; || th           &#x2F;&#x2F;分类</span><br><span class="line">  tags: &#x2F;tags&#x2F; || tags                     &#x2F;&#x2F;标签</span><br><span class="line">  about: &#x2F;about&#x2F; || user                   &#x2F;&#x2F;关于</span><br><span class="line">  #schedule: &#x2F;schedule&#x2F; || calendar        &#x2F;&#x2F;日程表</span><br><span class="line">  #sitemap: &#x2F;sitemap.xml || sitemap        &#x2F;&#x2F;站点地图</span><br><span class="line">  #commonweal: &#x2F;404&#x2F; || heartbeat          &#x2F;&#x2F;公益404</span><br></pre></td></tr></table></figure>
-
-<p>备注：看看你需要哪个菜单就把哪个取消注释打开就行了；</p>
-<p>关于后面的格式，以<code>archives: /archives/ || archive</code>为例：</p>
-<p><code>||</code> 之前的<code>/archives/</code>表示标题“归档”，关于标题的格式可以去<code>themes/next/languages/zh-Hans.yml</code>中参考或修改</p>
-<p><code>||</code>之后的<code>archive</code>表示图标，可以去<a href="https://links.jianshu.com/go?to=http%3A%2F%2Ffontawesome.io%2Ficons%2F" target="_blank" rel="noopener">Font Awesome</a>中查看或修改，Next主题所有的图标都来自Font Awesome。</p>
-<hr>
-<h4 id="3、Next主题样式设置"><a href="#3、Next主题样式设置" class="headerlink" title="3、Next主题样式设置"></a>3、Next主题样式设置</h4><p>我们百里挑一选择了Next主题，不过Next主题还有4种风格供我们选择，打开 <strong>主题配置文件</strong> 找到<code>Scheme Settings</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Schemes</span><br><span class="line"># scheme: Muse</span><br><span class="line"># scheme: Mist</span><br><span class="line"># scheme: Pisces</span><br><span class="line">scheme: Gemini</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h4 id="4、侧栏设置"><a href="#4、侧栏设置" class="headerlink" title="4、侧栏设置"></a>4、侧栏设置</h4><p>打开 <strong>主题配置文件</strong> 找到<code>sidebar</code>字段</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sidebar:</span><br><span class="line"># Sidebar Position - 侧栏位置（只对Pisces | Gemini两种风格有效）</span><br><span class="line">  position: left        &#x2F;&#x2F;靠左放置</span><br><span class="line">  #position: right      &#x2F;&#x2F;靠右放置</span><br><span class="line"># Sidebar Display - 侧栏显示时机（只对Muse | Mist两种风格有效）</span><br><span class="line">  #display: post        &#x2F;&#x2F;默认行为，在文章页面（拥有目录列表）时显示</span><br><span class="line">  display: always       &#x2F;&#x2F;在所有页面中都显示</span><br><span class="line">  #display: hide        &#x2F;&#x2F;在所有页面中都隐藏（可以手动展开）</span><br><span class="line">  #display: remove      &#x2F;&#x2F;完全移除</span><br><span class="line">  offset: 12            &#x2F;&#x2F;文章间距（只对Pisces | Gemini两种风格有效）</span><br><span class="line">  b2t: false            &#x2F;&#x2F;返回顶部按钮（只对Pisces | Gemini两种风格有效）</span><br><span class="line">  scrollpercent: true   &#x2F;&#x2F;返回顶部按钮的百分比</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h4 id="5、头像设置"><a href="#5、头像设置" class="headerlink" title="5、头像设置"></a>5、头像设置</h4><p>打开 <strong>主题配置文件</strong> 找到<code>Sidebar Avatar</code>字段</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Sidebar Avatar</span><br><span class="line">avatar: &#x2F;images&#x2F;header.jpg</span><br></pre></td></tr></table></figure>
-
-<p>这是头像的路径，只需把你的头像命名为<code>header.jpg</code>（随便命名）放入<code>themes/next/source/images</code>中，将<code>avatar</code>的路径名改成你的头像名就OK啦！</p>
-<hr>
-<h4 id="6、设置RSS"><a href="#6、设置RSS" class="headerlink" title="6、设置RSS"></a>6、设置RSS</h4><p>1、先安装 <a href="https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2Fhexojs%2Fhexo-generator-feed" target="_blank" rel="noopener">hexo-generator-feed</a> 插件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-generator-feed --save</span><br></pre></td></tr></table></figure>
-
-<p>2、打开 <strong>站点配置文件</strong> 找到<code>Extensions</code>在下面添加</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># RSS订阅</span><br><span class="line">feed:</span><br><span class="line">  type: atom</span><br><span class="line">  path: atom.xml</span><br><span class="line">  limit: 20</span><br><span class="line">  hub:</span><br><span class="line">  content:</span><br><span class="line">  content_limit: 140</span><br><span class="line">  content_limit_delim: &#39; &#39;</span><br></pre></td></tr></table></figure>
-
-<p>3、打开 <strong>主题配置文件</strong> 找到<code>rss</code>，设置为</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rss: &#x2F;atom.xml</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h4 id="7、添加分类模块"><a href="#7、添加分类模块" class="headerlink" title="7、添加分类模块"></a>7、添加分类模块</h4><p>1、新建一个分类页面</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ hexo new page categories</span><br></pre></td></tr></table></figure>
-
-<p>2、你会发现你的<code>source</code>文件夹下有了<code>categorcies/index.md</code>，打开<code>index.md</code>文件将title设置为<code>title: 分类</code><br>3、打开 <strong>主题配置文件</strong> 找到<code>menu</code>，将categorcies取消注释<br>4、把文章归入分类只需在文章的顶部标题下方添加<code>categories</code>字段，即可自动创建分类名并加入对应的分类中<br>举个栗子：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">title: 分类测试文章标题</span><br><span class="line">categories: 分类名</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h4 id="8、添加标签模块"><a href="#8、添加标签模块" class="headerlink" title="8、添加标签模块"></a>8、添加标签模块</h4><p>1、新建一个标签页面</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ hexo new page tags</span><br></pre></td></tr></table></figure>
-
-<p>2、你会发现你的<code>source</code>文件夹下有了<code>tags/index.md</code>，打开<code>index.md</code>文件将title设置为<code>title: 标签</code><br>3、打开 <strong>主题配置文件</strong> 找到<code>menu</code>，将tags取消注释<br>4、把文章添加标签只需在文章的顶部标题下方添加<code>tags</code>字段，即可自动创建标签名并归入对应的标签中<br>举个栗子：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">title: 标签测试文章标题</span><br><span class="line">tags: </span><br><span class="line">  - 标签1</span><br><span class="line">  - 标签2</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h4 id="9、添加关于模块"><a href="#9、添加关于模块" class="headerlink" title="9、添加关于模块"></a>9、添加关于模块</h4><p>1、新建一个关于页面</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ hexo new page about</span><br></pre></td></tr></table></figure>
-
-<p>2、你会发现你的<code>source</code>文件夹下有了<code>about/index.md</code>，打开<code>index.md</code>文件即可编辑关于你的信息，可以随便编辑。<br>3、打开 <strong>主题配置文件</strong> 找到<code>menu</code>，将about取消注释</p>
-<hr>
-<h4 id="10、添加搜索功能"><a href="#10、添加搜索功能" class="headerlink" title="10、添加搜索功能"></a>10、添加搜索功能</h4><p>1、安装 <a href="https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2Fflashlab%2Fhexo-generator-search" target="_blank" rel="noopener">hexo-generator-searchdb</a> 插件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
-
-<p>2、打开 <strong>站点配置文件</strong> 找到<code>Extensions</code>在下面添加</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 搜索</span><br><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  format: html</span><br><span class="line">  limit: 10000</span><br></pre></td></tr></table></figure>
-
-<p>3、打开 <strong>主题配置文件</strong> 找到<code>Local search</code>，将<code>enable</code>设置为<code>true</code></p>
-<hr>
-<h4 id="11、添加阅读全文按钮"><a href="#11、添加阅读全文按钮" class="headerlink" title="11、添加阅读全文按钮"></a>11、添加阅读全文按钮</h4><p>因为在你的博客主页会有多篇文章，如果你想让你的文章只显示一部分，多余的可以点击阅读全文来查看，那么你需要在你的文章中添加</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!--more--&gt;</span><br></pre></td></tr></table></figure>
-
-<p>其后面的部分就不会显示了，只能点击阅读全文才能看</p>
-<hr>
-<h4 id="12、修改文章内链接文本样式"><a href="#12、修改文章内链接文本样式" class="headerlink" title="12、修改文章内链接文本样式"></a>12、修改文章内链接文本样式</h4><p><img src="http://upload-images.jianshu.io/upload_images/4120931-9cd87c2cc2d0c78f.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/360/format/webp" alt="img"></p>
-<p>效果图</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">themes&#x2F;next&#x2F;source&#x2F;css&#x2F;_common&#x2F;components&#x2F;post&#x2F;post.styl</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.post-body p a &#123;</span><br><span class="line">  color: #0593d3;</span><br><span class="line">  border-bottom: none;</span><br><span class="line">  border-bottom: 1px solid #0593d3;</span><br><span class="line">  &amp;:hover &#123;</span><br><span class="line">    color: #fc6423;</span><br><span class="line">    border-bottom: none;</span><br><span class="line">    border-bottom: 1px solid #fc6423;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>其中选择 .post-body 是为了不影响标题，选择 p 是为了不影响首页“阅读全文”的显示样式,颜色可以自己定义。</p>
-<hr>
-<h4 id="13、设置网站缩略图标"><a href="#13、设置网站缩略图标" class="headerlink" title="13、设置网站缩略图标"></a>13、设置网站缩略图标</h4><blockquote>
-<p>从网上看了很多设置方法都是说把favicon.ico放到站点目录的source目录下就可以了，可是我试了好多遍，并不行。</p>
-</blockquote>
-<p>我的设置方法是这样的：把你的图片（png或jpg格式，不是favicon.ico）放在<code>themes/next/source/images</code>里，然后打开 <strong>主题配置文件</strong> 找到<code>favicon</code>，将<code>small、medium、apple_touch_icon</code>三个字段的值都设置成<code>/images/图片名.jpg</code>就可以了，其他字段都注释掉。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/4120931-61a0cc555a25548e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/344/format/webp" alt="img"></p>
-<hr>
-<h4 id="14、设置文章字体的颜色、大小"><a href="#14、设置文章字体的颜色、大小" class="headerlink" title="14、设置文章字体的颜色、大小"></a>14、设置文章字体的颜色、大小</h4><p><img src="http://upload-images.jianshu.io/upload_images/4120931-e471abbb2b1f459f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/477/format/webp" alt="img"></p>
-<p>效果图</p>
-<p>如果想设置某一句的颜色或大小，只需用html语法写出来就行了</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">接下来就是见证奇迹的时刻</span><br><span class="line">&lt;font color&#x3D;&quot;#FF0000&quot;&gt; 我可以设置这一句的颜色哈哈 &lt;&#x2F;font&gt; </span><br><span class="line">&lt;font size&#x3D;6&gt; 我还可以设置这一句的大小嘻嘻 &lt;&#x2F;font&gt; </span><br><span class="line">&lt;font size&#x3D;5 color&#x3D;&quot;#FF0000&quot;&gt; 我甚至可以设置这一句的颜色和大小呵呵&lt;&#x2F;font&gt;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h4 id="15、设置文字居中"><a href="#15、设置文字居中" class="headerlink" title="15、设置文字居中"></a>15、设置文字居中</h4><p>设置方法：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;center&gt;这一行需要居中&lt;&#x2F;center&gt;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>注意：简书中此方法无效</p>
-</blockquote>
-<hr>
-<h4 id="16、添加评论系统"><a href="#16、添加评论系统" class="headerlink" title="16、添加评论系统"></a>16、添加评论系统</h4>]]></content>
-      <categories>
-        <category>mysoft</category>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>soft</tag>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>toolVs</title>
-    <url>/2020/07/15/toolVs/</url>
-    <content><![CDATA[<h4 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h4><p>1.复制/剪切/删除整行代码</p>
-<blockquote>
-<p>1)如果你想复制一整行代码，只需将光标移至该行，再使用组合键“Ctrl+C”来完成复制操作，而无需选择整行。</p>
-<p>2)如果你想剪切一整行代码，只需将光标移至该行，再使用组合键“Ctrl+X”来完成剪切操作，而无需选择整行。</p>
-<p>3)如果你想删除一整行代码，只需将光标移至该行，再使用组合键“Ctrl+L”来完成剪切操作，而无需选择整行。</p>
-</blockquote>
-<a id="more"></a>
-
-<p>2.撤销/反撤销</p>
-<p>　　&gt; 1)撤销：使用组合键“Ctrl+Z”进行撤销操作;<br>　　&gt; 　　&gt;<br>　　&gt; 　　&gt;　　&gt; 2)反撤销：使用组合键“Ctrl+Y”进行反撤销操作。</p>
-<p>3.向前/向后搜索</p>
-<p>　　&gt; 1)使用组合键“Ctrl+I”;</p>
-<p>4.在光标所在行的上面或下面插入一行</p>
-<p>　　&gt; 1)组合键“Ctrl+Enter”：在当前行的上面插入一个空行;<br>　　&gt; 　　&gt;<br>　　&gt; 　　&gt;　　&gt; 2)组合键“Ctrl+Shift+Enter”：在当前行的下面插入一个空行。</p>
-<p>5.定位到行首与行尾</p>
-<p>　　&gt; 1)home键：定位到当前行的行首;<br>　　&gt; 　　&gt;<br>　　&gt; 　　&gt;　　&gt; 2)end键：定位到当前行的行尾。</p>
-<p>6.选中从光标起到行首(尾)间的代码</p>
-<p>　　&gt; 1)选中从光标起到行首间的代码：使用组合键“Shift + Home”;<br>　　&gt; 　　&gt;<br>　　&gt; 　　&gt;　　&gt; 2)选中从光标起到行尾间的代码：使用组合键“Shift + End”。</p>
-<p>7.快速隐藏或显示当前代码段</p>
-<p>　　&gt; 使用组合键“Ctrl+M,M”(记住：要按两次M哦)。</p>
-<p>8.查找和替换</p>
-<p>　　&gt; 1)查找：使用组合键“Ctrl+F”;<br>　　&gt; 　　&gt;<br>　　&gt; 　　&gt;　　&gt; 2)替换：使用组合键“Ctrl+H”。</p>
-<p>9.大小写转换</p>
-<p>　　&gt; 1)转小写：使用组合键“Ctrl+ U”;<br>　　&gt; 　　&gt;<br>　　&gt; 　　&gt;　　&gt; 2)转大写：使用组合键“CTRL + SHIFT + U”。</p>
-<p>10.查找下一个相同单词</p>
-<blockquote>
-<p>依次找出文中所有的当前选中的单词: Ctrl + D</p>
-</blockquote>
-<p>11.生成解决方案</p>
-<pre><code>&gt; 使用F6或者组合键“Ctrl+Shift+B”</code></pre><p>12.定义与引用</p>
-<p>　　&gt; 1)转跳到定义：F12;<br>　　&gt; 　　&gt;<br>　　&gt; 　　&gt;　　&gt; 2)查找所有引用：使用组合键“Shift+F12”。</p>
-<p>20.自动定位文件</p>
-<p><img src="C:/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/5d201da83f1544f4b22d5aeceedfc83b/1569231875%281%29.png" alt="img"></p>
-]]></content>
-      <categories>
-        <category>mysoft</category>
-        <category>tool</category>
-      </categories>
-      <tags>
-        <tag>soft</tag>
-        <tag>tool</tag>
-        <tag>vs</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vantweapp</title>
-    <url>/2020/07/22/vantweapp/</url>
-    <content><![CDATA[<h3 id="小程序插件–vantWeapp"><a href="#小程序插件–vantWeapp" class="headerlink" title="小程序插件–vantWeapp"></a>小程序插件–vantWeapp</h3><blockquote>
-<ol>
-<li>新建个项目</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="2">
-<li>找到项目文件夹 npm init 初始化一个叫package.json的文件一路回车即可</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="3">
-<li>继续执行命令安装 Vant Weapp<br><code>npm i @vant/weapp -S --production</code> </li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="4">
-<li>点击 开发者菜单里面的工具 &gt;构建npm 如下图</li>
-</ol>
-</blockquote>
-<a id="more"></a>
-
-<p><img src="http://upload-images.jianshu.io/upload_images/7211385-9510055e041611cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/939/format/webp" alt="img"></p>
-<blockquote>
-<ol start="5">
-<li>还是开发者工具里面的详情 使用npm模块勾选上</li>
-</ol>
-</blockquote>
-<p><img src="http://upload-images.jianshu.io/upload_images/7211385-d50190f6a674c31d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/684/format/webp" alt="img"></p>
-<blockquote>
-<ol start="6">
-<li>在引用的页面json或者app.json里添加引入的组件名字</li>
-</ol>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&quot;usingComponents&quot;: &#123;</span><br><span class="line">  &quot;van-button&quot;: &quot;@vant&#x2F;weapp&#x2F;button&#x2F;index&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><img src="http://upload-images.jianshu.io/upload_images/7211385-6163f82f17c59fcc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/984/format/webp" alt="img"></p>
-<blockquote>
-<ol start="7">
-<li>最后就是在你的页面用使用了 如下图：</li>
-</ol>
-</blockquote>
-<p><img src="http://upload-images.jianshu.io/upload_images/7211385-d2fbd97f8301d40d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp" alt="img"></p>
-<p><a href="https://www.jianshu.com/p/a63f21206b91" target="_blank" rel="noopener">参考链接</a></p>
-<p><a href="https://youzan.github.io/vant-weapp/#/intro" target="_blank" rel="noopener">官网地址</a></p>
-]]></content>
-      <categories>
-        <category>plugins</category>
-      </categories>
-      <tags>
-        <tag>plugins</tag>
-        <tag>小程序</tag>
-      </tags>
   </entry>
   <entry>
     <title>mdIntro</title>
@@ -665,6 +749,102 @@
       </tags>
   </entry>
   <entry>
+    <title>js方法（一）</title>
+    <url>/2020/07/23/js%E6%96%B9%E6%B3%95%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+    <content><![CDATA[<h3 id="获取服务器时间"><a href="#获取服务器时间" class="headerlink" title="获取服务器时间"></a>获取服务器时间</h3><a id="more"></a>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>、依赖jQuery</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getServerDate</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Date</span>($.ajax(&#123; <span class="attr">async</span>: <span class="literal">false</span> &#125;).getResponseHeader(<span class="string">"Date"</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="number">2</span>、原生</span><br><span class="line">（同步）</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getServerDate</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> xhr = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest) &#123;</span><br><span class="line">    xhr = <span class="keyword">new</span> <span class="built_in">window</span>.XMLHttpRequest();</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123; <span class="comment">// ie</span></span><br><span class="line">    xhr = <span class="keyword">new</span> ActiveObject(<span class="string">"Microsoft"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  xhr.open(<span class="string">"GET"</span>, <span class="string">"/"</span>, <span class="literal">false</span>)<span class="comment">//false不可变</span></span><br><span class="line">  xhr.send(<span class="literal">null</span>);</span><br><span class="line">  <span class="keyword">var</span> date = xhr.getResponseHeader(<span class="string">"Date"</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Date</span>(date);</span><br><span class="line">&#125;</span><br><span class="line">（异步）</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getServerDate</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> xhr = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest) &#123;</span><br><span class="line">    xhr = <span class="keyword">new</span> <span class="built_in">window</span>.XMLHttpRequest();</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123; <span class="comment">// ie</span></span><br><span class="line">    xhr = <span class="keyword">new</span> ActiveObject(<span class="string">"Microsoft"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  xhr.open(<span class="string">"GET"</span>, <span class="string">"/"</span>, <span class="literal">true</span>);</span><br><span class="line">  xhr.send(<span class="literal">null</span>);</span><br><span class="line">  xhr.onreadystatechange = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> time, date;</span><br><span class="line">    <span class="keyword">if</span> (xhr.readyState == <span class="number">2</span>) &#123;</span><br><span class="line">      time = xhr.getResponseHeader(<span class="string">"Date"</span>);</span><br><span class="line">      date = <span class="keyword">new</span> <span class="built_in">Date</span>(time);</span><br><span class="line">      <span class="built_in">console</span>.log(date);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="userAgent"><a href="#userAgent" class="headerlink" title="userAgent"></a>userAgent</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">userAgent属性是一个只读的字符串，声明了浏览器用于 HTTP 请求的用户代理头的值。</span><br><span class="line"></span><br><span class="line">一般来讲，它是在 navigator.appCodeName 的值之后加上斜线和 navigator.appVersion 的值构成的。</span><br><span class="line"></span><br><span class="line">例如：Mozilla / <span class="number">4.0</span>(compatible; MSIE <span class="number">6.0</span>; Windows NT <span class="number">5.2</span>; SV1; .NET CLR <span class="number">1.1</span><span class="number">.4322</span>) 。</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.write(<span class="string">"&lt;p&gt;浏览器："</span>)</span><br><span class="line"><span class="built_in">document</span>.write(navigator.appName + <span class="string">"&lt;/p&gt;"</span>)</span><br><span class="line">浏览器：Netscape</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.write(<span class="string">"&lt;p&gt;浏览器版本："</span>)</span><br><span class="line"><span class="built_in">document</span>.write(navigator.appVersion + <span class="string">"&lt;/p&gt;"</span>)</span><br><span class="line">浏览器版本：<span class="number">5.0</span>(Windows NT <span class="number">10.0</span>; Win64; x64) AppleWebKit / <span class="number">537.36</span>(KHTML, like Gecko) Chrome / <span class="number">77.0</span><span class="number">.3865</span><span class="number">.120</span> Safari / <span class="number">537.36</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.write(<span class="string">"&lt;p&gt;代码："</span>)</span><br><span class="line"><span class="built_in">document</span>.write(navigator.appCodeName + <span class="string">"&lt;/p&gt;"</span>)</span><br><span class="line">代码：Mozilla</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.write(<span class="string">"&lt;p&gt;平台："</span>)</span><br><span class="line"><span class="built_in">document</span>.write(navigator.platform + <span class="string">"&lt;/p&gt;"</span>)</span><br><span class="line">平台：Win32</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.write(<span class="string">"&lt;p&gt;Cookies 启用："</span>)</span><br><span class="line"><span class="built_in">document</span>.write(navigator.cookieEnabled + <span class="string">"&lt;/p&gt;"</span>)</span><br><span class="line">Cookies 启用：<span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.write(<span class="string">"&lt;p&gt;浏览器的用户代理报头："</span>)</span><br><span class="line"><span class="built_in">document</span>.write(navigator.userAgent + <span class="string">"&lt;/p&gt;"</span>)</span><br><span class="line">浏览器的用户代理报头：Mozilla / <span class="number">5.0</span>(Windows NT <span class="number">10.0</span>; Win64; x64) AppleWebKit / <span class="number">537.36</span>(KHTML, like Gecko) Chrome / <span class="number">77.0</span><span class="number">.3865</span><span class="number">.120</span> Safari / <span class="number">537.36</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> b_version = navigator.appVersion</span><br><span class="line"><span class="keyword">var</span> version = <span class="built_in">parseFloat</span>(b_version)</span><br><span class="line"><span class="built_in">document</span>.write(<span class="string">"浏览器版本："</span> + version)</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>、通过判断浏览器的userAgent，用正则来判断是否是ios和Android客户端。代码如下：</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>、检查是否是移动端（Mobile）、ipad、iphone、微信、QQ等：</span><br><span class="line"></span><br><span class="line">使用方法：</span><br><span class="line"></span><br><span class="line">检测浏览器语言：</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>、判断iPhone | iPad | iPod | iOS | Android客户端：</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>、判断pc还是移动端：</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> u = navigator.userAgent;</span><br><span class="line"><span class="keyword">var</span> isAndroid = u.indexOf(<span class="string">'Android'</span>) &gt; <span class="number">-1</span> || u.indexOf(<span class="string">'Adr'</span>) &gt; <span class="number">-1</span>; <span class="comment">//android终端</span></span><br><span class="line"><span class="keyword">var</span> isiOS = !!u.match(<span class="regexp">/\(i[^;]+;( U;)? CPU.+Mac OS X/</span>); <span class="comment">//ios终端</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="深克隆"><a href="#深克隆" class="headerlink" title="深克隆"></a>深克隆</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deepClone: function (obj) &#123;</span><br><span class="line">    var _obj &#x3D; JSON.stringify(obj),</span><br><span class="line">    objClone &#x3D; JSON.parse(_obj);</span><br><span class="line">    return objClone</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="获取url参数"><a href="#获取url参数" class="headerlink" title="获取url参数"></a>获取url参数</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">getUrlParam = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> url = location.search;</span><br><span class="line">    <span class="keyword">var</span> theRequest = &#123;&#125;;</span><br><span class="line">    <span class="keyword">if</span> (url.indexOf(<span class="string">"?"</span>) != <span class="number">-1</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> str = url.substr(<span class="number">1</span>);</span><br><span class="line">        strs = str.split(<span class="string">"&amp;"</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; strs.length; i++) &#123;</span><br><span class="line">            theRequest[strs[i].split(<span class="string">"="</span>)[<span class="number">0</span>]] = strs[i].split(<span class="string">"="</span>)[<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> theRequest;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="encodeURI-和encodeURIComponent-decodeURI-和decodeURIComponent"><a href="#encodeURI-和encodeURIComponent-decodeURI-和decodeURIComponent" class="headerlink" title="encodeURI()和encodeURIComponent()  decodeURI()和decodeURIComponent()"></a>encodeURI()和encodeURIComponent()  decodeURI()和decodeURIComponent()</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">其中encodeURI()主要用于整个URI(例如，http:&#x2F;&#x2F;www.jxbh.cn&#x2F;illegal value.htm)，而encode-URIComponent()主要用于对URI中的某一段(例如前面URI中的illegal value．htm)进行编码。它们的主要区别在于，encodeURI()不会对本身属于URI的特殊字符进行编码，例如冒号、正斜杠、问号和井字号；而encodeURIComponent()则会对它发现的任何非标准字符进行编码。来看下面的例子：</span><br><span class="line">var uri&#x3D;&quot;http:&#x2F;&#x2F;www.jxbh.cn&#x2F;illegal value.htm#start&quot;;</span><br><span class="line">&#x2F;&#x2F;”http: &#x2F;&#x2F;www.jxbh.cn&#x2F;illegal%20value .htm#s tart”</span><br><span class="line">alert(encodeURI (uri)):</span><br><span class="line">&#x2F;&#x2F;”http% 3A%2F%2Fwww.jxbh.cn%2 Fillegal%2 0value. htm%23 start”</span><br><span class="line">alert( encodaURIComponent (uri));</span><br><span class="line">使用encodeURI()编码后的结果是除了空格之外的其他字符都原封不动，只有空格被替换成了%20。而encodeURIComponent()方法则会使用对应的编码替换所有非字母数字字符。这也正是可以对整个URI使用encodeURI()，而只能对附加在现有URI后面的字符串使用encodeURIComponent()的原因所在。一般来说,我们使用encodeURIComponent()方法的时候要比使用encodeURI()更多,因为在实践中更常见的是对查询字符串参数而不是对基础URL进行编码.</span><br><span class="line">经我的观测，很多网站的cookie在进行编码的时候，是encodeURIComponent格式的，所以应该使用decodeURIComponent()进行解码</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="True与False"><a href="#True与False" class="headerlink" title="True与False"></a>True与False</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">以下是Truthy (真值)</span><br><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>)</span><br><span class="line"><span class="keyword">if</span> (&#123;&#125;)</span><br><span class="line"><span class="keyword">if</span> ([])</span><br><span class="line"><span class="keyword">if</span> (<span class="number">42</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="string">"foo"</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">new</span> <span class="built_in">Date</span>())</span><br><span class="line"><span class="keyword">if</span> (<span class="number">-42</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="number">3.14</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="number">-3.14</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="literal">Infinity</span>)</span><br><span class="line"><span class="keyword">if</span> (-<span class="literal">Infinity</span>)</span><br><span class="line">  </span><br><span class="line">以下是falsy  值</span><br><span class="line"><span class="keyword">if</span> (<span class="literal">false</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="literal">null</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="literal">undefined</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="number">0</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="number">0n</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="literal">NaN</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="string">''</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="string">""</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="string">``</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">document</span>.all)</span><br></pre></td></tr></table></figure>
+
+<h3 id="ios下时间格式问题"><a href="#ios下时间格式问题" class="headerlink" title="ios下时间格式问题"></a>ios下时间格式问题</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">time = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'2016-08-09 00:00:00'</span>).getTime（） <span class="comment">//拿到的值是NaN</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'2016-08-09'</span>).getTime（） <span class="comment">//正常</span></span><br><span class="line">原因：ios下不支持<span class="string">'-'</span>格式的时间可以支持<span class="string">'/'</span></span><br><span class="line">解决方案：改成<span class="string">'yy/mm/dd'</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="打印周几"><a href="#打印周几" class="headerlink" title="打印周几"></a>打印周几</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> week=[<span class="string">'星期日'</span>,<span class="string">'星期一'</span>,<span class="string">'星期二'</span>,<span class="string">'星期三'</span>,<span class="string">'星期四'</span>,<span class="string">'星期五'</span>,<span class="string">'星期六'</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> date=<span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="built_in">document</span>.write(week[date.getDay()])</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="当前时间加半个小时"><a href="#当前时间加半个小时" class="headerlink" title="当前时间加半个小时"></a>当前时间加半个小时</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">当前时间加上半个小时一个小时等</span><br><span class="line">getHourDate: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">    date.setTime(date.getTime() + <span class="number">0.5</span> * <span class="number">3600</span> * <span class="number">1000</span>);</span><br><span class="line">    <span class="keyword">var</span> FullYear = date.getFullYear();</span><br><span class="line">    <span class="keyword">var</span> month = date.getMonth() + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">var</span> dd = date.getDate();</span><br><span class="line">    <span class="keyword">var</span> hh = date.getHours();</span><br><span class="line">    <span class="keyword">var</span> mm = date.getMinutes();</span><br><span class="line">    <span class="keyword">return</span> FullYear + <span class="string">"-"</span> + month + <span class="string">"-"</span> + dd + <span class="string">" "</span> + hh + <span class="string">":"</span> + mm + <span class="string">":00"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="当前时间与目标时间倒计时到达"><a href="#当前时间与目标时间倒计时到达" class="headerlink" title="当前时间与目标时间倒计时到达"></a>当前时间与目标时间倒计时到达</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">countTime: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//获取当前时间  </span></span><br><span class="line">    <span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">    <span class="keyword">var</span> now = date.getTime();</span><br><span class="line">    <span class="comment">//设置截止时间  </span></span><br><span class="line">    <span class="keyword">var</span> endDate = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="keyword">this</span>.endDate.replace(<span class="regexp">/-/g</span>, <span class="string">'/'</span>));</span><br><span class="line">    <span class="keyword">var</span> end = endDate.getTime();</span><br><span class="line">    <span class="comment">//时间差</span></span><br><span class="line">    <span class="keyword">var</span> leftTime = <span class="keyword">this</span>.leftTime = end - now;</span><br><span class="line">    <span class="comment">//定义变量 d,h,m,s保存倒计时的时间  </span></span><br><span class="line">    <span class="keyword">var</span> d, h, m, s;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.leftTime &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">        d = <span class="built_in">Math</span>.floor(leftTime / <span class="number">1000</span> / <span class="number">60</span> / <span class="number">60</span> / <span class="number">24</span>);</span><br><span class="line">        h = <span class="built_in">Math</span>.floor(leftTime / <span class="number">1000</span> / <span class="number">60</span> / <span class="number">60</span> % <span class="number">24</span>);</span><br><span class="line">        m = <span class="built_in">Math</span>.floor(leftTime / <span class="number">1000</span> / <span class="number">60</span>);</span><br><span class="line">        s = <span class="built_in">Math</span>.floor(leftTime / <span class="number">1000</span> % <span class="number">60</span>);</span><br><span class="line">        <span class="keyword">this</span>.leftStr = d + <span class="string">"天"</span> + h + <span class="string">"时"</span> + m + <span class="string">"分"</span> + s + <span class="string">"秒"</span></span><br><span class="line">        setTimeout(<span class="keyword">this</span>.countTime, <span class="number">1000</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.isCanPay = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="将当前时间转化为-2018-12-12-12-00-00"><a href="#将当前时间转化为-2018-12-12-12-00-00" class="headerlink" title="将当前时间转化为 2018-12-12 12:00:00"></a>将当前时间转化为 2018-12-12 12:00:00</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="keyword">var</span> formatDateTime = <span class="function"><span class="keyword">function</span> (<span class="params">date</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> y = date.getFullYear();</span><br><span class="line">    <span class="keyword">var</span> m = date.getMonth() + <span class="number">1</span>;</span><br><span class="line">    m = m &lt; <span class="number">10</span> ? (<span class="string">'0'</span> + m) : m;</span><br><span class="line">    <span class="keyword">var</span> d = date.getDate();</span><br><span class="line">    d = d &lt; <span class="number">10</span> ? (<span class="string">'0'</span> + d) : d;</span><br><span class="line">    <span class="keyword">var</span> h = date.getHours();</span><br><span class="line">    h = h &lt; <span class="number">10</span> ? (<span class="string">'0'</span> + h) : h;</span><br><span class="line">    <span class="keyword">var</span> minute = date.getMinutes();</span><br><span class="line">    minute = minute &lt; <span class="number">10</span> ? (<span class="string">'0'</span> + minute) : minute;</span><br><span class="line">    <span class="keyword">var</span> second = date.getSeconds();</span><br><span class="line">    second = second &lt; <span class="number">10</span> ? (<span class="string">'0'</span> + second) : second;</span><br><span class="line">    <span class="keyword">return</span> y + <span class="string">'-'</span> + m + <span class="string">'-'</span> + d + <span class="string">' '</span> + h + <span class="string">':'</span> + minute + <span class="string">':'</span> + second;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="判断当前日期是否离开"><a href="#判断当前日期是否离开" class="headerlink" title="判断当前日期是否离开"></a>判断当前日期是否<strong>离开</strong></h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">departTimeHandle: <span class="function"><span class="keyword">function</span> (<span class="params">departTime</span>) </span>&#123;</span><br><span class="line">    diff = <span class="keyword">new</span> <span class="built_in">Date</span>(departTime.replace(<span class="regexp">/\-/g</span>, <span class="string">"/"</span>)).getTime() - <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</span><br><span class="line">    <span class="keyword">if</span> (diff &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        alert(<span class="string">'未出发'</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        alert(<span class="string">'已离开'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> diff;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="计算两个时间的分钟差"><a href="#计算两个时间的分钟差" class="headerlink" title="计算两个时间的分钟差"></a>计算两个时间的分钟差</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">TimeDifference</span>(<span class="params">time1, time2</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//截取字符串，得到日期部分"2009-12-02",用split把字符串分隔成数组</span></span><br><span class="line">    <span class="keyword">var</span> begin1 = time1.substr(<span class="number">0</span>, <span class="number">10</span>).split(<span class="string">"-"</span>);</span><br><span class="line">    <span class="keyword">var</span> end1 = time2.substr(<span class="number">0</span>, <span class="number">10</span>).split(<span class="string">"-"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//将拆分的数组重新组合，并实例成化新的日期对象</span></span><br><span class="line">    <span class="keyword">var</span> date1 = <span class="keyword">new</span> <span class="built_in">Date</span>(begin1[<span class="number">1</span>] + - + begin1[<span class="number">2</span>] + - + begin1[<span class="number">0</span>]);</span><br><span class="line">    <span class="keyword">var</span> date2 = <span class="keyword">new</span> <span class="built_in">Date</span>(end1[<span class="number">1</span>] + - + end1[<span class="number">2</span>] + - + end1[<span class="number">0</span>]);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//得到两个日期之间的差值m，以分钟为单位</span></span><br><span class="line">    <span class="comment">//Math.abs(date2-date1)计算出以毫秒为单位的差值</span></span><br><span class="line">    <span class="comment">//Math.abs(date2-date1)/1000得到以秒为单位的差值</span></span><br><span class="line">    <span class="comment">//Math.abs(date2-date1)/1000/60得到以分钟为单位的差值</span></span><br><span class="line">    <span class="keyword">var</span> m = <span class="built_in">parseInt</span>(<span class="built_in">Math</span>.abs(date2 - date1) / <span class="number">1000</span> / <span class="number">60</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//小时数和分钟数相加得到总的分钟数</span></span><br><span class="line">    <span class="comment">//time1.substr(11,2)截取字符串得到时间的小时数</span></span><br><span class="line">    <span class="comment">//parseInt(time1.substr(11,2))*60把小时数转化成为分钟</span></span><br><span class="line">    <span class="keyword">var</span> min1 = <span class="built_in">parseInt</span>(time1.substr(<span class="number">11</span>, <span class="number">2</span>)) * <span class="number">60</span> + <span class="built_in">parseInt</span>(time1.substr(<span class="number">14</span>, <span class="number">2</span>));</span><br><span class="line">    <span class="keyword">var</span> min2 = <span class="built_in">parseInt</span>(time2.substr(<span class="number">11</span>, <span class="number">2</span>)) * <span class="number">60</span> + <span class="built_in">parseInt</span>(time2.substr(<span class="number">14</span>, <span class="number">2</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">//两个分钟数相减得到时间部分的差值，以分钟为单位</span></span><br><span class="line">    <span class="keyword">var</span> n = min2 - min1;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//将日期和时间两个部分计算出来的差值相加，即得到两个时间相减后的分钟数</span></span><br><span class="line">    <span class="keyword">var</span> minutes = m + n;</span><br><span class="line">    <span class="built_in">document</span>.writeln(minutes);</span><br><span class="line">&#125;</span><br><span class="line">TimeDifference(<span class="string">"2019-08-12 15:21:00"</span>, <span class="string">"2019-08-21 10:18:34"</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="距离当前日期多少天后的日期"><a href="#距离当前日期多少天后的日期" class="headerlink" title="距离当前日期多少天后的日期"></a>距离当前日期多少天后的日期</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">GetDateStr</span>(<span class="params">AddDayCount</span>) </span>&#123;   </span><br><span class="line">      <span class="keyword">var</span> dd = <span class="keyword">new</span> <span class="built_in">Date</span>();  </span><br><span class="line">      dd.setDate(dd.getDate()+AddDayCount);<span class="comment">//获取AddDayCount天后的日期</span></span><br><span class="line">      <span class="keyword">var</span> y = dd.getFullYear();   </span><br><span class="line">      <span class="keyword">var</span> m = (dd.getMonth()+<span class="number">1</span>)&lt;<span class="number">10</span>?<span class="string">"0"</span>+(dd.getMonth()+<span class="number">1</span>):(dd.getMonth()+<span class="number">1</span>);<span class="comment">//获取当前月份的日期，不足10补0</span></span><br><span class="line">      <span class="keyword">var</span> d = dd.getDate()&lt;<span class="number">10</span>?<span class="string">"0"</span>+dd.getDate():dd.getDate();<span class="comment">//获取当前几号，不足10补0</span></span><br><span class="line">      <span class="keyword">return</span> y+<span class="string">"-"</span>+m+<span class="string">"-"</span>+d;   </span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Date-1556121600000-’和‘-Date-1528953453022-0800-’日期格式处理"><a href="#Date-1556121600000-’和‘-Date-1528953453022-0800-’日期格式处理" class="headerlink" title="/Date(1556121600000)/’和‘/Date(1528953453022+0800)/’日期格式处理"></a>/Date(1556121600000)/’和‘/Date(1528953453022+0800)/’日期格式处理</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">方法一：</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handelTime</span>(<span class="params">strTime</span>) </span>&#123;</span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="built_in">parseInt</span>(strTime.replace(<span class="string">"/Date("</span>, <span class="string">""</span>).replace(<span class="string">")/"</span>, <span class="string">""</span>), <span class="number">10</span>));</span><br><span class="line">       <span class="keyword">return</span> obj.toLocaleDateString();</span><br><span class="line">&#125;</span><br><span class="line">handelTime(<span class="string">'\/Date(1556121600000)\/'</span>)</span><br><span class="line">方法二：</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">formatDate</span>(<span class="params">dt</span>) </span>&#123; </span><br><span class="line">  <span class="keyword">var</span> year = dt.getFullYear(); </span><br><span class="line">  <span class="keyword">var</span> month = dt.getMonth() + <span class="number">1</span>; </span><br><span class="line">  <span class="keyword">var</span> date = dt.getDate(); </span><br><span class="line">  <span class="keyword">var</span> hour = dt.getHours(); </span><br><span class="line">  <span class="keyword">var</span> minute = dt.getMinutes(); </span><br><span class="line">  <span class="keyword">var</span> second = dt.getSeconds(); </span><br><span class="line">  <span class="keyword">return</span> year + <span class="string">"-"</span> + month + <span class="string">"-"</span> + date + <span class="string">" "</span> + hour + <span class="string">":"</span> + minute + <span class="string">":"</span> + second; </span><br><span class="line">&#125; </span><br><span class="line">方法三</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Test</span>(<span class="params">time</span>) </span>&#123; </span><br><span class="line">	<span class="keyword">var</span> t= time.slice(<span class="number">6</span>, <span class="number">19</span>) </span><br><span class="line">	<span class="keyword">var</span> NewDtime = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="built_in">parseInt</span>(t)); </span><br><span class="line">	<span class="keyword">return</span> formatDate(NewDtime); </span><br><span class="line">&#125; </span><br><span class="line">Test(<span class="string">"/Date(1528953453022+0800)/"</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="遍历值键对"><a href="#遍历值键对" class="headerlink" title="遍历值键对"></a>遍历值键对</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">test: &#123;</span><br><span class="line">                <span class="string">"阿巴嘎旗"</span>: &#123;</span><br><span class="line">                    <span class="string">"hot"</span>: <span class="number">10851</span>,</span><br><span class="line">                    <span class="string">"priority"</span>: <span class="number">0</span>,</span><br><span class="line">                    <span class="string">"match"</span>: <span class="string">"abgq|abagaqi"</span>,</span><br><span class="line">                    <span class="string">"stationCode"</span>: <span class="string">"abagaqi"</span>,</span><br><span class="line">                    <span class="string">"cityId"</span>: <span class="number">269</span>,</span><br><span class="line">                    <span class="string">"cityName"</span>: <span class="string">"锡林郭勒盟"</span>,</span><br><span class="line">                    <span class="string">"provinceId"</span>: <span class="number">19</span>,</span><br><span class="line">                    <span class="string">"provinceName"</span>: <span class="string">"内蒙古"</span>,</span><br><span class="line">                    <span class="string">"longitude"</span>: <span class="string">"0.000000"</span>,</span><br><span class="line">                    <span class="string">"latitude"</span>: <span class="string">"0.000000"</span>,</span><br><span class="line">                    <span class="string">"siteCode"</span>: <span class="string">""</span></span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="string">"阿尔山"</span>: &#123;</span><br><span class="line">                    <span class="string">"hot"</span>: <span class="number">311502</span>,</span><br><span class="line">                    <span class="string">"priority"</span>: <span class="number">10</span>,</span><br><span class="line">                    <span class="string">"match"</span>: <span class="string">"aes|aershan"</span>,</span><br><span class="line">                    <span class="string">"stationCode"</span>: <span class="string">"aershan"</span>,</span><br><span class="line">                    <span class="string">"cityId"</span>: <span class="number">270</span>,</span><br><span class="line">                    <span class="string">"cityName"</span>: <span class="string">"兴安盟"</span>,</span><br><span class="line">                    <span class="string">"provinceId"</span>: <span class="number">19</span>,</span><br><span class="line">                    <span class="string">"provinceName"</span>: <span class="string">"内蒙古"</span>,</span><br><span class="line">                    <span class="string">"longitude"</span>: <span class="string">"119.954934"</span>,</span><br><span class="line">                    <span class="string">"latitude"</span>: <span class="string">"47.177865"</span>,</span><br><span class="line">                    <span class="string">"siteCode"</span>: <span class="string">""</span></span><br><span class="line">                &#125;,</span><br><span class="line">&#125;</span><br><span class="line">遍历方法：</span><br><span class="line"><span class="keyword">var</span> allcities = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> prop <span class="keyword">in</span> test) &#123;</span><br><span class="line">    <span class="keyword">var</span> city = [];</span><br><span class="line">    city.push(test[prop].provinceId, prop, <span class="string">'0'</span>, test[prop].match, test[prop].stationCode);</span><br><span class="line">    allcities.push(city);</span><br><span class="line">    <span class="comment">// console.log(test[prop]);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">判断对象是否为空</span><br><span class="line">evtValue = &#123;&#125;</span><br><span class="line"><span class="built_in">JSON</span>.stringify(evtValue) == <span class="string">'&#123;&#125;'</span></span><br><span class="line"><span class="built_in">Object</span>.keys(evtValue).length == <span class="number">0</span></span><br><span class="line">取对象的属性和值</span><br><span class="line"><span class="keyword">var</span> obj = &#123; <span class="string">'id'</span>: <span class="number">1</span>, <span class="string">'name'</span>: <span class="string">'叶落森'</span>, <span class="string">'sex'</span>: <span class="string">'女'</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> arr1 = <span class="built_in">Object</span>.keys(obj); --可以获取key值</span><br><span class="line"><span class="keyword">var</span> arr2 = <span class="built_in">Object</span>.values(obj); --可以获取value值</span><br><span class="line"><span class="built_in">console</span>.log(arr1);  <span class="comment">// ['id','name','sex']</span></span><br><span class="line"><span class="built_in">console</span>.log(arr2);  <span class="comment">//  ['1','叶落森','女']</span></span><br><span class="line"><span class="built_in">console</span>.log(arr2[<span class="number">1</span>]);  <span class="comment">// 叶落森</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="window-location"><a href="#window-location" class="headerlink" title="window.location"></a>window.location</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">一、window.location具有以下属性：</span><br><span class="line"></span><br><span class="line">1、window.location.href：取得当前地址栏中的完整URL，可以通过赋值改变当前地址栏中的URL；</span><br><span class="line"></span><br><span class="line">2、window.location.search 取得当前URL的参数部分，即“?”后面的部分（包括问号），可以通过赋值改变URL的参数部分；</span><br><span class="line"></span><br><span class="line">3、window.location.host：取得当前URL中的主机信息，包括端口号，可以通过赋值改变主机信息；</span><br><span class="line"></span><br><span class="line">4、window.location.port：取得当前URL中的端口号，可以通过赋值改变端口号；</span><br><span class="line"></span><br><span class="line">5、window.location.pathname：取得当前URL中的路径信息，即域名与参数之间的部分，可以通过赋值改变当前URL的路径；</span><br><span class="line"></span><br><span class="line">6、window.location.protocol：取得当前URL的协议部分，比如http:，https:等，可以通过赋值改变URL的协议部分；</span><br><span class="line"></span><br><span class="line">设置有以下方法：</span><br><span class="line"></span><br><span class="line">1、window.location.replace(url)：用传入的URL字符串替代当前的URL，该方法会将历史记录中的URL一并替换掉，也就是说，这个方法会覆盖之前的历史记录；</span><br><span class="line"></span><br><span class="line">2、window.location.reload()：重新加载当前URL，相当于刷新；</span><br><span class="line"></span><br><span class="line">3、window.location.assign(url)：加载传入的URL，该方法不会覆盖之前的历史记录；</span><br><span class="line"></span><br><span class="line">if(&quot;https:&quot; &#x3D;&#x3D; document.location.protocol </span><br><span class="line">     alert(&quot;HTTPS&quot;)</span><br><span class="line"> );</span><br><span class="line">document.location.protocol</span><br><span class="line">可设置或返回当前 URL 的协议</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="判断机型–iphoneX"><a href="#判断机型–iphoneX" class="headerlink" title="判断机型–iphoneX"></a>判断机型–iphoneX</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isIphoneX</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="regexp">/iphone/gi</span>.test(navigator.userAgent) &amp;&amp; (screen.height == <span class="number">812</span> &amp;&amp; screen.width == <span class="number">375</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="js实现根据身份证号码识别-性别-年龄-生日"><a href="#js实现根据身份证号码识别-性别-年龄-生日" class="headerlink" title="js实现根据身份证号码识别 性别 年龄 生日"></a>js实现根据身份证号码识别 性别 年龄 生日</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">discriCard</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//获取输入身份证号码 </span></span><br><span class="line">    <span class="keyword">var</span> UUserCard = <span class="string">""</span>;</span><br><span class="line">    <span class="comment">//获取出生日期 </span></span><br><span class="line">    UUserCard.substring(<span class="number">6</span>, <span class="number">10</span>) + <span class="string">"-"</span> + UUserCard.substring(<span class="number">10</span>, <span class="number">12</span>) + <span class="string">"-"</span> + UUserCard.substring(<span class="number">12</span>, <span class="number">14</span>);</span><br><span class="line">    <span class="comment">//获取性别 </span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">parseInt</span>(UUserCard.substr(<span class="number">16</span>, <span class="number">1</span>)) % <span class="number">2</span> == <span class="number">1</span>) &#123;</span><br><span class="line">        alert(<span class="string">"男"</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        alert(<span class="string">"女"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//获取年龄 </span></span><br><span class="line">    <span class="keyword">var</span> myDate = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">    <span class="keyword">var</span> month = myDate.getMonth() + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">var</span> day = myDate.getDate();</span><br><span class="line">    <span class="keyword">var</span> age = myDate.getFullYear() - UUserCard.substring(<span class="number">6</span>, <span class="number">10</span>) - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (UUserCard.substring(<span class="number">10</span>, <span class="number">12</span>) &lt; month || UUserCard.substring(<span class="number">10</span>, <span class="number">12</span>) == month &amp;&amp; UUserCard.substring(<span class="number">12</span>, <span class="number">14</span>) &lt;= day) &#123;</span><br><span class="line">        age++</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//年龄 age </span></span><br><span class="line">    alert(age)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="验证身份证有木有18周岁"><a href="#验证身份证有木有18周岁" class="headerlink" title="验证身份证有木有18周岁"></a>验证身份证有木有18周岁</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line"><span class="keyword">var</span> strBirthday = num.substr(<span class="number">6</span>, <span class="number">4</span>) + <span class="string">"/"</span> + num.substr(<span class="number">10</span>, <span class="number">2</span>) + <span class="string">"/"</span> + num.substr(<span class="number">12</span>, <span class="number">2</span>);</span><br><span class="line"><span class="keyword">var</span> birthDate = <span class="keyword">new</span> <span class="built_in">Date</span>(strBirthday);</span><br><span class="line"><span class="keyword">var</span> nowDateTime = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="keyword">var</span> age = nowDateTime.getFullYear() - birthDate.getFullYear();</span><br><span class="line"><span class="keyword">if</span> (nowDateTime.getMonth() &lt; birthDate.getMonth() || (nowDateTime.getMonth() == birthDate.getMonth() &amp;&amp; nowDateTime.getDate() &lt; birthDate.getDate())) &#123;</span><br><span class="line">    age--;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (age &lt; <span class="number">18</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="img标签的onerror事件"><a href="#img标签的onerror事件" class="headerlink" title="img标签的onerror事件"></a>img标签的onerror事件</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="number">1.</span>循环里的图片直接引用原生事件</span><br><span class="line">&lt; div v-<span class="keyword">for</span>= <span class="string">"(item,index) in imgSrcList"</span> &gt;</span><br><span class="line">    &lt;p&gt;&#123;&#123; item.test &#125;&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">    &lt;img :src="'/i</span>travel/itravel/assets/images/common/<span class="string">'+item.test+'</span>.png<span class="string">'" onerror="javascript:this.src='</span>/itravel/itravel/assets/images/ticket/child-desc.png<span class="string">';" /&gt;</span></span><br><span class="line"><span class="string">&lt;div/ &gt;</span></span><br><span class="line"><span class="string">2.只有一个路径</span></span><br><span class="line"><span class="string">    &lt;div class="pic" &gt;</span></span><br><span class="line"><span class="string">        &lt;img v-bind: src="item.productInfo.images[0].url" v-on: error="imgError(item)" /&gt;</span></span><br><span class="line"><span class="string">    &lt;div/ &gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">imgError: function (item) &#123;</span></span><br><span class="line"><span class="string">    item.productInfo.images[0].url = '</span>http:<span class="comment">//t.cn/RmxJlMa'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>js</category>
+      </categories>
+      <tags>
+        <tag>服务器时间</tag>
+        <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>toolVsCode</title>
     <url>/2020/07/15/toolVsCode/</url>
     <content><![CDATA[<h4 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h4><blockquote>
@@ -704,6 +884,334 @@
         <tag>soft</tag>
         <tag>tool</tag>
         <tag>vscode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vantweapp</title>
+    <url>/2020/07/22/vantweapp/</url>
+    <content><![CDATA[<h3 id="小程序插件–vantWeapp"><a href="#小程序插件–vantWeapp" class="headerlink" title="小程序插件–vantWeapp"></a>小程序插件–vantWeapp</h3><blockquote>
+<ol>
+<li>新建个项目</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li>找到项目文件夹 npm init 初始化一个叫package.json的文件一路回车即可</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="3">
+<li>继续执行命令安装 Vant Weapp<br><code>npm i @vant/weapp -S --production</code> </li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="4">
+<li>点击 开发者菜单里面的工具 &gt;构建npm 如下图</li>
+</ol>
+</blockquote>
+<a id="more"></a>
+
+<p><img src="http://upload-images.jianshu.io/upload_images/7211385-9510055e041611cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/939/format/webp" alt="img"></p>
+<blockquote>
+<ol start="5">
+<li>还是开发者工具里面的详情 使用npm模块勾选上</li>
+</ol>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/7211385-d50190f6a674c31d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/684/format/webp" alt="img"></p>
+<blockquote>
+<ol start="6">
+<li>在引用的页面json或者app.json里添加引入的组件名字</li>
+</ol>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&quot;usingComponents&quot;: &#123;</span><br><span class="line">  &quot;van-button&quot;: &quot;@vant&#x2F;weapp&#x2F;button&#x2F;index&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="http://upload-images.jianshu.io/upload_images/7211385-6163f82f17c59fcc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/984/format/webp" alt="img"></p>
+<blockquote>
+<ol start="7">
+<li>最后就是在你的页面用使用了 如下图：</li>
+</ol>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/7211385-d2fbd97f8301d40d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp" alt="img"></p>
+<p><a href="https://www.jianshu.com/p/a63f21206b91" target="_blank" rel="noopener">参考链接</a></p>
+<p><a href="https://youzan.github.io/vant-weapp/#/intro" target="_blank" rel="noopener">官网地址</a></p>
+]]></content>
+      <categories>
+        <category>plugins</category>
+      </categories>
+      <tags>
+        <tag>小程序</tag>
+        <tag>plugins</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>jsbridge</title>
+    <url>/2020/07/22/jsbridge/</url>
+    <content><![CDATA[<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>h5 与原生 app 的交互，本质上说，就是两种调用：</p>
+<ol>
+<li>app 调用 h5 的代码</li>
+<li>h5 调用 app 的代码</li>
+</ol>
+<a id="more"></a>
+
+<p><strong>1. app 调用 h5 的代码</strong></p>
+<p>因为 app 是宿主，可以直接访问 h5，所以这种调用比较简单，就是在 h5 中曝露一些全局对象（包括方法），然后在原生 app 中调用这些对</p>
+<p><img src="https://img2018.cnblogs.com/blog/1661048/201908/1661048-20190805104711293-168785251.jpg" alt="img"></p>
+<p><strong>javascript</strong></p>
+<p><code>window.sdk = {</code></p>
+<p><code>``double = value =&gt; value * 2,</code></p>
+<p><code>``triple = value =&gt; value * 3,</code></p>
+<p><code>};</code></p>
+<p><strong>android：</strong></p>
+<p><code>webview.evaluateJavascript(``&#39;window.sdk.double(10)&#39;``, ``new</code> <code>ValueCallback&lt;String&gt;() {</code></p>
+<p><code>``@Override</code></p>
+<p><code>``public</code> <code>void onReceiveValue(String s) {</code></p>
+<p><code>``// 20</code></p>
+<p><code>``}</code></p>
+<p><code>});</code></p>
+<p><strong>ios：</strong></p>
+<p><code>NSString *func = @``&quot;window.sdk.double(10)&quot;``;</code></p>
+<p><code>NSString *str = [webview stringByEvaluatingJavaScriptFromString:func]; ``// 20</code></p>
+<p><strong>2. h5 调用 app 的代码</strong></p>
+<p>因为 h5 不能直接访问宿主 app，所以这种调用就相对复杂一点。</p>
+<p>这种调用常用有两种方式：</p>
+<ol>
+<li>由app向h5注入一个全局js对象，然后在h5直接访问这个对象</li>
+<li>由h5发起一个自定义协议请求，app拦截这个请求后，再由app调用 h5 中的回调函数</li>
+</ol>
+<p><strong>2.1 由 app 向 h5 注入一个全局 js 对象</strong></p>
+<p>这种方式沟通机制简单，比较好理解，并且对于 h5 来说，没有新的东西，所以是比较推荐的一种方式。但这种方式可能存在安全隐患，详细查看 你不知道的 Android WebView 使用漏洞。</p>
+<p><img src="https://img2018.cnblogs.com/blog/1661048/201908/1661048-20190805105140875-2098346635.jpg" alt="img"></p>
+<p><strong>android</strong></p>
+<p><code>webview.addJavascriptInterface(``new</code> <code>Object() {</code></p>
+<p><code>``@JavascriptInterface</code></p>
+<p><code>``public</code> <code>int double(value) {</code></p>
+<p><code>``return</code> <code>value * 2;</code></p>
+<p><code>``}</code></p>
+<p><code></code> </p>
+<p><code>``@JavascriptInterface</code></p>
+<p><code>``public</code> <code>int triple(value) {</code></p>
+<p><code>``return</code> <code>value * 3;</code></p>
+<p><code>``}</code></p>
+<p><code>}, ``&quot;appSdk&quot;``);</code></p>
+<hr>
+<p><strong>ios</strong></p>
+<p><code>NSString *scripts = @``&quot;window.appSdk = {double: value =&gt; value * 2, triple: value =&gt; value * 3}&quot;``;</code></p>
+<p><code>[webview stringByEvaluatingJavaScriptFromString:scripts];</code></p>
+<p><strong>javascript</strong></p>
+<p><strong>window.appSdk.double(10); // 20</strong></p>
+<hr>
+<h3 id="JS-Bridge"><a href="#JS-Bridge" class="headerlink" title="JS Bridge"></a>JS Bridge</h3><h4 id="什么是JS-Bridge"><a href="#什么是JS-Bridge" class="headerlink" title="什么是JS Bridge"></a>什么是JS Bridge</h4><p>在移动开发中为了加快开发进度(0.0)很多页面会用H5来开发，这样一来可以快速完成节约，二来APP内嵌WebView可以较少APP更新频率。因此，成本现在大多数公司的首选，但是部分功能JavaScript的权限受到严格限制，比如拍照，读写权限，获取GPS等等，这些native功能，这时候我们需要去委托原生去实现，原生实现后再告知js。这个时候就需要一个中间桥梁，于是就有了<strong>WebViewJavascriptBridge</strong>，简称 <strong>JS bridge</strong>。</p>
+<h4 id="重点叙述在vue中如何调用"><a href="#重点叙述在vue中如何调用" class="headerlink" title="重点叙述在vue中如何调用"></a>重点叙述在vue中如何调用</h4><ul>
+<li>创建 src/config/bridge.js 文件，用于封装 WebViewJavascriptBridge</li>
+<li>将以下代码拷贝到 bridge.js 文件中</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> u = navigator.userAgent;</span><br><span class="line"><span class="built_in">window</span>.isAndroid = u.indexOf(<span class="string">'Android'</span>) &gt; <span class="number">-1</span> || u.indexOf(<span class="string">'Adr'</span>) &gt; <span class="number">-1</span>; <span class="comment">//android终端 </span></span><br><span class="line"><span class="built_in">window</span>.isIOS = !!u.match(<span class="regexp">/\(i[^;]+;( U;)? CPU.+Mac OS X/</span>); <span class="comment">//ios终端 </span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setupWebViewJavascriptBridge</span>(<span class="params">callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">window</span>.WebViewJavascriptBridge) &#123;</span><br><span class="line">    <span class="keyword">return</span> callback(WebViewJavascriptBridge);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">document</span>.addEventListener(</span><br><span class="line">      <span class="string">'WebViewJavascriptBridgeReady'</span>,</span><br><span class="line">      <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        callback(WebViewJavascriptBridge)</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="literal">false</span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">window</span>.isIOS) &#123;</span><br><span class="line">    <span class="comment">// old ios method</span></span><br><span class="line">    <span class="comment">//setTimeout(function () &#123;</span></span><br><span class="line">    <span class="comment">//    if (window.WVJBCallbacks) &#123;</span></span><br><span class="line">    <span class="comment">//        return window.WVJBCallbacks.push(callback);</span></span><br><span class="line">    <span class="comment">//    &#125;</span></span><br><span class="line">    <span class="comment">//&#125;, 500)</span></span><br><span class="line">    <span class="comment">//window.WVJBCallbacks = [callback];</span></span><br><span class="line">    <span class="comment">//var WVJBIframe = document.createElement('iframe');</span></span><br><span class="line">    <span class="comment">//WVJBIframe.style.display = 'none';</span></span><br><span class="line">    <span class="comment">//WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';</span></span><br><span class="line">    <span class="comment">//document.documentElement.appendChild(WVJBIframe);</span></span><br><span class="line">    <span class="comment">//setTimeout(function () &#123;</span></span><br><span class="line">    <span class="comment">//    document.documentElement.removeChild(WVJBIframe)</span></span><br><span class="line">    <span class="comment">//&#125;, 0)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// new ios method</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.WKWebViewJavascriptBridge) &#123; <span class="keyword">return</span> callback(WKWebViewJavascriptBridge); &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.WKWVJBCallbacks) &#123; <span class="keyword">return</span> <span class="built_in">window</span>.WKWVJBCallbacks.push(callback); &#125;</span><br><span class="line">    <span class="built_in">window</span>.WKWVJBCallbacks = [callback];</span><br><span class="line">    <span class="built_in">window</span>.webkit.messageHandlers.iOS_Native_InjectJavascript.postMessage(<span class="literal">null</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (!<span class="built_in">window</span>.isIOS) &#123;</span><br><span class="line">    setupWebViewJavascriptBridge(<span class="function"><span class="keyword">function</span> (<span class="params">bridge</span>) </span>&#123;</span><br><span class="line">      bridge.init(<span class="function"><span class="keyword">function</span> (<span class="params">message, responseCallback</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> data = &#123;&#125;;</span><br><span class="line">        responseCallback(data);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  callhandler(name, data, callback) &#123;</span><br><span class="line">    setupWebViewJavascriptBridge(<span class="function"><span class="keyword">function</span> (<span class="params">bridge</span>) </span>&#123;</span><br><span class="line">      bridge.callHandler(name, data, callback)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  registerhandler(name, callback) &#123;</span><br><span class="line">    setupWebViewJavascriptBridge(<span class="function"><span class="keyword">function</span> (<span class="params">bridge</span>) </span>&#123;</span><br><span class="line">      bridge.registerHandler(name, <span class="function"><span class="keyword">function</span> (<span class="params">data, responseCallback</span>) </span>&#123;</span><br><span class="line">        callback(data, responseCallback)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 main.js 中引入该文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Bridge from &#39;.&#x2F;config&#x2F;bridge.js&#39;</span><br><span class="line">Vue.prototype.$bridge &#x3D; Bridge</span><br></pre></td></tr></table></figure>
+
+<p>在需要调用客户端方法的组件中（ObjC Echo是VUE端调用APP端的方法名）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; params是向app端传的参数</span><br><span class="line">&#x2F;&#x2F; iOS端</span><br><span class="line">this.$bridge.callhandler(&#39;ObjC Echo&#39;, params, (data) &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; 处理返回数据</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; Android端</span><br><span class="line">JSAndroid.requestPaySupportWithPayWay(params);</span><br></pre></td></tr></table></figure>
+
+<p>当app端需要调用 js 函数时,在mounted钩子中事先注册约定好的函数即可（JS Echo是APP端调用VUE端方法名称，博主没用过）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F; iOS端</span><br><span class="line">this.$bridge.registerhandler(&#39;JS Echo&#39;, (data, responseCallback) &#x3D;&gt; &#123;</span><br><span class="line">  alert(&#39;JS Echo called with:&#39;, data)</span><br><span class="line">  responseCallback(data)</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; Android端</span><br><span class="line">window[&#39;JS Echo&#39;] &#x3D; (data, responseCallback) &#x3D;&gt; &#123;</span><br><span class="line">   alert(&#39;JS Echo called with:&#39;, data)</span><br><span class="line">   responseCallback(data)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="html中如何使用封装"><a href="#html中如何使用封装" class="headerlink" title="html中如何使用封装"></a>html中如何使用封装</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var u &#x3D; navigator.userAgent;</span><br><span class="line">window.isAndroid &#x3D; u.indexOf(&#39;Android&#39;) &gt; -1 || u.indexOf(&#39;Adr&#39;) &gt; -1; &#x2F;&#x2F;android终端 </span><br><span class="line">window.isIOS &#x3D; !!u.match(&#x2F;\(i[^;]+;( U;)? CPU.+Mac OS X&#x2F;); &#x2F;&#x2F;ios终端 </span><br><span class="line">window.jsbridge &#x3D; function (callback) &#123;</span><br><span class="line">    if (window.WebViewJavascriptBridge) &#123;</span><br><span class="line">        return callback(WebViewJavascriptBridge);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        document.addEventListener(</span><br><span class="line">            &#39;WebViewJavascriptBridgeReady&#39;,</span><br><span class="line">            function () &#123;</span><br><span class="line">                callback(WebViewJavascriptBridge)</span><br><span class="line">            &#125;,</span><br><span class="line">            false</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">    if (window.isIOS) &#123;</span><br><span class="line">        &#x2F;&#x2F; old ios method</span><br><span class="line">        &#x2F;&#x2F;setTimeout(function () &#123;</span><br><span class="line">        &#x2F;&#x2F;    if (window.WVJBCallbacks) &#123;</span><br><span class="line">        &#x2F;&#x2F;        return window.WVJBCallbacks.push(callback);</span><br><span class="line">        &#x2F;&#x2F;    &#125;</span><br><span class="line">        &#x2F;&#x2F;&#125;, 500)</span><br><span class="line">        &#x2F;&#x2F;window.WVJBCallbacks &#x3D; [callback];</span><br><span class="line">        &#x2F;&#x2F;var WVJBIframe &#x3D; document.createElement(&#39;iframe&#39;);</span><br><span class="line">        &#x2F;&#x2F;WVJBIframe.style.display &#x3D; &#39;none&#39;;</span><br><span class="line">        &#x2F;&#x2F;WVJBIframe.src &#x3D; &#39;wvjbscheme:&#x2F;&#x2F;__BRIDGE_LOADED__&#39;;</span><br><span class="line">        &#x2F;&#x2F;document.documentElement.appendChild(WVJBIframe);</span><br><span class="line">        &#x2F;&#x2F;setTimeout(function () &#123;</span><br><span class="line">        &#x2F;&#x2F;    document.documentElement.removeChild(WVJBIframe)</span><br><span class="line">        &#x2F;&#x2F;&#125;, 0)</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; new ios method</span><br><span class="line">        if (window.WKWebViewJavascriptBridge) &#123; return callback(WKWebViewJavascriptBridge); &#125;</span><br><span class="line">        if (window.WKWVJBCallbacks) &#123; return window.WKWVJBCallbacks.push(callback); &#125;</span><br><span class="line">        window.WKWVJBCallbacks &#x3D; [callback];</span><br><span class="line">        window.webkit.messageHandlers.iOS_Native_InjectJavascript.postMessage(null)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if (!window.isIOS) &#123;</span><br><span class="line">    jsbridge(function (bridge) &#123;</span><br><span class="line">        bridge.init(function (message, responseCallback) &#123;</span><br><span class="line">            var data &#x3D; &#123;&#125;;</span><br><span class="line">            responseCallback(data);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * @param  &#123;option对象&#125;</span><br><span class="line"> * method: 调用的方法</span><br><span class="line"> * data: 传递的参数</span><br><span class="line"> * callback: 回掉方法</span><br><span class="line"> * @return &#123;[type]&#125;</span><br><span class="line"> *&#x2F;</span><br><span class="line">function bridgeCallHandler(option) &#123;</span><br><span class="line">    &#x2F;&#x2F; alert(option.method)</span><br><span class="line">    jsbridge(function (bridge) &#123;</span><br><span class="line">        bridge.callHandler(</span><br><span class="line">            option.method,</span><br><span class="line">            option.data || &#123;&#125;,</span><br><span class="line">            function (responseData) &#123;</span><br><span class="line">                if (option.callback) &#123;</span><br><span class="line">                    option.callback(responseData)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        );</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">window.callNativePage &#x3D; function (option) &#123;</span><br><span class="line">    bridgeCallHandler(&#123;</span><br><span class="line">        method: &#39;callNativePage&#39;,</span><br><span class="line">        data: option.data,</span><br><span class="line">        callback: function (responseData) &#123;</span><br><span class="line">            if (option.callback) &#123;</span><br><span class="line">                option.callback(responseData);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">js调用app</span><br><span class="line">callNativePage(&#123;</span><br><span class="line">    data: &#123; msg : &#39;test send msg&#39; &#125;,</span><br><span class="line">    callback:function(responseData)&#123;</span><br><span class="line">        console.log(&#39;来源于app的反馈信息&#39;,responseData)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;app调js</span><br><span class="line">window.bridgeRegisterHandler &#x3D; function (option) &#123;</span><br><span class="line">    &#x2F;&#x2F; alert(option.method);</span><br><span class="line">    jsbridge(function (bridge) &#123;</span><br><span class="line">        bridge.registerHandler(</span><br><span class="line">            option.method,</span><br><span class="line">            function (data, responseCallback) &#123;</span><br><span class="line">                if (option.callback) &#123;</span><br><span class="line">                    option.callback(data);</span><br><span class="line">                &#125;</span><br><span class="line">                responseCallback(option.data || &#123;&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        );</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">window.bridgeRegisterHandler(&#123;</span><br><span class="line">    method:&quot;提供给app调用的方法名&quot;,</span><br><span class="line">    callback:function(data)&#123;</span><br><span class="line">        &#x2F;&#x2F; data : app传递给前端的data</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>参考链接</p>
+<p><a href="https://www.cnblogs.com/tu-front-end/p/11301685.html" target="_blank" rel="noopener">jsbridge</a></p>
+<p><a href="https://blog.csdn.net/daipianpian/article/details/90714502" target="_blank" rel="noopener">vue项目使用WebViewJavascriptBridge</a></p>
+<p><a href="https://www.jianshu.com/p/2fa0b6cdca17" target="_blank" rel="noopener">H5调用封装</a></p>
+]]></content>
+      <categories>
+        <category>js</category>
+      </categories>
+      <tags>
+        <tag>js</tag>
+        <tag>jsbridge</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>小程序上传删除图片封装</title>
+    <url>/2020/07/24/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%8A%E4%BC%A0%E5%88%A0%E9%99%A4%E5%9B%BE%E7%89%87%E5%B0%81%E8%A3%85/</url>
+    <content><![CDATA[<h3 id="wxml"><a href="#wxml" class="headerlink" title="wxml"></a>wxml</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"img-model"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"img-item"</span> <span class="attr">wx:for</span>=<span class="string">"&#123;&#123;uploaderList&#125;&#125;"</span> <span class="attr">wx:key</span>=<span class="string">"item"</span> <span class="attr">data-index</span>=<span class="string">"&#123;&#123;index&#125;&#125;"</span>&gt;</span></span><br><span class="line">  	<span class="tag">&lt;<span class="name">icon</span> <span class="attr">class</span>=<span class="string">'ui_uploader_item_icon'</span> <span class="attr">bindtap</span>=<span class="string">'clearImg'</span> <span class="attr">data-index</span>=<span class="string">"&#123;&#123;index&#125;&#125;"</span> <span class="attr">type</span>=<span class="string">"clear"</span> <span class="attr">size</span>=<span class="string">"20"</span> <span class="attr">color</span>=<span class="string">"red"</span> /&gt;</span></span><br><span class="line">  	<span class="tag">&lt;<span class="name">image</span> <span class="attr">id</span>=<span class="string">"seal"</span> <span class="attr">src</span>=<span class="string">"&#123;&#123;item.path&#125;&#125;"</span>  <span class="attr">bindtap</span>=<span class="string">"showImg"</span> <span class="attr">data-item</span>=<span class="string">"&#123;&#123;item&#125;&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">image</span>&gt;</span></span><br><span class="line">  	<span class="tag">&lt;<span class="name">text</span> <span class="attr">wx:if</span>=<span class="string">"&#123;&#123;item.upload_percent&gt;1&amp;&amp;item.upload_percent&lt;100&#125;&#125;"</span>&gt;</span>&#123;&#123;item.upload_percent&#125;&#125;%<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">  	<span class="tag">&lt;<span class="name">text</span> <span class="attr">wx:elif</span>=<span class="string">"&#123;&#123;item.upload_percent==100&#125;&#125;"</span>&gt;</span>上传成功<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">  	<span class="tag">&lt;<span class="name">text</span> <span class="attr">wx:else</span>&gt;</span>上传失败<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"img-click"</span> <span class="attr">bindtap</span>=<span class="string">"goChooseImage"</span> <span class="attr">wx:if</span>=<span class="string">"&#123;&#123;showUpload&#125;&#125;"</span>&gt;</span></span><br><span class="line">  	<span class="tag">&lt;<span class="name">image</span> <span class="attr">id</span>=<span class="string">"seal"</span> <span class="attr">src</span>=<span class="string">"./img/seal.png"</span>&gt;</span><span class="tag">&lt;/<span class="name">image</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h3 id="js"><a href="#js" class="headerlink" title="js"></a>js</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">    uploaderNum: <span class="number">0</span>,<span class="comment">//已经上传的数量</span></span><br><span class="line">    uploaderList:[],</span><br><span class="line">    showUpload: <span class="literal">true</span>,</span><br><span class="line">    maxLength: <span class="number">4</span> <span class="comment">//允许上传的最大数量</span></span><br><span class="line">  &#125;,</span><br><span class="line"><span class="comment">//选择图片 </span></span><br><span class="line">  goChooseImage(e) &#123;</span><br><span class="line">    <span class="keyword">let</span> that = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">let</span> uploaderList = that.data.uploaderList;</span><br><span class="line">    <span class="keyword">let</span> maxSize = <span class="number">102</span> * <span class="number">1024</span>;</span><br><span class="line">    wx.chooseImage(&#123;</span><br><span class="line">      <span class="comment">//每次最多选择的个数，多余自动去除</span></span><br><span class="line">      count: that.data.maxLength - that.data.uploaderList.length,</span><br><span class="line">      sizeType: [<span class="string">'original'</span>, <span class="string">'compressed'</span>],</span><br><span class="line">      sourceType: [<span class="string">'album'</span>, <span class="string">'camera'</span>],</span><br><span class="line">      success(res) &#123;</span><br><span class="line">        wx.showToast(&#123;</span><br><span class="line">          title: <span class="string">'正在上传...'</span>,</span><br><span class="line">          icon: <span class="string">'loading'</span>,</span><br><span class="line">          mask: <span class="literal">true</span>,</span><br><span class="line">          duration: <span class="number">500</span></span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="comment">//上传个数限制</span></span><br><span class="line">        <span class="keyword">if</span> ((res.tempFiles.length + that.data.uploaderList.length) &gt; that.data.maxLength) &#123;</span><br><span class="line">          wx.showModal(&#123;</span><br><span class="line">            content: <span class="string">'最多能上传'</span> + that.data.maxLength + <span class="string">'张图片'</span>,</span><br><span class="line">            showCancel: <span class="literal">false</span></span><br><span class="line">          &#125;)</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//判断图片大小</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; res.tempFiles.length; i++) &#123;</span><br><span class="line">          <span class="keyword">if</span> (res.tempFiles[i].size &gt; maxSize) &#123;</span><br><span class="line">            wx.showModal(&#123;</span><br><span class="line">              content: <span class="string">'图片太大，不允许上传'</span>,</span><br><span class="line">              showCancel: <span class="literal">false</span>,</span><br><span class="line">            &#125;);</span><br><span class="line">          &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            uploaderList = that.data.uploaderList.concat(res.tempFiles[i])</span><br><span class="line">            that.setData(&#123;</span><br><span class="line">              uploaderList,</span><br><span class="line">              uploaderNum: that.data.uploaderList.length</span><br><span class="line">            &#125;)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//隐藏点击上传图片</span></span><br><span class="line">        <span class="keyword">if</span> (uploaderList.length == that.data.maxLength) &#123;</span><br><span class="line">          that.setData(&#123;</span><br><span class="line">            showUpload: <span class="literal">false</span></span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//上传图片</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; uploaderList.length; i++) &#123;</span><br><span class="line">          <span class="comment">//that.upLoadImg(uploaderList[i],i)</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 图片上传</span></span><br><span class="line">  upLoadImg(upImg,idx) &#123;</span><br><span class="line">    <span class="keyword">let</span> that = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">let</span> uploadTask = wx.uploadFile(&#123;</span><br><span class="line">      url: config.itravel_api + <span class="string">'TravelCard/tcUploadPicture.mini'</span>,</span><br><span class="line">      filePath: upImg.path,</span><br><span class="line">      header: &#123;</span><br><span class="line">        <span class="string">'content-type'</span>: <span class="string">'multipart/form-data'</span></span><br><span class="line">      &#125;, <span class="comment">// 设置请求的 header</span></span><br><span class="line">      name: <span class="string">'idCard'</span>,</span><br><span class="line">      success(res) &#123;</span><br><span class="line">        <span class="keyword">if</span> (idx === that.data.uploaderList.length<span class="number">-1</span>)&#123;</span><br><span class="line">          wx.showToast(&#123;</span><br><span class="line">            title: <span class="string">"上传成功"</span>,</span><br><span class="line">            icon: <span class="string">'none'</span>,</span><br><span class="line">            mask: <span class="literal">true</span>,</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      fail(res) &#123;</span><br><span class="line">        wx.showToast(&#123;</span><br><span class="line">          title: <span class="string">"上传失败"</span>,</span><br><span class="line">          icon: <span class="string">'none'</span>,</span><br><span class="line">          mask: <span class="literal">true</span>,</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">      <span class="comment">//进度条属性置为0显示上传失败</span></span><br><span class="line">        upImg[<span class="string">'upload_percent'</span>] = <span class="number">0</span></span><br><span class="line">        that.setData(&#123;</span><br><span class="line">          uploaderList: that.data.uploaderList</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="comment">// 上传进度条</span></span><br><span class="line">    uploadTask &amp;&amp; uploadTask.onProgressUpdate(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">//增加进度条属性</span></span><br><span class="line">      upImg[<span class="string">'upload_percent'</span>] = res.progress</span><br><span class="line">      that.setData(&#123;</span><br><span class="line">        uploaderList: that.data.uploaderList</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//展示图片</span></span><br><span class="line">  showImg: <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> path = e.currentTarget.dataset.item.path</span><br><span class="line">    <span class="keyword">let</span> images = <span class="keyword">this</span>.data.uploaderList</span><br><span class="line">    <span class="keyword">let</span> allImages = [];</span><br><span class="line">    images.map(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">      allImages.push(item.path)</span><br><span class="line">    &#125;)</span><br><span class="line">    wx.previewImage(&#123;</span><br><span class="line">      urls: allImages,</span><br><span class="line">      current: path</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 删除图片</span></span><br><span class="line">  clearImg: <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> that = <span class="keyword">this</span></span><br><span class="line">    wx.showModal(&#123;</span><br><span class="line">      title: <span class="string">'提示'</span>,</span><br><span class="line">      content: <span class="string">'确定删除图片吗？'</span>,</span><br><span class="line">      success(res) &#123;</span><br><span class="line">        <span class="keyword">if</span> (res.confirm) &#123;</span><br><span class="line">          <span class="comment">//删除start</span></span><br><span class="line">          <span class="keyword">let</span> uploaderList = that.data.uploaderList;<span class="comment">//原数据</span></span><br><span class="line">          <span class="keyword">let</span> index = e.currentTarget.dataset.index;</span><br><span class="line">          uploaderList.splice(index, <span class="number">1</span>);</span><br><span class="line">          that.setData(&#123;</span><br><span class="line">            uploaderNum: that.data.uploaderNum - <span class="number">1</span>,</span><br><span class="line">            showUpload: <span class="literal">true</span>,</span><br><span class="line">            uploaderList: uploaderList,</span><br><span class="line">          &#125;)</span><br><span class="line">          <span class="comment">//删除end</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>soft</category>
+      </categories>
+      <tags>
+        <tag>小程序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>小程序wxParse解析html</title>
+    <url>/2020/07/24/%E5%B0%8F%E7%A8%8B%E5%BA%8FwxParse%E8%A7%A3%E6%9E%90html/</url>
+    <content><![CDATA[<h3 id="wxParse解析html"><a href="#wxParse解析html" class="headerlink" title="wxParse解析html"></a>wxParse解析html</h3><p>最近项目上遇到在微信小程序里需要显示新闻内容，新闻内容是通过接口读取的服务器中的富文本内容，是html格式的，小程序默认是不支持html格式的内容显示的，那我们需要显示html内容的时候，就可以通过wxParse来实现。<br>首先我们在github上下载wxParse<br><a href="https://link.jianshu.com?t=https://github.com/icindy/wxParse" target="_blank" rel="noopener">https://github.com/icindy/wxParse</a></p>
+<a id="more"></a>
+
+<p><img src="http://upload-images.jianshu.io/upload_images/1749555-763e71fafa8b7d21.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1006/format/webp" alt="img"></p>
+<p>wxParse</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1749555-607f09905e3f1ffb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/603/format/webp" alt="img"></p>
+<p>下面是具体的使用步骤</p>
+<blockquote>
+<p>1.在app.wxss全局样式文件中，需要引入wxParse的样式表</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@import &quot;&#x2F;page&#x2F;wxParse&#x2F;wxParse.wxss&quot;;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>2.在需要加载html内容的页面对应的js文件里引入wxParse</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var WxParse &#x3D; require(&#39;..&#x2F;..&#x2F;wxParse&#x2F;wxParse.js&#39;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>3.通过调用WxParse.wxParse方法来设置html内容</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line">* WxParse.wxParse(bindName , type, data, target,imagePadding)</span><br><span class="line">* 1.bindName绑定的数据名(必填)</span><br><span class="line">* 2.type可以为html或者md(必填)</span><br><span class="line">* 3.data为传入的具体数据(必填)</span><br><span class="line">* 4.target为Page对象,一般为this(必填)</span><br><span class="line">* 5.imagePadding为当图片自适应是左右的单一padding(默认为0,可选)</span><br><span class="line">*&#x2F;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Page(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">  &#125;,</span><br><span class="line">  onLoad: function () &#123;</span><br><span class="line">    var that &#x3D; this;</span><br><span class="line">    wx.request(&#123;</span><br><span class="line">        url: &#39;&#39;, </span><br><span class="line">        method: &#39;POST&#39;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            &#39;id&#39;:13</span><br><span class="line">        &#125;,</span><br><span class="line">        header: &#123;</span><br><span class="line">            &#39;content-type&#39;: &#39;application&#x2F;json&#39;</span><br><span class="line">        &#125;,</span><br><span class="line">        success: function(res) &#123;</span><br><span class="line">            var article &#x3D; res.data[0].post;</span><br><span class="line">            WxParse.wxParse(&#39;article&#39;, &#39;html&#39;, article, that,5);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>4.在页面中引用模板</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;import src&#x3D;&quot;..&#x2F;..&#x2F;wxParse&#x2F;wxParse.wxml&quot;&#x2F;&gt;</span><br><span class="line">&lt;template is&#x3D;&quot;wxParse&quot; data&#x3D;&quot;&#123;&#123;wxParseData:article.nodes&#125;&#125;&quot;&#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这样就可以在微信小程序中嵌入html内容了</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1749555-fc2cdae17f35c2e4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/463/format/webp" alt="img"></p>
+]]></content>
+      <categories>
+        <category>soft</category>
+      </categories>
+      <tags>
+        <tag>小程序</tag>
+        <tag>wxParse</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>toolVs</title>
+    <url>/2020/07/15/toolVs/</url>
+    <content><![CDATA[<h4 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h4><p>1.复制/剪切/删除整行代码</p>
+<blockquote>
+<p>1)如果你想复制一整行代码，只需将光标移至该行，再使用组合键“Ctrl+C”来完成复制操作，而无需选择整行。</p>
+<p>2)如果你想剪切一整行代码，只需将光标移至该行，再使用组合键“Ctrl+X”来完成剪切操作，而无需选择整行。</p>
+<p>3)如果你想删除一整行代码，只需将光标移至该行，再使用组合键“Ctrl+L”来完成剪切操作，而无需选择整行。</p>
+</blockquote>
+<a id="more"></a>
+
+<p>2.撤销/反撤销</p>
+<p>　　&gt; 1)撤销：使用组合键“Ctrl+Z”进行撤销操作;<br>　　&gt; 　　&gt;<br>　　&gt; 　　&gt;　　&gt; 2)反撤销：使用组合键“Ctrl+Y”进行反撤销操作。</p>
+<p>3.向前/向后搜索</p>
+<p>　　&gt; 1)使用组合键“Ctrl+I”;</p>
+<p>4.在光标所在行的上面或下面插入一行</p>
+<p>　　&gt; 1)组合键“Ctrl+Enter”：在当前行的上面插入一个空行;<br>　　&gt; 　　&gt;<br>　　&gt; 　　&gt;　　&gt; 2)组合键“Ctrl+Shift+Enter”：在当前行的下面插入一个空行。</p>
+<p>5.定位到行首与行尾</p>
+<p>　　&gt; 1)home键：定位到当前行的行首;<br>　　&gt; 　　&gt;<br>　　&gt; 　　&gt;　　&gt; 2)end键：定位到当前行的行尾。</p>
+<p>6.选中从光标起到行首(尾)间的代码</p>
+<p>　　&gt; 1)选中从光标起到行首间的代码：使用组合键“Shift + Home”;<br>　　&gt; 　　&gt;<br>　　&gt; 　　&gt;　　&gt; 2)选中从光标起到行尾间的代码：使用组合键“Shift + End”。</p>
+<p>7.快速隐藏或显示当前代码段</p>
+<p>　　&gt; 使用组合键“Ctrl+M,M”(记住：要按两次M哦)。</p>
+<p>8.查找和替换</p>
+<p>　　&gt; 1)查找：使用组合键“Ctrl+F”;<br>　　&gt; 　　&gt;<br>　　&gt; 　　&gt;　　&gt; 2)替换：使用组合键“Ctrl+H”。</p>
+<p>9.大小写转换</p>
+<p>　　&gt; 1)转小写：使用组合键“Ctrl+ U”;<br>　　&gt; 　　&gt;<br>　　&gt; 　　&gt;　　&gt; 2)转大写：使用组合键“CTRL + SHIFT + U”。</p>
+<p>10.查找下一个相同单词</p>
+<blockquote>
+<p>依次找出文中所有的当前选中的单词: Ctrl + D</p>
+</blockquote>
+<p>11.生成解决方案</p>
+<pre><code>&gt; 使用F6或者组合键“Ctrl+Shift+B”</code></pre><p>12.定义与引用</p>
+<p>　　&gt; 1)转跳到定义：F12;<br>　　&gt; 　　&gt;<br>　　&gt; 　　&gt;　　&gt; 2)查找所有引用：使用组合键“Shift+F12”。</p>
+<p>20.自动定位文件</p>
+<p><img src="C:/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/5d201da83f1544f4b22d5aeceedfc83b/1569231875%281%29.png" alt="img"></p>
+]]></content>
+      <categories>
+        <category>mysoft</category>
+        <category>tool</category>
+      </categories>
+      <tags>
+        <tag>soft</tag>
+        <tag>tool</tag>
+        <tag>vs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>小程序开发随笔（一）</title>
+    <url>/2020/07/24/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+    <content><![CDATA[<h3 id="绝对路径和相对路径"><a href="#绝对路径和相对路径" class="headerlink" title="绝对路径和相对路径"></a>绝对路径和相对路径</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">“..&#x2F;”代表当前文件所在目录的上一级目录。</span><br><span class="line"></span><br><span class="line">“..&#x2F;..&#x2F;”代表当前文件所在目录的上上级目录。</span><br><span class="line"></span><br><span class="line">“..&#x2F;..&#x2F;..&#x2F;”可以依次类推。</span><br><span class="line"></span><br><span class="line">“&#x2F;”代表根目录。</span><br><span class="line"></span><br><span class="line">“.&#x2F;”表示当前目录，HTML中，可以省略。</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h3 id="给对象属性赋值，增加属性"><a href="#给对象属性赋值，增加属性" class="headerlink" title="给对象属性赋值，增加属性"></a>给对象属性赋值，增加属性</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  tel: &#39;15184138787&#39;,</span><br><span class="line">  list: &#123;</span><br><span class="line">   title: &#39;我是标题哦&#39;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">需求：更改list里title的值</span><br><span class="line"> let  value &#x3D; &#39;list.title&#39;; &#x2F;&#x2F; 注意这里哈</span><br><span class="line">  this.setData(&#123;</span><br><span class="line">    [value]: &#39;我是新标题&#39;</span><br><span class="line"> &#125;)</span><br><span class="line"> </span><br><span class="line">需求：list新增动态属性值</span><br><span class="line"> let  value &#x3D; &#96;list.$&#123;name&#125;&#96; &#x2F;&#x2F; 这里的name是动态的哈，可以是1，2，3，4.... 任意值</span><br><span class="line">  this.setData(&#123;</span><br><span class="line">    [value]: &#39;我是新属性&#39;</span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="通过id直接调用组件内部方法"><a href="#通过id直接调用组件内部方法" class="headerlink" title="通过id直接调用组件内部方法"></a>通过id直接调用组件内部方法</h3><blockquote>
+<p><img src="C:/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/4ac158cdc9c648f2951aba06d0452f20/816184259208.png" alt="img"></p>
+<p>followUs-component组件里的方法</p>
+<p><img src="C:/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/251ac7f7360748fe8f80002cfe80af9e/816184028689.png" alt="img"></p>
+<p>页面调用组件方法</p>
+<p><img src="C:/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/6c63b95b03214999a9f7a0bd92a2f6b9/081618435245.png" alt="img"></p>
+</blockquote>
+<h3 id="禁止下拉-ios下拉空白"><a href="#禁止下拉-ios下拉空白" class="headerlink" title="禁止下拉(ios下拉空白)"></a>禁止下拉(ios下拉空白)</h3><blockquote>
+<p>在微信小程序中，用力往下拉动，页面顶部会出现一段空白的地方。 产品的需求不太允许这么做，会影响用户体验，查看文档发现可以使用enablePullDownRefresh这属性来实现，在page.json里面添加：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&quot;enablePullDownRefresh&quot;:false</span><br></pre></td></tr></table></figure>
+
+<p>这样可以禁用页面下拉滚动，需要注意的是不可在全局配置 app.json中配置。经测试发现：虽然禁止了下拉刷新，但是在部分ios端仍然可以下拉出现空白。那么该如何解决呢？方法：当页面滚动的时候判断与顶部的距离，当这个距离小于0的时候，强制性拉回顶部即可</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">onPageScroll:function(e)&#123;</span><br><span class="line">  if(e.scrollTop&lt;0)&#123;</span><br><span class="line">    wx.pageScrollTo(&#123;</span><br><span class="line">   	 scrollTop: 0</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="自带水平和垂直滚动事件"><a href="#自带水平和垂直滚动事件" class="headerlink" title="自带水平和垂直滚动事件"></a>自带水平和垂直滚动事件</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">scroll-view</span> <span class="attr">scroll-y</span>&gt;</span>111<span class="tag">&lt;/<span class="name">scroll-view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">scroll-view</span> <span class="attr">scroll-x</span>&gt;</span>222<span class="tag">&lt;/<span class="name">scroll-view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="text套text，内部text绑定点击事件失效"><a href="#text套text，内部text绑定点击事件失效" class="headerlink" title="text套text，内部text绑定点击事件失效"></a>text套text，内部text绑定点击事件失效</h3><h3 id="hover添加class事件"><a href="#hover添加class事件" class="headerlink" title="hover添加class事件"></a>hover添加class事件</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">hover-class</span>=<span class="string">"none"</span>&gt;</span>这是一段文字<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">hover-class</span>=<span class="string">"bg_red"</span>  <span class="attr">hover-stop-propagation</span>=<span class="string">"false"</span> <span class="attr">hover-start-time</span>=<span class="string">"50"</span> <span class="attr">hover-stay-time</span>=<span class="string">"400"</span> &gt;</span>这是一段文字<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"></span><br><span class="line">hover-stop-propagation属性并不是说完全阻止了祖先节点的被点击能力，它只是代表点击当前view的时候，它的祖先节点不会产生点击效果</span><br><span class="line">hover-start-time按住多久出现点击态</span><br><span class="line">hover-stay-time手指松开后保持点击的状态</span><br><span class="line">通常，当一个 view 组件中包含 image 等不支持 hover-class 的组件，但又需要在该组件上使用 hover-stop-propagation 属性的作用时，需要将不支持 hover-class 的组件用view、button 或 navigator 包裹起来。</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="使用button标签的open-type-”getUserInfo”引导用户去授权"><a href="#使用button标签的open-type-”getUserInfo”引导用户去授权" class="headerlink" title="使用button标签的open-type=”getUserInfo”引导用户去授权]"></a>使用button标签的open-type=”getUserInfo”引导用户去授权]</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">index.wxml</span><br><span class="line">&lt;button</span><br><span class="line">    wx:<span class="keyword">if</span>=<span class="string">"&#123;&#123;canIUse&#125;&#125;"</span></span><br><span class="line">    open-type=<span class="string">"getUserInfo"</span></span><br><span class="line">    bindgetuserinfo=<span class="string">"bindGetUserInfo"</span></span><br><span class="line">&gt;授权登录&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">&lt;view wx:else&gt;请升级微信版本&lt;/</span>view&gt;</span><br><span class="line">index.js</span><br><span class="line">Page(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">     <span class="comment">//判断小程序的API，回调，参数，组件等是否在当前版本可用。</span></span><br><span class="line">    canIUse: wx.canIUse(<span class="string">'button.open-type.getUserInfo'</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">  onLoad: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 查看是否授权</span></span><br><span class="line">    wx.getSetting(&#123;</span><br><span class="line">      success: <span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (res.authSetting[<span class="string">'scope.userInfo'</span>]) &#123;</span><br><span class="line">          wx.getUserInfo(&#123;</span><br><span class="line">            success: <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">              <span class="built_in">console</span>.log(res.userInfo)</span><br><span class="line">              <span class="comment">//用户已经授权过</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  bindGetUserInfo: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e.detail.userInfo)</span><br><span class="line">    <span class="keyword">if</span> (e.detail.userInfo)&#123;</span><br><span class="line">      <span class="comment">//用户按了允许授权按钮</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">//用户按了拒绝按钮</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="页面跳转方法总结"><a href="#页面跳转方法总结" class="headerlink" title="页面跳转方法总结"></a>页面跳转方法总结</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//wx.navigateBack返回上上个页面。</span></span><br><span class="line">wx.navigateBack(&#123;</span><br><span class="line">  delta: <span class="number">2</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//保留当前页面，跳转到应用内的某个页面，使用wx.navigateBack可以返回到原页面。</span></span><br><span class="line"><span class="comment">// 注意：调用 navigateTo 跳转时，调用该方法的页面会被加入堆栈</span></span><br><span class="line">wx.navigateTo(&#123;</span><br><span class="line">  url: <span class="string">'page/detail/detail?product_id=222'</span>　　<span class="comment">// 页面 </span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 关闭当前页面，跳转到应用内的某个页面。</span></span><br><span class="line">wx.redirectTo(&#123;</span><br><span class="line">  url: <span class="string">'page/home/home?user_id=111'</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 跳转到tabBar页面（在app.json中注册过的tabBar页面），同时关闭其他非tabBar页面。</span></span><br><span class="line"></span><br><span class="line">wx.switchTab(&#123;</span><br><span class="line">  url: <span class="string">'page/index/index'</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 关闭所有页面，打开到应用内的某个页面。</span></span><br><span class="line">wx.reLanch(&#123;</span><br><span class="line">  url: <span class="string">'page/home/home?user_id=111'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="wxml-页面组件跳转（可以通过设置open-type属性指明页面跳转方式）："><a href="#wxml-页面组件跳转（可以通过设置open-type属性指明页面跳转方式）：" class="headerlink" title="wxml 页面组件跳转（可以通过设置open-type属性指明页面跳转方式）："></a>wxml 页面组件跳转（可以通过设置open-type属性指明页面跳转方式）：</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line">// navigator 组件默认的 open-type 为 navigate </span><br><span class="line"><span class="tag">&lt;<span class="name">navigator</span> <span class="attr">url</span>=<span class="string">"/page/navigate/navigate?title=navigate"</span> <span class="attr">hover-class</span>=<span class="string">"navigator-hover"</span>&gt;</span>跳转到新页面<span class="tag">&lt;/<span class="name">navigator</span>&gt;</span></span><br><span class="line"></span><br><span class="line">// redirect 对应 API 中的 wx.redirect 方法</span><br><span class="line"><span class="tag">&lt;<span class="name">navigator</span> <span class="attr">url</span>=<span class="string">"../../redirect/redirect/redirect?title=redirect"</span> <span class="attr">open-type</span>=<span class="string">"redirect"</span> <span class="attr">hover-class</span>=<span class="string">"other-navigator-hover"</span>&gt;</span>在当前页打开<span class="tag">&lt;/<span class="name">navigator</span>&gt;</span></span><br><span class="line"></span><br><span class="line">// switchTab 对应 API 中的 wx.switchTab 方法</span><br><span class="line"><span class="tag">&lt;<span class="name">navigator</span> <span class="attr">url</span>=<span class="string">"/page/index/index"</span> <span class="attr">open-type</span>=<span class="string">"switchTab"</span> <span class="attr">hover-class</span>=<span class="string">"other-navigator-hover"</span>&gt;</span>切换 Tab<span class="tag">&lt;/<span class="name">navigator</span>&gt;</span></span><br><span class="line"></span><br><span class="line">// reLanch 对应 API 中的 wx.reLanch 方法</span><br><span class="line"><span class="tag">&lt;<span class="name">navigator</span> <span class="attr">url</span>=<span class="string">"../../redirect/redirect/redirect?title=redirect"</span> <span class="attr">open-type</span>=<span class="string">"redirect"</span> <span class="attr">hover-class</span>=<span class="string">"other-navigator-hover"</span>&gt;</span>关闭所有页面，打开到应用内的某个页面<span class="tag">&lt;/<span class="name">navigator</span>&gt;</span></span><br><span class="line"></span><br><span class="line">// navigateBack 对应 API 中的 wx.navigateBack 方法</span><br><span class="line"><span class="tag">&lt;<span class="name">navigator</span> <span class="attr">url</span>=<span class="string">"/page/index/index"</span> <span class="attr">open-type</span>=<span class="string">"navigateBack"</span> <span class="attr">hover-class</span>=<span class="string">"other-navigator-hover"</span>&gt;</span>关闭当前页面，返回上一级页面或多级页面<span class="tag">&lt;/<span class="name">navigator</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+]]></content>
+      <categories>
+        <category>soft</category>
+      </categories>
+      <tags>
+        <tag>小程序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>小程序登陆</title>
+    <url>/2020/07/24/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%99%BB%E9%99%86/</url>
+    <content><![CDATA[<h3 id="小程序获取授权，得到用户的昵称头像"><a href="#小程序获取授权，得到用户的昵称头像" class="headerlink" title="小程序获取授权，得到用户的昵称头像"></a>小程序获取授权，得到用户的昵称头像</h3><h5 id="使用button标签的open-type-”getUserInfo”引导用户去授权"><a href="#使用button标签的open-type-”getUserInfo”引导用户去授权" class="headerlink" title="使用button标签的open-type=”getUserInfo”引导用户去授权"></a>使用button标签的open-type=”getUserInfo”引导用户去授权</h5><h4 id="wxml"><a href="#wxml" class="headerlink" title="wxml"></a>wxml</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"userinfo"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">wx:if</span>=<span class="string">"&#123;&#123;!hasUserInfo &amp;&amp; canIUse&#125;&#125;"</span> <span class="attr">open-type</span>=<span class="string">"getUserInfo"</span> <span class="attr">bindgetuserinfo</span>=<span class="string">"getUserInfo"</span>&gt;</span> 获取头像昵称 <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">block</span> <span class="attr">wx:else</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">image</span> <span class="attr">bindtap</span>=<span class="string">"bindViewTap"</span> <span class="attr">class</span>=<span class="string">"userinfo-avatar"</span> <span class="attr">src</span>=<span class="string">"&#123;&#123;userInfo.avatarUrl&#125;&#125;"</span> <span class="attr">mode</span>=<span class="string">"cover"</span>&gt;</span><span class="tag">&lt;/<span class="name">image</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">text</span> <span class="attr">class</span>=<span class="string">"userinfo-nickname"</span>&gt;</span>&#123;&#123;userInfo.nickName&#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">block</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h4 id="js"><a href="#js" class="headerlink" title="js"></a>js</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//index.js</span></span><br><span class="line"><span class="comment">//获取应用实例</span></span><br><span class="line"><span class="keyword">const</span> app = getApp()</span><br><span class="line">Page(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    motto: <span class="string">'Hello World'</span>,</span><br><span class="line">    userInfo: &#123;&#125;,</span><br><span class="line">    hasUserInfo: <span class="literal">false</span>,</span><br><span class="line">    <span class="comment">//判断小程序的API，回调，参数，组件等是否在当前版本可用。</span></span><br><span class="line">    canIUse: wx.canIUse(<span class="string">'button.open-type.getUserInfo'</span>),</span><br><span class="line">    value: <span class="number">3.6</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//事件处理函数</span></span><br><span class="line">  bindViewTap: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    wx.navigateTo(&#123;</span><br><span class="line">      url: <span class="string">'../logs/logs'</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  onLoad: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (app.globalData.userInfo) &#123;</span><br><span class="line">      <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">        userInfo: app.globalData.userInfo,</span><br><span class="line">        hasUserInfo: <span class="literal">true</span></span><br><span class="line">      &#125;)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.data.canIUse)&#123;</span><br><span class="line">      <span class="comment">// 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回</span></span><br><span class="line">      <span class="comment">// 所以此处加入 callback 以防止这种情况</span></span><br><span class="line">      app.userInfoReadyCallback = <span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">          userInfo: res.userInfo,</span><br><span class="line">          hasUserInfo: <span class="literal">true</span></span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// 在没有 open-type=getUserInfo 版本的兼容处理</span></span><br><span class="line">      wx.getUserInfo(&#123;</span><br><span class="line">        success: <span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">          app.globalData.userInfo = res.userInfo</span><br><span class="line">          <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">            userInfo: res.userInfo,</span><br><span class="line">            hasUserInfo: <span class="literal">true</span></span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  getUserInfo: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e)</span><br><span class="line">    app.globalData.userInfo = e.detail.userInfo</span><br><span class="line">    <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">      userInfo: e.detail.userInfo,</span><br><span class="line">      hasUserInfo: <span class="literal">true</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>soft</category>
+      </categories>
+      <tags>
+        <tag>小程序</tag>
       </tags>
   </entry>
   <entry>
@@ -822,6 +1330,60 @@
       <tags>
         <tag>soft</tag>
         <tag>md</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>plugins</title>
+    <url>/2020/07/17/plugins/</url>
+    <content><![CDATA[<h3 id="vs和vsCode插件"><a href="#vs和vsCode插件" class="headerlink" title="vs和vsCode插件"></a>vs和vsCode插件</h3><a id="more"></a>
+
+<ol>
+<li><p>vs</p>
+<blockquote>
+<ul>
+<li>web compiler  将less和js编译成css和es5</li>
+<li>force UTF-8 （No Bom）  将文档编译成utf-8的文档格式输出(也可以用记事本打开另存为,解决页面打开出现&amp;#65279，显示多余空白)</li>
+<li>force UTF-8 （With Bom）</li>
+</ul>
+</blockquote>
+<p>​</p>
+</li>
+<li><p>​</p>
+<blockquote>
+<ul>
+<li>Auto Close Tag  自动闭合标签</li>
+<li>Auto Rename Tag 自动重命名标签</li>
+<li>Auto-Save on Window Change 关闭窗口自动保存</li>
+<li>Chinese (Simplified) Language Pack for Visual Studio Code 中文包</li>
+<li>CSS Tree 选中标签生成css文件树（Ctrl + shift + p选择 Generate CSS tree）</li>
+<li>Easy LESS 可直接生成小程序wxss</li>
+<li>filesize 查看文件大小</li>
+<li>Path Intellisense 自动提示文件路径</li>
+<li>Git Histroy/Local Histroy 文件历史记录</li>
+<li>Material Icon Theme 文件图标</li>
+<li>vscode-icons 图标插件</li>
+<li>Bracket Pair Colorizer 括号颜色高亮</li>
+<li>open in browser 在浏览器中打开</li>
+<li>vscode-fileheader 文件头部信息</li>
+<li>Vue 2 Snippets vue代码片段提示</li>
+<li>vetur  vue语法高亮/格式化/代码片段/语法检查等</li>
+<li>minapp 微信小程序标签、属性的智能补全（同时支持原生小程序、mpvue 和 wepy 框架，并提供 snippets）</li>
+<li>Stylus Language  基于Node.js的CSS的预处理框架</li>
+<li>live-server 实时简易服务器</li>
+<li>Live Share 实时共享（vs 和vscode）</li>
+<li>Live Share Audio 实时共享音频</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<p><a href="https://marketplace.visualstudio.com/search?term=%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E5%8A%A9%E6%89%8B&target=VSCode&category=Programming%20Languages&sortBy=Relevance">插件官网地址</a></p>
+<p><a href="https://mp.weixin.qq.com/s/LAe29D9nZvCcvs_Kr_PWZQ" target="_blank" rel="noopener">更多插件</a></p>
+]]></content>
+      <categories>
+        <category>plugins</category>
+      </categories>
+      <tags>
+        <tag>plugins</tag>
       </tags>
   </entry>
 </search>

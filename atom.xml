@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-07-22T09:16:54.108Z</updated>
+  <updated>2020-07-24T09:01:38.901Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,190 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>小程序登陆</title>
+    <link href="http://yoursite.com/2020/07/24/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%99%BB%E9%99%86/"/>
+    <id>http://yoursite.com/2020/07/24/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%99%BB%E9%99%86/</id>
+    <published>2020-07-24T07:58:22.000Z</published>
+    <updated>2020-07-24T09:01:38.901Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;小程序获取授权，得到用户的昵称头像&quot;&gt;&lt;a href=&quot;#小程序获取授权，得到用户的昵称头像&quot; class=&quot;headerlink&quot; title=&quot;小程序获取授权，得到用户的昵称头像&quot;&gt;&lt;/a&gt;小程序获取授权，得到用户的昵称头像&lt;/h3&gt;&lt;h5 id=&quot;使用button标签的open-type-”getUserInfo”引导用户去授权&quot;&gt;&lt;a href=&quot;#使用button标签的open-type-”getUserInfo”引导用户去授权&quot; class=&quot;headerlink&quot; title=&quot;使用button标签的open-type=”getUserInfo”引导用户去授权&quot;&gt;&lt;/a&gt;使用button标签的open-type=”getUserInfo”引导用户去授权&lt;/h5&gt;&lt;h4 id=&quot;wxml&quot;&gt;&lt;a href=&quot;#wxml&quot; class=&quot;headerlink&quot; title=&quot;wxml&quot;&gt;&lt;/a&gt;wxml&lt;/h4&gt;&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;view&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;userinfo&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;button&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;wx:if&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;&amp;#123;&amp;#123;!hasUserInfo &amp;amp;&amp;amp; canIUse&amp;#125;&amp;#125;&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;open-type&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;getUserInfo&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;bindgetuserinfo&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;getUserInfo&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt; 获取头像昵称 &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;button&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;block&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;wx:else&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;image&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;bindtap&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;bindViewTap&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;userinfo-avatar&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;src&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;&amp;#123;&amp;#123;userInfo.avatarUrl&amp;#125;&amp;#125;&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;mode&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;cover&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;image&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;userinfo-nickname&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&amp;#123;&amp;#123;userInfo.nickName&amp;#125;&amp;#125;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;text&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;block&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;view&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="soft" scheme="http://yoursite.com/categories/soft/"/>
+    
+    
+      <category term="小程序" scheme="http://yoursite.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>小程序上传删除图片封装</title>
+    <link href="http://yoursite.com/2020/07/24/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%8A%E4%BC%A0%E5%88%A0%E9%99%A4%E5%9B%BE%E7%89%87%E5%B0%81%E8%A3%85/"/>
+    <id>http://yoursite.com/2020/07/24/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%8A%E4%BC%A0%E5%88%A0%E9%99%A4%E5%9B%BE%E7%89%87%E5%B0%81%E8%A3%85/</id>
+    <published>2020-07-24T06:44:06.000Z</published>
+    <updated>2020-07-24T09:01:28.137Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;wxml&quot;&gt;&lt;a href=&quot;#wxml&quot; class=&quot;headerlink&quot; title=&quot;wxml&quot;&gt;&lt;/a&gt;wxml&lt;/h3&gt;&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;view&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;img-model&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;view&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;img-item&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;wx:for&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;&amp;#123;&amp;#123;uploaderList&amp;#125;&amp;#125;&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;wx:key&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;item&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;data-index&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;&amp;#123;&amp;#123;index&amp;#125;&amp;#125;&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  	&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;icon&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&#39;ui_uploader_item_icon&#39;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;bindtap&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&#39;clearImg&#39;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;data-index&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;&amp;#123;&amp;#123;index&amp;#125;&amp;#125;&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;clear&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;size&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;20&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;color&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;red&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  	&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;image&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;id&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;seal&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;src&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;&amp;#123;&amp;#123;item.path&amp;#125;&amp;#125;&quot;&lt;/span&gt;  &lt;span class=&quot;attr&quot;&gt;bindtap&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;showImg&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;data-item&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;&amp;#123;&amp;#123;item&amp;#125;&amp;#125;&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;image&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  	&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;wx:if&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;&amp;#123;&amp;#123;item.upload_percent&amp;gt;1&amp;amp;&amp;amp;item.upload_percent&amp;lt;100&amp;#125;&amp;#125;&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&amp;#123;&amp;#123;item.upload_percent&amp;#125;&amp;#125;%&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;text&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  	&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;wx:elif&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;&amp;#123;&amp;#123;item.upload_percent==100&amp;#125;&amp;#125;&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;上传成功&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;text&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  	&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;wx:else&lt;/span&gt;&amp;gt;&lt;/span&gt;上传失败&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;text&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;view&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;view&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;img-click&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;bindtap&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;goChooseImage&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;wx:if&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;&amp;#123;&amp;#123;showUpload&amp;#125;&amp;#125;&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  	&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;image&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;id&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;seal&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;src&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;./img/seal.png&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;image&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;view&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;view&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="soft" scheme="http://yoursite.com/categories/soft/"/>
+    
+    
+      <category term="小程序" scheme="http://yoursite.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>小程序wxParse解析html</title>
+    <link href="http://yoursite.com/2020/07/24/%E5%B0%8F%E7%A8%8B%E5%BA%8FwxParse%E8%A7%A3%E6%9E%90html/"/>
+    <id>http://yoursite.com/2020/07/24/%E5%B0%8F%E7%A8%8B%E5%BA%8FwxParse%E8%A7%A3%E6%9E%90html/</id>
+    <published>2020-07-24T06:20:33.000Z</published>
+    <updated>2020-07-24T09:01:09.476Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;wxParse解析html&quot;&gt;&lt;a href=&quot;#wxParse解析html&quot; class=&quot;headerlink&quot; title=&quot;wxParse解析html&quot;&gt;&lt;/a&gt;wxParse解析html&lt;/h3&gt;&lt;p&gt;最近项目上遇到在微信小程序里需要显示新闻内容，新闻内容是通过接口读取的服务器中的富文本内容，是html格式的，小程序默认是不支持html格式的内容显示的，那我们需要显示html内容的时候，就可以通过wxParse来实现。&lt;br&gt;首先我们在github上下载wxParse&lt;br&gt;&lt;a href=&quot;https://link.jianshu.com?t=https://github.com/icindy/wxParse&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://github.com/icindy/wxParse&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="soft" scheme="http://yoursite.com/categories/soft/"/>
+    
+    
+      <category term="小程序" scheme="http://yoursite.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+      <category term="wxParse" scheme="http://yoursite.com/tags/wxParse/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>小程序开发随笔（一）</title>
+    <link href="http://yoursite.com/2020/07/24/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>http://yoursite.com/2020/07/24/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94%EF%BC%88%E4%B8%80%EF%BC%89/</id>
+    <published>2020-07-24T05:21:58.000Z</published>
+    <updated>2020-07-24T09:01:33.826Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;绝对路径和相对路径&quot;&gt;&lt;a href=&quot;#绝对路径和相对路径&quot; class=&quot;headerlink&quot; title=&quot;绝对路径和相对路径&quot;&gt;&lt;/a&gt;绝对路径和相对路径&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;“..&amp;#x2F;”代表当前文件所在目录的上一级目录。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;“..&amp;#x2F;..&amp;#x2F;”代表当前文件所在目录的上上级目录。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;“..&amp;#x2F;..&amp;#x2F;..&amp;#x2F;”可以依次类推。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;“&amp;#x2F;”代表根目录。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;“.&amp;#x2F;”表示当前目录，HTML中，可以省略。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="soft" scheme="http://yoursite.com/categories/soft/"/>
+    
+    
+      <category term="小程序" scheme="http://yoursite.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>js方法（一）</title>
+    <link href="http://yoursite.com/2020/07/23/js%E6%96%B9%E6%B3%95%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>http://yoursite.com/2020/07/23/js%E6%96%B9%E6%B3%95%EF%BC%88%E4%B8%80%EF%BC%89/</id>
+    <published>2020-07-23T07:39:35.000Z</published>
+    <updated>2020-07-24T05:23:01.965Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;获取服务器时间&quot;&gt;&lt;a href=&quot;#获取服务器时间&quot; class=&quot;headerlink&quot; title=&quot;获取服务器时间&quot;&gt;&lt;/a&gt;获取服务器时间&lt;/h3&gt;
+    
+    </summary>
+    
+    
+      <category term="js" scheme="http://yoursite.com/categories/js/"/>
+    
+    
+      <category term="服务器时间" scheme="http://yoursite.com/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%B6%E9%97%B4/"/>
+    
+      <category term="js" scheme="http://yoursite.com/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>css3</title>
+    <link href="http://yoursite.com/2020/07/23/css3/"/>
+    <id>http://yoursite.com/2020/07/23/css3/</id>
+    <published>2020-07-23T05:46:14.000Z</published>
+    <updated>2020-07-23T07:41:29.699Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;日常积累&quot;&gt;&lt;a href=&quot;#日常积累&quot; class=&quot;headerlink&quot; title=&quot;日常积累&quot;&gt;&lt;/a&gt;日常积累&lt;/h3&gt;
+    
+    </summary>
+    
+    
+      <category term="css" scheme="http://yoursite.com/categories/css/"/>
+    
+    
+      <category term="css" scheme="http://yoursite.com/tags/css/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HTML5</title>
+    <link href="http://yoursite.com/2020/07/22/HTML5/"/>
+    <id>http://yoursite.com/2020/07/22/HTML5/</id>
+    <published>2020-07-22T10:46:40.000Z</published>
+    <updated>2020-07-24T05:23:55.733Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;h5知识点整理&quot;&gt;&lt;a href=&quot;#h5知识点整理&quot; class=&quot;headerlink&quot; title=&quot;h5知识点整理&quot;&gt;&lt;/a&gt;h5知识点整理&lt;/h3&gt;&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;任何class和id里都不能包含”ad” 这个关键字,否则会被一些广告屏蔽软件给过滤了&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="html" scheme="http://yoursite.com/categories/html/"/>
+    
+    
+      <category term="html" scheme="http://yoursite.com/tags/html/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ipAndDNS</title>
+    <link href="http://yoursite.com/2020/07/22/ipAndDNS/"/>
+    <id>http://yoursite.com/2020/07/22/ipAndDNS/</id>
+    <published>2020-07-22T09:55:40.000Z</published>
+    <updated>2020-07-22T10:02:59.820Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;怎么查找ip地址&quot;&gt;&lt;a href=&quot;#怎么查找ip地址&quot; class=&quot;headerlink&quot; title=&quot;怎么查找ip地址&quot;&gt;&lt;/a&gt;怎么查找ip地址&lt;/h3&gt;&lt;p&gt;方式一  电脑输入cmd，再输入ipconfig&lt;/p&gt;
+&lt;p&gt;方式二 
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>google</title>
     <link href="http://yoursite.com/2020/07/22/google/"/>
     <id>http://yoursite.com/2020/07/22/google/</id>
     <published>2020-07-22T07:35:53.000Z</published>
-    <updated>2020-07-22T09:16:54.108Z</updated>
+    <updated>2020-07-22T09:53:20.975Z</updated>
     
     <summary type="html">
     
@@ -72,7 +251,7 @@
     <link href="http://yoursite.com/2020/07/22/vantweapp/"/>
     <id>http://yoursite.com/2020/07/22/vantweapp/</id>
     <published>2020-07-22T01:47:40.000Z</published>
-    <updated>2020-07-22T02:07:33.269Z</updated>
+    <updated>2020-07-24T09:02:03.609Z</updated>
     
     <summary type="html">
     
@@ -103,9 +282,9 @@
       <category term="plugins" scheme="http://yoursite.com/categories/plugins/"/>
     
     
-      <category term="plugins" scheme="http://yoursite.com/tags/plugins/"/>
-    
       <category term="小程序" scheme="http://yoursite.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+      <category term="plugins" scheme="http://yoursite.com/tags/plugins/"/>
     
   </entry>
   

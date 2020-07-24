@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="服务器时间,js," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="DaliBlogs" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="获取服务器时间">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js方法（一）">
+<meta property="og:url" content="http://yoursite.com/2020/07/23/js%E6%96%B9%E6%B3%95%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
+<meta property="og:site_name" content="DaliBlogs">
+<meta property="og:description" content="获取服务器时间">
+<meta property="article:published_time" content="2020-07-23T07:39:35.000Z">
+<meta property="article:modified_time" content="2020-07-24T05:23:01.965Z">
+<meta property="article:author" content="Dali">
+<meta property="article:tag" content="服务器时间">
+<meta property="article:tag" content="js">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/07/23/js方法（一）/"/>
+
+
+
+
+
+  <title>js方法（一） | DaliBlogs</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DaliBlogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/23/js%E6%96%B9%E6%B3%95%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">js方法（一）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-23T15:39:35+08:00">
+                2020-07-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="获取服务器时间"><a href="#获取服务器时间" class="headerlink" title="获取服务器时间"></a>获取服务器时间</h3><a id="more"></a>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、依赖jQuery</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getServerDate</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Date</span>($.ajax(&#123; <span class="attr">async</span>: <span class="literal">false</span> &#125;).getResponseHeader(<span class="string">"Date"</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="number">2</span>、原生</span><br><span class="line">（同步）</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getServerDate</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> xhr = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest) &#123;</span><br><span class="line">    xhr = <span class="keyword">new</span> <span class="built_in">window</span>.XMLHttpRequest();</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123; <span class="comment">// ie</span></span><br><span class="line">    xhr = <span class="keyword">new</span> ActiveObject(<span class="string">"Microsoft"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  xhr.open(<span class="string">"GET"</span>, <span class="string">"/"</span>, <span class="literal">false</span>)<span class="comment">//false不可变</span></span><br><span class="line">  xhr.send(<span class="literal">null</span>);</span><br><span class="line">  <span class="keyword">var</span> date = xhr.getResponseHeader(<span class="string">"Date"</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Date</span>(date);</span><br><span class="line">&#125;</span><br><span class="line">（异步）</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getServerDate</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> xhr = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest) &#123;</span><br><span class="line">    xhr = <span class="keyword">new</span> <span class="built_in">window</span>.XMLHttpRequest();</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123; <span class="comment">// ie</span></span><br><span class="line">    xhr = <span class="keyword">new</span> ActiveObject(<span class="string">"Microsoft"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  xhr.open(<span class="string">"GET"</span>, <span class="string">"/"</span>, <span class="literal">true</span>);</span><br><span class="line">  xhr.send(<span class="literal">null</span>);</span><br><span class="line">  xhr.onreadystatechange = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> time, date;</span><br><span class="line">    <span class="keyword">if</span> (xhr.readyState == <span class="number">2</span>) &#123;</span><br><span class="line">      time = xhr.getResponseHeader(<span class="string">"Date"</span>);</span><br><span class="line">      date = <span class="keyword">new</span> <span class="built_in">Date</span>(time);</span><br><span class="line">      <span class="built_in">console</span>.log(date);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="userAgent"><a href="#userAgent" class="headerlink" title="userAgent"></a>userAgent</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">userAgent属性是一个只读的字符串，声明了浏览器用于 HTTP 请求的用户代理头的值。</span><br><span class="line"></span><br><span class="line">一般来讲，它是在 navigator.appCodeName 的值之后加上斜线和 navigator.appVersion 的值构成的。</span><br><span class="line"></span><br><span class="line">例如：Mozilla / <span class="number">4.0</span>(compatible; MSIE <span class="number">6.0</span>; Windows NT <span class="number">5.2</span>; SV1; .NET CLR <span class="number">1.1</span><span class="number">.4322</span>) 。</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.write(<span class="string">"&lt;p&gt;浏览器："</span>)</span><br><span class="line"><span class="built_in">document</span>.write(navigator.appName + <span class="string">"&lt;/p&gt;"</span>)</span><br><span class="line">浏览器：Netscape</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.write(<span class="string">"&lt;p&gt;浏览器版本："</span>)</span><br><span class="line"><span class="built_in">document</span>.write(navigator.appVersion + <span class="string">"&lt;/p&gt;"</span>)</span><br><span class="line">浏览器版本：<span class="number">5.0</span>(Windows NT <span class="number">10.0</span>; Win64; x64) AppleWebKit / <span class="number">537.36</span>(KHTML, like Gecko) Chrome / <span class="number">77.0</span><span class="number">.3865</span><span class="number">.120</span> Safari / <span class="number">537.36</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.write(<span class="string">"&lt;p&gt;代码："</span>)</span><br><span class="line"><span class="built_in">document</span>.write(navigator.appCodeName + <span class="string">"&lt;/p&gt;"</span>)</span><br><span class="line">代码：Mozilla</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.write(<span class="string">"&lt;p&gt;平台："</span>)</span><br><span class="line"><span class="built_in">document</span>.write(navigator.platform + <span class="string">"&lt;/p&gt;"</span>)</span><br><span class="line">平台：Win32</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.write(<span class="string">"&lt;p&gt;Cookies 启用："</span>)</span><br><span class="line"><span class="built_in">document</span>.write(navigator.cookieEnabled + <span class="string">"&lt;/p&gt;"</span>)</span><br><span class="line">Cookies 启用：<span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.write(<span class="string">"&lt;p&gt;浏览器的用户代理报头："</span>)</span><br><span class="line"><span class="built_in">document</span>.write(navigator.userAgent + <span class="string">"&lt;/p&gt;"</span>)</span><br><span class="line">浏览器的用户代理报头：Mozilla / <span class="number">5.0</span>(Windows NT <span class="number">10.0</span>; Win64; x64) AppleWebKit / <span class="number">537.36</span>(KHTML, like Gecko) Chrome / <span class="number">77.0</span><span class="number">.3865</span><span class="number">.120</span> Safari / <span class="number">537.36</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> b_version = navigator.appVersion</span><br><span class="line"><span class="keyword">var</span> version = <span class="built_in">parseFloat</span>(b_version)</span><br><span class="line"><span class="built_in">document</span>.write(<span class="string">"浏览器版本："</span> + version)</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>、通过判断浏览器的userAgent，用正则来判断是否是ios和Android客户端。代码如下：</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>、检查是否是移动端（Mobile）、ipad、iphone、微信、QQ等：</span><br><span class="line"></span><br><span class="line">使用方法：</span><br><span class="line"></span><br><span class="line">检测浏览器语言：</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>、判断iPhone | iPad | iPod | iOS | Android客户端：</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>、判断pc还是移动端：</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> u = navigator.userAgent;</span><br><span class="line"><span class="keyword">var</span> isAndroid = u.indexOf(<span class="string">'Android'</span>) &gt; <span class="number">-1</span> || u.indexOf(<span class="string">'Adr'</span>) &gt; <span class="number">-1</span>; <span class="comment">//android终端</span></span><br><span class="line"><span class="keyword">var</span> isiOS = !!u.match(<span class="regexp">/\(i[^;]+;( U;)? CPU.+Mac OS X/</span>); <span class="comment">//ios终端</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="深克隆"><a href="#深克隆" class="headerlink" title="深克隆"></a>深克隆</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deepClone: function (obj) &#123;</span><br><span class="line">    var _obj &#x3D; JSON.stringify(obj),</span><br><span class="line">    objClone &#x3D; JSON.parse(_obj);</span><br><span class="line">    return objClone</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="获取url参数"><a href="#获取url参数" class="headerlink" title="获取url参数"></a>获取url参数</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">getUrlParam = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> url = location.search;</span><br><span class="line">    <span class="keyword">var</span> theRequest = &#123;&#125;;</span><br><span class="line">    <span class="keyword">if</span> (url.indexOf(<span class="string">"?"</span>) != <span class="number">-1</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> str = url.substr(<span class="number">1</span>);</span><br><span class="line">        strs = str.split(<span class="string">"&amp;"</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; strs.length; i++) &#123;</span><br><span class="line">            theRequest[strs[i].split(<span class="string">"="</span>)[<span class="number">0</span>]] = strs[i].split(<span class="string">"="</span>)[<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> theRequest;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="encodeURI-和encodeURIComponent-decodeURI-和decodeURIComponent"><a href="#encodeURI-和encodeURIComponent-decodeURI-和decodeURIComponent" class="headerlink" title="encodeURI()和encodeURIComponent()  decodeURI()和decodeURIComponent()"></a>encodeURI()和encodeURIComponent()  decodeURI()和decodeURIComponent()</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">其中encodeURI()主要用于整个URI(例如，http:&#x2F;&#x2F;www.jxbh.cn&#x2F;illegal value.htm)，而encode-URIComponent()主要用于对URI中的某一段(例如前面URI中的illegal value．htm)进行编码。它们的主要区别在于，encodeURI()不会对本身属于URI的特殊字符进行编码，例如冒号、正斜杠、问号和井字号；而encodeURIComponent()则会对它发现的任何非标准字符进行编码。来看下面的例子：</span><br><span class="line">var uri&#x3D;&quot;http:&#x2F;&#x2F;www.jxbh.cn&#x2F;illegal value.htm#start&quot;;</span><br><span class="line">&#x2F;&#x2F;”http: &#x2F;&#x2F;www.jxbh.cn&#x2F;illegal%20value .htm#s tart”</span><br><span class="line">alert(encodeURI (uri)):</span><br><span class="line">&#x2F;&#x2F;”http% 3A%2F%2Fwww.jxbh.cn%2 Fillegal%2 0value. htm%23 start”</span><br><span class="line">alert( encodaURIComponent (uri));</span><br><span class="line">使用encodeURI()编码后的结果是除了空格之外的其他字符都原封不动，只有空格被替换成了%20。而encodeURIComponent()方法则会使用对应的编码替换所有非字母数字字符。这也正是可以对整个URI使用encodeURI()，而只能对附加在现有URI后面的字符串使用encodeURIComponent()的原因所在。一般来说,我们使用encodeURIComponent()方法的时候要比使用encodeURI()更多,因为在实践中更常见的是对查询字符串参数而不是对基础URL进行编码.</span><br><span class="line">经我的观测，很多网站的cookie在进行编码的时候，是encodeURIComponent格式的，所以应该使用decodeURIComponent()进行解码</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="True与False"><a href="#True与False" class="headerlink" title="True与False"></a>True与False</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">以下是Truthy (真值)</span><br><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>)</span><br><span class="line"><span class="keyword">if</span> (&#123;&#125;)</span><br><span class="line"><span class="keyword">if</span> ([])</span><br><span class="line"><span class="keyword">if</span> (<span class="number">42</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="string">"foo"</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">new</span> <span class="built_in">Date</span>())</span><br><span class="line"><span class="keyword">if</span> (<span class="number">-42</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="number">3.14</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="number">-3.14</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="literal">Infinity</span>)</span><br><span class="line"><span class="keyword">if</span> (-<span class="literal">Infinity</span>)</span><br><span class="line">  </span><br><span class="line">以下是falsy  值</span><br><span class="line"><span class="keyword">if</span> (<span class="literal">false</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="literal">null</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="literal">undefined</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="number">0</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="number">0n</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="literal">NaN</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="string">''</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="string">""</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="string">``</span>)</span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">document</span>.all)</span><br></pre></td></tr></table></figure>
+
+<h3 id="ios下时间格式问题"><a href="#ios下时间格式问题" class="headerlink" title="ios下时间格式问题"></a>ios下时间格式问题</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">time = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'2016-08-09 00:00:00'</span>).getTime（） <span class="comment">//拿到的值是NaN</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'2016-08-09'</span>).getTime（） <span class="comment">//正常</span></span><br><span class="line">原因：ios下不支持<span class="string">'-'</span>格式的时间可以支持<span class="string">'/'</span></span><br><span class="line">解决方案：改成<span class="string">'yy/mm/dd'</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="打印周几"><a href="#打印周几" class="headerlink" title="打印周几"></a>打印周几</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> week=[<span class="string">'星期日'</span>,<span class="string">'星期一'</span>,<span class="string">'星期二'</span>,<span class="string">'星期三'</span>,<span class="string">'星期四'</span>,<span class="string">'星期五'</span>,<span class="string">'星期六'</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> date=<span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="built_in">document</span>.write(week[date.getDay()])</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="当前时间加半个小时"><a href="#当前时间加半个小时" class="headerlink" title="当前时间加半个小时"></a>当前时间加半个小时</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">当前时间加上半个小时一个小时等</span><br><span class="line">getHourDate: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">    date.setTime(date.getTime() + <span class="number">0.5</span> * <span class="number">3600</span> * <span class="number">1000</span>);</span><br><span class="line">    <span class="keyword">var</span> FullYear = date.getFullYear();</span><br><span class="line">    <span class="keyword">var</span> month = date.getMonth() + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">var</span> dd = date.getDate();</span><br><span class="line">    <span class="keyword">var</span> hh = date.getHours();</span><br><span class="line">    <span class="keyword">var</span> mm = date.getMinutes();</span><br><span class="line">    <span class="keyword">return</span> FullYear + <span class="string">"-"</span> + month + <span class="string">"-"</span> + dd + <span class="string">" "</span> + hh + <span class="string">":"</span> + mm + <span class="string">":00"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="当前时间与目标时间倒计时到达"><a href="#当前时间与目标时间倒计时到达" class="headerlink" title="当前时间与目标时间倒计时到达"></a>当前时间与目标时间倒计时到达</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">countTime: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//获取当前时间  </span></span><br><span class="line">    <span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">    <span class="keyword">var</span> now = date.getTime();</span><br><span class="line">    <span class="comment">//设置截止时间  </span></span><br><span class="line">    <span class="keyword">var</span> endDate = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="keyword">this</span>.endDate.replace(<span class="regexp">/-/g</span>, <span class="string">'/'</span>));</span><br><span class="line">    <span class="keyword">var</span> end = endDate.getTime();</span><br><span class="line">    <span class="comment">//时间差</span></span><br><span class="line">    <span class="keyword">var</span> leftTime = <span class="keyword">this</span>.leftTime = end - now;</span><br><span class="line">    <span class="comment">//定义变量 d,h,m,s保存倒计时的时间  </span></span><br><span class="line">    <span class="keyword">var</span> d, h, m, s;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.leftTime &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">        d = <span class="built_in">Math</span>.floor(leftTime / <span class="number">1000</span> / <span class="number">60</span> / <span class="number">60</span> / <span class="number">24</span>);</span><br><span class="line">        h = <span class="built_in">Math</span>.floor(leftTime / <span class="number">1000</span> / <span class="number">60</span> / <span class="number">60</span> % <span class="number">24</span>);</span><br><span class="line">        m = <span class="built_in">Math</span>.floor(leftTime / <span class="number">1000</span> / <span class="number">60</span>);</span><br><span class="line">        s = <span class="built_in">Math</span>.floor(leftTime / <span class="number">1000</span> % <span class="number">60</span>);</span><br><span class="line">        <span class="keyword">this</span>.leftStr = d + <span class="string">"天"</span> + h + <span class="string">"时"</span> + m + <span class="string">"分"</span> + s + <span class="string">"秒"</span></span><br><span class="line">        setTimeout(<span class="keyword">this</span>.countTime, <span class="number">1000</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.isCanPay = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="将当前时间转化为-2018-12-12-12-00-00"><a href="#将当前时间转化为-2018-12-12-12-00-00" class="headerlink" title="将当前时间转化为 2018-12-12 12:00:00"></a>将当前时间转化为 2018-12-12 12:00:00</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="keyword">var</span> formatDateTime = <span class="function"><span class="keyword">function</span> (<span class="params">date</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> y = date.getFullYear();</span><br><span class="line">    <span class="keyword">var</span> m = date.getMonth() + <span class="number">1</span>;</span><br><span class="line">    m = m &lt; <span class="number">10</span> ? (<span class="string">'0'</span> + m) : m;</span><br><span class="line">    <span class="keyword">var</span> d = date.getDate();</span><br><span class="line">    d = d &lt; <span class="number">10</span> ? (<span class="string">'0'</span> + d) : d;</span><br><span class="line">    <span class="keyword">var</span> h = date.getHours();</span><br><span class="line">    h = h &lt; <span class="number">10</span> ? (<span class="string">'0'</span> + h) : h;</span><br><span class="line">    <span class="keyword">var</span> minute = date.getMinutes();</span><br><span class="line">    minute = minute &lt; <span class="number">10</span> ? (<span class="string">'0'</span> + minute) : minute;</span><br><span class="line">    <span class="keyword">var</span> second = date.getSeconds();</span><br><span class="line">    second = second &lt; <span class="number">10</span> ? (<span class="string">'0'</span> + second) : second;</span><br><span class="line">    <span class="keyword">return</span> y + <span class="string">'-'</span> + m + <span class="string">'-'</span> + d + <span class="string">' '</span> + h + <span class="string">':'</span> + minute + <span class="string">':'</span> + second;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="判断当前日期是否离开"><a href="#判断当前日期是否离开" class="headerlink" title="判断当前日期是否离开"></a>判断当前日期是否<strong>离开</strong></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">departTimeHandle: <span class="function"><span class="keyword">function</span> (<span class="params">departTime</span>) </span>&#123;</span><br><span class="line">    diff = <span class="keyword">new</span> <span class="built_in">Date</span>(departTime.replace(<span class="regexp">/\-/g</span>, <span class="string">"/"</span>)).getTime() - <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</span><br><span class="line">    <span class="keyword">if</span> (diff &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        alert(<span class="string">'未出发'</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        alert(<span class="string">'已离开'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> diff;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="计算两个时间的分钟差"><a href="#计算两个时间的分钟差" class="headerlink" title="计算两个时间的分钟差"></a>计算两个时间的分钟差</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">TimeDifference</span>(<span class="params">time1, time2</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//截取字符串，得到日期部分"2009-12-02",用split把字符串分隔成数组</span></span><br><span class="line">    <span class="keyword">var</span> begin1 = time1.substr(<span class="number">0</span>, <span class="number">10</span>).split(<span class="string">"-"</span>);</span><br><span class="line">    <span class="keyword">var</span> end1 = time2.substr(<span class="number">0</span>, <span class="number">10</span>).split(<span class="string">"-"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//将拆分的数组重新组合，并实例成化新的日期对象</span></span><br><span class="line">    <span class="keyword">var</span> date1 = <span class="keyword">new</span> <span class="built_in">Date</span>(begin1[<span class="number">1</span>] + - + begin1[<span class="number">2</span>] + - + begin1[<span class="number">0</span>]);</span><br><span class="line">    <span class="keyword">var</span> date2 = <span class="keyword">new</span> <span class="built_in">Date</span>(end1[<span class="number">1</span>] + - + end1[<span class="number">2</span>] + - + end1[<span class="number">0</span>]);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//得到两个日期之间的差值m，以分钟为单位</span></span><br><span class="line">    <span class="comment">//Math.abs(date2-date1)计算出以毫秒为单位的差值</span></span><br><span class="line">    <span class="comment">//Math.abs(date2-date1)/1000得到以秒为单位的差值</span></span><br><span class="line">    <span class="comment">//Math.abs(date2-date1)/1000/60得到以分钟为单位的差值</span></span><br><span class="line">    <span class="keyword">var</span> m = <span class="built_in">parseInt</span>(<span class="built_in">Math</span>.abs(date2 - date1) / <span class="number">1000</span> / <span class="number">60</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//小时数和分钟数相加得到总的分钟数</span></span><br><span class="line">    <span class="comment">//time1.substr(11,2)截取字符串得到时间的小时数</span></span><br><span class="line">    <span class="comment">//parseInt(time1.substr(11,2))*60把小时数转化成为分钟</span></span><br><span class="line">    <span class="keyword">var</span> min1 = <span class="built_in">parseInt</span>(time1.substr(<span class="number">11</span>, <span class="number">2</span>)) * <span class="number">60</span> + <span class="built_in">parseInt</span>(time1.substr(<span class="number">14</span>, <span class="number">2</span>));</span><br><span class="line">    <span class="keyword">var</span> min2 = <span class="built_in">parseInt</span>(time2.substr(<span class="number">11</span>, <span class="number">2</span>)) * <span class="number">60</span> + <span class="built_in">parseInt</span>(time2.substr(<span class="number">14</span>, <span class="number">2</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">//两个分钟数相减得到时间部分的差值，以分钟为单位</span></span><br><span class="line">    <span class="keyword">var</span> n = min2 - min1;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//将日期和时间两个部分计算出来的差值相加，即得到两个时间相减后的分钟数</span></span><br><span class="line">    <span class="keyword">var</span> minutes = m + n;</span><br><span class="line">    <span class="built_in">document</span>.writeln(minutes);</span><br><span class="line">&#125;</span><br><span class="line">TimeDifference(<span class="string">"2019-08-12 15:21:00"</span>, <span class="string">"2019-08-21 10:18:34"</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="距离当前日期多少天后的日期"><a href="#距离当前日期多少天后的日期" class="headerlink" title="距离当前日期多少天后的日期"></a>距离当前日期多少天后的日期</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">GetDateStr</span>(<span class="params">AddDayCount</span>) </span>&#123;   </span><br><span class="line">      <span class="keyword">var</span> dd = <span class="keyword">new</span> <span class="built_in">Date</span>();  </span><br><span class="line">      dd.setDate(dd.getDate()+AddDayCount);<span class="comment">//获取AddDayCount天后的日期</span></span><br><span class="line">      <span class="keyword">var</span> y = dd.getFullYear();   </span><br><span class="line">      <span class="keyword">var</span> m = (dd.getMonth()+<span class="number">1</span>)&lt;<span class="number">10</span>?<span class="string">"0"</span>+(dd.getMonth()+<span class="number">1</span>):(dd.getMonth()+<span class="number">1</span>);<span class="comment">//获取当前月份的日期，不足10补0</span></span><br><span class="line">      <span class="keyword">var</span> d = dd.getDate()&lt;<span class="number">10</span>?<span class="string">"0"</span>+dd.getDate():dd.getDate();<span class="comment">//获取当前几号，不足10补0</span></span><br><span class="line">      <span class="keyword">return</span> y+<span class="string">"-"</span>+m+<span class="string">"-"</span>+d;   </span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Date-1556121600000-’和‘-Date-1528953453022-0800-’日期格式处理"><a href="#Date-1556121600000-’和‘-Date-1528953453022-0800-’日期格式处理" class="headerlink" title="/Date(1556121600000)/’和‘/Date(1528953453022+0800)/’日期格式处理"></a>/Date(1556121600000)/’和‘/Date(1528953453022+0800)/’日期格式处理</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">方法一：</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handelTime</span>(<span class="params">strTime</span>) </span>&#123;</span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="built_in">parseInt</span>(strTime.replace(<span class="string">"/Date("</span>, <span class="string">""</span>).replace(<span class="string">")/"</span>, <span class="string">""</span>), <span class="number">10</span>));</span><br><span class="line">       <span class="keyword">return</span> obj.toLocaleDateString();</span><br><span class="line">&#125;</span><br><span class="line">handelTime(<span class="string">'\/Date(1556121600000)\/'</span>)</span><br><span class="line">方法二：</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">formatDate</span>(<span class="params">dt</span>) </span>&#123; </span><br><span class="line">  <span class="keyword">var</span> year = dt.getFullYear(); </span><br><span class="line">  <span class="keyword">var</span> month = dt.getMonth() + <span class="number">1</span>; </span><br><span class="line">  <span class="keyword">var</span> date = dt.getDate(); </span><br><span class="line">  <span class="keyword">var</span> hour = dt.getHours(); </span><br><span class="line">  <span class="keyword">var</span> minute = dt.getMinutes(); </span><br><span class="line">  <span class="keyword">var</span> second = dt.getSeconds(); </span><br><span class="line">  <span class="keyword">return</span> year + <span class="string">"-"</span> + month + <span class="string">"-"</span> + date + <span class="string">" "</span> + hour + <span class="string">":"</span> + minute + <span class="string">":"</span> + second; </span><br><span class="line">&#125; </span><br><span class="line">方法三</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Test</span>(<span class="params">time</span>) </span>&#123; </span><br><span class="line">	<span class="keyword">var</span> t= time.slice(<span class="number">6</span>, <span class="number">19</span>) </span><br><span class="line">	<span class="keyword">var</span> NewDtime = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="built_in">parseInt</span>(t)); </span><br><span class="line">	<span class="keyword">return</span> formatDate(NewDtime); </span><br><span class="line">&#125; </span><br><span class="line">Test(<span class="string">"/Date(1528953453022+0800)/"</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="遍历值键对"><a href="#遍历值键对" class="headerlink" title="遍历值键对"></a>遍历值键对</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">test: &#123;</span><br><span class="line">                <span class="string">"阿巴嘎旗"</span>: &#123;</span><br><span class="line">                    <span class="string">"hot"</span>: <span class="number">10851</span>,</span><br><span class="line">                    <span class="string">"priority"</span>: <span class="number">0</span>,</span><br><span class="line">                    <span class="string">"match"</span>: <span class="string">"abgq|abagaqi"</span>,</span><br><span class="line">                    <span class="string">"stationCode"</span>: <span class="string">"abagaqi"</span>,</span><br><span class="line">                    <span class="string">"cityId"</span>: <span class="number">269</span>,</span><br><span class="line">                    <span class="string">"cityName"</span>: <span class="string">"锡林郭勒盟"</span>,</span><br><span class="line">                    <span class="string">"provinceId"</span>: <span class="number">19</span>,</span><br><span class="line">                    <span class="string">"provinceName"</span>: <span class="string">"内蒙古"</span>,</span><br><span class="line">                    <span class="string">"longitude"</span>: <span class="string">"0.000000"</span>,</span><br><span class="line">                    <span class="string">"latitude"</span>: <span class="string">"0.000000"</span>,</span><br><span class="line">                    <span class="string">"siteCode"</span>: <span class="string">""</span></span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="string">"阿尔山"</span>: &#123;</span><br><span class="line">                    <span class="string">"hot"</span>: <span class="number">311502</span>,</span><br><span class="line">                    <span class="string">"priority"</span>: <span class="number">10</span>,</span><br><span class="line">                    <span class="string">"match"</span>: <span class="string">"aes|aershan"</span>,</span><br><span class="line">                    <span class="string">"stationCode"</span>: <span class="string">"aershan"</span>,</span><br><span class="line">                    <span class="string">"cityId"</span>: <span class="number">270</span>,</span><br><span class="line">                    <span class="string">"cityName"</span>: <span class="string">"兴安盟"</span>,</span><br><span class="line">                    <span class="string">"provinceId"</span>: <span class="number">19</span>,</span><br><span class="line">                    <span class="string">"provinceName"</span>: <span class="string">"内蒙古"</span>,</span><br><span class="line">                    <span class="string">"longitude"</span>: <span class="string">"119.954934"</span>,</span><br><span class="line">                    <span class="string">"latitude"</span>: <span class="string">"47.177865"</span>,</span><br><span class="line">                    <span class="string">"siteCode"</span>: <span class="string">""</span></span><br><span class="line">                &#125;,</span><br><span class="line">&#125;</span><br><span class="line">遍历方法：</span><br><span class="line"><span class="keyword">var</span> allcities = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> prop <span class="keyword">in</span> test) &#123;</span><br><span class="line">    <span class="keyword">var</span> city = [];</span><br><span class="line">    city.push(test[prop].provinceId, prop, <span class="string">'0'</span>, test[prop].match, test[prop].stationCode);</span><br><span class="line">    allcities.push(city);</span><br><span class="line">    <span class="comment">// console.log(test[prop]);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">判断对象是否为空</span><br><span class="line">evtValue = &#123;&#125;</span><br><span class="line"><span class="built_in">JSON</span>.stringify(evtValue) == <span class="string">'&#123;&#125;'</span></span><br><span class="line"><span class="built_in">Object</span>.keys(evtValue).length == <span class="number">0</span></span><br><span class="line">取对象的属性和值</span><br><span class="line"><span class="keyword">var</span> obj = &#123; <span class="string">'id'</span>: <span class="number">1</span>, <span class="string">'name'</span>: <span class="string">'叶落森'</span>, <span class="string">'sex'</span>: <span class="string">'女'</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> arr1 = <span class="built_in">Object</span>.keys(obj); --可以获取key值</span><br><span class="line"><span class="keyword">var</span> arr2 = <span class="built_in">Object</span>.values(obj); --可以获取value值</span><br><span class="line"><span class="built_in">console</span>.log(arr1);  <span class="comment">// ['id','name','sex']</span></span><br><span class="line"><span class="built_in">console</span>.log(arr2);  <span class="comment">//  ['1','叶落森','女']</span></span><br><span class="line"><span class="built_in">console</span>.log(arr2[<span class="number">1</span>]);  <span class="comment">// 叶落森</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="window-location"><a href="#window-location" class="headerlink" title="window.location"></a>window.location</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">一、window.location具有以下属性：</span><br><span class="line"></span><br><span class="line">1、window.location.href：取得当前地址栏中的完整URL，可以通过赋值改变当前地址栏中的URL；</span><br><span class="line"></span><br><span class="line">2、window.location.search 取得当前URL的参数部分，即“?”后面的部分（包括问号），可以通过赋值改变URL的参数部分；</span><br><span class="line"></span><br><span class="line">3、window.location.host：取得当前URL中的主机信息，包括端口号，可以通过赋值改变主机信息；</span><br><span class="line"></span><br><span class="line">4、window.location.port：取得当前URL中的端口号，可以通过赋值改变端口号；</span><br><span class="line"></span><br><span class="line">5、window.location.pathname：取得当前URL中的路径信息，即域名与参数之间的部分，可以通过赋值改变当前URL的路径；</span><br><span class="line"></span><br><span class="line">6、window.location.protocol：取得当前URL的协议部分，比如http:，https:等，可以通过赋值改变URL的协议部分；</span><br><span class="line"></span><br><span class="line">设置有以下方法：</span><br><span class="line"></span><br><span class="line">1、window.location.replace(url)：用传入的URL字符串替代当前的URL，该方法会将历史记录中的URL一并替换掉，也就是说，这个方法会覆盖之前的历史记录；</span><br><span class="line"></span><br><span class="line">2、window.location.reload()：重新加载当前URL，相当于刷新；</span><br><span class="line"></span><br><span class="line">3、window.location.assign(url)：加载传入的URL，该方法不会覆盖之前的历史记录；</span><br><span class="line"></span><br><span class="line">if(&quot;https:&quot; &#x3D;&#x3D; document.location.protocol </span><br><span class="line">     alert(&quot;HTTPS&quot;)</span><br><span class="line"> );</span><br><span class="line">document.location.protocol</span><br><span class="line">可设置或返回当前 URL 的协议</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="判断机型–iphoneX"><a href="#判断机型–iphoneX" class="headerlink" title="判断机型–iphoneX"></a>判断机型–iphoneX</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isIphoneX</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="regexp">/iphone/gi</span>.test(navigator.userAgent) &amp;&amp; (screen.height == <span class="number">812</span> &amp;&amp; screen.width == <span class="number">375</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="js实现根据身份证号码识别-性别-年龄-生日"><a href="#js实现根据身份证号码识别-性别-年龄-生日" class="headerlink" title="js实现根据身份证号码识别 性别 年龄 生日"></a>js实现根据身份证号码识别 性别 年龄 生日</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">discriCard</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//获取输入身份证号码 </span></span><br><span class="line">    <span class="keyword">var</span> UUserCard = <span class="string">""</span>;</span><br><span class="line">    <span class="comment">//获取出生日期 </span></span><br><span class="line">    UUserCard.substring(<span class="number">6</span>, <span class="number">10</span>) + <span class="string">"-"</span> + UUserCard.substring(<span class="number">10</span>, <span class="number">12</span>) + <span class="string">"-"</span> + UUserCard.substring(<span class="number">12</span>, <span class="number">14</span>);</span><br><span class="line">    <span class="comment">//获取性别 </span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">parseInt</span>(UUserCard.substr(<span class="number">16</span>, <span class="number">1</span>)) % <span class="number">2</span> == <span class="number">1</span>) &#123;</span><br><span class="line">        alert(<span class="string">"男"</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        alert(<span class="string">"女"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//获取年龄 </span></span><br><span class="line">    <span class="keyword">var</span> myDate = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">    <span class="keyword">var</span> month = myDate.getMonth() + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">var</span> day = myDate.getDate();</span><br><span class="line">    <span class="keyword">var</span> age = myDate.getFullYear() - UUserCard.substring(<span class="number">6</span>, <span class="number">10</span>) - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (UUserCard.substring(<span class="number">10</span>, <span class="number">12</span>) &lt; month || UUserCard.substring(<span class="number">10</span>, <span class="number">12</span>) == month &amp;&amp; UUserCard.substring(<span class="number">12</span>, <span class="number">14</span>) &lt;= day) &#123;</span><br><span class="line">        age++</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//年龄 age </span></span><br><span class="line">    alert(age)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="验证身份证有木有18周岁"><a href="#验证身份证有木有18周岁" class="headerlink" title="验证身份证有木有18周岁"></a>验证身份证有木有18周岁</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line"><span class="keyword">var</span> strBirthday = num.substr(<span class="number">6</span>, <span class="number">4</span>) + <span class="string">"/"</span> + num.substr(<span class="number">10</span>, <span class="number">2</span>) + <span class="string">"/"</span> + num.substr(<span class="number">12</span>, <span class="number">2</span>);</span><br><span class="line"><span class="keyword">var</span> birthDate = <span class="keyword">new</span> <span class="built_in">Date</span>(strBirthday);</span><br><span class="line"><span class="keyword">var</span> nowDateTime = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="keyword">var</span> age = nowDateTime.getFullYear() - birthDate.getFullYear();</span><br><span class="line"><span class="keyword">if</span> (nowDateTime.getMonth() &lt; birthDate.getMonth() || (nowDateTime.getMonth() == birthDate.getMonth() &amp;&amp; nowDateTime.getDate() &lt; birthDate.getDate())) &#123;</span><br><span class="line">    age--;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (age &lt; <span class="number">18</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="img标签的onerror事件"><a href="#img标签的onerror事件" class="headerlink" title="img标签的onerror事件"></a>img标签的onerror事件</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>循环里的图片直接引用原生事件</span><br><span class="line">&lt; div v-<span class="keyword">for</span>= <span class="string">"(item,index) in imgSrcList"</span> &gt;</span><br><span class="line">    &lt;p&gt;&#123;&#123; item.test &#125;&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">    &lt;img :src="'/i</span>travel/itravel/assets/images/common/<span class="string">'+item.test+'</span>.png<span class="string">'" onerror="javascript:this.src='</span>/itravel/itravel/assets/images/ticket/child-desc.png<span class="string">';" /&gt;</span></span><br><span class="line"><span class="string">&lt;div/ &gt;</span></span><br><span class="line"><span class="string">2.只有一个路径</span></span><br><span class="line"><span class="string">    &lt;div class="pic" &gt;</span></span><br><span class="line"><span class="string">        &lt;img v-bind: src="item.productInfo.images[0].url" v-on: error="imgError(item)" /&gt;</span></span><br><span class="line"><span class="string">    &lt;div/ &gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">imgError: function (item) &#123;</span></span><br><span class="line"><span class="string">    item.productInfo.images[0].url = '</span>http:<span class="comment">//t.cn/RmxJlMa'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%B6%E9%97%B4/" rel="tag"># 服务器时间</a>
+          
+            <a href="/tags/js/" rel="tag"># js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/23/css3/" rel="next" title="css3">
+                <i class="fa fa-chevron-left"></i> css3
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/07/24/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94%EF%BC%88%E4%B8%80%EF%BC%89/" rel="prev" title="小程序开发随笔（一）">
+                小程序开发随笔（一） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="Dali" />
+            
+              <p class="site-author-name" itemprop="name">Dali</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取服务器时间"><span class="nav-number">1.</span> <span class="nav-text">获取服务器时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#userAgent"><span class="nav-number">2.</span> <span class="nav-text">userAgent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深克隆"><span class="nav-number">3.</span> <span class="nav-text">深克隆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取url参数"><span class="nav-number">4.</span> <span class="nav-text">获取url参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#encodeURI-和encodeURIComponent-decodeURI-和decodeURIComponent"><span class="nav-number">5.</span> <span class="nav-text">encodeURI()和encodeURIComponent()  decodeURI()和decodeURIComponent()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#True与False"><span class="nav-number">6.</span> <span class="nav-text">True与False</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ios下时间格式问题"><span class="nav-number">7.</span> <span class="nav-text">ios下时间格式问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打印周几"><span class="nav-number">8.</span> <span class="nav-text">打印周几</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#当前时间加半个小时"><span class="nav-number">9.</span> <span class="nav-text">当前时间加半个小时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#当前时间与目标时间倒计时到达"><span class="nav-number">10.</span> <span class="nav-text">当前时间与目标时间倒计时到达</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将当前时间转化为-2018-12-12-12-00-00"><span class="nav-number">11.</span> <span class="nav-text">将当前时间转化为 2018-12-12 12:00:00</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断当前日期是否离开"><span class="nav-number">12.</span> <span class="nav-text">判断当前日期是否离开</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算两个时间的分钟差"><span class="nav-number">13.</span> <span class="nav-text">计算两个时间的分钟差</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#距离当前日期多少天后的日期"><span class="nav-number">14.</span> <span class="nav-text">距离当前日期多少天后的日期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Date-1556121600000-’和‘-Date-1528953453022-0800-’日期格式处理"><span class="nav-number">15.</span> <span class="nav-text">&#x2F;Date(1556121600000)&#x2F;’和‘&#x2F;Date(1528953453022+0800)&#x2F;’日期格式处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遍历值键对"><span class="nav-number">16.</span> <span class="nav-text">遍历值键对</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象"><span class="nav-number">17.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#window-location"><span class="nav-number">18.</span> <span class="nav-text">window.location</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断机型–iphoneX"><span class="nav-number">19.</span> <span class="nav-text">判断机型–iphoneX</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#js实现根据身份证号码识别-性别-年龄-生日"><span class="nav-number">20.</span> <span class="nav-text">js实现根据身份证号码识别 性别 年龄 生日</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证身份证有木有18周岁"><span class="nav-number">21.</span> <span class="nav-text">验证身份证有木有18周岁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#img标签的onerror事件"><span class="nav-number">22.</span> <span class="nav-text">img标签的onerror事件</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dali</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
