@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="es6,js," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="DaliBlogs" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="###展开操作符 顾名思义，用于对象或数组之前的展开操作符（…），将一个结构展开为列表。 演示一下： 123let firstHalf &#x3D; [ &#39;one&#39;, &#39;two&#39;];let secondHalf &#x3D; [&#39;three&#39;, &#39;four&#39;, ...firstHalf];">
+<meta property="og:type" content="article">
+<meta property="og:title" content="es6特性">
+<meta property="og:url" content="http://yoursite.com/2020/07/30/es6%E7%89%B9%E6%80%A7/index.html">
+<meta property="og:site_name" content="DaliBlogs">
+<meta property="og:description" content="###展开操作符 顾名思义，用于对象或数组之前的展开操作符（…），将一个结构展开为列表。 演示一下： 123let firstHalf &#x3D; [ &#39;one&#39;, &#39;two&#39;];let secondHalf &#x3D; [&#39;three&#39;, &#39;four&#39;, ...firstHalf];">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/eXCSRjyNYcbG4VhLbRDf5lpFt1sagtWS5QUCFTBa7CHlWarkPicvMmxPX22TIc1rAnKbuDfKyWWichiakwjfx5PhQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/eXCSRjyNYcbG4VhLbRDf5lpFt1sagtWSqibNic0gumhUb1xeBcKSFmbiaE2bsOPtByxJDOibhau4T7FM4PQQBQ8vag/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/eXCSRjyNYcbG4VhLbRDf5lpFt1sagtWSIcozwmwiavIspqX1uMyaNh4RAZibudxVCX97BW27YbT3b9zLQ7Ou02yQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/eXCSRjyNYcbG4VhLbRDf5lpFt1sagtWSFJLTkng2dHxMDYiaXQxVDwQzvIGCElMUmUVYYUsXUiaibRHfMdV6Pbib0A/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/eXCSRjyNYcbG4VhLbRDf5lpFt1sagtWSSnDonmibictDW2MVbXE1DSJKvhefIcAYq3kf61YS9Wstuu55ia7D4LJQg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/eXCSRjyNYcbG4VhLbRDf5lpFt1sagtWS7D5ZtxhHKCfEibEWvtxf5VgK6kR3CH3tTiaCEStFLVNglVp9rkqE4jNA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/eXCSRjyNYcbG4VhLbRDf5lpFt1sagtWStVhG8l1dPzWm8IZEH4gQJpxdpUuL0gaFQLGDWAW6L5VflYxNcfTjQQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/eXCSRjyNYcbG4VhLbRDf5lpFt1sagtWSS5Piaz8PhaFjX1Adpo4l0ZJqiatS4icRkJTIHCQrmlDj9icol1V0a0GkVg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/eXCSRjyNYcbG4VhLbRDf5lpFt1sagtWSeMEuicAyVrjHB3SpicVpTEmvUoYuKz6gjA0hescic1zwF6BAWluq7NjHA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/eXCSRjyNYcbG4VhLbRDf5lpFt1sagtWS2ibeNSm54ZT0LReAsd2IfbKUtveW6Lnx2afRIxlhB1cxVgfm2QMdIMA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="article:published_time" content="2020-07-30T02:21:10.000Z">
+<meta property="article:modified_time" content="2020-07-30T09:26:57.000Z">
+<meta property="article:author" content="Dali">
+<meta property="article:tag" content="es6">
+<meta property="article:tag" content="js">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mmbiz.qpic.cn/mmbiz_png/eXCSRjyNYcbG4VhLbRDf5lpFt1sagtWS5QUCFTBa7CHlWarkPicvMmxPX22TIc1rAnKbuDfKyWWichiakwjfx5PhQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/07/30/es6特性/"/>
+
+
+
+
+
+  <title>es6特性 | DaliBlogs</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DaliBlogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/30/es6%E7%89%B9%E6%80%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">es6特性</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-30T10:21:10+08:00">
+                2020-07-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/es6/" itemprop="url" rel="index">
+                    <span itemprop="name">es6</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>###展开操作符</p>
+<p>顾名思义，用于对象或数组之前的展开操作符（…），将一个结构展开为列表。</p>
+<p>演示一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let firstHalf &#x3D; [ &#39;one&#39;, &#39;two&#39;];</span><br><span class="line"></span><br><span class="line">let secondHalf &#x3D; [&#39;three&#39;, &#39;four&#39;, ...firstHalf];</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<p>这种写法够优雅，够简洁吧？如果不用展开操作符</p>
+<p>我们得这么写：</p>
+<p>let firstHalf = [ ‘one’, ‘two’];</p>
+<p>let secondHalf = [‘three’, ‘four’];</p>
+<p>for(var i=0, i &lt;firstHalf.length; i++ ) {</p>
+<p>  secondHalf.push(firstHalf[i]);</p>
+<p>}</p>
+<p>展开操作符也适用于合并对象的属性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">const hero &#x3D; &#123;</span><br><span class="line"></span><br><span class="line">  name: &#39;Xena - Warrior Princess&#39;,</span><br><span class="line"></span><br><span class="line">  realName: &#39;Lucy Lawless&#39;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const heroWithSword &#x3D; &#123;</span><br><span class="line"></span><br><span class="line"> ...hero,</span><br><span class="line"></span><br><span class="line"> weapon: &#39;sword&#39;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>不用展开操作符的话，需要遍历对象的属性：</p>
+<p>let keys = Object.keys(hero);</p>
+<p>let obj = {};</p>
+<p>for(var i=0; i&lt; keys.length; i++) {</p>
+<p>   obj[keys[i]] = keys[props[i]];</p>
+<p>}</p>
+<p>###剩余参数</p>
+<p>剩余参数将剩余的参数收入数列。JavaScript 的特性是参数数目很灵活。通常会有一个 arguments 变量收集参数。</p>
+<p>让我们看一个例子：</p>
+<p>function add(first, second, …remaining) {</p>
+<p>  return first + second;</p>
+<p>}</p>
+<p>上面的一段代码仅仅将 first 和 second 加起来，也就是说，调用 add(1, 2) 和 add(1, 2, 3, 4) 会得到相同的结果。</p>
+<p>下面我们修正一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function add(first, second, ...remaining) &#123;</span><br><span class="line"></span><br><span class="line">  return first + second + remaining.reduce((acc, curr) &#x3D;&gt; acc + curr, 0);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>如前所述，…remaining 收集了剩余的参数，为我们提供了这些参数的命名，清楚地表明我们打算处理剩余的参数。我记得至迟 ES5 已经有 arguments 了，不过少有人知。</p>
+<p>###字符串插值</p>
+<p>见过这样的语句吗？</p>
+<p>class Product {</p>
+<p> constructor(name, description, price) {</p>
+<p>   this.name = name;</p>
+<p>   this.description = description;</p>
+<p>   this.price = price;</p>
+<p> }</p>
+<p>getDescription() {</p>
+<p>   return “ Full description \n” +</p>
+<p>   “ name: “ + this.name +</p>
+<p>   “ description: “ + this.description</p>
+<p> }</p>
+<p>}</p>
+<p>当然，我指的是 getDescription() 方法中那个可读性不佳的多行长语句。大多数编程语言中都存在类似现象。一些语言提供了字符串插值，幸运的是，JavaScript 正是其中之一。</p>
+<p>我们改写一下 getDescription() 方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">getDescription() &#123;</span><br><span class="line"></span><br><span class="line">   return &#96;Full description \n:</span><br><span class="line"></span><br><span class="line">   name: $&#123;this.name&#125;</span><br><span class="line"></span><br><span class="line">   description $&#123;this.description&#125;</span><br><span class="line"></span><br><span class="line">   &#96;;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>一对 包起来的字符串中可以使用 ${} 插值。现在看起来舒服多了。</p>
+<p>###简写属性</p>
+<p>在 ES5 中必须这么写：</p>
+<p>function createCoord(x, y) {</p>
+<p>  return {</p>
+<p>​    x: x,</p>
+<p>​    y: y</p>
+<p>  }</p>
+<p>}</p>
+<p>ES6 以后可以使用简写属性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function createCoord(x, y) &#123;</span><br><span class="line"></span><br><span class="line">  return &#123;</span><br><span class="line"></span><br><span class="line">    x,</span><br><span class="line"></span><br><span class="line">    y</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>看起来更清爽了吧？</p>
+<p>###方法属性</p>
+<p>方法属性是在对象中定义指向方法的属性。</p>
+<p>考虑下面一段 ES5 代码作为例子：</p>
+<p>const math = {</p>
+<p>  add: function(a,b) { return a + b; },</p>
+<p>  sub: function(a,b) { return a - b; },</p>
+<p>  multiply: function(a,b) { return a * b; }</p>
+<p>}</p>
+<p>ES6 以后只需这么写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const math &#x3D; &#123;</span><br><span class="line"></span><br><span class="line">  add(a,b) &#123; return a + b; &#125;,</span><br><span class="line"></span><br><span class="line">  sub(a,b) &#123; return a - b; &#125;,</span><br><span class="line"></span><br><span class="line">  multiply(a,b) &#123; return a * b; &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>###解构赋值</p>
+<p>解构赋值有利于开发者本人的心理健康。</p>
+<p>考虑下面的代码：</p>
+<p>function handle(req, res) {</p>
+<p> const name = req.body.name;</p>
+<p> const description = req.body.description;</p>
+<p> const url = req.url;</p>
+<p> log(‘url endpoint’, url);</p>
+<p> // 大量代码逻辑</p>
+<p> dbService.createPerson(name, description)</p>
+<p>}</p>
+<p>不管从什么角度来看，上面的代码都不完美，但它确实体现了一种应用场景，我们想要从对象的不同层次获取数据。你也许会问，这里有什么问题？好吧，我可以不用声明这么多变量，省下一些敲击键盘的次数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function handle(req, res) &#123;</span><br><span class="line"></span><br><span class="line"> const &#123; body: &#123; name, description &#125;, url &#125; &#x3D; req;</span><br><span class="line"></span><br><span class="line"> log(&#39;url endpoint&#39;, url);</span><br><span class="line"></span><br><span class="line"> &#x2F;&#x2F; 大量代码逻辑</span><br><span class="line"></span><br><span class="line"> dbService.createPerson(name, description)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>看，我们上面的代码将三行压缩成了一行。</p>
+<p>解构赋值并不仅仅局限于对象。它同样适用于数组。</p>
+<p>考虑下面的代码：</p>
+<p>const array = [1,2,3,4,5,6];</p>
+<p>const a = array[0];</p>
+<p>const c = array[2];</p>
+<p>上面的代码可以用更优雅的方式改写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const array &#x3D; [1,2,3,4,5,6];</span><br><span class="line"></span><br><span class="line">const [a, ,c, ...remaining] &#x3D; arr;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; remaining &#x3D; [4,5,6]</span><br></pre></td></tr></table></figure>
+
+<p>我们可以使用上面的模式匹配分解数组的值。我们使用 , , 跳过某些值。上面提到过的剩余参数这里也能用，在这里我们通过剩余参数捕获了剩余的数组成员。</p>
+<p>解构赋值还可以用于函数和参数。函数有不止 2-3 个参数时，使用一个对象收集所有参数是 JavaScript 的事实标准。</p>
+<p>例如，下面一个函数：</p>
+<p>function doSomething(config) {</p>
+<p>  if(config.a) { … }</p>
+<p>  if(config.b) { … }</p>
+<p>  if(config.c) { … }</p>
+<p>}</p>
+<p>有更好的写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function doSomething(&#123; a, b, c &#125;) &#123;</span><br><span class="line"></span><br><span class="line">  if(a) &#123; ... &#125;</span><br><span class="line"></span><br><span class="line">  if(b) &#123; ... &#125;</span><br><span class="line"></span><br><span class="line">  if(c) &#123; ... &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>###数组方法</p>
+<p>ES6 引入了许多有用的数组方法，例如：</p>
+<ul>
+<li>find()，查找列表中的成员，返回 null 表示没找到</li>
+<li>findIndex()，查找列表成员的索引</li>
+<li>some()，检查某个断言是否至少在列表的一个成员上为真</li>
+<li>includes，列表是否包含某项</li>
+</ul>
+<p>下面的代码有助于你理解它们的用法：</p>
+<p>const array = [{ id: 1, checked: true }, { id: 2 }];</p>
+<p>arr.find(item =&gt; item.id === 2) // { id: 2 }</p>
+<p>arr.findIndex(item =&gt; item.id === 2) // 1</p>
+<p>arr.some(item =&gt; item.checked) // true</p>
+<p>const numberArray = [1,2,3,4];</p>
+<p>numberArray.includes(2) // true</p>
+<p>Promises + Async/Await</p>
+<p>如果你在这个圈子里呆了些年头，也许会记得曾经有一个时期我们只有回调</p>
+<p>就像这样：</p>
+<p>function doSomething(cb) {</p>
+<p>  setTimeout(() =&gt;  {</p>
+<p>​    cb(‘done’)</p>
+<p>  }, 3000)</p>
+<p>}</p>
+<p>doSomething((arg) =&gt; {</p>
+<p> console.log(‘done here’, arg);</p>
+<p>})</p>
+<p>我们使用回调是因为有些操作是异步的，需要时间来完成。后来我们有了 promise 库，人们开始使用它。然后 JavaScript 逐渐加入了对 promise 的原生支持。</p>
+<p>function doSomething() {</p>
+<p>  return new Promise((resolve, reject) =&gt; {</p>
+<p>​    setTimeout(() =&gt;  {</p>
+<p>​      resolve(‘done’)</p>
+<p>​    }, 3000)</p>
+<p>  })</p>
+<p>}</p>
+<p>doSomething().then(arg =&gt; {</p>
+<p> console.log(‘done here’, arg);</p>
+<p>})</p>
+<p>我们甚至可以这样调用，将 promise 串起来：</p>
+<p>getUser()</p>
+<p>  .then(getOrderByUser)</p>
+<p>  .then(getOrderItemsByOrder)</p>
+<p>  .then(orderItems =&gt; {</p>
+<p>​    // 处理排序后的成员</p>
+<p>  })</p>
+<p>后来生活更加美好，我们有了 async/await</p>
+<p>上面一段代码可以这样写：</p>
+<p>async function getItems() {</p>
+<p>  try {</p>
+<p>​    const user = await getUser();</p>
+<p>​    const order = await getOrderByUser(user);</p>
+<p>​    const items = await getOrderItemsByOrder(order);</p>
+<p>​    return items;</p>
+<p>  } catch(err) {</p>
+<p>​    // 在这里处理错误，建议返回某个值或者重新抛出错误</p>
+<p>  }</p>
+<p>}</p>
+<p>getItems().then(items =&gt; {</p>
+<p>  // 处理排序后的成员</p>
+<p>})</p>
+<p>###模块</p>
+<p>差不多任何编程语言都支持模块这一概念，也就是将代码分为多个文件，每个文件是一个自我包含的单元（模块）。</p>
+<p>考虑下面的代码：</p>
+<p>// math.js</p>
+<p>export function add(a,b) { return a + b; }</p>
+<p>export function sub(a,b) { return a - b; }</p>
+<p>export default mult(a,b) =&gt; a * b;</p>
+<p>// main.js</p>
+<p>import mult, { add, sub } from ‘./math’;</p>
+<p>mult(2, 4) // 8</p>
+<p>add(1,1)   // 2</p>
+<p>sub(1,2)   // -1</p>
+<p>我们在上面用 export 关键字注明了 add 和 sub 这两个结构对任何引入该模块的模块都公开可见。export default 关键字则注明仅仅 import 模块时得到的结构。在 main.js 中，我们将导入的 default 命名为 mult，同时指明我们引入 add() 和 sub() 这两个方法。箭头函数和字典作用域 this</p>
+<p>我在这篇文章中很多地方都用到了箭头函数，它不过是另一种函数表示法。</p>
+<p>过去我们只能这么声明函数：</p>
+<p>function printArray(arr) {</p>
+<p> // 具体操作</p>
+<p>}</p>
+<p>现在我们也可以这么写：</p>
+<p>const printArray = (arr) =&gt; {</p>
+<p> // 具体操作</p>
+<p>}</p>
+<p>我们也可以将函数声明写到一行里：</p>
+<p>const add = (a,b) =&gt; a + b</p>
+<p>上面的代码表明我们进行操作并返回结果。</p>
+<p>我们也可以采用下面的语法返回一个对象：</p>
+<p>const create = (a,b) = &gt; ({ x: a, y: b })</p>
+<p>过去会碰到搞不清 this 是什么的问题。考虑下面的代码：</p>
+<p>let array = [1,2,3];</p>
+<p>function sum() {</p>
+<p>  this.total = 0;</p>
+<p>  arr.forEach(function(item) {</p>
+<p>​    this.total+= item;  // 糟糕，<code>this</code> 是内层函数的 <code>this</code></p>
+<p>  })</p>
+<p>  return total;</p>
+<p>}</p>
+<p>上面代码中的 this 指向 forEach 内部函数的 this，这可不是我们想要的。</p>
+<p>过去我们通过以下方式解决这个问题：</p>
+<p>function sum() {</p>
+<p>  this.total = 0;</p>
+<p>  var self = this;</p>
+<p>  arr.forEach(function(item) {</p>
+<p>​    self.total+= item;  // 这里我们使用 <code>self</code>，它能解决问题，但是感觉有点别扭</p>
+<p>  })</p>
+<p>  return total;</p>
+<p>}</p>
+<p>箭头函数可以解决问题，再也不用 self 了</p>
+<p>现在代码看起来是这样的：</p>
+<p>function sum() {</p>
+<p>  this.total = 0;</p>
+<p>  arr.forEach((item) =&gt; {</p>
+<p>​    this.total+= item;  // 一切安好，<code>this</code> 指向外层函数</p>
+<p>  })</p>
+<p>  return total;</p>
+<p>}</p>
+<p>###Object.is() 方法，它具有 === 的一些特点，而且更好、更精确</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Object.is(0 , &#39; &#39;); &#x2F;&#x2F;false</span><br><span class="line">Object.is(null, undefined); &#x2F;&#x2F;false</span><br><span class="line">Object.is([1], true); &#x2F;&#x2F;false</span><br><span class="line">Object.is(NaN, NaN); &#x2F;&#x2F;true</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="举例解决问题"><a href="#举例解决问题" class="headerlink" title="举例解决问题"></a>举例解决问题</h3><h1 id="1、反转字符串"><a href="#1、反转字符串" class="headerlink" title="1、反转字符串"></a><strong>1、反转字符串</strong></h1><p>在此示例中，我们使用了散布运算符（…），Array的reverse方法和String的join方法来反转给定的字符串。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/eXCSRjyNYcbG4VhLbRDf5lpFt1sagtWS5QUCFTBa7CHlWarkPicvMmxPX22TIc1rAnKbuDfKyWWichiakwjfx5PhQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<h1 id="2、计算数字的阶乘"><a href="#2、计算数字的阶乘" class="headerlink" title="2、计算数字的阶乘"></a><strong>2、计算数字的阶乘</strong></h1><p>要计算给定数字的阶乘，我们使用箭头函数和嵌套三元运算符。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/eXCSRjyNYcbG4VhLbRDf5lpFt1sagtWSqibNic0gumhUb1xeBcKSFmbiaE2bsOPtByxJDOibhau4T7FM4PQQBQ8vag/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<h1 id="3、将数字转换为数字数组"><a href="#3、将数字转换为数字数组" class="headerlink" title="3、将数字转换为数字数组"></a><strong>3、将数字转换为数字数组</strong></h1><p>在此示例中，我们使用了散布运算符（…），Array的map方法以及将该给定数字转换为一个单数数组的parseInt 函数 。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/eXCSRjyNYcbG4VhLbRDf5lpFt1sagtWSIcozwmwiavIspqX1uMyaNh4RAZibudxVCX97BW27YbT3b9zLQ7Ou02yQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<h1 id="4、检查数字是否为2的幂"><a href="#4、检查数字是否为2的幂" class="headerlink" title="4、检查数字是否为2的幂"></a><strong>4、检查数字是否为2的幂</strong></h1><p>这很简单。我们检查这number不是虚假的，并使用按位AND运算符 （&amp;）确定是否number为2的幂。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/eXCSRjyNYcbG4VhLbRDf5lpFt1sagtWSFJLTkng2dHxMDYiaXQxVDwQzvIGCElMUmUVYYUsXUiaibRHfMdV6Pbib0A/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<h1 id="5、从对象创建键-值对数组"><a href="#5、从对象创建键-值对数组" class="headerlink" title="5、从对象创建键-值对数组"></a><strong>5、从对象创建键-值对数组</strong></h1><p>在此示例中，我们使用Object中的keys方法和 Array中的map方法来映射Object的键，并创建一个键值对数组。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/eXCSRjyNYcbG4VhLbRDf5lpFt1sagtWSSnDonmibictDW2MVbXE1DSJKvhefIcAYq3kf61YS9Wstuu55ia7D4LJQg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<h1 id="6、从数组中返回-Number-个最大元素"><a href="#6、从数组中返回-Number-个最大元素" class="headerlink" title="6、从数组中返回[Number]个最大元素"></a><strong>6、从数组中返回[Number]个最大元素</strong></h1><p>为了从数组中返回最大元素，我们使用了一个箭头函数，该函数获取数组和希望函数返回的元素数。我们使用了散布运算符（…）以及Array中的sort和slice方法。请注意，如果不提供第二个参数，则number默认值为1，因此仅返回一个最大元素。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/eXCSRjyNYcbG4VhLbRDf5lpFt1sagtWS7D5ZtxhHKCfEibEWvtxf5VgK6kR3CH3tTiaCEStFLVNglVp9rkqE4jNA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<h1 id="7、检查数组中的所有元素是否相等"><a href="#7、检查数组中的所有元素是否相等" class="headerlink" title="7、检查数组中的所有元素是否相等"></a><strong>7、检查数组中的所有元素是否相等</strong></h1><p>在这个简短的示例中，我们使用Array中的every方法检查数组中的所有元素是否相等。我们基本上检查每个元素是否等于数组中的第一个元素。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/eXCSRjyNYcbG4VhLbRDf5lpFt1sagtWStVhG8l1dPzWm8IZEH4gQJpxdpUuL0gaFQLGDWAW6L5VflYxNcfTjQQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<h1 id="8、返回两个数的平均值"><a href="#8、返回两个数的平均值" class="headerlink" title="8、返回两个数的平均值"></a><strong>8、返回两个数的平均值</strong></h1><p>在此示例中，我们使用了spread运算符（…）和Array中的reduce方法来返回两个给定数字或一个数组的平均值。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/eXCSRjyNYcbG4VhLbRDf5lpFt1sagtWSS5Piaz8PhaFjX1Adpo4l0ZJqiatS4icRkJTIHCQrmlDj9icol1V0a0GkVg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<h1 id="9、返回两个或多个数字的和"><a href="#9、返回两个或多个数字的和" class="headerlink" title="9、返回两个或多个数字的和"></a><strong>9、返回两个或多个数字的和</strong></h1><p>要返回两个或多个给定数字或一个数组的总和，我们再次使用散布运算符（…） 和 Array中的reduce方法。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/eXCSRjyNYcbG4VhLbRDf5lpFt1sagtWSeMEuicAyVrjHB3SpicVpTEmvUoYuKz6gjA0hescic1zwF6BAWluq7NjHA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<h1 id="10、返回数字数组的幂集"><a href="#10、返回数字数组的幂集" class="headerlink" title="10、返回数字数组的幂集"></a><strong>10、返回数字数组的幂集</strong></h1><p>在最后一个示例中，我们要返回数字数组的幂集。因此，我们使用Array中的reduce，map和concat方法。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/eXCSRjyNYcbG4VhLbRDf5lpFt1sagtWS2ibeNSm54ZT0LReAsd2IfbKUtveW6Lnx2afRIxlhB1cxVgfm2QMdIMA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/es6/" rel="tag"># es6</a>
+          
+            <a href="/tags/js/" rel="tag"># js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/30/js%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/" rel="next" title="js数组方法">
+                <i class="fa fa-chevron-left"></i> js数组方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/07/30/packageJson/" rel="prev" title="packageJson">
+                packageJson <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="Dali" />
+            
+              <p class="site-author-name" itemprop="name">Dali</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">69</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#举例解决问题"><span class="nav-number">1.</span> <span class="nav-text">举例解决问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1、反转字符串"><span class="nav-number"></span> <span class="nav-text">1、反转字符串</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2、计算数字的阶乘"><span class="nav-number"></span> <span class="nav-text">2、计算数字的阶乘</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3、将数字转换为数字数组"><span class="nav-number"></span> <span class="nav-text">3、将数字转换为数字数组</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4、检查数字是否为2的幂"><span class="nav-number"></span> <span class="nav-text">4、检查数字是否为2的幂</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5、从对象创建键-值对数组"><span class="nav-number"></span> <span class="nav-text">5、从对象创建键-值对数组</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6、从数组中返回-Number-个最大元素"><span class="nav-number"></span> <span class="nav-text">6、从数组中返回[Number]个最大元素</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7、检查数组中的所有元素是否相等"><span class="nav-number"></span> <span class="nav-text">7、检查数组中的所有元素是否相等</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8、返回两个数的平均值"><span class="nav-number"></span> <span class="nav-text">8、返回两个数的平均值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9、返回两个或多个数字的和"><span class="nav-number"></span> <span class="nav-text">9、返回两个或多个数字的和</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10、返回数字数组的幂集"><span class="nav-number"></span> <span class="nav-text">10、返回数字数组的幂集</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dali</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

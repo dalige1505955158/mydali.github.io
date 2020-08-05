@@ -1,0 +1,1760 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="插件,js,moment," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="DaliBlogs" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="前言 UTC、GMT、时间戳之间的关系 时区 世界时区的划分以本初子午线为标准，向东12个时区，向西12个时区，子午线所在区为0时区，东十二区和西十二区重合，所以一共是24个时区。  GMT和UTC GMT： 即格林威治时间（Greenwich Mean Time），也是0时区的标准时间。指太阳横穿格林威治子午线（本初子午线）时的时间。但由于地球自转不均匀不规则，导致GMT不精确，现在已经不再作为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="momentJs">
+<meta property="og:url" content="http://yoursite.com/2020/07/30/momentJs/index.html">
+<meta property="og:site_name" content="DaliBlogs">
+<meta property="og:description" content="前言 UTC、GMT、时间戳之间的关系 时区 世界时区的划分以本初子午线为标准，向东12个时区，向西12个时区，子午线所在区为0时区，东十二区和西十二区重合，所以一共是24个时区。  GMT和UTC GMT： 即格林威治时间（Greenwich Mean Time），也是0时区的标准时间。指太阳横穿格林威治子午线（本初子午线）时的时间。但由于地球自转不均匀不规则，导致GMT不精确，现在已经不再作为">
+<meta property="article:published_time" content="2020-07-30T07:37:24.000Z">
+<meta property="article:modified_time" content="2020-07-30T07:43:16.057Z">
+<meta property="article:author" content="Dali">
+<meta property="article:tag" content="插件">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="moment">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/07/30/momentJs/"/>
+
+
+
+
+
+  <title>momentJs | DaliBlogs</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DaliBlogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/30/momentJs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">momentJs</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-30T15:37:24+08:00">
+                2020-07-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/moment/" itemprop="url" rel="index">
+                    <span itemprop="name">moment</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul>
+<li><p>UTC、GMT、时间戳之间的关系</p>
+<p>时区</p>
+<p>世界时区的划分以本初子午线为标准，向东12个时区，向西12个时区，子午线所在区为0时区，东十二区和西十二区重合，所以一共是24个时区。</p>
+</li>
+<li><p>GMT和UTC</p>
+<p>GMT： 即格林威治时间（Greenwich Mean Time），也是0时区的标准时间。指太阳横穿格林威治子午线（本初子午线）时的时间。但由于地球自转不均匀不规则，导致GMT不精确，现在已经不再作为世界标准时间使用。</p>
+<p>UTC： 即协调世界时间（Coordinated Universal Time）。UTC是以原子时秒长为基础，在时刻上尽量接近于GMT的一种时间计量系统。UTC现在作为世界标准时间使用。</p>
+<p>所以，UTC与GMT基本上等同，误差不超过0.9秒。</p>
+</li>
+<li><p>时间戳</p>
+<p>UNIX时间戳：是从UTC时间1970年1月1日起到现在的秒数，不考虑闰秒，一天有86400秒，它是和时区无关的，无论在地球上的那个角落，同一时刻，UNIX时间戳都是一样的，计算机的本地时间就是根据 Unix时间戳 + 时区差 转换而来的。</p>
+</li>
+<li><p>本地时间</p>
+<p>本地时间 = UTC + 时区差</p>
+<p>时区差：东为正，西为负。在此，把东八区时区差记为 +0800， UTC 是标准时间参照，GMT（格林威治时间）、CST（北京时间）、PST（太平洋时间）等等是具体的时区，兑换如下：</p>
+<p>GMT: UTC +0    =    GMT: GMT +0CST: UTC +8    =    CST: GMT +8PST: UTC -8    =    PST: GMT -8</p>
+</li>
+</ul>
+<a id="more"></a>
+
+<p>###Moment</p>
+<p>安装webpack</p>
+<p>npm install moment</p>
+<p>main.js 挂载</p>
+<p>import moment from ‘moment’//导入文件</p>
+<p>Vue.prototype.$moment = moment;//赋值使用</p>
+<p>国际化，设置为简体中文，中文的星期是以星期一开始</p>
+<p>moment.locale(“zh-cn”);</p>
+<p>常用使用方法</p>
+<p>获取时间</p>
+<ul>
+<li>Start of Time</li>
+</ul>
+<p>moment().startOf(String)</p>
+<ul>
+<li><ul>
+<li>获取今天0时0分0秒</li>
+</ul>
+</li>
+</ul>
+<p>moment().startOf(‘day’)</p>
+<ul>
+<li><ul>
+<li>获取本周第一天(周日)0时0分0秒</li>
+</ul>
+</li>
+</ul>
+<p>moment().startOf(‘week’)</p>
+<ul>
+<li><ul>
+<li>获取本周周一0时0分0秒</li>
+</ul>
+</li>
+</ul>
+<p>moment().startOf(‘isoWeek’)</p>
+<ul>
+<li><ul>
+<li>获取当前月第一天0时0分0秒</li>
+</ul>
+</li>
+</ul>
+<p>moment().startOf(‘month’)</p>
+<ul>
+<li>End of Time</li>
+</ul>
+<p>moment().endOf(String)</p>
+<ul>
+<li><ul>
+<li>获取今天23时59分59秒</li>
+</ul>
+</li>
+</ul>
+<p>moment().endOf(‘day’)</p>
+<ul>
+<li><ul>
+<li>获取本周最后一天(周六)23时59分59秒</li>
+</ul>
+</li>
+</ul>
+<p>moment().endOf(‘week’)</p>
+<ul>
+<li><ul>
+<li>获取本周周日23时59分59秒</li>
+</ul>
+</li>
+</ul>
+<p>moment().endOf(‘isoWeek’)</p>
+<ul>
+<li><ul>
+<li>获取当前月最后一天23时59分59秒</li>
+</ul>
+</li>
+</ul>
+<p>moment().endOf(‘month’)</p>
+<ul>
+<li>Days in Month</li>
+</ul>
+<p>moment().daysInMonth()</p>
+<ul>
+<li><ul>
+<li>获取当前月的总天数</li>
+</ul>
+</li>
+</ul>
+<p>moment().daysInMonth() </p>
+<ul>
+<li>Timestamp</li>
+</ul>
+<ul>
+<li><ul>
+<li>获取时间戳(以秒为单位)</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li><ol>
+<li>moment().format(‘X’) // 返回值为字符串类型</li>
+<li>moment().unix() // 返回值为数值型</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li>获取时间戳(以毫秒为单位)</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li><ol>
+<li>moment().format(‘x’) // 返回值为字符串类型</li>
+<li>moment().valueOf() // 返回值为数值型</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Get Time</li>
+</ul>
+<ul>
+<li><ul>
+<li>获取年份</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li><ol>
+<li>moment().year()</li>
+<li>moment().get(‘year’)</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li>获取月份</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li><ol>
+<li>moment().month() (0~11, 0: January, 11: December)</li>
+<li>moment().get(‘month’)</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li>获取一个月中的某一天</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li><ol>
+<li>moment().date()</li>
+<li>moment().get(‘date’)</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li>获取一个星期中的某一天</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li><ol>
+<li>moment().day() (0~6, 0: Sunday, 6: Saturday)</li>
+<li>moment().weekday() (0~6, 0: Sunday, 6: Saturday)</li>
+<li>moment().isoWeekday() (1~7, 1: Monday, 7: Sunday)</li>
+<li>moment().get(‘day’)</li>
+<li>mment().get(‘weekday’)</li>
+<li>moment().get(‘isoWeekday’)</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li>获取小时</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li><ol>
+<li>moment().hours()</li>
+<li>moment().get(‘hours’)</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li>获取分钟</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li><ol>
+<li>moment().minutes()</li>
+<li>moment().get(‘minutes’)</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li>获取秒数</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li><ol>
+<li>moment().seconds()</li>
+<li>moment().get(‘seconds’)</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li>获取当前的年月日时分秒</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li><ol>
+<li>moment().toArray() // [years, months, date, hours, minutes, seconds, milliseconds]</li>
+<li>moment().toObject() // {years: xxxx, months: x, date: xx …}</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<p>设置时间</p>
+<ul>
+<li>Set Time</li>
+</ul>
+<ul>
+<li><ol>
+<li>moment().year(Number), moment().month(Number)…</li>
+<li>moment().set(String, Int)</li>
+<li>moment().set(Object)</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li>设置年份</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li><ol>
+<li>moment().year(2019)</li>
+<li>moment().set(‘year’, 2019)</li>
+<li>moment().set({year: 2019})</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li>设置月份</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li><ol>
+<li>moment().month(11) (0~11, 0: January, 11: December)</li>
+<li>moment().set(‘month’, 11) </li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li>设置某个月中的某一天</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li><ol>
+<li>moment().date(15)</li>
+<li>moment().set(‘date’, 15)</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li>设置某个星期中的某一天</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li><ol>
+<li>moment().weekday(0) // 设置日期为本周第一天（周日）</li>
+<li>moment().isoWeekday(1) // 设置日期为本周周一</li>
+<li>moment().set(‘weekday’, 0)</li>
+<li>moment().set(‘isoWeekday’, 1)</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li>设置小时</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li><ol>
+<li>moment().hours(12)</li>
+<li>moment().set(‘hours’, 12)</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li>设置分钟</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li><ol>
+<li>moment().minutes(30)</li>
+<li>moment().set(‘minutes’, 30)</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li>设置秒数</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li><ol>
+<li>moment().seconds(30)</li>
+<li>moment().set(‘seconds’, 30)</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Add Time（通过增加时间来改变原始的 moment，传入要增加的时间的键、以及要增加的数量）</li>
+</ul>
+<ul>
+<li><ol>
+<li>moment().add(Number, String)</li>
+<li>moment().add(Object)</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li>增加年份</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li><ol>
+<li>moment().add(1, ‘years’)</li>
+<li>moment().add({years: 1})</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li>增加月份</li>
+</ul>
+</li>
+</ul>
+<p>moment().add(1, ‘months’)</p>
+<ul>
+<li><ul>
+<li>增加日期</li>
+</ul>
+</li>
+</ul>
+<p>moment().add(1, ‘days’)</p>
+<ul>
+<li><ul>
+<li>增加星期</li>
+</ul>
+</li>
+</ul>
+<p>moment().add(1, ‘weeks’)</p>
+<ul>
+<li><ul>
+<li>增加小时</li>
+</ul>
+</li>
+</ul>
+<p>moment().add(1, ‘hours’)</p>
+<ul>
+<li><ul>
+<li>增加分钟</li>
+</ul>
+</li>
+</ul>
+<p>moment().add(1, ‘minutes’)</p>
+<ul>
+<li><ul>
+<li>增加秒数</li>
+</ul>
+</li>
+</ul>
+<p>moment().add(1, ‘seconds’)</p>
+<ul>
+<li>Subtract Time(通过减去时间来改变原始的 moment)</li>
+</ul>
+<ul>
+<li><ol>
+<li>moment().subtract(Number, String)</li>
+<li>moment().subtract(Object)</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li>减去年份</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li><ol>
+<li>moment().subtract(1, ‘years’)</li>
+<li>moment().subtract({years: 1})</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li>减去月份</li>
+</ul>
+</li>
+</ul>
+<p>moment().subtract(1, ‘months’)</p>
+<ul>
+<li><ul>
+<li>减去日期</li>
+</ul>
+</li>
+</ul>
+<p>moment().subtract(1, ‘days’)</p>
+<ul>
+<li><ul>
+<li>减去星期</li>
+</ul>
+</li>
+</ul>
+<p>moment().subtract(1, ‘weeks’)</p>
+<ul>
+<li><ul>
+<li>减去小时</li>
+</ul>
+</li>
+</ul>
+<p>moment().subtract(1, ‘hours’)</p>
+<ul>
+<li><ul>
+<li>减去分钟</li>
+</ul>
+</li>
+</ul>
+<p>moment().subtract(1, ‘minutes’)</p>
+<ul>
+<li><ul>
+<li>减去秒数</li>
+</ul>
+</li>
+</ul>
+<p>moment().subtract(1, ‘seconds’)</p>
+<p>格式化时间</p>
+<ul>
+<li>Format Time</li>
+</ul>
+<ul>
+<li><ol>
+<li>moment().format()</li>
+<li>moment().format(String)</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li>格式化年月日： ‘xxxx年xx月xx日’</li>
+</ul>
+</li>
+</ul>
+<p>moment().format(‘YYYY年MM月DD日’)</p>
+<ul>
+<li><ul>
+<li>格式化年月日： ‘xxxx-xx-xx’</li>
+</ul>
+</li>
+</ul>
+<p>moment().format(‘YYYY-MM-DD’)</p>
+<ul>
+<li><ul>
+<li>格式化时分秒(24小时制)： ‘xx时xx分xx秒’</li>
+</ul>
+</li>
+</ul>
+<p>moment().format(‘HH时mm分ss秒’)</p>
+<ul>
+<li><ul>
+<li>格式化时分秒(12小时制)：’xx:xx:xx am/pm’</li>
+</ul>
+</li>
+</ul>
+<p>moment().format(‘hh:mm:ss a’)</p>
+<ul>
+<li><ul>
+<li>格式化时间戳(以秒为单位)</li>
+</ul>
+</li>
+</ul>
+<p>moment().format(‘X’) // 返回值为字符串类型</p>
+<ul>
+<li><ul>
+<li>格式化时间戳(以毫秒为单位)</li>
+</ul>
+</li>
+</ul>
+<p>moment().format(‘x’) // 返回值为字符串类型</p>
+<p>比较时间</p>
+<ul>
+<li>Difference</li>
+</ul>
+<p>moment().diff(Moment|String|Number|Date|Array)</p>
+<ul>
+<li><ul>
+<li>获取两个日期之间的时间差</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><ul>
+<li><ol>
+<li>let start_date = moment().subtract(1, ‘weeks’)</li>
+<li>let end_date = moment()</li>
+<li></li>
+<li>end_date.diff(start_date) // 返回毫秒数</li>
+<li></li>
+<li>end_date.diff(start_date, ‘months’) // 0</li>
+<li>end_date.diff(start_date, ‘weeks’) // 1</li>
+<li>end_date.diff(start_date, ‘days’) // 7</li>
+<li>start_date.diff(end_date, ‘days’) // -7</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<p>将毫秒数转为时分秒</p>
+<p>const msTime = 4800000;        //80分钟 </p>
+<p>moment.duration(msTime).hours();       //转为小时，值为1</p>
+<p>moment.duration(msTime).minutes();     //转为分钟，值为20</p>
+<p>moment.duration(msTime).seconds();     //转为秒，值为0</p>
+<p>转为其他单位：</p>
+<p>moment.duration(msTime, ‘seconds’);        //转为秒</p>
+<p>moment.duration(msTime, ‘minutes’);        //转为分</p>
+<p>moment.duration(msTime, ‘hours’);          //转为小时</p>
+<p>moment.duration(msTime, ‘days’);           //转为天</p>
+<p>moment.duration(msTime, ‘weeks’);          //转为周</p>
+<p>moment.duration(msTime, ‘months’);         //转为月</p>
+<p>moment.duration(msTime, ‘years’);          //转为年</p>
+<ol start="10">
+<li>判断一个日期是否在两个日期之前  isBetween</li>
+</ol>
+<p>语法： this.moment().isBetween(moment-like, moment-like, String, String);</p>
+<p>a. 不包含起始这两个日期（只有两个参数）   ==&gt;&gt; 中文网只有两个参数</p>
+<p>this.moment(‘2010-10-20’).isBetween(‘2010-10-19’, ‘2010-10-25’); // true</p>
+<p>this.moment(‘2010-10-19’).isBetween(‘2010-10-19’, ‘2010-10-25’); // false</p>
+<p>this.moment(‘2010-10-25’).isBetween(‘2010-10-19’, ‘2010-10-25’); // false</p>
+<p>b. 自定义是否包含起始日期（四个参数，主要是第四个参数）   ==&gt;&gt; 英文网才有四个参数</p>
+<p>第三个参数，固定为null；</p>
+<p>第四个参数，字符串，( ) 表示不包含，[ ] 表示包含。右括号制开始日期，右括号控制结束日期</p>
+<p>this.moment(‘2016-10-30’).isBetween(‘2016-10-30’, ‘2016-12-30’, null, ‘()’); //false</p>
+<p>this.moment(‘2016-10-30’).isBetween(‘2016-10-30’, ‘2016-12-30’, null, ‘[)’); //true</p>
+<p>this.moment(‘2016-10-30’).isBetween(‘2016-01-01’, ‘2016-10-30’, null, ‘()’); //false</p>
+<p>this.moment(‘2016-10-30’).isBetween(‘2016-01-01’, ‘2016-10-30’, null, ‘(]’); //true</p>
+<p>this.moment(‘2016-10-30’).isBetween(‘2016-10-30’, ‘2016-10-30’, null, ‘[]’); //true</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%8F%92%E4%BB%B6/" rel="tag"># 插件</a>
+          
+            <a href="/tags/js/" rel="tag"># js</a>
+          
+            <a href="/tags/moment/" rel="tag"># moment</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/30/mock%E8%AF%AD%E6%B3%95/" rel="next" title="mock语法">
+                <i class="fa fa-chevron-left"></i> mock语法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/07/30/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%96%B9%E6%B3%95/" rel="prev" title="字符串方法">
+                字符串方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="Dali" />
+            
+              <p class="site-author-name" itemprop="name">Dali</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">69</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dali</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

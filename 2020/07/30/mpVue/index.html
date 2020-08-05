@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="mpvue," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="DaliBlogs" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="前段时间，美团开源了mpvue这个项目，使得我们又多了一种用来开发小程序的框架选项。由于mpvue框架是完全基于Vue框架的（重写了其runtime和compiler），因此在用法上面是高度和Vue一致的（某些功能由于受限于小程序环境本身的原因而不能使用），这给使用过Vue开发Web应用的前端开发者提供了极低的切换门槛来开发小程序。 如果之前还未曾用过Vue这个框架的话，建议你可以快速浏览一下Vu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mpVue">
+<meta property="og:url" content="http://yoursite.com/2020/07/30/mpVue/index.html">
+<meta property="og:site_name" content="DaliBlogs">
+<meta property="og:description" content="前段时间，美团开源了mpvue这个项目，使得我们又多了一种用来开发小程序的框架选项。由于mpvue框架是完全基于Vue框架的（重写了其runtime和compiler），因此在用法上面是高度和Vue一致的（某些功能由于受限于小程序环境本身的原因而不能使用），这给使用过Vue开发Web应用的前端开发者提供了极低的切换门槛来开发小程序。 如果之前还未曾用过Vue这个框架的话，建议你可以快速浏览一下Vu">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3407939-0d192ef619fc6cbc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3407939-3572faed43dbdab8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/668/format/webp">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3407939-3ceb36e7472d3ebb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3407939-b2d50fa4a653930e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/818/format/webp">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3407939-fbc41e23b7cb9995.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/938/format/webp">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3407939-9b492a2bf48c8162.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/878/format/webp">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3407939-db653d8b653c1824.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/542/format/webp">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3407939-63a928c25e48b726.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3407939-c8f38ba44e45af23.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/377/format/webp">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3407939-fc10dbe6b6f4c08e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/379/format/webp">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3407939-af53245a3d9a569a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/381/format/webp">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3407939-4a8524c7edf600c1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/736/format/webp">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3407939-aa5b58bdb9a7949b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/738/format/webp">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3407939-37a8bffb4252c0ff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/740/format/webp">
+<meta property="article:published_time" content="2020-07-30T06:28:18.000Z">
+<meta property="article:modified_time" content="2020-07-30T10:14:50.049Z">
+<meta property="article:author" content="Dali">
+<meta property="article:tag" content="mpvue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/3407939-0d192ef619fc6cbc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/07/30/mpVue/"/>
+
+
+
+
+
+  <title>mpVue | DaliBlogs</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DaliBlogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/30/mpVue/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">mpVue</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-30T14:28:18+08:00">
+                2020-07-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mpvue/" itemprop="url" rel="index">
+                    <span itemprop="name">mpvue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>前段时间，美团开源了<code>mpvue</code>这个项目，使得我们又多了一种用来开发小程序的框架选项。由于<code>mpvue</code>框架是完全基于Vue框架的（重写了其runtime和compiler），因此在用法上面是高度和Vue一致的（某些功能由于受限于小程序环境本身的原因而不能使用），这给使用过Vue开发Web应用的前端开发者提供了极低的切换门槛来开发小程序。</p>
+<p>如果之前还未曾用过Vue这个框架的话，建议你可以快速浏览一下Vue的官方文档(<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fcn.vuejs.org%2Fv2%2Fguide%2F" target="_blank" rel="noopener">https://cn.vuejs.org/v2/guide/</a>)，或者通过下面的几个视频教程来了解下Vue的基本用法。</p>
+<blockquote>
+<p>Vue基础教程视频：<br><a href="https://links.jianshu.com/go?to=https%3A%2F%2Fwww.bilibili.com%2Fvideo%2Fav25142267" target="_blank" rel="noopener">https://www.bilibili.com/video/av25142267</a><br><a href="https://links.jianshu.com/go?to=https%3A%2F%2Fwww.bilibili.com%2Fvideo%2Fav25143408" target="_blank" rel="noopener">https://www.bilibili.com/video/av25143408</a><br><a href="https://links.jianshu.com/go?to=https%3A%2F%2Fwww.bilibili.com%2Fvideo%2Fav25144006" target="_blank" rel="noopener">https://www.bilibili.com/video/av25144006</a><br><a href="https://links.jianshu.com/go?to=https%3A%2F%2Fwww.bilibili.com%2Fvideo%2Fav25148349" target="_blank" rel="noopener">https://www.bilibili.com/video/av25148349</a><br><a href="https://links.jianshu.com/go?to=https%3A%2F%2Fwww.bilibili.com%2Fvideo%2Fav25148832" target="_blank" rel="noopener">https://www.bilibili.com/video/av25148832</a><br><a href="https://links.jianshu.com/go?to=https%3A%2F%2Fwww.bilibili.com%2Fvideo%2Fav25649895" target="_blank" rel="noopener">https://www.bilibili.com/video/av25649895</a></p>
+</blockquote>
+<a id="more"></a>
+
+<h4 id="起手式：必要的开发环境"><a href="#起手式：必要的开发环境" class="headerlink" title="起手式：必要的开发环境"></a>起手式：必要的开发环境</h4><p>工欲善其事必先利其器！在开始写代码之前，请确保你已经安装了必要的开发环境和工具，以下是几个必需的和可选的工具：</p>
+<p>1）node.js<br>现在，前端工具链基本都依赖Node.js，所以请率先安装它吧。</p>
+<p>下载地址：<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fnodejs.org%2Fen%2Fdownload%2F" target="_blank" rel="noopener">https://nodejs.org/en/download/</a></p>
+<p>安装完成后，打开你的命令行输入如下命令，验证安装是否成功：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">node --version</span><br><span class="line">&#x2F;&#x2F;成功的话输出类似：v10.6.0</span><br><span class="line"></span><br><span class="line">npm --version</span><br><span class="line">&#x2F;&#x2F;成功的话输出类似：6.1.0</span><br></pre></td></tr></table></figure>
+
+<p>然后，我们需要执行以下命令，将npm的下载源切换到国内淘宝的镜像，以提高下载时的速度和成功率：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm set registry https:&#x2F;&#x2F;registry.npm.taobao.org&#x2F;</span><br></pre></td></tr></table></figure>
+
+<p>2）vue-cli<br><code>vue-cli</code>是一个vue专用的项目脚手架工具，可以用于方便的创建vue项目骨架代码，包括我们要讲到的mpvue的项目代码。我们可以通过安装node.js后里面包含的npm工具来安装vue-cli，在命令行输入如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue-cli -g</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后，输入如下命令进行验证：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">vue</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 成功的话会输出如下内容：</span><br><span class="line">&#x2F;&#x2F; Usage: vue &lt;command&gt; [options]</span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; Options:</span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F;    -V, --version  output the version number</span><br><span class="line">&#x2F;&#x2F;    -h, --help     output usage information</span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F; Commands:</span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">&#x2F;&#x2F;    init           generate a new project from a template</span><br><span class="line">&#x2F;&#x2F;    list           list available official templates</span><br><span class="line">&#x2F;&#x2F;    build          prototype a new project</span><br><span class="line">&#x2F;&#x2F;    create         (for v3 warning only)</span><br><span class="line">&#x2F;&#x2F;    help [cmd]     display help for [cmd]</span><br></pre></td></tr></table></figure>
+
+<p>3）微信开发者工具<br>这个工具是开发、调试和模拟运行微信小程序的最核心的工具了，所以必须安装。</p>
+<p>下载地址：<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fdevelopers.weixin.qq.com%2Fminiprogram%2Fdev%2Fdevtools%2Fdownload.html" target="_blank" rel="noopener">https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html</a></p>
+<p>4）Visual Studio Code + Vetur<br>Visual Studio Code（简称vscode）是现在非常流行的一个轻量级代码编辑器，拥有非常多好用的辅助开发插件，在我的文章中我都会使用这个编辑器来编辑代码。当然，好用的代码编辑器有很多，比如Sublime Text、WebStorm等，同样可以达到我们的开发目的，你也尽管用你自己最喜欢的代码编辑器来写代码就行了。</p>
+<p>下载地址：<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fcode.visualstudio.com" target="_blank" rel="noopener">https://code.visualstudio.com</a></p>
+<p>安装完vscode后，在它的插件管理器中，查找<code>Vetur</code>并安装，然后重启一下vscode后，插件即生效：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3407939-0d192ef619fc6cbc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp" alt="img"></p>
+<p>安装Vetur插件</p>
+<p>Vetur是一款可以提供Vue语法高亮、语法检查和代码快捷输入等功能的插件，可以为我们的开发过程提供很多便利。</p>
+<h4 id="创建第一个基于mpvue的小程序项目代码"><a href="#创建第一个基于mpvue的小程序项目代码" class="headerlink" title="创建第一个基于mpvue的小程序项目代码"></a>创建第一个基于mpvue的小程序项目代码</h4><p>花了点时间装好了必要的开发环境，下面我们就来创建我们的第一个mpvue小程序项目。这里将用到前面已安装的vue-cli：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue init mpvue&#x2F;mpvue-quickstart firstapp</span><br></pre></td></tr></table></figure>
+
+<p>命令行将一步步的引导我们选择或填写项目的配置信息，如果你还不太明白这些内容的含义，可以先直接全部按回车：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">? Project name firstapp</span><br><span class="line">? wxmp appid touristappid</span><br><span class="line">? Project description A Mpvue project</span><br><span class="line">? Author kevinzhang &lt;kevin.zhang@moredist.com&gt;</span><br><span class="line">? Vue build runtime</span><br><span class="line">? Use Vuex? Yes</span><br><span class="line">? Use ESLint to lint your code? Yes</span><br><span class="line">? Pick an ESLint preset Standard</span><br><span class="line">? 小程序测试，敬请关注最新微信开发者工具的“测试报告”功能 </span><br><span class="line"></span><br><span class="line">   vue-cli · Generated &quot;firstapp&quot;.</span><br><span class="line"></span><br><span class="line">   To get started:</span><br><span class="line">   </span><br><span class="line">     cd firstapp</span><br><span class="line">     npm install</span><br><span class="line">     npm run dev</span><br><span class="line">   </span><br><span class="line">   Documentation can be found at http:&#x2F;&#x2F;mpvue.com</span><br></pre></td></tr></table></figure>
+
+<p>这个过程vue-cli主要是先从远程的代码仓库中下载了一份注册名为<code>mpvue/mpvue-quickstart</code>的模板代码，然后根据开发者在命令行提示过程中输入的信息，生成一份经过配置后的代码。</p>
+<p>这份代码暂时还运行不起来，因为它还缺少依赖的库，我们需要执行以下命令进行依赖库的安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd firstapp </span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<p>经过几分钟的下载安装，依赖库安装到了firstapp目录下，你可以看到该目录下多出了一个node_modules目录。</p>
+<p>然后，执行命令让这个代码运行起来，进入开发模式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+
+<p>成功运行后，这个项目代码就进入开发模式，一旦有源代码发生修改，就会触发自动编译。因为mpvue使用的是Vue + HTML Web的开发方式开发小程序，它最终还是需要被转换成小程序的代码才可以在小程序环境运行，所以这里的自动编译的目的就是要把Web代码编译成小程序代码。编译后的代码会在<code>dist</code>目录下：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3407939-3572faed43dbdab8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/668/format/webp" alt="img"></p>
+<h4 id="运行并查看结果"><a href="#运行并查看结果" class="headerlink" title="运行并查看结果"></a>运行并查看结果</h4><p>上面的步骤中，我们开启开发模式后，其实并不能看到小程序的执行效果，要真正看小程序的运行界面的话，我们还是要借助微信开发者工具。</p>
+<p>打开微信开发者工具，选择新增项目：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3407939-3ceb36e7472d3ebb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp" alt="img"></p>
+<p>项目目录选择指向firstapp目录：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3407939-b2d50fa4a653930e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/818/format/webp" alt="img"></p>
+<p>点击“确定”按钮，进入小程序开发主界面，在左边的小程序模拟器中就能看到firstapp小程序的执行结果了：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3407939-fbc41e23b7cb9995.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/938/format/webp" alt="img"></p>
+<p>【提醒】记得在微信开发者工具的菜单》设置 》编辑设置 中，将“保存时自动编译小程序”勾选上，这样当mpvue的代码自动编译完成后，模拟器才会自动刷新界面。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3407939-9b492a2bf48c8162.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/878/format/webp" alt="img"></p>
+<p>在Visual Studio Code里面打开项目文件夹，我们可以看到类似如下的文件结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">firstapp</span><br><span class="line">├── package.json</span><br><span class="line">├── project.config.json       </span><br><span class="line">├── static            </span><br><span class="line">├── src</span><br><span class="line">│    ├── components</span><br><span class="line">│    ├── pages</span><br><span class="line">│    ├── utils</span><br><span class="line">│    ├── App.vue</span><br><span class="line">│    └── main.js</span><br><span class="line">├── config</span><br><span class="line">│   ├── index.js</span><br><span class="line">│   ├── dev.env.js</span><br><span class="line">│   └── prod.env.js</span><br><span class="line">└── build</span><br></pre></td></tr></table></figure>
+
+<h6 id="1）package-json文件"><a href="#1）package-json文件" class="headerlink" title="1）package.json文件"></a>1）package.json文件</h6><p>package.json是项目的主配置文件，里面包含了mpvue项目的基本描述信息、项目所依赖的各种第三方库以及版本信息、以及可执行的脚本信息。</p>
+<p>我们看到该文件中的<code>scripts</code>部分配置了4个可执行的命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;dev&quot;: &quot;node build&#x2F;dev-server.js&quot;,</span><br><span class="line">&quot;start&quot;: &quot;node build&#x2F;dev-server.js&quot;,</span><br><span class="line">&quot;build&quot;: &quot;node build&#x2F;build.js&quot;,</span><br><span class="line">&quot;lint&quot;: &quot;eslint --ext .js,.vue src&quot;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>dev</code>和<code>start</code>是两个等价的命令，执行其中之一都可以将项目以开发模式启动。执行方式是：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm start</span><br><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>lint</code>指令是使用ESLint来进行代码语法和格式检查，以及修复一些可自动修复的问题。执行方式是：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm run lint  #检查语法和格式</span><br><span class="line">npm run lint -- --fix #检查代码语法和格式，并修复可自动修复的问题</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>build</code>指令是用于生成发布用代码的，它会对代码进行一些压缩优化处理。当小程序开发完成后，将要提交审核时，请使用<code>build</code>来生成发布的代码。</li>
+</ul>
+<h6 id="2）project-config-json文件"><a href="#2）project-config-json文件" class="headerlink" title="2）project.config.json文件"></a>2）project.config.json文件</h6><p><code>project.config.json</code>文件是用于管理微信开发者工具的小程序项目的配置文件，其中记录了小程序的appid、代码主目录、以及编译选项等等信息，在微信开发者工具中导入小程序项目的时候主要是通过该配置文件读取和写入配置信息。</p>
+<h6 id="3）static目录"><a href="#3）static目录" class="headerlink" title="3）static目录"></a>3）static目录</h6><p><code>static</code>目录可以用于存放各种小程序本地静态资源，如图片、文本文件等。代码中可通过相对路径或绝对路径进行访问， 如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src&#x3D;&quot;&#x2F;static&#x2F;button.png&quot; &#x2F;&gt;</span><br><span class="line">&lt;img src&#x3D;&quot;..&#x2F;..&#x2F;..&#x2F;static&#x2F;button.png&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
+<h6 id="4）build目录"><a href="#4）build目录" class="headerlink" title="4）build目录"></a>4）build目录</h6><p><code>build</code>目录下是一些用于项目编译打包的node.js脚本和webpack配置文件。一般情况下不需要修改这些文件。</p>
+<h6 id="5）config目录"><a href="#5）config目录" class="headerlink" title="5）config目录"></a>5）config目录</h6><p><code>config</code>目录下包含了用于开发和生产环境下的不同配置，<code>dev.env.js</code>用于开发环境，<code>prod.env.js</code>用于生产环境，你可以将开发阶段和生产阶段不一样的信息（如后台API的url地址等）配置到这两个文件中去，然后在代码中以变量的形式进行引用。例如，这2个文件中分别配置了不同的<code>API_BASE_URL</code>值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; dev.env.js</span><br><span class="line">module.exports &#x3D; merge(prodEnv, &#123;</span><br><span class="line">  NODE_ENV: &#39;&quot;development&quot;&#39;,</span><br><span class="line">  API_BASE_URL: &#39;&quot;http:&#x2F;&#x2F;127.0.0.1:8080&#x2F;api&quot;&#39;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; prod.env.js</span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  NODE_ENV: &#39;&quot;production&quot;&#39;,</span><br><span class="line">  API_BASE_URL: &#39;&quot;https:&#x2F;&#x2F;www.my-domain.com&#x2F;api&quot;&#39;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>那你在编写请求后端API的代码时，你就可以使用这个环境配置，像这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const baseURL &#x3D; process.env.API_BASE_URL</span><br><span class="line">wx.request(&#123;</span><br><span class="line">  url: &#96;$&#123;baseURL&#125;&#x2F;products&#96;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>这样一来，开发阶段和上线发布阶段的环境可以清楚的区分开来。</p>
+<h6 id="5）src目录"><a href="#5）src目录" class="headerlink" title="5）src目录"></a>5）src目录</h6><p><code>src</code>目录是我们主要进行小程序功能编写的地方。默认生成的demo代码为我们创建了几个子目录：<code>components</code>、<code>pages</code>和<code>utils</code>，还有2个文件：<code>App.vue</code>和<code>main.js</code>。其实它们都不是必须的，可以按照自己的风格进行定义和配置。不过默认创建的这个结构基本上是一个约定俗成的结构了，比较易于理解，所以我们可以遵循这个结构进行开发。</p>
+<ul>
+<li>components：在实际开发中，我们可以尽量将界面上可复用的部分，提取成vue组件放入该目录</li>
+<li>pages：存放小程序的页面。请遵循每个小程序页面放入一个单独子目录的组织形式</li>
+<li>utils：可选（可删）。可以将代码中一些公用工具函数组织成模块放入该目录下</li>
+<li>可新建其他目录，存放你希望组织起来的代码。比如公用的业务逻辑代码、请求后台API的代码等等</li>
+<li>main.js + App.vue：这两个是入口文件，相当于原生小程序框架中的<code>app.json</code>和<code>app.js</code>的复合体。</li>
+</ul>
+<p>为了清楚起见，我们将要对vue-cli生成的代码做一个清理工作，具体如下：</p>
+<ul>
+<li>删掉<code>src/components</code>、<code>src/pages</code>、<code>src/utils</code>三个目录下的所有代码文件</li>
+<li>将<code>src/App.vue</code>文件中的内容重置成：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>将<code>src/main.js</code>文件中的内容重置成：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &#39;vue&#39;</span><br><span class="line">import App from &#39;.&#x2F;App&#39;</span><br><span class="line"></span><br><span class="line">Vue.config.productionTip &#x3D; false</span><br><span class="line">App.mpType &#x3D; &#39;app&#39;</span><br><span class="line"></span><br><span class="line">const app &#x3D; new Vue(App)</span><br><span class="line">app.$mount()</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  config: &#123;</span><br><span class="line">    pages: [],</span><br><span class="line">    window: &#123;</span><br><span class="line">      backgroundTextStyle: &#39;light&#39;,</span><br><span class="line">      navigationBarBackgroundColor: &#39;#fff&#39;,</span><br><span class="line">      navigationBarTitleText: &#39;第一个小程序&#39;,</span><br><span class="line">      navigationBarTextStyle: &#39;black&#39;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>至此，我们的代码就成了一个小程序页面都没有的初始状态。</p>
+<h4 id="程序入口"><a href="#程序入口" class="headerlink" title="程序入口"></a>程序入口</h4><p>学习过使用小程序原生框架开发的朋友都知道，一个小程序的入口应该包含这三个最重要的部分：<br>1）app.json<br>2）app.js<br>3）首页</p>
+<p>有了这三个部分，才能成功运行起一个最简单的小程序。</p>
+<h6 id="app-json"><a href="#app-json" class="headerlink" title="app.json"></a>app.json</h6><p><code>app.json</code>是小程序的全局配置文件，其包含了小程序的页面文件路径配置、窗口的全局样式信息、底部选项卡式菜单栏的配置，以及一些小程序网络超时的配置等等。<code>app.json</code>的配置详情我们可以<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fdevelopers.weixin.qq.com%2Fminiprogram%2Fdev%2Fframework%2Fconfig.html" target="_blank" rel="noopener">查阅参考小程序的官方文档来作进一步了解</a>。那么，在mpvue中我们如何来做与之等价的配置呢？</p>
+<p>其实在<code>src/main.js</code>中，我们就可以完整的进行这些信息的配置，具体可以查看该文件的最底部代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  &#x2F;&#x2F; 这部分相当于原生小程序的 app.json</span><br><span class="line">  config: &#123;</span><br><span class="line">    pages: [],</span><br><span class="line">    window: &#123;</span><br><span class="line">      backgroundTextStyle: &#39;light&#39;,</span><br><span class="line">      navigationBarBackgroundColor: &#39;#fff&#39;,</span><br><span class="line">      navigationBarTitleText: &#39;第一个小程序&#39;,</span><br><span class="line">      navigationBarTextStyle: &#39;black&#39;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在该代码中通过<code>export default</code>导出的对象的<code>config</code>属性下的值，就是这些小程序的配置信息了。</p>
+<h6 id="app-js"><a href="#app-js" class="headerlink" title="app.js"></a>app.js</h6><p><code>app.js</code>中包含了小程序的各种原生生命周期方法，如<code>onLaunch</code>、<code>onShow</code>等等。而在mpvue中，它使用了一个简单的Vue组件<code>App.vue</code>来实现等价的功能。我们在这个<code>App.vue</code>组件中可以编写小程序的生命周期方法（通常使用Vue的生命周期方法，但也兼容原生的生命周期方法），也可以在其中加入小程序的全局样式（等价于原生方式下的<code>app.wxss</code>）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">&#x2F;* 这部分相当于原生小程序的 app.js *&#x2F;</span><br><span class="line">export default &#123;</span><br><span class="line">  created () &#123;</span><br><span class="line">    console.log(&#39;miniapp created!!!&#39;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">&#x2F;* 这部分相当于原生小程序的 app.wxss *&#x2F;</span><br><span class="line">.container &#123;</span><br><span class="line">  background-color: #cccccc;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>接着，这个<code>App.vue</code>组件被<code>src/main.js</code>引入并被设置了一个<code>mpType</code>的属性值，其值为<code>app</code>。这个值是为了与后面要讲的小程序页面组件所区分开来，因为小程序页面组件和这个<code>App.vue</code>组件的写法和引入方式是一致的，为了区分两者，需要设置<code>mpType</code>值。引入这个<code>App.vue</code>组件后，会用它作为参数来创建一个<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fcn.vuejs.org%2Fv2%2Fguide%2Finstance.html" target="_blank" rel="noopener">Vue的实例</a>，并调用<code>$mount()</code>方法加载。下面是这个过程的关键代码行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">App.mpType &#x3D; &#39;app&#39;</span><br><span class="line">const app &#x3D; new Vue(App)</span><br><span class="line">app.$mount()</span><br></pre></td></tr></table></figure>
+
+<h6 id="首页、以及其他页面"><a href="#首页、以及其他页面" class="headerlink" title="首页、以及其他页面"></a>首页、以及其他页面</h6><p>每个小程序都需要至少有一个页面，第一个展示的页面被叫做<em>首页</em>。因为前面已经把所有的页面代码都删完了，所以我们现在要新建一个首页。在<code>src/pages</code>目录下，我们新建一个名为<code>index</code>的子目录（请遵循每个页面放入一个子目录的良好习惯），然后在该子目录下，新建2个文件：一个用于实现页面主体功能的<code>index.vue</code>组件，另一个则用于将这个页面组件生成Vue实例并加载的<code>main.js</code>。以后的每一个mpvue页面组件都会拥有这样的结构。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3407939-db653d8b653c1824.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/542/format/webp" alt="img"></p>
+<p>然后在<code>main.js</code>中编写如下代码，非常简单的一段代码，它的功能是引入<code>index.vue</code>并创建Vue实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &#39;vue&#39;</span><br><span class="line">import App from &#39;.&#x2F;index&#39;</span><br><span class="line"></span><br><span class="line">const app &#x3D; new Vue(App)</span><br><span class="line">app.$mount()</span><br></pre></td></tr></table></figure>
+
+<p>当然了，你也可以像在<code>src/main.js</code>中一样去导出一个页面级别的配置，因为小程序的每个页面都可以有一些单独的配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &#39;vue&#39;</span><br><span class="line">import App from &#39;.&#x2F;index&#39;</span><br><span class="line"></span><br><span class="line">const app &#x3D; new Vue(App)</span><br><span class="line">app.$mount()</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  config: &#123;</span><br><span class="line">    &#x2F;&#x2F; 注意，页面级可配置属性相当于只是&#96;src&#x2F;main.js&#96;中配置里的&#96;window&#96;部分</span><br><span class="line">    &quot;navigationBarTitleText&quot;: &quot;文章列表页面&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接着，我们需要实现<code>index.vue</code>页面组件，它的写法是最典型的Vue组件写法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;container&quot; @click&#x3D;&quot;clickHandle&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;message&quot;&gt;&#123;&#123;msg&#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      msg: &#39;Hello&#39;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  methods: &#123;</span><br><span class="line">    clickHandle () &#123;</span><br><span class="line">      this.msg &#x3D; &#39;Clicked!!!!!!&#39;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">.message &#123;</span><br><span class="line">  color: red;</span><br><span class="line">  padding: 10px;</span><br><span class="line">  text-align: center;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，这个组件完全看不到小程序写法的影子，而是全部由Vue开发Web应用的写法来完成：数据绑定、事件处理、scoped局部样式、以及使用HTML标签来构建界面。这样最大化的保持和网页应用开发一致，减少了前端人员切换到小程序的学习理解成本，也为原先使用Vue开发的网页应用移植到小程序平台提供了降低迁移成本的可能。</p>
+<p>模板部分我们通常可以用HTML标签来写，比如<code>div</code>、<code>span</code>等，它们会在编译的时候被自动转换成小程序的原生组件<code>view</code>、<code>text</code>之类；而那些小程序特有的组件如<code>swiper</code>、<code>rich-text</code>等，可以直接在模板中使用。</p>
+<p>在原生小程序的页面（Page）中包含了很多页面的生命周期方法，如<code>onLoad</code>、<code>onUnload</code>、<code>onShow</code>、<code>onHide</code>、<code>onPullDownRefresh</code>等等，mpvue中推荐使用Vue组件生命周期方法，而像<code>onPullDownRefresh</code>、<code>onReachBottom</code>这类特殊功能的生命周期则需直接使用原生的。</p>
+<p>回头再来看，当我们实现了这个<code>index.vue</code>页面组件后，其实还缺最后一个步骤，就是需要将这个页面组件指定为首页。如果我们的小程序只有一个页面的话，其实也可以省略这一步，因为mpvue会自动将<code>src/pages</code>目录下的页面组件路径添加到最终编译出来的小程序配置文件中去（可以打开<code>dist/app.json</code>文件观察一下）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;pages&quot;: [</span><br><span class="line">    &quot;pages&#x2F;index&#x2F;main&quot;</span><br><span class="line">  ],</span><br><span class="line">  &quot;window&quot;: &#123;</span><br><span class="line">    &quot;backgroundTextStyle&quot;: &quot;light&quot;,</span><br><span class="line">    &quot;navigationBarBackgroundColor&quot;: &quot;#fff&quot;,</span><br><span class="line">    &quot;navigationBarTitleText&quot;: &quot;第一个小程序&quot;,</span><br><span class="line">    &quot;navigationBarTextStyle&quot;: &quot;black&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是，大多数情况下我们的小程序会由很多个页面组成，在<code>src/pages</code>目录下编写多个页面组件后，mpvue也会自动把它们都添加进配置文件，但是由于小程序有一个机制：</p>
+<blockquote>
+<p>配置文件中pages数组里的第一个page路径会被当做是首页</p>
+</blockquote>
+<p>如果你期望的首页组件并没有被mpvue添加到第一个路径的话，就不会被当做首页显示。比如有多个页面，并在<code>dist/app.json</code>里生成的是下面的序列，则第一个<code>pages/articles/main</code>页面会被当做首页：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;pages&quot;: [</span><br><span class="line">  &quot;pages&#x2F;articles&#x2F;main&quot;,</span><br><span class="line">  &quot;pages&#x2F;authors&#x2F;main&quot;,</span><br><span class="line">  &quot;pages&#x2F;index&#x2F;main&quot;,</span><br><span class="line">  &quot;pages&#x2F;kickstart&#x2F;main&quot;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>为了解决这种情况，我们需要显式的去指定首页。可以在<code>src/main.js</code>的配置里，加入这样一行配置信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pages: [</span><br><span class="line">  &#39;^pages&#x2F;index&#x2F;main&#39;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>注意：以上配置中指定为首页的路径前面有个<code>^</code>符号。</p>
+<p>加入这行配置之后，<code>pages/index/main</code>总是会在最终生成的<code>dist/app.json</code>中排在第一个位置，成为首页。</p>
+<p>既然<code>mpvue</code>是基于Vue的，那么就没有理由不进一步学习一下Vue最核心的东西：<em>组件</em>。组件系统是Vue应用开发中最具价值的特性之一，在前文中其实我们就已经有在使用组件了，比如<code>App.vue</code>和首页<code>index.vue</code>就是两个Vue组件。</p>
+<p>组件是一种抽象，允许我们使用小型、独立和通常可复用的组件构建大型应用。仔细想想，几乎任意类型的应用界面都可以抽象为一个组件树，若干的小组件可以聚合成一个完整的界面：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3407939-63a928c25e48b726.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp" alt="img"></p>
+<p>一个好的组件系统一定会有这些特点：封装性、复用性、扩展性。对于Vue的组件来说，这几点都算是实现的比较的优秀的。</p>
+<h4 id="组件的封装性"><a href="#组件的封装性" class="headerlink" title="组件的封装性"></a>组件的封装性</h4><p>Vue组件的写法可以避免将属于一个独立逻辑单位的代码散落在各处，可以将界面（DOM）、样式（CSS）、行为（JS）三部分的代码很好的组织在一起（推荐的实践是使用<code>.vue</code>文件）。在设计编写一个组件时，我们要记住的原则就是：</p>
+<blockquote>
+<p>避免向外部暴露过多的东西，只暴露必要的外部交互接口（组件属性、事件、方法等）。</p>
+</blockquote>
+<p>下面我们来在原先的代码基础上，创建一个简单的按钮点击计数器组件，它将实现的功能是：点击按钮并展示已点击按钮次数、点击清零按钮实现点击次数的归零。在<code>src/components</code>目录下，新建一个<code>click-counter.vue</code>组件文件，并编写如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;click-counter&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;counter-num&quot;&gt;次数：&#123;&#123;num&#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;button class&#x3D;&quot;counter-btn&quot; @click&#x3D;&quot;handleClick&quot;&gt;点我呀！&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;button class&#x3D;&quot;counter-reset-btn&quot; @click&#x3D;&quot;handleResetClick&quot;&gt;清零&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      num: 0</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  methods: &#123;</span><br><span class="line">    handleClick() &#123;</span><br><span class="line">      this.num +&#x3D; 1;</span><br><span class="line">    &#125;,</span><br><span class="line">    handleResetClick() &#123;</span><br><span class="line">      this.num &#x3D; 0;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">.click-counter &#123;</span><br><span class="line">  display: flex;</span><br><span class="line">  align-items: center;</span><br><span class="line">  justify-content: center;</span><br><span class="line">  border: 1px solid red;</span><br><span class="line">  background-color: #ffffff;</span><br><span class="line">  padding: 10px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.counter-num,</span><br><span class="line">.counter-btn,</span><br><span class="line">.counter-reset-btn &#123;</span><br><span class="line">  flex: 1;</span><br><span class="line">  margin: 3px;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>编写完这个组件后，我们来尝试在首页组件<code>src/pages/index/index.vue</code>文件中使用它：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;container&quot; @click&#x3D;&quot;clickHandle&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;message&quot;&gt;&#123;&#123;msg&#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;!-- 使用 click-counter 组件 --&gt;</span><br><span class="line">    &lt;click-counter &#x2F;&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">&#x2F;&#x2F; 导入 click-counter 组件</span><br><span class="line">import ClickCounter from &quot;@&#x2F;components&#x2F;click-counter&quot;;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  &#x2F;&#x2F; 声明在当前组件下使用 counter-click 组件</span><br><span class="line">  components: &#123; ClickCounter &#125;,</span><br><span class="line"></span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      msg: &quot;Hello&quot;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  methods: &#123;</span><br><span class="line">    clickHandle() &#123;</span><br><span class="line">      this.msg &#x3D; &quot;Clicked!!!!!!&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">.message &#123;</span><br><span class="line">  color: red;</span><br><span class="line">  padding: 10px;</span><br><span class="line">  text-align: center;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>完成上面两个步骤后，记得重新运行一下命令行<code>npm run dev</code>（注意点：新增文件必须重新运行该命令，编译器不会自动检测新加入的文件）。成功后通过微信开发者工具的模拟器查看，结果界面将会是这样的：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3407939-c8f38ba44e45af23.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/377/format/webp" alt="img"></p>
+<p>点击“点我呀！”按钮，计数器就会累加点击次数并更新界面上的数字；而点击“清零”按钮，则会将统计数字归零。</p>
+<p>回到代码上来看，对于<code>click-counter.vue</code>的使用者<code>index.vue</code>来说，它并不关心太多<code>click-counter.vue</code>的实现细节，引入该组件文件并进行声明，就可以通过标签的形式来使用它了，非常简单明了。而且，这样一个<code>click-counter.vue</code>组件也可以被拿到其他的Vue/mpvue代码中使用，其他使用者也并不需要关注它的实现细节，而只需要关心它能实现什么功能就行了。这就是组件封装带来的好处。</p>
+<p>不过，目前的这个click-counter组件还没有跟它的父组件之间有什么交互或通信，没有体现出“暴露接口”的特性，那让我们来增加点代码，了解下这一特性。首先解释一下我们要实现的功能：组件可以接收一个外部设置的初始点击次数值，在点击“点我呀！”按钮的时候，从这个初始值开始进行累加；并且点击按钮后，可以通知组件的使用者（即父组件）当前的点击统计值。</p>
+<p>修改<code>click-counter.vue</code>的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;click-counter&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;counter-num&quot;&gt;次数：&#123;&#123;num&#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;button class&#x3D;&quot;counter-btn&quot; @click&#x3D;&quot;handleClick&quot;&gt;点我呀！&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;button class&#x3D;&quot;counter-reset-btn&quot; @click&#x3D;&quot;handleResetClick&quot;&gt;清零&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  &#x2F;&#x2F; 增加一个可从外部传入的属性initNum</span><br><span class="line">  props: &#123;</span><br><span class="line">    initNum: &#123;</span><br><span class="line">      type: Number,</span><br><span class="line">      default: 0</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      num: this.initNum &#x2F;&#x2F;使用传入的initNum值作为初始的点击数</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  methods: &#123;</span><br><span class="line">    handleClick() &#123;</span><br><span class="line">      this.num +&#x3D; 1;</span><br><span class="line">      this.notifyNum();</span><br><span class="line">    &#125;,</span><br><span class="line">    handleResetClick() &#123;</span><br><span class="line">      this.num &#x3D; 0;</span><br><span class="line">      this.notifyNum();</span><br><span class="line">    &#125;,</span><br><span class="line">    notifyNum() &#123;</span><br><span class="line">      &#x2F;&#x2F;触发自定义事件 clicknum</span><br><span class="line">      this.$emit(&quot;clicknum&quot;, &#123;</span><br><span class="line">        num: this.num</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">.click-counter &#123;</span><br><span class="line">  display: flex;</span><br><span class="line">  align-items: center;</span><br><span class="line">  justify-content: center;</span><br><span class="line">  border: 1px solid red;</span><br><span class="line">  background-color: #ffffff;</span><br><span class="line">  padding: 10px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.counter-num,</span><br><span class="line">.counter-btn,</span><br><span class="line">.counter-reset-btn &#123;</span><br><span class="line">  flex: 1;</span><br><span class="line">  margin: 3px;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>修改<code>index.vue</code>的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;container&quot; @click&#x3D;&quot;clickHandle&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;message&quot;&gt;&#123;&#123;msg&#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;!-- 使用 click-counter 组件 --&gt;</span><br><span class="line">    &lt;click-counter :init-num&#x3D;&quot;10&quot; @clicknum&#x3D;&quot;handleClickNum&quot; &#x2F;&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">&#x2F;&#x2F; 导入 click-counter 组件</span><br><span class="line">import ClickCounter from &quot;@&#x2F;components&#x2F;click-counter&quot;;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  &#x2F;&#x2F; 声明在当前组件下使用 counter-click 组件</span><br><span class="line">  components: &#123; ClickCounter &#125;,</span><br><span class="line"></span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      msg: &quot;Hello&quot;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  methods: &#123;</span><br><span class="line">    clickHandle() &#123;</span><br><span class="line">      this.msg &#x3D; &quot;Clicked!!!!!!&quot;;</span><br><span class="line">    &#125;,</span><br><span class="line">    handleClickNum(data) &#123;</span><br><span class="line">      console.log(&quot;&gt;&gt;&gt;&gt;&gt;&gt;&quot;, data.num);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">.message &#123;</span><br><span class="line">  color: red;</span><br><span class="line">  padding: 10px;</span><br><span class="line">  text-align: center;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>观察以上修改后的代码可以发现，在<code>click-couter.vue</code>中的主要变化是：</p>
+<ol>
+<li>使用<code>props</code>定义了一个名为<code>initNum</code>的数字型组件属性（且初始值为0）。它可用于接收使用组件外部传入的值。然后，这个<code>initNum</code>值被赋值到<code>data</code>中的属性<code>num</code>上作为它的初始值。</li>
+<li>在两个按钮的click事件处理方法中，额外调用了一个<code>notifyNum()</code>方法，它向组件触发了一个自定义事件<code>clicknum</code>并携带了当前点击次数值。</li>
+</ol>
+<p>而在<code>index.vue</code>中的主要变化是实例化<code>click-counter</code>组件的这行代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;click-counter :init-num&#x3D;&quot;10&quot; @clicknum&#x3D;&quot;handleClickNum&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>实例化组件的时候，为组件传入了<code>initNum</code>属性值<code>10</code>；并且添加了一个对自定义事件<code>clicknum</code>的监听方法。</p>
+<p>这样一个结构实现了数据进入组件/数据传出组件的机制，父子组件之间就能实现数据通信。通过有限的通信点进行数据互换，而不是直接进行函数调用，可以使得代码结构更优雅、更易维护。</p>
+<h4 id="组件的复用性"><a href="#组件的复用性" class="headerlink" title="组件的复用性"></a>组件的复用性</h4><p>组件的复用性就好理解的多了，创建组件的目的，大多数时候就是希望这个组件可以被多个地方、多次使用，避免编写重复的代码。比如我们前面的计数器组件，有可能一个项目中的多个页面会用到，也可能一个页面就会使用多次。</p>
+<p>Vue组件的复用也是很容易的，比如我们要在前面例子中的<code>index.vue</code>中复用计数器组件，创建3个计数器，那么直接在模板部分编写3个标签就行了:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;container&quot; @click&#x3D;&quot;clickHandle&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;message&quot;&gt;&#123;&#123;msg&#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;!-- 创建 3个 click-counter 组件 --&gt;</span><br><span class="line">    &lt;click-counter :init-num&#x3D;&quot;10&quot; @clicknum&#x3D;&quot;handleClickNum&quot; &#x2F;&gt;</span><br><span class="line">    &lt;click-counter :init-num&#x3D;&quot;20&quot; @clicknum&#x3D;&quot;handleClickNum&quot; &#x2F;&gt;</span><br><span class="line">    &lt;click-counter :init-num&#x3D;&quot;30&quot; @clicknum&#x3D;&quot;handleClickNum&quot; &#x2F;&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure>
+
+<p>运行后的效果如下图所示，这三个计数器都能独立统计各自的点击数量：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3407939-fc10dbe6b6f4c08e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/379/format/webp" alt="img"></p>
+<h4 id="组件的扩展性"><a href="#组件的扩展性" class="headerlink" title="组件的扩展性"></a>组件的扩展性</h4><p>谈到扩展性，有面向对象编程经验的开发者就会想到“继承(extends)”。继承是一种比较有效的扩展机制，不过随着继承的层次变深，代码也会变得难以理解。在Vue组件中，没有采用继承的机制，而是推荐使用“组合”的方式。</p>
+<p>在组合理念下，我们尽量将想复用性高的组件设计到最小可拆分单位，比如按钮、输入框、单选框等等，然后再将这些低层组件放入更高层组件中，一层一层，慢慢拼装出满足需求的业务界面。</p>
+<p>除了组合，Vue组件还提供了插槽(Slot)功能，相当于在一个组件中挖出了一个或多个坑，在具体使用这些具有插槽的组件时，可以选择往坑里面填什么内容（其他组件）。</p>
+<p>举个例子，在计数器组件中，我们在清零按钮后面用<code>&lt;slot&gt;&lt;/slot&gt;</code>挖了一个坑：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;click-counter&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;counter-num&quot;&gt;次数：&#123;&#123;num&#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;button class&#x3D;&quot;counter-btn&quot; @click&#x3D;&quot;handleClick&quot;&gt;点我呀！&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;button class&#x3D;&quot;counter-reset-btn&quot; @click&#x3D;&quot;handleResetClick&quot;&gt;清零&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;slot&gt;&lt;&#x2F;slot&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure>
+
+<p>而后，在<code>index.vue</code>中使用计数器组件时，在<code>&lt;click-counter&gt;</code>标签体中放入了额外的内容，会被传入该组件中去用于填坑：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;container&quot; @click&#x3D;&quot;clickHandle&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;message&quot;&gt;&#123;&#123;msg&#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;!-- 使用 click-counter 组件 --&gt;</span><br><span class="line">    &lt;click-counter :init-num&#x3D;&quot;10&quot; @clicknum&#x3D;&quot;handleClickNum&quot;&gt;</span><br><span class="line">      &lt;!-- 填坑用... --&gt;</span><br><span class="line">      &lt;input type&#x3D;&quot;checkbox&quot; &#x2F;&gt; 禁用</span><br><span class="line">    &lt;&#x2F;click-counter&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure>
+
+<p>从运行结果可以看到，清零按钮后面已经多出了我们传入的复选框和文字内容:</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3407939-af53245a3d9a569a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/381/format/webp" alt="img"></p>
+<p>插槽其实可以理解为是另一种形式的组件属性：普通组件属性传入的是比较简单类型的数据；而插槽传入的可以是更复杂的界面组件而已。</p>
+<p>由于mpvue采用的是Vue框架的基础设施，所以大部分的功能都是和<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fcn.vuejs.org%2Fv2%2Fguide%2F" target="_blank" rel="noopener">Vue</a>一致的。但是，mpvue的代码毕竟最终还是要转译成小程序原生框架下的代码的，由于小程序框架本身存在的一些功能限制，导致有些功能不能被翻译过去，也就是说有些标准的Vue功能在mpvue下是不可以使用或有特殊限制的。</p>
+<p>今天我们就来罗列一下，在使用mpvue的时候那些需要特别注意的点。</p>
+<h4 id="1-在模板中，动态插入HTML的v-html指令不可用"><a href="#1-在模板中，动态插入HTML的v-html指令不可用" class="headerlink" title="1. 在模板中，动态插入HTML的v-html指令不可用"></a>1. 在模板中，动态插入HTML的<code>v-html</code>指令不可用</h4><p>这条很好理解，小程序的界面并不是基于浏览器的BOM/DOM的，所以不能动态的在界面模板里直接插入HTML片段来显示。</p>
+<p>题外话，如果有在小程序里插入html片段的需求怎么办？可以用<code>&lt;rich-text&gt;</code>组件或者<code>wxParse</code>(<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2Ficindy%2FwxParse" target="_blank" rel="noopener">https://github.com/icindy/wxParse</a>)来实现。</p>
+<h4 id="2-在模板中，用于数据绑定的双括号语法插值表达式中的表达式功能存在诸多限制"><a href="#2-在模板中，用于数据绑定的双括号语法插值表达式中的表达式功能存在诸多限制" class="headerlink" title="2. 在模板中，用于数据绑定的双括号语法插值表达式中的表达式功能存在诸多限制"></a>2. 在模板中，用于数据绑定的双括号语法<code>插值表达式</code>中的表达式功能存在诸多限制</h4><p>在Vue本身的模板内双括号语法中，我们可以对绑定变量进行比较丰富的处理，比如：</p>
+<ul>
+<li>可以调用<code>methods</code>下的函数， 例如：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;&#123;&#123; formatMessage(msg) &#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      msg: &quot;Hello,World&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    formatMessage(str) &#123;</span><br><span class="line">      return str.trim().split(&#39;,&#39;).join(&#39;#&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果变量是对象的话，也可以调用对象的成员方法</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;&#123;&#123; msg.trim().split(&#39;,&#39;).join(&#39;#&#39;) &#125;&#125;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>可以使用过滤器来处理变量，最有用的场景算是格式化数据了</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;&#123;&#123; msg | format &#125;&#125;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>以上这些好用的功能，在mpvue中，记得都是通通不能用的哦！！！</p>
+<p>我们只能在双括号中使用一些简单的运算符运算（<code>+ - * % ?: ! == === &gt; &lt; [] .</code>）。</p>
+<p>但是也得找些可用的替代方案呐，大伙先考虑使用<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fcn.vuejs.org%2Fv2%2Fguide%2Fcomputed.html" target="_blank" rel="noopener">计算属性(computed)</a>来做吧。</p>
+<h4 id="3-在模板中，除事件监听外，其余地方都不能调用methods下的函数"><a href="#3-在模板中，除事件监听外，其余地方都不能调用methods下的函数" class="headerlink" title="3. 在模板中，除事件监听外，其余地方都不能调用methods下的函数"></a>3. 在模板中，除事件监听外，其余地方都不能调用<code>methods</code>下的函数</h4><p>在Vue中，模板里调用<code>methods</code>部分定义的函数是非常常见的，比如下面这段代码所示，在<code>v-if</code>指令中调用函数<code>getErrorNum()</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div v-if&#x3D;&quot;getErrorNum() &gt; 0  &amp;&amp; code &#x3D;&#x3D; 10001&quot; class&#x3D;&quot;error&quot;&gt;&#123;&#123; errorMsg &#125;&#125;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>可是，在mpvue里就是不可以用！因为在小程序原生模板<code>wxml</code>里就不支持这种函数调用，导致mpvue没有很好的方式转译过去（虽然小程序有<code>wxs</code>，但是感觉翻译过去mpvue要做的工作会比较复杂）。</p>
+<p>所以，可用的替代方案可能还是计算属性了。</p>
+<h4 id="4-在模板中，不支持直接绑定一个对象到style或class属性上"><a href="#4-在模板中，不支持直接绑定一个对象到style或class属性上" class="headerlink" title="4. 在模板中，不支持直接绑定一个对象到style或class属性上"></a>4. 在模板中，不支持直接绑定一个对象到<code>style</code>或<code>class</code>属性上</h4><p>在Vue中我们可以为HTML元素的<code>class</code>或<code>style</code>绑定一个对象，并按照对象内的属性值来决定是否添加对应的属性名到HTML元素的样式名。示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div :class&#x3D;&quot;classObject&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      classObject: &#123;</span><br><span class="line">        active: true,</span><br><span class="line">        &#39;text-danger&#39;: false</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>上面这段代码的运行后生成的HTML将是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class&#x3D;&quot;active&quot;&gt;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>但是在mpvue下面这个特性也不能用，按官方说法是由于涉及到一些性能相关的原因。那如果要动态改变组件的<code>class</code>该怎么写呢？官方给出的方式是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div :class&#x3D;&quot;&#123; active: classObject.active, &#39;text-danger&#39;: classObject[&#39;text-danger&#39;]&#125;&quot;&gt;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>其实改动不大，稍微多打了一些字而已，相当于在模板的<code>class</code>里再定义一个对象罢了。但是据文档中说这样会提升性能。好吧，为了性能，这点麻烦还是能忍受的。但是它又说了：从性能考虑，建议不要过度依赖此……看来即使这样，也还是有性能问题。</p>
+<p>看来最好一点的方案，还是得使用计算属性，直接生成一串样式的字符串，绑定到<code>class</code>或<code>style</code>上：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div :class&#x3D;&quot;classStr&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      classObject: &#123;</span><br><span class="line">        active: true,</span><br><span class="line">        &#39;text-danger&#39;: false</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    classStr() &#123;</span><br><span class="line">      let arr &#x3D; []</span><br><span class="line">      for (let p in this.classObject) &#123;</span><br><span class="line">        if (this.classObject[p]) &#123;</span><br><span class="line">          arr.push(p)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      return arr.join(&#39; &#39;) </span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-在模板中，嵌套使用v-for时，必须指定索引index"><a href="#5-在模板中，嵌套使用v-for时，必须指定索引index" class="headerlink" title="5. 在模板中，嵌套使用v-for时，必须指定索引index"></a>5. 在模板中，嵌套使用<code>v-for</code>时，必须指定索引<code>index</code></h4><p>通常，我们在Vue模板中嵌套循环渲染数组的时候，一般是这个样子的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;ul v-for&#x3D;&quot;category in categories&quot;&gt;</span><br><span class="line">    &lt;li v-for&#x3D;&quot;product in category.products&quot;&gt;&#123;&#123;product.name&#125;&#125;&lt;&#x2F;li&gt;</span><br><span class="line">  &lt;&#x2F;ul&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure>
+
+<p>但在mpvue中使用这种嵌套结构的<code>v-for</code>时，则必须每层的<code>v-for</code>上都给出索引，且索引需取不同名字：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;ul v-for&#x3D;&quot;(category, index) in categories&quot;&gt;</span><br><span class="line">    &lt;li v-for&#x3D;&quot;(product, productIndex) in category.products&quot;&gt;&#123;&#123;product.name&#125;&#125;&lt;&#x2F;li&gt;</span><br><span class="line">  &lt;&#x2F;ul&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-事件处理中的注意点"><a href="#6-事件处理中的注意点" class="headerlink" title="6. 事件处理中的注意点"></a>6. 事件处理中的注意点</h4><p>在mpvue中，一般可以使用Web的DOM事件名来绑定事件，mpvue会将Web事件名映射成对应的小程序事件名，对应列表如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 左侧为WEB事件 : 右侧为对应的小程序事件</span><br><span class="line">&#123;</span><br><span class="line">    click: &#39;tap&#39;,</span><br><span class="line">    touchstart: &#39;touchstart&#39;,</span><br><span class="line">    touchmove: &#39;touchmove&#39;,</span><br><span class="line">    touchcancel: &#39;touchcancel&#39;,</span><br><span class="line">    touchend: &#39;touchend&#39;,</span><br><span class="line">    tap: &#39;tap&#39;,</span><br><span class="line">    longtap: &#39;longtap&#39;,</span><br><span class="line">    input: &#39;input&#39;,</span><br><span class="line">    change: &#39;change&#39;,</span><br><span class="line">    submit: &#39;submit&#39;,</span><br><span class="line">    blur: &#39;blur&#39;,</span><br><span class="line">    focus: &#39;focus&#39;,</span><br><span class="line">    reset: &#39;reset&#39;,</span><br><span class="line">    confirm: &#39;confirm&#39;,</span><br><span class="line">    columnchange: &#39;columnchange&#39;,</span><br><span class="line">    linechange: &#39;linechange&#39;,</span><br><span class="line">    error: &#39;error&#39;,</span><br><span class="line">    scrolltoupper: &#39;scrolltoupper&#39;,</span><br><span class="line">    scrolltolower: &#39;scrolltolower&#39;,</span><br><span class="line">    scroll: &#39;scroll&#39;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>除了上面的之外，Web表单组件<code>&lt;input&gt;</code>和<code>&lt;textarea&gt;</code>的change事件会被转为blur事件。</p>
+<p>然后，像<code>keydown</code>、<code>keypress</code>之类的键盘事件也没有了，因为小程序没有键盘，所以不需要这些事件。</p>
+<p>还有，Vue里面绑定事件的时候，可以指定事件修饰符，但是在mpvue里，官方给出了一些注意信息：</p>
+<blockquote>
+<ul>
+<li>.stop 的使用会阻止冒泡，但是同时绑定了一个非冒泡事件，会导致该元素上的 catchEventName 失效！【这个亲测了一下，感觉是最新版本里修复了还是怎么的，没有文档里说的这个问题了】</li>
+<li>.prevent 可以直接干掉，因为小程序里没有什么默认事件，比如submit并不会跳转页面【也就是不需要支持】</li>
+<li>.capture 支持 1.0.9 【也就是在 mpvue 1.0.9及以后版本支持】</li>
+<li>.self 没有可以判断的标识 【也就是不支持】</li>
+<li>.once 也不能做，因为小程序没有 removeEventListener, 虽然可以直接在 handleProxy 中处理，但非常的不优雅，违背了原意，暂不考虑【也就是不支持】</li>
+</ul>
+</blockquote>
+<p>所以呢，总之当你在遇到事件相关的问题，请回来查看一下文档，看看自己是否已经掉在坑里了。</p>
+<h4 id="7-对于表单，请直接使用小程序原生的表单组件"><a href="#7-对于表单，请直接使用小程序原生的表单组件" class="headerlink" title="7. 对于表单，请直接使用小程序原生的表单组件"></a>7. 对于表单，请直接使用小程序原生的表单组件</h4><p>一句话，表单组件又多又复杂，框架可能Hold不住。所以在实际开发中，推荐直接使用小程序的表单组件标签来写，而不是使用Web的表单组件标签来写。当然了，在mpvue中使用了小程序的组件标签，数据绑定功能还是完全可以用的。给个示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;picker @change&#x3D;&quot;handlePickerChange&quot; :value&#x3D;&quot;selectedIndex&quot; :range&#x3D;&quot;messages&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;picker&quot;&gt;当前消息：&#123;&#123; messages[selectedIndex] &#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;picker&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      selectedIndex: 0,</span><br><span class="line">      messages: [&#39;Hello&#39;, &#39;World&#39;, &#39;Haha&#39;]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    handlePickerChange (e) &#123;</span><br><span class="line">      console.log(e)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="其他注意事项"><a href="#其他注意事项" class="headerlink" title="其他注意事项"></a>其他注意事项</h4><p>另外，在Vue开发Web应用的时候，通常使用<code>vue-router</code>来进行页面路由。但是在mpvue小程序开发中，不能用这种方式，请使用<code>&lt;a&gt;</code>标签和小程序原生API <code>wx.navigateTo</code>等来做路由功能。</p>
+<p>还有就是请求后端数据，我们通常在Web开发中使用<code>axios</code>等ajax库来实现，但是在小程序开发中也是不能用的，也请使用小程序的原生API <code>wx.request</code>等来进行。</p>
+<p>如果你使用过原生的小程序框架，你一定经历过或思考过怎么解决以下的问题：</p>
+<ul>
+<li>怎么存放可全局访问的变量？</li>
+<li>页面跳转的时候，怎么传递参数到下一个页面比较好？</li>
+<li>页面返回上一页的时候，怎么传递当前页的数据到上一页？</li>
+<li>多个页面间需要同步数据，怎么做比较好？</li>
+</ul>
+<p>网上一搜，解决的方法通常也是五花八门的，什么通过app上的globalData啊、通过存取storage啊、通过一个单独的模块(module)啊、通过Page路由栈啊、通过引入自定义事件啊、通过引入redux啊，等等等等……</p>
+<p>在原生小程序框架里，确实没有提供什么太统一的方式来指导开发者解决这个问题，大家只能各自用着暂时能解决当前问题的方案。</p>
+<p>不过，既然我们用了Vue/mpvue，遇到这种情况，自然而然的就会想到一个方案，那就是<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fvuex.vuejs.org%2Fzh%2F" target="_blank" rel="noopener">Vuex</a>。Vuex 是一个专为 Vue 应用程序开发的状态管理模式，它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。</p>
+<p>通过使用Vuex，我们可以在mpvue里很方便的对需要在app、页面、组件之间共享的数据进行很好的统一管理，可以更方便有效的在各个代码部分对这些共享数据进行访问，同时可以使得你的代码条理变得更加清晰。</p>
+<p>我们知道，Vuex一般有2种用法，当创建好store后：</p>
+<ul>
+<li>第一种用法是将store绑定到需要访问store内容的Vue实例上，然后通过该Vue实例下组件的<code>this.$store</code>来引用；或通过<code>mapState</code>等一系列映射函数将store中的state、getters、mutations、actions等映射成组件的计算属性或methods方法来使用；</li>
+<li>第二种用法是直接在组件中通过<code>import</code>导入store所在的模块文件，然后调用该store上的相关方法和属性，比如<code>commit()</code>、<code>dispatch()</code>等方法来操作store中的内容。</li>
+</ul>
+<p>经过我的实测，上面的这两种方式在mpvue中也都是可用的。但是，由于mpvue不像Vue Web单页应用那种单Vue实例的结构，而是采用了多Vue实例的结构（app和各个页面都会由单独的Vue实例来管理），所以我个人推荐采用上面所说的第二种用法，这种方式会更加灵活和简单一些。</p>
+<p>让我们开始写代码，先在<code>src</code>目录下新建一个stores目录，接着在stores目录下新建一个名为<code>global-store.js</code>的文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &#39;vue&#39;</span><br><span class="line">import Vuex from &#39;vuex&#39;;</span><br><span class="line"></span><br><span class="line">Vue.use(Vuex);</span><br><span class="line"></span><br><span class="line">export default new Vuex.Store(&#123;</span><br><span class="line">  state: &#123;</span><br><span class="line">    count: 0</span><br><span class="line">  &#125;,</span><br><span class="line">  mutations: &#123;</span><br><span class="line">    increment: (state) &#x3D;&gt; &#123;</span><br><span class="line">      state.count +&#x3D; 1</span><br><span class="line">    &#125;,</span><br><span class="line">    decrement: (state) &#x3D;&gt; &#123;</span><br><span class="line">      state.count -&#x3D; 1</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>在这个代码中，我们新建了一个<code>Store</code>实例，管理了一个名为<code>count</code>的数字类型的状态，并定义了2个mutations去操作（增减）这个状态值。</p>
+<p>接着，我们要在2个页面中访问这个store。让我们在<code>src/pages</code>目录下编写2个页面：index和test1。</p>
+<p>这是<code>pages/index/index.vue</code>的代码内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;container&quot;&gt;</span><br><span class="line">    &lt;div&gt;计数结果：&#123;&#123;count&#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;a href&#x3D;&quot;&#x2F;pages&#x2F;test1&#x2F;main&quot; class&#x3D;&quot;navlink&quot;&gt;进入计数器页面&lt;&#x2F;a&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import globalStore from &quot;..&#x2F;..&#x2F;stores&#x2F;global-store&quot;;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  computed: &#123;</span><br><span class="line">    count() &#123;</span><br><span class="line">      return globalStore.state.count;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">.navlink &#123;</span><br><span class="line">  text-decoration: underline;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这是<code>pages/test1/index.vue</code>的代码内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;container btns&quot;&gt;</span><br><span class="line">    &lt;button class&#x3D;&quot;calbtn&quot; @click&#x3D;&quot;hanleDecrement&quot;&gt;-&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;span class&#x3D;&quot;calnum&quot;&gt;&#123;&#123;count&#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">    &lt;button class&#x3D;&quot;calbtn&quot; @click&#x3D;&quot;hanleIncrement&quot;&gt;+&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import globalStore from &quot;..&#x2F;..&#x2F;stores&#x2F;global-store&quot;;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  computed: &#123;</span><br><span class="line">    count() &#123;</span><br><span class="line">      return globalStore.state.count;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  methods: &#123;</span><br><span class="line">    hanleIncrement() &#123;</span><br><span class="line">      globalStore.commit(&quot;increment&quot;);</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    hanleDecrement() &#123;</span><br><span class="line">      globalStore.commit(&quot;decrement&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">.btns &#123;</span><br><span class="line">  display: flex;</span><br><span class="line">  align-items: center;</span><br><span class="line">&#125;</span><br><span class="line">.calnum &#123;</span><br><span class="line">  color: red;</span><br><span class="line">  font-size: 32px;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这样，我们就有了2个使用了我们定义的global-store的页面，这些页面都会从store中获取<code>count</code>状态值并显示；在test1页面中，还会调用<code>increment</code>和<code>decrement</code>两个mutations去更新<code>count</code>值。</p>
+<p>运行小程序，可以看到初始进入index页面时是这样的，页面上显示的计数结果是0：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3407939-4a8524c7edf600c1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/736/format/webp" alt="img"></p>
+<p>index页面</p>
+<p>然后点击“进入计数器页面”进到test1页面，并在这个页面上点击加减按钮操作一下，当中显示的count数会发生改变：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3407939-aa5b58bdb9a7949b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/738/format/webp" alt="img"></p>
+<p>test1页面</p>
+<p>最后，点击左上角返回按钮返回index页面，你将发现这个页面上的计数结果也已经发生了改变，自动同步成前面操作后的结果了：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3407939-37a8bffb4252c0ff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/740/format/webp" alt="img"></p>
+<p>返回index页面</p>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><p>通过这个例子，是不是感觉到使用Vuex做页面间的传值和数据同步特别简单？另外，你也可以在<code>src/stores</code>目录下按需创建多个store模块，独立管理不同业务范围的数据，并按需导入页面组件使用。</p>
+<p>Vuex是开发中一件非常得力的工具，希望你能尽快掌握它。更多的用法可以参考<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fvuex.vuejs.org%2Fzh%2F" target="_blank" rel="noopener">官方文档</a>。</p>
+<p>参考链接 <a href="https://www.jianshu.com/p/462494e458c2" target="_blank" rel="noopener">https://www.jianshu.com/p/462494e458c2</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mpvue/" rel="tag"># mpvue</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/30/this%E6%8C%87%E5%90%91%E8%AF%A6%E8%A7%A3/" rel="next" title="this指向详解">
+                <i class="fa fa-chevron-left"></i> this指向详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/07/30/postman/" rel="prev" title="postman">
+                postman <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="Dali" />
+            
+              <p class="site-author-name" itemprop="name">Dali</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">69</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#起手式：必要的开发环境"><span class="nav-number">1.</span> <span class="nav-text">起手式：必要的开发环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建第一个基于mpvue的小程序项目代码"><span class="nav-number">2.</span> <span class="nav-text">创建第一个基于mpvue的小程序项目代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行并查看结果"><span class="nav-number">3.</span> <span class="nav-text">运行并查看结果</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1）package-json文件"><span class="nav-number">3.0.1.</span> <span class="nav-text">1）package.json文件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2）project-config-json文件"><span class="nav-number">3.0.2.</span> <span class="nav-text">2）project.config.json文件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3）static目录"><span class="nav-number">3.0.3.</span> <span class="nav-text">3）static目录</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4）build目录"><span class="nav-number">3.0.4.</span> <span class="nav-text">4）build目录</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5）config目录"><span class="nav-number">3.0.5.</span> <span class="nav-text">5）config目录</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5）src目录"><span class="nav-number">3.0.6.</span> <span class="nav-text">5）src目录</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#程序入口"><span class="nav-number">4.</span> <span class="nav-text">程序入口</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#app-json"><span class="nav-number">4.0.1.</span> <span class="nav-text">app.json</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#app-js"><span class="nav-number">4.0.2.</span> <span class="nav-text">app.js</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#首页、以及其他页面"><span class="nav-number">4.0.3.</span> <span class="nav-text">首页、以及其他页面</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组件的封装性"><span class="nav-number">5.</span> <span class="nav-text">组件的封装性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组件的复用性"><span class="nav-number">6.</span> <span class="nav-text">组件的复用性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组件的扩展性"><span class="nav-number">7.</span> <span class="nav-text">组件的扩展性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-在模板中，动态插入HTML的v-html指令不可用"><span class="nav-number">8.</span> <span class="nav-text">1. 在模板中，动态插入HTML的v-html指令不可用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-在模板中，用于数据绑定的双括号语法插值表达式中的表达式功能存在诸多限制"><span class="nav-number">9.</span> <span class="nav-text">2. 在模板中，用于数据绑定的双括号语法插值表达式中的表达式功能存在诸多限制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-在模板中，除事件监听外，其余地方都不能调用methods下的函数"><span class="nav-number">10.</span> <span class="nav-text">3. 在模板中，除事件监听外，其余地方都不能调用methods下的函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-在模板中，不支持直接绑定一个对象到style或class属性上"><span class="nav-number">11.</span> <span class="nav-text">4. 在模板中，不支持直接绑定一个对象到style或class属性上</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-在模板中，嵌套使用v-for时，必须指定索引index"><span class="nav-number">12.</span> <span class="nav-text">5. 在模板中，嵌套使用v-for时，必须指定索引index</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-事件处理中的注意点"><span class="nav-number">13.</span> <span class="nav-text">6. 事件处理中的注意点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-对于表单，请直接使用小程序原生的表单组件"><span class="nav-number">14.</span> <span class="nav-text">7. 对于表单，请直接使用小程序原生的表单组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他注意事项"><span class="nav-number">15.</span> <span class="nav-text">其他注意事项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小结"><span class="nav-number">16.</span> <span class="nav-text">小结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dali</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

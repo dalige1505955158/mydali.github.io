@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ESLint," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="DaliBlogs" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="ESLint简介ESLint是一个用来识别 ECMAScript 并且按照规则给出报告的代码检测工具，使用它可以避免低级错误和统一代码的风格。如果每次在代码提交之前都进行一次eslint代码检查，就不会因为某个字段未定义为undefined或null这样的错误而导致服务崩溃，可以有效的控制项目代码的质量。 在许多方面，它和 JSLint、JSHint 相似，除了少数的例外：  ESLint 使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ESLint简介">
+<meta property="og:url" content="http://yoursite.com/2020/07/30/ESLint%E7%AE%80%E4%BB%8B/index.html">
+<meta property="og:site_name" content="DaliBlogs">
+<meta property="og:description" content="ESLint简介ESLint是一个用来识别 ECMAScript 并且按照规则给出报告的代码检测工具，使用它可以避免低级错误和统一代码的风格。如果每次在代码提交之前都进行一次eslint代码检查，就不会因为某个字段未定义为undefined或null这样的错误而导致服务崩溃，可以有效的控制项目代码的质量。 在许多方面，它和 JSLint、JSHint 相似，除了少数的例外：  ESLint 使用">
+<meta property="article:published_time" content="2020-07-30T08:09:52.000Z">
+<meta property="article:modified_time" content="2020-07-30T09:27:28.503Z">
+<meta property="article:author" content="Dali">
+<meta property="article:tag" content="ESLint">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/07/30/ESLint简介/"/>
+
+
+
+
+
+  <title>ESLint简介 | DaliBlogs</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DaliBlogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/30/ESLint%E7%AE%80%E4%BB%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ESLint简介</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-30T16:09:52+08:00">
+                2020-07-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ESLint/" itemprop="url" rel="index">
+                    <span itemprop="name">ESLint</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="ESLint简介"><a href="#ESLint简介" class="headerlink" title="ESLint简介"></a>ESLint简介</h4><p>ESLint是一个用来识别 ECMAScript 并且按照规则给出报告的代码检测工具，使用它可以避免低级错误和统一代码的风格。如果每次在代码提交之前都进行一次eslint代码检查，就不会因为某个字段未定义为undefined或null这样的错误而导致服务崩溃，可以有效的控制项目代码的质量。</p>
+<p>在许多方面，它和 JSLint、JSHint 相似，除了少数的例外：</p>
+<ul>
+<li>ESLint 使用 Espree 解析 JavaScript。</li>
+<li>ESLint 使用 AST 去分析代码中的模式。</li>
+<li>ESLint 是完全插件化的。每一个规则都是一个插件并且你可以在运行时添加更多的规则。</li>
+</ul>
+<a id="more"></a>
+
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>ESLint 支持多种安装方式，可以通过 npm 来安装，也可以在 webpack(eslint-loader) 和 Gulp.js(gulp-eslint) 中使用。</p>
+<h3 id="全局安装"><a href="#全局安装" class="headerlink" title="全局安装"></a>全局安装</h3><p>​                        </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g eslint</span><br></pre></td></tr></table></figure>
+
+<h3 id="局部安装（推荐）"><a href="#局部安装（推荐）" class="headerlink" title="局部安装（推荐）"></a>局部安装（推荐）</h3><p>​                        </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -D eslint</span><br></pre></td></tr></table></figure>
+
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>安装完毕后，接下来新建一个配置文件.eslintrc.js，或者使用如下的命令行来自动生成，命令如下：</p>
+<p>​                        </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eslint --init</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>注意：如果你之前使用的版本低于 1.0.0，请查看 <a href="https://cn.eslint.org/docs/user-guide/migrating-to-1.0.0" target="_blank" rel="noopener">迁移指南</a>。<br>运行 eslint –init 之后，.eslintrc 文件会在你的文件夹中自动创建。文件的内容大体如下：</p>
+<p>​                        </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;env&quot;: &#123;</span><br><span class="line">        &quot;es6&quot;: true,</span><br><span class="line">        &quot;node&quot;: true</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;extends&quot;: &quot;eslint:recommended&quot;,</span><br><span class="line">    &quot;parserOptions&quot;: &#123;</span><br><span class="line">        &quot;sourceType&quot;: &quot;script&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;rules&quot;: &#123;</span><br><span class="line">        &quot;no-console&quot;: 0,</span><br><span class="line">        &quot;no-unused-vars&quot;: &quot;error&quot;,</span><br><span class="line">        &quot;no-use-before-define&quot;: &quot;error&quot;,</span><br><span class="line">        &quot;linebreak-style&quot;: [</span><br><span class="line">            &quot;error&quot;,</span><br><span class="line">            &quot;unix&quot;</span><br><span class="line">        ],</span><br><span class="line">        &quot;quotes&quot;: [</span><br><span class="line">            &quot;error&quot;,</span><br><span class="line">            &quot;single&quot;</span><br><span class="line">        ],</span><br><span class="line">        &quot;semi&quot;: [</span><br><span class="line">            &quot;error&quot;,</span><br><span class="line">            &quot;always&quot;</span><br><span class="line">        ],</span><br><span class="line">        &quot;curly&quot;: [&quot;error&quot;, &quot;all&quot;],</span><br><span class="line">        &quot;default-case&quot;: &quot;error&quot;,</span><br><span class="line">        &quot;no-else-return&quot;: &quot;error&quot;,</span><br><span class="line">        &quot;no-empty-function&quot;: &quot;error&quot;,</span><br><span class="line">        &quot;no-implicit-coercion&quot;: &quot;error&quot;,</span><br><span class="line">        &quot;no-invalid-this&quot;: &quot;error&quot;,</span><br><span class="line">        &quot;no-loop-func&quot;: &quot;error&quot;,</span><br><span class="line">        &quot;no-multi-spaces&quot;: &quot;error&quot;,</span><br><span class="line">        &quot;no-new-func&quot;: &quot;error&quot;,</span><br><span class="line">        &quot;no-useless-return&quot;: &quot;error&quot;,</span><br><span class="line">        &quot;global-require&quot;: &quot;error&quot;,</span><br><span class="line">        &quot;no-path-concat&quot;: &quot;error&quot;,</span><br><span class="line">        &quot;no-sync&quot;: &quot;error&quot;,</span><br><span class="line">        &quot;array-bracket-spacing&quot;: [</span><br><span class="line">            &quot;error&quot;,</span><br><span class="line">            &quot;never&quot; </span><br><span class="line">        ],</span><br><span class="line">        &quot;block-spacing&quot;: [</span><br><span class="line">            &quot;error&quot;,</span><br><span class="line">            &quot;always&quot;</span><br><span class="line">        ],</span><br><span class="line">        &quot;brace-style&quot;: [</span><br><span class="line">            &quot;error&quot;,</span><br><span class="line">            &quot;1tbs&quot;</span><br><span class="line">        ],</span><br><span class="line">        &quot;camelcase&quot;: &quot;error&quot;,</span><br><span class="line">        &quot;comma-dangle&quot;: [</span><br><span class="line">            &quot;error&quot;,</span><br><span class="line">            &quot;always-multiline&quot;</span><br><span class="line">        ],</span><br><span class="line">        &quot;comma-spacing&quot;: [</span><br><span class="line">            &quot;error&quot;,</span><br><span class="line">            &#123; &quot;before&quot;: false, &quot;after&quot;: true &#125;</span><br><span class="line">        ],</span><br><span class="line">        &quot;comma-style&quot;: [</span><br><span class="line">            &quot;error&quot;,</span><br><span class="line">            &quot;last&quot;</span><br><span class="line">        ],</span><br><span class="line">        &quot;key-spacing&quot;: [</span><br><span class="line">            &quot;error&quot;, </span><br><span class="line">            &#123; &quot;beforeColon&quot;: false, &quot;afterColon&quot;: true &#125;</span><br><span class="line">        ],</span><br><span class="line">        &quot;lines-around-comment&quot;: [</span><br><span class="line">            &quot;error&quot;,</span><br><span class="line">            &#123; &quot;beforeBlockComment&quot;: true &#125;</span><br><span class="line">        ],</span><br><span class="line">        &quot;newline-after-var&quot;: [</span><br><span class="line">            &quot;error&quot;,</span><br><span class="line">            &quot;always&quot;</span><br><span class="line">        ],</span><br><span class="line">        &quot;newline-before-return&quot;: &quot;error&quot;,</span><br><span class="line">        &quot;no-multi-assign&quot;: &quot;error&quot;,</span><br><span class="line">        &quot;max-params&quot;: [1, 3],</span><br><span class="line">        &quot;new-cap&quot;: [</span><br><span class="line">            &quot;error&quot;,</span><br><span class="line">            &#123;</span><br><span class="line">                &quot;newIsCap&quot;: true,</span><br><span class="line">                &quot;capIsNew&quot;: false</span><br><span class="line">            &#125;</span><br><span class="line">        ],</span><br><span class="line">        &quot;no-multiple-empty-lines&quot;: [</span><br><span class="line">            &quot;error&quot;,</span><br><span class="line">            &#123;</span><br><span class="line">                &quot;max&quot;: 2</span><br><span class="line">            &#125;</span><br><span class="line">        ],</span><br><span class="line">        &quot;no-shadow-restricted-names&quot;: &quot;error&quot;,</span><br><span class="line">        &quot;no-undef-init&quot;: &quot;error&quot;,</span><br><span class="line">        &quot;keyword-spacing&quot;: &quot;error&quot;,</span><br><span class="line">        &quot;space-before-blocks&quot;: [</span><br><span class="line">            &quot;error&quot;,</span><br><span class="line">            &quot;always&quot;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>ESlint支持的可配置信息主要分为3类：</p>
+<ul>
+<li>Environments：Javascript 脚步将要运行在什么环境中（如：nodejs，browser，commonjs等）,ESlint支持的所有环境都可以在<a href="https://eslint.org/docs/user-guide/configuring#specifying-environments" target="_blank" rel="noopener">官网</a>查到。</li>
+<li>Globals：执行代码时脚步需要访问的额外全局变量。</li>
+<li>Rules：开启某些规则，也可以设置规则的等级。</li>
+</ul>
+<h3 id="检测规则"><a href="#检测规则" class="headerlink" title="检测规则"></a>检测规则</h3><p>接下来，可以在配置文件中设置一些规则。ESLint规则的三种级别：</p>
+<ul>
+<li>“off” 或者 0：关闭规则。</li>
+<li>“warn” 或者 1：打开规则，并且作为一个警告（不影响exit code）。</li>
+<li>“error” 或者 2：打开规则，并且作为一个错误（exit code将会是1）。</li>
+</ul>
+<p>例如，下面的一些配置规则：</p>
+<ul>
+<li><code>&quot;no-console&quot;:&quot;off&quot;</code>           禁用 console。</li>
+<li><code>&quot;no-unused-vars&quot;:2</code>    禁止出现未使用过的变量。</li>
+<li><code>&quot;no-use-before-define&quot;:2</code>  不允许在变量定义之前使用它们。</li>
+<li><code>&quot;linebreak-style&quot;:[2, &quot;unix&quot;]</code>   强制使用一致的换行风格。</li>
+<li><code>&quot;quotes&quot;: [&quot;error&quot;, &quot;single&quot;]</code>   强制使用一致的单引号。</li>
+<li><code>&quot;semi&quot;:[&quot;error&quot;, &quot;always&quot;]</code>   控制行尾部分号。</li>
+<li><code>&quot;curly&quot;:[&quot;error&quot;, &quot;all&quot;]</code>    强制所有控制语句使用一致的括号风格。</li>
+</ul>
+<ul>
+<li><code>&quot;default-case&quot;: &quot;error&quot;</code>    switch 语句强制 default 分支，也可添加 // no default 注释取消此次警告。</li>
+<li><code>&quot;no-else-return&quot;:&quot;error&quot;</code>  禁止 if 语句中有 return 之后有 else。</li>
+<li><code>&quot;no-implicit-coercion&quot;: &quot;error&quot;</code> 禁止出现空函数.如果一个函数包含了一条注释，它将不会被认为有问题。</li>
+<li><code>&quot;no-invalid-this&quot;: &quot;error&quot;</code> 禁止 this 关键字出现在类和类对象之外。</li>
+<li><code>&quot;no-loop-func&quot;:&quot;error&quot;</code> 禁止在循环中出现 function 声明和表达式。</li>
+<li><code>&quot;no-multi-spaces&quot;:&quot;error&quot;</code> 禁止使用多个空格。</li>
+<li><code>&quot;no-new-func&quot;:&quot;error&quot;</code> 禁止对 空Function 对象使用 new 操作符。</li>
+<li><code>&quot;no-useless-return&quot;:&quot;error&quot;</code> 禁止没有任何内容的return;</li>
+<li><code>&quot;global-require&quot;: &quot;error&quot;</code> 要求 require() 出现在顶层模块作用域中。</li>
+<li><code>&quot;no-path-concat&quot;: &quot;error&quot;</code> 禁止对 dirname 和 filename进行字符串连接</li>
+<li><code>&quot;no-sync&quot;: &quot;error&quot;</code> 禁用同步方法。</li>
+<li><code>&quot;array-bracket-spacing&quot;: [&quot;error&quot;, &quot;never&quot;]</code> 指定数组的元素之间要以空格隔开(, 后面)， never参数：[ 之前和 ] 之后不能带空格，always参数：[ 之前和 ] 之后必须带空格。</li>
+<li><code>&quot;block-spacing&quot;: [&quot;error&quot;, &quot;always&quot;]</code> 禁止或强制在单行代码块中使用空格(禁用)。</li>
+<li><code>&quot;brace-style&quot;: [&quot;error&quot;, &quot;1tbs&quot;]</code></li>
+<li><code>&quot;camelcase&quot;: &quot;error&quot;</code> 强制驼峰法命名。</li>
+<li><code>&quot;comma-dangle&quot;: [&quot;error&quot;, &quot;always-multiline&quot;]</code> 数组和对象键值对最后一个逗号， never参数：不能带末尾的逗号, always参数：必须带末尾的逗,always-multiline：多行模式必须带逗号，单行模式不能带逗号号。</li>
+<li><code>&quot;comma-spacing&quot;: [&quot;error&quot;, { &quot;before&quot;: false, &quot;after&quot;: true }]</code> 控制逗号前后的空格。</li>
+<li><code>&quot;comma-style&quot;: [&quot;error&quot;, &quot;last&quot;]</code> 控制逗号在行尾出现还是在行首出现 (默认行尾)。</li>
+<li><code>&quot;key-spacing&quot;: [&quot;error&quot;, { &quot;beforeColon&quot;: false, &quot;afterColon&quot;: true }]</code> 该规则规定了在对象字面量语法中，key和value之间的空白，冒号前不要空格，冒号后面需要一个空格。</li>
+<li><code>&quot;lines-around-comment&quot;: [&quot;error&quot;, { &quot;beforeBlockComment&quot;: true }]</code> 要求在注释周围有空行 ( 要求在块级注释之前有一空行)。</li>
+<li><code>&quot;newline-after-var&quot;: [&quot;error&quot;, &quot;always&quot;]</code> 要求或禁止 var 声明语句后有一行空行。</li>
+<li><code>&quot;newline-before-return&quot;: &quot;error&quot;</code> 要求 return 语句之前有一空行。</li>
+<li><code>&quot;no-multi-assign&quot;: &quot;error&quot;</code> 链接变量的赋值可能会导致意外的结果并难以阅读，不允许在单个语句中使用多个分配。</li>
+<li><code>&quot;max-params&quot;: [1, 3] function</code> 定义中最多允许的参数数量。</li>
+<li><code>&quot;new-cap&quot;: [&quot;error&quot;, { &quot;newIsCap&quot;: true, &quot;capIsNew&quot;: false}]</code> 构造函数首字母大写。</li>
+<li><code>&quot;no-multiple-empty-lines&quot;: [&quot;error&quot;, {&quot;max&quot;: 2}]</code> 空行不能够超过2行。</li>
+<li><code>&quot;no-shadow-restricted-names&quot;: &quot;error&quot;</code> 禁止对一些关键字或者保留字进行赋值操作，比如NaN、Infinity、undefined、eval、arguments等。</li>
+<li><code>&quot;no-undef-init&quot;: &quot;error&quot;</code> 禁止把undefined赋值给一个变量。</li>
+<li><code>&quot;keyword-spacing&quot;: &quot;error&quot;</code> keyword 前后需要空格。</li>
+<li><code>&quot;space-before-blocks&quot;: [&quot;error&quot;,&quot;always&quot;]</code> 强制在块之前使用一致的空格。</li>
+</ul>
+<h3 id="忽略检测"><a href="#忽略检测" class="headerlink" title="忽略检测"></a>忽略检测</h3><p>既然有检测的规则，那么必然有忽略检测的配置。要新增忽略检测的规则，首先要在项目根目录创建一个 .eslintignore 文件告诉 ESLint 去忽略掉不需要检测的文件或者目录。</p>
+<p>或者通过package.json文件设置需要忽略检测的对象，例如：</p>
+<p>​                        </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;my_project&quot;,</span><br><span class="line">  &quot;version&quot;: &quot;1.0.0&quot;,</span><br><span class="line">  &quot;main&quot;: &quot;index.js&quot;,</span><br><span class="line">  &quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;test&quot;: &quot;&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;eslintConfig&quot;: &#123; &#x2F;&#x2F; 也可配置eslint</span><br><span class="line">    &quot;env&quot;: &#123;</span><br><span class="line">      &quot;es6&quot;: true,</span><br><span class="line">      &quot;node&quot;: true</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;eslintIgnore&quot;: [&quot;test.js&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Gulp中使用ESLint"><a href="#Gulp中使用ESLint" class="headerlink" title="Gulp中使用ESLint"></a>Gulp中使用ESLint</h2><p>除了npm方式之外，ESLint还支持Gulp插件方式使用，使用之前需要先安装插件。</p>
+<p>​                        </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install gulp-eslint</span><br></pre></td></tr></table></figure>
+
+<p>如果要使用gulp-eslint进行eslint规则的校验，可以使用下面的方式：</p>
+<p>​                        </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var gulp &#x3D; require(&#39;gulp&#39;);</span><br><span class="line">var eslint &#x3D; require(&#39;gulp-eslint&#39;);</span><br><span class="line">gulp.task(&#39;lint&#39;,function()&#123;</span><br><span class="line">    return gulp.src([&#39;app&#x2F;**&#x2F;*.js&#39;]) &#x2F;&#x2F;指定的校验路径</span><br><span class="line">        .pipe(eslint(&#123;configFle:&quot;.&#x2F;.eslintrc&quot;&#125;)) &#x2F;&#x2F;使用你的eslint校验文件</span><br><span class="line">        .pipe(eslint.format())</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h1 id="ESLint技巧"><a href="#ESLint技巧" class="headerlink" title="ESLint技巧"></a>ESLint技巧</h1><h2 id="eslint-config-standard"><a href="#eslint-config-standard" class="headerlink" title="eslint-config-standard"></a>eslint-config-standard</h2><p>eslint-config-standard是一个标准的ESLint规则检测库，因此只需要安装这个库就可以省去配置ESLint规则。<br><img src alt="在这里插入图片描述"><br>然后，在项目的根目录里面手动创建一个.eslintrc文件，然后在里面添加如下代码：</p>
+<p>​                        </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;extends&quot;: &quot;standard&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行完以上步骤，就可以使用ESLint这个工具来校验项目里的代码。</p>
+<p>在Vue项目里，.vue文件写的是类似于html的格式，不是标准的JavaScript文件，ESLint无法直接识别.vue文件里的JavaScript代码，那么这个时候我们需要去安装一个工具，安装命令如下：</p>
+<p>​                        </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i eslint-plugin-html -D</span><br></pre></td></tr></table></figure>
+
+<p>因为在vue文件里面写JavaScript代码也是写在script标签里面的，这个插件的作用就是识别一个文件里面script标签里面的JS代码，官方也是这么推荐的。所以我们要在.eslintrc文件里面新增一段脚本：</p>
+<p>​                        </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;extends&quot;: &quot;standard&quot;,</span><br><span class="line">  &quot;plugins&quot;: [</span><br><span class="line">    &quot;html&quot;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行完以上步骤后，我们跳转到package.json文件里面的scripts里面新增一条命令：</p>
+<p>​                        </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;lint&quot;: &quot;eslint --ext .js --ext .jsx --ext .vue src&#x2F;&quot;</span><br></pre></td></tr></table></figure>
+
+<p>在上面的脚本命令中，ext后面需要写上指定检测文件的后缀，如.js、.jsx、 .vue等，紧接着后面要写上一个参数，这个参数就是我们要检测哪个目录下面的文件，一般项目文件都在src下面，所以在后面写上src/就好。</p>
+<p>现在我们就可以到terminal里面输入$ npm run lint，来检验项目里的代码是否符合ESLint的规则。</p>
+<h2 id="ESLint自动修复报错"><a href="#ESLint自动修复报错" class="headerlink" title="ESLint自动修复报错"></a>ESLint自动修复报错</h2><p>一般来说，当我们使用命令“npm run lint”检测JavaScript的时候，基本上都会出现非常的多报错，基本上就是满屏的error和warning。<br><img src alt="在这里插入图片描述"><br>在报这么多的错误之后，如果我们一条一条地去修复，就会变的非常的麻烦，相信刚接触ESLint的童鞋都深有体会。其实这些错误都可以让ESLint帮助我们自动地修复。具体来说，只需要在package.json文件里面的scripts里面新增一条命令即可：</p>
+<p>​                        </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;lint-fix&quot;: &quot;eslint --fix --ext .js --ext .jsx --ext .vue src&#x2F;&quot;</span><br></pre></td></tr></table></figure>
+
+<p>当我们再去terminal中执行命令：$ npm run lint-fix，你会发现没有那么多飘红的报错，也没有满屏的error和warning了。</p>
+<p>当然，还有一种万能方法，就是在报错的JS文件中第一行写上/* eslint-disable */，具体可以参考<a href="https://cn.eslint.org/docs/1.10.3/user-guide/command-line-interface" target="_blank" rel="noopener">Command line Interface</a></p>
+<h2 id="eslint-loader"><a href="#eslint-loader" class="headerlink" title="eslint-loader"></a>eslint-loader</h2><p>有时候，我们希望在项目开发的过程当中，每次修改代码都能够自动进行ESLint的检查。因为在我们改代码的过程中去做一次检查，如果有错误，我们就能够很快地去定位到问题并解决问题。这时候我们可以借助eslint-loader插件。</p>
+<p>​                        </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i eslint-loader babel-eslint -D</span><br></pre></td></tr></table></figure>
+
+<p>执行完安装操作后，我们还需要在.eslintrc文件里面配置如下脚本：</p>
+<p>​                        </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;extends&quot;: &quot;standard&quot;,</span><br><span class="line">  &quot;plugins&quot;: [</span><br><span class="line">    &quot;html&quot;</span><br><span class="line">  ],</span><br><span class="line">  &quot;parser&quot;: &quot;babel-eslint&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>为什么我们要配置parser呢？因为我们的项目是基于webpack的，项目里的代码都是需要经过babel去处理的。babel处理的这种语法可能对ESLint不是特别的支持，然后我们使用loader处理ESLint的时候就会出现一些问题。所以一般来说，我们用webpack和babel来进行开发的项目，都会指定它的parser使用babel-eslint。</p>
+<p>同时，使用webpack方式构建的项目，还需要在webpack.config.base.js的module下面的rules里面添加一个如下脚本：</p>
+<p>​                        </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">rules: [</span><br><span class="line">  &#123;</span><br><span class="line">    test: &#x2F;\.(vue|js|jsx)$&#x2F;,</span><br><span class="line">    loader: &#39;eslint-loader&#39;,</span><br><span class="line">    exclude: &#x2F;node_modules&#x2F;,</span><br><span class="line">    enforce: &#39;pre&#39;</span><br><span class="line">  &#125;,</span><br><span class="line">  ......</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>然后我们就可以使用命令 <code>$ npm run dev</code>就可以在开发环境进行ESLint错误检测。</p>
+<p>附：<a href="https://cn.eslint.org/" target="_blank" rel="noopener">https://cn.eslint.org/</a></p>
+<p>​    <a href="https://www.imooc.com/article" target="_blank" rel="noopener">https://www.imooc.com/article</a>…</p>
+<p>​        <a href="https://segmentfault.com/a/1190000018328740" target="_blank" rel="noopener">https://segmentfault.com/a/1190000018328740</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ESLint/" rel="tag"># ESLint</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/30/gulp%E5%8F%8Agulpfile-js/" rel="next" title="gulp及gulpfile.js">
+                <i class="fa fa-chevron-left"></i> gulp及gulpfile.js
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/07/30/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8Fprocess-env/" rel="prev" title="环境变量process.env">
+                环境变量process.env <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="Dali" />
+            
+              <p class="site-author-name" itemprop="name">Dali</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">69</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#ESLint简介"><span class="nav-number">1.</span> <span class="nav-text">ESLint简介</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用"><span class="nav-number"></span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number"></span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#全局安装"><span class="nav-number"></span> <span class="nav-text">全局安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#局部安装（推荐）"><span class="nav-number"></span> <span class="nav-text">局部安装（推荐）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化"><span class="nav-number"></span> <span class="nav-text">初始化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number"></span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#检测规则"><span class="nav-number"></span> <span class="nav-text">检测规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#忽略检测"><span class="nav-number"></span> <span class="nav-text">忽略检测</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gulp中使用ESLint"><span class="nav-number"></span> <span class="nav-text">Gulp中使用ESLint</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ESLint技巧"><span class="nav-number"></span> <span class="nav-text">ESLint技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#eslint-config-standard"><span class="nav-number"></span> <span class="nav-text">eslint-config-standard</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ESLint自动修复报错"><span class="nav-number"></span> <span class="nav-text">ESLint自动修复报错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#eslint-loader"><span class="nav-number"></span> <span class="nav-text">eslint-loader</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dali</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

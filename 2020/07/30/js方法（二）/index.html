@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="js," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="DaliBlogs" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="给一个函数 Bind 对象我们经常需要将一个对象绑定到一个方法的 this 上。在 JS 中，如果你想要调用一个函数并指定它的 this 时可以使用 bind 方法。 Bind 语法 1fun.bind(thisArg[, arg1[, arg2[, ...]]])  参数 thisArg 当绑定函数被调用时，该参数会作为原函数运行时的 this 指向。 arg1, arg2, … 当绑定函数被调">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js方法（二）">
+<meta property="og:url" content="http://yoursite.com/2020/07/30/js%E6%96%B9%E6%B3%95%EF%BC%88%E4%BA%8C%EF%BC%89/index.html">
+<meta property="og:site_name" content="DaliBlogs">
+<meta property="og:description" content="给一个函数 Bind 对象我们经常需要将一个对象绑定到一个方法的 this 上。在 JS 中，如果你想要调用一个函数并指定它的 this 时可以使用 bind 方法。 Bind 语法 1fun.bind(thisArg[, arg1[, arg2[, ...]]])  参数 thisArg 当绑定函数被调用时，该参数会作为原函数运行时的 this 指向。 arg1, arg2, … 当绑定函数被调">
+<meta property="article:published_time" content="2020-07-30T09:04:49.000Z">
+<meta property="article:modified_time" content="2020-07-30T09:29:32.660Z">
+<meta property="article:author" content="Dali">
+<meta property="article:tag" content="js">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/07/30/js方法（二）/"/>
+
+
+
+
+
+  <title>js方法（二） | DaliBlogs</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DaliBlogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/30/js%E6%96%B9%E6%B3%95%EF%BC%88%E4%BA%8C%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">js方法（二）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-30T17:04:49+08:00">
+                2020-07-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="给一个函数-Bind-对象"><a href="#给一个函数-Bind-对象" class="headerlink" title="给一个函数 Bind 对象"></a>给一个函数 Bind 对象</h2><p>我们经常需要将一个对象绑定到一个方法的 this 上。在 JS 中，如果你想要调用一个函数并指定它的 this 时可以使用 bind 方法。</p>
+<p>Bind 语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fun.bind(thisArg[, arg1[, arg2[, ...]]])</span><br></pre></td></tr></table></figure>
+
+<p>参数</p>
+<p>thisArg</p>
+<p>当绑定函数被调用时，该参数会作为原函数运行时的 this 指向。</p>
+<p>arg1, arg2, …</p>
+<p>当绑定函数被调用时，这些参数将置于实参之前传递给被绑定的方法。</p>
+<p>返回值</p>
+<p>返回由指定的this值和初始化参数改造的原函数拷贝</p>
+<a id="more"></a>
+
+<h2 id="JS-中的实例"><a href="#JS-中的实例" class="headerlink" title="JS 中的实例"></a>JS 中的实例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const myCar &#x3D; &#123; brand: &#39;Ford&#39;, type: &#39;Sedan&#39;, color: &#39;Red&#39;&#125;;</span><br><span class="line">const getBrand &#x3D; function () &#123; console.log(this.brand);&#125;;</span><br><span class="line">const getType &#x3D; function () &#123; console.log(this.type);&#125;;</span><br><span class="line">const getColor &#x3D; function () &#123; console.log(this.color);&#125;;</span><br><span class="line">getBrand(); &#x2F;&#x2F; object not bind,undefined</span><br><span class="line">getBrand(myCar); &#x2F;&#x2F; object not bind,undefined</span><br><span class="line">getType.bind(myCar)(); &#x2F;&#x2F; Sedan</span><br><span class="line">let boundGetColor &#x3D; getColor.bind(myCar);boundGetColor(); &#x2F;&#x2F; Red</span><br></pre></td></tr></table></figure>
+
+<h2 id="获取文件拓展名"><a href="#获取文件拓展名" class="headerlink" title="获取文件拓展名"></a>获取文件拓展名</h2><p>解决方法 1: 正则表达式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function getFileExtension1(filename) &#123;  return (&#x2F;[.]&#x2F;.exec(filename)) ? &#x2F;[^.]+$&#x2F;.exec(filename)[0] : undefined;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>解决方法 2: String的split方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function getFileExtension2(filename) &#123;  return filename.split(&#39;.&#39;).pop();&#125;</span><br></pre></td></tr></table></figure>
+
+<p>解决方法 3: String的slice、lastIndexOf方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">function getFileExtension3(filename) &#123;  return filename.slice((filename.lastIndexOf(&quot;.&quot;) - 1 &gt;&gt;&gt; 0) + 2);&#125;</span><br><span class="line">console.log(getFileExtension3(&#39;&#39;));                            &#x2F;&#x2F; &#39;&#39;console.log(getFileExtension3(&#39;filename&#39;));                    &#x2F;&#x2F; &#39;&#39;console.log(getFileExtension3(&#39;filename.txt&#39;));                &#x2F;&#x2F; &#39;txt&#39;console.log(getFileExtension3(&#39;.hiddenfile&#39;));                 &#x2F;&#x2F; &#39;&#39;console.log(getFileExtension3(&#39;filename.with.many.dots.ext&#39;)); &#x2F;&#x2F; &#39;ext&#39;</span><br></pre></td></tr></table></figure>
+
+<p><strong>*这是如何实现的呢?*</strong></p>
+<p><strong>**</strong></p>
+<ul>
+<li>String.lastIndexOf() 方法返回指定值（本例中的’.’）在调用该方法的字符串中最后出现的位置，如果没找到则返回 -1。</li>
+<li>对于’filename’和’.hiddenfile’，lastIndexOf的返回值分别为0和-1无符号右移操作符(»&gt;) 将-1转换为4294967295，将-2转换为4294967294，这个方法可以保证边缘情况时文件名不变。</li>
+<li>String.prototype.slice() 从上面计算的索引处提取文件的扩展名。如果索引比文件名的长度大，结果为””。</li>
+</ul>
+<h2 id="预防unapply攻击"><a href="#预防unapply攻击" class="headerlink" title="预防unapply攻击"></a>预防unapply攻击</h2><p>重写内置对象的原型方法，外部代码可以通过重写代码达到暴漏和修改已绑定参数的函数。这在es5的方法下使用polyfill时是一个严重的安全问题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; bind polyfill 示例function bind(fn) &#123;  var prev &#x3D; Array.prototype.slice.call(arguments, 1);  return function bound() &#123;    var curr &#x3D; Array.prototype.slice.call(arguments, 0);    var args &#x3D; Array.prototype.concat.apply(prev, curr);    return fn.apply(null, args);  &#125;;&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; unapply攻击function unapplyAttack() &#123;  var concat &#x3D; Array.prototype.concat;  Array.prototype.concat &#x3D; function replaceAll() &#123;    Array.prototype.concat &#x3D; concat; &#x2F;&#x2F; restore the correct version    var curr &#x3D; Array.prototype.slice.call(arguments, 0);    var result &#x3D; concat.apply([], curr);    return result;  &#125;;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的函数声明忽略了函数bind的prev参数，意味着调用unapplyAttack之后首次调用.concat将会抛出错误。</p>
+<p>使用Object.freeze，可以使对象不可变，你可以防止任何内置对象原型方法被重写。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(function freezePrototypes() &#123;  if (typeof Object.freeze !&#x3D;&#x3D; &#39;function&#39;) &#123;    throw new Error(&#39;Missing Object.freeze&#39;);  &#125;  Object.freeze(Object.prototype);  Object.freeze(Array.prototype);  Object.freeze(Function.prototype);&#125;());</span><br></pre></td></tr></table></figure>
+
+<p>点击这里，你可以阅读更多关于unapply攻击。</p>
+<p>##给缓存设置过期时间</p>
+<p>方案一（通用）：ES5扩展Storage<a href="https://www.cnblogs.com/ricolee/p/localstorage-expiretime.html#341252870" target="_blank" rel="noopener">#</a></p>
+<p>思路很简单，存储的值加一个时间戳，下次取值时验证时间戳。</p>
+<p>注意： localStorage只能存储字符，存入时将对象转为json字符串,读取时也要解析</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;localStorage 设置的值不能为对象,转为json字符串</span><br><span class="line">Storage.prototype.setExpire &#x3D; (key, value, expire) &#x3D; &gt;&#123;</span><br><span class="line">    let obj &#x3D; &#123;</span><br><span class="line">        data: value,</span><br><span class="line">        time: Date.now(),</span><br><span class="line">        expire: expire</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    localStorage.setItem(key, JSON.stringify(obj));</span><br><span class="line">&#125;</span><br><span class="line">Storage.prototype.getExpire &#x3D; key &#x3D; &gt;&#123;</span><br><span class="line">    let val &#x3D; localStorage.getItem(key);</span><br><span class="line">    if (!val) &#123;</span><br><span class="line">        return val;</span><br><span class="line">    &#125;</span><br><span class="line">    val &#x3D; JSON.parse(val);</span><br><span class="line">    if (Date.now() - val.time &gt; val.expire) &#123;</span><br><span class="line">        localStorage.removeItem(key);</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">    return val.data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>测试一下：</p>
+<p>Copy</p>
+<p>localStorage.setExpire(‘userId’,’zhangsan’,5000);</p>
+<p>window.setInterval(()=&gt;{  console.log(localStorage.getExpire(“userId”));},1000)</p>
+<p>前5秒还是有值的，之后即为null</p>
+<p>方案二：ES6扩展Storage<a href="https://www.cnblogs.com/ricolee/p/localstorage-expiretime.html#3576419538" target="_blank" rel="noopener">#</a></p>
+<p>大体思路和方案一是一样的只不过是用了ES6的最新语法实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">class Storage &#123;</span><br><span class="line">    constructor(props) &#123;</span><br><span class="line">        this.props &#x3D; props || &#123;&#125;</span><br><span class="line">        this.source &#x3D; this.props.source || window.localStorage this.initRun();</span><br><span class="line">    &#125;</span><br><span class="line">    initRun() &#123;</span><br><span class="line">        &#x2F;*        </span><br><span class="line">        * set 存储方法</span><br><span class="line">        * @ param &#123;String&#125; key 键        </span><br><span class="line">        * @ param &#123;String&#125; value 值，存储的值可能是数组&#x2F;对象，不能直接存储，需要转换 JSON.stringify </span><br><span class="line">        * @ param &#123;String&#125; expired 过期时间，以分钟为单位        *&#x2F;</span><br><span class="line">        const reg &#x3D; new RegExp(&quot;__expires__&quot;);</span><br><span class="line">        let data &#x3D; this.source;</span><br><span class="line">        let list &#x3D; Object.keys(data);</span><br><span class="line">        if (list.length &gt; 0) &#123;</span><br><span class="line">            list.map((key, v) &#x3D; &gt;&#123;</span><br><span class="line">                if (!reg.test(key)) &#123;</span><br><span class="line">                    let now &#x3D; Date.now();</span><br><span class="line">                    let expires &#x3D; data[&#96;$ &#123;</span><br><span class="line">                        key</span><br><span class="line">                    &#125;</span><br><span class="line">                    __expires__&#96;] || Date.now + 1;</span><br><span class="line">                    if (now &gt;&#x3D; expires) &#123;</span><br><span class="line">                        this.remove(key);</span><br><span class="line">                    &#125;;</span><br><span class="line">                &#125;;</span><br><span class="line">                return key;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    set(key, value, expired) &#123;</span><br><span class="line">        &#x2F;*	    </span><br><span class="line">        * set 存储方法	    </span><br><span class="line">        * @ param &#123;String&#125;     key 键	    </span><br><span class="line">        * @ param &#123;String&#125;     value 值，	    </span><br><span class="line">        * @ param &#123;String&#125;     expired 过期时间，以毫秒为单位，非必须</span><br><span class="line">        *&#x2F;</span><br><span class="line">        let source &#x3D; this.source;</span><br><span class="line">        source[key] &#x3D; JSON.stringify(value);</span><br><span class="line">        if (expired) &#123;</span><br><span class="line">            source[&#96;$ &#123;</span><br><span class="line">                key</span><br><span class="line">            &#125;</span><br><span class="line">            __expires__&#96;] &#x3D; Date.now() + expired</span><br><span class="line">        &#125;;</span><br><span class="line">        return value;</span><br><span class="line">    &#125;</span><br><span class="line">    get(key) &#123;</span><br><span class="line">        &#x2F;*        </span><br><span class="line">        * get 获取方法        </span><br><span class="line">        * @ param &#123;String&#125;     key 键        </span><br><span class="line">        * @ param &#123;String&#125;     expired 存储时为非必须字段，所以有可能取不到，默认为 Date.now+1        		*&#x2F;</span><br><span class="line">        const source &#x3D; this.source,</span><br><span class="line">        expired &#x3D; source[&#96;$ &#123;</span><br><span class="line">            key</span><br><span class="line">        &#125;</span><br><span class="line">        __expires__&#96;] || Date.now + 1;</span><br><span class="line">        const now &#x3D; Date.now();</span><br><span class="line">        if (now &gt;&#x3D; expired) &#123;</span><br><span class="line">            this.remove(key);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        const value &#x3D; source[key] ? JSON.parse(source[key]) : source[key];</span><br><span class="line">        return value;</span><br><span class="line">    &#125;</span><br><span class="line">    remove(key) &#123;</span><br><span class="line">        const data &#x3D; this.source,</span><br><span class="line">        value &#x3D; data[key];</span><br><span class="line">        delete data[key];</span><br><span class="line">        delete data[&#96;$ &#123;</span><br><span class="line">            key</span><br><span class="line">        &#125;</span><br><span class="line">        __expires__&#96;];</span><br><span class="line">        return value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中set(),get(),remove()方法可以理解用来存、取、删, initRun()做什么用呢？过期的值只有取时才能知道是不是过期，不取一直存着。initRun()和constructor只是在初始化时实现清理，也不是一定即时。另外写一个定时器去清理貌似也不值当，所以觉得做到这样已经够用了。</p>
+<p>使用如下代码进行测试一下,效果和方案一相同</p>
+<p>var ls=new Storage();</p>
+<p>ls.set(‘userId’,’zhangsan’,5000);</p>
+<p>window.setInterval(()=&gt;{console.log(ls.get(“userId”));},1000)</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag"># js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/30/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/" rel="next" title="浏览器渲染基本原理">
+                <i class="fa fa-chevron-left"></i> 浏览器渲染基本原理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/07/30/js%E6%96%B9%E6%B3%95%EF%BC%88%E4%B8%89%EF%BC%89/" rel="prev" title="js方法（三）">
+                js方法（三） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="Dali" />
+            
+              <p class="site-author-name" itemprop="name">Dali</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">69</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#给一个函数-Bind-对象"><span class="nav-number">1.</span> <span class="nav-text">给一个函数 Bind 对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS-中的实例"><span class="nav-number">2.</span> <span class="nav-text">JS 中的实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取文件拓展名"><span class="nav-number">3.</span> <span class="nav-text">获取文件拓展名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#预防unapply攻击"><span class="nav-number">4.</span> <span class="nav-text">预防unapply攻击</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dali</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
