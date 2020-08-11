@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-08-05T09:43:52.805Z</updated>
+  <updated>2020-08-11T12:07:49.923Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,173 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>verdaccio私服搭建</title>
+    <link href="http://yoursite.com/2020/08/11/verdaccio%E7%A7%81%E6%9C%8D%E6%90%AD%E5%BB%BA/"/>
+    <id>http://yoursite.com/2020/08/11/verdaccio%E7%A7%81%E6%9C%8D%E6%90%AD%E5%BB%BA/</id>
+    <published>2020-08-11T11:02:04.000Z</published>
+    <updated>2020-08-11T12:07:49.923Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;1-安装verdaccio&quot;&gt;&lt;a href=&quot;#1-安装verdaccio&quot; class=&quot;headerlink&quot; title=&quot;1 安装verdaccio&quot;&gt;&lt;/a&gt;1 安装verdaccio&lt;/h3&gt;&lt;p&gt;&lt;code&gt;$ npm install --global verdaccio&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;1-1-verdaccio目录结构&quot;&gt;&lt;a href=&quot;#1-1-verdaccio目录结构&quot; class=&quot;headerlink&quot; title=&quot;1.1 verdaccio目录结构&quot;&gt;&lt;/a&gt;1.1 verdaccio目录结构&lt;/h4&gt;&lt;p&gt;安装后的文件在：C:\Users(用户名)\AppData\Roaming\verdaccio下&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2020/08/11/verdaccio%E7%A7%81%E6%9C%8D%E6%90%AD%E5%BB%BA/01.png&quot; alt=&quot;01&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="verdaccio" scheme="http://yoursite.com/categories/verdaccio/"/>
+    
+    
+      <category term="私有服务器" scheme="http://yoursite.com/tags/%E7%A7%81%E6%9C%89%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+      <category term="verdaccio" scheme="http://yoursite.com/tags/verdaccio/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vue更改打包路径</title>
+    <link href="http://yoursite.com/2020/08/10/vue%E6%9B%B4%E6%94%B9%E6%89%93%E5%8C%85%E8%B7%AF%E5%BE%84/"/>
+    <id>http://yoursite.com/2020/08/10/vue%E6%9B%B4%E6%94%B9%E6%89%93%E5%8C%85%E8%B7%AF%E5%BE%84/</id>
+    <published>2020-08-10T08:14:29.000Z</published>
+    <updated>2020-08-11T12:07:30.433Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;根目录新建-env-local&quot;&gt;&lt;a href=&quot;#根目录新建-env-local&quot; class=&quot;headerlink&quot; title=&quot;根目录新建.env.local&quot;&gt;&lt;/a&gt;根目录新建.env.local&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;VUE_APP_assetsRoot &amp;#x3D; D:\zhenlvProject\webtouch\TC.itravel.WebFly\fly2.0\dist  （目标路径）&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;VUE_APP_USER &amp;#x3D; dali&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>es6-Class</title>
+    <link href="http://yoursite.com/2020/08/07/es6-Class/"/>
+    <id>http://yoursite.com/2020/08/07/es6-Class/</id>
+    <published>2020-08-07T01:52:17.000Z</published>
+    <updated>2020-08-11T12:07:15.883Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;你真的理解ES6的Class吗&quot;&gt;&lt;a href=&quot;#你真的理解ES6的Class吗&quot; class=&quot;headerlink&quot; title=&quot;你真的理解ES6的Class吗&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://segmentfault.com/a/1190000019792333&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;你真的理解ES6的Class吗&lt;/a&gt;&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;在面向对象的编程中,类是一个用于创建对象，为状态（成员变量）和行为实现（成员函数或方法）提供初始值的可扩展程序代码模板。（提供封装在一起的变量和函数）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;在实际开发中，我们往往需要创建很多相同类型的对象，如用户、商品或其他对象。我们知道，通过new一个function可以创建一个对象，但在现代的JavaScript里，有一个更高级的“类”结构，对于面向对象编程提供了一些很不错的特性。&lt;/p&gt;
+&lt;h2 id=&quot;Class语法&quot;&gt;&lt;a href=&quot;#Class语法&quot; class=&quot;headerlink&quot; title=&quot;Class语法&quot;&gt;&lt;/a&gt;Class语法&lt;/h2&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>vue-nextTick</title>
+    <link href="http://yoursite.com/2020/08/06/vue-nextTick/"/>
+    <id>http://yoursite.com/2020/08/06/vue-nextTick/</id>
+    <published>2020-08-06T08:20:07.000Z</published>
+    <updated>2020-08-11T12:06:57.503Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;异步更新队列：&quot;&gt;&lt;a href=&quot;#异步更新队列：&quot; class=&quot;headerlink&quot; title=&quot;异步更新队列：&quot;&gt;&lt;/a&gt;异步更新队列：&lt;/h4&gt;&lt;p&gt;请记住：&lt;strong&gt;vue是依靠数据驱动视图更新的，该更新的过程是异步的。&lt;/strong&gt;即：当侦听到你的数据发生变化时， Vue将开启一个队列（该队列被Vue官方称为异步更新队列）。视图需要等队列中所有数据变化完成之后，再统一进行更新。示例：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;div id&amp;#x3D;&amp;quot;myApp&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;input type&amp;#x3D;&amp;quot;button&amp;quot; value&amp;#x3D;&amp;quot;点我呀&amp;quot; @click&amp;#x3D;&amp;quot;changeStr&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;p ref&amp;#x3D;&amp;quot;myP&amp;quot;&amp;gt;&amp;#123;&amp;#123;str&amp;#125;&amp;#125;&amp;lt;&amp;#x2F;p&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;&amp;#x2F;div&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    new Vue(&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        el:&amp;quot;#myApp&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        data:&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            str:&amp;quot;公众号 张培跃，关注它的人很少！&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        methods:&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            changeStr()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                this.str &amp;#x3D; &amp;quot;欢迎关注公众号 张培跃，收看更多精彩内容！&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#x2F;&amp;#x2F; 输出结果：公众号 张培跃，关注它的人很少！&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                console.log(this.$refs.myP.innerText)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;&amp;#x2F;script&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="vue" scheme="http://yoursite.com/categories/vue/"/>
+    
+    
+      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
+    
+      <category term="nextTick" scheme="http://yoursite.com/tags/nextTick/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Promise</title>
+    <link href="http://yoursite.com/2020/08/06/Promise/"/>
+    <id>http://yoursite.com/2020/08/06/Promise/</id>
+    <published>2020-08-06T06:06:48.000Z</published>
+    <updated>2020-08-11T12:06:24.982Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本质上Promise是一个函数返回的对象，我们可以在它上面绑定回调函数，这样我们就不需要在一开始把回调函数作为参数传入这个函数了。&lt;/p&gt;
+&lt;p&gt;假设现在有一个名为 &lt;code&gt;createAudioFileAsync()&lt;/code&gt; 的函数，它接收一些配置和两个回调函数，然后异步地生成音频文件。一个回调函数在文件成功创建时的被调用，另一个则在出现异常时的被调用。&lt;/p&gt;
+&lt;p&gt;以下为使用 &lt;code&gt;createAudioFileAsync()&lt;/code&gt; 的示例：&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="promise" scheme="http://yoursite.com/categories/promise/"/>
+    
+    
+      <category term="promise" scheme="http://yoursite.com/tags/promise/"/>
+    
+      <category term="es6" scheme="http://yoursite.com/tags/es6/"/>
+    
+      <category term="js" scheme="http://yoursite.com/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vue-ref</title>
+    <link href="http://yoursite.com/2020/08/06/vue-ref/"/>
+    <id>http://yoursite.com/2020/08/06/vue-ref/</id>
+    <published>2020-08-06T01:42:23.000Z</published>
+    <updated>2020-08-11T12:05:54.545Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;含义&quot;&gt;&lt;a href=&quot;#含义&quot; class=&quot;headerlink&quot; title=&quot;含义&quot;&gt;&lt;/a&gt;含义&lt;/h3&gt;&lt;p&gt;在原生里获取DOM元素，需document.querySelector（”.input1”）获取这个dom节点，然后在获取input1的值。&lt;/p&gt;
+&lt;p&gt;但是用ref绑定之后，我们就不需要在获取dom节点了，直接在上面的input上绑定input1，然后$refs里面调用就行。&lt;/p&gt;
+&lt;p&gt;然后在javascript里面这样调用：this.$refs.input1  这样就可以减少获取dom节点的消耗了&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="vue" scheme="http://yoursite.com/categories/vue/"/>
+    
+    
+      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
+    
+      <category term="ref" scheme="http://yoursite.com/tags/ref/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vue自定义指令</title>
+    <link href="http://yoursite.com/2020/08/05/vue%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4/"/>
+    <id>http://yoursite.com/2020/08/05/vue%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4/</id>
+    <published>2020-08-05T11:50:10.000Z</published>
+    <updated>2020-08-05T11:58:54.941Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;全局自定义指令&quot;&gt;&lt;a href=&quot;#全局自定义指令&quot; class=&quot;headerlink&quot; title=&quot;全局自定义指令&quot;&gt;&lt;/a&gt;全局自定义指令&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;div id&amp;#x3D;&amp;quot;app&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;p&amp;gt;页面载入时，input 元素自动获取焦点：&amp;lt;&amp;#x2F;p&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;input v-focus&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;&amp;#x2F;div&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#x2F;&amp;#x2F; 注册一个全局自定义指令 v-focus&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Vue.directive(&amp;#39;focus&amp;#39;, &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#x2F;&amp;#x2F; 当绑定元素插入到 DOM 中。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  inserted: function (el) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#x2F;&amp;#x2F; 聚焦元素&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    el.focus()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#x2F;&amp;#x2F; 创建根实例&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;new Vue(&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  el: &amp;#39;#app&amp;#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;&amp;#x2F;script&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="vue" scheme="http://yoursite.com/categories/vue/"/>
+    
+    
+      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
+    
+      <category term="directive" scheme="http://yoursite.com/tags/directive/"/>
+    
+  </entry>
+  
+  <entry>
     <title>vue-vuex</title>
     <link href="http://yoursite.com/2020/08/05/vue-vuex/"/>
     <id>http://yoursite.com/2020/08/05/vue-vuex/</id>
     <published>2020-08-05T09:39:50.000Z</published>
-    <updated>2020-08-05T09:43:52.805Z</updated>
+    <updated>2020-08-11T12:02:54.020Z</updated>
     
     <summary type="html">
     
@@ -29,7 +191,7 @@
       
         
         
-          &lt;p&gt;&lt;img src=&quot;/.com//header.jpg&quot;
+          &lt;p&gt;&lt;img src=&quot;/2020/08/05/vue-vuex/header.jpg&quot;
         
       
     
@@ -107,7 +269,7 @@
     <link href="http://yoursite.com/2020/08/04/vue-filter/"/>
     <id>http://yoursite.com/2020/08/04/vue-filter/</id>
     <published>2020-08-04T07:56:00.000Z</published>
-    <updated>2020-08-05T09:30:58.435Z</updated>
+    <updated>2020-08-05T11:37:19.756Z</updated>
     
     <summary type="html">
     
@@ -213,7 +375,7 @@
     <link href="http://yoursite.com/2020/07/30/vue-%E6%96%B9%E6%B3%95%E7%9B%B8%E5%85%B3/"/>
     <id>http://yoursite.com/2020/07/30/vue-%E6%96%B9%E6%B3%95%E7%9B%B8%E5%85%B3/</id>
     <published>2020-07-30T10:51:47.000Z</published>
-    <updated>2020-08-05T09:07:10.188Z</updated>
+    <updated>2020-08-05T11:37:36.417Z</updated>
     
     <summary type="html">
     
@@ -265,7 +427,7 @@
     <link href="http://yoursite.com/2020/07/30/vue-template%E6%A0%87%E7%AD%BE%E7%9B%B8%E5%85%B3/"/>
     <id>http://yoursite.com/2020/07/30/vue-template%E6%A0%87%E7%AD%BE%E7%9B%B8%E5%85%B3/</id>
     <published>2020-07-30T10:38:36.000Z</published>
-    <updated>2020-08-05T09:06:57.094Z</updated>
+    <updated>2020-08-06T01:28:33.618Z</updated>
     
     <summary type="html">
     
@@ -365,204 +527,6 @@
     
     
       <category term="js" scheme="http://yoursite.com/tags/js/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>浏览器渲染基本原理</title>
-    <link href="http://yoursite.com/2020/07/30/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/"/>
-    <id>http://yoursite.com/2020/07/30/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/</id>
-    <published>2020-07-30T08:29:59.000Z</published>
-    <updated>2020-07-30T09:32:06.506Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-
-&lt;p&gt;&lt;img
-        
-      
-    
-    </summary>
-    
-    
-      <category term="浏览器渲染" scheme="http://yoursite.com/categories/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93/"/>
-    
-    
-      <category term="浏览器渲染" scheme="http://yoursite.com/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>算法排序</title>
-    <link href="http://yoursite.com/2020/07/30/%E7%AE%97%E6%B3%95%E6%8E%92%E5%BA%8F/"/>
-    <id>http://yoursite.com/2020/07/30/%E7%AE%97%E6%B3%95%E6%8E%92%E5%BA%8F/</id>
-    <published>2020-07-30T08:24:59.000Z</published>
-    <updated>2020-07-30T09:32:48.517Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;简单递归&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/.com//Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/02d2d28b9e1e474e9c9988ca3c4bd176/clipboard.png&quot; alt=&quot;img&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="js" scheme="http://yoursite.com/categories/js/"/>
-    
-    
-      <category term="js" scheme="http://yoursite.com/tags/js/"/>
-    
-      <category term="排序" scheme="http://yoursite.com/tags/%E6%8E%92%E5%BA%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>环境变量process.env</title>
-    <link href="http://yoursite.com/2020/07/30/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8Fprocess-env/"/>
-    <id>http://yoursite.com/2020/07/30/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8Fprocess-env/</id>
-    <published>2020-07-30T08:19:53.000Z</published>
-    <updated>2020-07-30T08:30:24.719Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近系统接入了公司的单点登录，为了登陆成功后再跳回系统的主页面，又申请了测试和沙箱的域名（之前都是直接用IP登的），本地开发是配置的host。接入之后发现了一个非常麻烦的点就是给单点登录传的跳转地址每次都要修改，开发的时候要写成开发的域名，测试的时候要改成测试的域名，进沙箱的时候要改成跳转沙箱的域名，上线的时候又要改成线上的域名。特别是在测试阶段，开发测试来回切换，不胜其烦。&lt;br&gt;于是就想把它写成配置文件，根据不同环境加载不同的配置，这样就不用来回改了。这个时候，process.env就跳入了脑海，叫嚣着，终于该我出场啦！！&lt;/p&gt;
-&lt;h4 id=&quot;扒一扒process-env&quot;&gt;&lt;a href=&quot;#扒一扒process-env&quot; class=&quot;headerlink&quot; title=&quot;扒一扒process.env&quot;&gt;&lt;/a&gt;扒一扒process.env&lt;/h4&gt;&lt;p&gt;process对象是全局变量，它提供当前node.js的有关信息，以及控制当前node.js的有关进程。因为是全局变量，它对于node应用程序是始终可用的，无需require()。&lt;br&gt;既然process都是一个对象了，env自然是它的一个属性，这个属性返回包含用户环境信息的对象。在终端输入node后，在输入process.env可以看到打印出来的信息。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="环境变量" scheme="http://yoursite.com/categories/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/"/>
-    
-    
-      <category term="环境变量" scheme="http://yoursite.com/tags/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/"/>
-    
-      <category term="process-env" scheme="http://yoursite.com/tags/process-env/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ESLint简介</title>
-    <link href="http://yoursite.com/2020/07/30/ESLint%E7%AE%80%E4%BB%8B/"/>
-    <id>http://yoursite.com/2020/07/30/ESLint%E7%AE%80%E4%BB%8B/</id>
-    <published>2020-07-30T08:09:52.000Z</published>
-    <updated>2020-07-30T09:27:28.503Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;ESLint简介&quot;&gt;&lt;a href=&quot;#ESLint简介&quot; class=&quot;headerlink&quot; title=&quot;ESLint简介&quot;&gt;&lt;/a&gt;ESLint简介&lt;/h4&gt;&lt;p&gt;ESLint是一个用来识别 ECMAScript 并且按照规则给出报告的代码检测工具，使用它可以避免低级错误和统一代码的风格。如果每次在代码提交之前都进行一次eslint代码检查，就不会因为某个字段未定义为undefined或null这样的错误而导致服务崩溃，可以有效的控制项目代码的质量。&lt;/p&gt;
-&lt;p&gt;在许多方面，它和 JSLint、JSHint 相似，除了少数的例外：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;ESLint 使用 Espree 解析 JavaScript。&lt;/li&gt;
-&lt;li&gt;ESLint 使用 AST 去分析代码中的模式。&lt;/li&gt;
-&lt;li&gt;ESLint 是完全插件化的。每一个规则都是一个插件并且你可以在运行时添加更多的规则。&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-      <category term="ESLint" scheme="http://yoursite.com/categories/ESLint/"/>
-    
-    
-      <category term="ESLint" scheme="http://yoursite.com/tags/ESLint/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>gulp及gulpfile.js</title>
-    <link href="http://yoursite.com/2020/07/30/gulp%E5%8F%8Agulpfile-js/"/>
-    <id>http://yoursite.com/2020/07/30/gulp%E5%8F%8Agulpfile-js/</id>
-    <published>2020-07-30T08:04:08.000Z</published>
-    <updated>2020-07-30T08:07:30.865Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;一、什么是gulp&quot;&gt;&lt;a href=&quot;#一、什么是gulp&quot; class=&quot;headerlink&quot; title=&quot;一、什么是gulp&quot;&gt;&lt;/a&gt;一、什么是gulp&lt;/h3&gt;&lt;p&gt;简单来说：就是压缩前端代码，实现浏览器自动刷新的工具。&lt;/p&gt;
-&lt;p&gt;完整地说：gulp是一个前端的自动化构建工具，是基于Node.js的自动化任务运行期，能自动化完成javascript/sass/less/html/image/css等文件的测试、检查、合并、压缩、格式化、浏览器自动刷新、部署文件生成、并监听文件在改动后重复指定（在gulpfile.js中指定）的这些步骤。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="tools" scheme="http://yoursite.com/categories/tools/"/>
-    
-    
-      <category term="前端自动化压缩" scheme="http://yoursite.com/tags/%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8E%8B%E7%BC%A9/"/>
-    
-      <category term="工具" scheme="http://yoursite.com/tags/%E5%B7%A5%E5%85%B7/"/>
-    
-      <category term="tool" scheme="http://yoursite.com/tags/tool/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>字符串方法</title>
-    <link href="http://yoursite.com/2020/07/30/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%96%B9%E6%B3%95/"/>
-    <id>http://yoursite.com/2020/07/30/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%96%B9%E6%B3%95/</id>
-    <published>2020-07-30T07:44:02.000Z</published>
-    <updated>2020-07-30T10:58:06.155Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;###charAt()方法&lt;/p&gt;
-&lt;p&gt;charAt()返回字符串中x位置的字符，下标从 0 开始。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;script type&amp;#x3D;&amp;quot;text&amp;#x2F;javascript&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#x2F;&amp;#x2F;charAt(x)返回字符串中x位置的字符，下标从 0 开始。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var myString &amp;#x3D; &amp;#39;wangxiaoting&amp;#39;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    console.log(myString.charAt(7)); &amp;#x2F;&amp;#x2F; o&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;&amp;#x2F;script&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="字符串" scheme="http://yoursite.com/categories/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
-    
-    
-      <category term="js" scheme="http://yoursite.com/tags/js/"/>
-    
-      <category term="字符串" scheme="http://yoursite.com/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>momentJs</title>
-    <link href="http://yoursite.com/2020/07/30/momentJs/"/>
-    <id>http://yoursite.com/2020/07/30/momentJs/</id>
-    <published>2020-07-30T07:37:24.000Z</published>
-    <updated>2020-07-30T07:43:16.057Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;UTC、GMT、时间戳之间的关系&lt;/p&gt;
-&lt;p&gt;时区&lt;/p&gt;
-&lt;p&gt;世界时区的划分以本初子午线为标准，向东12个时区，向西12个时区，子午线所在区为0时区，东十二区和西十二区重合，所以一共是24个时区。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;GMT和UTC&lt;/p&gt;
-&lt;p&gt;GMT： 即格林威治时间（Greenwich Mean Time），也是0时区的标准时间。指太阳横穿格林威治子午线（本初子午线）时的时间。但由于地球自转不均匀不规则，导致GMT不精确，现在已经不再作为世界标准时间使用。&lt;/p&gt;
-&lt;p&gt;UTC： 即协调世界时间（Coordinated Universal Time）。UTC是以原子时秒长为基础，在时刻上尽量接近于GMT的一种时间计量系统。UTC现在作为世界标准时间使用。&lt;/p&gt;
-&lt;p&gt;所以，UTC与GMT基本上等同，误差不超过0.9秒。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;时间戳&lt;/p&gt;
-&lt;p&gt;UNIX时间戳：是从UTC时间1970年1月1日起到现在的秒数，不考虑闰秒，一天有86400秒，它是和时区无关的，无论在地球上的那个角落，同一时刻，UNIX时间戳都是一样的，计算机的本地时间就是根据 Unix时间戳 + 时区差 转换而来的。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;本地时间&lt;/p&gt;
-&lt;p&gt;本地时间 = UTC + 时区差&lt;/p&gt;
-&lt;p&gt;时区差：东为正，西为负。在此，把东八区时区差记为 +0800， UTC 是标准时间参照，GMT（格林威治时间）、CST（北京时间）、PST（太平洋时间）等等是具体的时区，兑换如下：&lt;/p&gt;
-&lt;p&gt;GMT: UTC +0    =    GMT: GMT +0CST: UTC +8    =    CST: GMT +8PST: UTC -8    =    PST: GMT -8&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-      <category term="moment" scheme="http://yoursite.com/categories/moment/"/>
-    
-    
-      <category term="插件" scheme="http://yoursite.com/tags/%E6%8F%92%E4%BB%B6/"/>
-    
-      <category term="js" scheme="http://yoursite.com/tags/js/"/>
-    
-      <category term="moment" scheme="http://yoursite.com/tags/moment/"/>
     
   </entry>
   
