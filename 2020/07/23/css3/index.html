@@ -96,7 +96,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/07/23/css3/image3.png">
 <meta property="og:image" content="http://yoursite.com/2020/07/23/css3/image4.svg">
 <meta property="article:published_time" content="2020-07-23T05:46:14.000Z">
-<meta property="article:modified_time" content="2020-07-30T11:19:12.848Z">
+<meta property="article:modified_time" content="2020-09-04T00:53:24.680Z">
 <meta property="article:author" content="Dali">
 <meta property="article:tag" content="css">
 <meta name="twitter:card" content="summary">
@@ -576,7 +576,6 @@
 <p>width: 0;<br>height: 0;<br>border: 50px solid;<br>border-color: red yellow green blue;</p>
 <p><img src="/2020/07/23/css3/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/ab651a41b1784e39a74d4ee18fc03bfa/clipboard.png" alt="img"></p>
 <p>width: 0;<br>height: 0;<br>border: 50px solid;<br>border-color: red transparent transparent transparent;</p>
-<p>​</p>
 <p>兼容ie（用over-flow:hidden;开启hailoayout）</p>
 <p><img src="/2020/07/23/css3/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/640de85094d94c1da63fcc5e73440389/clipboard.png" alt="img"></p>
 </blockquote>
@@ -771,6 +770,19 @@
 <li>px - 像素单位是最精确的，但是不适用于自适应的设计。px单位是可靠的，并且易于理解，我们可以精细的控制元素的大小和移动到1px。</li>
 </ul>
 <p>最重要的是，不要害怕尝试，尝试所有方法，看看最适合什么。有时候，em和rem可以节省很多工作，尤其是在构建响应式页面时。</p>
+<ol start="20">
+<li>CSS 利用transform达到居中效果</li>
+</ol>
+<blockquote>
+<body>
+
+<pre><code>&lt;div class=&quot;center&quot;&gt;
+    ....
+&lt;/div&gt;</code></pre></body>
+
+<p>让left和top都是50%，这在水平方向上让div的最左与屏幕的最左相距50%，垂直方向上一样，所以再用transform向左（上）平移它自己宽度（高度）的50%，也就达到居中效果了</p>
+<p>.center{<br>    text-align: center;<br>    background-color: #fff;<br>    border-radius: 20px;<br>    width: 300px;<br>    height: 350px;<br>    position: absolute;<br>    left: 50%;<br>    top: 50%;<br>    transform: translate(-50%,-50%);<br>}</p>
+</blockquote>
 
       
     </div>
@@ -894,7 +906,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-count">82</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -905,7 +917,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -916,7 +928,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">75</span>
+                  <span class="site-state-item-count">83</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

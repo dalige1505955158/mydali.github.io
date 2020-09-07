@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-08-11T12:07:49.923Z</updated>
+  <updated>2020-09-07T10:18:26.089Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,293 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>charles抓包</title>
+    <link href="http://yoursite.com/2020/09/07/charles%E6%8A%93%E5%8C%85/"/>
+    <id>http://yoursite.com/2020/09/07/charles%E6%8A%93%E5%8C%85/</id>
+    <published>2020-09-07T10:12:57.000Z</published>
+    <updated>2020-09-07T10:18:26.089Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一、&lt;/p&gt;
+&lt;p&gt;安装前提：配置好了Jdk环境&lt;/p&gt;
+&lt;p&gt;若不进行破解，则每次只能试用30分钟，30分钟后工具自动关闭&lt;/p&gt;
+&lt;p&gt;破解方法：将破解补丁charles.jar文件复制到lib文件夹下，替换掉同名jar包&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="charles" scheme="http://yoursite.com/categories/charles/"/>
+    
+    
+      <category term="charles" scheme="http://yoursite.com/tags/charles/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>totalcontrol</title>
+    <link href="http://yoursite.com/2020/09/04/totalcontrol/"/>
+    <id>http://yoursite.com/2020/09/04/totalcontrol/</id>
+    <published>2020-09-04T06:53:50.000Z</published>
+    <updated>2020-09-07T10:19:30.170Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Total-Control，电脑与手机初次连接详细教程听语音&quot;&gt;&lt;a href=&quot;#Total-Control，电脑与手机初次连接详细教程听语音&quot; class=&quot;headerlink&quot; title=&quot;Total Control，电脑与手机初次连接详细教程听语音&quot;&gt;&lt;/a&gt;Total Control，电脑与手机初次连接详细教程听语音&lt;/h1&gt;&lt;p&gt;对于很多使用手机群控软件的用户而言，Total Control 绝对都不陌生。但是，不论谁都是从小白经历过来的，一开始也不知道 Total Control 怎么用。这篇教程会以酷派 5952 为例给大家详细解析手机初次连接时可能遇到的问题，并提供对应的解决方法，供大家参考使用。&lt;/p&gt;
+&lt;p&gt;注：此教程仅适用于手机与 Total Control 无法自动连接的情况。&lt;/p&gt;
+&lt;h2 id=&quot;工具-原料&quot;&gt;&lt;a href=&quot;#工具-原料&quot; class=&quot;headerlink&quot; title=&quot;工具/原料&quot;&gt;&lt;/a&gt;工具/原料&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;电脑&lt;/li&gt;
+&lt;li&gt;安卓手机&lt;/li&gt;
+&lt;li&gt;Total Control手机群控软件&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Androidchrome远程调试</title>
+    <link href="http://yoursite.com/2020/09/04/Androidchrome%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/"/>
+    <id>http://yoursite.com/2020/09/04/Androidchrome%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/</id>
+    <published>2020-09-04T06:04:38.000Z</published>
+    <updated>2020-09-07T10:16:04.525Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;一：背景&lt;/strong&gt;&lt;br&gt;通常情况我们调试移动端页面最常用的方法就是：切换pc端浏览器的userAgent来模拟手机或其他移动设备调试页面 然后用手机打开要调试的页面 刷新页面查看调试结果&lt;/p&gt;
+&lt;p&gt;但是这就存在两个问题 在pc浏览器模拟手机可能造成调试不准 用手机直接调试 又多一步刷新 那怎么能达到在pc端修改代码 在手机上直接看到修改结果这样的所见即所得的效果呢 chrome做到了&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="调试" scheme="http://yoursite.com/categories/%E8%B0%83%E8%AF%95/"/>
+    
+    
+      <category term="chrome" scheme="http://yoursite.com/tags/chrome/"/>
+    
+      <category term="android" scheme="http://yoursite.com/tags/android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>小程序开发之自定义导航栏</title>
+    <link href="http://yoursite.com/2020/08/26/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AF%BC%E8%88%AA%E6%A0%8F/"/>
+    <id>http://yoursite.com/2020/08/26/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AF%BC%E8%88%AA%E6%A0%8F/</id>
+    <published>2020-08-26T11:24:04.000Z</published>
+    <updated>2020-08-26T11:31:03.857Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;微信小程序-自定义头部导航栏-navigationStyle&quot;&gt;&lt;a href=&quot;#微信小程序-自定义头部导航栏-navigationStyle&quot; class=&quot;headerlink&quot; title=&quot;微信小程序 自定义头部导航栏 navigationStyle&quot;&gt;&lt;/a&gt;微信小程序 自定义头部导航栏 navigationStyle&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/8198580-8401274f1a9f6607.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/389/format/webp&quot; alt=&quot;img&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="soft" scheme="http://yoursite.com/categories/soft/"/>
+    
+    
+      <category term="小程序" scheme="http://yoursite.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>小程序开发之定位</title>
+    <link href="http://yoursite.com/2020/08/26/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E5%AE%9A%E4%BD%8D/"/>
+    <id>http://yoursite.com/2020/08/26/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E5%AE%9A%E4%BD%8D/</id>
+    <published>2020-08-26T11:23:48.000Z</published>
+    <updated>2020-08-26T11:30:53.252Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;app.json:  (&lt;a href=&quot;https://blog.csdn.net/guochanof/article/details/89669839&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;不知道具体位置可以看这里,这里有整个app.json的配置&lt;/a&gt;)&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;string&quot;&gt;&quot;permission&quot;&lt;/span&gt;: &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &lt;span class=&quot;string&quot;&gt;&quot;scope.userLocation&quot;&lt;/span&gt;: &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     &lt;span class=&quot;string&quot;&gt;&quot;desc&quot;&lt;/span&gt;: &lt;span class=&quot;string&quot;&gt;&quot;你的位置信息将用于小程序位置接口的效果展示&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="soft" scheme="http://yoursite.com/categories/soft/"/>
+    
+    
+      <category term="小程序" scheme="http://yoursite.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>小程序开发之分享</title>
+    <link href="http://yoursite.com/2020/08/26/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E5%88%86%E4%BA%AB/"/>
+    <id>http://yoursite.com/2020/08/26/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E5%88%86%E4%BA%AB/</id>
+    <published>2020-08-26T10:57:38.000Z</published>
+    <updated>2020-08-26T11:30:58.414Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;实现方式&quot;&gt;&lt;a href=&quot;#实现方式&quot; class=&quot;headerlink&quot; title=&quot;实现方式&quot;&gt;&lt;/a&gt;实现方式&lt;/h3&gt;&lt;p&gt;在小程序开发API中，发送给好友/群，可以有两种实现方式：&lt;/p&gt;
+&lt;p&gt;1）入口&lt;/p&gt;
+&lt;p&gt;a.小程序右上角自带的分享功能（…）：&lt;/p&gt;
+&lt;p&gt;如果在当前页面调用wx.hideShareMenu()方法，那么右上角的分享功能将被隐藏，当然，隐藏方法与现实方法是承兑出现的，调用wx.showShareMenu()方法，可以显示该功能。&lt;/p&gt;
+&lt;p&gt;b.自定义分享按钮：&lt;butto n open-type=&quot;share&quot;&gt;分享&amp;lt;/butto n&amp;gt;&lt;/butto&gt;&lt;/p&gt;
+&lt;p&gt;以上两种方式均可实现分享功能&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="soft" scheme="http://yoursite.com/categories/soft/"/>
+    
+    
+      <category term="小程序" scheme="http://yoursite.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>js数组方法-reduce</title>
+    <link href="http://yoursite.com/2020/08/25/js%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95-reduce/"/>
+    <id>http://yoursite.com/2020/08/25/js%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95-reduce/</id>
+    <published>2020-08-25T06:26:42.000Z</published>
+    <updated>2020-08-25T07:33:38.807Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;JS数组reduce-方法详解及高级技巧&quot;&gt;&lt;a href=&quot;#JS数组reduce-方法详解及高级技巧&quot; class=&quot;headerlink&quot; title=&quot;JS数组reduce()方法详解及高级技巧&quot;&gt;&lt;/a&gt;JS数组reduce()方法详解及高级技巧&lt;/h1&gt;&lt;h4 id=&quot;1、语法&quot;&gt;&lt;a href=&quot;#1、语法&quot; class=&quot;headerlink&quot; title=&quot;1、语法&quot;&gt;&lt;/a&gt;1、语法&lt;/h4&gt;&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;selector-tag&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;selector-class&quot;&gt;.reduce&lt;/span&gt;(&lt;span class=&quot;selector-tag&quot;&gt;callback&lt;/span&gt;,&lt;span class=&quot;selector-attr&quot;&gt;[initialValue]&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;reduce 为数组中的每一个元素依次执行回调函数，不包括数组中被删除或从未被赋值的元素，接受四个参数：初始值（或者上一次回调函数的返回值），当前元素值，当前索引，调用 reduce 的数组。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="js" scheme="http://yoursite.com/categories/js/"/>
+    
+    
+      <category term="js" scheme="http://yoursite.com/tags/js/"/>
+    
+      <category term="数组" scheme="http://yoursite.com/tags/%E6%95%B0%E7%BB%84/"/>
+    
+      <category term="reduce" scheme="http://yoursite.com/tags/reduce/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>小程序文字展开收起</title>
+    <link href="http://yoursite.com/2020/08/20/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%96%87%E5%AD%97%E5%B1%95%E5%BC%80%E6%94%B6%E8%B5%B7/"/>
+    <id>http://yoursite.com/2020/08/20/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%96%87%E5%AD%97%E5%B1%95%E5%BC%80%E6%94%B6%E8%B5%B7/</id>
+    <published>2020-08-20T11:21:21.000Z</published>
+    <updated>2020-08-26T11:31:16.638Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;微信小程序开发中想要如h5一样获取元素的宽高值进行业务的功能实现，一开始不知道怎么实现，翻看文档发现，微信官方提供了一个非常好的东西&lt;/p&gt;
+&lt;h1 id=&quot;SelectorQuery&quot;&gt;&lt;a href=&quot;#SelectorQuery&quot; class=&quot;headerlink&quot; title=&quot;SelectorQuery&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://links.jianshu.com/go?to=https%3A%2F%2Fdevelopers.weixin.qq.com%2Fminiprogram%2Fdev%2Fapi%2Fwxml%2FSelectorQuery.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;SelectorQuery&lt;/a&gt;&lt;/h1&gt;&lt;h3 id=&quot;wx-createSelectorQuery&quot;&gt;&lt;a href=&quot;#wx-createSelectorQuery&quot; class=&quot;headerlink&quot; title=&quot;wx.createSelectorQuery()&quot;&gt;&lt;/a&gt;wx.createSelectorQuery()&lt;/h3&gt;&lt;p&gt;示例代码&lt;/p&gt;
+&lt;figure class=&quot;highlight jsx&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; query = wx.createSelectorQuery()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;query.select(&lt;span class=&quot;string&quot;&gt;&#39;#the-id&#39;&lt;/span&gt;).boundingClientRect()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;query.selectViewport().scrollOffset()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;query.exec(&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;res&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  res[&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;].top       &lt;span class=&quot;comment&quot;&gt;// #the-id节点的上边界坐标&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  res[&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;].scrollTop &lt;span class=&quot;comment&quot;&gt;// 显示区域的竖直滚动位置&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="soft" scheme="http://yoursite.com/categories/soft/"/>
+    
+    
+      <category term="小程序" scheme="http://yoursite.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>配置本地iis</title>
+    <link href="http://yoursite.com/2020/08/18/%E9%85%8D%E7%BD%AE%E6%9C%AC%E5%9C%B0iis/"/>
+    <id>http://yoursite.com/2020/08/18/%E9%85%8D%E7%BD%AE%E6%9C%AC%E5%9C%B0iis/</id>
+    <published>2020-08-18T12:41:15.000Z</published>
+    <updated>2020-08-19T01:45:28.672Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;开启iis&quot;&gt;&lt;a href=&quot;#开启iis&quot; class=&quot;headerlink&quot; title=&quot;开启iis&quot;&gt;&lt;/a&gt;开启iis&lt;/h3&gt;&lt;p&gt;控制面板-程序-启用或者关闭windows功能&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="iis" scheme="http://yoursite.com/categories/iis/"/>
+    
+    
+      <category term="iis" scheme="http://yoursite.com/tags/iis/"/>
+    
+      <category term="localhost" scheme="http://yoursite.com/tags/localhost/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>gitExtensions/git/kdiff3/</title>
+    <link href="http://yoursite.com/2020/08/18/gitExtensions-git-kdiff3/"/>
+    <id>http://yoursite.com/2020/08/18/gitExtensions-git-kdiff3/</id>
+    <published>2020-08-18T12:00:43.000Z</published>
+    <updated>2020-08-18T12:40:34.262Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;Git-Extension工具安装及使用&quot;&gt;&lt;a href=&quot;#Git-Extension工具安装及使用&quot; class=&quot;headerlink&quot; title=&quot;Git Extension工具安装及使用&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.cnblogs.com/sumuncle/p/7675921.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Git Extension工具安装及使用&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;以下界面所示的三个工具，如果没安装过，则勾上让其安装。MsysGit为Git的Windows版本，必须要安装；Kdiff为对比/合并工具，可选安装，可以换为使用其它的相关工具；最后一个Windows Credential Store for Git用于在Windows Credential Manager中存储仓库的密码，这在老版本中没有，也安上吧&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="gitExtensions" scheme="http://yoursite.com/categories/gitExtensions/"/>
+    
+    
+      <category term="git" scheme="http://yoursite.com/tags/git/"/>
+    
+      <category term="gitExtensions" scheme="http://yoursite.com/tags/gitExtensions/"/>
+    
+      <category term="kdiff3" scheme="http://yoursite.com/tags/kdiff3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>环境搭建从无到有</title>
+    <link href="http://yoursite.com/2020/08/18/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%BB%8E%E6%97%A0%E5%88%B0%E6%9C%89/"/>
+    <id>http://yoursite.com/2020/08/18/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%BB%8E%E6%97%A0%E5%88%B0%E6%9C%89/</id>
+    <published>2020-08-18T11:21:31.000Z</published>
+    <updated>2020-08-19T01:44:55.163Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;开发工具&quot;&gt;&lt;a href=&quot;#开发工具&quot; class=&quot;headerlink&quot; title=&quot;开发工具&quot;&gt;&lt;/a&gt;开发工具&lt;/h2&gt;&lt;h3 id=&quot;nodeJs&quot;&gt;&lt;a href=&quot;#nodeJs&quot; class=&quot;headerlink&quot; title=&quot;nodeJs&quot;&gt;&lt;/a&gt;nodeJs&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://nodejs.org/en/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;官网地址&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;git&quot;&gt;&lt;a href=&quot;#git&quot; class=&quot;headerlink&quot; title=&quot;git&quot;&gt;&lt;/a&gt;git&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://git-scm.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;官网地址&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="环境" scheme="http://yoursite.com/categories/%E7%8E%AF%E5%A2%83/"/>
+    
+    
+      <category term="环境搭建" scheme="http://yoursite.com/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    
+      <category term="软件官网" scheme="http://yoursite.com/tags/%E8%BD%AF%E4%BB%B6%E5%AE%98%E7%BD%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>flex</title>
+    <link href="http://yoursite.com/2020/08/18/flex/"/>
+    <id>http://yoursite.com/2020/08/18/flex/</id>
+    <published>2020-08-18T02:52:58.215Z</published>
+    <updated>2020-08-21T07:13:53.656Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;父级属性&lt;/p&gt;
+&lt;p&gt;flex-direction&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://note.youdao.com/yws/res/3294/6A5994F516084337817F0026ED72DCD9&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>verdaccio私服搭建</title>
@@ -46,7 +333,7 @@
     <link href="http://yoursite.com/2020/08/10/vue%E6%9B%B4%E6%94%B9%E6%89%93%E5%8C%85%E8%B7%AF%E5%BE%84/"/>
     <id>http://yoursite.com/2020/08/10/vue%E6%9B%B4%E6%94%B9%E6%89%93%E5%8C%85%E8%B7%AF%E5%BE%84/</id>
     <published>2020-08-10T08:14:29.000Z</published>
-    <updated>2020-08-11T12:07:30.433Z</updated>
+    <updated>2020-09-01T02:21:50.273Z</updated>
     
     <summary type="html">
     
@@ -183,7 +470,7 @@
     <link href="http://yoursite.com/2020/08/05/vue-vuex/"/>
     <id>http://yoursite.com/2020/08/05/vue-vuex/</id>
     <published>2020-08-05T09:39:50.000Z</published>
-    <updated>2020-08-11T12:02:54.020Z</updated>
+    <updated>2020-08-25T10:19:50.345Z</updated>
     
     <summary type="html">
     
@@ -191,342 +478,13 @@
       
         
         
-          &lt;p&gt;&lt;img src=&quot;/2020/08/05/vue-vuex/header.jpg&quot;
+          &lt;h1 id=&quot;最全Vue状态管理模式&quot;&gt;&lt;a href=&quot;#最全Vue状态管理模式&quot; class=&quot;headerlink&quot; title=&quot;最全Vue状态管理模式&quot;&gt;&lt;/a&gt;最全Vue状态管理模式&lt;/h1&gt;&lt;h2 id=&quot;一、初识VueX&quot;&gt;&lt;a
         
       
     
     </summary>
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>vue-router</title>
-    <link href="http://yoursite.com/2020/08/05/vue-router/"/>
-    <id>http://yoursite.com/2020/08/05/vue-router/</id>
-    <published>2020-08-05T02:05:24.000Z</published>
-    <updated>2020-08-05T09:06:45.319Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;Vue路由（vue-router）详细讲解指南&quot;&gt;&lt;a href=&quot;#Vue路由（vue-router）详细讲解指南&quot; class=&quot;headerlink&quot; title=&quot;Vue路由（vue-router）详细讲解指南&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.cnblogs.com/dengyao-blogs/p/11562257.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Vue路由（vue-router）详细讲解指南&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;####介绍&lt;/p&gt;
-&lt;p&gt;中文文档：&lt;a href=&quot;https://router.vuejs.org/zh/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://router.vuejs.org/zh/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Vue Router 是 &lt;a href=&quot;http://cn.vuejs.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Vue.js&lt;/a&gt; 官方的路由管理器。它和 Vue.js 的核心深度集成，让构建单页面应用变得易如反掌。路由实际上就是可以理解为指向，就是我在页面上点击一个按钮需要跳转到对应的页面，这就是路由跳转；&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="mock" scheme="http://yoursite.com/categories/mock/"/>
-    
-    
-      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
-    
-      <category term="router" scheme="http://yoursite.com/tags/router/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vue项目搭建</title>
-    <link href="http://yoursite.com/2020/08/05/vue%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/"/>
-    <id>http://yoursite.com/2020/08/05/vue%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/</id>
-    <published>2020-08-05T01:39:10.000Z</published>
-    <updated>2020-08-05T09:07:18.420Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;从无到有搭建&quot;&gt;&lt;a href=&quot;#从无到有搭建&quot; class=&quot;headerlink&quot; title=&quot;从无到有搭建&quot;&gt;&lt;/a&gt;从无到有搭建&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;首先下载node.js要求版本在8.9以上        官网：&lt;a href=&quot;https://links.jianshu.com/go?to=https%3A%2F%2Fnodejs.org%2Fzh-cn%2F&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://nodejs.org/zh-cn/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;下载完可检查在windows任务命令行里输入node -v&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ol start=&quot;2&quot;&gt;
-&lt;li&gt;使用淘宝NPM镜像源下载比较快    命令：npm install -g cnpm –registry=&lt;a href=&quot;https://links.jianshu.com/go?to=https%3A%2F%2Fregistry.npm.taobao.org%2F&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://registry.npm.taobao.org&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ol start=&quot;3&quot;&gt;
-&lt;li&gt;&lt;p&gt;安装vue-cli（全局安装vue-cli）    命令：cnpm install vue-cli -g&lt;/p&gt;
-&lt;p&gt;检查环境是否安装上：vue -V&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;创建vue项目：&lt;/p&gt;
-&lt;p&gt;#####vue-cli2.0安装&lt;/p&gt;
-&lt;p&gt;vue init webpack vuecli_2.0(名称)&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="vue" scheme="http://yoursite.com/categories/vue/"/>
-    
-    
-      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
-    
-      <category term="搭建" scheme="http://yoursite.com/tags/%E6%90%AD%E5%BB%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vue-filter</title>
-    <link href="http://yoursite.com/2020/08/04/vue-filter/"/>
-    <id>http://yoursite.com/2020/08/04/vue-filter/</id>
-    <published>2020-08-04T07:56:00.000Z</published>
-    <updated>2020-08-05T11:37:19.756Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;过滤&quot;&gt;&lt;a href=&quot;#过滤&quot; class=&quot;headerlink&quot; title=&quot;过滤&quot;&gt;&lt;/a&gt;过滤&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;全局过滤方法&lt;/li&gt;
-&lt;/ol&gt;
-&lt;figure class=&quot;highlight
-        
-      
-    
-    </summary>
-    
-    
-      <category term="filter" scheme="http://yoursite.com/categories/filter/"/>
-    
-    
-      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
-    
-      <category term="filter" scheme="http://yoursite.com/tags/filter/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vue-slot</title>
-    <link href="http://yoursite.com/2020/08/04/vue-slot/"/>
-    <id>http://yoursite.com/2020/08/04/vue-slot/</id>
-    <published>2020-08-04T07:49:08.000Z</published>
-    <updated>2020-08-05T09:06:51.095Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;什么是插槽？&quot;&gt;&lt;a href=&quot;#什么是插槽？&quot; class=&quot;headerlink&quot; title=&quot;什么是插槽？&quot;&gt;&lt;/a&gt;什么是插槽？&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;插槽（Slot）是Vue提出来的一个概念，正如名字一样，插槽用于决定将所携带的内容，插入到指定的某个位置，从而使模板分块，具有模块化的特质和更大的重用性。&lt;/li&gt;
-&lt;li&gt;!!!插槽显不显示、怎样显示是由父组件来控制的，而插槽在哪里显示就由子组件来进行控制&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-      <category term="vue" scheme="http://yoursite.com/categories/vue/"/>
-    
-    
-      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
-    
-      <category term="slot" scheme="http://yoursite.com/tags/slot/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vue-前进后退f动画</title>
-    <link href="http://yoursite.com/2020/07/30/vue-%E5%89%8D%E8%BF%9B%E5%90%8E%E9%80%80f%E5%8A%A8%E7%94%BB/"/>
-    <id>http://yoursite.com/2020/07/30/vue-%E5%89%8D%E8%BF%9B%E5%90%8E%E9%80%80f%E5%8A%A8%E7%94%BB/</id>
-    <published>2020-07-30T11:10:06.000Z</published>
-    <updated>2020-08-05T09:07:04.470Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;一丶首先配置路由并且修改路由配置&lt;/strong&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;路由配置就不讲了&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;重点，给VueRoute添加一个goBack方法，用于记录路由的前进后退状态 this.isBack &amp;#x3D; true &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;VueRouter.prototype.goBack &amp;#x3D; function () &amp;#123; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;　　this.isBack &amp;#x3D; true&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;　　window.history.go(-1)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="vue" scheme="http://yoursite.com/categories/vue/"/>
-    
-    
-      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
-    
-      <category term="动画" scheme="http://yoursite.com/tags/%E5%8A%A8%E7%94%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vue-lottie动画</title>
-    <link href="http://yoursite.com/2020/07/30/vue-lottie%E5%8A%A8%E7%94%BB/"/>
-    <id>http://yoursite.com/2020/07/30/vue-lottie%E5%8A%A8%E7%94%BB/</id>
-    <published>2020-07-30T11:01:14.000Z</published>
-    <updated>2020-08-05T09:06:37.903Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;安装vue-lottie包&lt;/p&gt;
-&lt;p&gt;npm install –save vue-lottie&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="vue" scheme="http://yoursite.com/categories/vue/"/>
-    
-    
-      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
-    
-      <category term="lottie" scheme="http://yoursite.com/tags/lottie/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vue_方法相关</title>
-    <link href="http://yoursite.com/2020/07/30/vue-%E6%96%B9%E6%B3%95%E7%9B%B8%E5%85%B3/"/>
-    <id>http://yoursite.com/2020/07/30/vue-%E6%96%B9%E6%B3%95%E7%9B%B8%E5%85%B3/</id>
-    <published>2020-07-30T10:51:47.000Z</published>
-    <updated>2020-08-05T11:37:36.417Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;匹配字体标红&quot;&gt;&lt;a href=&quot;#匹配字体标红&quot; class=&quot;headerlink&quot; title=&quot;匹配字体标红&quot;&gt;&lt;/a&gt;匹配字体标红&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;brightenKeyword: function(val, keyword) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#x2F;&amp;#x2F;val &amp;#x3D; val + &amp;#39;&amp;#39;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#x2F;&amp;#x2F;if (val.indexOf(keyword) !&amp;#x3D;&amp;#x3D; -1 &amp;amp;&amp;amp; keyword !&amp;#x3D;&amp;#x3D; &amp;#39;&amp;#39;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#x2F;&amp;#x2F;    return val.replace(keyword, &amp;#39;&amp;lt;font color&amp;#x3D;&amp;quot;#409EFF&amp;quot;&amp;gt;&amp;#39; + keyword + &amp;#39;&amp;lt;&amp;#x2F;font&amp;gt;&amp;#39;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#x2F;&amp;#x2F;&amp;#125; else &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#x2F;&amp;#x2F;    return val&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#x2F;&amp;#x2F;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    const Reg &amp;#x3D; new RegExp(keyword, &amp;#39;i&amp;#39;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    if (val) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return val.replace(Reg, &amp;#96; &amp;lt; span class &amp;#x3D; &amp;quot;redColor zl-theme-price&amp;quot; &amp;gt; $ &amp;#123;keyword&amp;#125; &amp;lt; &amp;#x2F;span&amp;gt;&amp;#96;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;,&amp;#x2F;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="vue" scheme="http://yoursite.com/categories/vue/"/>
-    
-    
-      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
-    
-      <category term="方法" scheme="http://yoursite.com/tags/%E6%96%B9%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vue自动回复案例</title>
-    <link href="http://yoursite.com/2020/07/30/vue%E8%87%AA%E5%8A%A8%E5%9B%9E%E5%A4%8D%E6%A1%88%E4%BE%8B/"/>
-    <id>http://yoursite.com/2020/07/30/vue%E8%87%AA%E5%8A%A8%E5%9B%9E%E5%A4%8D%E6%A1%88%E4%BE%8B/</id>
-    <published>2020-07-30T10:50:06.000Z</published>
-    <updated>2020-07-30T10:53:06.252Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span
-        
-      
-    
-    </summary>
-    
-    
-      <category term="vue" scheme="http://yoursite.com/categories/vue/"/>
-    
-    
-      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
-    
-      <category term="案例" scheme="http://yoursite.com/tags/%E6%A1%88%E4%BE%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vue_template标签相关</title>
-    <link href="http://yoursite.com/2020/07/30/vue-template%E6%A0%87%E7%AD%BE%E7%9B%B8%E5%85%B3/"/>
-    <id>http://yoursite.com/2020/07/30/vue-template%E6%A0%87%E7%AD%BE%E7%9B%B8%E5%85%B3/</id>
-    <published>2020-07-30T10:38:36.000Z</published>
-    <updated>2020-08-06T01:28:33.618Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;事件&quot;&gt;&lt;a href=&quot;#事件&quot; class=&quot;headerlink&quot; title=&quot;事件&quot;&gt;&lt;/a&gt;事件&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;v-on:keyup.enter--@dblclick(双击)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;v-on:dblclick--@dblclick(双击)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="vue" scheme="http://yoursite.com/categories/vue/"/>
-    
-    
-      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
-    
-      <category term="标签" scheme="http://yoursite.com/tags/%E6%A0%87%E7%AD%BE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>nrm切换仓库源</title>
-    <link href="http://yoursite.com/2020/07/30/nrm%E5%88%87%E6%8D%A2%E4%BB%93%E5%BA%93%E6%BA%90/"/>
-    <id>http://yoursite.com/2020/07/30/nrm%E5%88%87%E6%8D%A2%E4%BB%93%E5%BA%93%E6%BA%90/</id>
-    <published>2020-07-30T10:27:37.000Z</published>
-    <updated>2020-08-05T09:06:08.011Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;0-背景&quot;&gt;&lt;a href=&quot;#0-背景&quot; class=&quot;headerlink&quot; title=&quot;0. 背景&quot;&gt;&lt;/a&gt;0. 背景&lt;/h2&gt;&lt;p&gt;先描述一下没有nrm时我们是怎样使用npm源的&lt;/p&gt;
-&lt;p&gt;查看npm源地址，终端中输入&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;npm config list&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-&lt;p&gt;可以看到npm源&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="nrm" scheme="http://yoursite.com/categories/nrm/"/>
-    
-    
-      <category term="nrm" scheme="http://yoursite.com/tags/nrm/"/>
-    
-      <category term="zpm" scheme="http://yoursite.com/tags/zpm/"/>
-    
-      <category term="仓库源" scheme="http://yoursite.com/tags/%E4%BB%93%E5%BA%93%E6%BA%90/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>js方法（三）</title>
-    <link href="http://yoursite.com/2020/07/30/js%E6%96%B9%E6%B3%95%EF%BC%88%E4%B8%89%EF%BC%89/"/>
-    <id>http://yoursite.com/2020/07/30/js%E6%96%B9%E6%B3%95%EF%BC%88%E4%B8%89%EF%BC%89/</id>
-    <published>2020-07-30T09:19:04.000Z</published>
-    <updated>2020-07-30T09:29:24.681Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;1.邮箱&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;export const isEmail &amp;#x3D; (s) &amp;#x3D;&amp;gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return &amp;#x2F;^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((.[a-zA-Z0-9_-]&amp;#123;2,3&amp;#125;)&amp;#123;1,2&amp;#125;)$&amp;#x2F;.test(s)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-&lt;p&gt;2.手机号码&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;export const isMobile &amp;#x3D; (s) &amp;#x3D;&amp;gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return &amp;#x2F;^1[0-9]&amp;#123;10&amp;#125;$&amp;#x2F;.test(s)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="js" scheme="http://yoursite.com/categories/js/"/>
-    
-    
-      <category term="js" scheme="http://yoursite.com/tags/js/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>js方法（二）</title>
-    <link href="http://yoursite.com/2020/07/30/js%E6%96%B9%E6%B3%95%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
-    <id>http://yoursite.com/2020/07/30/js%E6%96%B9%E6%B3%95%EF%BC%88%E4%BA%8C%EF%BC%89/</id>
-    <published>2020-07-30T09:04:49.000Z</published>
-    <updated>2020-07-30T09:29:32.660Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;给一个函数-Bind-对象&quot;&gt;&lt;a href=&quot;#给一个函数-Bind-对象&quot; class=&quot;headerlink&quot; title=&quot;给一个函数 Bind 对象&quot;&gt;&lt;/a&gt;给一个函数 Bind 对象&lt;/h2&gt;&lt;p&gt;我们经常需要将一个对象绑定到一个方法的 this 上。在 JS 中，如果你想要调用一个函数并指定它的 this 时可以使用 bind 方法。&lt;/p&gt;
-&lt;p&gt;Bind 语法&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;fun.bind(thisArg[, arg1[, arg2[, ...]]])&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-&lt;p&gt;参数&lt;/p&gt;
-&lt;p&gt;thisArg&lt;/p&gt;
-&lt;p&gt;当绑定函数被调用时，该参数会作为原函数运行时的 this 指向。&lt;/p&gt;
-&lt;p&gt;arg1, arg2, …&lt;/p&gt;
-&lt;p&gt;当绑定函数被调用时，这些参数将置于实参之前传递给被绑定的方法。&lt;/p&gt;
-&lt;p&gt;返回值&lt;/p&gt;
-&lt;p&gt;返回由指定的this值和初始化参数改造的原函数拷贝&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="js" scheme="http://yoursite.com/categories/js/"/>
-    
-    
-      <category term="js" scheme="http://yoursite.com/tags/js/"/>
     
   </entry>
   

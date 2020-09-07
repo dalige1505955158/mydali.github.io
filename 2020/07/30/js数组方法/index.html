@@ -94,7 +94,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/07/30/js%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/c5aa3be1f55f4308a73d94fedf91ec0b/7a5080667b91dd81a3e75ad1c0ff8dc.png">
 <meta property="og:image" content="http://yoursite.com/2020/07/30/js%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/9a4d248972f74ac184f5ee7787a651d7/5e1f34890adcd7abba1b3fc9c0f0503.jpg">
 <meta property="article:published_time" content="2020-07-30T02:07:37.000Z">
-<meta property="article:modified_time" content="2020-07-30T09:29:15.016Z">
+<meta property="article:modified_time" content="2020-08-26T03:30:35.243Z">
 <meta property="article:author" content="Dali">
 <meta property="article:tag" content="js">
 <meta property="article:tag" content="数组">
@@ -413,6 +413,8 @@
 </li>
 <li><p>findIndex（）</p>
 </li>
+<li><p>indexOf（）</p>
+</li>
 <li><p>find（）</p>
 </li>
 <li><p>sort（）</p>
@@ -454,7 +456,7 @@
 <p>4、map（）</p>
 <p>该方法返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值。它按照原始数组元素顺序依次处理元素。</p>
 <p>译者注：map() 不会对空数组进行检测；map() 不会改变原始数组。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">const myAwesomeArray &#x3D; [5, 4, 3, 2, 1]</span><br><span class="line"></span><br><span class="line">myAwesomeArray.map(x &#x3D;&gt; x * x)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;--&gt; Output : 25                  </span><br><span class="line"></span><br><span class="line">             16                  </span><br><span class="line"></span><br><span class="line">             9                  </span><br><span class="line"></span><br><span class="line">             4                  </span><br><span class="line"></span><br><span class="line">             1</span><br><span class="line"></span><br><span class="line">let selected_values &#x3D; [ &#39;1&#39;, &#39;5&#39;, &#39;8&#39; ]</span><br><span class="line"></span><br><span class="line">selected_values &#x3D; selected_values.map(Number) &#x2F;&#x2F; [ 1, 5, 8 ]</span><br><span class="line"></span><br><span class="line">selected_values &#x3D; selected_values.map(Boolean) &#x2F;&#x2F;[true, true, true]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">const myAwesomeArray &#x3D; [5, 4, 3, 2, 1]</span><br><span class="line"></span><br><span class="line">myAwesomeArray.map(x &#x3D;&gt; x * x)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;--&gt; Output : 25                  </span><br><span class="line"></span><br><span class="line">             16                  </span><br><span class="line"></span><br><span class="line">             9                  </span><br><span class="line"></span><br><span class="line">             4                  </span><br><span class="line"></span><br><span class="line">             1</span><br><span class="line"></span><br><span class="line">let selected_values &#x3D; [ &#39;1&#39;, &#39;5&#39;, &#39;8&#39; ]</span><br><span class="line"></span><br><span class="line">selected_values &#x3D; selected_values.map(Number) &#x2F;&#x2F; [ 1, 5, 8 ]</span><br><span class="line"></span><br><span class="line">selected_values &#x3D; selected_values.map(Boolean) &#x2F;&#x2F;[true, true, true]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;在数组中删除某个对象里的某个属性值</span><br><span class="line">如 list &#x3D; [</span><br><span class="line">    &#123;</span><br><span class="line">        China:&#123;name:‘张三’,age:‘10’&#125;,</span><br><span class="line">        English:&#123;name:‘Tony’,age:‘20’&#125;,</span><br><span class="line">        Spanish:&#123;name:‘Someone’,age:‘12’&#125;</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line">list.map(item&#x3D;&gt;&#123;</span><br><span class="line">	delete item.English</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
 
 
@@ -531,6 +533,11 @@
 
 
 
+<p>16、 indexOf（）()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var fruits &#x3D; [&quot;Banana&quot;, &quot;Orange&quot;, &quot;Apple&quot;, &quot;Mango&quot;];</span><br><span class="line">var a &#x3D; fruits.indexOf(&quot;Apple&quot;);</span><br><span class="line">结果输出：</span><br><span class="line">2</span><br><span class="line"></span><br><span class="line">注意：</span><br><span class="line">findOf是传入一个值.找到了返回索引,没有找到返回-1</span><br><span class="line">findIndex是传入一个测试条件,也就是函数,找到了返回索引,没有找到返回-1.</span><br></pre></td></tr></table></figure>
+
+
+
 <p>实例</p>
 <p>迭代一个空数组</p>
 <p>JavaScript 中直接创建的数组是松散的，以至于会有很多坑。试着用数组的构造方法创建一个数组，你就会瞬间明白了。</p>
@@ -567,23 +574,23 @@
 
 <h2 id="2-给方法传一个空参数"><a href="#2-给方法传一个空参数" class="headerlink" title="2. 给方法传一个空参数"></a>2. 给方法传一个空参数</h2><p>如果你想调用一个方法，并不填其中的一个参数时，JavaScript 就会报错。</p>
 <ul>
-<li>​</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">method(&#39;parameter1&#39;, , &#39;parameter3&#39;); &#x2F;&#x2F; Uncaught SyntaxError: Unexpected token ,</span><br></pre></td></tr></table></figure>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">method(&#39;parameter1&#39;, , &#39;parameter3&#39;); &#x2F;&#x2F; Uncaught SyntaxError: Unexpected token ,</span><br></pre></td></tr></table></figure>
 
+</li>
+</ul>
 <p>一个我们常用的解决方法是传递 null 或 undefined。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">method(&#39;parameter1&#39;, null, &#39;parameter3&#39;) &#x2F;&#x2F; or</span><br><span class="line">method(&#39;parameter1&#39;, undefined, &#39;parameter3&#39;);</span><br></pre></td></tr></table></figure>
 
 <p>根据 ES6 中对扩展运算符的介绍，有一个更简洁的方法可以将空参数传递给一个方法。正如上面所提到的，数组是松散的，所以给它传空值是可以的，我们正是用到了这个优点。</p>
 <ul>
-<li>​</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">method(...[&#39;parameter1&#39;, , &#39;parameter3&#39;]); &#x2F;&#x2F; 代码执行了...</span><br></pre></td></tr></table></figure>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">method(...[&#39;parameter1&#39;, , &#39;parameter3&#39;]); &#x2F;&#x2F; 代码执行了...</span><br></pre></td></tr></table></figure>
 
+</li>
+</ul>
 <h2 id="3-数组去重"><a href="#3-数组去重" class="headerlink" title="3. 数组去重"></a>3. 数组去重</h2><p>我一直不明白为什么数组不提供一个内置函数可以让我们方便的取到去重以后的值。扩展运算符帮到了我们，使用扩展运算符配合 Set可以生成一个不重复的数组。</p>
 <ul>
-<li>​</li>
-<li>​</li>
+<li></li>
+<li></li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const arr &#x3D; [...new Set([1, 2, 3, 3])];&#x2F;&#x2F; [1, 2, 3]</span><br></pre></td></tr></table></figure>
 
@@ -735,7 +742,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-count">82</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -746,7 +753,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -757,7 +764,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">75</span>
+                  <span class="site-state-item-count">83</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -88,7 +88,7 @@
 <meta property="og:site_name" content="DaliBlogs">
 <meta property="og:description" content="根目录新建.env.local12VUE_APP_assetsRoot &#x3D; D:\zhenlvProject\webtouch\TC.itravel.WebFly\fly2.0\dist  （目标路径）VUE_APP_USER &#x3D; dali">
 <meta property="article:published_time" content="2020-08-10T08:14:29.000Z">
-<meta property="article:modified_time" content="2020-08-11T12:07:30.433Z">
+<meta property="article:modified_time" content="2020-09-01T02:21:50.273Z">
 <meta property="article:author" content="Dali">
 <meta name="twitter:card" content="summary">
 
@@ -372,8 +372,7 @@
 
 
 
-<p>###config下index.js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">引入</span><br><span class="line">const readEnv &#x3D; require(&#39;..&#x2F;build&#x2F;readEnv&#39;)</span><br><span class="line">const localEnv &#x3D; readEnv(&#39;..&#x2F;.env.local&#39;)</span><br><span class="line">&#x2F;&#x2F; VUE_APP_assetsRoot 请设置成绝对路径</span><br><span class="line">const assetsRoot &#x3D;</span><br><span class="line">  localEnv.VUE_APP_assetsRoot ?</span><br><span class="line">    localEnv.VUE_APP_assetsRoot.replace(&#x2F;\&quot;&#x2F;g, &quot;&quot;) :</span><br><span class="line">    path.resolve(__dirname, &quot;..&#x2F;dist&quot;)</span><br><span class="line"></span><br><span class="line">应用</span><br><span class="line">改变前</span><br><span class="line">build: &#123;</span><br><span class="line">    &#x2F;&#x2F; Template for index.html</span><br><span class="line">    index: path.resolve(__dirname, &quot;..&#x2F;dist&#x2F;index.html&quot;),</span><br><span class="line">    &#x2F;&#x2F; index: path.resolve(__dirname, &#39;..&#x2F;..&#x2F;Views&#x2F;Home&#x2F;Hotel.cshtml&#39;),</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Paths</span><br><span class="line">    assetsRoot: path.resolve(__dirname, &quot;..&#x2F;dist&quot;),</span><br><span class="line">    assetsSubDirectory: &quot;static&quot;,</span><br><span class="line">    assetsPublicPath: &quot;&#x2F;vtravel&#x2F;fly2.0&#x2F;dist&#x2F;&quot;,</span><br><span class="line">&#125;</span><br><span class="line">改变后</span><br><span class="line">  build: &#123;</span><br><span class="line">    &#x2F;&#x2F; Template for index.html</span><br><span class="line">    index: &#96;$&#123;assetsRoot&#125;&#x2F;index.html&#96;,</span><br><span class="line">    &#x2F;&#x2F; index: path.resolve(__dirname, &#39;..&#x2F;..&#x2F;Views&#x2F;Home&#x2F;Hotel.cshtml&#39;),</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Paths</span><br><span class="line">    assetsRoot: assetsRoot,</span><br><span class="line">    assetsSubDirectory: &quot;static&quot;,</span><br><span class="line">    assetsPublicPath: &quot;&#x2F;vtravel&#x2F;fly2.0&#x2F;dist&#x2F;&quot;,</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="config下index-js"><a href="#config下index-js" class="headerlink" title="config下index.js"></a>config下index.js</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">引入</span><br><span class="line">const readEnv &#x3D; require(&#39;..&#x2F;build&#x2F;readEnv&#39;)</span><br><span class="line">const localEnv &#x3D; readEnv(&#39;..&#x2F;.env.local&#39;)</span><br><span class="line">&#x2F;&#x2F; VUE_APP_assetsRoot 请设置成绝对路径</span><br><span class="line">const assetsRoot &#x3D;</span><br><span class="line">  localEnv.VUE_APP_assetsRoot ?</span><br><span class="line">    localEnv.VUE_APP_assetsRoot.replace(&#x2F;\&quot;&#x2F;g, &quot;&quot;) :</span><br><span class="line">    path.resolve(__dirname, &quot;..&#x2F;dist&quot;)</span><br><span class="line"></span><br><span class="line">应用</span><br><span class="line">改变前</span><br><span class="line">build: &#123;</span><br><span class="line">    &#x2F;&#x2F; Template for index.html</span><br><span class="line">    index: path.resolve(__dirname, &quot;..&#x2F;dist&#x2F;index.html&quot;),</span><br><span class="line">    &#x2F;&#x2F; index: path.resolve(__dirname, &#39;..&#x2F;..&#x2F;Views&#x2F;Home&#x2F;Hotel.cshtml&#39;),</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Paths</span><br><span class="line">    assetsRoot: path.resolve(__dirname, &quot;..&#x2F;dist&quot;),</span><br><span class="line">    assetsSubDirectory: &quot;static&quot;,</span><br><span class="line">    assetsPublicPath: &quot;&#x2F;vtravel&#x2F;fly2.0&#x2F;dist&#x2F;&quot;,</span><br><span class="line">&#125;</span><br><span class="line">改变后</span><br><span class="line">  build: &#123;</span><br><span class="line">    &#x2F;&#x2F; Template for index.html</span><br><span class="line">    index: &#96;$&#123;assetsRoot&#125;&#x2F;index.html&#96;,</span><br><span class="line">    &#x2F;&#x2F; index: path.resolve(__dirname, &#39;..&#x2F;..&#x2F;Views&#x2F;Home&#x2F;Hotel.cshtml&#39;),</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Paths</span><br><span class="line">    assetsRoot: assetsRoot,</span><br><span class="line">    assetsSubDirectory: &quot;static&quot;,</span><br><span class="line">    assetsPublicPath: &quot;&#x2F;vtravel&#x2F;fly2.0&#x2F;dist&#x2F;&quot;,</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
 
       
@@ -492,7 +491,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-count">82</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -503,7 +502,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -514,7 +513,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">75</span>
+                  <span class="site-state-item-count">83</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -554,7 +553,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#根目录新建-env-local"><span class="nav-number">1.</span> <span class="nav-text">根目录新建.env.local</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#build下新建readEnv-js"><span class="nav-number">2.</span> <span class="nav-text">build下新建readEnv.js</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#根目录新建-env-local"><span class="nav-number">1.</span> <span class="nav-text">根目录新建.env.local</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#build下新建readEnv-js"><span class="nav-number">2.</span> <span class="nav-text">build下新建readEnv.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#config下index-js"><span class="nav-number">3.</span> <span class="nav-text">config下index.js</span></a></li></ol></div>
             
 
           </div>

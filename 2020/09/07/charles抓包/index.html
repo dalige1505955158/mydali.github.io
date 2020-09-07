@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="charles," />
 
 
 
@@ -81,12 +81,47 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="DaliBlogs">
-<meta property="og:url" content="http://yoursite.com/categories/flex/index.html">
+<meta name="description" content="一、 安装前提：配置好了Jdk环境 若不进行破解，则每次只能试用30分钟，30分钟后工具自动关闭 破解方法：将破解补丁charles.jar文件复制到lib文件夹下，替换掉同名jar包">
+<meta property="og:type" content="article">
+<meta property="og:title" content="charles抓包">
+<meta property="og:url" content="http://yoursite.com/2020/09/07/charles%E6%8A%93%E5%8C%85/index.html">
 <meta property="og:site_name" content="DaliBlogs">
+<meta property="og:description" content="一、 安装前提：配置好了Jdk环境 若不进行破解，则每次只能试用30分钟，30分钟后工具自动关闭 破解方法：将破解补丁charles.jar文件复制到lib文件夹下，替换掉同名jar包">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/082B867F5C764ABAA14C14322D09D3DB/3025">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/C161DEF842DD42AAADBD03B7392FBD7F/3088">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/E8011D8C641746F5B991A65C49125440/3085">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/ED862148378A4175B9EABF9BF984E650/3067">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/7A10EC84A6E04279ACCDF8BAD8B28DCF/3098">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/0E9A457E28C74B9F8285DD4CAE17E1B6/3151">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/DF82AAABD8794629A6423D47DA9183E4/3102">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/1598911FB55A482799C85BAF44980F5B/3115">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/8C44E37C6AE74B5684F13E0E725F6620/3158">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/E3CAFDF8DF5C42ECB711881E3258E6C4/3167">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/E9C3DF391F6C4E92952960FD048E0EA1/3180">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/F802904FA3DE4A63A624650F526B88A4/3183">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/7756E14FD7AF4D43ABD3A1168C17E64B/3205">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/133548E8DE6940228B09DA265763D7B0/3209">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/C666882664FF44EDACE773A9E6FBED23/3215">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/2C7CDF862BC147D9B5AF62664A434926/3235">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/AB331E14DD4D40AAA1B3C2B0EB05A225/3222">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/830E7DC1B2054B318078EC01B2777E2C/3229">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/7D30139836A54643BECE96A0EDB08CF3/3231">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/CCE4DDB106B1408594E49D61541B03F5/3245">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/98F9FE68FD4B4F189ECA0C03CCA94658/3257">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/307B6C6B1D3A4D53B0B4F3988DB35703/3269">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/6925C705DCC6400F8A96BE193D6E2E59/3271">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/603213AF038847838EADD5D81C238329/3277">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/8069161252554DC1BC8C03022028A5B7/3281">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/0735CCE2871A426DB534AD44307D8641/3287">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/88D11E6684F44747ADA1BD7AD87A32FF/3301">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/D04C613AFBB64560940B2DC1072D68A9/3307">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/CB4FEC96F91E4F029D5B3A7A7D58D0F3/3311">
+<meta property="article:published_time" content="2020-09-07T10:12:57.000Z">
+<meta property="article:modified_time" content="2020-09-07T10:18:26.089Z">
 <meta property="article:author" content="Dali">
+<meta property="article:tag" content="charles">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/082B867F5C764ABAA14C14322D09D3DB/3025">
 
 
 
@@ -116,13 +151,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/flex/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/09/07/charles抓包/"/>
 
 
 
 
 
-  <title>分类: flex | DaliBlogs</title>
+  <title>charles抓包 | DaliBlogs</title>
   
 
 
@@ -141,7 +176,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -279,55 +314,267 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>flex<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/07/charles%E6%8A%93%E5%8C%85/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2020/07/27/flex/" itemprop="url">
-              
-                <span itemprop="name">flex</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">charles抓包</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-07-27T11:56:15+08:00"
-              content="2020-07-27" >
-          07-27
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-07T18:12:57+08:00">
+                2020-09-07
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/charles/" itemprop="url" rel="index">
+                    <span itemprop="name">charles</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一、</p>
+<p>安装前提：配置好了Jdk环境</p>
+<p>若不进行破解，则每次只能试用30分钟，30分钟后工具自动关闭</p>
+<p>破解方法：将破解补丁charles.jar文件复制到lib文件夹下，替换掉同名jar包</p>
+<a id="more"></a>
+
+<p>二、</p>
+<p>工具简单介绍：</p>
+<p>1：清空列表所有请求</p>
+<p>2：开始抓取 / 停止抓取</p>
+<p>3：开启节流 / 停止节流</p>
+<p>4：开启断点 / 结束断点</p>
+<p>5：编辑请求</p>
+<p>6：重发请求</p>
+<p>7：校验请求的结果</p>
+<p>8：快捷工具箱</p>
+<p>9：快捷设置</p>
+<p><img src="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/082B867F5C764ABAA14C14322D09D3DB/3025" alt="img"></p>
+<p>Structure：</p>
+<p>以域名划分请求信息，可清晰地看到请求的数据结构</p>
+<p><img src="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/C161DEF842DD42AAADBD03B7392FBD7F/3088" alt="img"></p>
+<p>Sequence：</p>
+<p>可清晰看到全部请求，不用一层一层点开，按数据请求的时间顺序执行</p>
+<p><img src="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/E8011D8C641746F5B991A65C49125440/3085" alt="img"></p>
+<p>三、</p>
+<p>快捷搜索功能：通过ctrl+F进入搜索页面</p>
+<p>1、关键词输入框：可输入正则表达式，不必区分大小写</p>
+<p>2、搜索路径：</p>
+<p>（1）全部会话</p>
+<p>（2）当前会话</p>
+<p>（3）指定的请求路径，在右侧输入框中输入</p>
+<p>3、搜索范围：</p>
+<p>（1）请求URL</p>
+<p>（2）请求Header</p>
+<p>（3）请求Body</p>
+<p>（4）返回Header</p>
+<p>（5）返回Body</p>
+<p>4、搜索结果显示</p>
+<p><img src="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/ED862148378A4175B9EABF9BF984E650/3067" alt="img"></p>
+<p>四、抓取手机请求</p>
+<p>1、使手机与电脑处于同一局域网下（如连同一WiFi），如图，连接网络tczc，连接成功后打开代理设置，设置为【手动】</p>
+<p><img src="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/7A10EC84A6E04279ACCDF8BAD8B28DCF/3098" alt="img"></p>
+<p>2、windows+R，输入cmd进入命令行，使用ipconfig命令查看电脑的ip地址</p>
+<p><img src="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/0E9A457E28C74B9F8285DD4CAE17E1B6/3151" alt="img"></p>
+<p>3、在服务器一栏中填入电脑ip地址，端口号填8888。（端口号在Proxy-Proxy Settings下自己设置的）</p>
+<p><img src="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/DF82AAABD8794629A6423D47DA9183E4/3102" alt="img"></p>
+<p><img src="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/1598911FB55A482799C85BAF44980F5B/3115" alt="img"></p>
+<p>4、注意：首次设置代理网络时，如果电脑端的Charles是打开的，则会提示是否允许设备连接Charles，这时必须应许，否则无法抓包，手机也无法连接网络；若这样设置后还是无法上网，则尝试重启电脑+手机。</p>
+<p><img src="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/8C44E37C6AE74B5684F13E0E725F6620/3158" alt="img"></p>
+<p>如果不小心点了Deny，可以到Proxy - Access Control Settings下去查看，可手动移除或新增允许访问的IP地址。</p>
+<p><img src="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/E3CAFDF8DF5C42ECB711881E3258E6C4/3167" alt="img"></p>
+<p>至此代理已经设置成功，可以抓取手机端的http请求。</p>
+<p>5、若想抓取手机端的https请求，则必须安装手机端证书。</p>
+<p>方法：在手机浏览器中输入 <a href="http://charlesproxy.com/getssl" target="_blank" rel="noopener">http://charlesproxy.com/getssl</a> 去安装证书。</p>
+<p>ios系统的，在设置 - 通用 - 描述文件与设备管理下可查看安装的证书。</p>
+<p><img src="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/E9C3DF391F6C4E92952960FD048E0EA1/3180" alt="img"></p>
+<p>另外要注意的是，在通用 - 关于本机 - 证书信任设置中，要开启对此证书的信任，否则同样抓取不到https请求。</p>
+<p><img src="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/F802904FA3DE4A63A624650F526B88A4/3183" alt="img"></p>
+<p>6、以上设置完毕后，可以试着访问某个APP，如图，虽然能看到发出的请求，但请求和响应中出现了乱码：</p>
+<p><img src="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/7756E14FD7AF4D43ABD3A1168C17E64B/3205" alt="img"></p>
+<p>解决方案是：</p>
+<p>Proxy - SSL Proxying Settings下，将出现乱码的该域名添加进去</p>
+<p><img src="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/133548E8DE6940228B09DA265763D7B0/3209" alt="img"></p>
+<p>设置完毕后，清除所有会话，重新访问一次，当当当当！！！成功了！！</p>
+<p><img src="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/C666882664FF44EDACE773A9E6FBED23/3215" alt="img"></p>
+<p>五、抓取电脑请求</p>
+<p>1、抓取电脑http请求：勾选这一项即可 Proxy - Windows Proxy</p>
+<p><img src="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/2C7CDF862BC147D9B5AF62664A434926/3235" alt="img"></p>
+<p>2、抓取电脑端https请求，同样需要安装证书。</p>
+<p>电脑端证书安装：Proxy - SSL Proxying - Install Charles Root Certificate</p>
+<p><img src="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/AB331E14DD4D40AAA1B3C2B0EB05A225/3222" alt="img"></p>
+<p><img src="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/830E7DC1B2054B318078EC01B2777E2C/3229" alt="img"></p>
+<p><img src="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/7D30139836A54643BECE96A0EDB08CF3/3231" alt="img"></p>
+<p>六、其他功能点（选中会话，点击右键）</p>
+<p>1、Repeat：重复执行请求</p>
+<p>2、Repeat Advanced：可以指定请求的遍数</p>
+<p><img src="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/CCE4DDB106B1408594E49D61541B03F5/3245" alt="img"></p>
+<p><img src="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/98F9FE68FD4B4F189ECA0C03CCA94658/3257" alt="img"></p>
+<p>3、Focus</p>
+<p>右键某会话，点击Focus，可以使该域名置顶，其他域名统一被放到下面的Other Hosts下：</p>
+<p><img src="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/307B6C6B1D3A4D53B0B4F3988DB35703/3269" alt="img"></p>
+<p><img src="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/6925C705DCC6400F8A96BE193D6E2E59/3271" alt="img"></p>
+<p>除了通过这种方法设置，也可在View - Focused Hosts下统一设置</p>
+<p><img src="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/603213AF038847838EADD5D81C238329/3277" alt="img"></p>
+<p><img src="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/8069161252554DC1BC8C03022028A5B7/3281" alt="img"></p>
+<p>4、黑名单 / 白名单</p>
+<p>Black List：黑名单中的域名不能联网</p>
+<p>White List：白名单开启后，只有在白名单中的域名可以访问网络，不在白名单中的不能联网</p>
+<p>（如果一个域名既在黑名单，又在白名单，那么也不能联网）</p>
+<p><img src="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/0735CCE2871A426DB534AD44307D8641/3287" alt="img"></p>
+<p>5、导出会话功能</p>
+<p>Export：可将会话导出到本地，下次可通过File - Open Session打开</p>
+<p><img src="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/88D11E6684F44747ADA1BD7AD87A32FF/3301" alt="img"></p>
+<p><img src="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/D04C613AFBB64560940B2DC1072D68A9/3307" alt="img"></p>
+<p>6、比较功能</p>
+<p>Compare：在左侧列表中选中两个请求，右键即可看到此选项，可用于比对两个请求的入参和出参</p>
+<p><img src="http://note.youdao.com/yws/public/resource/e0eb6de484b77856b775ffe7a656f27d/xmlnote/CB4FEC96F91E4F029D5B3A7A7D58D0F3/3311" alt="img"></p>
+<p>未完待续….</p>
+<p>有道云笔记地址：</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/charles/" rel="tag"># charles</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/09/04/totalcontrol/" rel="next" title="totalcontrol">
+                <i class="fa fa-chevron-left"></i> totalcontrol
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -335,6 +582,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -375,7 +626,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-count">82</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -386,7 +637,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -397,7 +648,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">75</span>
+                  <span class="site-state-item-count">83</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -567,6 +818,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

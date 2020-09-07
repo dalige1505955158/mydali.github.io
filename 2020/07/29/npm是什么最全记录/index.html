@@ -89,8 +89,11 @@
 <meta property="og:description" content="npm是什么？npm全称Node Package Manager，是node.js的模块依赖管理工具，它有一个日益强大的对手叫yarn，yarn是Facebook发布的一款依赖管理工具。">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/15009210-77025bd3552afff9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/327/format/webp">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/15009210-39b52d3d66dece35.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/562/format/webp">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/1119043/201704/1119043-20170405172531019-1392920719.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/1119043/201704/1119043-20170405172858613-839239581.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/1119043/201704/1119043-20170405173920191-1512489935.png">
 <meta property="article:published_time" content="2020-07-29T10:52:12.000Z">
-<meta property="article:modified_time" content="2020-08-11T11:02:38.211Z">
+<meta property="article:modified_time" content="2020-08-19T05:35:54.701Z">
 <meta property="article:author" content="Dali">
 <meta property="article:tag" content="npm">
 <meta property="article:tag" content="packageJson">
@@ -426,7 +429,6 @@
 <li><p>^ + 指定版本：^1.2.2，表示安装1.x.x的最新版本，（不低于1.2.2，小于2.x.x）</p>
 </li>
 <li><p>latest：最新版本</p>
-<p>​</p>
 </li>
 </ol>
 <h3 id="package-json生成方式："><a href="#package-json生成方式：" class="headerlink" title="package.json生成方式："></a>package.json生成方式：</h3><ol>
@@ -618,7 +620,6 @@
 <p>exports.printMsg = function() {    </p>
 <p>​    console.log(“This is a message from the demo package”);</p>
 <p>}</p>
-<p>​</p>
 </li>
 </ul>
 <ul>
@@ -680,35 +681,44 @@
 <li><p>常见安装</p>
 <p>npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a></p>
 <p>npm国内淘宝的镜像（因为npm安装插件是从国外服务器下载，受网络影响大，可能出现异常，如果npm的服务器在中国就好了，所以我们乐于分享的淘宝团队干了这事。来自官网：“这是一个完整 npmjs.org 镜像，你可以用此代替官方版本(只读)，同步频率目前为 10分钟 一次以保证尽量与官方服务同步。” ）</p>
-<p>​</p>
-<p>npm install -g express</p>
-<p>全局安装express模块</p>
-<p>​</p>
-<p>npm install -g vue-cli</p>
-<p>全局安装vue-cli模块</p>
-<p>​</p>
-<p>npm install -g supervisor</p>
-<p>用于服务器上Node.js应用崩溃的时候，自动重新启动。当然它也可以监控你的项目的js文件变化，自动重启来方便调试。</p>
-<p>​</p>
-<p>npm install -g pm2</p>
-<p>PM2是node进程管理工具，可以利用它来简化很多node应用管理的繁琐任务，如性能监控、自动重启、负载均衡等，而且使用非常简单。</p>
-<p>​</p>
-<p>npm install -s mongoose</p>
-<p>Mongoose是在node.js异步环境下对mongodb进行便捷操作的对象模型工具,可以简单理解为链接、操作MongoDB数据库</p>
-<p>​</p>
-<p>npm install -s md5</p>
-<p>这个就不解释了，MD5数据加密</p>
-<p>​</p>
-<p>npm install -s express-session</p>
-<p>操作服务器端的session</p>
-<p>​</p>
-<p>npm install -s connect-flash</p>
-<p>connect-flash是nodejs中的一个模块，flash是一个暂存器，而且暂存器里面的值使用过一次便被清空，适合用来做网站的提示信息。</p>
-<p>​</p>
-<p>npm install -s multer</p>
-<p>Multer是一个node.js中间件，用于处理multipart/form-data，主要用于上传文件。</p>
 </li>
 </ul>
+<p>  npm install -g express</p>
+<p>  全局安装express模块</p>
+<p>  npm install -g vue-cli</p>
+<p>  全局安装vue-cli模块</p>
+<p>  npm install -g supervisor</p>
+<p>  用于服务器上Node.js应用崩溃的时候，自动重新启动。当然它也可以监控你的项目的js文件变化，自动重启来方便调试。</p>
+<p>  npm install -g pm2</p>
+<p>  PM2是node进程管理工具，可以利用它来简化很多node应用管理的繁琐任务，如性能监控、自动重启、负载均衡等，而且使用非常简单。</p>
+<p>  npm install -s mongoose</p>
+<p>  Mongoose是在node.js异步环境下对mongodb进行便捷操作的对象模型工具,可以简单理解为链接、操作MongoDB数据库</p>
+<p>  npm install -s md5</p>
+<p>  这个就不解释了，MD5数据加密</p>
+<p>  npm install -s express-session</p>
+<p>  操作服务器端的session</p>
+<p>  npm install -s connect-flash</p>
+<p>  connect-flash是nodejs中的一个模块，flash是一个暂存器，而且暂存器里面的值使用过一次便被清空，适合用来做网站的提示信息。</p>
+<p>  npm install -s multer</p>
+<p>  Multer是一个node.js中间件，用于处理multipart/form-data，主要用于上传文件。</p>
+<h3 id="‘gulp’不是内部或外部命令，也没是可运行的程序或批处理文件-问题解决方法"><a href="#‘gulp’不是内部或外部命令，也没是可运行的程序或批处理文件-问题解决方法" class="headerlink" title="‘gulp’不是内部或外部命令，也没是可运行的程序或批处理文件,问题解决方法"></a>‘gulp’不是内部或外部命令，也没是可运行的程序或批处理文件,问题解决方法</h3><p>解决方法：</p>
+<p><strong>解决方法一</strong>：设置环境变量</p>
+<p>1.计算机(右击)-&gt;属性-&gt;高级系统设置 -&gt; 高级-&gt;环境变量</p>
+<p>2.找到node全局文件路径，输入npm config get prefix</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config get prefix</span><br></pre></td></tr></table></figure>
+
+<p>C:\Users\Administrator\AppData\Roaming\npm 这个路径就是node全局文件路径</p>
+<p><img src="https://images2015.cnblogs.com/blog/1119043/201704/1119043-20170405172531019-1392920719.png" alt="img"></p>
+<p><img src="https://images2015.cnblogs.com/blog/1119043/201704/1119043-20170405172858613-839239581.png" alt="img"></p>
+<p>3.关闭命令行窗口，重新打开</p>
+<p><strong>解决方法二</strong>：全局安装gulp(简单快速，推荐)</p>
+<p>1.说明：全局安装gulp的目的是通过它执行gulp任务</p>
+<p>2.安装：命令提示符执行npm install gulp -g</p>
+<p>3.命令提示符执行gulp -v ，验证一下是否正确安装</p>
+<p>出现版本号，说明问题已经解决，可以使用gulp-v、gulp less、gulp build等执行操作</p>
+<p><img src="https://images2015.cnblogs.com/blog/1119043/201704/1119043-20170405173920191-1512489935.png" alt="img"></p>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>1.两种方法配置完成之后，命令提示符都需关闭之后，再重新打开，才能起作用。</p>
+<p>2.没有安装全局的gulp，只安装了本地gulp,命令行无法执行gulp-v，也无法执行gulp其它的相关命令。</p>
 <p>参考资料：</p>
 <p>官网：<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fwww.npmjs.com.cn%2Fgetting-started%2Finstalling-npm-packages-locally%2F" target="_blank" rel="noopener">https://www.npmjs.com.cn/getting-started/installing-npm-packages-locally/</a></p>
 <p>菜鸟教程：<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fwww.runoob.com%2Fnodejs%2Fnodejs-npm.html" target="_blank" rel="noopener">https://www.runoob.com/nodejs/nodejs-npm.html</a></p>
@@ -839,7 +849,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-count">82</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -850,7 +860,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -861,7 +871,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">75</span>
+                  <span class="site-state-item-count">83</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -901,7 +911,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#npm是什么？"><span class="nav-number">1.</span> <span class="nav-text">npm是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npm的使用场景："><span class="nav-number">2.</span> <span class="nav-text">npm的使用场景：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npm的组成："><span class="nav-number">3.</span> <span class="nav-text">npm的组成：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npm怎么安装与升级"><span class="nav-number">4.</span> <span class="nav-text">npm怎么安装与升级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#package-json生成方式："><span class="nav-number">5.</span> <span class="nav-text">package.json生成方式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#package-json中的依赖全部更新成最新的"><span class="nav-number">6.</span> <span class="nav-text">package.json中的依赖全部更新成最新的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npm-version"><span class="nav-number">7.</span> <span class="nav-text">npm version</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#prerelease"><span class="nav-number">7.0.1.</span> <span class="nav-text">prerelease</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#prepatch"><span class="nav-number">7.0.2.</span> <span class="nav-text">prepatch</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#preminor"><span class="nav-number">7.0.3.</span> <span class="nav-text">preminor</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#patch-主要目的升级patch"><span class="nav-number">7.0.4.</span> <span class="nav-text">patch: 主要目的升级patch</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#minor：-主要目的升级minor"><span class="nav-number">7.0.5.</span> <span class="nav-text">minor： 主要目的升级minor</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#major-：主要目的升级major"><span class="nav-number">7.0.6.</span> <span class="nav-text">major ：主要目的升级major</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tips"><span class="nav-number">8.</span> <span class="nav-text">tips</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#npm是什么？"><span class="nav-number">1.</span> <span class="nav-text">npm是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npm的使用场景："><span class="nav-number">2.</span> <span class="nav-text">npm的使用场景：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npm的组成："><span class="nav-number">3.</span> <span class="nav-text">npm的组成：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npm怎么安装与升级"><span class="nav-number">4.</span> <span class="nav-text">npm怎么安装与升级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#package-json生成方式："><span class="nav-number">5.</span> <span class="nav-text">package.json生成方式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#package-json中的依赖全部更新成最新的"><span class="nav-number">6.</span> <span class="nav-text">package.json中的依赖全部更新成最新的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npm-version"><span class="nav-number">7.</span> <span class="nav-text">npm version</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#prerelease"><span class="nav-number">7.0.1.</span> <span class="nav-text">prerelease</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#prepatch"><span class="nav-number">7.0.2.</span> <span class="nav-text">prepatch</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#preminor"><span class="nav-number">7.0.3.</span> <span class="nav-text">preminor</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#patch-主要目的升级patch"><span class="nav-number">7.0.4.</span> <span class="nav-text">patch: 主要目的升级patch</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#minor：-主要目的升级minor"><span class="nav-number">7.0.5.</span> <span class="nav-text">minor： 主要目的升级minor</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#major-：主要目的升级major"><span class="nav-number">7.0.6.</span> <span class="nav-text">major ：主要目的升级major</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tips"><span class="nav-number">8.</span> <span class="nav-text">tips</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#‘gulp’不是内部或外部命令，也没是可运行的程序或批处理文件-问题解决方法"><span class="nav-number">9.</span> <span class="nav-text">‘gulp’不是内部或外部命令，也没是可运行的程序或批处理文件,问题解决方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结："><span class="nav-number"></span> <span class="nav-text">总结：</span></a></div>
             
 
           </div>

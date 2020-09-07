@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="git,gitExtensions,kdiff3," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="DaliBlogs" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Git Extension工具安装及使用以下界面所示的三个工具，如果没安装过，则勾上让其安装。MsysGit为Git的Windows版本，必须要安装；Kdiff为对比&#x2F;合并工具，可选安装，可以换为使用其它的相关工具；最后一个Windows Credential Store for Git用于在Windows Credential Manager中存储仓库的密码，这在老版本中没有，也安上吧">
+<meta property="og:type" content="article">
+<meta property="og:title" content="gitExtensions&#x2F;git&#x2F;kdiff3&#x2F;">
+<meta property="og:url" content="http://yoursite.com/2020/08/18/gitExtensions-git-kdiff3/index.html">
+<meta property="og:site_name" content="DaliBlogs">
+<meta property="og:description" content="Git Extension工具安装及使用以下界面所示的三个工具，如果没安装过，则勾上让其安装。MsysGit为Git的Windows版本，必须要安装；Kdiff为对比&#x2F;合并工具，可选安装，可以换为使用其它的相关工具；最后一个Windows Credential Store for Git用于在Windows Credential Manager中存储仓库的密码，这在老版本中没有，也安上吧">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016110809365-1747214992.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016110829146-357896798.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016111207302-993527291.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016111228881-2045654478.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016101101099-1387852818.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016101117256-804768133.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016101147552-1825946550.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016101203974-535514155.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016101229693-2058253143.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016101522412-1379845039.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016101539021-1719148735.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016101554959-1954911635.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016101609834-1365194592.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016101624006-1861780982.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016101921490-1403912771.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016101936334-848543012.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016102131974-817517735.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016102210724-1255385702.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016102231287-1365215914.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016102248131-721962200.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016102318115-1652078200.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016102545084-1071616752.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016102602006-1411834690.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016102619881-334267455.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016102632209-937526562.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016102821959-978142230.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016102859443-624421601.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016102916068-1828212738.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016103539490-342843931.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016103647474-1178722425.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016103708521-1159470095.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016103733709-556038027.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016103806021-1359103381.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016104026287-1169565778.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016104039756-1950152715.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016104108927-1727956402.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016104129771-693242118.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016104206506-704711939.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016104237177-1050313354.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016104311224-1833734551.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016104336037-321937142.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016104358318-1599399045.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016104427256-1658293722.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016104446568-1900158592.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016104513709-1152268099.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016104536412-1454555876.png">
+<meta property="og:image" content="https://i.loli.net/2020/08/18/KQMzZ7O2gdXVyw8.png">
+<meta property="og:image" content="https://img2018.cnblogs.com/blog/1691475/201910/1691475-20191017221620652-8123436.png">
+<meta property="og:image" content="https://img2018.cnblogs.com/blog/1691475/201910/1691475-20191017222436228-327194399.png">
+<meta property="og:image" content="https://img-blog.csdn.net/20171213173841712?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYm9iYnlfZnU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20171213173922842?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYm9iYnlfZnU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20171213174146021?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYm9iYnlfZnU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20171213174304458?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYm9iYnlfZnU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20171213174406094?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYm9iYnlfZnU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="article:published_time" content="2020-08-18T12:00:43.000Z">
+<meta property="article:modified_time" content="2020-08-18T12:40:34.262Z">
+<meta property="article:author" content="Dali">
+<meta property="article:tag" content="git">
+<meta property="article:tag" content="gitExtensions">
+<meta property="article:tag" content="kdiff3">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016110809365-1747214992.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/08/18/gitExtensions-git-kdiff3/"/>
+
+
+
+
+
+  <title>gitExtensions/git/kdiff3/ | DaliBlogs</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DaliBlogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/18/gitExtensions-git-kdiff3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">gitExtensions/git/kdiff3/</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-18T20:00:43+08:00">
+                2020-08-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/gitExtensions/" itemprop="url" rel="index">
+                    <span itemprop="name">gitExtensions</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Git-Extension工具安装及使用"><a href="#Git-Extension工具安装及使用" class="headerlink" title="Git Extension工具安装及使用"></a><a href="https://www.cnblogs.com/sumuncle/p/7675921.html" target="_blank" rel="noopener">Git Extension工具安装及使用</a></h3><p>以下界面所示的三个工具，如果没安装过，则勾上让其安装。MsysGit为Git的Windows版本，必须要安装；Kdiff为对比/合并工具，可选安装，可以换为使用其它的相关工具；最后一个Windows Credential Store for Git用于在Windows Credential Manager中存储仓库的密码，这在老版本中没有，也安上吧</p>
+<a id="more"></a>
+
+<p><img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016110809365-1747214992.png" alt="img"></p>
+<p><strong>比较概述：</strong><br>SSH客户端，OpenSSH是命令行的，PuTTY是图形界面的： </p>
+<p><img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016110829146-357896798.png" alt="img"></p>
+<p>若选择PuTTY则安装成功后,如果有问题，需要进行以下配置:</p>
+<p><img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016111207302-993527291.png" alt="img"></p>
+<p><img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016111228881-2045654478.png" alt="img"></p>
+<p><strong>以下以OpenSSH为例做以下操作:</strong></p>
+<p>第一步：安装</p>
+<p>1.双击：GitExtensions24703SetupComplete.msi</p>
+<ignore_js_op> 
+
+<p><img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016101101099-1387852818.png" alt="img"></p>
+<ignore_js_op> 
+
+<p> <img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016101117256-804768133.png" alt="img"></p>
+<p>选择安装路径</p>
+<ignore_js_op> 
+
+<p> <img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016101147552-1825946550.png" alt="img"></p>
+<ignore_js_op> 
+
+<p><img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016101203974-535514155.png" alt="img"></p>
+<ignore_js_op> 
+
+<p> <img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016101229693-2058253143.png" alt="img"></p>
+<p>点击Install之后跳出以下窗口，点击我接受</p>
+<p> <img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016101522412-1379845039.png" alt="img"></p>
+<ignore_js_op> 
+
+<p><img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016101539021-1719148735.png" alt="img"></p>
+<ignore_js_op> 
+
+<p><img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016101554959-1954911635.png" alt="img"></p>
+<ignore_js_op> 
+
+<p><img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016101609834-1365194592.png" alt="img"></p>
+<ignore_js_op> 
+
+<p><img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016101624006-1861780982.png" alt="img"></p>
+<ignore_js_op> 
+
+<p> <img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016101921490-1403912771.png" alt="img"></p>
+<p>点击完成后跳出以下窗口，点击Next</p>
+<p> <img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016101936334-848543012.png" alt="img"></p>
+<ignore_js_op> 
+
+<p><img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016102131974-817517735.png" alt="img"></p>
+<ignore_js_op> 
+
+<p><img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016102210724-1255385702.png" alt="img"></p>
+<ignore_js_op> 
+
+<p><img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016102231287-1365215914.png" alt="img"></p>
+<ignore_js_op> 
+
+<p> <img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016102248131-721962200.png" alt="img"></p>
+<p>点击后等待安装完成</p>
+<p> <img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016102318115-1652078200.png" alt="img"></p>
+<p>安装完成后自动关闭窗口，跳转到领一个窗口！点击Finish</p>
+<p>点击Finish后，工具就全部安装完成啦！</p>
+<p>温馨提示：安装过程中开启的程序可以直接关闭</p>
+<p>第二步：配置！</p>
+<p>双击软件图标:软件</p>
+<p> <img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016102545084-1071616752.png" alt="img"></p>
+<p>打开后如下图：进入设置页面，选择全局设置</p>
+<p> <img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016102602006-1411834690.png" alt="img"></p>
+<p>全局是设置如下图</p>
+<p> <img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016102619881-334267455.png" alt="img"></p>
+<p>全局设置要求如下：</p>
+<p> <img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016102632209-937526562.png" alt="img"></p>
+<p>SSH设置如下</p>
+<ignore_js_op> 
+
+<p> <img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016102821959-978142230.png" alt="img"></p>
+<p>设置完成后点击应用、接着点击确定</p>
+<p>然后出现如下页面：点击克隆档案库</p>
+<p> <img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016102859443-624421601.png" alt="img"></p>
+<p>出现如下页面：</p>
+<p> <img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016102916068-1828212738.png" alt="img"></p>
+<p>此页面具体设置方法如下图：</p>
+<p> <img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016103539490-342843931.png" alt="img"></p>
+<p>例如配置下图档案库：</p>
+<p>档案库地址在：<a href="http://mc.kuaikuai.cn/" target="_blank" rel="noopener">http://mc.kuaikuai.cn</a></p>
+<p> <img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016103647474-1178722425.png" alt="img"></p>
+<p> <img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016103708521-1159470095.png" alt="img"></p>
+<p>则文件最终存储的目录为：D:\KuaiKuai_MC_Server\ lostforest</p>
+<p> <img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016103733709-556038027.png" alt="img"></p>
+<p>点击克隆：弹出输入账户密码窗口，账户由我们快快官方提供</p>
+<p> <img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016103806021-1359103381.png" alt="img"></p>
+<p>选择路径之后点击克隆，出现以下窗口，输入用户名、点击回车</p>
+<p>输入密码</p>
+<p>注意：输入密码时看不见输入的键值，光标也不会移动</p>
+<p>如果右上角红色X，表示用户名账户验证失败</p>
+<p> <img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016104026287-1169565778.png" alt="img"></p>
+<p>出现绿色勾为账户验证正确，点击确定。</p>
+<p> <img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016104039756-1950152715.png" alt="img"></p>
+<p>这个过程中将会把服务器已经存在的文件下载到本地，然后由服主自行替换文件，再上传！</p>
+<p> <img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016104108927-1727956402.png" alt="img"></p>
+<p>创建成功后如下：</p>
+<p> <img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016104129771-693242118.png" alt="img"></p>
+<p>第三步：上传</p>
+<p>点击下图：提交</p>
+<p> <img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016104206506-704711939.png" alt="img"></p>
+<p>进入以下页面：</p>
+<p> <img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016104237177-1050313354.png" alt="img"></p>
+<p>1区是对应文件夹下的所有文件，选择你需要上传的文件，双击它进入3区！</p>
+<p>（注意：1区只显示最新修改的文件，未修改的文件不会显示出来）</p>
+<p>2区是显示文本文件的内容。</p>
+<p>3区是选择好后需要上传的文件，双击它取消选择</p>
+<p>4区是填写操作原因</p>
+<p>文件选择完毕之后，填写原因.例如下图：然后点击提交</p>
+<p> <img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016104311224-1833734551.png" alt="img"></p>
+<p>出现对话框，点击确定</p>
+<p> <img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016104336037-321937142.png" alt="img"></p>
+<p>进入以下页面，最上方的表示最新创建的任务。等待上传的文件！</p>
+<p> <img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016104358318-1599399045.png" alt="img"></p>
+<p>如下图：选择第一项，然后点击蓝色向上箭头</p>
+<p> <img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016104427256-1658293722.png" alt="img"></p>
+<p>点击箭头后出现下图窗口:无需任何操作，直接点击“推送”按钮</p>
+<p> <img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016104446568-1900158592.png" alt="img"></p>
+<p>点击“推送”后需要验证账户：操作方法与之前一样</p>
+<ignore_js_op> 
+
+<p> <img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016104513709-1152268099.png" alt="img"></p>
+<p>账户验证成功后文件自动上传，出现绿色勾选项表示正确</p>
+<p> <img src="https://images2017.cnblogs.com/blog/732403/201710/732403-20171016104536412-1454555876.png" alt="img"></p>
+<p>安装完成，Git Extensions会弹出配置界面，如果有问题，一般就是选择一下相关组件的路径即可：</p>
+<p>注意：3.0版本之后，git和kdiff3都要手动安装，一直next就可以了(下图为手动添加kdiff3为对比工具)</p>
+<p><img src="https://i.loli.net/2020/08/18/KQMzZ7O2gdXVyw8.png" alt="kdiff3.png"></p>
+<h2 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h2><blockquote>
+<p>SSH是一种<strong>网络协议</strong>，用于计算机之间的<strong>加密</strong>登录。对于SSH详情了解可以去看看这个：<a href="http://www.findme.wang/blog/detail/id/258.html" target="_blank" rel="noopener">http://www.findme.wang/blog/detail/id/258.html</a></p>
+</blockquote>
+<p>　　每台电脑上会产生出一个ssh key，然后自己有一个远程账户，但是自己有可能有很多台电脑，包括家里的电脑还有公司的电脑，我们可以在任意一台电脑上工作，但是如果想要每台电脑都和远程版本库时刻保持着通讯， 就需要将每台电脑的ssh key添加到远程账户，添加到远程版本库之后，远程版本库就会和已经添加的电脑进行通讯而不会和其他电脑进行通讯。建议：所有的Git操作都通过ssh key进行，因为简单</p>
+<h3 id="ssh-key配置-用git命令生成"><a href="#ssh-key配置-用git命令生成" class="headerlink" title="ssh key配置(用git命令生成)"></a><strong>ssh key配置</strong>(用git命令生成)</h3><h5 id="本地电脑配置"><a href="#本地电脑配置" class="headerlink" title="本地电脑配置"></a>本地电脑配置</h5><p>右键空白处，选择Git Bash Here打开相关命令窗口</p>
+<p>　　 配置用户名和邮箱（如果已经配置，就跳过）  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;username&quot;  --引号中自定义</span><br><span class="line"></span><br><span class="line">git config --global user.email &quot;email&quot;</span><br></pre></td></tr></table></figure>
+
+<p>  之后就会在C:\Users\Administrator下创建一个.gitconfig文件</p>
+<p>　　注意：</p>
+<ul>
+<li>username和email即github的登陆帐号和注册邮箱</li>
+<li>git config命令的–global参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置</li>
+</ul>
+<h5 id="检查下自己之前有没有已经生成ssh"><a href="#检查下自己之前有没有已经生成ssh" class="headerlink" title="检查下自己之前有没有已经生成ssh"></a>检查下自己之前有没有已经生成ssh</h5><blockquote>
+<p>　　<strong>cd ~/.ssh</strong></p>
+</blockquote>
+<p>　　证明有ssh存在</p>
+<p><img src="https://img2018.cnblogs.com/blog/1691475/201910/1691475-20191017221620652-8123436.png" alt="img"></p>
+<p> 　当cd ~/.ssh命令执行后窗口返回“no such file or directory”的时候，表示我们的电脑并没有ssh key，所以需要我们创建ssh ke</p>
+<blockquote>
+<p>　<strong>ssh-keygen -t rsa -C “<a href="mailto:xxx@xx.com">xxx@xx.com</a>“</strong>  –创建.ssm文件，如果没有这个文件执行即可，接着按三个回车即可。　</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">注意：如果本地有ssh，执行以上命令会出现正面的提示，这里选择y，表示覆盖本地的ssh key，其实也就是ssh秘钥删除的意思</span><br></pre></td></tr></table></figure>
+
+
+
+<p>执行命令完成后,默认会在window的C:\Users\Administrator.ssh下面生成如下两个名称的文件:</p>
+<p>   C:\Users\Administrator.ssh</p>
+<p>​    id_rsa(私钥，不能泄露出去)</p>
+<p>​    id_rsa.pub(公钥)</p>
+<p>​    known_hosts(不用管)</p>
+<p><img src="https://img2018.cnblogs.com/blog/1691475/201910/1691475-20191017222436228-327194399.png" alt="img"></p>
+<h3 id="https-和-SSH-的区别"><a href="#https-和-SSH-的区别" class="headerlink" title="https 和 SSH 的区别"></a>https 和 SSH 的区别</h3><blockquote>
+<p>1.前者可以随意克隆github上的项目，而不管是谁的；</p>
+<p>　　而后者则是你必须是你要克隆的项目的拥有者或管理员，需要先添加 SSH key ，否则无法克隆。</p>
+<p>2.https url 在push的时候是需要验证用户名和密码的；而 SSH 在push的时候，是不需要输入用户名的；</p>
+<p>　　如果配置SSH key的时候设置了密码，则需要输入密码的，否则直接是不需要输入密码的。</p>
+<p>3.Git协议push远程仓库不需要填写github账号密码，操作更加方便。</p>
+</blockquote>
+<h3 id="Git-Gui生成SSH-Key"><a href="#Git-Gui生成SSH-Key" class="headerlink" title="Git Gui生成SSH Key"></a>Git Gui生成SSH Key</h3><h4 id="打开Git-Gui-选择【help】，点击【Show-SSH-KEY】"><a href="#打开Git-Gui-选择【help】，点击【Show-SSH-KEY】" class="headerlink" title="打开Git Gui, 选择【help】，点击【Show SSH KEY】"></a>打开Git Gui, 选择【help】，点击【Show SSH KEY】</h4><p><img src="https://img-blog.csdn.net/20171213173841712?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYm9iYnlfZnU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h4 id="由于之前没有配置过SSH-KEY，此时会显示没有任何SSH-公钥"><a href="#由于之前没有配置过SSH-KEY，此时会显示没有任何SSH-公钥" class="headerlink" title="由于之前没有配置过SSH KEY，此时会显示没有任何SSH 公钥"></a>由于之前没有配置过SSH KEY，此时会显示没有任何SSH 公钥</h4><p><img src="https://img-blog.csdn.net/20171213173922842?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYm9iYnlfZnU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h4 id="点击右上角【Generate-key】，此时会弹出一个界面，要求你输入passphrase"><a href="#点击右上角【Generate-key】，此时会弹出一个界面，要求你输入passphrase" class="headerlink" title="点击右上角【Generate key】，此时会弹出一个界面，要求你输入passphrase"></a>点击右上角【Generate key】，此时会弹出一个界面，要求你输入passphrase</h4><p><img src="https://img-blog.csdn.net/20171213174146021?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYm9iYnlfZnU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h4 id="然后再次确认输入passpahrase"><a href="#然后再次确认输入passpahrase" class="headerlink" title="然后再次确认输入passpahrase ."></a>然后再次确认输入passpahrase .</h4><h4 id="此时就会生成一个SSH-Key"><a href="#此时就会生成一个SSH-Key" class="headerlink" title="此时就会生成一个SSH Key"></a>此时就会生成一个SSH Key</h4><p><img src="https://img-blog.csdn.net/20171213174304458?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYm9iYnlfZnU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h4 id="如果以后需要查看SSH-Key。此时可以在Git-Gui界面上点击【help】-》【Show-SSH-KEY】，查看此次生成的SSH-Key。"><a href="#如果以后需要查看SSH-Key。此时可以在Git-Gui界面上点击【help】-》【Show-SSH-KEY】，查看此次生成的SSH-Key。" class="headerlink" title="如果以后需要查看SSH Key。此时可以在Git Gui界面上点击【help】-》【Show SSH KEY】，查看此次生成的SSH Key。"></a>如果以后需要查看SSH Key。此时可以在Git Gui界面上点击【help】-》【Show SSH KEY】，查看此次生成的SSH Key。</h4><p><img src="https://img-blog.csdn.net/20171213174406094?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYm9iYnlfZnU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h3 id="TortoiseGit生成SSH-Key"><a href="#TortoiseGit生成SSH-Key" class="headerlink" title="TortoiseGit生成SSH Key"></a>TortoiseGit生成SSH Key</h3><p>1）运行PuTTYGen，在Conversions菜单中点击Import key，选择ssh-keygen生成的私钥文件所在位置，比如id_rsa文件。</p>
+<p>2）点击Save private key按钮，将其保存为.ppk文件。</p>
+<p>3）打开Pageant，点击Add Key，选择前一步所保存的.ppk文件所在的位置即可。</p>
+<p><a href="https://www.cnblogs.com/sumuncle/p/7675921.html" target="_blank" rel="noopener">参考文章</a></p>
+</ignore_js_op></ignore_js_op></ignore_js_op></ignore_js_op></ignore_js_op></ignore_js_op></ignore_js_op></ignore_js_op></ignore_js_op></ignore_js_op></ignore_js_op></ignore_js_op></ignore_js_op></ignore_js_op></ignore_js_op></ignore_js_op>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/git/" rel="tag"># git</a>
+          
+            <a href="/tags/gitExtensions/" rel="tag"># gitExtensions</a>
+          
+            <a href="/tags/kdiff3/" rel="tag"># kdiff3</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/08/18/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%BB%8E%E6%97%A0%E5%88%B0%E6%9C%89/" rel="next" title="环境搭建从无到有">
+                <i class="fa fa-chevron-left"></i> 环境搭建从无到有
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/08/18/%E9%85%8D%E7%BD%AE%E6%9C%AC%E5%9C%B0iis/" rel="prev" title="配置本地iis">
+                配置本地iis <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="Dali" />
+            
+              <p class="site-author-name" itemprop="name">Dali</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">82</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Git-Extension工具安装及使用"><span class="nav-number">1.</span> <span class="nav-text">Git Extension工具安装及使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH"><span class="nav-number"></span> <span class="nav-text">SSH</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ssh-key配置-用git命令生成"><span class="nav-number">1.</span> <span class="nav-text">ssh key配置(用git命令生成)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#本地电脑配置"><span class="nav-number">1.0.1.</span> <span class="nav-text">本地电脑配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#检查下自己之前有没有已经生成ssh"><span class="nav-number">1.0.2.</span> <span class="nav-text">检查下自己之前有没有已经生成ssh</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#https-和-SSH-的区别"><span class="nav-number">2.</span> <span class="nav-text">https 和 SSH 的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git-Gui生成SSH-Key"><span class="nav-number">3.</span> <span class="nav-text">Git Gui生成SSH Key</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#打开Git-Gui-选择【help】，点击【Show-SSH-KEY】"><span class="nav-number">3.1.</span> <span class="nav-text">打开Git Gui, 选择【help】，点击【Show SSH KEY】</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#由于之前没有配置过SSH-KEY，此时会显示没有任何SSH-公钥"><span class="nav-number">3.2.</span> <span class="nav-text">由于之前没有配置过SSH KEY，此时会显示没有任何SSH 公钥</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#点击右上角【Generate-key】，此时会弹出一个界面，要求你输入passphrase"><span class="nav-number">3.3.</span> <span class="nav-text">点击右上角【Generate key】，此时会弹出一个界面，要求你输入passphrase</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#然后再次确认输入passpahrase"><span class="nav-number">3.4.</span> <span class="nav-text">然后再次确认输入passpahrase .</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#此时就会生成一个SSH-Key"><span class="nav-number">3.5.</span> <span class="nav-text">此时就会生成一个SSH Key</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如果以后需要查看SSH-Key。此时可以在Git-Gui界面上点击【help】-》【Show-SSH-KEY】，查看此次生成的SSH-Key。"><span class="nav-number">3.6.</span> <span class="nav-text">如果以后需要查看SSH Key。此时可以在Git Gui界面上点击【help】-》【Show SSH KEY】，查看此次生成的SSH Key。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TortoiseGit生成SSH-Key"><span class="nav-number">4.</span> <span class="nav-text">TortoiseGit生成SSH Key</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dali</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

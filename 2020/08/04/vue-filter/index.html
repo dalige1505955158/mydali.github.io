@@ -89,7 +89,7 @@
 <meta property="og:description" content="过滤 全局过滤方法  123456789&#x2F;&#x2F;全局过滤器控制浮点数计算显示几位小数，默认2位main.jsVue.filter(&#39;tofixed&#39;, function (value,num&#x3D;2) &amp;#123;  if (!value) return 0  return value.toFixed(num)&amp;#125;)页面使用&lt;span&gt;&amp;#">
 <meta property="og:image" content="http://yoursite.com/2020/08/04/vue-filter/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/8db57f6fe0a04bb180ec97bd57dd5e68/clipboard.png">
 <meta property="article:published_time" content="2020-08-04T07:56:00.000Z">
-<meta property="article:modified_time" content="2020-08-05T11:37:19.756Z">
+<meta property="article:modified_time" content="2020-08-11T12:09:41.283Z">
 <meta property="article:author" content="Dali">
 <meta property="article:tag" content="vue">
 <meta property="article:tag" content="filter">
@@ -396,11 +396,12 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;全局过滤器控制浮点数计算显示几位小数，默认2位</span><br><span class="line">main.js</span><br><span class="line">Vue.filter(&#39;tofixed&#39;, function (value,num&#x3D;2) &#123;</span><br><span class="line">  if (!value) return 0</span><br><span class="line">  return value.toFixed(num)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">页面使用</span><br><span class="line">&lt;span&gt;&#123;&#123;(vipData.DiscountRate*10) | tofixed(1)&#125;&#125;&lt;&#x2F;span</span><br></pre></td></tr></table></figure>
 
 <ol start="2">
-<li>局部过滤器</li>
+<li><p>局部过滤器</p>
+<a id="more"></a>
+
+</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      that:this,</span><br><span class="line">      searchValue: &quot;&quot;,</span><br><span class="line">      searchResult: []</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  filters:&#123;</span><br><span class="line">    brightenKeyword(val,that)&#123;</span><br><span class="line">      const Reg &#x3D; new RegExp(that.searchValue, &#39;ig&#39;);</span><br><span class="line">      return val.replace(Reg, &#96;&lt;span class&#x3D;&quot;redColor&quot;&gt;$&#123;that.searchValue&#125;&lt;&#x2F;span&gt;&#96;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">页面使用</span><br><span class="line"> &lt;li v-for&#x3D;&quot;item in searchResult&quot; :key&#x3D;&quot;item&quot; v-html&#x3D;&quot;$options.filters.brightenKeyword(item,that)&quot;&gt;&lt;&#x2F;li&gt;</span><br></pre></td></tr></table></figure>
-
-
 
 
 
@@ -544,7 +545,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-count">82</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -555,7 +556,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -566,7 +567,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">75</span>
+                  <span class="site-state-item-count">83</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
