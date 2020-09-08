@@ -88,7 +88,7 @@
 <meta property="og:site_name" content="DaliBlogs">
 <meta property="og:description" content="从无到有搭建 首先下载node.js要求版本在8.9以上        官网：https:&#x2F;&#x2F;nodejs.org&#x2F;zh-cn&#x2F; 下载完可检查在windows任务命令行里输入node -v    使用淘宝NPM镜像源下载比较快    命令：npm install -g cnpm –registry&#x3D;https:&#x2F;&#x2F;registry.npm.taobao.org   安装vue-cli（全局安装vu">
 <meta property="article:published_time" content="2020-08-05T01:39:10.000Z">
-<meta property="article:modified_time" content="2020-08-05T09:07:18.420Z">
+<meta property="article:modified_time" content="2020-09-08T05:54:37.300Z">
 <meta property="article:author" content="Dali">
 <meta property="article:tag" content="vue">
 <meta property="article:tag" content="搭建">
@@ -402,25 +402,20 @@
 </li>
 </ol>
 <p>创建vue项目：</p>
-<p>#####vue-cli2.0安装</p>
-<p>vue init webpack vuecli_2.0(名称)</p>
+<h5 id="vue-cli2-0安装"><a href="#vue-cli2-0安装" class="headerlink" title="vue-cli2.0安装"></a>vue-cli2.0安装</h5><p>vue init webpack vuecli_2.0(名称)</p>
 <a id="more"></a>
 
-<p>#####vue-cli3.0创建项目</p>
-<p>1、vue create vuecli_3.0(名称)<br>2、默认选择default方式即可</p>
-<p>#####vue2.0和vue3.0的区别</p>
-<p>1.打包方式：<br>​    2.0是通过:npm run dev<br>​    3.0是：npm run serve<br>​    至于为什么会变，来看一下package.json</p>
+<h5 id="vue-cli3-0创建项目"><a href="#vue-cli3-0创建项目" class="headerlink" title="vue-cli3.0创建项目"></a>vue-cli3.0创建项目</h5><p>1、vue create vuecli_3.0(名称)<br>2、默认选择default方式即可</p>
+<h5 id="vue2-0和vue3-0的区别"><a href="#vue2-0和vue3-0的区别" class="headerlink" title="vue2.0和vue3.0的区别"></a>vue2.0和vue3.0的区别</h5><p>1.打包方式：<br>​    2.0是通过:npm run dev<br>​    3.0是：npm run serve<br>​    至于为什么会变，来看一下package.json</p>
 <p>2.文件夹目录：<br>​    3.0取消掉了config目录、build目录、static目录 ,还有最重要的一点，3.0的安装项目时自动下载node-model<br>​    vue.config.js也没了，需要手动添加。</p>
 <p>vue create 是vue-cli3.x的初始化方式，目前模板是固定的，模板选项可自由配置，创建出来的是vue-cli3的项目，与cue-cli2项目结构不同，配置方法不同，具体配置方法参考官方文档。vue init 是vue-cli2.x的初始化方式，可以使用github上面的一些模板来初始化项目，webpack是官方推荐的标准模板名。vue-cli2.x项目向3.x迁移只需要把static目录复制到public目录下，老项目的src目录覆盖3.x的src目录(如果修改了配置，可以查看文档，用cli3的方法进行配置)</p>
-<p>#####vue cli2升级到vue cli3</p>
-<p>1.先升级npm的版本</p>
+<h5 id="vue-cli2升级到vue-cli3"><a href="#vue-cli2升级到vue-cli3" class="headerlink" title="vue cli2升级到vue cli3"></a>vue cli2升级到vue cli3</h5><p>1.先升级npm的版本</p>
 <p>​    npm install -g npm</p>
 <p>2.再卸载之前的vue cli 2.9.6</p>
 <p>​    npm uninstall -g @vue/cli</p>
 <p>3.下载最新的vue cli版本</p>
 <p>​    npm install -g @vue/cli</p>
-<p>#####运行</p>
-<p> 进入此文件夹：cd vuecli_2.0/vuecli_3.0</p>
+<h5 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h5><p> 进入此文件夹：cd vuecli_2.0/vuecli_3.0</p>
 <p>运行：npm install（’webpack-dev-server’ 不是内部或外部命令，也不是可运行的程序 或批处理文件。）</p>
 <p>运行：npm run dev        </p>
 <p>运行之后会导出网址：<a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a></p>
@@ -550,7 +545,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">82</span>
+                  <span class="site-state-item-count">83</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -612,7 +607,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#从无到有搭建"><span class="nav-number">1.</span> <span class="nav-text">从无到有搭建</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#从无到有搭建"><span class="nav-number">1.</span> <span class="nav-text">从无到有搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#vue-cli2-0安装"><span class="nav-number">1.0.1.</span> <span class="nav-text">vue-cli2.0安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#vue-cli3-0创建项目"><span class="nav-number">1.0.2.</span> <span class="nav-text">vue-cli3.0创建项目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#vue2-0和vue3-0的区别"><span class="nav-number">1.0.3.</span> <span class="nav-text">vue2.0和vue3.0的区别</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#vue-cli2升级到vue-cli3"><span class="nav-number">1.0.4.</span> <span class="nav-text">vue cli2升级到vue cli3</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#运行"><span class="nav-number">1.0.5.</span> <span class="nav-text">运行</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

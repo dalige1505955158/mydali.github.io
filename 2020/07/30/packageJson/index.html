@@ -81,20 +81,19 @@
 
 
 
-<meta name="description" content="packageJson随着前端由多页面到单页面，由零散的文件到模块化开发，在一个完整的项目中，package.json 文件无处不在。首先，在项目根目录会有，其次在 node_modules 中也频现。那么这个文件到底是干嘛的，又有什么作用，今天给大家揭晓。 ###一、package.json 文件作用 package.json 文件其实就是对项目或者模块包的描述，里面包含许多元信息。比如项目名称">
+<meta name="description" content="packageJson随着前端由多页面到单页面，由零散的文件到模块化开发，在一个完整的项目中，package.json 文件无处不在。首先，在项目根目录会有，其次在 node_modules 中也频现。那么这个文件到底是干嘛的，又有什么作用，今天给大家揭晓。 一、package.json 文件作用package.json 文件其实就是对项目或者模块包的描述，里面包含许多元信息。比如项目名称，项目版">
 <meta property="og:type" content="article">
 <meta property="og:title" content="packageJson">
 <meta property="og:url" content="http://yoursite.com/2020/07/30/packageJson/index.html">
 <meta property="og:site_name" content="DaliBlogs">
-<meta property="og:description" content="packageJson随着前端由多页面到单页面，由零散的文件到模块化开发，在一个完整的项目中，package.json 文件无处不在。首先，在项目根目录会有，其次在 node_modules 中也频现。那么这个文件到底是干嘛的，又有什么作用，今天给大家揭晓。 ###一、package.json 文件作用 package.json 文件其实就是对项目或者模块包的描述，里面包含许多元信息。比如项目名称">
-<meta property="og:image" content="http://yoursite.com/2020/07/30/packageJson/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/3c5765a1984940b6929126482f824eec/clipboard.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/30/packageJson/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/f9e4d0cdb1d047e68956fa9e06dd6908/clipboard.png">
+<meta property="og:description" content="packageJson随着前端由多页面到单页面，由零散的文件到模块化开发，在一个完整的项目中，package.json 文件无处不在。首先，在项目根目录会有，其次在 node_modules 中也频现。那么这个文件到底是干嘛的，又有什么作用，今天给大家揭晓。 一、package.json 文件作用package.json 文件其实就是对项目或者模块包的描述，里面包含许多元信息。比如项目名称，项目版">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/packageJson/clipboard.png">
 <meta property="article:published_time" content="2020-07-30T03:28:44.000Z">
-<meta property="article:modified_time" content="2020-07-30T09:30:45.116Z">
+<meta property="article:modified_time" content="2020-09-08T06:33:50.564Z">
 <meta property="article:author" content="Dali">
 <meta property="article:tag" content="packageJson">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2020/07/30/packageJson/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/3c5765a1984940b6929126482f824eec/clipboard.png">
+<meta name="twitter:image" content="http://yoursite.com/2020/07/30/packageJson/clipboard.png">
 
 
 
@@ -391,20 +390,16 @@
 
       
         <h3 id="packageJson"><a href="#packageJson" class="headerlink" title="packageJson"></a>packageJson</h3><p>随着前端由多页面到单页面，由零散的文件到模块化开发，在一个完整的项目中，package.json 文件无处不在。首先，在项目根目录会有，其次在 node_modules 中也频现。那么这个文件到底是干嘛的，又有什么作用，今天给大家揭晓。</p>
-<p>###一、package.json 文件作用</p>
-<p>package.json 文件其实就是对项目或者模块包的描述，里面包含许多元信息。比如项目名称，项目版本，项目执行入口文件，项目贡献者等等。npm install 命令会根据这个文件下载所有依赖模块。</p>
+<h3 id="一、package-json-文件作用"><a href="#一、package-json-文件作用" class="headerlink" title="一、package.json 文件作用"></a>一、package.json 文件作用</h3><p>package.json 文件其实就是对项目或者模块包的描述，里面包含许多元信息。比如项目名称，项目版本，项目执行入口文件，项目贡献者等等。npm install 命令会根据这个文件下载所有依赖模块。</p>
 <a id="more"></a>
 
-<p>###二、package.json 文件创建</p>
-<p>package.json 文件创建有两种方式，手动创建或者自动创建。</p>
+<h3 id="二、package-json-文件创建"><a href="#二、package-json-文件创建" class="headerlink" title="二、package.json 文件创建"></a>二、package.json 文件创建</h3><p>package.json 文件创建有两种方式，手动创建或者自动创建。</p>
 <p>手动创建</p>
 <p>直接在项目根目录新建一个 package.json 文件，然后输入相关的内容。</p>
 <p>自动创建</p>
 <p>也是在项目根目录下执行 npm init，然后根据提示一步步输入相应的内容完成后即可自动创建。</p>
-<p>###三、package.json 文件示例</p>
-<p><img src="/2020/07/30/packageJson/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/3c5765a1984940b6929126482f824eec/clipboard.png" alt="img"></p>
-<p>###四、package.json 文件配置说明</p>
-<ul>
+<h3 id="三、package-json-文件示例"><a href="#三、package-json-文件示例" class="headerlink" title="三、package.json 文件示例"></a>三、package.json 文件示例</h3><p><img src="/2020/07/30/packageJson/clipboard.png" alt="clipboard"></p>
+<h3 id="四、package-json-文件配置说明"><a href="#四、package-json-文件配置说明" class="headerlink" title="四、package.json 文件配置说明"></a>四、package.json 文件配置说明</h3><ul>
 <li>name：项目/模块名称，长度必须小于等于214个字符，不能以”.”(点)或者”_”(下划线)开头，不能包含大写字母。</li>
 <li>version：项目版本。</li>
 <li>author：项目开发者，它的值是你在<a href="https://npmjs.org网站的有效账户名，遵循“账户名" target="_blank" rel="noopener">https://npmjs.org网站的有效账户名，遵循“账户名</a>&lt;邮件&gt;”的规则，例如：zhangsan <a href="mailto:zhangsan@163.com">zhangsan@163.com</a>。</li>
@@ -444,7 +439,6 @@
 </li>
 <li><p>config字段</p>
 <p>config字段用于向环境变量输出值。</p>
-<p>​</p>
 </li>
 </ul>
 <p>下面是一个package.json文件。</p>
@@ -460,7 +454,7 @@
 <p>{  “name”: “chai-as-promised”,  “peerDependencies”: {    “chai”: “1.x”  }}</p>
 <p>上面代码指定，安装chai-as-promised模块时，主程序chai必须一起安装，而且chai的版本必须是1.x。如果你的项目指定的依赖是chai的2.0版本，就会报错。</p>
 <p>注意，从npm 3.0版开始，peerDependencies不再会默认安装了。</p>
-<p><img src="/2020/07/30/packageJson/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/f9e4d0cdb1d047e68956fa9e06dd6908/clipboard.png" alt="img"></p>
+<p>![clipboard (1)](packageJson.assets/clipboard (1).png)</p>
 
       
     </div>
@@ -584,7 +578,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">82</span>
+                  <span class="site-state-item-count">83</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -646,7 +640,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#packageJson"><span class="nav-number">1.</span> <span class="nav-text">packageJson</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#packageJson"><span class="nav-number">1.</span> <span class="nav-text">packageJson</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一、package-json-文件作用"><span class="nav-number">2.</span> <span class="nav-text">一、package.json 文件作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、package-json-文件创建"><span class="nav-number">3.</span> <span class="nav-text">二、package.json 文件创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、package-json-文件示例"><span class="nav-number">4.</span> <span class="nav-text">三、package.json 文件示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、package-json-文件配置说明"><span class="nav-number">5.</span> <span class="nav-text">四、package.json 文件配置说明</span></a></li></ol></div>
             
 
           </div>
