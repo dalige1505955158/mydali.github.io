@@ -294,6 +294,1573 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/10/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8Bwx-request%E5%B0%81%E8%A3%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/10/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8Bwx-request%E5%B0%81%E8%A3%85/" itemprop="url">小程序之wx-request封装</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-10T18:19:40+08:00">
+                2020-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="微信请求-Promise-化"><a href="#微信请求-Promise-化" class="headerlink" title="微信请求 Promise 化"></a>微信请求 Promise 化</h2><h3 id="2-1-使用现成的库"><a href="#2-1-使用现成的库" class="headerlink" title="2.1 使用现成的库"></a>2.1 使用现成的库</h3><p>安装 Promise 库 wx-promise-pro，记得一定要带 <code>-s</code> 或 <code>--production</code>，要不然无法构建成功。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -S wx-promise-pro</span><br></pre></td></tr></table></figure>
+
+<p>然后在 <code>app.js</code> 中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import &#123; promisifyAll &#125; from &#39;wx-promise-pro&#39;</span><br><span class="line"></span><br><span class="line">promisifyAll()  &#x2F;&#x2F; promisify all wx api</span><br><span class="line"></span><br><span class="line">App(&#123; ... &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>之后就可以正常使用了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wx.pro.showLoading(&#123;</span><br><span class="line">    title: &#39;加载中&#39;,</span><br><span class="line">    mask: true</span><br><span class="line">&#125;)</span><br><span class="line">  .then(() &#x3D;&gt; console.log(&#39;in promise ~&#39;))</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-自己实现"><a href="#2-2-自己实现" class="headerlink" title="2.2 自己实现"></a>2.2 自己实现</h3><p>其实我们可以自己来实现一个这样的库，原理很简单，以原生 API 的 wx.request 为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 原生 API 使用方式</span><br><span class="line">wx.request(&#123;</span><br><span class="line">    url: &#39;&#39;,     &#x2F;&#x2F; 请求的 url</span><br><span class="line">    data: &#123;&#125;,    &#x2F;&#x2F; 参数</span><br><span class="line">    method: &#39;&#39;,  &#x2F;&#x2F; post、get</span><br><span class="line">    success: res &#x3D;&gt; &#123;</span><br><span class="line">        &#x2F;&#x2F; 请求成功回调函数，res为回调参数</span><br><span class="line">    &#125;,</span><br><span class="line">    fail: res &#x3D;&gt; &#123;</span><br><span class="line">        &#x2F;&#x2F; 请求失败回调函数，res为回调参数</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>如果我们将其 Promise 化，应该的调用方式希望是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Promise 化后的期望使用方式</span><br><span class="line">wx.pro.request(&#123;</span><br><span class="line">    url: &#39;&#39;,     &#x2F;&#x2F; 请求的 url</span><br><span class="line">    data: &#123;&#125;,    &#x2F;&#x2F; 参数</span><br><span class="line">    method: &#39;&#39;   &#x2F;&#x2F; post、get</span><br><span class="line">&#125;)</span><br><span class="line">  .then(res &#x3D;&gt; &#123;</span><br><span class="line">      &#x2F;&#x2F; 请求成功回调函数，res为回调参数</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(res &#x3D;&gt; &#123;</span><br><span class="line">      &#x2F;&#x2F; 请求失败回调函数，res为回调参数</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>并且 <code>then</code> 函数返回的是一个 Promise 对象，让这个函数可以不断链式调用下去，所以首先需要 <code>new</code> 出来一个 Promise 对象：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function request(opt) &#123;</span><br><span class="line">    return new Promise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">        wx.request(&#123;</span><br><span class="line">            ...opt,</span><br><span class="line">            success: res &#x3D;&gt; &#123; resolve(res)&#125;,</span><br><span class="line">            fail: res &#x3D;&gt; &#123;reject(res)&#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里代码我们可以进一步改进，由于 <code>success</code>、<code>fail</code> 这里传入的参数只是由<code>resolve</code>、<code>reject</code> 方法执行了下，所以可以直接传入 <code>resolve</code>、<code>reject</code> 方法即可。</p>
+<p>另外，由于其他小程序原生 API 格式一致，所以我们可以使用柯里化方法，来将其他需要进行 Promise 化的 API 进行处理：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function promisify(api) &#123;</span><br><span class="line">    return (opt &#x3D; &#123;&#125;) &#x3D;&gt; &#123;</span><br><span class="line">        return new Promise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">            api(&#123;</span><br><span class="line">                ...opt,</span><br><span class="line">                fail: reject,</span><br><span class="line">                success: resolve</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后，将柯里化方法执行的结果作为新的 Promise 化的 API 挂载到 <code>wx.pro</code> 对象上：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 将指定 API 进行 Promise 化</span><br><span class="line">wx.pro.request &#x3D; promisify(wx.request)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 使用</span><br><span class="line">wx.pro.request(&#123;...&#125;)</span><br><span class="line">    .then(...)</span><br></pre></td></tr></table></figure>
+
+<p>然后为了方便我们使用其他方法，可以循环将 <code>wx</code> 对象上可以被 Promise 化的方法比如 <code>request</code>、<code>scanCode</code>、<code>showToast</code>、<code>getUserInfo</code> 等一一挂载到 <code>wx.pro</code> 对象上，使用时可以直接<code>wx.pro.xx</code>，由于这个方法执行返回的是一个 Promise 对象，因此可以像其它 Promise 化的对象那样使用。</p>
+<p>事实上，不知不觉，我们就自己实现了 <code>wx-promise-pro</code> 的源码，这个库的核心代码也就是上面那这几行 🥳</p>
+<h3 id="2-3-在项目中使用"><a href="#2-3-在项目中使用" class="headerlink" title="2.3 在项目中使用"></a>2.3 在项目中使用</h3><p>有了上面的工具后，我们可以将其使用在项目中，为了不在项目中遍布 <code>wx.request</code> 或 <code>wx.pro.request</code> 这里可以简单进行封装，新建两个文件如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; utils&#x2F;api&#x2F;fetch.js 封装请求方法、请求拦截器</span><br><span class="line"></span><br><span class="line">const app &#x3D; getApp()</span><br><span class="line"></span><br><span class="line">const BaseUrl &#x3D; &#39;http:&#x2F;&#x2F;172.0.0.1:7300&#x2F;mock&#39;</span><br><span class="line"></span><br><span class="line">const TokenWhiteList &#x3D; [</span><br><span class="line">    &#39;&#x2F;app&#x2F;user&#x2F;get-by-code&#39;     &#x2F;&#x2F; 不需要鉴权的api手动添加到这里</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 设置请求拦截器</span><br><span class="line"> * @param params 请求参数</span><br><span class="line"> *&#x2F;</span><br><span class="line">const fetch &#x3D; (params &#x3D; &#123;&#125;) &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; 拦截器逻辑</span><br><span class="line">    if (!TokenWhiteList.includes(params.url)) &#123;</span><br><span class="line">        params.header &#x3D; &#123;</span><br><span class="line">            &#39;content-type&#39;: &#39;application&#x2F;json&#39;,             &#x2F;&#x2F; 默认值</span><br><span class="line">            &#39;token&#39;: app.globalData.token || &#39;&#39;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (params.url.startsWith(&#39;&#x2F;&#39;)) &#123;    &#x2F;&#x2F; 拼接完整URL</span><br><span class="line">        params.url &#x3D; BaseUrl + params.url</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 返回promise</span><br><span class="line">    return wx.pro.request(&#123; ...params &#125;)</span><br><span class="line">      .then((&#123; data: &#123; code, message, data &#125; &#125;) &#x3D;&gt; &#123;</span><br><span class="line">          &#x2F;&#x2F; ... 各种异常情况的逻辑处理</span><br><span class="line">          &#x2F;&#x2F; 与后端约定 code 20000 时正常返回</span><br><span class="line">          if (code &#x3D;&#x3D;&#x3D; 20000) return Promise.resolve(data)</span><br><span class="line">          return Promise.reject(message)</span><br><span class="line">      &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export &#123; fetch &#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后再将所有 API 封装到单独的文件中集中管理：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; utils&#x2F;api&#x2F;apis.js 封装所有请求 API</span><br><span class="line"></span><br><span class="line">import &#123; fetch &#125; from &#39;.&#x2F;fetch&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;* 根据微信code获取用户信息 *&#x2F;</span><br><span class="line">const appUserGetByCode &#x3D; (&#123; code &#125; &#x3D; &#123;&#125;) &#x3D;&gt; fetch(&#123;</span><br><span class="line">    url: &#39;&#x2F;app&#x2F;user&#x2F;get-by-code&#39;,</span><br><span class="line">    data: &#123; code &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;* 扫码登录 *&#x2F;</span><br><span class="line">const appUserQrLogin &#x3D; (&#123; qrCode &#125; &#x3D; &#123;&#125;) &#x3D;&gt; fetch(&#123;</span><br><span class="line">    method: &#39;POST&#39;,</span><br><span class="line">    url: &#39;&#x2F;app&#x2F;user&#x2F;qr-login&#39;,</span><br><span class="line">    data: &#123; qrCode &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;* 个人信息 *&#x2F;</span><br><span class="line">const appUserInfo &#x3D; () &#x3D;&gt; fetch(&#123;</span><br><span class="line">    url: &#39;&#x2F;app&#x2F;user&#x2F;info&#39;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;* 系统参数获取，数据字典 *&#x2F;</span><br><span class="line">const appSysParamListByParam &#x3D; () &#x3D;&gt; fetch(&#123;</span><br><span class="line">    url: &#39;&#x2F;app&#x2F;sys-param&#x2F;list-by-param&#39;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;* 数据字典所有 *&#x2F;</span><br><span class="line">const appSysParamListAll &#x3D; () &#x3D;&gt; fetch(&#123;</span><br><span class="line">    url: &#39;&#x2F;app&#x2F;sys-param&#x2F;list-all&#39;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">export &#123;</span><br><span class="line">    appSysParamListAll,   &#x2F;&#x2F; 数据字典所有</span><br><span class="line">    appSysParamListByParam,   &#x2F;&#x2F; 系统参数获取，数据字典</span><br><span class="line">    appUserGetByCode,   &#x2F;&#x2F; 根据微信code获取用户信息</span><br><span class="line">    appUserQrLogin,   &#x2F;&#x2F; 扫码登录</span><br><span class="line">    appUserInfo   &#x2F;&#x2F; 个人信息</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在要使用 API 的地方就可以这样引入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import * as Api from &#39;..&#x2F;..&#x2F;utils&#x2F;api&#x2F;apis.js&#39;   &#x2F;&#x2F; 相对路径</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 使用方式</span><br><span class="line">Api.appSysParamListAll()</span><br><span class="line">  .then((&#123; dataList &#125;) &#x3D;&gt; this.upData(&#123; sysParamList: dataList &#125;))</span><br><span class="line">  .then(() &#x3D;&gt; &#123;</span><br><span class="line">      const keyList &#x3D; this.data.sysParamList.map(T &#x3D;&gt; T.key)</span><br><span class="line">      this.upData(&#123;</span><br><span class="line">          keyList,</span><br><span class="line">          formData: &#123; keys: keyList &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>参考链接：<a href="https://mp.weixin.qq.com/s/PqSlKWOaWXLdEJ7SvrIy0Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/PqSlKWOaWXLdEJ7SvrIy0Q</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/10/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8Bwx-upData/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/10/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8Bwx-upData/" itemprop="url">小程序之wx-upData</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-10T18:09:20+08:00">
+                2020-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/soft/" itemprop="url" rel="index">
+                    <span itemprop="name">soft</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>鉴于在下使用微信小程序开发时使用 <code>setData</code> 的蹩脚体验，开发了个库函数 <code>wx-updata</code>，项目上线之后，我把这个自用的库函数整理放到 Github 上开源出来 wx-updata，这个库函数在开发的时候对我很有帮助，希望也可以帮到大家 ????</p>
+<p>如果大家在使用中遇到了问题，可以给我提 pr，提 issue，一起来改善小程序开发体验加油～</p>
+<ol>
+<li><code>wx-updata</code> 版本 0.0.10</li>
+<li>Github 地址：<a href="https://github.com/SHERlocked93/wx-updata" target="_blank" rel="noopener">https://github.com/SHERlocked93/wx-updata</a></li>
+<li>小程序代码片段预览地址：<a href="https://developers.weixin.qq.com/s/CcXdO1mc73jD" target="_blank" rel="noopener">https://developers.weixin.qq.com/s/CcXdO1mc73jD</a></li>
+<li>小程序代码片段代码地址：<a href="https://github.com/SHERlocked93/wx-updata-demo" target="_blank" rel="noopener">https://github.com/SHERlocked93/wx-updata-demo</a></li>
+</ol>
+<h2 id="1-setData-不方便的地方"><a href="#1-setData-不方便的地方" class="headerlink" title="1. setData 不方便的地方"></a><strong>1. setData 不方便的地方</strong></h2><p>你在使用 <code>setData</code> 的时候，是不是有时候觉得很难受，举个简单的例子：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 你的 data</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">data: &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    name: <span class="string">'蜡笔小新'</span>,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    info: &#123; height: <span class="number">140</span>, color: <span class="string">'黄色'</span> &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果要修改 <code>info.height</code> 为 155，使用 <code>setData</code> 要怎么做呢：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这样会把 info 里其他属性整不见了</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">this.setData(&#123; info: &#123; height: <span class="number">155</span> &#125; &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 你需要取出 info 对象，修改后整个 setData</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> &#123; info &#125; = this.data</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">info.height = <span class="number">155</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">this.setData(&#123; info &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>似乎并不太复杂，但如果 <code>data</code> 是个很大的对象，要把比较深且不同的对象、数组项挨个改变：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    name: <span class="string">'蜡笔小新'</span>,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    info: &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        height: <span class="number">140</span>, color: <span class="string">'黄色'</span>,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        desc: [&#123; age: <span class="number">8</span> &#125;, <span class="string">'最喜欢大象之歌'</span>, <span class="string">'靓仔'</span>, &#123; dog: <span class="string">'小白'</span>, color: <span class="string">'白色'</span> &#125;]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>比如某个需求，需要把 <code>info.height</code> 改为 155，同时改变 <code>info.desc</code> 数组的第 0 项的 <code>age</code> 为 12，第 3 项的 <code>color</code> 为灰色呢？</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 先取出要改变的对象，改变数字后 setData 回去</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> &#123; info &#125; = this.data</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">info.height = <span class="number">155</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">info.desc[<span class="number">0</span>].age = <span class="number">12</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">info.desc[<span class="number">3</span>].color = <span class="string">'灰色'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">this.setData(&#123; info &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者像某些文章里介绍的，这样可读性差，也不太实用</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">this.setData(&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="string">'info.height'</span>: <span class="number">155</span>,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="string">'info.desc[0].age'</span>: <span class="number">12</span>,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="string">'info.desc[3].color'</span>: <span class="string">'灰色'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>上面这两种方法，是我们平常小程序里经常用的，和其他 Web 端的框架相比，就很蹩脚，一种浓浓的半成品感扑面而来，有没有这样一个方法：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">this.upData(&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    info: &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        height: <span class="number">155</span>,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        desc: [&#123; age: <span class="number">12</span> &#125;, , , &#123; color: <span class="string">'灰色'</span> &#125;]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>这个方法会帮我们深度改变嵌套对象里对应的属性值，跳过数组项里不想改变的，只设置我们提供了的属性值、数组项，岂不是省略了一大堆蹩脚的代码，而且可读性也极佳呢。</p>
+<p>这就是为什么我在上线的项目中使用 wx-updata，而不是 <code>setData</code></p>
+<h2 id="2-wx-updata-的优点"><a href="#2-wx-updata-的优点" class="headerlink" title="2. wx-updata 的优点"></a><strong>2. wx-updata 的优点</strong></h2><ol>
+<li>支持 <code>setData</code> 对象自动合并，不用写蹩脚的对象路径了 ????</li>
+<li>支持对象中嵌套数组，数组中嵌套对象；</li>
+<li>如果数组的某个值你不希望覆盖，请使用数组空位来跳过这个数组项，比如 <code>[1,,3]</code> 这个数组中间就是数组空位；</li>
+<li>如果数组空位你的 <code>Eslint</code> 报错，可以使用 <code>wx-updata</code> 提供的 Empty 来代替：<code>[1, Empty, 3]</code></li>
+</ol>
+<h2 id="3-wx-updata-安装"><a href="#3-wx-updata-安装" class="headerlink" title="3. wx-updata 安装"></a><strong>3. wx-updata 安装</strong></h2><blockquote>
+<p>你也可以直接把 <code>dist</code> 目录下的 <code>wx-updata.js</code> 拷贝到项目里使用</p>
+</blockquote>
+<p>使用 <code>npm</code>、<code>yarn</code> 安装方式：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ npm i -S wx-updata</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># or</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$ yarn add wx-updata</span><br></pre></td></tr></table></figure>
+
+<p>然后：</p>
+<ol>
+<li>把微信开发者工具面板右侧的 <code>详情 - 本地设置 - 使用npm模块</code> 按钮打开；</li>
+<li>点击微信开发者工具面板工具栏的 <code>工具 - 构建npm</code>；</li>
+</ol>
+<p>构建后成功生成 <code>miniprogram_npm</code> 文件夹就可以正常使用了</p>
+<h2 id="4-wx-updata-使用方法"><a href="#4-wx-updata-使用方法" class="headerlink" title="4. wx-updata 使用方法"></a><strong>4. wx-updata 使用方法</strong></h2><h3 id="使用方式一"><a href="#使用方式一" class="headerlink" title="使用方式一"></a><strong>使用方式一</strong></h3><p>可以使用直接挂载到 <code>Page</code> 上的方式，这样就可以在 <code>Page</code> 实例中像使用 <code>setData</code> 一样使用 <code>upData</code> 了</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; updataInit &#125; from <span class="string">'./miniprogram_npm/wx-updata/index'</span>  <span class="comment">// 你的库文件路径</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">App(&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    onLaunch() &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Page = updataInit(Page, &#123; debug: <span class="literal">true</span> &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 页面代码中</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">this.upData(&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    info: &#123; height: <span class="number">155</span> &#125;,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    desc: [&#123; age: <span class="number">13</span> &#125;, <span class="string">'帅哥'</span>],</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    family: [, , [, , , &#123; color: <span class="string">'灰色'</span> &#125;]]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用方式二"><a href="#使用方式二" class="headerlink" title="使用方式二"></a><strong>使用方式二</strong></h3><p>有的框架可能在 <code>Page</code> 对象上进行了进一步修改，直接替换 <code>Page</code> 的方式可能就不太好了，<code>wx-updata</code> 同样暴露了工具方法，用户可以在页面代码中直接使用工具方法进行处理：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 页面代码中</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; objToPath &#125; from <span class="string">'./miniprogram_npm/wx-updata/index'</span>  <span class="comment">// 你的库文件路径</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Page(&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    data: &#123; a: &#123; b: <span class="number">2</span>&#125;, c: [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]&#125;,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 自己封装一下</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    upData(data) &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> this.setData(objToPath(data))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 你的方法中或生命周期函数</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    yourMethod() &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        this.upData(&#123; a: &#123; b: <span class="number">7</span>&#125;, c: [<span class="number">8</span>,,<span class="number">9</span>]&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用-Empty-代替数组空位"><a href="#使用-Empty-代替数组空位" class="headerlink" title="使用 Empty 代替数组空位"></a><strong>使用 Empty 代替数组空位</strong></h3><p>可以使用 <code>wx-updata</code> 提供的 Empty 来代替数组空位，由于 Empty 本质上是一个 Symbol，所以只能使用 <code>wx-updata</code> 导出的，而不能自己新建。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 页面代码中</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; Empty &#125; from <span class="string">'./miniprogram_npm/wx-updata/index'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">this.upData(&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    info: &#123; height: <span class="number">155</span> &#125;,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    desc: [&#123; age: <span class="number">13</span> &#125;, <span class="string">'帅哥'</span>],</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    family: [Empty, Empty, [Empty, Empty, Empty, &#123; color: <span class="string">'灰色'</span> &#125;]]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-wx-updata-相关-API"><a href="#5-wx-updata-相关-API" class="headerlink" title="5. wx-updata 相关 API"></a><strong>5. wx-updata 相关 API</strong></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Page.prototype.upData(Object data, Function callback)</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><code>data</code>：你希望设置的 data</li>
+<li><code>callback</code>：跟 setData 第二个参数一样，引起界面更新渲染完毕后的回调函数</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">updataInit(Page, config)</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><code>Page</code>：页面对象，需要在 <code>app.js</code> 中调用；</li>
+<li><code>config</code>：若提供配置参数 <code>{ debug: true }</code>，会将路径化后的 data 打印出来，帮助用户进行调试；</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objToPath(Object data)</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><code>data</code>：你希望设置的 data 对象</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/10/Vue%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E4%BD%86%E9%A1%B5%E9%9D%A2%E6%B2%A1%E6%9C%89%E6%9B%B4%E6%96%B0%E7%9A%847%E7%A7%8D%E6%83%85%E5%86%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/10/Vue%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E4%BD%86%E9%A1%B5%E9%9D%A2%E6%B2%A1%E6%9C%89%E6%9B%B4%E6%96%B0%E7%9A%847%E7%A7%8D%E6%83%85%E5%86%B5/" itemprop="url">Vue数据更新但页面没有更新的7种情况</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-10T17:27:58+08:00">
+                2020-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Vue-set与-vue-set在使用中的区别"><a href="#Vue-set与-vue-set在使用中的区别" class="headerlink" title="Vue.set与 vue.$set在使用中的区别"></a>Vue.set与 vue.$set在使用中的区别</h3><p>Vue.set 可以设置实例创建之后添加的属性，如sex，而this.$set/vue.$set/vm.$set只能设置实例创建后存在的属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">var</span> data = &#123;</span><br><span class="line">    name: <span class="string">"简书"</span>,</span><br><span class="line">    age: <span class="string">'3'</span>,</span><br><span class="line">    info: &#123;</span><br><span class="line">        content: <span class="string">'my name is test'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;   </span><br><span class="line"><span class="keyword">var</span> key = <span class="string">'content'</span>;</span><br><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el:<span class="string">'#app'</span>,</span><br><span class="line">    data: data,</span><br><span class="line">    ready: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        Vue.set(data,<span class="string">'sex'</span>, <span class="string">'男'</span>)</span><br><span class="line">        <span class="keyword">this</span>.$<span class="keyword">set</span>('sex', '女')</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Vue-无法检测对象-property-的添加或移除"><a href="#Vue-无法检测对象-property-的添加或移除" class="headerlink" title="Vue 无法检测对象 property 的添加或移除"></a>Vue 无法检测对象 property 的添加或移除</h3><p>原因：官方 - 由于 JavaScript（ES5） 的限制，Vue.js <strong>不能检测到对象属性的添加或删除</strong>。因为 Vue.js 在初始化实例时将属性转为 getter/setter，所以属性必须在 <code>data</code> 对象上才能让 Vue.js 转换它，才能让它是响应的。</p>
+<p>场景：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var vm &#x3D; new Vue(&#123;</span><br><span class="line">  data:&#123;</span><br><span class="line">    obj: &#123;</span><br><span class="line">      id: 001</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#x2F;&#x2F; 页面不会变化</span><br><span class="line">  template: &#39;&lt;div&gt;&#123;&#123; obj.message &#125;&#125;&lt;&#x2F;div&gt;&#39;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">vm.obj.message &#x3D; &#39;hello&#39; &#x2F;&#x2F; 不是响应式的</span><br><span class="line">delete vm.obj.id       &#x2F;&#x2F; 不是响应式的</span><br></pre></td></tr></table></figure>
+
+<p>解决办法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 动态添加 - Vue.set</span><br><span class="line">Vue.set(vm.obj, propertyName, newValue)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 动态添加 - vm.$set</span><br><span class="line">vm.$set(vm.obj, propertyName, newValue)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 动态添加多个</span><br><span class="line">&#x2F;&#x2F; 代替 Object.assign(this.obj, &#123; a: 1, b: 2 &#125;)</span><br><span class="line">this.obj &#x3D; Object.assign(&#123;&#125;, this.obj, &#123; a: 1, b: 2 &#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 动态移除 - Vue.delete</span><br><span class="line">Vue.delete(vm.obj, propertyName)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 动态移除 - vm.$delete</span><br><span class="line">vm.$delete(vm.obj, propertyName)</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="Vue-不能检测通过数组索引直接修改一个数组项"><a href="#Vue-不能检测通过数组索引直接修改一个数组项" class="headerlink" title="Vue 不能检测通过数组索引直接修改一个数组项"></a>Vue 不能检测通过数组索引直接修改一个数组项</h3><p>原因：官方 - 由于 JavaScript 的限制，Vue <strong>不能检测</strong>数组和对象的变化；尤雨溪 - 性能代价和获得用户体验不成正比。</p>
+<p>场景：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var vm &#x3D; new Vue(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    items: [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">vm.items[1] &#x3D; &#39;x&#39; &#x2F;&#x2F; 不是响应性的</span><br></pre></td></tr></table></figure>
+
+<p>解决办法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Vue.set</span><br><span class="line">Vue.set(vm.items, indexOfItem, newValue)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; vm.$set</span><br><span class="line">vm.$set(vm.items, indexOfItem, newValue)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Array.prototype.splice</span><br><span class="line">vm.items.splice(indexOfItem, 1, newValue)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Vue-不能监测直接修改数组长度的变化"><a href="#Vue-不能监测直接修改数组长度的变化" class="headerlink" title="Vue 不能监测直接修改数组长度的变化"></a>Vue 不能监测直接修改数组长度的变化</h3><p>原因：官方 - 由于 JavaScript 的限制，Vue <strong>不能检测</strong>数组和对象的变化；尤雨溪 - 性能代价和获得用户体验不成正比。</p>
+<p>场景：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var vm &#x3D; new Vue(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    items: [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">vm.items.length &#x3D; 2 &#x2F;&#x2F; 不是响应性的</span><br></pre></td></tr></table></figure>
+
+<p>解决办法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vm.items.splice(newLength)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="在异步更新执行之前操作-DOM-数据不会变化-nextTick"><a href="#在异步更新执行之前操作-DOM-数据不会变化-nextTick" class="headerlink" title="在异步更新执行之前操作 DOM 数据不会变化(nextTick)"></a>在异步更新执行之前操作 DOM 数据不会变化(nextTick)</h3><p>原因：Vue 在更新 DOM 时是<strong>异步</strong>执行的。只要侦听到数据变化，Vue 将开启一个队列，并缓冲在同一事件循环中发生的所有数据变更。如果同一个 watcher 被多次触发，只会被推入到队列中一次。这种在缓冲时去除重复数据对于避免不必要的计算和 DOM 操作是非常重要的。然后，在下一个的事件循环“tick”中，Vue 刷新队列并执行实际 (已去重的) 工作。Vue 在内部对异步队列尝试使用原生的 <code>Promise.then</code>、<code>MutationObserver</code> 和 <code>setImmediate</code>，如果执行环境不支持，则会采用 <code>setTimeout(fn, 0)</code> 代替。</p>
+<p>场景：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;example&quot;&gt;&#123;&#123;message&#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line">var vm &#x3D; new Vue(&#123;</span><br><span class="line">  el: &#39;#example&#39;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    message: &#39;123&#39;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">vm.message &#x3D; &#39;new message&#39; &#x2F;&#x2F; 更改数据</span><br><span class="line">vm.$el.textContent &#x3D;&#x3D;&#x3D; &#39;new message&#39; &#x2F;&#x2F; false</span><br><span class="line">vm.$el.style.color &#x3D; &#39;red&#39; &#x2F;&#x2F; 页面没有变化</span><br></pre></td></tr></table></figure>
+
+<p>解决办法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var vm &#x3D; new Vue(&#123;</span><br><span class="line">  el: &#39;#example&#39;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    message: &#39;123&#39;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">vm.message &#x3D; &#39;new message&#39; &#x2F;&#x2F; 更改数据</span><br><span class="line">&#x2F;&#x2F;使用 Vue.nextTick(callback) callback 将在 DOM 更新完成后被调用</span><br><span class="line">Vue.nextTick(function () &#123;</span><br><span class="line">  vm.$el.textContent &#x3D;&#x3D;&#x3D; &#39;new message&#39; &#x2F;&#x2F; true</span><br><span class="line">  vm.$el.style.color &#x3D; &#39;red&#39; &#x2F;&#x2F; 文字颜色变成红色</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/10/vue-skeleton-webpack-plugin/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/10/vue-skeleton-webpack-plugin/" itemprop="url">vue-skeleton-webpack-plugin</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-10T11:51:14+08:00">
+                2020-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="架构图"><a href="#架构图" class="headerlink" title="架构图"></a>架构图</h3><p><img src="/2020/09/10/vue-skeleton-webpack-plugin/image-20200910115921296.png" alt="image-20200910115921296"></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/09/10/vue-skeleton-webpack-plugin/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E9%AA%A8%E6%9E%B6%E5%B1%8F%E7%9A%84%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E9%AA%A8%E6%9E%B6%E5%B1%8F%E7%9A%84%E4%BD%BF%E7%94%A8/" itemprop="url">小程序之骨架屏的使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-09T15:47:36+08:00">
+                2020-09-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/soft/" itemprop="url" rel="index">
+                    <span itemprop="name">soft</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="自定义骨架屏"><a href="#自定义骨架屏" class="headerlink" title="自定义骨架屏"></a>自定义骨架屏</h3><p>index.wxml:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 作为组件在页面中使用 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">skeleton</span> <span class="attr">selector</span>=<span class="string">"skeleton"</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag"><span class="attr">loading</span>=<span class="string">"spin"</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag"><span class="attr">bgcolor</span>=<span class="string">"#FFF"</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag"><span class="attr">wx:if</span>=<span class="string">"&#123;&#123;showSkeleton&#125;&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">skeleton</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--index.wxml--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 渲染的根节点，加上 .skeleton --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"container skeleton"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"userinfo"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">block</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 要渲染的圆形节点，加上 .skeleton-radius --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">image</span> <span class="attr">class</span>=<span class="string">"userinfo-avatar skeleton-radius"</span> <span class="attr">src</span>=<span class="string">"&#123;&#123;userInfo.avatarUrl&#125;&#125;"</span> <span class="attr">mode</span>=<span class="string">"cover"</span>&gt;</span><span class="tag">&lt;/<span class="name">image</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 要渲染的矩形节点，加上 .skeleton-rect --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">text</span> <span class="attr">class</span>=<span class="string">"userinfo-nickname skeleton-rect"</span>&gt;</span>&#123;&#123;userInfo.nickName&#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">block</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">style</span>=<span class="string">"margin: 20px 0"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:for</span>=<span class="string">"&#123;&#123;lists&#125;&#125;"</span> <span class="attr">wx:key</span>=<span class="string">"&#123;&#123;index&#125;&#125;"</span> <span class="attr">class</span>=<span class="string">"lists"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">icon</span> <span class="attr">type</span>=<span class="string">"success"</span> <span class="attr">size</span>=<span class="string">"20"</span> <span class="attr">class</span>=<span class="string">"list skeleton-radius"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">text</span> <span class="attr">class</span>=<span class="string">"skeleton-rect"</span>&gt;</span>&#123;&#123;item&#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"usermotto"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">text</span> <span class="attr">class</span>=<span class="string">"user-motto skeleton-rect"</span>&gt;</span>&#123;&#123;motto&#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">style</span>=<span class="string">"margin-top: 200px;"</span>&gt;</span>aaaaaaaaaaa<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>index.json:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="comment">// 引入骨架屏组件</span></span><br><span class="line">  <span class="string">"usingComponents"</span>: &#123;</span><br><span class="line">    <span class="string">"skeleton"</span>: <span class="string">"/component/skeleton/skeleton"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>最后来探索一下骨架屏组件的实现</strong></p>
+<p>skeleton.wxml:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 最外层的view绑定了js中定义的宽、高以及背景颜色 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">style</span>=<span class="string">"width: &#123;&#123;systemInfo.width&#125;&#125;px; height: &#123;&#123;systemInfo.height&#125;&#125;px; background-color: &#123;&#123;bgcolor&#125;&#125;; position: absolute; left:0; top:0; z-index:9998; overflow: hidden;"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 循环，遍历绘制矩形节点，宽高参照js获取到的节点宽高，以绝对定位的方式定位 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:for</span>=<span class="string">"&#123;&#123;skeletonRectLists&#125;&#125;"</span> <span class="attr">wx:key</span>=<span class="string">"&#123;&#123;index&#125;&#125;"</span> <span class="attr">class</span>=<span class="string">"&#123;&#123;loading == 'chiaroscuro' ? 'chiaroscuro' : ''&#125;&#125;"</span> <span class="attr">style</span>=<span class="string">"width: &#123;&#123;item.width&#125;&#125;px; height: &#123;&#123;item.height&#125;&#125;px; background-color: rgb(194, 207, 214); position: absolute; left: &#123;&#123;item.left&#125;&#125;px; top: &#123;&#123;item.top&#125;&#125;px"</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 循环，遍历绘制矩形节点，宽高参照js获取到的节点宽高，以绝对定位的方式定位 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:for</span>=<span class="string">"&#123;&#123;skeletonCircleLists&#125;&#125;"</span> <span class="attr">wx:key</span>=<span class="string">"&#123;&#123;index&#125;&#125;"</span> <span class="attr">class</span>=<span class="string">"&#123;&#123;loading == 'chiaroscuro' ? 'chiaroscuro' : ''&#125;&#125;"</span> <span class="attr">style</span>=<span class="string">"width: &#123;&#123;item.width&#125;&#125;px; height: &#123;&#123;item.height&#125;&#125;px; background-color: rgb(194, 207, 214); border-radius: &#123;&#123;item.width&#125;&#125;px; position: absolute; left: &#123;&#123;item.left&#125;&#125;px; top: &#123;&#123;item.top&#125;&#125;px"</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"spinbox"</span> <span class="attr">wx:if</span>=<span class="string">"&#123;&#123;loading == 'spin'&#125;&#125;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"spin"</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>skeleton.js:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">Component(&#123;</span><br><span class="line">  properties: &#123;</span><br><span class="line">    bgcolor: &#123;</span><br><span class="line">      type: <span class="built_in">String</span>,</span><br><span class="line">      value: <span class="string">'#fff'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    selector: &#123;</span><br><span class="line">      type: <span class="built_in">String</span>,</span><br><span class="line">      value: <span class="string">'skeleton'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    loading: &#123;</span><br><span class="line">      type: <span class="built_in">String</span>,</span><br><span class="line">      value: <span class="string">'spin'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    loadingAni: [<span class="string">'spin'</span>, <span class="string">'chiaroscuro'</span>],</span><br><span class="line">    systemInfo: &#123;&#125;,</span><br><span class="line">    skeletonRectLists: [],</span><br><span class="line">    skeletonCircleLists: []</span><br><span class="line">  &#125;,</span><br><span class="line">  attached: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//默认的首屏宽高，防止内容闪现</span></span><br><span class="line">    <span class="keyword">const</span> systemInfo = wx.getSystemInfoSync();</span><br><span class="line">    <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">      systemInfo: &#123;</span><br><span class="line">        width: systemInfo.windowWidth,</span><br><span class="line">        height: systemInfo.windowHeight</span><br><span class="line">      &#125;,</span><br><span class="line">      loading: <span class="keyword">this</span>.data.loadingAni.includes(<span class="keyword">this</span>.data.loading) ? <span class="keyword">this</span>.data.loading : <span class="string">'spin'</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  ready: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> that = <span class="keyword">this</span>;</span><br><span class="line">    <span class="comment">//绘制背景</span></span><br><span class="line">    wx.createSelectorQuery().selectAll(<span class="string">`.<span class="subst">$&#123;<span class="keyword">this</span>.data.selector&#125;</span>`</span>).boundingClientRect().exec(<span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">      that.setData(&#123;</span><br><span class="line">        <span class="string">'systemInfo.height'</span>: res[<span class="number">0</span>][<span class="number">0</span>].height + res[<span class="number">0</span>][<span class="number">0</span>].top</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">//绘制矩形</span></span><br><span class="line">    <span class="keyword">this</span>.rectHandle();</span><br><span class="line">    <span class="comment">//绘制圆形</span></span><br><span class="line">    <span class="keyword">this</span>.radiusHandle();</span><br><span class="line"></span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    rectHandle: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">const</span> that = <span class="keyword">this</span>;</span><br><span class="line">      <span class="comment">//绘制不带样式的节点</span></span><br><span class="line">      wx.createSelectorQuery().selectAll(<span class="string">`.<span class="subst">$&#123;<span class="keyword">this</span>.data.selector&#125;</span> &gt;&gt;&gt; .<span class="subst">$&#123;<span class="keyword">this</span>.data.selector&#125;</span>-rect`</span>).boundingClientRect().exec(<span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">        that.setData(&#123;</span><br><span class="line">          skeletonRectLists: res[<span class="number">0</span>]</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line">    radiusHandle: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">const</span> that = <span class="keyword">this</span>;</span><br><span class="line">      wx.createSelectorQuery().selectAll(<span class="string">`.<span class="subst">$&#123;<span class="keyword">this</span>.data.selector&#125;</span> &gt;&gt;&gt; .<span class="subst">$&#123;<span class="keyword">this</span>.data.selector&#125;</span>-radius`</span>).boundingClientRect().exec(<span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(res);</span><br><span class="line">        that.setData(&#123;</span><br><span class="line">          skeletonCircleLists: res[<span class="number">0</span>]</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">备注：也可以使用下面这种方式来选择节点</span><br><span class="line">wx.createSelectorQuery().selectAll(<span class="string">`.<span class="subst">$&#123;<span class="keyword">this</span>.data.selector&#125;</span>-rect`</span>).boundingClientRect().exec...</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="使用npm包"><a href="#使用npm包" class="headerlink" title="使用npm包"></a>使用npm包</h3><p><a href="https://github.com/jayZOU/skeleton" target="_blank" rel="noopener">https://github.com/jayZOU/skeleton</a></p>
+<h3 id="一、安装和引入"><a href="#一、安装和引入" class="headerlink" title="一、安装和引入"></a>一、安装和引入</h3><h4 id="1-安装组件："><a href="#1-安装组件：" class="headerlink" title="1.安装组件："></a>1.安装组件：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save miniprogram-skeleton</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-引入skeleton自定义组件"><a href="#2-引入skeleton自定义组件" class="headerlink" title="2.引入skeleton自定义组件"></a>2.引入skeleton自定义组件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;usingComponents&quot;: &#123;</span><br><span class="line">    &quot;skeleton&quot;: &quot;..&#x2F;miniprogram_npm&#x2F;miniprogram-skeleton&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>小程序中npm的配置及使用：</strong></p>
+<ul>
+<li>在微信开发者工具中，设置 —&gt; 项目设置—&gt; 勾选使用npm模块。</li>
+<li>在微信开发者工具中，工具 —&gt; 构建npm，构建完成会生成 <code>miniprogram_npm</code> 文件夹，项目用到的npm包都在这里。</li>
+<li>按照页面的使用路径，从 <code>miniprogram_npm</code> 引入需要的包。</li>
+</ul>
+<h4 id="二、使用方式与自定义使用方式一样"><a href="#二、使用方式与自定义使用方式一样" class="headerlink" title="二、使用方式与自定义使用方式一样"></a>二、使用方式与自定义使用方式一样</h4><p>。。。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/09/js%E4%B9%8B%E4%BB%8A%E5%A4%A9%E6%98%AF%E6%98%9F%E6%9C%9F%E5%87%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/09/js%E4%B9%8B%E4%BB%8A%E5%A4%A9%E6%98%AF%E6%98%9F%E6%9C%9F%E5%87%A0/" itemprop="url">js之今天是星期几</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-09T10:02:30+08:00">
+                2020-09-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="初学"><a href="#初学" class="headerlink" title="初学"></a>初学</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function returnWeekday()&#123;</span><br><span class="line">    let string &#x3D; &quot;今天是星期&quot;;</span><br><span class="line">    let date &#x3D; new Date().getDay();</span><br><span class="line">    if (date &#x3D;&#x3D;&#x3D; 0) &#123;</span><br><span class="line">        string +&#x3D; &quot;日&quot;;</span><br><span class="line">    &#125; else if (date &#x3D;&#x3D;&#x3D; 1) &#123;</span><br><span class="line">        string +&#x3D; &quot;一&quot;;</span><br><span class="line">    &#125; else if (date &#x3D;&#x3D;&#x3D; 2) &#123;</span><br><span class="line">        string +&#x3D; &quot;二&quot;;</span><br><span class="line">    &#125; else if (date &#x3D;&#x3D;&#x3D; 3) &#123;</span><br><span class="line">        string +&#x3D; &quot;三&quot;;</span><br><span class="line">    &#125; else if (date &#x3D;&#x3D;&#x3D; 4) &#123;</span><br><span class="line">        string +&#x3D; &quot;四&quot;;</span><br><span class="line">    &#125; else if (date &#x3D;&#x3D;&#x3D; 5) &#123;</span><br><span class="line">        string +&#x3D; &quot;五&quot;;</span><br><span class="line">    &#125; else if (date &#x3D;&#x3D;&#x3D; 6) &#123;</span><br><span class="line">        string +&#x3D; &quot;六&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    return string</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">function returnWeekday()&#123;</span><br><span class="line">    let string &#x3D; &quot;今天是星期&quot;;</span><br><span class="line">    let date &#x3D; new Date().getDay();</span><br><span class="line">    switch (date) &#123;</span><br><span class="line">        case 0 :</span><br><span class="line">            string +&#x3D; &quot;日&quot;;</span><br><span class="line">            break;</span><br><span class="line">        case 1 :</span><br><span class="line">            string +&#x3D; &quot;一&quot;;</span><br><span class="line">            break;</span><br><span class="line">        case 2 :</span><br><span class="line">            string +&#x3D; &quot;二&quot;;</span><br><span class="line">            break;</span><br><span class="line">        case 3 :</span><br><span class="line">            string +&#x3D; &quot;三&quot;;</span><br><span class="line">            break;</span><br><span class="line">        case 4 :</span><br><span class="line">            string +&#x3D; &quot;四&quot;;</span><br><span class="line">            break;</span><br><span class="line">        case 5 :</span><br><span class="line">            string +&#x3D; &quot;五&quot;;</span><br><span class="line">            break;</span><br><span class="line">        case 6 :</span><br><span class="line">            string +&#x3D; &quot;六&quot;;</span><br><span class="line">            break;</span><br><span class="line">    &#125;</span><br><span class="line">    return string</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="中级"><a href="#中级" class="headerlink" title="中级"></a>中级</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">function returnWeekday()&#123;</span><br><span class="line">    let string &#x3D; &quot;今天是星期&quot;;</span><br><span class="line">    let date &#x3D; new Date().getDay();</span><br><span class="line">    &#x2F;&#x2F; 使用数组</span><br><span class="line">    let dateArr &#x3D; [ 天 , 一 , 二 , 三 , 四 , 五 , 六 ];</span><br><span class="line">    return string + dateArr[date]</span><br><span class="line">&#125;</span><br><span class="line">console.log(returnWeekday())</span><br><span class="line"></span><br><span class="line">倘若我们的每个 case 是不规律的字符串呢？那我们使用对象，每个 case 为一个 key</span><br><span class="line">function returnWeekday()&#123;</span><br><span class="line">    let string &#x3D; &quot;今天是星期&quot;;</span><br><span class="line">    let date &#x3D; new Date().getDay();</span><br><span class="line">    &#x2F;&#x2F; 使用对象</span><br><span class="line">    dateObj &#x3D; &#123; </span><br><span class="line">        0:  天 , </span><br><span class="line">        1: &quot;一&quot;, </span><br><span class="line">        2: &quot;二&quot;, </span><br><span class="line">        3: &quot;三&quot;, </span><br><span class="line">        4: &quot;四&quot;, </span><br><span class="line">        5: &quot;五&quot;, </span><br><span class="line">        6: &quot;六&quot;, </span><br><span class="line">    &#125;;</span><br><span class="line">    return string + dateObj[date]</span><br><span class="line">&#125;</span><br><span class="line">console.log(returnWeekday())</span><br><span class="line"></span><br><span class="line">使用 charAt 字符方法</span><br><span class="line">&#x2F;&#x2F; charAt 定位方法</span><br><span class="line">function returnWeekday()&#123;</span><br><span class="line">    return &quot;今天是星期&quot; + &quot;日一二三四五六&quot;.charAt(new Date().getDay());</span><br><span class="line">&#125;</span><br><span class="line">console.log(returnWeekday())</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="需求变动-区分工作日和休息日"><a href="#需求变动-区分工作日和休息日" class="headerlink" title="需求变动(区分工作日和休息日)"></a>需求变动(区分工作日和休息日)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">function returnWeekday()&#123;</span><br><span class="line">    let string &#x3D; &quot;今天是星期&quot;;</span><br><span class="line">    let date &#x3D; new Date().getDay();</span><br><span class="line">    &#x2F;&#x2F; 使用对象</span><br><span class="line">    dateObj &#x3D; &#123; </span><br><span class="line">        0: [&#39;天&#39;,&#39;休&#39;], </span><br><span class="line">        1: [&quot;一&quot;,&#39;工&#39;], </span><br><span class="line">        2: [&quot;二&quot;,&#39;工&#39;], </span><br><span class="line">        3: [&quot;三&quot;,&#39;工&#39;], </span><br><span class="line">        4: [&quot;四&quot;,&#39;工&#39;], </span><br><span class="line">        5: [&quot;五&quot;,&#39;工&#39;], </span><br><span class="line">        6: [&quot;六&quot;,&#39;休&#39;], </span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 类型，这里也可以对应相关方法</span><br><span class="line">    dayType &#x3D; &#123;</span><br><span class="line">        &#39;休&#39;: function()&#123;</span><br><span class="line">            &#x2F;&#x2F; some code</span><br><span class="line">            console.log(&#39;为休息日&#39;)</span><br><span class="line">        &#125;,</span><br><span class="line">        &#39;工&#39;: function()&#123;</span><br><span class="line">            &#x2F;&#x2F; some code</span><br><span class="line">            console.log(&#39;为工作日&#39;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    let returnData &#x3D; &#123;</span><br><span class="line">         string  : string + dateObj[date][0],</span><br><span class="line">         method  : dayType[dateObj[date][1]]</span><br><span class="line">    &#125;</span><br><span class="line">    return returnData</span><br><span class="line">&#125;;</span><br><span class="line">console.log(returnWeekday().method.call(this))</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/09/js%E6%98%9F%E6%9C%9F%E6%96%B9%E6%B3%95Array/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/09/js%E6%98%9F%E6%9C%9F%E6%96%B9%E6%B3%95Array/" itemprop="url">js星期方法Array</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-09T10:01:44+08:00">
+                2020-09-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90%E6%B5%B7%E6%8A%A5%E5%88%86%E4%BA%AB%E6%9C%8B%E5%8F%8B%E5%9C%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90%E6%B5%B7%E6%8A%A5%E5%88%86%E4%BA%AB%E6%9C%8B%E5%8F%8B%E5%9C%88/" itemprop="url">小程序如何生成海报分享朋友圈</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-09T09:35:08+08:00">
+                2020-09-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/soft/" itemprop="url" rel="index">
+                    <span itemprop="name">soft</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>利用微信强大的社交能力通过小程序达到裂变的目的，拉取新用户。<br>生成的海报如下</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/1NOXMW586uvu1YtvSoiajLEyawsNz1JTxLpJb1T6GDwktsib3UBrOEz9KYatzRbhE9fIxjYGteosUh33C4Ysq2icw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<h3 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h3><p>1、利用小程序官方提供的api可以直接分享转发到微信群打开小程序<br>2、利用小程序生成海报保存图片到相册分享到朋友圈，用户长按识别二维码关注公众号或者打开小程序来达到裂变的目的</p>
+<h3 id="实现方案"><a href="#实现方案" class="headerlink" title="实现方案"></a>实现方案</h3><h4 id="一、分析如何实现"><a href="#一、分析如何实现" class="headerlink" title="一、分析如何实现"></a>一、分析如何实现</h4><p>相信大家应该都会有类似的迷惑，就是如何按照产品设计的那样绘制成海报，其实当时我也是不知道如何下手，认真想了下得通过canvas绘制成图片，这样用户保存这个图片到相册，就可以分享到朋友圈了。但是要绘制的图片上面不仅有文字还有数字、图片、二维码等且都是活的，这个要怎么动态生成呢。认真想了下，需要一点一点的将文字和数字，背景图绘制到画布上去，这样通过api最终合成一个图片导出到手机相册中。</p>
+<h4 id="二、需要解决的问题"><a href="#二、需要解决的问题" class="headerlink" title="二、需要解决的问题"></a>二、需要解决的问题</h4><p>1、二维码的动态获取和绘制（包括如何生成小程序二维码、公众号二维码、打开网页二维码）<br>2、背景图如何绘制，获取图片信息<br>3、将绘制完成的图片保存到本地相册<br>4、处理用户是否取消授权保存到相册</p>
+<h4 id="三、实现步骤"><a href="#三、实现步骤" class="headerlink" title="三、实现步骤"></a>三、实现步骤</h4><p><strong>这里我具体写下围绕上面所提出的问题，描述大概实现的过程</strong></p>
+<p>①首先创建canvas画布,我把画布定位设成负的,是为了不让它显示在页面上,是因为我尝试把canvas通过判断条件动态的显示和隐藏,在绘制的时候会出现问题,所以采用了这种方法，这里还有一定要设置画布的大小。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;canvas canvas-id&#x3D;&quot;myCanvas&quot; style&#x3D;&quot;width: 690px;height:1085px;position: fixed;top: -10000px;&quot;&gt;&lt;&#x2F;canvas&gt;</span><br></pre></td></tr></table></figure>
+
+<p>②创建好画布之后，先绘制背景图，因为背景图我是放在本地，所以获取 <canvas> 组件 canvas-id 属性，通过createCanvasContext创建canvas的绘图上下文 CanvasContext 对象。使用drawImage绘制图像到画布，第一个参数是图片的本地地址，后面两个参数是图像相对画布左上角位置的x轴和y轴，最后两个参数是设置图像的宽高。</canvas></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const ctx &#x3D; wx.createCanvasContext(&#39;myCanvas&#39;)</span><br><span class="line"></span><br><span class="line">ctx.drawImage(&#39;&#x2F;img&#x2F;study&#x2F;shareimg.png&#39;, 0, 0, 690, 1085)</span><br></pre></td></tr></table></figure>
+
+<p>③创建好背景图后，在背景图上绘制头像，文字和数字。通过getImageInfo获取头像的信息，这里需要注意下在获取的网络图片要先配置download域名才能生效，具体在小程序后台设置里配置。</p>
+<p>获取头像地址，首先量取头像在画布中的大小，和x轴Y轴的坐标，这里的result[0]是我用promise封装返回的一个图片地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">let headImg &#x3D; new Promise(function (resolve) &#123;</span><br><span class="line">        wx.getImageInfo(&#123;</span><br><span class="line">          src: &#96;$&#123;app.globalData.baseUrl2&#125;$&#123;that.data.currentChildren.headImg&#125;&#96;,</span><br><span class="line">          success: function (res) &#123;</span><br><span class="line">            resolve(res.path)</span><br><span class="line">          &#125;,</span><br><span class="line">          fail: function (err) &#123;</span><br><span class="line">            console.log(err)</span><br><span class="line">            wx.showToast(&#123;</span><br><span class="line">              title: &#39;网络错误请重试&#39;,</span><br><span class="line">              icon: &#39;loading&#39;</span><br><span class="line">            &#125;)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;)</span><br><span class="line">      </span><br><span class="line">let avatarurl_width &#x3D; 60, &#x2F;&#x2F;绘制的头像宽度</span><br><span class="line">    avatarurl_heigth &#x3D; 60, &#x2F;&#x2F;绘制的头像高度</span><br><span class="line">    avatarurl_x &#x3D; 28, &#x2F;&#x2F;绘制的头像在画布上的位置</span><br><span class="line">    avatarurl_y &#x3D; 36; &#x2F;&#x2F;绘制的头像在画布上的位置</span><br><span class="line">    </span><br><span class="line">    ctx.save(); &#x2F;&#x2F; 先保存状态 已便于画完圆再用</span><br><span class="line">    ctx.beginPath(); &#x2F;&#x2F;开始绘制</span><br><span class="line">    &#x2F;&#x2F;先画个圆   前两个参数确定了圆心 （x,y） 坐标  第三个参数是圆的半径  四参数是绘图方向  默认是false，即顺时针</span><br><span class="line">    ctx.arc(avatarurl_width &#x2F; 2 + avatarurl_x, avatarurl_heigth &#x2F; 2 + avatarurl_y, avatarurl_width &#x2F; 2, 0, Math.PI * 2, false);</span><br><span class="line">    ctx.clip(); &#x2F;&#x2F;画了圆 再剪切  原始画布中剪切任意形状和尺寸。一旦剪切了某个区域，则所有之后的绘图都会被限制在被剪切的区域内</span><br><span class="line">    ctx.drawImage(result[0], avatarurl_x, avatarurl_y, avatarurl_width, avatarurl_heigth); &#x2F;&#x2F; 推进去图片</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这里举个例子说下如何绘制文字，比如我要绘制如下这个“字”，需要动态获取前面字数的总宽度，这样才能设置“字”的x轴坐标，这里我本来是想通过measureText来测量字体的宽度，但是在iOS端第一次获取的宽度值不对，关于这个问题，我还在微信开发者社区提了bug，所以我想用另一个方法来实现，就是先获取正常情况下一个字的宽度值，然后乘以总字数就获得了总宽度，亲试是可以的。</p>
+</blockquote>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/1NOXMW586uvu1YtvSoiajLEyawsNz1JTxgNlzticcibNAObP0F6iaFVPAjbziauHKauUX5yQJFTXGO5HkMa2cIDOpqw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let allReading &#x3D; 97 &#x2F; 6 &#x2F; app.globalData.ratio * wordNumber.toString().length + 325;</span><br><span class="line">ctx.font &#x3D; &#39;normal normal 30px sans-serif&#39;;</span><br><span class="line">ctx.setFillStyle(&#39;#ffffff&#39;)</span><br><span class="line">ctx.fillText(&#39;字&#39;, allReading, 150);</span><br></pre></td></tr></table></figure>
+
+<p>④绘制公众号二维码，和获取头像是一样的，也是先通过接口返回图片网络地址，然后再通过getImageInfo获取公众号二维码图片信息</p>
+<p>⑤如何绘制小程序码，具体官网文档也给出生成无限小程序码接口，通过生成的小程序可以打开任意一个小程序页面，并且二维码永久有效，具体调用哪个小程序二维码接口有不同的应用场景，具体可以看下官方文档怎么说的，也就是说前端通过传递参数调取后端接口返回的小程序码，然后绘制在画布上（和上面写的绘制头像和公众号二维码一样的）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.drawImage(&#39;小程序码的本地地址&#39;, x轴, Y轴, 宽, 高)</span><br></pre></td></tr></table></figure>
+
+<p>⑥最终绘制完把canvas画布转成图片并返回图片地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">wx.canvasToTempFilePath(&#123;</span><br><span class="line">    canvasId: &#39;myCanvas&#39;,</span><br><span class="line">    success: function (res) &#123;</span><br><span class="line">      canvasToTempFilePath &#x3D; res.tempFilePath &#x2F;&#x2F; 返回的图片地址保存到一个全局变量里</span><br><span class="line">      that.setData(&#123;</span><br><span class="line">        showShareImg: true</span><br><span class="line">      &#125;)</span><br><span class="line">      wx.showToast(&#123;</span><br><span class="line">        title: &#39;绘制成功&#39;,</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    fail: function () &#123;</span><br><span class="line">      wx.showToast(&#123;</span><br><span class="line">        title: &#39;绘制失败&#39;,</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    complete: function () &#123;</span><br><span class="line">      wx.hideLoading()</span><br><span class="line">      wx.hideToast()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>⑦保存到系统相册；先判断用户是否开启用户授权相册，处理不同情况下的结果。比如用户如果按照正常逻辑授权是没问题的，但是有的用户如果点击了取消授权该如何处理，如果不处理会出现一定的问题。所以当用户点击取消授权之后，来个弹框提示，当它再次点击的时候，主动跳到设置引导用户去开启授权，从而达到保存到相册分享朋友圈的目的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 获取用户是否开启用户授权相册</span><br><span class="line">    if (!openStatus) &#123;</span><br><span class="line">      wx.openSetting(&#123;</span><br><span class="line">        success: (result) &#x3D;&gt; &#123;</span><br><span class="line">          if (result) &#123;</span><br><span class="line">            if (result.authSetting[&quot;scope.writePhotosAlbum&quot;] &#x3D;&#x3D;&#x3D; true) &#123;</span><br><span class="line">              openStatus &#x3D; true;</span><br><span class="line">              wx.saveImageToPhotosAlbum(&#123;</span><br><span class="line">                filePath: canvasToTempFilePath,</span><br><span class="line">                success() &#123;</span><br><span class="line">                  that.setData(&#123;</span><br><span class="line">                    showShareImg: false</span><br><span class="line">                  &#125;)</span><br><span class="line">                  wx.showToast(&#123;</span><br><span class="line">                    title: &#39;图片保存成功，快去分享到朋友圈吧~&#39;,</span><br><span class="line">                    icon: &#39;none&#39;,</span><br><span class="line">                    duration: 2000</span><br><span class="line">                  &#125;)</span><br><span class="line">                &#125;,</span><br><span class="line">                fail() &#123;</span><br><span class="line">                  wx.showToast(&#123;</span><br><span class="line">                    title: &#39;保存失败&#39;,</span><br><span class="line">                    icon: &#39;none&#39;</span><br><span class="line">                  &#125;)</span><br><span class="line">                &#125;</span><br><span class="line">              &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        fail: () &#x3D;&gt; &#123; &#125;,</span><br><span class="line">        complete: () &#x3D;&gt; &#123; &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      wx.getSetting(&#123;</span><br><span class="line">        success(res) &#123;</span><br><span class="line">          &#x2F;&#x2F; 如果没有则获取授权</span><br><span class="line">          if (!res.authSetting[&#39;scope.writePhotosAlbum&#39;]) &#123;</span><br><span class="line">            wx.authorize(&#123;</span><br><span class="line">              scope: &#39;scope.writePhotosAlbum&#39;,</span><br><span class="line">              success() &#123;</span><br><span class="line">                openStatus &#x3D; true</span><br><span class="line">                wx.saveImageToPhotosAlbum(&#123;</span><br><span class="line">                  filePath: canvasToTempFilePath,</span><br><span class="line">                  success() &#123;</span><br><span class="line">                    that.setData(&#123;</span><br><span class="line">                      showShareImg: false</span><br><span class="line">                    &#125;)</span><br><span class="line">                    wx.showToast(&#123;</span><br><span class="line">                      title: &#39;图片保存成功，快去分享到朋友圈吧~&#39;,</span><br><span class="line">                      icon: &#39;none&#39;,</span><br><span class="line">                      duration: 2000</span><br><span class="line">                    &#125;)</span><br><span class="line">                  &#125;,</span><br><span class="line">                  fail() &#123;</span><br><span class="line">                    wx.showToast(&#123;</span><br><span class="line">                      title: &#39;保存失败&#39;,</span><br><span class="line">                      icon: &#39;none&#39;</span><br><span class="line">                    &#125;)</span><br><span class="line">                  &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">              &#125;,</span><br><span class="line">              fail() &#123;</span><br><span class="line">                &#x2F;&#x2F; 如果用户拒绝过或没有授权，则再次打开授权窗口</span><br><span class="line">                openStatus &#x3D; false</span><br><span class="line">                console.log(&#39;请设置允许访问相册&#39;)</span><br><span class="line">                wx.showToast(&#123;</span><br><span class="line">                  title: &#39;请设置允许访问相册&#39;,</span><br><span class="line">                  icon: &#39;none&#39;</span><br><span class="line">                &#125;)</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">          &#125; else &#123;</span><br><span class="line">            &#x2F;&#x2F; 有则直接保存</span><br><span class="line">            openStatus &#x3D; true</span><br><span class="line">            wx.saveImageToPhotosAlbum(&#123;</span><br><span class="line">              filePath: canvasToTempFilePath,</span><br><span class="line">              success() &#123;</span><br><span class="line">                that.setData(&#123;</span><br><span class="line">                  showShareImg: false</span><br><span class="line">                &#125;)</span><br><span class="line">                wx.showToast(&#123;</span><br><span class="line">                  title: &#39;图片保存成功，快去分享到朋友圈吧~&#39;,</span><br><span class="line">                  icon: &#39;none&#39;,</span><br><span class="line">                  duration: 2000</span><br><span class="line">                &#125;)</span><br><span class="line">              &#125;,</span><br><span class="line">              fail() &#123;</span><br><span class="line">                wx.showToast(&#123;</span><br><span class="line">                  title: &#39;保存失败&#39;,</span><br><span class="line">                  icon: &#39;none&#39;</span><br><span class="line">                &#125;)</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        fail(err) &#123;</span><br><span class="line">          console.log(err)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>至此所有的步骤都已实现，在绘制的时候会遇到一些异步请求后台返回的数据，所以我用promise和async和await进行了封装，确保导出的图片信息是完整的。在绘制的过程确实遇到一些坑的地方。比如初开始导出的图片比例大小不对，还有用measureText测量文字宽度不对，多次绘制（可能受网络原因）有时导出的图片上的文字颜色会有误差等。如果你也遇到一些比较坑的地方可以一起探讨下做个记录</p>
+<p>参考链接：<a href="https://mp.weixin.qq.com/s/Dsc81YRD5WrI6V105ci4hg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Dsc81YRD5WrI6V105ci4hg</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/08/%E7%9F%A5%E8%AF%86%E7%82%B9%E9%93%BE%E6%8E%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/08/%E7%9F%A5%E8%AF%86%E7%82%B9%E9%93%BE%E6%8E%A5/" itemprop="url">知识点链接</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-08T17:12:02+08:00">
+                2020-09-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url" rel="index">
+                    <span itemprop="name">知识点</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>vue生命周期从源码看</p>
+<p><a href="https://mp.weixin.qq.com/s/6-WDKTyyDnkbw224WOEpjw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/6-WDKTyyDnkbw224WOEpjw</a></p>
+<p>作为一位Vue工程师，这些开发技巧你都会吗？</p>
+<p><a href="https://mp.weixin.qq.com/s/QqMfogiIPLrsSBRUkN_WlQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/QqMfogiIPLrsSBRUkN_WlQ</a></p>
+<p>很多人不知道可以使用这种 key 的方式来对 Vue 组件进行重新渲染！</p>
+<p><a href="https://mp.weixin.qq.com/s/DA2X_aIqBolHSKlYt9aH5Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/DA2X_aIqBolHSKlYt9aH5Q</a></p>
+<p>Vue.use中都发生了什么？</p>
+<p><a href="https://mp.weixin.qq.com/s/LBaQiq4CVGYXSDC9GgGp4Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/LBaQiq4CVGYXSDC9GgGp4Q</a></p>
+<p>Vue keep-alive深入理解及实践总结</p>
+<p><a href="https://mp.weixin.qq.com/s/NgrrK_HC_ci_mOd2PiiWxA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/NgrrK_HC_ci_mOd2PiiWxA</a></p>
+<p>Vue中mixin怎么理解？</p>
+<p><a href="https://mp.weixin.qq.com/s/0tRYs-tlf8NaWoqu5qvYcw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/0tRYs-tlf8NaWoqu5qvYcw</a></p>
+<p>从Vue源码角度深挖Watch、Computed</p>
+<p><a href="https://mp.weixin.qq.com/s/ApYLgnuQ9cxvQrFekAU75w" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/ApYLgnuQ9cxvQrFekAU75w</a></p>
+<p>从源码解读 Vuex 注入 Vue 生命周期的过程</p>
+<p><a href="https://mp.weixin.qq.com/s/15YA0baY5MGIjG3CkamDyA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/15YA0baY5MGIjG3CkamDyA</a></p>
+<p>一文看懂Vue3周边配套现状</p>
+<p><a href="https://mp.weixin.qq.com/s/Em_fOGXBzEtQ8UEA2_Bdew" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Em_fOGXBzEtQ8UEA2_Bdew</a></p>
+<p> 为你的 Vue.js 单页应用提速</p>
+<p><a href="https://mp.weixin.qq.com/s/5DAm7WvU9htzkdYGM5Tmkw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/5DAm7WvU9htzkdYGM5Tmkw</a></p>
+<p>Vue超好玩的新特性：在CSS中使用JS变量</p>
+<p><a href="https://mp.weixin.qq.com/s/DW_G5W3tz1CzbFz4aYDXcA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/DW_G5W3tz1CzbFz4aYDXcA</a></p>
+<p>前端一键换肤的N种方案，请收下</p>
+<p><a href="https://mp.weixin.qq.com/s/5rejEt5xvRYTNPFvhLyEoQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/5rejEt5xvRYTNPFvhLyEoQ</a></p>
+<p>一份值得收藏的 Git 异常处理清单</p>
+<p><a href="https://mp.weixin.qq.com/s/GKdhcb0ekirjg4jEwERizA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/GKdhcb0ekirjg4jEwERizA</a></p>
+<p>前端工程师如何处理10万条数据</p>
+<p><a href="https://mp.weixin.qq.com/s/0duasKMCrIYjwWZvoZikrQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/0duasKMCrIYjwWZvoZikrQ</a></p>
+<p>那些不常见，但却非常实用的css属性(整理不易)</p>
+<p><a href="https://mp.weixin.qq.com/s/yt6dNfSxJZwtMTSrbprquQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/yt6dNfSxJZwtMTSrbprquQ</a></p>
+<p>你可能不知道的15个有用的Github功能</p>
+<p><a href="https://mp.weixin.qq.com/s/abeqBYe__mzZ3CVNxbaw5Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/abeqBYe__mzZ3CVNxbaw5Q</a></p>
+<p>通过事例讲解如果在 Vue 创建及使用过滤器</p>
+<p><a href="https://mp.weixin.qq.com/s/Zyzb5f0cNVmcCp2dxcxP-w" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Zyzb5f0cNVmcCp2dxcxP-w</a></p>
+<p>7个快速发现 bug 神仙调试工具</p>
+<p><a href="https://mp.weixin.qq.com/s/BOJv26_ul3RidiKSECQ_uA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/BOJv26_ul3RidiKSECQ_uA</a></p>
+<p>9个很棒的CSS边框技巧</p>
+<p><a href="https://mp.weixin.qq.com/s/dbG4LzlRYNAxXzmvjEBtkw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/dbG4LzlRYNAxXzmvjEBtkw</a></p>
+<p>Vue 开发必须知道的 36 个技巧</p>
+<p><a href="https://mp.weixin.qq.com/s/lBSvRW72_-RbXUXe7Oce9A" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/lBSvRW72_-RbXUXe7Oce9A</a></p>
+<p>分分钟教会你搭建企业级的 npm 私有仓库</p>
+<p><a href="https://mp.weixin.qq.com/s/otSFSAmedqihFRMUvVHL0Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/otSFSAmedqihFRMUvVHL0Q</a></p>
+<p>npx， 你了解吗？</p>
+<p><a href="https://mp.weixin.qq.com/s/2FkK_hANiCDhTpikAT7UxA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/2FkK_hANiCDhTpikAT7UxA</a></p>
+<p>5个JavaScript的字符串处理库</p>
+<p><a href="https://mp.weixin.qq.com/s/1R3jRyH-y8hSVmCIVevKzw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/1R3jRyH-y8hSVmCIVevKzw</a></p>
+<p>JavaScript闭包的深入理解</p>
+<p><a href="https://mp.weixin.qq.com/s/5FbV4U4AyJAYdCtzgHM9bg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/5FbV4U4AyJAYdCtzgHM9bg</a></p>
+<p>CSS中的背景用法大全</p>
+<p><a href="https://mp.weixin.qq.com/s/P5BmWbWGjpVKQnttQXi5zQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/P5BmWbWGjpVKQnttQXi5zQ</a></p>
+<p>107条Javascript的常用语句</p>
+<p><a href="https://mp.weixin.qq.com/s/eB6plUyXqGc1rwX9K9ZGKg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/eB6plUyXqGc1rwX9K9ZGKg</a></p>
+<p>display的32种写法</p>
+<p><a href="https://mp.weixin.qq.com/s/Wk_1prutXU6bvt9gYxKQ2g" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Wk_1prutXU6bvt9gYxKQ2g</a></p>
+<p>60个非常实用的CSS代码片段，千万要收藏好了！</p>
+<p><a href="https://mp.weixin.qq.com/s/uOlu39yKWe8B076vEXVPZA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/uOlu39yKWe8B076vEXVPZA</a></p>
+<p>浏览器缓存机制</p>
+<p><a href="https://mp.weixin.qq.com/s/o0B38SgXj-2tcpPIr-x7Bw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/o0B38SgXj-2tcpPIr-x7Bw</a></p>
+<p>ES6中常用的数组方法总结</p>
+<p><a href="https://mp.weixin.qq.com/s/oEwhydO00rx7YtBV1Vz0yA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/oEwhydO00rx7YtBV1Vz0yA</a></p>
+<p>ES6中常用的对象方法总结</p>
+<p><a href="https://mp.weixin.qq.com/s/GbIDW9PnUVi6MGJWL3Y4UQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/GbIDW9PnUVi6MGJWL3Y4UQ</a></p>
+<p>Vue 开发必须知道的 36 个技巧</p>
+<p><a href="https://mp.weixin.qq.com/s/dr4c0HWmHsGrrw91l_mk-Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/dr4c0HWmHsGrrw91l_mk-Q</a></p>
+<p>ES6中Promise方法总结</p>
+<p><a href="https://mp.weixin.qq.com/s/1cbG6D1mWbLtUmwu2OIjQA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/1cbG6D1mWbLtUmwu2OIjQA</a></p>
+<p>一文搞懂ES6中的模块化</p>
+<p><a href="https://mp.weixin.qq.com/s/p24ZtSV8vGmdUm2lKu5ksg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/p24ZtSV8vGmdUm2lKu5ksg</a></p>
+<p>写给初中级前端的高级进阶指南（万字长文，建议收藏）</p>
+<p><a href="https://mp.weixin.qq.com/s/vaVd_laecfCVth0s6SCOfQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/vaVd_laecfCVth0s6SCOfQ</a></p>
+<p>7种你应该知道的JavaScript常见的错误</p>
+<p><a href="https://mp.weixin.qq.com/s/FbMv8YH6AVHxCeBYE1NzRw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/FbMv8YH6AVHxCeBYE1NzRw</a></p>
+<p>JavaScript的6种继承方式及其优缺点汇总</p>
+<p><a href="https://mp.weixin.qq.com/s/CaT3-IeBuLx_ELo2BKMUcg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/CaT3-IeBuLx_ELo2BKMUcg</a></p>
+<p>能解决 80% 需求的 10个 CSS动画库</p>
+<p><a href="https://mp.weixin.qq.com/s/s4A-KI1FepWcJjmevhJOsA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/s4A-KI1FepWcJjmevhJOsA</a></p>
+<p>CSS calc()函数的用法</p>
+<p><a href="https://mp.weixin.qq.com/s/YgRjhS7JX_pIf0oO2mb0zg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/YgRjhS7JX_pIf0oO2mb0zg</a></p>
+<p>10个非常实用的JS工具函数</p>
+<p><a href="https://mp.weixin.qq.com/s/FF_-Mi2ntESUCWsEo4BB1Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/FF_-Mi2ntESUCWsEo4BB1Q</a></p>
+<p>我和大佬之间差一个JS工具函数大全…</p>
+<p><a href="https://mp.weixin.qq.com/s/AdVQxNgj5gB5Z4CmfZX9-g" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/AdVQxNgj5gB5Z4CmfZX9-g</a></p>
+<p>通过删除“ if-else”语句来清理代码</p>
+<p><a href="https://mp.weixin.qq.com/s/LOOU0LPFPQH_jv93mR9KMw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/LOOU0LPFPQH_jv93mR9KMw</a></p>
+<p>15条值得收藏的高效JS技巧</p>
+<p><a href="https://mp.weixin.qq.com/s/EXAh91-qM4TmVm6D9Wxxig" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/EXAh91-qM4TmVm6D9Wxxig</a></p>
+<p>JSON.stringify() 的 5 个秘密特性</p>
+<p><a href="https://mp.weixin.qq.com/s/wVF2VX5BZWLP2TbDWhqVVA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/wVF2VX5BZWLP2TbDWhqVVA</a></p>
+<p>处理 JS中 undefined 的 7 个技巧</p>
+<p><a href="https://mp.weixin.qq.com/s/KZYfxG54WcPnAQhNhBvYsQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/KZYfxG54WcPnAQhNhBvYsQ</a></p>
+<p>如何优雅的实现一个九宫格抽奖</p>
+<p><a href="https://mp.weixin.qq.com/s/z58BmufL_vwCvy4C6NNAjg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/z58BmufL_vwCvy4C6NNAjg</a></p>
+<p>JavaScript原型与继承的秘密</p>
+<p><a href="https://mp.weixin.qq.com/s/Jvu48weJiAS1IejVd-QWYQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Jvu48weJiAS1IejVd-QWYQ</a></p>
+<p><a href="https://www.cnblogs.com/ayseeing/p/3990815.html" target="_blank" rel="noopener">window的cmd窗口运行git</a></p>
+<p><a href="https://www.cnblogs.com/ayseeing/p/3990815.html" target="_blank" rel="noopener">https://www.cnblogs.com/ayseeing/p/3990815.html</a></p>
+<p>js判断苹果机型</p>
+<p><a href="https://www.cnblogs.com/heroine/p/6710848.html" target="_blank" rel="noopener">https://www.cnblogs.com/heroine/p/6710848.html</a></p>
+<p>「前端编程实战 57」HTML+CSS3实现效响应盒模型特效</p>
+<p><a href="https://mp.weixin.qq.com/s/8jDmr5wehAeWg1o1XJaXfQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/8jDmr5wehAeWg1o1XJaXfQ</a></p>
+<p>手把手教你如何实现大量图片的自适应图片页面的排列</p>
+<p><a href="https://mp.weixin.qq.com/s/G95WTM2pNkjkA7Qn8BmArg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/G95WTM2pNkjkA7Qn8BmArg</a></p>
+<p>13 个 npm 快速开发技巧</p>
+<p><a href="https://mp.weixin.qq.com/s/tK5X23Osg197gWvE_q_AhA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/tK5X23Osg197gWvE_q_AhA</a></p>
+<p>8个Chrome面板内容</p>
+<p><a href="https://mp.weixin.qq.com/s/-1jf4c7bYhbn-zKVr74hrw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/-1jf4c7bYhbn-zKVr74hrw</a></p>
+<p>15个前端必须懂的linux命令</p>
+<p><a href="https://mp.weixin.qq.com/s/-b9WxWtWwQMhXZkBMySjkA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/-b9WxWtWwQMhXZkBMySjkA</a></p>
+<p>js函数式编程术语总结</p>
+<p><a href="https://mp.weixin.qq.com/s/WA00OYXKv73s7HWrVMOV1Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/WA00OYXKv73s7HWrVMOV1Q</a></p>
+<p>node 写爬虫，原来这么简单</p>
+<p><a href="https://mp.weixin.qq.com/s/qfcfW4JXLrRjagTlIZl6mQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/qfcfW4JXLrRjagTlIZl6mQ</a></p>
+<p>重磅：小程序开放“分享朋友圈”功能</p>
+<p><a href="https://mp.weixin.qq.com/s/EMULfoSjCf21MVJVhFK2Eg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/EMULfoSjCf21MVJVhFK2Eg</a></p>
+<p>强烈推介的几个微信小程序开发小技巧，简单又实用</p>
+<p><a href="https://mp.weixin.qq.com/s/CuX3p0hKRHlxDYXyJlJo3g" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/CuX3p0hKRHlxDYXyJlJo3g</a></p>
+<p>微信支持H5跳转App、跳转小程序</p>
+<p><a href="https://mp.weixin.qq.com/s/KewfM91K5To1Jj_xMWqqPw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/KewfM91K5To1Jj_xMWqqPw</a></p>
+<p><strong>hookEvent</strong>,原来可以这样监听组件生命周期</p>
+<p><a href="https://mp.weixin.qq.com/s/KL1jB5UYXNXOOF8gau0sFA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/KL1jB5UYXNXOOF8gau0sFA</a></p>
+<p>18款Webpack插件，总会有你想要的！</p>
+<p><a href="https://mp.weixin.qq.com/s/GGEmCQVr7ShMcP6_KsmaMQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/GGEmCQVr7ShMcP6_KsmaMQ</a></p>
+<p>webpack原理</p>
+<p><a href="https://mp.weixin.qq.com/s/Arx6XIzPhlUaEPpH_wLMjg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Arx6XIzPhlUaEPpH_wLMjg</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/08/hexo%E5%9B%BE%E7%89%87%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -440,1323 +2007,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/07/charles%E6%8A%93%E5%8C%85/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dali">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DaliBlogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/07/charles%E6%8A%93%E5%8C%85/" itemprop="url">charles抓包</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-07T18:12:57+08:00">
-                2020-09-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/charles/" itemprop="url" rel="index">
-                    <span itemprop="name">charles</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>一、</p>
-<p>安装前提：配置好了Jdk环境</p>
-<p>若不进行破解，则每次只能试用30分钟，30分钟后工具自动关闭</p>
-<p>破解方法：将破解补丁charles.jar文件复制到lib文件夹下，替换掉同名jar包</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/09/07/charles%E6%8A%93%E5%8C%85/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/04/totalcontrol/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dali">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DaliBlogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/04/totalcontrol/" itemprop="url">totalcontrol</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-04T14:53:50+08:00">
-                2020-09-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Total-Control，电脑与手机初次连接详细教程听语音"><a href="#Total-Control，电脑与手机初次连接详细教程听语音" class="headerlink" title="Total Control，电脑与手机初次连接详细教程听语音"></a>Total Control，电脑与手机初次连接详细教程听语音</h1><p>对于很多使用手机群控软件的用户而言，Total Control 绝对都不陌生。但是，不论谁都是从小白经历过来的，一开始也不知道 Total Control 怎么用。这篇教程会以酷派 5952 为例给大家详细解析手机初次连接时可能遇到的问题，并提供对应的解决方法，供大家参考使用。</p>
-<p>注：此教程仅适用于手机与 Total Control 无法自动连接的情况。</p>
-<h2 id="工具-原料"><a href="#工具-原料" class="headerlink" title="工具/原料"></a>工具/原料</h2><ul>
-<li>电脑</li>
-<li>安卓手机</li>
-<li>Total Control手机群控软件</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/09/04/totalcontrol/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/04/Androidchrome%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dali">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DaliBlogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/04/Androidchrome%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/" itemprop="url">Androidchrome远程调试</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-04T14:04:38+08:00">
-                2020-09-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%B0%83%E8%AF%95/" itemprop="url" rel="index">
-                    <span itemprop="name">调试</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><strong>一：背景</strong><br>通常情况我们调试移动端页面最常用的方法就是：切换pc端浏览器的userAgent来模拟手机或其他移动设备调试页面 然后用手机打开要调试的页面 刷新页面查看调试结果</p>
-<p>但是这就存在两个问题 在pc浏览器模拟手机可能造成调试不准 用手机直接调试 又多一步刷新 那怎么能达到在pc端修改代码 在手机上直接看到修改结果这样的所见即所得的效果呢 chrome做到了</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/09/04/Androidchrome%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/26/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AF%BC%E8%88%AA%E6%A0%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dali">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DaliBlogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/26/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AF%BC%E8%88%AA%E6%A0%8F/" itemprop="url">小程序开发之自定义导航栏</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-26T19:24:04+08:00">
-                2020-08-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/soft/" itemprop="url" rel="index">
-                    <span itemprop="name">soft</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="微信小程序-自定义头部导航栏-navigationStyle"><a href="#微信小程序-自定义头部导航栏-navigationStyle" class="headerlink" title="微信小程序 自定义头部导航栏 navigationStyle"></a>微信小程序 自定义头部导航栏 navigationStyle</h1><p><img src="https://upload-images.jianshu.io/upload_images/8198580-8401274f1a9f6607.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/389/format/webp" alt="img"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/08/26/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AF%BC%E8%88%AA%E6%A0%8F/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/26/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E5%AE%9A%E4%BD%8D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dali">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DaliBlogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/26/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E5%AE%9A%E4%BD%8D/" itemprop="url">小程序开发之定位</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-26T19:23:48+08:00">
-                2020-08-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/soft/" itemprop="url" rel="index">
-                    <span itemprop="name">soft</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>app.json:  (<a href="https://blog.csdn.net/guochanof/article/details/89669839" target="_blank" rel="noopener">不知道具体位置可以看这里,这里有整个app.json的配置</a>)</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"permission"</span>: &#123;</span><br><span class="line">   <span class="string">"scope.userLocation"</span>: &#123;</span><br><span class="line">     <span class="string">"desc"</span>: <span class="string">"你的位置信息将用于小程序位置接口的效果展示"</span></span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/08/26/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E5%AE%9A%E4%BD%8D/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/26/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E5%88%86%E4%BA%AB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dali">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DaliBlogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/26/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E5%88%86%E4%BA%AB/" itemprop="url">小程序开发之分享</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-26T18:57:38+08:00">
-                2020-08-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/soft/" itemprop="url" rel="index">
-                    <span itemprop="name">soft</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h3><p>在小程序开发API中，发送给好友/群，可以有两种实现方式：</p>
-<p>1）入口</p>
-<p>a.小程序右上角自带的分享功能（…）：</p>
-<p>如果在当前页面调用wx.hideShareMenu()方法，那么右上角的分享功能将被隐藏，当然，隐藏方法与现实方法是承兑出现的，调用wx.showShareMenu()方法，可以显示该功能。</p>
-<p>b.自定义分享按钮：<butto n open-type="share">分享&lt;/butto n&gt;</butto></p>
-<p>以上两种方式均可实现分享功能</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/08/26/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E5%88%86%E4%BA%AB/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/25/js%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95-reduce/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dali">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DaliBlogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/25/js%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95-reduce/" itemprop="url">js数组方法-reduce</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-25T14:26:42+08:00">
-                2020-08-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/js/" itemprop="url" rel="index">
-                    <span itemprop="name">js</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="JS数组reduce-方法详解及高级技巧"><a href="#JS数组reduce-方法详解及高级技巧" class="headerlink" title="JS数组reduce()方法详解及高级技巧"></a>JS数组reduce()方法详解及高级技巧</h1><h4 id="1、语法"><a href="#1、语法" class="headerlink" title="1、语法"></a>1、语法</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">arr</span><span class="selector-class">.reduce</span>(<span class="selector-tag">callback</span>,<span class="selector-attr">[initialValue]</span>)</span><br></pre></td></tr></table></figure>
-
-<p>reduce 为数组中的每一个元素依次执行回调函数，不包括数组中被删除或从未被赋值的元素，接受四个参数：初始值（或者上一次回调函数的返回值），当前元素值，当前索引，调用 reduce 的数组。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/08/25/js%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95-reduce/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/20/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%96%87%E5%AD%97%E5%B1%95%E5%BC%80%E6%94%B6%E8%B5%B7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dali">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DaliBlogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/20/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%96%87%E5%AD%97%E5%B1%95%E5%BC%80%E6%94%B6%E8%B5%B7/" itemprop="url">小程序文字展开收起</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-20T19:21:21+08:00">
-                2020-08-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/soft/" itemprop="url" rel="index">
-                    <span itemprop="name">soft</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>微信小程序开发中想要如h5一样获取元素的宽高值进行业务的功能实现，一开始不知道怎么实现，翻看文档发现，微信官方提供了一个非常好的东西</p>
-<h1 id="SelectorQuery"><a href="#SelectorQuery" class="headerlink" title="SelectorQuery"></a><a href="https://links.jianshu.com/go?to=https%3A%2F%2Fdevelopers.weixin.qq.com%2Fminiprogram%2Fdev%2Fapi%2Fwxml%2FSelectorQuery.html" target="_blank" rel="noopener">SelectorQuery</a></h1><h3 id="wx-createSelectorQuery"><a href="#wx-createSelectorQuery" class="headerlink" title="wx.createSelectorQuery()"></a>wx.createSelectorQuery()</h3><p>示例代码</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> query = wx.createSelectorQuery()</span><br><span class="line">query.select(<span class="string">'#the-id'</span>).boundingClientRect()</span><br><span class="line">query.selectViewport().scrollOffset()</span><br><span class="line">query.exec(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">  res[<span class="number">0</span>].top       <span class="comment">// #the-id节点的上边界坐标</span></span><br><span class="line">  res[<span class="number">1</span>].scrollTop <span class="comment">// 显示区域的竖直滚动位置</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/08/20/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%96%87%E5%AD%97%E5%B1%95%E5%BC%80%E6%94%B6%E8%B5%B7/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/18/%E9%85%8D%E7%BD%AE%E6%9C%AC%E5%9C%B0iis/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dali">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DaliBlogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/18/%E9%85%8D%E7%BD%AE%E6%9C%AC%E5%9C%B0iis/" itemprop="url">配置本地iis</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-18T20:41:15+08:00">
-                2020-08-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iis/" itemprop="url" rel="index">
-                    <span itemprop="name">iis</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="开启iis"><a href="#开启iis" class="headerlink" title="开启iis"></a>开启iis</h3><p>控制面板-程序-启用或者关闭windows功能</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/08/18/%E9%85%8D%E7%BD%AE%E6%9C%AC%E5%9C%B0iis/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -1806,7 +2061,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-count">92</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1817,7 +2072,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1828,7 +2083,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-count">92</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

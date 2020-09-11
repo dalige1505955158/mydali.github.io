@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/07/23/css3/image3.png">
 <meta property="og:image" content="http://yoursite.com/2020/07/23/css3/image4.svg">
 <meta property="article:published_time" content="2020-07-23T05:46:14.000Z">
-<meta property="article:modified_time" content="2020-09-08T06:04:14.295Z">
+<meta property="article:modified_time" content="2020-09-11T03:19:08.742Z">
 <meta property="article:author" content="Dali">
 <meta property="article:tag" content="css">
 <meta name="twitter:card" content="summary">
@@ -778,6 +778,36 @@
 <p>让left和top都是50%，这在水平方向上让div的最左与屏幕的最左相距50%，垂直方向上一样，所以再用transform向左（上）平移它自己宽度（高度）的50%，也就达到居中效果了</p>
 <p>.center{<br>    text-align: center;<br>    background-color: #fff;<br>    border-radius: 20px;<br>    width: 300px;<br>    height: 350px;<br>    position: absolute;<br>    left: 50%;<br>    top: 50%;<br>    transform: translate(-50%,-50%);<br>}</p>
 </blockquote>
+<ol start="21">
+<li>一行 CSS 为网页添加暗黑模式支持</li>
+</ol>
+<blockquote>
+<p>html[theme=’dark-mode’] {<br>  filter: invert(1) hue-rotate(180deg);<br>}</p>
+<p>我们还将向HTML元素添加一个 <code>transition</code> ，以确保过渡不会过于花哨!</p>
+<p>html {<br>    transition: color 300ms, background-color 300ms;<br>}</p>
+<p><code>filter</code> CSS 属性将模糊或颜色偏移等图形效果应用于元素。滤镜通常用于调整图像，背景和边框的渲染。</p>
+<p>对于暗黑模式，将使用两个 <code>filter</code> ：<code>invert</code> 和 <code>hue-rotate</code></p>
+<p><strong>invert</strong>：反转配色。黑色变为白色，白色变为黑色，所有颜色都是如此</p>
+<p><strong>hue-rotate</strong>：帮助我们处理所有其他非黑色和白色的颜色。将色相旋转180度，我们确保应用程序的颜色主题不会改变，而只是减弱其颜色。</p>
+</blockquote>
+<ol start="22">
+<li>attr()</li>
+</ol>
+<blockquote>
+<p><code>attr</code> 函数用于获取所选元素的属性值。它接受三个参数，<code>属性名称</code>，<code>类型</code>和<code>默认值</code>。</p>
+<blockquote>
+<p>语法: attr( attribute-name? [,]? )</p>
+</blockquote>
+<p>事例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;p data-text&#x3D;&quot;the attr function&quot;</span><br><span class="line">  data-tooltip&#x3D;&quot;Hi from attr!&quot; class&#x3D;&quot;attr&quot;&gt;This text is combined with&lt;&#x2F;p&gt;</span><br></pre></td></tr></table></figure>
+
+<p>css</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">p::after &#123;</span><br><span class="line">  content: &#39; &#39; attr(data-text);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">p.attr:hover::after &#123;</span><br><span class="line">  content: &#39; &#39; attr(data-tooltip);</span><br><span class="line">  background-color: orange;</span><br><span class="line">  color: white</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<ol start="23">
+<li>8种让人眼前一亮的hover效果</li>
+</ol>
+<p><a href="https://mp.weixin.qq.com/s/dNR0ZykPSDEW1z6qH7iCMg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/dNR0ZykPSDEW1z6qH7iCMg</a></p>
 
       
     </div>
@@ -901,7 +931,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-count">92</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -912,7 +942,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -923,7 +953,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-count">92</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

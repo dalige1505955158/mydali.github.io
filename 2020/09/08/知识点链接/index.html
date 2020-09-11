@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="vue,js,知识点," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="DaliBlogs" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="vue生命周期从源码看 https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;6-WDKTyyDnkbw224WOEpjw 作为一位Vue工程师，这些开发技巧你都会吗？ https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;QqMfogiIPLrsSBRUkN_WlQ 很多人不知道可以使用这种 key 的方式来对 Vue 组件进行重新渲染！ https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;D">
+<meta property="og:type" content="article">
+<meta property="og:title" content="知识点链接">
+<meta property="og:url" content="http://yoursite.com/2020/09/08/%E7%9F%A5%E8%AF%86%E7%82%B9%E9%93%BE%E6%8E%A5/index.html">
+<meta property="og:site_name" content="DaliBlogs">
+<meta property="og:description" content="vue生命周期从源码看 https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;6-WDKTyyDnkbw224WOEpjw 作为一位Vue工程师，这些开发技巧你都会吗？ https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;QqMfogiIPLrsSBRUkN_WlQ 很多人不知道可以使用这种 key 的方式来对 Vue 组件进行重新渲染！ https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;D">
+<meta property="article:published_time" content="2020-09-08T09:12:02.000Z">
+<meta property="article:modified_time" content="2020-09-11T06:36:17.259Z">
+<meta property="article:author" content="Dali">
+<meta property="article:tag" content="vue">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="知识点">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/09/08/知识点链接/"/>
+
+
+
+
+
+  <title>知识点链接 | DaliBlogs</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DaliBlogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/08/%E7%9F%A5%E8%AF%86%E7%82%B9%E9%93%BE%E6%8E%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">知识点链接</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-08T17:12:02+08:00">
+                2020-09-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="url" rel="index">
+                    <span itemprop="name">知识点</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>vue生命周期从源码看</p>
+<p><a href="https://mp.weixin.qq.com/s/6-WDKTyyDnkbw224WOEpjw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/6-WDKTyyDnkbw224WOEpjw</a></p>
+<p>作为一位Vue工程师，这些开发技巧你都会吗？</p>
+<p><a href="https://mp.weixin.qq.com/s/QqMfogiIPLrsSBRUkN_WlQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/QqMfogiIPLrsSBRUkN_WlQ</a></p>
+<p>很多人不知道可以使用这种 key 的方式来对 Vue 组件进行重新渲染！</p>
+<p><a href="https://mp.weixin.qq.com/s/DA2X_aIqBolHSKlYt9aH5Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/DA2X_aIqBolHSKlYt9aH5Q</a></p>
+<p>Vue.use中都发生了什么？</p>
+<p><a href="https://mp.weixin.qq.com/s/LBaQiq4CVGYXSDC9GgGp4Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/LBaQiq4CVGYXSDC9GgGp4Q</a></p>
+<p>Vue keep-alive深入理解及实践总结</p>
+<p><a href="https://mp.weixin.qq.com/s/NgrrK_HC_ci_mOd2PiiWxA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/NgrrK_HC_ci_mOd2PiiWxA</a></p>
+<p>Vue中mixin怎么理解？</p>
+<p><a href="https://mp.weixin.qq.com/s/0tRYs-tlf8NaWoqu5qvYcw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/0tRYs-tlf8NaWoqu5qvYcw</a></p>
+<p>从Vue源码角度深挖Watch、Computed</p>
+<p><a href="https://mp.weixin.qq.com/s/ApYLgnuQ9cxvQrFekAU75w" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/ApYLgnuQ9cxvQrFekAU75w</a></p>
+<p>从源码解读 Vuex 注入 Vue 生命周期的过程</p>
+<p><a href="https://mp.weixin.qq.com/s/15YA0baY5MGIjG3CkamDyA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/15YA0baY5MGIjG3CkamDyA</a></p>
+<p>一文看懂Vue3周边配套现状</p>
+<p><a href="https://mp.weixin.qq.com/s/Em_fOGXBzEtQ8UEA2_Bdew" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Em_fOGXBzEtQ8UEA2_Bdew</a></p>
+<p> 为你的 Vue.js 单页应用提速</p>
+<p><a href="https://mp.weixin.qq.com/s/5DAm7WvU9htzkdYGM5Tmkw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/5DAm7WvU9htzkdYGM5Tmkw</a></p>
+<p>Vue超好玩的新特性：在CSS中使用JS变量</p>
+<p><a href="https://mp.weixin.qq.com/s/DW_G5W3tz1CzbFz4aYDXcA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/DW_G5W3tz1CzbFz4aYDXcA</a></p>
+<p>前端一键换肤的N种方案，请收下</p>
+<p><a href="https://mp.weixin.qq.com/s/5rejEt5xvRYTNPFvhLyEoQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/5rejEt5xvRYTNPFvhLyEoQ</a></p>
+<p>一份值得收藏的 Git 异常处理清单</p>
+<p><a href="https://mp.weixin.qq.com/s/GKdhcb0ekirjg4jEwERizA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/GKdhcb0ekirjg4jEwERizA</a></p>
+<p>前端工程师如何处理10万条数据</p>
+<p><a href="https://mp.weixin.qq.com/s/0duasKMCrIYjwWZvoZikrQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/0duasKMCrIYjwWZvoZikrQ</a></p>
+<p>那些不常见，但却非常实用的css属性(整理不易)</p>
+<p><a href="https://mp.weixin.qq.com/s/yt6dNfSxJZwtMTSrbprquQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/yt6dNfSxJZwtMTSrbprquQ</a></p>
+<p>你可能不知道的15个有用的Github功能</p>
+<p><a href="https://mp.weixin.qq.com/s/abeqBYe__mzZ3CVNxbaw5Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/abeqBYe__mzZ3CVNxbaw5Q</a></p>
+<p>通过事例讲解如果在 Vue 创建及使用过滤器</p>
+<p><a href="https://mp.weixin.qq.com/s/Zyzb5f0cNVmcCp2dxcxP-w" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Zyzb5f0cNVmcCp2dxcxP-w</a></p>
+<p>7个快速发现 bug 神仙调试工具</p>
+<p><a href="https://mp.weixin.qq.com/s/BOJv26_ul3RidiKSECQ_uA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/BOJv26_ul3RidiKSECQ_uA</a></p>
+<p>9个很棒的CSS边框技巧</p>
+<p><a href="https://mp.weixin.qq.com/s/dbG4LzlRYNAxXzmvjEBtkw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/dbG4LzlRYNAxXzmvjEBtkw</a></p>
+<p>Vue 开发必须知道的 36 个技巧</p>
+<p><a href="https://mp.weixin.qq.com/s/lBSvRW72_-RbXUXe7Oce9A" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/lBSvRW72_-RbXUXe7Oce9A</a></p>
+<p>分分钟教会你搭建企业级的 npm 私有仓库</p>
+<p><a href="https://mp.weixin.qq.com/s/otSFSAmedqihFRMUvVHL0Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/otSFSAmedqihFRMUvVHL0Q</a></p>
+<p>npx， 你了解吗？</p>
+<p><a href="https://mp.weixin.qq.com/s/2FkK_hANiCDhTpikAT7UxA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/2FkK_hANiCDhTpikAT7UxA</a></p>
+<p>5个JavaScript的字符串处理库</p>
+<p><a href="https://mp.weixin.qq.com/s/1R3jRyH-y8hSVmCIVevKzw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/1R3jRyH-y8hSVmCIVevKzw</a></p>
+<p>JavaScript闭包的深入理解</p>
+<p><a href="https://mp.weixin.qq.com/s/5FbV4U4AyJAYdCtzgHM9bg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/5FbV4U4AyJAYdCtzgHM9bg</a></p>
+<p>CSS中的背景用法大全</p>
+<p><a href="https://mp.weixin.qq.com/s/P5BmWbWGjpVKQnttQXi5zQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/P5BmWbWGjpVKQnttQXi5zQ</a></p>
+<p>107条Javascript的常用语句</p>
+<p><a href="https://mp.weixin.qq.com/s/eB6plUyXqGc1rwX9K9ZGKg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/eB6plUyXqGc1rwX9K9ZGKg</a></p>
+<p>display的32种写法</p>
+<p><a href="https://mp.weixin.qq.com/s/Wk_1prutXU6bvt9gYxKQ2g" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Wk_1prutXU6bvt9gYxKQ2g</a></p>
+<p>60个非常实用的CSS代码片段，千万要收藏好了！</p>
+<p><a href="https://mp.weixin.qq.com/s/uOlu39yKWe8B076vEXVPZA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/uOlu39yKWe8B076vEXVPZA</a></p>
+<p>浏览器缓存机制</p>
+<p><a href="https://mp.weixin.qq.com/s/o0B38SgXj-2tcpPIr-x7Bw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/o0B38SgXj-2tcpPIr-x7Bw</a></p>
+<p>ES6中常用的数组方法总结</p>
+<p><a href="https://mp.weixin.qq.com/s/oEwhydO00rx7YtBV1Vz0yA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/oEwhydO00rx7YtBV1Vz0yA</a></p>
+<p>ES6中常用的对象方法总结</p>
+<p><a href="https://mp.weixin.qq.com/s/GbIDW9PnUVi6MGJWL3Y4UQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/GbIDW9PnUVi6MGJWL3Y4UQ</a></p>
+<p>Vue 开发必须知道的 36 个技巧</p>
+<p><a href="https://mp.weixin.qq.com/s/dr4c0HWmHsGrrw91l_mk-Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/dr4c0HWmHsGrrw91l_mk-Q</a></p>
+<p>ES6中Promise方法总结</p>
+<p><a href="https://mp.weixin.qq.com/s/1cbG6D1mWbLtUmwu2OIjQA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/1cbG6D1mWbLtUmwu2OIjQA</a></p>
+<p>一文搞懂ES6中的模块化</p>
+<p><a href="https://mp.weixin.qq.com/s/p24ZtSV8vGmdUm2lKu5ksg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/p24ZtSV8vGmdUm2lKu5ksg</a></p>
+<p>写给初中级前端的高级进阶指南（万字长文，建议收藏）</p>
+<p><a href="https://mp.weixin.qq.com/s/vaVd_laecfCVth0s6SCOfQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/vaVd_laecfCVth0s6SCOfQ</a></p>
+<p>7种你应该知道的JavaScript常见的错误</p>
+<p><a href="https://mp.weixin.qq.com/s/FbMv8YH6AVHxCeBYE1NzRw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/FbMv8YH6AVHxCeBYE1NzRw</a></p>
+<p>JavaScript的6种继承方式及其优缺点汇总</p>
+<p><a href="https://mp.weixin.qq.com/s/CaT3-IeBuLx_ELo2BKMUcg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/CaT3-IeBuLx_ELo2BKMUcg</a></p>
+<p>能解决 80% 需求的 10个 CSS动画库</p>
+<p><a href="https://mp.weixin.qq.com/s/s4A-KI1FepWcJjmevhJOsA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/s4A-KI1FepWcJjmevhJOsA</a></p>
+<p>CSS calc()函数的用法</p>
+<p><a href="https://mp.weixin.qq.com/s/YgRjhS7JX_pIf0oO2mb0zg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/YgRjhS7JX_pIf0oO2mb0zg</a></p>
+<p>10个非常实用的JS工具函数</p>
+<p><a href="https://mp.weixin.qq.com/s/FF_-Mi2ntESUCWsEo4BB1Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/FF_-Mi2ntESUCWsEo4BB1Q</a></p>
+<p>我和大佬之间差一个JS工具函数大全…</p>
+<p><a href="https://mp.weixin.qq.com/s/AdVQxNgj5gB5Z4CmfZX9-g" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/AdVQxNgj5gB5Z4CmfZX9-g</a></p>
+<p>通过删除“ if-else”语句来清理代码</p>
+<p><a href="https://mp.weixin.qq.com/s/LOOU0LPFPQH_jv93mR9KMw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/LOOU0LPFPQH_jv93mR9KMw</a></p>
+<p>15条值得收藏的高效JS技巧</p>
+<p><a href="https://mp.weixin.qq.com/s/EXAh91-qM4TmVm6D9Wxxig" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/EXAh91-qM4TmVm6D9Wxxig</a></p>
+<p>JSON.stringify() 的 5 个秘密特性</p>
+<p><a href="https://mp.weixin.qq.com/s/wVF2VX5BZWLP2TbDWhqVVA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/wVF2VX5BZWLP2TbDWhqVVA</a></p>
+<p>处理 JS中 undefined 的 7 个技巧</p>
+<p><a href="https://mp.weixin.qq.com/s/KZYfxG54WcPnAQhNhBvYsQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/KZYfxG54WcPnAQhNhBvYsQ</a></p>
+<p>如何优雅的实现一个九宫格抽奖</p>
+<p><a href="https://mp.weixin.qq.com/s/z58BmufL_vwCvy4C6NNAjg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/z58BmufL_vwCvy4C6NNAjg</a></p>
+<p>JavaScript原型与继承的秘密</p>
+<p><a href="https://mp.weixin.qq.com/s/Jvu48weJiAS1IejVd-QWYQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Jvu48weJiAS1IejVd-QWYQ</a></p>
+<p><a href="https://www.cnblogs.com/ayseeing/p/3990815.html" target="_blank" rel="noopener">window的cmd窗口运行git</a></p>
+<p><a href="https://www.cnblogs.com/ayseeing/p/3990815.html" target="_blank" rel="noopener">https://www.cnblogs.com/ayseeing/p/3990815.html</a></p>
+<p>js判断苹果机型</p>
+<p><a href="https://www.cnblogs.com/heroine/p/6710848.html" target="_blank" rel="noopener">https://www.cnblogs.com/heroine/p/6710848.html</a></p>
+<p>「前端编程实战 57」HTML+CSS3实现效响应盒模型特效</p>
+<p><a href="https://mp.weixin.qq.com/s/8jDmr5wehAeWg1o1XJaXfQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/8jDmr5wehAeWg1o1XJaXfQ</a></p>
+<p>手把手教你如何实现大量图片的自适应图片页面的排列</p>
+<p><a href="https://mp.weixin.qq.com/s/G95WTM2pNkjkA7Qn8BmArg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/G95WTM2pNkjkA7Qn8BmArg</a></p>
+<p>13 个 npm 快速开发技巧</p>
+<p><a href="https://mp.weixin.qq.com/s/tK5X23Osg197gWvE_q_AhA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/tK5X23Osg197gWvE_q_AhA</a></p>
+<p>8个Chrome面板内容</p>
+<p><a href="https://mp.weixin.qq.com/s/-1jf4c7bYhbn-zKVr74hrw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/-1jf4c7bYhbn-zKVr74hrw</a></p>
+<p>15个前端必须懂的linux命令</p>
+<p><a href="https://mp.weixin.qq.com/s/-b9WxWtWwQMhXZkBMySjkA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/-b9WxWtWwQMhXZkBMySjkA</a></p>
+<p>js函数式编程术语总结</p>
+<p><a href="https://mp.weixin.qq.com/s/WA00OYXKv73s7HWrVMOV1Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/WA00OYXKv73s7HWrVMOV1Q</a></p>
+<p>node 写爬虫，原来这么简单</p>
+<p><a href="https://mp.weixin.qq.com/s/qfcfW4JXLrRjagTlIZl6mQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/qfcfW4JXLrRjagTlIZl6mQ</a></p>
+<p>重磅：小程序开放“分享朋友圈”功能</p>
+<p><a href="https://mp.weixin.qq.com/s/EMULfoSjCf21MVJVhFK2Eg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/EMULfoSjCf21MVJVhFK2Eg</a></p>
+<p>强烈推介的几个微信小程序开发小技巧，简单又实用</p>
+<p><a href="https://mp.weixin.qq.com/s/CuX3p0hKRHlxDYXyJlJo3g" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/CuX3p0hKRHlxDYXyJlJo3g</a></p>
+<p>微信支持H5跳转App、跳转小程序</p>
+<p><a href="https://mp.weixin.qq.com/s/KewfM91K5To1Jj_xMWqqPw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/KewfM91K5To1Jj_xMWqqPw</a></p>
+<p><strong>hookEvent</strong>,原来可以这样监听组件生命周期</p>
+<p><a href="https://mp.weixin.qq.com/s/KL1jB5UYXNXOOF8gau0sFA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/KL1jB5UYXNXOOF8gau0sFA</a></p>
+<p>18款Webpack插件，总会有你想要的！</p>
+<p><a href="https://mp.weixin.qq.com/s/GGEmCQVr7ShMcP6_KsmaMQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/GGEmCQVr7ShMcP6_KsmaMQ</a></p>
+<p>webpack原理</p>
+<p><a href="https://mp.weixin.qq.com/s/Arx6XIzPhlUaEPpH_wLMjg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Arx6XIzPhlUaEPpH_wLMjg</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vue/" rel="tag"># vue</a>
+          
+            <a href="/tags/js/" rel="tag"># js</a>
+          
+            <a href="/tags/%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag"># 知识点</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/09/08/hexo%E5%9B%BE%E7%89%87%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B/" rel="next" title="hexo图片的那些事">
+                <i class="fa fa-chevron-left"></i> hexo图片的那些事
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90%E6%B5%B7%E6%8A%A5%E5%88%86%E4%BA%AB%E6%9C%8B%E5%8F%8B%E5%9C%88/" rel="prev" title="小程序如何生成海报分享朋友圈">
+                小程序如何生成海报分享朋友圈 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="Dali" />
+            
+              <p class="site-author-name" itemprop="name">Dali</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">92</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">92</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dali</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

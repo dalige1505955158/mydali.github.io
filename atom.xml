@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-09-08T06:54:51.663Z</updated>
+  <updated>2020-09-10T10:23:21.594Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,248 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>小程序之wx-request封装</title>
+    <link href="http://yoursite.com/2020/09/10/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8Bwx-request%E5%B0%81%E8%A3%85/"/>
+    <id>http://yoursite.com/2020/09/10/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8Bwx-request%E5%B0%81%E8%A3%85/</id>
+    <published>2020-09-10T10:19:40.000Z</published>
+    <updated>2020-09-10T10:23:21.594Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;微信请求-Promise-化&quot;&gt;&lt;a href=&quot;#微信请求-Promise-化&quot; class=&quot;headerlink&quot; title=&quot;微信请求 Promise 化&quot;&gt;&lt;/a&gt;微信请求 Promise 化&lt;/h2&gt;&lt;h3 id=&quot;2-1-使用现成的库&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>小程序之wx-upData</title>
+    <link href="http://yoursite.com/2020/09/10/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8Bwx-upData/"/>
+    <id>http://yoursite.com/2020/09/10/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8Bwx-upData/</id>
+    <published>2020-09-10T10:09:20.000Z</published>
+    <updated>2020-09-10T10:13:36.037Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;鉴于在下使用微信小程序开发时使用 &lt;code&gt;setData&lt;/code&gt; 的蹩脚体验，开发了个库函数 &lt;code&gt;wx-updata&lt;/code&gt;，项目上线之后，我把这个自用的库函数整理放到 Github 上开源出来
+        
+      
+    
+    </summary>
+    
+    
+      <category term="soft" scheme="http://yoursite.com/categories/soft/"/>
+    
+    
+      <category term="小程序" scheme="http://yoursite.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+      <category term="wx-updata" scheme="http://yoursite.com/tags/wx-updata/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vue数据更新但页面没有更新的7种情况</title>
+    <link href="http://yoursite.com/2020/09/10/Vue%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E4%BD%86%E9%A1%B5%E9%9D%A2%E6%B2%A1%E6%9C%89%E6%9B%B4%E6%96%B0%E7%9A%847%E7%A7%8D%E6%83%85%E5%86%B5/"/>
+    <id>http://yoursite.com/2020/09/10/Vue%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E4%BD%86%E9%A1%B5%E9%9D%A2%E6%B2%A1%E6%9C%89%E6%9B%B4%E6%96%B0%E7%9A%847%E7%A7%8D%E6%83%85%E5%86%B5/</id>
+    <published>2020-09-10T09:27:58.000Z</published>
+    <updated>2020-09-10T09:36:21.221Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;Vue-set与-vue-set在使用中的区别&quot;&gt;&lt;a href=&quot;#Vue-set与-vue-set在使用中的区别&quot; class=&quot;headerlink&quot; title=&quot;Vue.set与 vue.$set在使用中的区别&quot;&gt;&lt;/a&gt;Vue.set与
+        
+      
+    
+    </summary>
+    
+    
+      <category term="vue" scheme="http://yoursite.com/categories/vue/"/>
+    
+    
+      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
+    
+      <category term="数据更新" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vue-skeleton-webpack-plugin</title>
+    <link href="http://yoursite.com/2020/09/10/vue-skeleton-webpack-plugin/"/>
+    <id>http://yoursite.com/2020/09/10/vue-skeleton-webpack-plugin/</id>
+    <published>2020-09-10T03:51:14.000Z</published>
+    <updated>2020-09-10T09:29:06.938Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;架构图&quot;&gt;&lt;a href=&quot;#架构图&quot; class=&quot;headerlink&quot; title=&quot;架构图&quot;&gt;&lt;/a&gt;架构图&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;/2020/09/10/vue-skeleton-webpack-plugin/image-20200910115921296.png&quot; alt=&quot;image-20200910115921296&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="vue" scheme="http://yoursite.com/categories/vue/"/>
+    
+    
+      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
+    
+      <category term="vue-skeleton-webpack-plugin" scheme="http://yoursite.com/tags/vue-skeleton-webpack-plugin/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>小程序之骨架屏的使用</title>
+    <link href="http://yoursite.com/2020/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E9%AA%A8%E6%9E%B6%E5%B1%8F%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>http://yoursite.com/2020/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E9%AA%A8%E6%9E%B6%E5%B1%8F%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
+    <published>2020-09-09T07:47:36.000Z</published>
+    <updated>2020-09-09T11:22:28.987Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;自定义骨架屏&quot;&gt;&lt;a href=&quot;#自定义骨架屏&quot; class=&quot;headerlink&quot; title=&quot;自定义骨架屏&quot;&gt;&lt;/a&gt;自定义骨架屏&lt;/h3&gt;&lt;p&gt;index.wxml:&lt;/p&gt;
+&lt;figure class=&quot;highlight
+        
+      
+    
+    </summary>
+    
+    
+      <category term="soft" scheme="http://yoursite.com/categories/soft/"/>
+    
+    
+      <category term="小程序" scheme="http://yoursite.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+      <category term="骨架屏" scheme="http://yoursite.com/tags/%E9%AA%A8%E6%9E%B6%E5%B1%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>js之今天是星期几</title>
+    <link href="http://yoursite.com/2020/09/09/js%E4%B9%8B%E4%BB%8A%E5%A4%A9%E6%98%AF%E6%98%9F%E6%9C%9F%E5%87%A0/"/>
+    <id>http://yoursite.com/2020/09/09/js%E4%B9%8B%E4%BB%8A%E5%A4%A9%E6%98%AF%E6%98%9F%E6%9C%9F%E5%87%A0/</id>
+    <published>2020-09-09T02:02:30.000Z</published>
+    <updated>2020-09-09T02:09:49.773Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;初学&quot;&gt;&lt;a href=&quot;#初学&quot; class=&quot;headerlink&quot; title=&quot;初学&quot;&gt;&lt;/a&gt;初学&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+    
+      <category term="js" scheme="http://yoursite.com/categories/js/"/>
+    
+    
+      <category term="js" scheme="http://yoursite.com/tags/js/"/>
+    
+      <category term="星期" scheme="http://yoursite.com/tags/%E6%98%9F%E6%9C%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>js星期方法Array</title>
+    <link href="http://yoursite.com/2020/09/09/js%E6%98%9F%E6%9C%9F%E6%96%B9%E6%B3%95Array/"/>
+    <id>http://yoursite.com/2020/09/09/js%E6%98%9F%E6%9C%9F%E6%96%B9%E6%B3%95Array/</id>
+    <published>2020-09-09T02:01:44.000Z</published>
+    <updated>2020-09-09T02:04:25.752Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>小程序如何生成海报分享朋友圈</title>
+    <link href="http://yoursite.com/2020/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90%E6%B5%B7%E6%8A%A5%E5%88%86%E4%BA%AB%E6%9C%8B%E5%8F%8B%E5%9C%88/"/>
+    <id>http://yoursite.com/2020/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90%E6%B5%B7%E6%8A%A5%E5%88%86%E4%BA%AB%E6%9C%8B%E5%8F%8B%E5%9C%88/</id>
+    <published>2020-09-09T01:35:08.000Z</published>
+    <updated>2020-09-09T01:37:53.468Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;需求&quot;&gt;&lt;a href=&quot;#需求&quot; class=&quot;headerlink&quot; title=&quot;需求&quot;&gt;&lt;/a&gt;需求&lt;/h3&gt;&lt;p&gt;利用微信强大的社交能力通过小程序达到裂变的目的，拉取新用户。&lt;br&gt;生成的海报如下&lt;/p&gt;
+&lt;p&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+    
+      <category term="soft" scheme="http://yoursite.com/categories/soft/"/>
+    
+    
+      <category term="小程序" scheme="http://yoursite.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+      <category term="海报" scheme="http://yoursite.com/tags/%E6%B5%B7%E6%8A%A5/"/>
+    
+      <category term="分享朋友圈" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB%E6%9C%8B%E5%8F%8B%E5%9C%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>知识点链接</title>
+    <link href="http://yoursite.com/2020/09/08/%E7%9F%A5%E8%AF%86%E7%82%B9%E9%93%BE%E6%8E%A5/"/>
+    <id>http://yoursite.com/2020/09/08/%E7%9F%A5%E8%AF%86%E7%82%B9%E9%93%BE%E6%8E%A5/</id>
+    <published>2020-09-08T09:12:02.000Z</published>
+    <updated>2020-09-11T06:36:17.259Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;vue生命周期从源码看&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/6-WDKTyyDnkbw224WOEpjw&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="知识点" scheme="http://yoursite.com/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/"/>
+    
+    
+      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
+    
+      <category term="js" scheme="http://yoursite.com/tags/js/"/>
+    
+      <category term="知识点" scheme="http://yoursite.com/tags/%E7%9F%A5%E8%AF%86%E7%82%B9/"/>
+    
+  </entry>
   
   <entry>
     <title>hexo图片的那些事</title>
@@ -273,222 +515,11 @@
       <category term="gitExtensions" scheme="http://yoursite.com/categories/gitExtensions/"/>
     
     
-      <category term="git" scheme="http://yoursite.com/tags/git/"/>
-    
       <category term="gitExtensions" scheme="http://yoursite.com/tags/gitExtensions/"/>
     
+      <category term="git" scheme="http://yoursite.com/tags/git/"/>
+    
       <category term="kdiff3" scheme="http://yoursite.com/tags/kdiff3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>环境搭建从无到有</title>
-    <link href="http://yoursite.com/2020/08/18/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%BB%8E%E6%97%A0%E5%88%B0%E6%9C%89/"/>
-    <id>http://yoursite.com/2020/08/18/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%BB%8E%E6%97%A0%E5%88%B0%E6%9C%89/</id>
-    <published>2020-08-18T11:21:31.000Z</published>
-    <updated>2020-08-19T01:44:55.163Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;开发工具&quot;&gt;&lt;a href=&quot;#开发工具&quot; class=&quot;headerlink&quot; title=&quot;开发工具&quot;&gt;&lt;/a&gt;开发工具&lt;/h2&gt;&lt;h3 id=&quot;nodeJs&quot;&gt;&lt;a href=&quot;#nodeJs&quot; class=&quot;headerlink&quot; title=&quot;nodeJs&quot;&gt;&lt;/a&gt;nodeJs&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://nodejs.org/en/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;官网地址&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;git&quot;&gt;&lt;a href=&quot;#git&quot; class=&quot;headerlink&quot; title=&quot;git&quot;&gt;&lt;/a&gt;git&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://git-scm.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;官网地址&lt;/a&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="环境" scheme="http://yoursite.com/categories/%E7%8E%AF%E5%A2%83/"/>
-    
-    
-      <category term="环境搭建" scheme="http://yoursite.com/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
-    
-      <category term="软件官网" scheme="http://yoursite.com/tags/%E8%BD%AF%E4%BB%B6%E5%AE%98%E7%BD%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>flex</title>
-    <link href="http://yoursite.com/2020/08/18/flex/"/>
-    <id>http://yoursite.com/2020/08/18/flex/</id>
-    <published>2020-08-18T02:52:58.215Z</published>
-    <updated>2020-08-21T07:13:53.656Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;父级属性&lt;/p&gt;
-&lt;p&gt;flex-direction&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://note.youdao.com/yws/res/3294/6A5994F516084337817F0026ED72DCD9&quot;
-        
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>verdaccio私服搭建</title>
-    <link href="http://yoursite.com/2020/08/11/verdaccio%E7%A7%81%E6%9C%8D%E6%90%AD%E5%BB%BA/"/>
-    <id>http://yoursite.com/2020/08/11/verdaccio%E7%A7%81%E6%9C%8D%E6%90%AD%E5%BB%BA/</id>
-    <published>2020-08-11T11:02:04.000Z</published>
-    <updated>2020-09-08T06:39:15.445Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;1-安装verdaccio&quot;&gt;&lt;a href=&quot;#1-安装verdaccio&quot; class=&quot;headerlink&quot; title=&quot;1 安装verdaccio&quot;&gt;&lt;/a&gt;1 安装verdaccio&lt;/h3&gt;&lt;p&gt;&lt;code&gt;$ npm install --global verdaccio&lt;/code&gt;&lt;/p&gt;
-&lt;h4 id=&quot;1-1-verdaccio目录结构&quot;&gt;&lt;a href=&quot;#1-1-verdaccio目录结构&quot; class=&quot;headerlink&quot; title=&quot;1.1 verdaccio目录结构&quot;&gt;&lt;/a&gt;1.1 verdaccio目录结构&lt;/h4&gt;&lt;p&gt;安装后的文件在：C:\Users(用户名)\AppData\Roaming\verdaccio下&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2020/08/11/verdaccio%E7%A7%81%E6%9C%8D%E6%90%AD%E5%BB%BA/01.png&quot; alt=&quot;01&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="verdaccio" scheme="http://yoursite.com/categories/verdaccio/"/>
-    
-    
-      <category term="私有服务器" scheme="http://yoursite.com/tags/%E7%A7%81%E6%9C%89%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    
-      <category term="verdaccio" scheme="http://yoursite.com/tags/verdaccio/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vue更改打包路径</title>
-    <link href="http://yoursite.com/2020/08/10/vue%E6%9B%B4%E6%94%B9%E6%89%93%E5%8C%85%E8%B7%AF%E5%BE%84/"/>
-    <id>http://yoursite.com/2020/08/10/vue%E6%9B%B4%E6%94%B9%E6%89%93%E5%8C%85%E8%B7%AF%E5%BE%84/</id>
-    <published>2020-08-10T08:14:29.000Z</published>
-    <updated>2020-09-01T02:21:50.273Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;根目录新建-env-local&quot;&gt;&lt;a href=&quot;#根目录新建-env-local&quot; class=&quot;headerlink&quot; title=&quot;根目录新建.env.local&quot;&gt;&lt;/a&gt;根目录新建.env.local&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;VUE_APP_assetsRoot &amp;#x3D; D:\zhenlvProject\webtouch\TC.itravel.WebFly\fly2.0\dist  （目标路径）&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;VUE_APP_USER &amp;#x3D; dali&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>es6-Class</title>
-    <link href="http://yoursite.com/2020/08/07/es6-Class/"/>
-    <id>http://yoursite.com/2020/08/07/es6-Class/</id>
-    <published>2020-08-07T01:52:17.000Z</published>
-    <updated>2020-08-11T12:07:15.883Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;你真的理解ES6的Class吗&quot;&gt;&lt;a href=&quot;#你真的理解ES6的Class吗&quot; class=&quot;headerlink&quot; title=&quot;你真的理解ES6的Class吗&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://segmentfault.com/a/1190000019792333&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;你真的理解ES6的Class吗&lt;/a&gt;&lt;/h1&gt;&lt;blockquote&gt;
-&lt;p&gt;在面向对象的编程中,类是一个用于创建对象，为状态（成员变量）和行为实现（成员函数或方法）提供初始值的可扩展程序代码模板。（提供封装在一起的变量和函数）&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;在实际开发中，我们往往需要创建很多相同类型的对象，如用户、商品或其他对象。我们知道，通过new一个function可以创建一个对象，但在现代的JavaScript里，有一个更高级的“类”结构，对于面向对象编程提供了一些很不错的特性。&lt;/p&gt;
-&lt;h2 id=&quot;Class语法&quot;&gt;&lt;a href=&quot;#Class语法&quot; class=&quot;headerlink&quot; title=&quot;Class语法&quot;&gt;&lt;/a&gt;Class语法&lt;/h2&gt;
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>vue-nextTick</title>
-    <link href="http://yoursite.com/2020/08/06/vue-nextTick/"/>
-    <id>http://yoursite.com/2020/08/06/vue-nextTick/</id>
-    <published>2020-08-06T08:20:07.000Z</published>
-    <updated>2020-08-11T12:06:57.503Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;异步更新队列：&quot;&gt;&lt;a href=&quot;#异步更新队列：&quot; class=&quot;headerlink&quot; title=&quot;异步更新队列：&quot;&gt;&lt;/a&gt;异步更新队列：&lt;/h4&gt;&lt;p&gt;请记住：&lt;strong&gt;vue是依靠数据驱动视图更新的，该更新的过程是异步的。&lt;/strong&gt;即：当侦听到你的数据发生变化时， Vue将开启一个队列（该队列被Vue官方称为异步更新队列）。视图需要等队列中所有数据变化完成之后，再统一进行更新。示例：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;div id&amp;#x3D;&amp;quot;myApp&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;input type&amp;#x3D;&amp;quot;button&amp;quot; value&amp;#x3D;&amp;quot;点我呀&amp;quot; @click&amp;#x3D;&amp;quot;changeStr&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;p ref&amp;#x3D;&amp;quot;myP&amp;quot;&amp;gt;&amp;#123;&amp;#123;str&amp;#125;&amp;#125;&amp;lt;&amp;#x2F;p&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;&amp;#x2F;div&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    new Vue(&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        el:&amp;quot;#myApp&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        data:&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            str:&amp;quot;公众号 张培跃，关注它的人很少！&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        methods:&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            changeStr()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                this.str &amp;#x3D; &amp;quot;欢迎关注公众号 张培跃，收看更多精彩内容！&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#x2F;&amp;#x2F; 输出结果：公众号 张培跃，关注它的人很少！&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                console.log(this.$refs.myP.innerText)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;&amp;#x2F;script&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="vue" scheme="http://yoursite.com/categories/vue/"/>
-    
-    
-      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
-    
-      <category term="nextTick" scheme="http://yoursite.com/tags/nextTick/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Promise</title>
-    <link href="http://yoursite.com/2020/08/06/Promise/"/>
-    <id>http://yoursite.com/2020/08/06/Promise/</id>
-    <published>2020-08-06T06:06:48.000Z</published>
-    <updated>2020-08-11T12:06:24.982Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;本质上Promise是一个函数返回的对象，我们可以在它上面绑定回调函数，这样我们就不需要在一开始把回调函数作为参数传入这个函数了。&lt;/p&gt;
-&lt;p&gt;假设现在有一个名为 &lt;code&gt;createAudioFileAsync()&lt;/code&gt; 的函数，它接收一些配置和两个回调函数，然后异步地生成音频文件。一个回调函数在文件成功创建时的被调用，另一个则在出现异常时的被调用。&lt;/p&gt;
-&lt;p&gt;以下为使用 &lt;code&gt;createAudioFileAsync()&lt;/code&gt; 的示例：&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="promise" scheme="http://yoursite.com/categories/promise/"/>
-    
-    
-      <category term="promise" scheme="http://yoursite.com/tags/promise/"/>
-    
-      <category term="es6" scheme="http://yoursite.com/tags/es6/"/>
-    
-      <category term="js" scheme="http://yoursite.com/tags/js/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vue-ref</title>
-    <link href="http://yoursite.com/2020/08/06/vue-ref/"/>
-    <id>http://yoursite.com/2020/08/06/vue-ref/</id>
-    <published>2020-08-06T01:42:23.000Z</published>
-    <updated>2020-09-08T05:51:11.011Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;含义&quot;&gt;&lt;a href=&quot;#含义&quot; class=&quot;headerlink&quot; title=&quot;含义&quot;&gt;&lt;/a&gt;含义&lt;/h3&gt;&lt;p&gt;在原生里获取DOM元素，需document.querySelector（”.input1”）获取这个dom节点，然后在获取input1的值。&lt;/p&gt;
-&lt;p&gt;但是用ref绑定之后，我们就不需要在获取dom节点了，直接在上面的input上绑定input1，然后$refs里面调用就行。&lt;/p&gt;
-&lt;p&gt;然后在javascript里面这样调用：this.$refs.input1  这样就可以减少获取dom节点的消耗了&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="vue" scheme="http://yoursite.com/categories/vue/"/>
-    
-    
-      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
-    
-      <category term="ref" scheme="http://yoursite.com/tags/ref/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vue自定义指令</title>
-    <link href="http://yoursite.com/2020/08/05/vue%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4/"/>
-    <id>http://yoursite.com/2020/08/05/vue%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4/</id>
-    <published>2020-08-05T11:50:10.000Z</published>
-    <updated>2020-09-08T05:55:05.804Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;全局自定义指令&quot;&gt;&lt;a href=&quot;#全局自定义指令&quot; class=&quot;headerlink&quot; title=&quot;全局自定义指令&quot;&gt;&lt;/a&gt;全局自定义指令&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;div id&amp;#x3D;&amp;quot;app&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;p&amp;gt;页面载入时，input 元素自动获取焦点：&amp;lt;&amp;#x2F;p&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;input v-focus&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;&amp;#x2F;div&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#x2F;&amp;#x2F; 注册一个全局自定义指令 v-focus&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Vue.directive(&amp;#39;focus&amp;#39;, &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#x2F;&amp;#x2F; 当绑定元素插入到 DOM 中。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  inserted: function (el) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#x2F;&amp;#x2F; 聚焦元素&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    el.focus()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#x2F;&amp;#x2F; 创建根实例&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;new Vue(&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  el: &amp;#39;#app&amp;#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;&amp;#x2F;script&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="vue" scheme="http://yoursite.com/categories/vue/"/>
-    
-    
-      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
-    
-      <category term="directive" scheme="http://yoursite.com/tags/directive/"/>
     
   </entry>
   
