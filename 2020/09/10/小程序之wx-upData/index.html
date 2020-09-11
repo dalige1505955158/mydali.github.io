@@ -88,7 +88,7 @@
 <meta property="og:site_name" content="DaliBlogs">
 <meta property="og:description" content="鉴于在下使用微信小程序开发时使用 setData 的蹩脚体验，开发了个库函数 wx-updata，项目上线之后，我把这个自用的库函数整理放到 Github 上开源出来 wx-updata，这个库函数在开发的时候对我很有帮助，希望也可以帮到大家 ???? 如果大家在使用中遇到了问题，可以给我提 pr，提 issue，一起来改善小程序开发体验加油～  wx-updata 版本 0.0.10 Githu">
 <meta property="article:published_time" content="2020-09-10T10:09:20.000Z">
-<meta property="article:modified_time" content="2020-09-10T10:13:36.037Z">
+<meta property="article:modified_time" content="2020-09-11T07:47:03.369Z">
 <meta property="article:author" content="Dali">
 <meta property="article:tag" content="小程序">
 <meta property="article:tag" content="wx-updata">
@@ -399,6 +399,8 @@
 <h2 id="1-setData-不方便的地方"><a href="#1-setData-不方便的地方" class="headerlink" title="1. setData 不方便的地方"></a><strong>1. setData 不方便的地方</strong></h2><p>你在使用 <code>setData</code> 的时候，是不是有时候觉得很难受，举个简单的例子：</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 你的 data</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">data: &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    name: <span class="string">'蜡笔小新'</span>,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    info: &#123; height: <span class="number">140</span>, color: <span class="string">'黄色'</span> &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<a id="more"></a>
+
 <p>如果要修改 <code>info.height</code> 为 155，使用 <code>setData</code> 要怎么做呢：</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这样会把 info 里其他属性整不见了</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">this.setData(&#123; info: &#123; height: <span class="number">155</span> &#125; &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 你需要取出 info 对象，修改后整个 setData</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> &#123; info &#125; = this.data</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">info.height = <span class="number">155</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">this.setData(&#123; info &#125;)</span><br></pre></td></tr></table></figure>
 
@@ -582,7 +584,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">92</span>
+                  <span class="site-state-item-count">91</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
