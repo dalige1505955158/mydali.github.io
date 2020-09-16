@@ -88,7 +88,7 @@
 <meta property="og:site_name" content="DaliBlogs">
 <meta property="og:description" content="1.邮箱 123export const isEmail &#x3D; (s) &#x3D;&gt; &amp;#123;    return &#x2F;^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((.[a-zA-Z0-9_-]&amp;#123;2,3&amp;#125;)&amp;#123;1,2&amp;#125;)$&#x2F;.test(s)&amp;#125;  2.手机号码 123export cons">
 <meta property="article:published_time" content="2020-07-30T09:19:04.000Z">
-<meta property="article:modified_time" content="2020-09-10T07:50:31.644Z">
+<meta property="article:modified_time" content="2020-09-14T10:25:10.592Z">
 <meta property="article:author" content="Dali">
 <meta property="article:tag" content="js">
 <meta name="twitter:card" content="summary">
@@ -579,6 +579,11 @@
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">const input &#x3D; document.querySelector(&#39;input[type&#x3D;&quot;text&quot;]&#39;)</span><br><span class="line"> const clearText &#x3D; target &#x3D;&gt; &#123;</span><br><span class="line">     const &#123;</span><br><span class="line">         value</span><br><span class="line">     &#125; &#x3D; target</span><br><span class="line">     target.value &#x3D; value.replace(&#x2F;[^\u4e00-\u9fa5]&#x2F;g, &#39;&#39;)</span><br><span class="line"> &#125;</span><br><span class="line"> input.onfocus &#x3D; (&#123;target&#125;) &#x3D;&gt; &#123;</span><br><span class="line">     clearText(target)</span><br><span class="line"> &#125;</span><br><span class="line"> input.onkeyup &#x3D; (&#123;target&#125;) &#x3D;&gt; &#123;</span><br><span class="line">     clearText(target)</span><br><span class="line"> &#125;</span><br><span class="line"> input.onblur &#x3D; (&#123;target&#125;) &#x3D;&gt; &#123;</span><br><span class="line">     clearText(target)</span><br><span class="line"> &#125;</span><br><span class="line"> input.oninput &#x3D; (&#123;target&#125;) &#x3D;&gt; &#123;</span><br><span class="line">     clearText(target)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
+<ol start="63">
+<li>计算目录树的深度</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">const tree &#x3D; &#123;</span><br><span class="line">  name: &#39;root&#39;,</span><br><span class="line">  children: [</span><br><span class="line">    &#123; name: &#39;叶子1-1&#39; &#125;,</span><br><span class="line">    &#123; name: &#39;叶子1-2&#39; &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      name: &#39;叶子2-1&#39;,</span><br><span class="line">      children: [&#123;</span><br><span class="line">        name: &#39;叶子3-1&#39;,</span><br><span class="line">        children: [&#123;</span><br><span class="line">          name: &#39;叶子4-1&#39;</span><br><span class="line">        &#125;]</span><br><span class="line">      &#125;]</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function getDepth(tree) &#123;</span><br><span class="line">  let depth &#x3D; 0</span><br><span class="line"></span><br><span class="line">  if (tree) &#123;</span><br><span class="line">    let arr &#x3D; [tree]</span><br><span class="line">    let temp &#x3D; arr</span><br><span class="line">    while (temp.length) &#123;</span><br><span class="line">      arr &#x3D; temp</span><br><span class="line">      temp &#x3D; []</span><br><span class="line">      for (let i &#x3D; 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">        if (arr[i].children &amp;&amp; arr[i].children.length) &#123;</span><br><span class="line">          for (let j &#x3D; 0; j &lt; arr[i].children.length; j++) &#123;</span><br><span class="line">            temp.push(arr[i].children[j])</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      depth++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return depth</span><br><span class="line">&#125;</span><br><span class="line">console.log(getDepth(tree)); &#x2F;&#x2F;输出4</span><br></pre></td></tr></table></figure>
+
 
 
 <p>参考链接 <a href="https://mp.weixin.qq.com/s/a_hBJdIxnqrzcx28K56VXA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/a_hBJdIxnqrzcx28K56VXA</a></p>
@@ -696,7 +701,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">91</span>
+                  <span class="site-state-item-count">100</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -707,7 +712,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-count">49</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -718,7 +723,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">92</span>
+                  <span class="site-state-item-count">100</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

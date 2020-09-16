@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-09-11T07:46:56.586Z</updated>
+  <updated>2020-09-16T05:57:57.294Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,248 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>git之错误分支开发的三种情况</title>
+    <link href="http://yoursite.com/2020/09/16/git%E4%B9%8B%E9%94%99%E8%AF%AF%E5%88%86%E6%94%AF%E5%BC%80%E5%8F%91%E7%9A%84%E4%B8%89%E7%A7%8D%E6%83%85%E5%86%B5/"/>
+    <id>http://yoursite.com/2020/09/16/git%E4%B9%8B%E9%94%99%E8%AF%AF%E5%88%86%E6%94%AF%E5%BC%80%E5%8F%91%E7%9A%84%E4%B8%89%E7%A7%8D%E6%83%85%E5%86%B5/</id>
+    <published>2020-09-16T03:35:00.000Z</published>
+    <updated>2020-09-16T05:57:57.294Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;还没有commit&quot;&gt;&lt;a href=&quot;#还没有commit&quot; class=&quot;headerlink&quot; title=&quot;还没有commit&quot;&gt;&lt;/a&gt;还没有commit&lt;/h3&gt;&lt;p&gt;在这种情况下我们可以在当前分支下使用：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git stash&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;这个命令表示&lt;strong&gt;把我们当前修改的内容暂存起来，然后我们的工作区就恢复到在没有开发新功能之前的样子。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;这个时候我们需要切换到正确的工作分支，然后运行命令：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git stash apply&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="git" scheme="http://yoursite.com/categories/git/"/>
+    
+    
+      <category term="git" scheme="http://yoursite.com/tags/git/"/>
+    
+      <category term="错误分支" scheme="http://yoursite.com/tags/%E9%94%99%E8%AF%AF%E5%88%86%E6%94%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>前端面试复习</title>
+    <link href="http://yoursite.com/2020/09/15/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E5%A4%8D%E4%B9%A0/"/>
+    <id>http://yoursite.com/2020/09/15/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E5%A4%8D%E4%B9%A0/</id>
+    <published>2020-09-15T06:10:37.000Z</published>
+    <updated>2020-09-16T05:59:34.523Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;参考：&lt;a href=&quot;https://mp.weixin.qq.com/s/QX0HL1tCAGU70zEb-HJQlQ&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="面试" scheme="http://yoursite.com/categories/%E9%9D%A2%E8%AF%95/"/>
+    
+    
+      <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>js之BigNumber.js</title>
+    <link href="http://yoursite.com/2020/09/15/js%E4%B9%8BBigNumber-js/"/>
+    <id>http://yoursite.com/2020/09/15/js%E4%B9%8BBigNumber-js/</id>
+    <published>2020-09-15T03:54:49.000Z</published>
+    <updated>2020-09-15T05:28:30.675Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;vue使用BigNumber.js&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td
+        
+      
+    
+    </summary>
+    
+    
+      <category term="js" scheme="http://yoursite.com/categories/js/"/>
+    
+    
+      <category term="js" scheme="http://yoursite.com/tags/js/"/>
+    
+      <category term="精度计算" scheme="http://yoursite.com/tags/%E7%B2%BE%E5%BA%A6%E8%AE%A1%E7%AE%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>express和koa</title>
+    <link href="http://yoursite.com/2020/09/15/express%E5%92%8Ckoa/"/>
+    <id>http://yoursite.com/2020/09/15/express%E5%92%8Ckoa/</id>
+    <published>2020-09-15T03:42:51.000Z</published>
+    <updated>2020-09-15T03:55:49.966Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Koa和Express都是NodeJS的主流应用开发框架。&lt;/p&gt;
+&lt;p&gt;Express是一个完整的nodejs应用框架。Koa是由Express团队开发的，但是它有不同的关注点。Koa致力于核心中间件功能。nodejs中间件是访问请求对象（req）和响应对象（res）的例程。这些例程在路由处理程序之前被调用，因此它们位于客户端与生成响应的路由逻辑的“中间”。nodejs应用程序可以将中间件例程“链接”到自定义请求/响应管道中。管道可以根据请求和响应进行操作，包括头和主体。Express和Koa都包含中间件，但实现方法却截然不同。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="es6" scheme="http://yoursite.com/categories/es6/"/>
+    
+    
+      <category term="express" scheme="http://yoursite.com/tags/express/"/>
+    
+      <category term="koa" scheme="http://yoursite.com/tags/koa/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vue面试题记录</title>
+    <link href="http://yoursite.com/2020/09/14/vue%E9%9D%A2%E8%AF%95%E9%A2%98%E8%AE%B0%E5%BD%95/"/>
+    <id>http://yoursite.com/2020/09/14/vue%E9%9D%A2%E8%AF%95%E9%A2%98%E8%AE%B0%E5%BD%95/</id>
+    <published>2020-09-14T10:26:56.000Z</published>
+    <updated>2020-09-15T06:10:45.233Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+    
+      <category term="vue" scheme="http://yoursite.com/categories/vue/"/>
+    
+    
+      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
+    
+      <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>js之call和apply</title>
+    <link href="http://yoursite.com/2020/09/14/js%E4%B9%8Bcall%E5%92%8Capply/"/>
+    <id>http://yoursite.com/2020/09/14/js%E4%B9%8Bcall%E5%92%8Capply/</id>
+    <published>2020-09-14T09:43:15.000Z</published>
+    <updated>2020-09-14T09:44:45.713Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;call和apply的区别和用法&quot;&gt;&lt;a href=&quot;#call和apply的区别和用法&quot; class=&quot;headerlink&quot; title=&quot;call和apply的区别和用法&quot;&gt;&lt;/a&gt;call和apply的区别和用法&lt;/h1&gt;&lt;h2
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>es6之map和set结构</title>
+    <link href="http://yoursite.com/2020/09/14/es6%E4%B9%8Bmap%E5%92%8Cset%E7%BB%93%E6%9E%84/"/>
+    <id>http://yoursite.com/2020/09/14/es6%E4%B9%8Bmap%E5%92%8Cset%E7%BB%93%E6%9E%84/</id>
+    <published>2020-09-14T08:54:09.000Z</published>
+    <updated>2020-09-14T09:39:44.082Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一-Map结构数据&quot;&gt;&lt;a href=&quot;#一-Map结构数据&quot; class=&quot;headerlink&quot; title=&quot;一.Map结构数据&quot;&gt;&lt;/a&gt;一.Map结构数据&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;https:////upload-images.jianshu.io/upload_images/5417256-625e0db86d075be5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp&quot; alt=&quot;img&quot;&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="ESLint" scheme="http://yoursite.com/categories/ESLint/"/>
+    
+    
+      <category term="map" scheme="http://yoursite.com/tags/map/"/>
+    
+      <category term="set" scheme="http://yoursite.com/tags/set/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>es6之扩展运算符</title>
+    <link href="http://yoursite.com/2020/09/14/es6%E4%B9%8B%E6%89%A9%E5%B1%95%E8%BF%90%E7%AE%97%E7%AC%A6/"/>
+    <id>http://yoursite.com/2020/09/14/es6%E4%B9%8B%E6%89%A9%E5%B1%95%E8%BF%90%E7%AE%97%E7%AC%A6/</id>
+    <published>2020-09-14T08:46:45.000Z</published>
+    <updated>2020-09-14T09:39:33.876Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;含义&quot;&gt;&lt;a href=&quot;#含义&quot; class=&quot;headerlink&quot; title=&quot;含义&quot;&gt;&lt;/a&gt;&lt;strong&gt;含义&lt;/strong&gt;&lt;/h3&gt;&lt;p&gt;扩展运算符（spread）是三个点（&lt;code&gt;...&lt;/code&gt;）。它好比 rest 参数的逆运算，将一个数组转为用逗号分隔的参数序列。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;console.log(...[1, 2, 3])&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#x2F;&amp;#x2F; 1 2 3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(1, ...[2, 3, 4], 5)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#x2F;&amp;#x2F; 1 2 3 4 5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[...document.querySelectorAll(&amp;#39;div&amp;#39;)]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#x2F;&amp;#x2F; [&amp;lt;div&amp;gt;, &amp;lt;div&amp;gt;, &amp;lt;div&amp;gt;]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="ESLint" scheme="http://yoursite.com/categories/ESLint/"/>
+    
+    
+      <category term="ESLint" scheme="http://yoursite.com/tags/ESLint/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>WebSocket</title>
+    <link href="http://yoursite.com/2020/09/14/WebSocket/"/>
+    <id>http://yoursite.com/2020/09/14/WebSocket/</id>
+    <published>2020-09-14T07:00:35.000Z</published>
+    <updated>2020-09-14T07:20:35.033Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;什么是WebSocket&quot;&gt;&lt;a href=&quot;#什么是WebSocket&quot; class=&quot;headerlink&quot; title=&quot;什么是WebSocket&quot;&gt;&lt;/a&gt;&lt;strong&gt;什么是WebSocket&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;首先需要明白webSocket的概念，下边是维基百科的解释&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;WebSocket是一种通信协议，可在单个TCP连接上进行全双工通信。WebSocket使得客户端和服务器之间的数据交换变得更加简单，允许服务端主动向客户端推送数据。在WebSocket API中，浏览器和服务器只需要完成一次握手，两者之间就可以建立持久性的连接，并进行双向数据传输。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;首先，要明白WebSocket是一种通信协议，区别于HTTP协议，HTTP协议只能实现客户端请求，服务端响应的这种单项通信。&lt;br&gt;而WebSocket可以实现客户端与服务端的双向通讯，说白了，最大也是最明显的区别就是可以做到服务端主动将消息推送给客户端。&lt;br&gt;其余的特点有：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;握手阶段采用 HTTP 协议。&lt;/li&gt;
+&lt;li&gt;数据格式轻量，性能开销小。客户端与服务端进行数据交换时，服务端到客户端的数据包头只有2到10字节，客户端到服务端需要加上另外4字节的掩码。HTTP每次都需要携带完整头部。&lt;/li&gt;
+&lt;li&gt;更好的二进制支持，可以发送文本，和二进制数据&lt;/li&gt;
+&lt;li&gt;没有同源限制，客户端可以与任意服务器通信&lt;/li&gt;
+&lt;li&gt;协议标识符是ws（如果加密，则是wss），请求的地址就是后端支持websocket的API。&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="WebSocket" scheme="http://yoursite.com/categories/WebSocket/"/>
+    
+    
+      <category term="WebSocket" scheme="http://yoursite.com/tags/WebSocket/"/>
+    
+      <category term="案例" scheme="http://yoursite.com/tags/%E6%A1%88%E4%BE%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>小程序之wx-request封装</title>
@@ -164,7 +406,7 @@
     <link href="http://yoursite.com/2020/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90%E6%B5%B7%E6%8A%A5%E5%88%86%E4%BA%AB%E6%9C%8B%E5%8F%8B%E5%9C%88/"/>
     <id>http://yoursite.com/2020/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90%E6%B5%B7%E6%8A%A5%E5%88%86%E4%BA%AB%E6%9C%8B%E5%8F%8B%E5%9C%88/</id>
     <published>2020-09-09T01:35:08.000Z</published>
-    <updated>2020-09-11T07:49:16.598Z</updated>
+    <updated>2020-09-14T07:25:40.042Z</updated>
     
     <summary type="html">
     
@@ -190,7 +432,7 @@
     <link href="http://yoursite.com/2020/09/08/%E7%9F%A5%E8%AF%86%E7%82%B9%E9%93%BE%E6%8E%A5/"/>
     <id>http://yoursite.com/2020/09/08/%E7%9F%A5%E8%AF%86%E7%82%B9%E9%93%BE%E6%8E%A5/</id>
     <published>2020-09-08T09:12:02.000Z</published>
-    <updated>2020-09-11T07:49:37.585Z</updated>
+    <updated>2020-09-15T05:58:28.423Z</updated>
     
     <summary type="html">
     
@@ -218,7 +460,7 @@
     <link href="http://yoursite.com/2020/09/08/hexo%E5%9B%BE%E7%89%87%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B/"/>
     <id>http://yoursite.com/2020/09/08/hexo%E5%9B%BE%E7%89%87%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B/</id>
     <published>2020-09-08T03:52:31.000Z</published>
-    <updated>2020-09-08T06:54:51.663Z</updated>
+    <updated>2020-09-14T03:30:14.300Z</updated>
     
     <summary type="html">
     
@@ -284,221 +526,6 @@
     </summary>
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>Androidchrome远程调试</title>
-    <link href="http://yoursite.com/2020/09/04/Androidchrome%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/"/>
-    <id>http://yoursite.com/2020/09/04/Androidchrome%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/</id>
-    <published>2020-09-04T06:04:38.000Z</published>
-    <updated>2020-09-07T10:16:04.525Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;一：背景&lt;/strong&gt;&lt;br&gt;通常情况我们调试移动端页面最常用的方法就是：切换pc端浏览器的userAgent来模拟手机或其他移动设备调试页面 然后用手机打开要调试的页面 刷新页面查看调试结果&lt;/p&gt;
-&lt;p&gt;但是这就存在两个问题 在pc浏览器模拟手机可能造成调试不准 用手机直接调试 又多一步刷新 那怎么能达到在pc端修改代码 在手机上直接看到修改结果这样的所见即所得的效果呢 chrome做到了&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="调试" scheme="http://yoursite.com/categories/%E8%B0%83%E8%AF%95/"/>
-    
-    
-      <category term="chrome" scheme="http://yoursite.com/tags/chrome/"/>
-    
-      <category term="android" scheme="http://yoursite.com/tags/android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>小程序开发之自定义导航栏</title>
-    <link href="http://yoursite.com/2020/08/26/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AF%BC%E8%88%AA%E6%A0%8F/"/>
-    <id>http://yoursite.com/2020/08/26/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AF%BC%E8%88%AA%E6%A0%8F/</id>
-    <published>2020-08-26T11:24:04.000Z</published>
-    <updated>2020-08-26T11:31:03.857Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;微信小程序-自定义头部导航栏-navigationStyle&quot;&gt;&lt;a href=&quot;#微信小程序-自定义头部导航栏-navigationStyle&quot; class=&quot;headerlink&quot; title=&quot;微信小程序 自定义头部导航栏 navigationStyle&quot;&gt;&lt;/a&gt;微信小程序 自定义头部导航栏 navigationStyle&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/8198580-8401274f1a9f6607.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/389/format/webp&quot; alt=&quot;img&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="soft" scheme="http://yoursite.com/categories/soft/"/>
-    
-    
-      <category term="小程序" scheme="http://yoursite.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>小程序开发之定位</title>
-    <link href="http://yoursite.com/2020/08/26/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E5%AE%9A%E4%BD%8D/"/>
-    <id>http://yoursite.com/2020/08/26/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E5%AE%9A%E4%BD%8D/</id>
-    <published>2020-08-26T11:23:48.000Z</published>
-    <updated>2020-08-26T11:30:53.252Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;app.json:  (&lt;a href=&quot;https://blog.csdn.net/guochanof/article/details/89669839&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;不知道具体位置可以看这里,这里有整个app.json的配置&lt;/a&gt;)&lt;/p&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;string&quot;&gt;&quot;permission&quot;&lt;/span&gt;: &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &lt;span class=&quot;string&quot;&gt;&quot;scope.userLocation&quot;&lt;/span&gt;: &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     &lt;span class=&quot;string&quot;&gt;&quot;desc&quot;&lt;/span&gt;: &lt;span class=&quot;string&quot;&gt;&quot;你的位置信息将用于小程序位置接口的效果展示&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="soft" scheme="http://yoursite.com/categories/soft/"/>
-    
-    
-      <category term="小程序" scheme="http://yoursite.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>小程序开发之分享</title>
-    <link href="http://yoursite.com/2020/08/26/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E5%88%86%E4%BA%AB/"/>
-    <id>http://yoursite.com/2020/08/26/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E5%88%86%E4%BA%AB/</id>
-    <published>2020-08-26T10:57:38.000Z</published>
-    <updated>2020-08-26T11:30:58.414Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;实现方式&quot;&gt;&lt;a href=&quot;#实现方式&quot; class=&quot;headerlink&quot; title=&quot;实现方式&quot;&gt;&lt;/a&gt;实现方式&lt;/h3&gt;&lt;p&gt;在小程序开发API中，发送给好友/群，可以有两种实现方式：&lt;/p&gt;
-&lt;p&gt;1）入口&lt;/p&gt;
-&lt;p&gt;a.小程序右上角自带的分享功能（…）：&lt;/p&gt;
-&lt;p&gt;如果在当前页面调用wx.hideShareMenu()方法，那么右上角的分享功能将被隐藏，当然，隐藏方法与现实方法是承兑出现的，调用wx.showShareMenu()方法，可以显示该功能。&lt;/p&gt;
-&lt;p&gt;b.自定义分享按钮：&lt;butto n open-type=&quot;share&quot;&gt;分享&amp;lt;/butto n&amp;gt;&lt;/butto&gt;&lt;/p&gt;
-&lt;p&gt;以上两种方式均可实现分享功能&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="soft" scheme="http://yoursite.com/categories/soft/"/>
-    
-    
-      <category term="小程序" scheme="http://yoursite.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>js数组方法-reduce</title>
-    <link href="http://yoursite.com/2020/08/25/js%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95-reduce/"/>
-    <id>http://yoursite.com/2020/08/25/js%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95-reduce/</id>
-    <published>2020-08-25T06:26:42.000Z</published>
-    <updated>2020-08-25T07:33:38.807Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;JS数组reduce-方法详解及高级技巧&quot;&gt;&lt;a href=&quot;#JS数组reduce-方法详解及高级技巧&quot; class=&quot;headerlink&quot; title=&quot;JS数组reduce()方法详解及高级技巧&quot;&gt;&lt;/a&gt;JS数组reduce()方法详解及高级技巧&lt;/h1&gt;&lt;h4 id=&quot;1、语法&quot;&gt;&lt;a href=&quot;#1、语法&quot; class=&quot;headerlink&quot; title=&quot;1、语法&quot;&gt;&lt;/a&gt;1、语法&lt;/h4&gt;&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;selector-tag&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;selector-class&quot;&gt;.reduce&lt;/span&gt;(&lt;span class=&quot;selector-tag&quot;&gt;callback&lt;/span&gt;,&lt;span class=&quot;selector-attr&quot;&gt;[initialValue]&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-&lt;p&gt;reduce 为数组中的每一个元素依次执行回调函数，不包括数组中被删除或从未被赋值的元素，接受四个参数：初始值（或者上一次回调函数的返回值），当前元素值，当前索引，调用 reduce 的数组。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="js" scheme="http://yoursite.com/categories/js/"/>
-    
-    
-      <category term="js" scheme="http://yoursite.com/tags/js/"/>
-    
-      <category term="数组" scheme="http://yoursite.com/tags/%E6%95%B0%E7%BB%84/"/>
-    
-      <category term="reduce" scheme="http://yoursite.com/tags/reduce/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>小程序文字展开收起</title>
-    <link href="http://yoursite.com/2020/08/20/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%96%87%E5%AD%97%E5%B1%95%E5%BC%80%E6%94%B6%E8%B5%B7/"/>
-    <id>http://yoursite.com/2020/08/20/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%96%87%E5%AD%97%E5%B1%95%E5%BC%80%E6%94%B6%E8%B5%B7/</id>
-    <published>2020-08-20T11:21:21.000Z</published>
-    <updated>2020-08-26T11:31:16.638Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;微信小程序开发中想要如h5一样获取元素的宽高值进行业务的功能实现，一开始不知道怎么实现，翻看文档发现，微信官方提供了一个非常好的东西&lt;/p&gt;
-&lt;h1 id=&quot;SelectorQuery&quot;&gt;&lt;a href=&quot;#SelectorQuery&quot; class=&quot;headerlink&quot; title=&quot;SelectorQuery&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://links.jianshu.com/go?to=https%3A%2F%2Fdevelopers.weixin.qq.com%2Fminiprogram%2Fdev%2Fapi%2Fwxml%2FSelectorQuery.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;SelectorQuery&lt;/a&gt;&lt;/h1&gt;&lt;h3 id=&quot;wx-createSelectorQuery&quot;&gt;&lt;a href=&quot;#wx-createSelectorQuery&quot; class=&quot;headerlink&quot; title=&quot;wx.createSelectorQuery()&quot;&gt;&lt;/a&gt;wx.createSelectorQuery()&lt;/h3&gt;&lt;p&gt;示例代码&lt;/p&gt;
-&lt;figure class=&quot;highlight jsx&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; query = wx.createSelectorQuery()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;query.select(&lt;span class=&quot;string&quot;&gt;&#39;#the-id&#39;&lt;/span&gt;).boundingClientRect()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;query.selectViewport().scrollOffset()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;query.exec(&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;res&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  res[&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;].top       &lt;span class=&quot;comment&quot;&gt;// #the-id节点的上边界坐标&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  res[&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;].scrollTop &lt;span class=&quot;comment&quot;&gt;// 显示区域的竖直滚动位置&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="soft" scheme="http://yoursite.com/categories/soft/"/>
-    
-    
-      <category term="小程序" scheme="http://yoursite.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>配置本地iis</title>
-    <link href="http://yoursite.com/2020/08/18/%E9%85%8D%E7%BD%AE%E6%9C%AC%E5%9C%B0iis/"/>
-    <id>http://yoursite.com/2020/08/18/%E9%85%8D%E7%BD%AE%E6%9C%AC%E5%9C%B0iis/</id>
-    <published>2020-08-18T12:41:15.000Z</published>
-    <updated>2020-08-19T01:45:28.672Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;开启iis&quot;&gt;&lt;a href=&quot;#开启iis&quot; class=&quot;headerlink&quot; title=&quot;开启iis&quot;&gt;&lt;/a&gt;开启iis&lt;/h3&gt;&lt;p&gt;控制面板-程序-启用或者关闭windows功能&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="iis" scheme="http://yoursite.com/categories/iis/"/>
-    
-    
-      <category term="iis" scheme="http://yoursite.com/tags/iis/"/>
-    
-      <category term="localhost" scheme="http://yoursite.com/tags/localhost/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>gitExtensions/git/kdiff3/</title>
-    <link href="http://yoursite.com/2020/08/18/gitExtensions-git-kdiff3/"/>
-    <id>http://yoursite.com/2020/08/18/gitExtensions-git-kdiff3/</id>
-    <published>2020-08-18T12:00:43.000Z</published>
-    <updated>2020-08-18T12:40:34.262Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;Git-Extension工具安装及使用&quot;&gt;&lt;a href=&quot;#Git-Extension工具安装及使用&quot; class=&quot;headerlink&quot; title=&quot;Git Extension工具安装及使用&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.cnblogs.com/sumuncle/p/7675921.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Git Extension工具安装及使用&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;以下界面所示的三个工具，如果没安装过，则勾上让其安装。MsysGit为Git的Windows版本，必须要安装；Kdiff为对比/合并工具，可选安装，可以换为使用其它的相关工具；最后一个Windows Credential Store for Git用于在Windows Credential Manager中存储仓库的密码，这在老版本中没有，也安上吧&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="gitExtensions" scheme="http://yoursite.com/categories/gitExtensions/"/>
-    
-    
-      <category term="git" scheme="http://yoursite.com/tags/git/"/>
-    
-      <category term="gitExtensions" scheme="http://yoursite.com/tags/gitExtensions/"/>
-    
-      <category term="kdiff3" scheme="http://yoursite.com/tags/kdiff3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>环境搭建从无到有</title>
-    <link href="http://yoursite.com/2020/08/18/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%BB%8E%E6%97%A0%E5%88%B0%E6%9C%89/"/>
-    <id>http://yoursite.com/2020/08/18/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%BB%8E%E6%97%A0%E5%88%B0%E6%9C%89/</id>
-    <published>2020-08-18T11:21:31.000Z</published>
-    <updated>2020-09-11T03:45:07.527Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;开发工具&quot;&gt;&lt;a href=&quot;#开发工具&quot; class=&quot;headerlink&quot; title=&quot;开发工具&quot;&gt;&lt;/a&gt;开发工具&lt;/h2&gt;&lt;h3 id=&quot;nodeJs&quot;&gt;&lt;a href=&quot;#nodeJs&quot; class=&quot;headerlink&quot; title=&quot;nodeJs&quot;&gt;&lt;/a&gt;nodeJs&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://nodejs.org/en/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;官网地址&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;git&quot;&gt;&lt;a href=&quot;#git&quot; class=&quot;headerlink&quot; title=&quot;git&quot;&gt;&lt;/a&gt;git&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://git-scm.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;官网地址&lt;/a&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="环境" scheme="http://yoursite.com/categories/%E7%8E%AF%E5%A2%83/"/>
-    
-    
-      <category term="环境搭建" scheme="http://yoursite.com/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
-    
-      <category term="软件官网" scheme="http://yoursite.com/tags/%E8%BD%AF%E4%BB%B6%E5%AE%98%E7%BD%91/"/>
     
   </entry>
   

@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="WebSocket,案例," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="DaliBlogs" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="什么是WebSocket首先需要明白webSocket的概念，下边是维基百科的解释  WebSocket是一种通信协议，可在单个TCP连接上进行全双工通信。WebSocket使得客户端和服务器之间的数据交换变得更加简单，允许服务端主动向客户端推送数据。在WebSocket API中，浏览器和服务器只需要完成一次握手，两者之间就可以建立持久性的连接，并进行双向数据传输。  首先，要明白WebSock">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WebSocket">
+<meta property="og:url" content="http://yoursite.com/2020/09/14/WebSocket/index.html">
+<meta property="og:site_name" content="DaliBlogs">
+<meta property="og:description" content="什么是WebSocket首先需要明白webSocket的概念，下边是维基百科的解释  WebSocket是一种通信协议，可在单个TCP连接上进行全双工通信。WebSocket使得客户端和服务器之间的数据交换变得更加简单，允许服务端主动向客户端推送数据。在WebSocket API中，浏览器和服务器只需要完成一次握手，两者之间就可以建立持久性的连接，并进行双向数据传输。  首先，要明白WebSock">
+<meta property="article:published_time" content="2020-09-14T07:00:35.000Z">
+<meta property="article:modified_time" content="2020-09-14T07:20:35.033Z">
+<meta property="article:author" content="Dali">
+<meta property="article:tag" content="WebSocket">
+<meta property="article:tag" content="案例">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/09/14/WebSocket/"/>
+
+
+
+
+
+  <title>WebSocket | DaliBlogs</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DaliBlogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/14/WebSocket/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">WebSocket</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-14T15:00:35+08:00">
+                2020-09-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/WebSocket/" itemprop="url" rel="index">
+                    <span itemprop="name">WebSocket</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="什么是WebSocket"><a href="#什么是WebSocket" class="headerlink" title="什么是WebSocket"></a><strong>什么是WebSocket</strong></h2><p>首先需要明白webSocket的概念，下边是维基百科的解释</p>
+<blockquote>
+<p>WebSocket是一种通信协议，可在单个TCP连接上进行全双工通信。WebSocket使得客户端和服务器之间的数据交换变得更加简单，允许服务端主动向客户端推送数据。在WebSocket API中，浏览器和服务器只需要完成一次握手，两者之间就可以建立持久性的连接，并进行双向数据传输。</p>
+</blockquote>
+<p>首先，要明白WebSocket是一种通信协议，区别于HTTP协议，HTTP协议只能实现客户端请求，服务端响应的这种单项通信。<br>而WebSocket可以实现客户端与服务端的双向通讯，说白了，最大也是最明显的区别就是可以做到服务端主动将消息推送给客户端。<br>其余的特点有：</p>
+<ul>
+<li>握手阶段采用 HTTP 协议。</li>
+<li>数据格式轻量，性能开销小。客户端与服务端进行数据交换时，服务端到客户端的数据包头只有2到10字节，客户端到服务端需要加上另外4字节的掩码。HTTP每次都需要携带完整头部。</li>
+<li>更好的二进制支持，可以发送文本，和二进制数据</li>
+<li>没有同源限制，客户端可以与任意服务器通信</li>
+<li>协议标识符是ws（如果加密，则是wss），请求的地址就是后端支持websocket的API。</li>
+</ul>
+<a id="more"></a>
+
+<h2 id="几种与服务端实时通信的方法"><a href="#几种与服务端实时通信的方法" class="headerlink" title="几种与服务端实时通信的方法"></a><strong>几种与服务端实时通信的方法</strong></h2><p>我们都知道，不使用WebSocket与服务器实时交互，一般有两种方法。AJAX轮询和Long Polling长轮询。</p>
+<h3 id="AJAX轮询"><a href="#AJAX轮询" class="headerlink" title="AJAX轮询"></a><strong>AJAX轮询</strong></h3><p>AJAX轮询也就是定时发送请求，也就是普通的客户端与服务端通信过程，只不过是无限循环发送，这样，可以保证服务端一旦有最新消息，就可以被客户端获取。</p>
+<h3 id="Long-Polling长轮询"><a href="#Long-Polling长轮询" class="headerlink" title="Long Polling长轮询"></a><strong>Long Polling长轮询</strong></h3><p>Long Polling长轮询是客户端和浏览器保持一个长连接，等服务端有消息返回，断开。<br>然后再重新连接，也是个循环的过程，无穷尽也。。。</p>
+<p>客户端发起一个Long Polling，服务端如果没有数据要返回的话，<br>会hold住请求，等到有数据，就会返回给客户端。客户端又会再次发起一次Long Polling，再重复一次上面的过程。</p>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a><strong>缺点</strong></h3><p>上边这两种方式都有个致命的弱点，开销太大，被动性。假设并发很高的话，这对服务端是个考验。<br>而WebSocket一次握手，持久连接，以及主动推送的特点可以解决上边的问题，又不至于损耗性能。</p>
+<h2 id="WebSocket连接过程"><a href="#WebSocket连接过程" class="headerlink" title="WebSocket连接过程"></a><strong>WebSocket连接过程</strong></h2><p>客户端发起HTTP握手，告诉服务端进行WebSocket协议通讯，并告知WebSocket协议版本。服务端确认协议版本，升级为WebSocket协议。之后如果有数据需要推送，会主动推送给客户端。</p>
+<p>连接开始时，客户端使用HTTP协议和服务端升级协议，升级完成后，后续数据交换遵循WebSocket协议。我们看看Request Headers</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Accept-Encoding: gzip, deflate, br</span><br><span class="line">Accept-Language: zh,zh-TW;q=0.9,en-US;q=0.8,en;q=0.7,zh-CN;q=0.6</span><br><span class="line">Cache-Control: no-cache</span><br><span class="line">Connection: Upgrade</span><br><span class="line">Host: 127.0.0.1:3000</span><br><span class="line">Origin: http://localhost:3000</span><br><span class="line">Pragma: no-cache</span><br><span class="line">Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits</span><br><span class="line">Sec-WebSocket-Key: bwb9SFiJONXhQ/A4pLaXIg==</span><br><span class="line">Sec-WebSocket-Version: 13</span><br><span class="line">Upgrade: websocket</span><br></pre></td></tr></table></figure>
+
+<p>重点字段是这些：</p>
+<ul>
+<li>Connection: Upgrade 表示要升级协议</li>
+<li>Upgrade: websocket 要升级协议到websocket协议</li>
+<li>Sec-WebSocket-Version 表示websocket的版本。如果服务端不支持该版本，需要返回一个Sec-WebSocket-Versionheader，里面包含服务端支持的版本号。</li>
+<li>Sec-WebSocket-Key 对应服务端响应头的Sec-WebSocket-Accept，由于没有同源限制，websocket客户端可任意连接支持websocket的服务。这个就相当于一个钥匙一把锁，避免多余的，无意义的连接。</li>
+</ul>
+<p>再看看看服务端响应的 Response Headers</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Connection: Upgrade</span><br><span class="line">Sec-WebSocket-Accept: 2jrbCWSCPlzPtxarlGTp4Y8XD20=</span><br><span class="line">Upgrade: websocket</span><br></pre></td></tr></table></figure>
+
+<p>关键是这个字段</p>
+<ul>
+<li>Sec-WebSocket-Accept: 用来告知服务器愿意发起一个websocket连接， 值根据客户端请求头的Sec-WebSocket-Key计算出来</li>
+</ul>
+<h2 id="WebSocket-API"><a href="#WebSocket-API" class="headerlink" title="WebSocket API"></a><strong>WebSocket API</strong></h2><p>客户端若想要与支持webScoket的服务器通信，可以使用WebSocket构造函数返回WebSocket对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const ws &#x3D; new WebSocket(&quot;ws:&#x2F;&#x2F;localhost:3000&#x2F;websocket&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>这样，客户端就会与服务端开始连接。</p>
+<p>返回的实例对象的属性：</p>
+<ul>
+<li>WebSocket.onopen： 连接成功后的回调</li>
+<li>WebSocket.onclose： 连接关闭后的回调</li>
+<li>WebSocket.onerror： 连接失败后的回调</li>
+<li>WebSocket.onmessage： 客户端接收到服务端数据的回调</li>
+<li>webSocket.bufferedAmount： 未发送至服务器的二进制字节数</li>
+<li>WebSocket.binaryType： 使用二进制的数据类型连接</li>
+<li>WebSocket.protocol ： 服务器选择的下属协议</li>
+<li>WebSocket.url ： WebSocket 的绝对路径</li>
+<li>WebSocket.readyState： 当前连接状态，对应的四个常量</li>
+</ul>
+<p>WebSocket.CONNECTING: 0</p>
+<p>WebSocket.OPEN: 1</p>
+<p>WebSocket.CLOSING: 2</p>
+<p>WebSocket.CLOSED: 3</p>
+<p>方法：</p>
+<ul>
+<li>WebSocket.close() 关闭当前连接</li>
+<li>WebSocket.send(data) 向服务器发送数据</li>
+</ul>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a><strong>示例</strong></h2><p>讲了那么多概念以后，终于可以看看怎么用了。实现WebSocket通信，需要客户端和服务端配合。</p>
+<p>自己写了一个例子，服务端在开始连接后，利用定时器主动向客户端发送随机数，客户端也可以发给服务器消息，然后服务器返回这条消息给客户端。客户端就是js+html，服务端用了express + express-ws来实现。</p>
+<p>示例链接：<a href="https://github.com/neroneroffy/webSocketDemo" target="_blank" rel="noopener">https://github.com/neroneroffy/webSocketDemo</a></p>
+<h2 id="浏览器兼容"><a href="#浏览器兼容" class="headerlink" title="浏览器兼容"></a>浏览器兼容</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;判断当前浏览器是否支持WebSocket</span><br><span class="line">if (&#39;WebSocket&#39; in window) &#123;</span><br><span class="line">    var serviceIp &#x3D;&quot;172.168.0.16:8880&quot;;</span><br><span class="line">    this.websocket &#x3D; new WebSocket(&quot;ws:&#x2F;&#x2F;&quot;+serviceIp+&quot;&#x2F;system&#x2F;websocket&quot;);</span><br><span class="line">&#125;else if (&#39;MozWebSocket&#39; in window) &#123;</span><br><span class="line">    var serviceIp &#x3D;&quot;172.168.0.16:8880&quot;;</span><br><span class="line">    this.websocket &#x3D; new WebSocket(&quot;ws:&#x2F;&#x2F;&quot;+serviceIp+&quot;&#x2F;system&#x2F;websocket&quot;);</span><br><span class="line">&#125;else &#123;</span><br><span class="line">    console.log(&#39;当前浏览器 Not support websocket&#39;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="vue中使用"><a href="#vue中使用" class="headerlink" title="vue中使用"></a>vue中使用</h2><h3 id="sockjs-client"><a href="#sockjs-client" class="headerlink" title="sockjs-client"></a>sockjs-client</h3><p><a href="https://github.com/sockjs/sockjs-client" target="_blank" rel="noopener">sockjs-client</a>是从SockJS中分离出来的用于客户端使用的通信模块.所以我们就直接来看看SockJS. SockJS是一个浏览器的JavaScript库,它提供了一个类似于网络的对象,SockJS提供了一个连贯的,跨浏览器的JavaScriptAPI,它在浏览器和Web服务器之间创建了一个低延迟,全双工,跨域通信通道. 你可能会问,我为什么不直接用原生的WebSocket而要使用SockJS呢?这得益于SockJS的一大特性,一些浏览器中缺少对WebSocket的支持,因此，回退选项是必要的，而Spring框架提供了基于SockJS协议的透明的回退选项。SockJS提供了浏览器兼容性,优先使用原生的WebSocket,如果某个浏览器不支持WebSocket,SockJS会自动降级为轮询.</p>
+<h3 id="stomjs"><a href="#stomjs" class="headerlink" title="stomjs"></a>stomjs</h3><p>STOMP(Simple Text-Orientated Messaging Protocol) 面向消息的简单文本协议; WebSocket是一个消息架构,不强制使用任何特定的消息协议,它依赖于应用层解释消息的含义. 与HTTP不同,WebSocket是处在TCP上非常薄的一层,会将字节流转化为文本/二进制消息,因此,对于实际应用来说,WebSocket的通信形式层级过低,因此，可以在 WebSocket 之上使用STOMP协议，来为浏览器 和 server间的 通信增加适当的消息语义。</p>
+<p><strong>STOMP与WebSocket 的关系:</strong></p>
+<ol>
+<li>HTTP协议解决了web浏览器发起请求以及web服务器响应请求的细节,假设HTTP协议不存在,只能使用TCP套接字来编写web应用,你可能认为这是一件疯狂的事情;</li>
+<li>直接使用WebSocket(SockJS)就很类似于使用TCP套接字来编写web应用,因为没有高层协议,就需要我们定义应用间发送消息的语义,还需要确保连接的两端都能遵循这些语义;</li>
+<li>同HTTP在TCP套接字上添加请求-响应模型层一样,STOMP在WebSocket之上提供了一个基于帧的线路格式层,用来定义消息语义.</li>
+</ol>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p>代码中除了最基本的连接,还设置了一个定时器,每隔十秒发送一条数据到服务器端,如果发生错误,catch这个错误,重新建立连接.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 安装并引入相关模块</span><br><span class="line">import SockJS from  &#39;sockjs-client&#39;;  </span><br><span class="line">import  Stomp from &#39;stompjs&#39;;</span><br><span class="line">export default &#123;</span><br><span class="line">    data() &#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        dataList: []</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    mounted:function()&#123;</span><br><span class="line">      this.initWebSocket();</span><br><span class="line">    &#125;,</span><br><span class="line">    beforeDestroy: function () &#123;</span><br><span class="line">      &#x2F;&#x2F; 页面离开时断开连接,清除定时器</span><br><span class="line">      this.disconnect();</span><br><span class="line">      clearInterval(this.timer);</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">      initWebSocket() &#123;</span><br><span class="line">        this.connection();</span><br><span class="line">        let self &#x3D; this;</span><br><span class="line">        &#x2F;&#x2F; 断开重连机制,尝试发送消息,捕获异常发生时重连</span><br><span class="line">        this.timer &#x3D; setInterval(() &#x3D;&gt; &#123;</span><br><span class="line">          try &#123;</span><br><span class="line">            self.stompClient.send(&quot;test&quot;);</span><br><span class="line">          &#125; catch (err) &#123;</span><br><span class="line">            console.log(&quot;断线了: &quot; + err);</span><br><span class="line">            self.connection();</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;, 5000);</span><br><span class="line">      &#125;,</span><br><span class="line">      removeTab(targetName) &#123;</span><br><span class="line">        console.log(targetName)</span><br><span class="line">      &#125;,</span><br><span class="line">      connection() &#123;</span><br><span class="line">      &#x2F;&#x2F; 建立连接对象</span><br><span class="line">        this.socket &#x3D; new SockJS(&#39;http:&#x2F;&#x2F;xxxxxx:8089&#x2F;ws&#39;);&#x2F;&#x2F;连接服务端提供的通信接口，连接以后才可以订阅广播消息和个人消息</span><br><span class="line">        &#x2F;&#x2F; 获取STOMP子协议的客户端对象</span><br><span class="line">        this.stompClient &#x3D; Stomp.over(this.socket);</span><br><span class="line">        &#x2F;&#x2F; 定义客户端的认证信息,按需求配置</span><br><span class="line">        var headers &#x3D; &#123;</span><br><span class="line">          login: &#39;mylogin&#39;,</span><br><span class="line">          passcode: &#39;mypasscode&#39;,</span><br><span class="line">          &#x2F;&#x2F; additional header</span><br><span class="line">          &#39;client-id&#39;: &#39;my-client-id&#39;</span><br><span class="line">        &#125;;</span><br><span class="line">        &#x2F;&#x2F; 向服务器发起websocket连接</span><br><span class="line">        this.stompClient.connect(headers,(frame) &#x3D;&gt; &#123;</span><br><span class="line">          this.stompClient.subscribe(&#39;&#x2F;topic&#x2F;chat_msg&#39;, (msg) &#x3D;&gt; &#123; &#x2F;&#x2F; 订阅服务端提供的某个topic</span><br><span class="line">           consolel.log(msg.body);  &#x2F;&#x2F; msg.body存放的是服务端发送给我们的信息</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;, (err) &#x3D;&gt; &#123;</span><br><span class="line">            &#x2F;&#x2F; 连接发生错误时的处理函数</span><br><span class="line">            console.log(err);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">      &#125;,</span><br><span class="line">      &#x2F;&#x2F; 断开连接</span><br><span class="line">      disconnect() &#123;</span><br><span class="line">        if (this.stompClient !&#x3D; null) &#123;</span><br><span class="line">          this.stompClient.disconnect();</span><br><span class="line">          console.log(&quot;Disconnected&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>链接：<a href="https://juejin.im/post/6844903664721592327" target="_blank" rel="noopener">https://juejin.im/post/6844903664721592327</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/WebSocket/" rel="tag"># WebSocket</a>
+          
+            <a href="/tags/%E6%A1%88%E4%BE%8B/" rel="tag"># 案例</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/09/10/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8Bwx-request%E5%B0%81%E8%A3%85/" rel="next" title="小程序之wx-request封装">
+                <i class="fa fa-chevron-left"></i> 小程序之wx-request封装
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/09/14/es6%E4%B9%8B%E6%89%A9%E5%B1%95%E8%BF%90%E7%AE%97%E7%AC%A6/" rel="prev" title="es6之扩展运算符">
+                es6之扩展运算符 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="Dali" />
+            
+              <p class="site-author-name" itemprop="name">Dali</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是WebSocket"><span class="nav-number">1.</span> <span class="nav-text">什么是WebSocket</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#几种与服务端实时通信的方法"><span class="nav-number">2.</span> <span class="nav-text">几种与服务端实时通信的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AJAX轮询"><span class="nav-number">2.1.</span> <span class="nav-text">AJAX轮询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Long-Polling长轮询"><span class="nav-number">2.2.</span> <span class="nav-text">Long Polling长轮询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点"><span class="nav-number">2.3.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WebSocket连接过程"><span class="nav-number">3.</span> <span class="nav-text">WebSocket连接过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WebSocket-API"><span class="nav-number">4.</span> <span class="nav-text">WebSocket API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#示例"><span class="nav-number">5.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器兼容"><span class="nav-number">6.</span> <span class="nav-text">浏览器兼容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue中使用"><span class="nav-number">7.</span> <span class="nav-text">vue中使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sockjs-client"><span class="nav-number">7.1.</span> <span class="nav-text">sockjs-client</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stomjs"><span class="nav-number">7.2.</span> <span class="nav-text">stomjs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">7.3.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dali</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
