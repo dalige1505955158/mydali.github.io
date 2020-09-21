@@ -87,14 +87,14 @@
 <meta property="og:url" content="http://yoursite.com/2020/07/30/vue-template%E6%A0%87%E7%AD%BE%E7%9B%B8%E5%85%B3/index.html">
 <meta property="og:site_name" content="DaliBlogs">
 <meta property="og:description" content="事件12v-on:keyup.enter--@dblclick(双击)v-on:dblclick--@dblclick(双击)">
-<meta property="og:image" content="http://yoursite.com/2020/07/30/vue-template%E6%A0%87%E7%AD%BE%E7%9B%B8%E5%85%B3/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/dbe405ce0bb947b383ca1c34ccf45007/clipboard.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200305115116484.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3F3cTE1MDM=,size_16,color_FFFFFF,t_70">
 <meta property="article:published_time" content="2020-07-30T10:38:36.000Z">
-<meta property="article:modified_time" content="2020-09-08T05:56:18.059Z">
+<meta property="article:modified_time" content="2020-09-21T06:22:55.677Z">
 <meta property="article:author" content="Dali">
 <meta property="article:tag" content="vue">
 <meta property="article:tag" content="标签">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2020/07/30/vue-template%E6%A0%87%E7%AD%BE%E7%9B%B8%E5%85%B3/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/dbe405ce0bb947b383ca1c34ccf45007/clipboard.png">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200305115116484.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3F3cTE1MDM=,size_16,color_FFFFFF,t_70">
 
 
 
@@ -414,7 +414,7 @@
 
 
 <h3 id="vue中’-native’修饰符的使用"><a href="#vue中’-native’修饰符的使用" class="headerlink" title="vue中’. native’修饰符的使用"></a>vue中’. native’修饰符的使用</h3><p>该修饰符的作用就是把一个vue组件转化为一个普通的HTML标签，并且该修饰符对普通HTML标签是没有任何作用的。(子组件直接调用父组件的方法)</p>
-<p><img src="/2020/07/30/vue-template%E6%A0%87%E7%AD%BE%E7%9B%B8%E5%85%B3/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/dbe405ce0bb947b383ca1c34ccf45007/clipboard.png" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200305115116484.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3F3cTE1MDM=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <h3 id="class类名"><a href="#class类名" class="headerlink" title="class类名"></a>class类名</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class类名</span><br><span class="line">&lt;!-- 第一种方式:对象的形式 --&gt;</span><br><span class="line">&lt;!-- 第一个参数 类名， 第二个参数：boolean值 --&gt;</span><br><span class="line">&lt;!-- 对象的形式: 用花括号包裹起来，类名用引号， --&gt;</span><br><span class="line">&lt;!-- 优点: 以对象的形式可以写多个，用逗号分开 --&gt;</span><br><span class="line">&lt;p :class&#x3D;&quot;&#123;&#39;p1&#39; : true&#125;&quot;&gt;对象的形式(文字的颜色)&lt;&#x2F;p&gt;</span><br><span class="line">&lt;p :class&#x3D;&quot;&#123;&#39;p1&#39; : false, &#39;p&#39;: true&#125;&quot;&gt;对象的形式(文字的颜色)&lt;&#x2F;p&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 第二种方式:三元表达式 注意点：放在数组中，类名要用引号--&gt;</span><br><span class="line">&lt;p :class&#x3D;&quot;[ 1 &lt; 2 ? &#39;p1&#39; : &#39;p&#39; ]&quot; &gt;三元表示式(文字的颜色)&lt;&#x2F;p&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 第三种方式: 数组的形式 --&gt;</span><br><span class="line">&lt;p :class&#x3D;&quot;[isTrue, isFalse]&quot;&gt;数组的形式(文字的颜色)&lt;&#x2F;p&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 数组中用对象 --&gt;</span><br><span class="line">&lt;p :class&#x3D;&quot;[&#123;&#39;p1&#39;: false&#125;, isFalse]&quot;&gt;数组中使用对象(文字的颜色)&lt;&#x2F;p&gt;</span><br><span class="line"> </span><br><span class="line">&lt;!--补充:  class中还可以传方法，在方法中返回类名--&gt;</span><br><span class="line">&lt;p :class&#x3D;&quot;setClass&quot;&gt;通过方法设置class类名&lt;&#x2F;p&gt;</span><br></pre></td></tr></table></figure>
 
 
@@ -586,7 +586,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">103</span>
+                  <span class="site-state-item-count">104</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -597,7 +597,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-count">51</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -608,7 +608,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-count">103</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

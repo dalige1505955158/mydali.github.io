@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-09-21T02:43:53.266Z</updated>
+  <updated>2020-09-21T12:31:38.456Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>webpack最全解析</title>
+    <link href="http://yoursite.com/2020/09/21/webpack%E6%9C%80%E5%85%A8%E8%A7%A3%E6%9E%90/"/>
+    <id>http://yoursite.com/2020/09/21/webpack%E6%9C%80%E5%85%A8%E8%A7%A3%E6%9E%90/</id>
+    <published>2020-09-21T09:29:49.000Z</published>
+    <updated>2020-09-21T12:31:38.456Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;常用webpack插件&quot;&gt;&lt;a href=&quot;#常用webpack插件&quot; class=&quot;headerlink&quot; title=&quot;常用webpack插件&quot;&gt;&lt;/a&gt;常用webpack插件&lt;/h3&gt;&lt;h4 id=&quot;live-server&quot;&gt;&lt;a href=&quot;#live-server&quot; class=&quot;headerlink&quot; title=&quot;live-server&quot;&gt;&lt;/a&gt;live-server&lt;/h4&gt;&lt;p&gt;一款npm工具，全局npm i -g live-server后，项目目录使用live-server命令行命令便可直接在浏览器中预览（默认找index.html，其他请自行带上文件名空格后跟在后面），并且自动全局监听实时更新&lt;/p&gt;
+&lt;p&gt;1.新建一个文件夹（最好英文），执行npm init命令；&lt;/p&gt;
+&lt;p&gt;2.生成package.json文件后，执行npm install -g live-server命令；&lt;/p&gt;
+&lt;p&gt;3.安装完成后，就可以执行live-server命令启动；&lt;/p&gt;
+&lt;p&gt;设置快捷方式如下：&lt;/p&gt;
+&lt;p&gt;1.找到package.json文件，然后找到”script”，写入：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https:////upload-images.jianshu.io/upload_images/15484248-5c9d169a4fcb77da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/488/format/webp&quot; alt=&quot;img&quot;&gt;&lt;/p&gt;
+&lt;p&gt;2.启动如下：npm run server。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="webpack" scheme="http://yoursite.com/categories/webpack/"/>
+    
+    
+      <category term="webpack" scheme="http://yoursite.com/tags/webpack/"/>
+    
+  </entry>
   
   <entry>
     <title>H5移动端调试全攻略</title>
@@ -42,10 +70,33 @@
   
   <entry>
     <title>vue之上拉加载原理</title>
+    <link href="http://yoursite.com/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86%E7%9A%84%E4%B8%89/"/>
+    <id>http://yoursite.com/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86%E7%9A%84%E4%B8%89/</id>
+    <published>2020-09-16T06:20:24.000Z</published>
+    <updated>2020-09-21T06:35:33.508Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;效果&quot;&gt;&lt;a href=&quot;#效果&quot; class=&quot;headerlink&quot; title=&quot;效果&quot;&gt;&lt;/a&gt;效果&lt;/h1&gt;&lt;p&gt;贴上效果展示：&lt;br&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>vue之上拉加载原理</title>
     <link href="http://yoursite.com/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86/"/>
     <id>http://yoursite.com/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86/</id>
     <published>2020-09-16T06:20:24.000Z</published>
-    <updated>2020-09-16T06:23:26.748Z</updated>
+    <updated>2020-09-21T06:33:44.205Z</updated>
     
     <summary type="html">
     
@@ -66,29 +117,6 @@
       <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
     
       <category term="上拉加载" scheme="http://yoursite.com/tags/%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vue之上拉加载原理</title>
-    <link href="http://yoursite.com/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86%E7%9A%84%E4%B8%89/"/>
-    <id>http://yoursite.com/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86%E7%9A%84%E4%B8%89/</id>
-    <published>2020-09-16T06:20:24.000Z</published>
-    <updated>2020-09-16T06:21:52.926Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;效果&quot;&gt;&lt;a href=&quot;#效果&quot; class=&quot;headerlink&quot; title=&quot;效果&quot;&gt;&lt;/a&gt;效果&lt;/h1&gt;&lt;p&gt;贴上效果展示：&lt;br&gt;&lt;img
-        
-      
-    
-    </summary>
-    
-    
     
   </entry>
   
@@ -305,7 +333,7 @@
     <link href="http://yoursite.com/2020/09/14/WebSocket/"/>
     <id>http://yoursite.com/2020/09/14/WebSocket/</id>
     <published>2020-09-14T07:00:35.000Z</published>
-    <updated>2020-09-14T07:20:35.033Z</updated>
+    <updated>2020-09-21T06:51:55.005Z</updated>
     
     <summary type="html">
     
@@ -500,34 +528,6 @@
       <category term="海报" scheme="http://yoursite.com/tags/%E6%B5%B7%E6%8A%A5/"/>
     
       <category term="分享朋友圈" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB%E6%9C%8B%E5%8F%8B%E5%9C%88/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>知识点链接</title>
-    <link href="http://yoursite.com/2020/09/08/%E7%9F%A5%E8%AF%86%E7%82%B9%E9%93%BE%E6%8E%A5/"/>
-    <id>http://yoursite.com/2020/09/08/%E7%9F%A5%E8%AF%86%E7%82%B9%E9%93%BE%E6%8E%A5/</id>
-    <published>2020-09-08T09:12:02.000Z</published>
-    <updated>2020-09-16T06:32:45.551Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;vue生命周期从源码看&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/6-WDKTyyDnkbw224WOEpjw&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://mp.weixin.qq.com/s/6-WDKTyyDnkbw224WOEpjw&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;作为一位Vue工程师，这些开发技巧你都会吗？&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/QqMfogiIPLrsSBRUkN_WlQ&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://mp.weixin.qq.com/s/QqMfogiIPLrsSBRUkN_WlQ&lt;/a&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="知识点" scheme="http://yoursite.com/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/"/>
-    
-    
-      <category term="js" scheme="http://yoursite.com/tags/js/"/>
-    
-      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
-    
-      <category term="知识点" scheme="http://yoursite.com/tags/%E7%9F%A5%E8%AF%86%E7%82%B9/"/>
     
   </entry>
   
