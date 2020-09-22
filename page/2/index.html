@@ -294,6 +294,152 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/14/vue%E9%9D%A2%E8%AF%95%E9%A2%98%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/14/vue%E9%9D%A2%E8%AF%95%E9%A2%98%E8%AE%B0%E5%BD%95/" itemprop="url">vue面试题记录</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-14T18:26:56+08:00">
+                2020-09-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="单选题"><a href="#单选题" class="headerlink" title="单选题"></a>单选题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">1. Vue 实例的 data 属性，可以在哪些生命周期中获取到？bcd</span><br><span class="line">A. beforeCreate</span><br><span class="line">B. created</span><br><span class="line">C. beforeMount</span><br><span class="line">D. mounted</span><br><span class="line"></span><br><span class="line">2. 下列对 Vue 原理的叙述，哪些是正确的？abcd</span><br><span class="line">A. Vue 中的数组变更通知，通过拦截数组操作方法而实现</span><br><span class="line">B. 编译器目标是创建渲染函数，渲染函数执行后将得到 VNode 树</span><br><span class="line">C. 组件内 data 发生变化时会通知其对应 watcher，执行异步更新</span><br><span class="line">D. patching 算法首先进行同层级比较，可能执行的操作是节点的增加、删除和更新</span><br><span class="line"></span><br><span class="line">3. 对于 Vue 中响应式数据原理的说法，下列哪项是不正确的？bd</span><br><span class="line">A. 采用数据劫持方式，即 Object.defineProperty() 劫持 data 中各属性，实现响应式数据</span><br><span class="line">B. 视图中的变化会通过 watcher 更新 data 中的数据</span><br><span class="line">C. 若 data 中某属性多次发生变化，watcher 仅会进入更新队列一次</span><br><span class="line">D. 通过编译过程进行依赖收集</span><br><span class="line"></span><br><span class="line">4. 下列说法不正确的是哪项？b</span><br><span class="line">A. key 的作用主要是为了高效地更新虚拟 DOM</span><br><span class="line">B. 若指定了组件的 template 选项，render 函数不会执行</span><br><span class="line">C. 使用 vm.$nextTick 可以确保获得 DOM 异步更新的结果</span><br><span class="line">D. 若没有 el 选项，vm.$mount(dom) 可将 Vue 实例挂载于指定元素上</span><br><span class="line"></span><br><span class="line">5. 下列关于 Vuex 的描述，不正确的是哪项？c</span><br><span class="line">A. Vuex 通过 Vue 实现响应式状态，因此只能用于 Vue</span><br><span class="line">B. Vuex 是一个状态管理模式</span><br><span class="line">C. Vuex 主要用于多视图间状态全局共享与管理</span><br><span class="line">D. 在 Vuex 中改变状态，可以通过 mutations 和 actions</span><br><span class="line"></span><br><span class="line">6. 关于 Vue 组件间的参数传递，下列哪项是不正确的？b</span><br><span class="line">A. 若子组件给父组件传值，可使用 $emit 方法</span><br><span class="line">B. 祖孙组件之间可以使用 provide 和 inject 方式跨层级相互传值</span><br><span class="line">C. 若子组件使用 $emit(&#39;say&#39;) 派发事件，父组件可使用 @say 监听</span><br><span class="line">D. 若父组件给子组件传值，子组件可通过 props 接受数据</span><br><span class="line"></span><br><span class="line">7. 下列关于 vue-router 的描述，不正确的是哪项？c</span><br><span class="line">A. vue-router 的常用模式有 hash 和 history 两种</span><br><span class="line">B. 可通过 addRoutes 方法动态添加路由</span><br><span class="line">C. 可通过 beforeEnter 对单个组件进行路由守卫</span><br><span class="line">D. vue-router 借助 Vue 实现响应式的路由，因此只能用于 Vue</span><br><span class="line"></span><br><span class="line">8. 下列说法不正确的是哪项？c</span><br><span class="line">A. 可通过 this.$parent 查找当前组件的父组件</span><br><span class="line">B. 可使用 this.$refs 查找命名子组件</span><br><span class="line">C. 可使用 this.$children 按顺序查找当前组件的直接子组件</span><br><span class="line">D. 可使用 $root 查找根组件，并可配合 children 遍历全部组件</span><br><span class="line"></span><br><span class="line">9. 下列关于 v-model 的说法，哪项是不正确的？c</span><br><span class="line">A. v-model 能实现双向绑定</span><br><span class="line">B. v-model 本质上是语法糖，它负责监听用户的输入事件以更新数据</span><br><span class="line">C. v-model 是内置指令，不能用在自定义组件上</span><br><span class="line">D. 对 input 使用 v-model，实际上是指定其 :value 和 :input</span><br><span class="line"></span><br><span class="line">10. 关于 Vue 的生命周期，下列哪项是不正确的？d</span><br><span class="line">A. DOM 渲染在 mounted 中就已经完成了</span><br><span class="line">B. Vue 实例从创建到销毁的过程，就是生命周期</span><br><span class="line">C. created 表示完成数据观测、属性和方法的运算和初始化事件，此时 $el 属性还未显示出来</span><br><span class="line">D. 页面首次加载过程中，会依次触发 beforeCreate，created，beforeMount，mounted，beforeUpdate，updated</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/09/14/vue%E9%9D%A2%E8%AF%95%E9%A2%98%E8%AE%B0%E5%BD%95/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/14/js%E4%B9%8Bcall%E5%92%8Capply/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1576,152 +1722,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/09/js%E4%B9%8B%E4%BB%8A%E5%A4%A9%E6%98%AF%E6%98%9F%E6%9C%9F%E5%87%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dali">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DaliBlogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/09/js%E4%B9%8B%E4%BB%8A%E5%A4%A9%E6%98%AF%E6%98%9F%E6%9C%9F%E5%87%A0/" itemprop="url">js之今天是星期几</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-09T10:02:30+08:00">
-                2020-09-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/js/" itemprop="url" rel="index">
-                    <span itemprop="name">js</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="初学"><a href="#初学" class="headerlink" title="初学"></a>初学</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function returnWeekday()&#123;</span><br><span class="line">    let string &#x3D; &quot;今天是星期&quot;;</span><br><span class="line">    let date &#x3D; new Date().getDay();</span><br><span class="line">    if (date &#x3D;&#x3D;&#x3D; 0) &#123;</span><br><span class="line">        string +&#x3D; &quot;日&quot;;</span><br><span class="line">    &#125; else if (date &#x3D;&#x3D;&#x3D; 1) &#123;</span><br><span class="line">        string +&#x3D; &quot;一&quot;;</span><br><span class="line">    &#125; else if (date &#x3D;&#x3D;&#x3D; 2) &#123;</span><br><span class="line">        string +&#x3D; &quot;二&quot;;</span><br><span class="line">    &#125; else if (date &#x3D;&#x3D;&#x3D; 3) &#123;</span><br><span class="line">        string +&#x3D; &quot;三&quot;;</span><br><span class="line">    &#125; else if (date &#x3D;&#x3D;&#x3D; 4) &#123;</span><br><span class="line">        string +&#x3D; &quot;四&quot;;</span><br><span class="line">    &#125; else if (date &#x3D;&#x3D;&#x3D; 5) &#123;</span><br><span class="line">        string +&#x3D; &quot;五&quot;;</span><br><span class="line">    &#125; else if (date &#x3D;&#x3D;&#x3D; 6) &#123;</span><br><span class="line">        string +&#x3D; &quot;六&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    return string</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/09/09/js%E4%B9%8B%E4%BB%8A%E5%A4%A9%E6%98%AF%E6%98%9F%E6%9C%9F%E5%87%A0/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1776,7 +1776,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">105</span>
+                  <span class="site-state-item-count">106</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1787,7 +1787,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1798,7 +1798,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">105</span>
+                  <span class="site-state-item-count">107</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

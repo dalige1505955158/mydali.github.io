@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-09-22T09:43:13.276Z</updated>
+  <updated>2020-09-22T10:16:55.364Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>本地文件夹上传github</title>
+    <link href="http://yoursite.com/2020/09/22/%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8A%E4%BC%A0github/"/>
+    <id>http://yoursite.com/2020/09/22/%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8A%E4%BC%A0github/</id>
+    <published>2020-09-22T10:12:50.000Z</published>
+    <updated>2020-09-22T10:16:55.364Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;首先你需要一个github账号，所有还没有的话先去注册吧！&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://github.com/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;我们使用git需要先安装git工具，这里给出下载地址，下载后一路直接安装即可：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://git-for-windows.github.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://git-for-windows.github.io/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;1.进入Github首页，点击New repository新建一个项目&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://images2015.cnblogs.com/blog/913913/201608/913913-20160823164154526-418441991.png&quot; alt=&quot;img&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="github" scheme="http://yoursite.com/categories/github/"/>
+    
+    
+      <category term="github" scheme="http://yoursite.com/tags/github/"/>
+    
+      <category term="上传文件夹" scheme="http://yoursite.com/tags/%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E5%A4%B9/"/>
+    
+  </entry>
   
   <entry>
     <title>webpack常见loader和plugins</title>
@@ -93,6 +121,36 @@
   
   <entry>
     <title>vue之上拉加载原理</title>
+    <link href="http://yoursite.com/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86/"/>
+    <id>http://yoursite.com/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86/</id>
+    <published>2020-09-16T06:20:24.000Z</published>
+    <updated>2020-09-22T09:58:42.418Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;效果&quot;&gt;&lt;a href=&quot;#效果&quot; class=&quot;headerlink&quot; title=&quot;效果&quot;&gt;&lt;/a&gt;效果&lt;/h1&gt;&lt;p&gt;贴上效果展示：&lt;br&gt;&lt;img src=&quot;https://mmbiz.qpic.cn/mmbiz_gif/1NOXMW586usqMUQjWlJXNU83Pxk8DicribgBBbuvZ13dRfOBLsInRicV51f90TJDiblOfwq1LuN27vTaqssPfF5NeQ/640?wx_fmt=gif&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&quot; alt=&quot;img&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;实现思路&quot;&gt;&lt;a href=&quot;#实现思路&quot; class=&quot;headerlink&quot; title=&quot;实现思路&quot;&gt;&lt;/a&gt;实现思路&lt;/h1&gt;&lt;p&gt;样式方面不多赘述，滚动区域是给固定高度，设置 &lt;code&gt;overflow-y: auto&lt;/code&gt; 来实现。&lt;/p&gt;
+&lt;p&gt;接下来看看js方面的实现，其实也很简单，触发的条件是：&lt;code&gt;可视高度&lt;/code&gt; + &lt;code&gt;滚动距离&lt;/code&gt; &amp;gt;= &lt;code&gt;实际高度&lt;/code&gt; 。例子我会使用&lt;code&gt;vue&lt;/code&gt;来实现，和原生实现是一样的。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;可视高度(offsetHeight)：通过 &lt;code&gt;dom&lt;/code&gt; 的 &lt;code&gt;offsetHeight&lt;/code&gt; 获得，表示区域固定的高度。这里我推荐通过 &lt;code&gt;getBoundingClientRect()&lt;/code&gt; 来获取高度，因为使用前者会引起浏览器回流，造成一些性能问题。&lt;/li&gt;
+&lt;li&gt;滚动高度(scrollTop)：滚动事件中通过 &lt;code&gt;e.target.scrollTop&lt;/code&gt; 获取，表示滚动条距离顶部的px&lt;/li&gt;
+&lt;li&gt;实际高度(scrollHeight)：通过 &lt;code&gt;dom&lt;/code&gt; 的 &lt;code&gt;scrollHeight&lt;/code&gt; 获得，表示区域内所有内容的高度（包括滚动距离），也就是实际高度&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="vue" scheme="http://yoursite.com/categories/vue/"/>
+    
+    
+      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
+    
+      <category term="上拉加载" scheme="http://yoursite.com/tags/%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vue之上拉加载原理</title>
     <link href="http://yoursite.com/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86%E7%9A%84%E4%B8%89/"/>
     <id>http://yoursite.com/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86%E7%9A%84%E4%B8%89/</id>
     <published>2020-09-16T06:20:24.000Z</published>
@@ -111,29 +169,6 @@
     </summary>
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>vue之上拉加载原理</title>
-    <link href="http://yoursite.com/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86/"/>
-    <id>http://yoursite.com/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86/</id>
-    <published>2020-09-16T06:20:24.000Z</published>
-    <updated>2020-09-22T09:51:28.932Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;效果&quot;&gt;&lt;a href=&quot;#效果&quot; class=&quot;headerlink&quot; title=&quot;效果&quot;&gt;&lt;/a&gt;效果&lt;/h1&gt;&lt;p&gt;贴上效果展示：&lt;br&gt;&lt;img src=&quot;https://mmbiz.qpic.cn/mmbiz_gif/1NOXMW586usqMUQjWlJXNU83Pxk8DicribgBBbuvZ13dRfOBLsInRicV51f90TJDiblOfwq1LuN27vTaqssPfF5NeQ/640?wx_fmt=gif&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&quot; alt=&quot;img&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="vue" scheme="http://yoursite.com/categories/vue/"/>
-    
-    
-      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
-    
-      <category term="上拉加载" scheme="http://yoursite.com/tags/%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD/"/>
     
   </entry>
   
@@ -484,29 +519,6 @@
       <category term="小程序" scheme="http://yoursite.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
     
       <category term="骨架屏" scheme="http://yoursite.com/tags/%E9%AA%A8%E6%9E%B6%E5%B1%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>js之今天是星期几</title>
-    <link href="http://yoursite.com/2020/09/09/js%E4%B9%8B%E4%BB%8A%E5%A4%A9%E6%98%AF%E6%98%9F%E6%9C%9F%E5%87%A0/"/>
-    <id>http://yoursite.com/2020/09/09/js%E4%B9%8B%E4%BB%8A%E5%A4%A9%E6%98%AF%E6%98%9F%E6%9C%9F%E5%87%A0/</id>
-    <published>2020-09-09T02:02:30.000Z</published>
-    <updated>2020-09-11T07:48:12.964Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;初学&quot;&gt;&lt;a href=&quot;#初学&quot; class=&quot;headerlink&quot; title=&quot;初学&quot;&gt;&lt;/a&gt;初学&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;function returnWeekday()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    let string &amp;#x3D; &amp;quot;今天是星期&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    let date &amp;#x3D; new Date().getDay();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    if (date &amp;#x3D;&amp;#x3D;&amp;#x3D; 0) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        string +&amp;#x3D; &amp;quot;日&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125; else if (date &amp;#x3D;&amp;#x3D;&amp;#x3D; 1) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        string +&amp;#x3D; &amp;quot;一&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125; else if (date &amp;#x3D;&amp;#x3D;&amp;#x3D; 2) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        string +&amp;#x3D; &amp;quot;二&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125; else if (date &amp;#x3D;&amp;#x3D;&amp;#x3D; 3) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        string +&amp;#x3D; &amp;quot;三&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125; else if (date &amp;#x3D;&amp;#x3D;&amp;#x3D; 4) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        string +&amp;#x3D; &amp;quot;四&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125; else if (date &amp;#x3D;&amp;#x3D;&amp;#x3D; 5) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        string +&amp;#x3D; &amp;quot;五&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125; else if (date &amp;#x3D;&amp;#x3D;&amp;#x3D; 6) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        string +&amp;#x3D; &amp;quot;六&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return string&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="js" scheme="http://yoursite.com/categories/js/"/>
-    
-    
-      <category term="js" scheme="http://yoursite.com/tags/js/"/>
-    
-      <category term="星期" scheme="http://yoursite.com/tags/%E6%98%9F%E6%9C%9F/"/>
     
   </entry>
   
