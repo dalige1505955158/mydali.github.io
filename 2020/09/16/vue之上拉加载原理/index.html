@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="效果贴上效果展示： 实现思路样式方面不多赘述，滚动区域是给固定高度，设置 overflow-y: auto 来实现。 接下来看看js方面的实现，其实也很简单，触发的条件是：可视高度 + 滚动距离 &gt;&#x3D; 实际高度 。例子我会使用vue来实现，和原生实现是一样的。  可视高度(offsetHeight)：通过 dom 的 offsetHeight 获得，表示区域固定的高度。这里我推荐通过 get">
+<meta name="description" content="效果贴上效果展示：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue之上拉加载原理">
 <meta property="og:url" content="http://yoursite.com/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86/index.html">
 <meta property="og:site_name" content="DaliBlogs">
-<meta property="og:description" content="效果贴上效果展示： 实现思路样式方面不多赘述，滚动区域是给固定高度，设置 overflow-y: auto 来实现。 接下来看看js方面的实现，其实也很简单，触发的条件是：可视高度 + 滚动距离 &gt;&#x3D; 实际高度 。例子我会使用vue来实现，和原生实现是一样的。  可视高度(offsetHeight)：通过 dom 的 offsetHeight 获得，表示区域固定的高度。这里我推荐通过 get">
+<meta property="og:description" content="效果贴上效果展示：">
 <meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_gif/1NOXMW586usqMUQjWlJXNU83Pxk8DicribgBBbuvZ13dRfOBLsInRicV51f90TJDiblOfwq1LuN27vTaqssPfF5NeQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1">
 <meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_gif/1NOXMW586usqMUQjWlJXNU83Pxk8Dicribp9bOZENlSxoMU2MQtaNovYQXIb65qUPxKwWtTibqm9icMicOxXsFSUlMQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1">
 <meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_gif/1NOXMW586usqMUQjWlJXNU83Pxk8DicribkC2ZSbcwoQfvEQdXUGzpzibj2IK0xQawxOm2q1t6L5N0Sj21Mmb2fJw/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1">
 <meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_gif/1NOXMW586usqMUQjWlJXNU83Pxk8Dicribqic9sKlSTeB0CianJYNJMViaUdChLxbic397ItI3Gb0O8VhpoadpCSzAQA/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1">
 <meta property="article:published_time" content="2020-09-16T06:20:24.000Z">
-<meta property="article:modified_time" content="2020-09-21T06:33:44.205Z">
+<meta property="article:modified_time" content="2020-09-22T09:51:28.932Z">
 <meta property="article:author" content="Dali">
 <meta property="article:tag" content="vue">
 <meta property="article:tag" content="上拉加载">
@@ -394,6 +394,8 @@
 
       
         <h1 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h1><p>贴上效果展示：<br><img src="https://mmbiz.qpic.cn/mmbiz_gif/1NOXMW586usqMUQjWlJXNU83Pxk8DicribgBBbuvZ13dRfOBLsInRicV51f90TJDiblOfwq1LuN27vTaqssPfF5NeQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
+<a id="more"></a>
+
 <h1 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h1><p>样式方面不多赘述，滚动区域是给固定高度，设置 <code>overflow-y: auto</code> 来实现。</p>
 <p>接下来看看js方面的实现，其实也很简单，触发的条件是：<code>可视高度</code> + <code>滚动距离</code> &gt;= <code>实际高度</code> 。例子我会使用<code>vue</code>来实现，和原生实现是一样的。</p>
 <ul>
@@ -462,8 +464,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/09/21/H5%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%B0%83%E8%AF%95%E5%85%A8%E6%94%BB%E7%95%A5/" rel="prev" title="H5移动端调试全攻略">
-                H5移动端调试全攻略 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86%E7%9A%84%E4%B8%89/" rel="prev" title="vue之上拉加载原理">
+                vue之上拉加载原理 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -545,7 +547,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">104</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

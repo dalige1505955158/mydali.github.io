@@ -742,6 +742,152 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86%E7%9A%84%E4%B8%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86%E7%9A%84%E4%B8%89/" itemprop="url">vue之上拉加载原理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-16T14:20:24+08:00">
+                2020-09-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h1><p>贴上效果展示：<br><img src="https://mmbiz.qpic.cn/mmbiz_gif/1NOXMW586usqMUQjWlJXNU83Pxk8DicribgBBbuvZ13dRfOBLsInRicV51f90TJDiblOfwq1LuN27vTaqssPfF5NeQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
+<h1 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h1><p>样式方面不多赘述，滚动区域是给固定高度，设置 <code>overflow-y: auto</code> 来实现。</p>
+<p>接下来看看js方面的实现，其实也很简单，触发的条件是：<code>可视高度</code> + <code>滚动距离</code> &gt;= <code>实际高度</code> 。例子我会使用<code>vue</code>来实现，和原生实现是一样的。</p>
+<ul>
+<li>可视高度(offsetHeight)：通过 <code>dom</code> 的 <code>offsetHeight</code> 获得，表示区域固定的高度。这里我推荐通过 <code>getBoundingClientRect()</code> 来获取高度，因为使用前者会引起浏览器回流，造成一些性能问题。</li>
+<li>滚动高度(scrollTop)：滚动事件中通过 <code>e.target.scrollTop</code> 获取，表示滚动条距离顶部的px</li>
+<li>实际高度(scrollHeight)：通过 <code>dom</code> 的 <code>scrollHeight</code> 获得，表示区域内所有内容的高度（包括滚动距离），也就是实际高度</li>
+</ul>
+<h1 id="基础实现"><a href="#基础实现" class="headerlink" title="基础实现"></a>基础实现</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">onScroll(e) &#123;</span><br><span class="line">    let scrollTop &#x3D; e.target.scrollTop</span><br><span class="line">    let scrollHeight &#x3D; e.target.scrollHeight</span><br><span class="line">    let offsetHeight &#x3D; Math.ceil(e.target.getBoundingClientRect().height)</span><br><span class="line">    let currentHeight &#x3D; scrollTop + offsetHeight</span><br><span class="line">    if (currentHeight &gt;&#x3D; scrollHeight) &#123;</span><br><span class="line">        console.log(&#39;触底&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/1NOXMW586usqMUQjWlJXNU83Pxk8Dicribp9bOZENlSxoMU2MQtaNovYQXIb65qUPxKwWtTibqm9icMicOxXsFSUlMQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
+<p>so easy~</p>
+<h1 id="加点细节"><a href="#加点细节" class="headerlink" title="加点细节"></a>加点细节</h1><p>加点细节，现在我们希望是离底部一定距离就触发事件，而不是等到完全触底。如果你做过小程序，这和<code>onReachBottom</code>差不多的意思。</p>
+<p>声明一个离底部的距离变量<code>reachBottomDistance</code></p>
+<p>这时候触发条件：<code>可视高度</code> + <code>滚动距离</code> + <code>reachBottomDistance</code> &gt;= <code>实际高度</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  data()&#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      reachBottomDistance: 100</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    onScroll(e) &#123;</span><br><span class="line">        let scrollTop &#x3D; e.target.scrollTop</span><br><span class="line">        let scrollHeight &#x3D; e.target.scrollHeight</span><br><span class="line">        let offsetHeight &#x3D; Math.ceil(e.target.getBoundingClientRect().height)</span><br><span class="line">        let currentHeight &#x3D; scrollTop + offsetHeight + this.reachBottomDistance</span><br><span class="line">        if (currentHeight &gt;&#x3D; scrollHeight) &#123;</span><br><span class="line">            console.log(&#39;触底&#39;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/1NOXMW586usqMUQjWlJXNU83Pxk8DicribkC2ZSbcwoQfvEQdXUGzpzibj2IK0xQawxOm2q1t6L5N0Sj21Mmb2fJw/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
+<p>在距离底部100px时成功触发事件，但由于100px往下的区域是符合条件的，会导致一直触发，这不是我们想要的。</p>
+<p>接下来做一些处理，让其进入后只触发一次:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  data()&#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      isReachBottom: false,</span><br><span class="line">      reachBottomDistance: 100</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    onScroll(e) &#123;</span><br><span class="line">        let scrollTop &#x3D; e.target.scrollTop</span><br><span class="line">        let scrollHeight &#x3D; e.target.scrollHeight</span><br><span class="line">        let offsetHeight &#x3D; Math.ceil(e.target.getBoundingClientRect().height)</span><br><span class="line">        let currentHeight &#x3D; scrollTop + offsetHeight + this.reachBottomDistance</span><br><span class="line"></span><br><span class="line">        if(currentHeight &lt; scrollHeight &amp;&amp; this.isReachBottom)&#123;</span><br><span class="line">          this.isReachBottom &#x3D; false</span><br><span class="line">        &#125;</span><br><span class="line">        if(this.isReachBottom)&#123;</span><br><span class="line">          return</span><br><span class="line">        &#125;</span><br><span class="line">        if (currentHeight &gt;&#x3D; scrollHeight) &#123;</span><br><span class="line">          this.isReachBottom &#x3D; true</span><br><span class="line">          console.log(&#39;触底&#39;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/1NOXMW586usqMUQjWlJXNU83Pxk8Dicribqic9sKlSTeB0CianJYNJMViaUdChLxbic397ItI3Gb0O8VhpoadpCSzAQA/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
+<h1 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h1><p>实时去获取位置信息稍微会损耗性能，我们应该把不变的缓存起来，只实时获取可变的部分</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  data()&#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      isReachBottom: false,</span><br><span class="line">      reachBottomDistance: 100</span><br><span class="line">      scrollHeight: 0,</span><br><span class="line">      offsetHeight: 0,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted()&#123;</span><br><span class="line">    &#x2F;&#x2F; 页面加载完成后  将高度存储起来</span><br><span class="line">    let dom &#x3D; document.querySelector(&#39;.comment-area .comment-list&#39;)</span><br><span class="line">    this.scrollHeight &#x3D; dom.scrollHeight</span><br><span class="line">    this.offsetHeight &#x3D; Math.ceil(dom.getBoundingClientRect().height)</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    onScroll(e) &#123;</span><br><span class="line">        let scrollTop &#x3D; e.target.scrollTop</span><br><span class="line">        let currentHeight &#x3D; scrollTop + this.offsetHeight + this.reachBottomDistance</span><br><span class="line"></span><br><span class="line">        if(currentHeight &lt; this.scrollHeight &amp;&amp; this.isReachBottom)&#123;</span><br><span class="line">          this.isReachBottom &#x3D; false</span><br><span class="line">        &#125;</span><br><span class="line">        if(this.isReachBottom)&#123;</span><br><span class="line">          return</span><br><span class="line">        &#125;</span><br><span class="line">        if (currentHeight &gt;&#x3D; this.scrollHeight) &#123;</span><br><span class="line">          this.isReachBottom &#x3D; true</span><br><span class="line">          console.log(&#39;触底&#39;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实现到这里就告一段落，如果你有更好的思路和值得改进的地方，欢迎交流~</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -834,36 +980,14 @@
 
       
         
-          
-            <h1 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h1><p>贴上效果展示：<br><img src="https://mmbiz.qpic.cn/mmbiz_gif/1NOXMW586usqMUQjWlJXNU83Pxk8DicribgBBbuvZ13dRfOBLsInRicV51f90TJDiblOfwq1LuN27vTaqssPfF5NeQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
-<h1 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h1><p>样式方面不多赘述，滚动区域是给固定高度，设置 <code>overflow-y: auto</code> 来实现。</p>
-<p>接下来看看js方面的实现，其实也很简单，触发的条件是：<code>可视高度</code> + <code>滚动距离</code> &gt;= <code>实际高度</code> 。例子我会使用<code>vue</code>来实现，和原生实现是一样的。</p>
-<ul>
-<li>可视高度(offsetHeight)：通过 <code>dom</code> 的 <code>offsetHeight</code> 获得，表示区域固定的高度。这里我推荐通过 <code>getBoundingClientRect()</code> 来获取高度，因为使用前者会引起浏览器回流，造成一些性能问题。</li>
-<li>滚动高度(scrollTop)：滚动事件中通过 <code>e.target.scrollTop</code> 获取，表示滚动条距离顶部的px</li>
-<li>实际高度(scrollHeight)：通过 <code>dom</code> 的 <code>scrollHeight</code> 获得，表示区域内所有内容的高度（包括滚动距离），也就是实际高度</li>
-</ul>
-<h1 id="基础实现"><a href="#基础实现" class="headerlink" title="基础实现"></a>基础实现</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">onScroll(e) &#123;</span><br><span class="line">    let scrollTop &#x3D; e.target.scrollTop &#x2F;&#x2F;滚动高度</span><br><span class="line">    let scrollHeight &#x3D; e.target.scrollHeight &#x2F;&#x2F;实际高度</span><br><span class="line">    let offsetHeight &#x3D; Math.ceil(e.target.getBoundingClientRect().height)&#x2F;&#x2F;可视高度</span><br><span class="line">    let currentHeight &#x3D; scrollTop + offsetHeight</span><br><span class="line">    if (currentHeight &gt;&#x3D; scrollHeight) &#123;</span><br><span class="line">        console.log(&#39;触底&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/1NOXMW586usqMUQjWlJXNU83Pxk8Dicribp9bOZENlSxoMU2MQtaNovYQXIb65qUPxKwWtTibqm9icMicOxXsFSUlMQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
-<p>so easy~</p>
-<h1 id="加点细节"><a href="#加点细节" class="headerlink" title="加点细节"></a>加点细节</h1><p>加点细节，现在我们希望是离底部一定距离就触发事件，而不是等到完全触底。如果你做过小程序，这和<code>onReachBottom</code>差不多的意思。</p>
-<p>声明一个离底部的距离变量<code>reachBottomDistance</code></p>
-<p>这时候触发条件：<code>可视高度</code> + <code>滚动距离</code> + <code>reachBottomDistance</code> &gt;= <code>实际高度</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  data()&#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      reachBottomDistance: 100</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    onScroll(e) &#123;</span><br><span class="line">        let scrollTop &#x3D; e.target.scrollTop</span><br><span class="line">        let scrollHeight &#x3D; e.target.scrollHeight</span><br><span class="line">        let offsetHeight &#x3D; Math.ceil(e.target.getBoundingClientRect().height)</span><br><span class="line">        let currentHeight &#x3D; scrollTop + offsetHeight + this.reachBottomDistance</span><br><span class="line">        if (currentHeight &gt;&#x3D; scrollHeight) &#123;</span><br><span class="line">            console.log(&#39;触底&#39;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/1NOXMW586usqMUQjWlJXNU83Pxk8DicribkC2ZSbcwoQfvEQdXUGzpzibj2IK0xQawxOm2q1t6L5N0Sj21Mmb2fJw/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
-<p>在距离底部100px时成功触发事件，但由于100px往下的区域是符合条件的，会导致一直触发，这不是我们想要的。</p>
-<p>接下来做一些处理，让其进入后只触发一次:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  data()&#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      isReachBottom: false,</span><br><span class="line">      reachBottomDistance: 100</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    onScroll(e) &#123;</span><br><span class="line">        let scrollTop &#x3D; e.target.scrollTop</span><br><span class="line">        let scrollHeight &#x3D; e.target.scrollHeight</span><br><span class="line">        let offsetHeight &#x3D; Math.ceil(e.target.getBoundingClientRect().height)</span><br><span class="line">        let currentHeight &#x3D; scrollTop + offsetHeight + this.reachBottomDistance</span><br><span class="line"></span><br><span class="line">        if(currentHeight &lt; scrollHeight &amp;&amp; this.isReachBottom)&#123;</span><br><span class="line">          this.isReachBottom &#x3D; false</span><br><span class="line">        &#125;</span><br><span class="line">        if(this.isReachBottom)&#123;</span><br><span class="line">          return</span><br><span class="line">        &#125;</span><br><span class="line">        if (currentHeight &gt;&#x3D; scrollHeight) &#123;</span><br><span class="line">          this.isReachBottom &#x3D; true</span><br><span class="line">          console.log(&#39;触底&#39;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/1NOXMW586usqMUQjWlJXNU83Pxk8Dicribqic9sKlSTeB0CianJYNJMViaUdChLxbic397ItI3Gb0O8VhpoadpCSzAQA/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
-<h1 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h1><p>实时去获取位置信息稍微会损耗性能，我们应该把不变的缓存起来，只实时获取可变的部分</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  data()&#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      isReachBottom: false,</span><br><span class="line">      reachBottomDistance: 100</span><br><span class="line">      scrollHeight: 0,</span><br><span class="line">      offsetHeight: 0,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted()&#123;</span><br><span class="line">    &#x2F;&#x2F; 页面加载完成后  将高度存储起来</span><br><span class="line">    let dom &#x3D; document.querySelector(&#39;.comment-area .comment-list&#39;)</span><br><span class="line">    this.scrollHeight &#x3D; dom.scrollHeight</span><br><span class="line">    this.offsetHeight &#x3D; Math.ceil(dom.getBoundingClientRect().height)</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    onScroll(e) &#123;</span><br><span class="line">        let scrollTop &#x3D; e.target.scrollTop</span><br><span class="line">        let currentHeight &#x3D; scrollTop + this.offsetHeight + this.reachBottomDistance</span><br><span class="line"></span><br><span class="line">        if(currentHeight &lt; this.scrollHeight &amp;&amp; this.isReachBottom)&#123;</span><br><span class="line">          this.isReachBottom &#x3D; false</span><br><span class="line">        &#125;</span><br><span class="line">        if(this.isReachBottom)&#123;</span><br><span class="line">          return</span><br><span class="line">        &#125;</span><br><span class="line">        if (currentHeight &gt;&#x3D; this.scrollHeight) &#123;</span><br><span class="line">          this.isReachBottom &#x3D; true</span><br><span class="line">          console.log(&#39;触底&#39;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>实现到这里就告一段落，如果你有更好的思路和值得改进的地方，欢迎交流~</p>
-
-          
+          <h1 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h1><p>贴上效果展示：<br><img src="https://mmbiz.qpic.cn/mmbiz_gif/1NOXMW586usqMUQjWlJXNU83Pxk8DicribgBBbuvZ13dRfOBLsInRicV51f90TJDiblOfwq1LuN27vTaqssPfF5NeQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1590,199 +1714,14 @@
 
       
         
-          
-            <h3 id="单选题"><a href="#单选题" class="headerlink" title="单选题"></a>单选题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">1. Vue 实例的 data 属性，可以在哪些生命周期中获取到？bcd</span><br><span class="line">A. beforeCreate</span><br><span class="line">B. created</span><br><span class="line">C. beforeMount</span><br><span class="line">D. mounted</span><br><span class="line"></span><br><span class="line">2. 下列对 Vue 原理的叙述，哪些是正确的？abcd</span><br><span class="line">A. Vue 中的数组变更通知，通过拦截数组操作方法而实现</span><br><span class="line">B. 编译器目标是创建渲染函数，渲染函数执行后将得到 VNode 树</span><br><span class="line">C. 组件内 data 发生变化时会通知其对应 watcher，执行异步更新</span><br><span class="line">D. patching 算法首先进行同层级比较，可能执行的操作是节点的增加、删除和更新</span><br><span class="line"></span><br><span class="line">3. 对于 Vue 中响应式数据原理的说法，下列哪项是不正确的？bd</span><br><span class="line">A. 采用数据劫持方式，即 Object.defineProperty() 劫持 data 中各属性，实现响应式数据</span><br><span class="line">B. 视图中的变化会通过 watcher 更新 data 中的数据</span><br><span class="line">C. 若 data 中某属性多次发生变化，watcher 仅会进入更新队列一次</span><br><span class="line">D. 通过编译过程进行依赖收集</span><br><span class="line"></span><br><span class="line">4. 下列说法不正确的是哪项？b</span><br><span class="line">A. key 的作用主要是为了高效地更新虚拟 DOM</span><br><span class="line">B. 若指定了组件的 template 选项，render 函数不会执行</span><br><span class="line">C. 使用 vm.$nextTick 可以确保获得 DOM 异步更新的结果</span><br><span class="line">D. 若没有 el 选项，vm.$mount(dom) 可将 Vue 实例挂载于指定元素上</span><br><span class="line"></span><br><span class="line">5. 下列关于 Vuex 的描述，不正确的是哪项？c</span><br><span class="line">A. Vuex 通过 Vue 实现响应式状态，因此只能用于 Vue</span><br><span class="line">B. Vuex 是一个状态管理模式</span><br><span class="line">C. Vuex 主要用于多视图间状态全局共享与管理</span><br><span class="line">D. 在 Vuex 中改变状态，可以通过 mutations 和 actions</span><br><span class="line"></span><br><span class="line">6. 关于 Vue 组件间的参数传递，下列哪项是不正确的？b</span><br><span class="line">A. 若子组件给父组件传值，可使用 $emit 方法</span><br><span class="line">B. 祖孙组件之间可以使用 provide 和 inject 方式跨层级相互传值</span><br><span class="line">C. 若子组件使用 $emit(&#39;say&#39;) 派发事件，父组件可使用 @say 监听</span><br><span class="line">D. 若父组件给子组件传值，子组件可通过 props 接受数据</span><br><span class="line"></span><br><span class="line">7. 下列关于 vue-router 的描述，不正确的是哪项？c</span><br><span class="line">A. vue-router 的常用模式有 hash 和 history 两种</span><br><span class="line">B. 可通过 addRoutes 方法动态添加路由</span><br><span class="line">C. 可通过 beforeEnter 对单个组件进行路由守卫</span><br><span class="line">D. vue-router 借助 Vue 实现响应式的路由，因此只能用于 Vue</span><br><span class="line"></span><br><span class="line">8. 下列说法不正确的是哪项？c</span><br><span class="line">A. 可通过 this.$parent 查找当前组件的父组件</span><br><span class="line">B. 可使用 this.$refs 查找命名子组件</span><br><span class="line">C. 可使用 this.$children 按顺序查找当前组件的直接子组件</span><br><span class="line">D. 可使用 $root 查找根组件，并可配合 children 遍历全部组件</span><br><span class="line"></span><br><span class="line">9. 下列关于 v-model 的说法，哪项是不正确的？c</span><br><span class="line">A. v-model 能实现双向绑定</span><br><span class="line">B. v-model 本质上是语法糖，它负责监听用户的输入事件以更新数据</span><br><span class="line">C. v-model 是内置指令，不能用在自定义组件上</span><br><span class="line">D. 对 input 使用 v-model，实际上是指定其 :value 和 :input</span><br><span class="line"></span><br><span class="line">10. 关于 Vue 的生命周期，下列哪项是不正确的？d</span><br><span class="line">A. DOM 渲染在 mounted 中就已经完成了</span><br><span class="line">B. Vue 实例从创建到销毁的过程，就是生命周期</span><br><span class="line">C. created 表示完成数据观测、属性和方法的运算和初始化事件，此时 $el 属性还未显示出来</span><br><span class="line">D. 页面首次加载过程中，会依次触发 beforeCreate，created，beforeMount，mounted，beforeUpdate，updated</span><br></pre></td></tr></table></figure>
-
-
-
-<p>好在拜天哥所赐，我们还是刷出了「权威的」参考答案，请查收：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1. BCD</span><br><span class="line">2. ABCD</span><br><span class="line">3. BD</span><br><span class="line">4. B</span><br><span class="line">5. C</span><br><span class="line">6. B</span><br><span class="line">7. C</span><br><span class="line">8. C</span><br><span class="line">9. C</span><br><span class="line">10. D</span><br></pre></td></tr></table></figure>
-
-<p>plus: <a href="https://mp.weixin.qq.com/s/a1mnUief7w9SqSRC8jlDEQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/a1mnUief7w9SqSRC8jlDEQ</a></p>
-<h3 id="生命周期注意点："><a href="#生命周期注意点：" class="headerlink" title="生命周期注意点："></a>生命周期注意点：</h3><p>一些应用钩子函数的想法</p>
-<ul>
-<li><p>在created钩子中可以对data数据进行操作，这个时候可以进行ajax请求将返回的数据赋给data。</p>
-</li>
-<li><p>虽然updated函数会在数据变化时被触发，但却不能准确的判断是那个属性值被改变，所以在实际情况中用computed或match函数来监听属性的变化，并做一些其他的操作。</p>
-</li>
-<li><p>在mounted钩子对挂载的dom进行操作，此时，DOM已经被渲染到页面上。</p>
-</li>
-<li><p>在使用vue-router时有时需要使用<keep-alive></keep-alive>来缓存组件状态，这个时候created钩子就不会被重复调用了，如果我们的子组件需要在每次加载或切换状态的时候进行某些操作，可以使用activated钩子触发。</p>
-</li>
-<li><p>所有的生命周期钩子自动绑定 this 上下文到实例中，所以不能使用箭头函数来定义一个生命周期方法 (例如 created: () =&gt; this.fetchTodos())。这是导致this指向父级。</p>
-<p>小结</p>
-</li>
-<li><p>加载渲染过程</p>
-</li>
-</ul>
-<blockquote>
-<p>父beforeCreate-&gt;父created-&gt;父beforeMount-&gt;子beforeCreate-&gt;子created-&gt;子beforeMount-&gt;子mounted-&gt;父mounted</p>
-</blockquote>
-<ul>
-<li>子组件更新过程</li>
-</ul>
-<blockquote>
-<p>父beforeUpdate-&gt;子beforeUpdate-&gt;子updated-&gt;父updated</p>
-</blockquote>
-<ul>
-<li>父组件更新过程</li>
-</ul>
-<blockquote>
-<p>父beforeUpdate-&gt;父updated</p>
-</blockquote>
-<ul>
-<li>销毁过程</li>
-</ul>
-<blockquote>
-<p>父beforeDestroy-&gt;子beforeDestroy-&gt;子destroyed-&gt;父destroyed</p>
-</blockquote>
-<h3 id="路由篇"><a href="#路由篇" class="headerlink" title="路由篇"></a>路由篇</h3><h4 id="vue路由hash模式和history模式实现原理分别是什么，他们的区别是什么？"><a href="#vue路由hash模式和history模式实现原理分别是什么，他们的区别是什么？" class="headerlink" title="vue路由hash模式和history模式实现原理分别是什么，他们的区别是什么？"></a>vue路由hash模式和history模式实现原理分别是什么，他们的区别是什么？</h4><ul>
-<li><p>hash 模式：</p>
-</li>
-<li><ul>
-<li>#后面 hash 值的变化，不会导致浏览器向服务器发出请求，浏览器不发出请求，就不会刷新页面</li>
-<li>通过监听 <strong>hashchange</strong> 事件可以知道 hash 发生了哪些变化，然后根据 hash 变化来实现更新页面部分内容的操作。</li>
-</ul>
-</li>
-<li><p>history 模式：</p>
-</li>
-<li><ul>
-<li>history 模式的实现，主要是 HTML5 标准发布的两个 API，<strong>pushState</strong> 和 <strong>replaceState</strong>，这两个 API 可以在改变 url，但是不会发送请求。这样就可以监听 url 变化来实现更新页面部分内容的操作</li>
-</ul>
-</li>
-<li><p>区别</p>
-</li>
-<li><ul>
-<li>url 展示上，hash 模式有“#”，history 模式没有</li>
-<li>刷新页面时，hash 模式可以正常加载到 hash 值对应的页面，而 history 没有处理的话，会返回 404，一般需要后端将所有页面都配置重定向到首页路由</li>
-<li>兼容性，hash 可以支持低版本浏览器和 IE。</li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/14/js%E4%B9%8Bcall%E5%92%8Capply/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dali">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DaliBlogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/14/js%E4%B9%8Bcall%E5%92%8Capply/" itemprop="url">js之call和apply</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-14T17:43:15+08:00">
-                2020-09-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="call和apply的区别和用法"><a href="#call和apply的区别和用法" class="headerlink" title="call和apply的区别和用法"></a>call和apply的区别和用法</h1><h2 id="call和apply的区别"><a href="#call和apply的区别" class="headerlink" title="call和apply的区别"></a>call和apply的区别</h2><p>obj.call(thisObj, arg1, arg2, …);<br>obj.apply(thisObj, [arg1, arg2, …]);<br>call和apply作用都是把obj绑定到thisObj的作用，即改变this的指向，然而唯一的区别就是apply传递的参数必须得是数组的形式传递，而call则直接连续参数传递</p>
-<h2 id="call和apply在什么地方可以用到呢？"><a href="#call和apply在什么地方可以用到呢？" class="headerlink" title="call和apply在什么地方可以用到呢？"></a>call和apply在什么地方可以用到呢？</h2><p>当一个对象需要调用另外一个对象里面的方法的时候就可以用到call和apply，call和Apply可以理解成是继承另外一个对象的方法，以下代码举例：</p>
-<p>首先，我们先建立两个对象，obj1和obj2</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"> var name &#x3D; &quot;全局中的name&quot;;</span><br><span class="line">    var obj1 &#x3D; &#123;</span><br><span class="line">        name:&quot;obj1中的name&quot;,</span><br><span class="line">        func1:function()&#123;</span><br><span class="line">            console.log(this.name);</span><br><span class="line">        &#125;,</span><br><span class="line">        func2:function (a,b) &#123;</span><br><span class="line">            console.log(a+b);</span><br><span class="line">            return a+b;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">var obj2 &#x3D; &#123;</span><br><span class="line">	name:&quot;obj2中的name&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">obj1.func1.call(this);&#x2F;&#x2F;输出：全局中的name</span><br><span class="line">obj1.func1.apply(this);&#x2F;&#x2F;输出：全局中的name</span><br><span class="line"></span><br><span class="line">obj1.func1.call(obj2); &#x2F;&#x2F;输出：obj2中的name</span><br><span class="line">obj1.func1.apply(obj2);&#x2F;&#x2F;输出：obj2中的name</span><br><span class="line"></span><br><span class="line">obj1.func2.call(obj2,1,2);&#x2F;&#x2F;输出：3</span><br><span class="line">obj1.func2.apply(obj2,[1,2]);&#x2F;&#x2F;输出：3</span><br></pre></td></tr></table></figure>
-          
+          <h3 id="单选题"><a href="#单选题" class="headerlink" title="单选题"></a>单选题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">1. Vue 实例的 data 属性，可以在哪些生命周期中获取到？bcd</span><br><span class="line">A. beforeCreate</span><br><span class="line">B. created</span><br><span class="line">C. beforeMount</span><br><span class="line">D. mounted</span><br><span class="line"></span><br><span class="line">2. 下列对 Vue 原理的叙述，哪些是正确的？abcd</span><br><span class="line">A. Vue 中的数组变更通知，通过拦截数组操作方法而实现</span><br><span class="line">B. 编译器目标是创建渲染函数，渲染函数执行后将得到 VNode 树</span><br><span class="line">C. 组件内 data 发生变化时会通知其对应 watcher，执行异步更新</span><br><span class="line">D. patching 算法首先进行同层级比较，可能执行的操作是节点的增加、删除和更新</span><br><span class="line"></span><br><span class="line">3. 对于 Vue 中响应式数据原理的说法，下列哪项是不正确的？bd</span><br><span class="line">A. 采用数据劫持方式，即 Object.defineProperty() 劫持 data 中各属性，实现响应式数据</span><br><span class="line">B. 视图中的变化会通过 watcher 更新 data 中的数据</span><br><span class="line">C. 若 data 中某属性多次发生变化，watcher 仅会进入更新队列一次</span><br><span class="line">D. 通过编译过程进行依赖收集</span><br><span class="line"></span><br><span class="line">4. 下列说法不正确的是哪项？b</span><br><span class="line">A. key 的作用主要是为了高效地更新虚拟 DOM</span><br><span class="line">B. 若指定了组件的 template 选项，render 函数不会执行</span><br><span class="line">C. 使用 vm.$nextTick 可以确保获得 DOM 异步更新的结果</span><br><span class="line">D. 若没有 el 选项，vm.$mount(dom) 可将 Vue 实例挂载于指定元素上</span><br><span class="line"></span><br><span class="line">5. 下列关于 Vuex 的描述，不正确的是哪项？c</span><br><span class="line">A. Vuex 通过 Vue 实现响应式状态，因此只能用于 Vue</span><br><span class="line">B. Vuex 是一个状态管理模式</span><br><span class="line">C. Vuex 主要用于多视图间状态全局共享与管理</span><br><span class="line">D. 在 Vuex 中改变状态，可以通过 mutations 和 actions</span><br><span class="line"></span><br><span class="line">6. 关于 Vue 组件间的参数传递，下列哪项是不正确的？b</span><br><span class="line">A. 若子组件给父组件传值，可使用 $emit 方法</span><br><span class="line">B. 祖孙组件之间可以使用 provide 和 inject 方式跨层级相互传值</span><br><span class="line">C. 若子组件使用 $emit(&#39;say&#39;) 派发事件，父组件可使用 @say 监听</span><br><span class="line">D. 若父组件给子组件传值，子组件可通过 props 接受数据</span><br><span class="line"></span><br><span class="line">7. 下列关于 vue-router 的描述，不正确的是哪项？c</span><br><span class="line">A. vue-router 的常用模式有 hash 和 history 两种</span><br><span class="line">B. 可通过 addRoutes 方法动态添加路由</span><br><span class="line">C. 可通过 beforeEnter 对单个组件进行路由守卫</span><br><span class="line">D. vue-router 借助 Vue 实现响应式的路由，因此只能用于 Vue</span><br><span class="line"></span><br><span class="line">8. 下列说法不正确的是哪项？c</span><br><span class="line">A. 可通过 this.$parent 查找当前组件的父组件</span><br><span class="line">B. 可使用 this.$refs 查找命名子组件</span><br><span class="line">C. 可使用 this.$children 按顺序查找当前组件的直接子组件</span><br><span class="line">D. 可使用 $root 查找根组件，并可配合 children 遍历全部组件</span><br><span class="line"></span><br><span class="line">9. 下列关于 v-model 的说法，哪项是不正确的？c</span><br><span class="line">A. v-model 能实现双向绑定</span><br><span class="line">B. v-model 本质上是语法糖，它负责监听用户的输入事件以更新数据</span><br><span class="line">C. v-model 是内置指令，不能用在自定义组件上</span><br><span class="line">D. 对 input 使用 v-model，实际上是指定其 :value 和 :input</span><br><span class="line"></span><br><span class="line">10. 关于 Vue 的生命周期，下列哪项是不正确的？d</span><br><span class="line">A. DOM 渲染在 mounted 中就已经完成了</span><br><span class="line">B. Vue 实例从创建到销毁的过程，就是生命周期</span><br><span class="line">C. created 表示完成数据观测、属性和方法的运算和初始化事件，此时 $el 属性还未显示出来</span><br><span class="line">D. 页面首次加载过程中，会依次触发 beforeCreate，created，beforeMount，mounted，beforeUpdate，updated</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/09/14/vue%E9%9D%A2%E8%AF%95%E9%A2%98%E8%AE%B0%E5%BD%95/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1870,7 +1809,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">104</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

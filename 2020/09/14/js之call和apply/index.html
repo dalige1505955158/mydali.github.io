@@ -81,14 +81,14 @@
 
 
 
-<meta name="description" content="call和apply的区别和用法call和apply的区别obj.call(thisObj, arg1, arg2, …);obj.apply(thisObj, [arg1, arg2, …]);call和apply作用都是把obj绑定到thisObj的作用，即改变this的指向，然而唯一的区别就是apply传递的参数必须得是数组的形式传递，而call则直接连续参数传递 call和apply在什么">
+<meta name="description" content="call和apply的区别和用法call和apply的区别obj.call(thisObj, arg1, arg2, …);obj.apply(thisObj, [arg1, arg2, …]);call和apply作用都是把obj绑定到thisObj的作用，即改变this的指向，然而唯一的区别就是apply传递的参数必须得是数组的形式传递，而call则直接连续参数传递">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js之call和apply">
 <meta property="og:url" content="http://yoursite.com/2020/09/14/js%E4%B9%8Bcall%E5%92%8Capply/index.html">
 <meta property="og:site_name" content="DaliBlogs">
-<meta property="og:description" content="call和apply的区别和用法call和apply的区别obj.call(thisObj, arg1, arg2, …);obj.apply(thisObj, [arg1, arg2, …]);call和apply作用都是把obj绑定到thisObj的作用，即改变this的指向，然而唯一的区别就是apply传递的参数必须得是数组的形式传递，而call则直接连续参数传递 call和apply在什么">
+<meta property="og:description" content="call和apply的区别和用法call和apply的区别obj.call(thisObj, arg1, arg2, …);obj.apply(thisObj, [arg1, arg2, …]);call和apply作用都是把obj绑定到thisObj的作用，即改变this的指向，然而唯一的区别就是apply传递的参数必须得是数组的形式传递，而call则直接连续参数传递">
 <meta property="article:published_time" content="2020-09-14T09:43:15.000Z">
-<meta property="article:modified_time" content="2020-09-14T09:44:45.713Z">
+<meta property="article:modified_time" content="2020-09-22T09:52:47.103Z">
 <meta property="article:author" content="Dali">
 <meta name="twitter:card" content="summary">
 
@@ -365,6 +365,8 @@
 
       
         <h1 id="call和apply的区别和用法"><a href="#call和apply的区别和用法" class="headerlink" title="call和apply的区别和用法"></a>call和apply的区别和用法</h1><h2 id="call和apply的区别"><a href="#call和apply的区别" class="headerlink" title="call和apply的区别"></a>call和apply的区别</h2><p>obj.call(thisObj, arg1, arg2, …);<br>obj.apply(thisObj, [arg1, arg2, …]);<br>call和apply作用都是把obj绑定到thisObj的作用，即改变this的指向，然而唯一的区别就是apply传递的参数必须得是数组的形式传递，而call则直接连续参数传递</p>
+<a id="more"></a>
+
 <h2 id="call和apply在什么地方可以用到呢？"><a href="#call和apply在什么地方可以用到呢？" class="headerlink" title="call和apply在什么地方可以用到呢？"></a>call和apply在什么地方可以用到呢？</h2><p>当一个对象需要调用另外一个对象里面的方法的时候就可以用到call和apply，call和Apply可以理解成是继承另外一个对象的方法，以下代码举例：</p>
 <p>首先，我们先建立两个对象，obj1和obj2</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"> var name &#x3D; &quot;全局中的name&quot;;</span><br><span class="line">    var obj1 &#x3D; &#123;</span><br><span class="line">        name:&quot;obj1中的name&quot;,</span><br><span class="line">        func1:function()&#123;</span><br><span class="line">            console.log(this.name);</span><br><span class="line">        &#125;,</span><br><span class="line">        func2:function (a,b) &#123;</span><br><span class="line">            console.log(a+b);</span><br><span class="line">            return a+b;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">var obj2 &#x3D; &#123;</span><br><span class="line">	name:&quot;obj2中的name&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">obj1.func1.call(this);&#x2F;&#x2F;输出：全局中的name</span><br><span class="line">obj1.func1.apply(this);&#x2F;&#x2F;输出：全局中的name</span><br><span class="line"></span><br><span class="line">obj1.func1.call(obj2); &#x2F;&#x2F;输出：obj2中的name</span><br><span class="line">obj1.func1.apply(obj2);&#x2F;&#x2F;输出：obj2中的name</span><br><span class="line"></span><br><span class="line">obj1.func2.call(obj2,1,2);&#x2F;&#x2F;输出：3</span><br><span class="line">obj1.func2.apply(obj2,[1,2]);&#x2F;&#x2F;输出：3</span><br></pre></td></tr></table></figure>
@@ -484,7 +486,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">104</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
