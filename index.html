@@ -294,6 +294,159 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/22/webpack%E5%B8%B8%E8%A7%81loader%E5%92%8Cplugins/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/22/webpack%E5%B8%B8%E8%A7%81loader%E5%92%8Cplugins/" itemprop="url">webpack常见loader和plugins</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-22T16:48:58+08:00">
+                2020-09-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">webpack</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="常用webpack插件"><a href="#常用webpack插件" class="headerlink" title="常用webpack插件"></a>常用webpack插件</h3><p><strong>注意：插件的引入都在webpack.config.js中</strong></p>
+<h4 id="live-server-必须全局安装，命令直接使用"><a href="#live-server-必须全局安装，命令直接使用" class="headerlink" title="live-server (必须全局安装，命令直接使用)"></a>live-server (必须全局安装，命令直接使用)</h4><p>一款npm工具，全局npm i -g live-server后，项目目录使用live-server命令行命令便可直接在浏览器中预览（默认找index.html，其他请自行带上文件名空格后跟在后面），并且自动全局监听实时更新</p>
+<p>1.新建一个文件夹（最好英文），执行npm init命令；</p>
+<p>2.生成package.json文件后，执行npm install -g live-server命令；</p>
+<p>3.安装完成后，就可以执行live-server命令启动；</p>
+<p>设置快捷方式如下：</p>
+<p>1.找到package.json文件，然后找到”script”，写入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;server&quot;:&quot;live-server .&#x2F;port&#x3D;9090&quot;</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/09/22/webpack%E5%B8%B8%E8%A7%81loader%E5%92%8Cplugins/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/21/webpack%E6%9C%80%E5%85%A8%E8%A7%A3%E6%9E%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -386,14 +539,7 @@
 
       
         
-          <h3 id="常用webpack插件"><a href="#常用webpack插件" class="headerlink" title="常用webpack插件"></a>常用webpack插件</h3><h4 id="live-server"><a href="#live-server" class="headerlink" title="live-server"></a>live-server</h4><p>一款npm工具，全局npm i -g live-server后，项目目录使用live-server命令行命令便可直接在浏览器中预览（默认找index.html，其他请自行带上文件名空格后跟在后面），并且自动全局监听实时更新</p>
-<p>1.新建一个文件夹（最好英文），执行npm init命令；</p>
-<p>2.生成package.json文件后，执行npm install -g live-server命令；</p>
-<p>3.安装完成后，就可以执行live-server命令启动；</p>
-<p>设置快捷方式如下：</p>
-<p>1.找到package.json文件，然后找到”script”，写入：</p>
-<p><img src="https:////upload-images.jianshu.io/upload_images/15484248-5c9d169a4fcb77da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/488/format/webp" alt="img"></p>
-<p>2.启动如下：npm run server。</p>
+          <h3 id="开始（以3-X版本为例，内容有过时的还没更新）"><a href="#开始（以3-X版本为例，内容有过时的还没更新）" class="headerlink" title="开始（以3.X版本为例，内容有过时的还没更新）"></a>开始（以3.X版本为例，内容有过时的还没更新）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;新建文件夹</span><br><span class="line">mkdir webpack_demo</span><br><span class="line">cd webpack_demo</span><br><span class="line">&#x2F;&#x2F;全局安装webpack</span><br><span class="line">npm install -g webpack@3.6.0</span><br><span class="line">&#x2F;&#x2F;初始化生成package.json</span><br><span class="line">npm init </span><br><span class="line">&#x2F;&#x2F;开发时依赖</span><br><span class="line">npm install --save-dev webpack@3.6.0</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/09/21/webpack%E6%9C%80%E5%85%A8%E8%A7%A3%E6%9E%90/#more" rel="contents">
@@ -550,152 +696,6 @@
             </a>
           </div>
           <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86%E7%9A%84%E4%B8%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dali">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DaliBlogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86%E7%9A%84%E4%B8%89/" itemprop="url">vue之上拉加载原理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-16T14:20:24+08:00">
-                2020-09-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h1><p>贴上效果展示：<br><img src="https://mmbiz.qpic.cn/mmbiz_gif/1NOXMW586usqMUQjWlJXNU83Pxk8DicribgBBbuvZ13dRfOBLsInRicV51f90TJDiblOfwq1LuN27vTaqssPfF5NeQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
-<h1 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h1><p>样式方面不多赘述，滚动区域是给固定高度，设置 <code>overflow-y: auto</code> 来实现。</p>
-<p>接下来看看js方面的实现，其实也很简单，触发的条件是：<code>可视高度</code> + <code>滚动距离</code> &gt;= <code>实际高度</code> 。例子我会使用<code>vue</code>来实现，和原生实现是一样的。</p>
-<ul>
-<li>可视高度(offsetHeight)：通过 <code>dom</code> 的 <code>offsetHeight</code> 获得，表示区域固定的高度。这里我推荐通过 <code>getBoundingClientRect()</code> 来获取高度，因为使用前者会引起浏览器回流，造成一些性能问题。</li>
-<li>滚动高度(scrollTop)：滚动事件中通过 <code>e.target.scrollTop</code> 获取，表示滚动条距离顶部的px</li>
-<li>实际高度(scrollHeight)：通过 <code>dom</code> 的 <code>scrollHeight</code> 获得，表示区域内所有内容的高度（包括滚动距离），也就是实际高度</li>
-</ul>
-<h1 id="基础实现"><a href="#基础实现" class="headerlink" title="基础实现"></a>基础实现</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">onScroll(e) &#123;</span><br><span class="line">    let scrollTop &#x3D; e.target.scrollTop</span><br><span class="line">    let scrollHeight &#x3D; e.target.scrollHeight</span><br><span class="line">    let offsetHeight &#x3D; Math.ceil(e.target.getBoundingClientRect().height)</span><br><span class="line">    let currentHeight &#x3D; scrollTop + offsetHeight</span><br><span class="line">    if (currentHeight &gt;&#x3D; scrollHeight) &#123;</span><br><span class="line">        console.log(&#39;触底&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/1NOXMW586usqMUQjWlJXNU83Pxk8Dicribp9bOZENlSxoMU2MQtaNovYQXIb65qUPxKwWtTibqm9icMicOxXsFSUlMQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
-<p>so easy~</p>
-<h1 id="加点细节"><a href="#加点细节" class="headerlink" title="加点细节"></a>加点细节</h1><p>加点细节，现在我们希望是离底部一定距离就触发事件，而不是等到完全触底。如果你做过小程序，这和<code>onReachBottom</code>差不多的意思。</p>
-<p>声明一个离底部的距离变量<code>reachBottomDistance</code></p>
-<p>这时候触发条件：<code>可视高度</code> + <code>滚动距离</code> + <code>reachBottomDistance</code> &gt;= <code>实际高度</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  data()&#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      reachBottomDistance: 100</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    onScroll(e) &#123;</span><br><span class="line">        let scrollTop &#x3D; e.target.scrollTop</span><br><span class="line">        let scrollHeight &#x3D; e.target.scrollHeight</span><br><span class="line">        let offsetHeight &#x3D; Math.ceil(e.target.getBoundingClientRect().height)</span><br><span class="line">        let currentHeight &#x3D; scrollTop + offsetHeight + this.reachBottomDistance</span><br><span class="line">        if (currentHeight &gt;&#x3D; scrollHeight) &#123;</span><br><span class="line">            console.log(&#39;触底&#39;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/1NOXMW586usqMUQjWlJXNU83Pxk8DicribkC2ZSbcwoQfvEQdXUGzpzibj2IK0xQawxOm2q1t6L5N0Sj21Mmb2fJw/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
-<p>在距离底部100px时成功触发事件，但由于100px往下的区域是符合条件的，会导致一直触发，这不是我们想要的。</p>
-<p>接下来做一些处理，让其进入后只触发一次:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  data()&#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      isReachBottom: false,</span><br><span class="line">      reachBottomDistance: 100</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    onScroll(e) &#123;</span><br><span class="line">        let scrollTop &#x3D; e.target.scrollTop</span><br><span class="line">        let scrollHeight &#x3D; e.target.scrollHeight</span><br><span class="line">        let offsetHeight &#x3D; Math.ceil(e.target.getBoundingClientRect().height)</span><br><span class="line">        let currentHeight &#x3D; scrollTop + offsetHeight + this.reachBottomDistance</span><br><span class="line"></span><br><span class="line">        if(currentHeight &lt; scrollHeight &amp;&amp; this.isReachBottom)&#123;</span><br><span class="line">          this.isReachBottom &#x3D; false</span><br><span class="line">        &#125;</span><br><span class="line">        if(this.isReachBottom)&#123;</span><br><span class="line">          return</span><br><span class="line">        &#125;</span><br><span class="line">        if (currentHeight &gt;&#x3D; scrollHeight) &#123;</span><br><span class="line">          this.isReachBottom &#x3D; true</span><br><span class="line">          console.log(&#39;触底&#39;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/1NOXMW586usqMUQjWlJXNU83Pxk8Dicribqic9sKlSTeB0CianJYNJMViaUdChLxbic397ItI3Gb0O8VhpoadpCSzAQA/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
-<h1 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h1><p>实时去获取位置信息稍微会损耗性能，我们应该把不变的缓存起来，只实时获取可变的部分</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  data()&#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      isReachBottom: false,</span><br><span class="line">      reachBottomDistance: 100</span><br><span class="line">      scrollHeight: 0,</span><br><span class="line">      offsetHeight: 0,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted()&#123;</span><br><span class="line">    &#x2F;&#x2F; 页面加载完成后  将高度存储起来</span><br><span class="line">    let dom &#x3D; document.querySelector(&#39;.comment-area .comment-list&#39;)</span><br><span class="line">    this.scrollHeight &#x3D; dom.scrollHeight</span><br><span class="line">    this.offsetHeight &#x3D; Math.ceil(dom.getBoundingClientRect().height)</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    onScroll(e) &#123;</span><br><span class="line">        let scrollTop &#x3D; e.target.scrollTop</span><br><span class="line">        let currentHeight &#x3D; scrollTop + this.offsetHeight + this.reachBottomDistance</span><br><span class="line"></span><br><span class="line">        if(currentHeight &lt; this.scrollHeight &amp;&amp; this.isReachBottom)&#123;</span><br><span class="line">          this.isReachBottom &#x3D; false</span><br><span class="line">        &#125;</span><br><span class="line">        if(this.isReachBottom)&#123;</span><br><span class="line">          return</span><br><span class="line">        &#125;</span><br><span class="line">        if (currentHeight &gt;&#x3D; this.scrollHeight) &#123;</span><br><span class="line">          this.isReachBottom &#x3D; true</span><br><span class="line">          console.log(&#39;触底&#39;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>实现到这里就告一段落，如果你有更好的思路和值得改进的地方，欢迎交流~</p>
-
-          
         
       
     </div>
@@ -1881,7 +1881,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1892,7 +1892,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">103</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="plugins,loader," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="DaliBlogs" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="常用webpack插件注意：插件的引入都在webpack.config.js中 live-server (必须全局安装，命令直接使用)一款npm工具，全局npm i -g live-server后，项目目录使用live-server命令行命令便可直接在浏览器中预览（默认找index.html，其他请自行带上文件名空格后跟在后面），并且自动全局监听实时更新 1.新建一个文件夹（最好英文），执行npm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack常见loader和plugins">
+<meta property="og:url" content="http://yoursite.com/2020/09/22/webpack%E5%B8%B8%E8%A7%81loader%E5%92%8Cplugins/index.html">
+<meta property="og:site_name" content="DaliBlogs">
+<meta property="og:description" content="常用webpack插件注意：插件的引入都在webpack.config.js中 live-server (必须全局安装，命令直接使用)一款npm工具，全局npm i -g live-server后，项目目录使用live-server命令行命令便可直接在浏览器中预览（默认找index.html，其他请自行带上文件名空格后跟在后面），并且自动全局监听实时更新 1.新建一个文件夹（最好英文），执行npm">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/15484248-5c9d169a4fcb77da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/488/format/webp">
+<meta property="article:published_time" content="2020-09-22T08:48:58.000Z">
+<meta property="article:modified_time" content="2020-09-22T09:43:13.276Z">
+<meta property="article:author" content="Dali">
+<meta property="article:tag" content="plugins">
+<meta property="article:tag" content="loader">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/15484248-5c9d169a4fcb77da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/488/format/webp">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/09/22/webpack常见loader和plugins/"/>
+
+
+
+
+
+  <title>webpack常见loader和plugins | DaliBlogs</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DaliBlogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/22/webpack%E5%B8%B8%E8%A7%81loader%E5%92%8Cplugins/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">webpack常见loader和plugins</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-22T16:48:58+08:00">
+                2020-09-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">webpack</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="常用webpack插件"><a href="#常用webpack插件" class="headerlink" title="常用webpack插件"></a>常用webpack插件</h3><p><strong>注意：插件的引入都在webpack.config.js中</strong></p>
+<h4 id="live-server-必须全局安装，命令直接使用"><a href="#live-server-必须全局安装，命令直接使用" class="headerlink" title="live-server (必须全局安装，命令直接使用)"></a>live-server (必须全局安装，命令直接使用)</h4><p>一款npm工具，全局npm i -g live-server后，项目目录使用live-server命令行命令便可直接在浏览器中预览（默认找index.html，其他请自行带上文件名空格后跟在后面），并且自动全局监听实时更新</p>
+<p>1.新建一个文件夹（最好英文），执行npm init命令；</p>
+<p>2.生成package.json文件后，执行npm install -g live-server命令；</p>
+<p>3.安装完成后，就可以执行live-server命令启动；</p>
+<p>设置快捷方式如下：</p>
+<p>1.找到package.json文件，然后找到”script”，写入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;server&quot;:&quot;live-server .&#x2F;port&#x3D;9090&quot;</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+
+
+<p><img src="https:////upload-images.jianshu.io/upload_images/15484248-5c9d169a4fcb77da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/488/format/webp" alt="img"></p>
+<p>2.启动如下：npm run server。</p>
+<h4 id="uglifyjs-webpack-plugin（js压缩插件）"><a href="#uglifyjs-webpack-plugin（js压缩插件）" class="headerlink" title="uglifyjs-webpack-plugin（js压缩插件）"></a>uglifyjs-webpack-plugin（js压缩插件）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">npmn  i -D uglifyjs-webpack-plugin</span><br><span class="line"></span><br><span class="line">const uglify &#x3D; &#96;require&#96;(&#39;uglifyjs-webpack-plugin&#39;);</span><br><span class="line">plugins:[</span><br><span class="line">        new uglify()</span><br><span class="line">    ],</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="html-webpack-plugin（打包HTML文件）"><a href="#html-webpack-plugin（打包HTML文件）" class="headerlink" title="html-webpack-plugin（打包HTML文件）"></a>html-webpack-plugin（<strong>打包HTML文件</strong>）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev html-webpack-plugin</span><br><span class="line"></span><br><span class="line">const htmlPlugin&#x3D; &#96;require&#96;(&#39;html-webpack-plugin&#39;);</span><br><span class="line">plugins:[</span><br><span class="line">         new htmlPlugin(&#123;</span><br><span class="line">            minify:&#123;</span><br><span class="line">                removeAttributeQuotes:true</span><br><span class="line">            &#125;,</span><br><span class="line">            hash:true,</span><br><span class="line">            template:&#39;.&#x2F;src&#x2F;index.html&#39;</span><br><span class="line"></span><br><span class="line">        &#125;)</span><br><span class="line">    ],</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="extract-text-webpack-plugin（分离css插件）"><a href="#extract-text-webpack-plugin（分离css插件）" class="headerlink" title="extract-text-webpack-plugin（分离css插件）"></a>extract-text-webpack-plugin（分离css插件）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev extract-text-webpack-plugin</span><br><span class="line"></span><br><span class="line">const extractTextPlugin &#x3D; &#96;require&#96;(&quot;extract-text-webpack-plugin&quot;);</span><br><span class="line">plugins:[</span><br><span class="line">        new extractTextPlugin(&quot;&#x2F;css&#x2F;index.css&quot;)</span><br><span class="line">    ],</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="PurifyCSS-webpack（消除未使用的css，必须配合extract-text-webpack-plugin插件）"><a href="#PurifyCSS-webpack（消除未使用的css，必须配合extract-text-webpack-plugin插件）" class="headerlink" title="PurifyCSS-webpack（消除未使用的css，必须配合extract-text-webpack-plugin插件）"></a>PurifyCSS-webpack（消除未使用的css，必须配合extract-text-webpack-plugin插件）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">npmn  i -D purifycss-webpack purify-css</span><br><span class="line"></span><br><span class="line">webpack.config.js</span><br><span class="line">onst PurifyCSSPlugin &#x3D; require(&quot;purifycss-webpack&quot;);</span><br><span class="line">new PurifyCSSPlugin(&#123;</span><br><span class="line">        &#x2F;&#x2F; Give paths to parse for rules. These should be absolute!</span><br><span class="line">        paths: glob.sync(path.join(__dirname, &#39;src&#x2F;*.html&#39;)),</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>骨架屏的插件见：vue-skeleton-webpack-plugin.md</p>
+<h3 id="常见Loader"><a href="#常见Loader" class="headerlink" title="常见Loader"></a>常见Loader</h3><ul>
+<li>可以把SASS文件的写法转换成CSS，而不在使用其他转换工具。</li>
+<li>可以把ES6或者ES7的代码，转换成大多浏览器兼容的JS代码。</li>
+<li>可以把React中的JSX转换成JavaScript代码。</li>
+</ul>
+<p>注意：所有的Loaders都需要在npm中单独进行安装，并在webpack.config.js里进行配置。下面我们对Loaders的配置型简单梳理一下。</p>
+<ul>
+<li>test：用于匹配处理文件的扩展名的表达式，这个选项是必须进行配置的；</li>
+<li>use：loader名称，就是你要使用模块的名称，这个选项也必须进行配置，否则报错；</li>
+<li>include/exclude:手动添加必须处理的文件（文件夹）或屏蔽不需要处理的文件（文件夹）（可选）；</li>
+<li>query：为loaders提供额外的设置选项（可选）。</li>
+</ul>
+<h4 id="cssLoader（style-loader和css-loader）"><a href="#cssLoader（style-loader和css-loader）" class="headerlink" title="cssLoader（style-loader和css-loader）"></a>cssLoader（<strong>style-loader和</strong>css-loader）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">npm install style-loader@0.13.1 css-loader@0.25.0 --save-dev</span><br><span class="line"></span><br><span class="line">webpack.config.js</span><br><span class="line">module:&#123;</span><br><span class="line">        rules: [</span><br><span class="line">            &#123;</span><br><span class="line">              test: &#x2F;\.css$&#x2F;,</span><br><span class="line">              use: [ &#39;style-loader&#39;, &#39;css-loader&#39; ]</span><br><span class="line">            &#125;</span><br><span class="line">          ]</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="图片Loader（file-loader和url-loader）"><a href="#图片Loader（file-loader和url-loader）" class="headerlink" title="图片Loader（file-loader和url-loader）"></a>图片Loader（<strong>file-loader</strong>和<strong>url-loader</strong>）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev file-loader url-loader</span><br><span class="line"></span><br><span class="line">webpack.config.js</span><br><span class="line"> module:&#123;</span><br><span class="line">        rules: [</span><br><span class="line">            &#123;</span><br><span class="line">               test:&#x2F;\.(png|jpg|gif)&#x2F; ,</span><br><span class="line">               use:[&#123;</span><br><span class="line">                   loader:&#39;url-loader&#39;,</span><br><span class="line">                   options:&#123;</span><br><span class="line">                       limit:500000,</span><br><span class="line">                       outputPath:&#39;images&#x2F;&#39;,&#x2F;&#x2F;打包后的路径</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125;]</span><br><span class="line">            &#125;</span><br><span class="line">          ]</span><br><span class="line">    &#125;,</span><br><span class="line">test:&#x2F;.(png|jpg|gif)&#x2F;是匹配图片文件后缀名称。</span><br><span class="line">use：是指定使用的loader和loader的配置参数。</span><br><span class="line">limit：是把小于500000B的文件打成Base64的格式，写入JS。</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="hmtl文件中引入图片标签的Loader（html-withimg-loader）"><a href="#hmtl文件中引入图片标签的Loader（html-withimg-loader）" class="headerlink" title="hmtl文件中引入图片标签的Loader（html-withimg-loader）"></a>hmtl文件中引入图片标签的Loader（html-withimg-loader）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">npm install html-withimg-loader --save</span><br><span class="line"></span><br><span class="line">webpack.config.js</span><br><span class="line">module:&#123;</span><br><span class="line">        rules: [</span><br><span class="line">            &#123;</span><br><span class="line">    test: &#x2F;\.(htm|html)$&#x2F;i,</span><br><span class="line">     use:[ &#39;html-withimg-loader&#39;] </span><br><span class="line">&#125;</span><br><span class="line">          ]</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="less-Loader"><a href="#less-Loader" class="headerlink" title="less-Loader"></a>less-Loader</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev less</span><br><span class="line">npm n install --save-dev less-loader</span><br><span class="line"></span><br><span class="line">webpack.config.js</span><br><span class="line">module:&#123;</span><br><span class="line">       &#123;</span><br><span class="line">    test: &#x2F;\.less$&#x2F;,</span><br><span class="line">    use: [&#123;</span><br><span class="line">           loader: &quot;style-loader&quot; &#x2F;&#x2F; creates style nodes from JS strings</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">            loader: &quot;css-loader&quot; &#x2F;&#x2F; translates CSS into CommonJS</span><br><span class="line">        , &#123;</span><br><span class="line">            loader: &quot;less-loader&quot; &#x2F;&#x2F; compiles Less to CSS</span><br><span class="line">        &#125;]</span><br><span class="line">&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">使用extract-text-webpack-plugin插件分离</span><br><span class="line">module:&#123;</span><br><span class="line">&#123;</span><br><span class="line">            test: &#x2F;\.less$&#x2F;,</span><br><span class="line">            use: extractTextPlugin.extract(&#123;</span><br><span class="line">                use: [&#123;</span><br><span class="line">                    loader: &quot;css-loader&quot;</span><br><span class="line">                &#125;, &#123;</span><br><span class="line">                    loader: &quot;less-loader&quot;</span><br><span class="line">                &#125;],</span><br><span class="line">                &#x2F;&#x2F; use style-loader in development</span><br><span class="line">                fallback: &quot;style-loader&quot;</span><br><span class="line">            &#125;)</span><br><span class="line"> &#125;</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+
+<h4 id="SASS-Loader"><a href="#SASS-Loader" class="headerlink" title="SASS-Loader"></a>SASS-Loader</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">cnpm n install --save-dev node-sass</span><br><span class="line">cnpm install --save-dev sass-loader</span><br><span class="line"></span><br><span class="line">webpack.config.js</span><br><span class="line">module:&#123;</span><br><span class="line">       &#123;</span><br><span class="line">                test: &#x2F;\.sass$&#x2F;,</span><br><span class="line">                use: [&#123;</span><br><span class="line">                    loader: &quot;style-loader&quot; &#x2F;&#x2F; creates style nodes from JS strings</span><br><span class="line">                &#125;, &#123;</span><br><span class="line">                    loader: &quot;css-loader&quot; &#x2F;&#x2F; translates CSS into CommonJS</span><br><span class="line">                &#125;, &#123;</span><br><span class="line">                    loader: &quot;sass-loader&quot; &#x2F;&#x2F; compiles Sass to CSS</span><br><span class="line">                &#125;]</span><br><span class="line">&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    使用extract-text-webpack-plugin插件分离</span><br><span class="line">module:&#123;</span><br><span class="line">&#123;</span><br><span class="line">            test: &#x2F;\.less$&#x2F;,</span><br><span class="line">            use: extractTextPlugin.extract(&#123;</span><br><span class="line">                use: [&#123;</span><br><span class="line">                    loader: &quot;css-loader&quot;</span><br><span class="line">                &#125;, &#123;</span><br><span class="line">                    loader: &quot;sass-loader&quot;</span><br><span class="line">                &#125;],</span><br><span class="line">                &#x2F;&#x2F; use style-loader in development</span><br><span class="line">                fallback: &quot;style-loader&quot;</span><br><span class="line">            &#125;)</span><br><span class="line"> &#125;</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="css3属性前缀postcss-loader"><a href="#css3属性前缀postcss-loader" class="headerlink" title="css3属性前缀postcss-loader"></a>css3属性前缀postcss-loader</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev postcss-loader autoprefixer</span><br><span class="line"></span><br><span class="line">和webpack.config.js同级），建立一个postcss.config.js文件。</span><br><span class="line">postcss.config.js</span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">    plugins: &#123;  </span><br><span class="line">        &#39;autoprefixer&#39;: &#123;browsers: &#39;last 5 version&#39;&#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">对postcss.config.js配置完成后，我们还需要编写我们的loader配置。</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">      test: &#x2F;\.css$&#x2F;,</span><br><span class="line">      use: [</span><br><span class="line">            &#123;</span><br><span class="line">              loader: &quot;style-loader&quot;</span><br><span class="line">            &#125;, &#123;</span><br><span class="line">              loader: &quot;css-loader&quot;,</span><br><span class="line">              options: &#123;</span><br><span class="line">                 modules: true</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;, &#123;</span><br><span class="line">              loader: &quot;postcss-loader&quot;</span><br><span class="line">            &#125;</span><br><span class="line">      ]</span><br><span class="line">&#125;</span><br><span class="line">提取CSS</span><br><span class="line">配置提取CSS的loader配置.</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    test: &#x2F;\.css$&#x2F;,</span><br><span class="line">    use: extractTextPlugin.extract(&#123;</span><br><span class="line">        fallback: &#39;style-loader&#39;,</span><br><span class="line">        use: [</span><br><span class="line">            &#123; loader: &#39;css-loader&#39;, options: &#123; importLoaders: 1 &#125; &#125;,</span><br><span class="line">            &#39;postcss-loader&#39;</span><br><span class="line">        ]</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="loader的三种写法："><a href="#loader的三种写法：" class="headerlink" title="loader的三种写法："></a><strong>loader的三种写法：</strong></h3><p>上节课学习了如何把CSS文件进行打包到JS当中去，有小伙伴就提问，我看到别人的CSS打包的写法和你的写法不太一样，是不是他们写错了，loader还有几种写法，这里我们就看两种另外的写法。</p>
+<p><strong>第一种写法：直接用use。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">module:&#123;</span><br><span class="line">        rules:[</span><br><span class="line">            &#123;</span><br><span class="line">                test:&#x2F;\.css$&#x2F;,</span><br><span class="line">                use:[&#39;style-loader&#39;,&#39;css-loader&#39;]</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+
+<p><strong>第二种写法：把use换成loader。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">module:&#123;</span><br><span class="line">        rules:[</span><br><span class="line">            &#123;</span><br><span class="line">                test:&#x2F;\.css$&#x2F;,</span><br><span class="line">                loader:[&#39;style-loader&#39;,&#39;css-loader&#39;]</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>*<em>第三种写法：用use+loader的写法： *</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">module:&#123;</span><br><span class="line">        rules:[</span><br><span class="line">            &#123;</span><br><span class="line">                test:&#x2F;\.css$&#x2F;,</span><br><span class="line">                use: [</span><br><span class="line">                    &#123;</span><br><span class="line">                        loader: &quot;style-loader&quot;</span><br><span class="line">                    &#125;, &#123;</span><br><span class="line">                        loader: &quot;css-loader&quot;</span><br><span class="line">                    &#125;</span><br><span class="line">                ]</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>由此看出，webpack的扩展和灵活性是非常强的，你习惯于那种写法都可以。最重要的是，你看见别人项目的其他写法也不要慌张，自己去试一试，有可能就可以Get到新知识。</p>
+<h3 id="Babel的安装与配置"><a href="#Babel的安装与配置" class="headerlink" title="Babel的安装与配置"></a>Babel的安装与配置</h3><p>Babel其实是几个模块化的包，其核心功能位于称为babel-core的npm包中，webpack可以把其不同的包整合在一起使用，对于每一个你需要的功能或拓展，你都需要安装单独的包（用得最多的是解析ES6的babel-preset-es2015包和解析JSX的babel-preset-react包）。</p>
+<p>我们先一次性安装这些依赖包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm c install --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-react</span><br></pre></td></tr></table></figure>
+
+<p>在webpack中配置Babel的方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    test:&#x2F;\.(jsx|js)$&#x2F;,</span><br><span class="line">    use:&#123;</span><br><span class="line">        loader:&#39;babel-loader&#39;,</span><br><span class="line">        options:&#123;</span><br><span class="line">            presets:[</span><br><span class="line">                &quot;es2015&quot;,&quot;react&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    exclude:&#x2F;node_modules&#x2F;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在你已经可以用webapck转换ES6的语法兼容各个浏览器了，我们可以修改一下entry.js的代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import css from &#39;.&#x2F;css&#x2F;index.css&#39;;</span><br><span class="line">&#123;</span><br><span class="line">    let jspangString &#x3D; &#39;Hello Webpack&#39;</span><br><span class="line">    document.getElementById(&#39;title&#39;).innerHTML&#x3D;jspangString; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码使用了ES6的let声明方法。如果你不使用Babel来进行转换，你会发现打包出来的js代码没有作兼容处理，使用了Babel转换的代码是进行处理过的。</p>
+<p><strong>.babelrc配置</strong></p>
+<p>虽然Babel可以直接在webpack.config.js中进行配置，但是考虑到babel具有非常多的配置选项，如果卸载webapck.config.js中会非常的雍长不可阅读，所以我们经常把配置卸载.babelrc文件里。</p>
+<p>在项目根目录新建.babelrc文件，并把配置写到文件里。</p>
+<p>.babelrc</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;presets&quot;:[&quot;react&quot;,&quot;es2015&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>.webpack.config.js里的loader配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    test:&#x2F;\.(jsx|js)$&#x2F;,</span><br><span class="line">    use:&#123;</span><br><span class="line">        loader:&#39;babel-loader&#39;,</span><br><span class="line">    &#125;,</span><br><span class="line">    exclude:&#x2F;node_modules&#x2F;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>ENV：</strong></p>
+<p>现在网络上已经不流行babel-preset-es2015，现在官方推荐使用的是babel-preset-env,那我们为了紧跟潮流，我们在讲一下env的配置方法。</p>
+<p>首先需要下载：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm n install --save-dev babel-preset-env</span><br></pre></td></tr></table></figure>
+
+<p>然后修改.babelrc里的配置文件。其实只要把之前的es2015换成env就可以了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;presets&quot;:[&quot;react&quot;,&quot;env&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/plugins/" rel="tag"># plugins</a>
+          
+            <a href="/tags/loader/" rel="tag"># loader</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/09/21/webpack%E6%9C%80%E5%85%A8%E8%A7%A3%E6%9E%90/" rel="next" title="webpack最全解析">
+                <i class="fa fa-chevron-left"></i> webpack最全解析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="Dali" />
+            
+              <p class="site-author-name" itemprop="name">Dali</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">104</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">105</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用webpack插件"><span class="nav-number">1.</span> <span class="nav-text">常用webpack插件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#live-server-必须全局安装，命令直接使用"><span class="nav-number">1.1.</span> <span class="nav-text">live-server (必须全局安装，命令直接使用)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#uglifyjs-webpack-plugin（js压缩插件）"><span class="nav-number">1.2.</span> <span class="nav-text">uglifyjs-webpack-plugin（js压缩插件）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#html-webpack-plugin（打包HTML文件）"><span class="nav-number">1.3.</span> <span class="nav-text">html-webpack-plugin（打包HTML文件）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#extract-text-webpack-plugin（分离css插件）"><span class="nav-number">1.4.</span> <span class="nav-text">extract-text-webpack-plugin（分离css插件）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PurifyCSS-webpack（消除未使用的css，必须配合extract-text-webpack-plugin插件）"><span class="nav-number">1.5.</span> <span class="nav-text">PurifyCSS-webpack（消除未使用的css，必须配合extract-text-webpack-plugin插件）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见Loader"><span class="nav-number">2.</span> <span class="nav-text">常见Loader</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cssLoader（style-loader和css-loader）"><span class="nav-number">2.1.</span> <span class="nav-text">cssLoader（style-loader和css-loader）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图片Loader（file-loader和url-loader）"><span class="nav-number">2.2.</span> <span class="nav-text">图片Loader（file-loader和url-loader）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hmtl文件中引入图片标签的Loader（html-withimg-loader）"><span class="nav-number">2.3.</span> <span class="nav-text">hmtl文件中引入图片标签的Loader（html-withimg-loader）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#less-Loader"><span class="nav-number">2.4.</span> <span class="nav-text">less-Loader</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SASS-Loader"><span class="nav-number">2.5.</span> <span class="nav-text">SASS-Loader</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#css3属性前缀postcss-loader"><span class="nav-number">2.6.</span> <span class="nav-text">css3属性前缀postcss-loader</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#loader的三种写法："><span class="nav-number">3.</span> <span class="nav-text">loader的三种写法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Babel的安装与配置"><span class="nav-number">4.</span> <span class="nav-text">Babel的安装与配置</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dali</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
