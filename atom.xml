@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-09-22T10:16:55.364Z</updated>
+  <updated>2020-09-27T10:10:49.667Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,213 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>this之常见的四种用法</title>
+    <link href="http://yoursite.com/2020/09/27/this%E4%B9%8B%E5%B8%B8%E8%A7%81%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%94%A8%E6%B3%95/"/>
+    <id>http://yoursite.com/2020/09/27/this%E4%B9%8B%E5%B8%B8%E8%A7%81%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%94%A8%E6%B3%95/</id>
+    <published>2020-09-27T08:04:03.000Z</published>
+    <updated>2020-09-27T10:10:49.667Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;span style=&quot;color:red;&quot;&gt;箭头函数的this指向window！！！！！！！！&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;1.在一般函数方法中使用 this 指代全局对象&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;function test()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;　　　　this.x &amp;#x3D; 1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;　　　　alert(this.x);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;test(); &amp;#x2F;&amp;#x2F; 1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="js" scheme="http://yoursite.com/categories/js/"/>
+    
+    
+      <category term="js" scheme="http://yoursite.com/tags/js/"/>
+    
+      <category term="this" scheme="http://yoursite.com/tags/this/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>axios之get和post</title>
+    <link href="http://yoursite.com/2020/09/27/axios%E4%B9%8Bget%E5%92%8Cpost/"/>
+    <id>http://yoursite.com/2020/09/27/axios%E4%B9%8Bget%E5%92%8Cpost/</id>
+    <published>2020-09-27T03:04:09.000Z</published>
+    <updated>2020-09-27T10:10:34.541Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;什么是GET和POST请求&quot;&gt;&lt;a href=&quot;#什么是GET和POST请求&quot; class=&quot;headerlink&quot; title=&quot;什么是GET和POST请求&quot;&gt;&lt;/a&gt;什么是GET和POST请求&lt;/h3&gt;&lt;p&gt;GET：向指定路径资源发送请求，通常用于获取数据&lt;/p&gt;
+&lt;p&gt;POST：向指定路径资源提交数据进行处理请求，通常用于提交表单或者上传文件&lt;/p&gt;
+&lt;h3 id=&quot;GET和POST请求的区别&quot;&gt;&lt;a href=&quot;#GET和POST请求的区别&quot; class=&quot;headerlink&quot; title=&quot;GET和POST请求的区别&quot;&gt;&lt;/a&gt;GET和POST请求的区别&lt;/h3&gt;&lt;p&gt;1，GET一般是从服务器上获取数据，POST是向服务器提交数据。&lt;/p&gt;
+&lt;p&gt;2，GET通过URL提交数据，数据在URL中可以看到，POST则是在HEADER内提交。&lt;/p&gt;
+&lt;p&gt;3，GET提交的数据不能大于2KB，而POST不受限制。&lt;/p&gt;
+&lt;p&gt;4，GET数据容易泄露，POST较为安全&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="axios" scheme="http://yoursite.com/categories/axios/"/>
+    
+      <category term="vue" scheme="http://yoursite.com/categories/axios/vue/"/>
+    
+    
+      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
+    
+      <category term="axios" scheme="http://yoursite.com/tags/axios/"/>
+    
+      <category term="get" scheme="http://yoursite.com/tags/get/"/>
+    
+      <category term="post" scheme="http://yoursite.com/tags/post/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>js之对象的方法合集</title>
+    <link href="http://yoursite.com/2020/09/25/js%E4%B9%8B%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E6%B3%95%E5%90%88%E9%9B%86/"/>
+    <id>http://yoursite.com/2020/09/25/js%E4%B9%8B%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E6%B3%95%E5%90%88%E9%9B%86/</id>
+    <published>2020-09-25T09:40:57.000Z</published>
+    <updated>2020-09-27T10:14:22.015Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Object构造方法&quot;&gt;&lt;a href=&quot;#Object构造方法&quot; class=&quot;headerlink&quot; title=&quot;Object构造方法&quot;&gt;&lt;/a&gt;&lt;code&gt;Object&lt;/code&gt;构造方法&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;code&gt;Object.assign()&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;将所有可枚举的自身属性的值从一个或多个源对象复制到目标对象。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;code&gt;Object.create()&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;用指定的原型对象和属性创建一个新对象。&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="js" scheme="http://yoursite.com/categories/js/"/>
+    
+    
+      <category term="js" scheme="http://yoursite.com/tags/js/"/>
+    
+      <category term="对象的方法" scheme="http://yoursite.com/tags/%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>react之井字棋</title>
+    <link href="http://yoursite.com/2020/09/25/react%E4%B9%8B%E4%BA%95%E5%AD%97%E6%A3%8B/"/>
+    <id>http://yoursite.com/2020/09/25/react%E4%B9%8B%E4%BA%95%E5%AD%97%E6%A3%8B/</id>
+    <published>2020-09-25T05:18:36.000Z</published>
+    <updated>2020-09-27T10:19:37.178Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;见下文&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="react" scheme="http://yoursite.com/categories/react/"/>
+    
+    
+      <category term="react" scheme="http://yoursite.com/tags/react/"/>
+    
+      <category term="井字棋" scheme="http://yoursite.com/tags/%E4%BA%95%E5%AD%97%E6%A3%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>js之构造函数原型实例</title>
+    <link href="http://yoursite.com/2020/09/25/js%E4%B9%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%8E%9F%E5%9E%8B%E5%AE%9E%E4%BE%8B/"/>
+    <id>http://yoursite.com/2020/09/25/js%E4%B9%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%8E%9F%E5%9E%8B%E5%AE%9E%E4%BE%8B/</id>
+    <published>2020-09-25T02:05:09.000Z</published>
+    <updated>2020-09-27T10:14:01.734Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;首先用构造函数（一会解释什么叫做构造函数）的方法创建一个对象&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; M=&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.name=&lt;span class=&quot;string&quot;&gt;&#39;123&#39;&lt;/span&gt;&amp;#125;   &lt;span class=&quot;comment&quot;&gt;//ƒ ()&amp;#123;this.name=&#39;123&#39;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; a1=&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; M()  &lt;span class=&quot;comment&quot;&gt;//M &amp;#123;name: &quot;123&quot;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(a1.name)  &lt;span class=&quot;comment&quot;&gt;//123&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;strong&gt;构造函数：&lt;/strong&gt;现在M就是构造函数，因为他被new过了！–在js中，只要是被new过的函数都被成为构造函数。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;实例对象：&lt;/strong&gt;现在a1就叫做实例，因为他是被new出来的！–在js中，只要是被new出来的对象都叫做实例对象。也叫实例。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;原型对象：&lt;/strong&gt;现在M.prototype就是原型对象，构造函数函数被创建出来的时候，天生就带一个prototype属性，而这个属性里面的东西就叫原型对象。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="js" scheme="http://yoursite.com/categories/js/"/>
+    
+    
+      <category term="js" scheme="http://yoursite.com/tags/js/"/>
+    
+      <category term="构造函数" scheme="http://yoursite.com/tags/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/"/>
+    
+      <category term="原型对象" scheme="http://yoursite.com/tags/%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1/"/>
+    
+      <category term="实例对象" scheme="http://yoursite.com/tags/%E5%AE%9E%E4%BE%8B%E5%AF%B9%E8%B1%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>webpack4最全解析</title>
+    <link href="http://yoursite.com/2020/09/23/webpack4%E6%9C%80%E5%85%A8%E8%A7%A3%E6%9E%90/"/>
+    <id>http://yoursite.com/2020/09/23/webpack4%E6%9C%80%E5%85%A8%E8%A7%A3%E6%9E%90/</id>
+    <published>2020-09-23T11:21:53.000Z</published>
+    <updated>2020-09-27T10:13:33.050Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;命令合集&quot;&gt;&lt;a href=&quot;#命令合集&quot; class=&quot;headerlink&quot; title=&quot;命令合集&quot;&gt;&lt;/a&gt;命令合集&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;webpack-cli可以让我们在命令行里输入webpack相关命令&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;本地安装webpack webpack-cli&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;npm webpack webpack-cli -D &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;生成默认的packpage.json&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;npm init -y&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;查看旧的版本号&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;npm info webpack&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;全局安装翻译某个js&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;webpack index.js&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;本地安装翻译某个js&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;npx webpack index.js&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;查看本地安装的webpack&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;npx webpack -v &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;更改配置文件(由默认的webpack.config.js改成webpackconfig.js)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;npx webpack --config webpackconfig.js&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="webpack4" scheme="http://yoursite.com/categories/webpack4/"/>
+    
+    
+      <category term="webpack4" scheme="http://yoursite.com/tags/webpack4/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>js之Math</title>
+    <link href="http://yoursite.com/2020/09/23/js%E4%B9%8BMath/"/>
+    <id>http://yoursite.com/2020/09/23/js%E4%B9%8BMath/</id>
+    <published>2020-09-23T06:33:58.000Z</published>
+    <updated>2020-09-27T10:13:01.060Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Math-对象方法&quot;&gt;&lt;a href=&quot;#Math-对象方法&quot; class=&quot;headerlink&quot; title=&quot;Math 对象方法&quot;&gt;&lt;/a&gt;Math 对象方法&lt;/h2&gt;
+    
+    </summary>
+    
+    
+      <category term="Math" scheme="http://yoursite.com/categories/Math/"/>
+    
+    
+      <category term="Math" scheme="http://yoursite.com/tags/Math/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vue之惯性滚动动效</title>
+    <link href="http://yoursite.com/2020/09/23/vue%E4%B9%8B%E6%83%AF%E6%80%A7%E6%BB%9A%E5%8A%A8%E5%8A%A8%E6%95%88/"/>
+    <id>http://yoursite.com/2020/09/23/vue%E4%B9%8B%E6%83%AF%E6%80%A7%E6%BB%9A%E5%8A%A8%E5%8A%A8%E6%95%88/</id>
+    <published>2020-09-23T05:31:19.000Z</published>
+    <updated>2020-09-27T10:19:02.545Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;见下文&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="vue" scheme="http://yoursite.com/categories/vue/"/>
+    
+    
+      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
+    
+      <category term="滚动" scheme="http://yoursite.com/tags/%E6%BB%9A%E5%8A%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>本地文件夹上传github</title>
@@ -49,7 +256,7 @@
     <link href="http://yoursite.com/2020/09/22/webpack%E5%B8%B8%E8%A7%81loader%E5%92%8Cplugins/"/>
     <id>http://yoursite.com/2020/09/22/webpack%E5%B8%B8%E8%A7%81loader%E5%92%8Cplugins/</id>
     <published>2020-09-22T08:48:58.000Z</published>
-    <updated>2020-09-22T09:43:13.276Z</updated>
+    <updated>2020-09-27T09:50:22.934Z</updated>
     
     <summary type="html">
     
@@ -75,11 +282,11 @@
   </entry>
   
   <entry>
-    <title>webpack最全解析</title>
-    <link href="http://yoursite.com/2020/09/21/webpack%E6%9C%80%E5%85%A8%E8%A7%A3%E6%9E%90/"/>
-    <id>http://yoursite.com/2020/09/21/webpack%E6%9C%80%E5%85%A8%E8%A7%A3%E6%9E%90/</id>
+    <title>webpack3最全解析</title>
+    <link href="http://yoursite.com/2020/09/21/webpack3%E6%9C%80%E5%85%A8%E8%A7%A3%E6%9E%90/"/>
+    <id>http://yoursite.com/2020/09/21/webpack3%E6%9C%80%E5%85%A8%E8%A7%A3%E6%9E%90/</id>
     <published>2020-09-21T09:29:49.000Z</published>
-    <updated>2020-09-22T09:48:23.461Z</updated>
+    <updated>2020-09-27T09:02:33.707Z</updated>
     
     <summary type="html">
     
@@ -88,10 +295,10 @@
     </summary>
     
     
-      <category term="webpack" scheme="http://yoursite.com/categories/webpack/"/>
+      <category term="webpack3" scheme="http://yoursite.com/categories/webpack3/"/>
     
     
-      <category term="webpack" scheme="http://yoursite.com/tags/webpack/"/>
+      <category term="webpack3" scheme="http://yoursite.com/tags/webpack3/"/>
     
   </entry>
   
@@ -154,7 +361,7 @@
     <link href="http://yoursite.com/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86%E7%9A%84%E4%B8%89/"/>
     <id>http://yoursite.com/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86%E7%9A%84%E4%B8%89/</id>
     <published>2020-09-16T06:20:24.000Z</published>
-    <updated>2020-09-22T09:51:08.270Z</updated>
+    <updated>2020-09-27T10:22:01.874Z</updated>
     
     <summary type="html">
     
@@ -205,7 +412,7 @@
     <link href="http://yoursite.com/2020/09/15/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E5%A4%8D%E4%B9%A0/"/>
     <id>http://yoursite.com/2020/09/15/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E5%A4%8D%E4%B9%A0/</id>
     <published>2020-09-15T06:10:37.000Z</published>
-    <updated>2020-09-16T06:01:39.264Z</updated>
+    <updated>2020-09-25T09:41:05.307Z</updated>
     
     <summary type="html">
     
@@ -309,7 +516,7 @@
     <link href="http://yoursite.com/2020/09/14/js%E4%B9%8Bcall%E5%92%8Capply/"/>
     <id>http://yoursite.com/2020/09/14/js%E4%B9%8Bcall%E5%92%8Capply/</id>
     <published>2020-09-14T09:43:15.000Z</published>
-    <updated>2020-09-22T09:52:47.103Z</updated>
+    <updated>2020-09-23T06:34:39.137Z</updated>
     
     <summary type="html">
     
@@ -318,207 +525,12 @@
     </summary>
     
     
+      <category term="js" scheme="http://yoursite.com/categories/js/"/>
     
-  </entry>
-  
-  <entry>
-    <title>es6之map和set结构</title>
-    <link href="http://yoursite.com/2020/09/14/es6%E4%B9%8Bmap%E5%92%8Cset%E7%BB%93%E6%9E%84/"/>
-    <id>http://yoursite.com/2020/09/14/es6%E4%B9%8Bmap%E5%92%8Cset%E7%BB%93%E6%9E%84/</id>
-    <published>2020-09-14T08:54:09.000Z</published>
-    <updated>2020-09-16T06:02:27.229Z</updated>
     
-    <summary type="html">
+      <category term="call" scheme="http://yoursite.com/tags/call/"/>
     
-      &lt;h2 id=&quot;一-Map结构数据&quot;&gt;&lt;a href=&quot;#一-Map结构数据&quot; class=&quot;headerlink&quot; title=&quot;一.Map结构数据&quot;&gt;&lt;/a&gt;一.Map结构数据&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;img src=&quot;https:////upload-images.jianshu.io/upload_images/5417256-625e0db86d075be5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp&quot; alt=&quot;img&quot;&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-      <category term="ESLint" scheme="http://yoursite.com/categories/ESLint/"/>
-    
-    
-      <category term="map" scheme="http://yoursite.com/tags/map/"/>
-    
-      <category term="set" scheme="http://yoursite.com/tags/set/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>es6之扩展运算符</title>
-    <link href="http://yoursite.com/2020/09/14/es6%E4%B9%8B%E6%89%A9%E5%B1%95%E8%BF%90%E7%AE%97%E7%AC%A6/"/>
-    <id>http://yoursite.com/2020/09/14/es6%E4%B9%8B%E6%89%A9%E5%B1%95%E8%BF%90%E7%AE%97%E7%AC%A6/</id>
-    <published>2020-09-14T08:46:45.000Z</published>
-    <updated>2020-09-14T09:39:33.876Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;含义&quot;&gt;&lt;a href=&quot;#含义&quot; class=&quot;headerlink&quot; title=&quot;含义&quot;&gt;&lt;/a&gt;&lt;strong&gt;含义&lt;/strong&gt;&lt;/h3&gt;&lt;p&gt;扩展运算符（spread）是三个点（&lt;code&gt;...&lt;/code&gt;）。它好比 rest 参数的逆运算，将一个数组转为用逗号分隔的参数序列。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;console.log(...[1, 2, 3])&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#x2F;&amp;#x2F; 1 2 3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(1, ...[2, 3, 4], 5)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#x2F;&amp;#x2F; 1 2 3 4 5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[...document.querySelectorAll(&amp;#39;div&amp;#39;)]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#x2F;&amp;#x2F; [&amp;lt;div&amp;gt;, &amp;lt;div&amp;gt;, &amp;lt;div&amp;gt;]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="ESLint" scheme="http://yoursite.com/categories/ESLint/"/>
-    
-    
-      <category term="ESLint" scheme="http://yoursite.com/tags/ESLint/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>WebSocket</title>
-    <link href="http://yoursite.com/2020/09/14/WebSocket/"/>
-    <id>http://yoursite.com/2020/09/14/WebSocket/</id>
-    <published>2020-09-14T07:00:35.000Z</published>
-    <updated>2020-09-21T06:51:55.005Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;什么是WebSocket&quot;&gt;&lt;a href=&quot;#什么是WebSocket&quot; class=&quot;headerlink&quot; title=&quot;什么是WebSocket&quot;&gt;&lt;/a&gt;&lt;strong&gt;什么是WebSocket&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;首先需要明白webSocket的概念，下边是维基百科的解释&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;WebSocket是一种通信协议，可在单个TCP连接上进行全双工通信。WebSocket使得客户端和服务器之间的数据交换变得更加简单，允许服务端主动向客户端推送数据。在WebSocket API中，浏览器和服务器只需要完成一次握手，两者之间就可以建立持久性的连接，并进行双向数据传输。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;首先，要明白WebSocket是一种通信协议，区别于HTTP协议，HTTP协议只能实现客户端请求，服务端响应的这种单项通信。&lt;br&gt;而WebSocket可以实现客户端与服务端的双向通讯，说白了，最大也是最明显的区别就是可以做到服务端主动将消息推送给客户端。&lt;br&gt;其余的特点有：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;握手阶段采用 HTTP 协议。&lt;/li&gt;
-&lt;li&gt;数据格式轻量，性能开销小。客户端与服务端进行数据交换时，服务端到客户端的数据包头只有2到10字节，客户端到服务端需要加上另外4字节的掩码。HTTP每次都需要携带完整头部。&lt;/li&gt;
-&lt;li&gt;更好的二进制支持，可以发送文本，和二进制数据&lt;/li&gt;
-&lt;li&gt;没有同源限制，客户端可以与任意服务器通信&lt;/li&gt;
-&lt;li&gt;协议标识符是ws（如果加密，则是wss），请求的地址就是后端支持websocket的API。&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-      <category term="WebSocket" scheme="http://yoursite.com/categories/WebSocket/"/>
-    
-    
-      <category term="WebSocket" scheme="http://yoursite.com/tags/WebSocket/"/>
-    
-      <category term="案例" scheme="http://yoursite.com/tags/%E6%A1%88%E4%BE%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>小程序之wx-request封装</title>
-    <link href="http://yoursite.com/2020/09/10/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8Bwx-request%E5%B0%81%E8%A3%85/"/>
-    <id>http://yoursite.com/2020/09/10/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8Bwx-request%E5%B0%81%E8%A3%85/</id>
-    <published>2020-09-10T10:19:40.000Z</published>
-    <updated>2020-09-11T07:46:56.586Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;微信请求-Promise-化&quot;&gt;&lt;a href=&quot;#微信请求-Promise-化&quot; class=&quot;headerlink&quot; title=&quot;微信请求 Promise 化&quot;&gt;&lt;/a&gt;微信请求 Promise 化&lt;/h2&gt;&lt;h3 id=&quot;2-1-使用现成的库&quot;&gt;&lt;a href=&quot;#2-1-使用现成的库&quot; class=&quot;headerlink&quot; title=&quot;2.1 使用现成的库&quot;&gt;&lt;/a&gt;2.1 使用现成的库&lt;/h3&gt;
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>小程序之wx-upData</title>
-    <link href="http://yoursite.com/2020/09/10/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8Bwx-upData/"/>
-    <id>http://yoursite.com/2020/09/10/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8Bwx-upData/</id>
-    <published>2020-09-10T10:09:20.000Z</published>
-    <updated>2020-09-11T08:01:01.646Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;鉴于在下使用微信小程序开发时使用 &lt;code&gt;setData&lt;/code&gt; 的蹩脚体验，开发了个库函数 &lt;code&gt;wx-updata&lt;/code&gt;，项目上线之后，我把这个自用的库函数整理放到 Github 上开源出来 wx-updata，这个库函数在开发的时候对我很有帮助，希望也可以帮到大家 ????&lt;/p&gt;
-&lt;p&gt;如果大家在使用中遇到了问题，可以给我提 pr，提 issue，一起来改善小程序开发体验加油～&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;code&gt;wx-updata&lt;/code&gt; 版本 0.0.10&lt;/li&gt;
-&lt;li&gt;Github 地址：&lt;a href=&quot;https://github.com/SHERlocked93/wx-updata&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://github.com/SHERlocked93/wx-updata&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;小程序代码片段预览地址：&lt;a href=&quot;https://developers.weixin.qq.com/s/CcXdO1mc73jD&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://developers.weixin.qq.com/s/CcXdO1mc73jD&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;小程序代码片段代码地址：&lt;a href=&quot;https://github.com/SHERlocked93/wx-updata-demo&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://github.com/SHERlocked93/wx-updata-demo&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;1-setData-不方便的地方&quot;&gt;&lt;a href=&quot;#1-setData-不方便的地方&quot; class=&quot;headerlink&quot; title=&quot;1. setData 不方便的地方&quot;&gt;&lt;/a&gt;&lt;strong&gt;1. setData 不方便的地方&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;你在使用 &lt;code&gt;setData&lt;/code&gt; 的时候，是不是有时候觉得很难受，举个简单的例子：&lt;/p&gt;
-&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 你的 data&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;data: &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    name: &lt;span class=&quot;string&quot;&gt;&#39;蜡笔小新&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    info: &amp;#123; height: &lt;span class=&quot;number&quot;&gt;140&lt;/span&gt;, color: &lt;span class=&quot;string&quot;&gt;&#39;黄色&#39;&lt;/span&gt; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="soft" scheme="http://yoursite.com/categories/soft/"/>
-    
-    
-      <category term="小程序" scheme="http://yoursite.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
-    
-      <category term="wx-updata" scheme="http://yoursite.com/tags/wx-updata/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Vue数据更新但页面没有更新的7种情况</title>
-    <link href="http://yoursite.com/2020/09/10/Vue%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E4%BD%86%E9%A1%B5%E9%9D%A2%E6%B2%A1%E6%9C%89%E6%9B%B4%E6%96%B0%E7%9A%847%E7%A7%8D%E6%83%85%E5%86%B5/"/>
-    <id>http://yoursite.com/2020/09/10/Vue%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E4%BD%86%E9%A1%B5%E9%9D%A2%E6%B2%A1%E6%9C%89%E6%9B%B4%E6%96%B0%E7%9A%847%E7%A7%8D%E6%83%85%E5%86%B5/</id>
-    <published>2020-09-10T09:27:58.000Z</published>
-    <updated>2020-09-16T09:18:23.748Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;Vue-set与-vue-set在使用中的区别-delete和this-delete&quot;&gt;&lt;a href=&quot;#Vue-set与-vue-set在使用中的区别-delete和this-delete&quot; class=&quot;headerlink&quot; title=&quot;Vue.set与 vue.$set在使用中的区别(delete和this.$delete)&quot;&gt;&lt;/a&gt;Vue.set与 vue.$set在使用中的区别(delete和this.$delete)&lt;/h3&gt;&lt;p&gt;Vue.set 可以设置实例创建之后添加的属性，如sex，而this.$set/vue.$set/vm.$set只能设置实例创建后存在的属性。&lt;/p&gt;
-&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; data = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    name: &lt;span class=&quot;string&quot;&gt;&quot;简书&quot;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    age: &lt;span class=&quot;string&quot;&gt;&#39;3&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    info: &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        content: &lt;span class=&quot;string&quot;&gt;&#39;my name is test&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;   &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; key = &lt;span class=&quot;string&quot;&gt;&#39;content&#39;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; vm = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Vue(&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    el:&lt;span class=&quot;string&quot;&gt;&#39;#app&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    data: data,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ready: &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        Vue.set(data,&lt;span class=&quot;string&quot;&gt;&#39;sex&#39;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&#39;男&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.$&lt;span class=&quot;keyword&quot;&gt;set&lt;/span&gt;(&#39;sex&#39;, &#39;女&#39;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="vue" scheme="http://yoursite.com/categories/vue/"/>
-    
-    
-      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
-    
-      <category term="数据更新" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vue-skeleton-webpack-plugin</title>
-    <link href="http://yoursite.com/2020/09/10/vue-skeleton-webpack-plugin/"/>
-    <id>http://yoursite.com/2020/09/10/vue-skeleton-webpack-plugin/</id>
-    <published>2020-09-10T03:51:14.000Z</published>
-    <updated>2020-09-10T09:29:06.938Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;架构图&quot;&gt;&lt;a href=&quot;#架构图&quot; class=&quot;headerlink&quot; title=&quot;架构图&quot;&gt;&lt;/a&gt;架构图&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;/2020/09/10/vue-skeleton-webpack-plugin/image-20200910115921296.png&quot; alt=&quot;image-20200910115921296&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="vue" scheme="http://yoursite.com/categories/vue/"/>
-    
-    
-      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
-    
-      <category term="vue-skeleton-webpack-plugin" scheme="http://yoursite.com/tags/vue-skeleton-webpack-plugin/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>小程序之骨架屏的使用</title>
-    <link href="http://yoursite.com/2020/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E9%AA%A8%E6%9E%B6%E5%B1%8F%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>http://yoursite.com/2020/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E9%AA%A8%E6%9E%B6%E5%B1%8F%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
-    <published>2020-09-09T07:47:36.000Z</published>
-    <updated>2020-09-11T07:47:50.977Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;自定义骨架屏&quot;&gt;&lt;a href=&quot;#自定义骨架屏&quot; class=&quot;headerlink&quot; title=&quot;自定义骨架屏&quot;&gt;&lt;/a&gt;自定义骨架屏&lt;/h3&gt;&lt;p&gt;index.wxml:&lt;/p&gt;
-&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;&amp;lt;!-- 作为组件在页面中使用 --&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;skeleton&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;selector&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;skeleton&quot;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&lt;span class=&quot;attr&quot;&gt;loading&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;spin&quot;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&lt;span class=&quot;attr&quot;&gt;bgcolor&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;#FFF&quot;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&lt;span class=&quot;attr&quot;&gt;wx:if&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;&amp;#123;&amp;#123;showSkeleton&amp;#125;&amp;#125;&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;skeleton&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;&amp;lt;!--index.wxml--&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;&amp;lt;!-- 渲染的根节点，加上 .skeleton --&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;view&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;container skeleton&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;view&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;userinfo&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;block&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;comment&quot;&gt;&amp;lt;!-- 要渲染的圆形节点，加上 .skeleton-radius --&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;image&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;userinfo-avatar skeleton-radius&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;src&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;&amp;#123;&amp;#123;userInfo.avatarUrl&amp;#125;&amp;#125;&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;mode&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;cover&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;image&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;comment&quot;&gt;&amp;lt;!-- 要渲染的矩形节点，加上 .skeleton-rect --&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;userinfo-nickname skeleton-rect&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&amp;#123;&amp;#123;userInfo.nickName&amp;#125;&amp;#125;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;text&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;block&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;view&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;view&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;style&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;margin: 20px 0&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;view&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;wx:for&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;&amp;#123;&amp;#123;lists&amp;#125;&amp;#125;&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;wx:key&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;&amp;#123;&amp;#123;index&amp;#125;&amp;#125;&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;lists&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;icon&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;success&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;size&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;20&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;list skeleton-radius&quot;&lt;/span&gt;/&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;skeleton-rect&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&amp;#123;&amp;#123;item&amp;#125;&amp;#125;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;text&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;view&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;view&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;view&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;usermotto&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;user-motto skeleton-rect&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&amp;#123;&amp;#123;motto&amp;#125;&amp;#125;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;text&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;view&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;view&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;style&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;margin-top: 200px;&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;aaaaaaaaaaa&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;view&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;view&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="soft" scheme="http://yoursite.com/categories/soft/"/>
-    
-    
-      <category term="小程序" scheme="http://yoursite.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
-    
-      <category term="骨架屏" scheme="http://yoursite.com/tags/%E9%AA%A8%E6%9E%B6%E5%B1%8F/"/>
+      <category term="apply" scheme="http://yoursite.com/tags/apply/"/>
     
   </entry>
   

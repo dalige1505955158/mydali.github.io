@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="webpack," />
+  <meta name="keywords" content="webpack3," />
 
 
 
@@ -83,17 +83,17 @@
 
 <meta name="description" content="开始（以3.X版本为例，内容有过时的还没更新）123456789&#x2F;&#x2F;新建文件夹mkdir webpack_democd webpack_demo&#x2F;&#x2F;全局安装webpacknpm install -g webpack@3.6.0&#x2F;&#x2F;初始化生成package.jsonnpm init &#x2F;&#x2F;开发时依赖npm install">
 <meta property="og:type" content="article">
-<meta property="og:title" content="webpack最全解析">
-<meta property="og:url" content="http://yoursite.com/2020/09/21/webpack%E6%9C%80%E5%85%A8%E8%A7%A3%E6%9E%90/index.html">
+<meta property="og:title" content="webpack3最全解析">
+<meta property="og:url" content="http://yoursite.com/2020/09/21/webpack3%E6%9C%80%E5%85%A8%E8%A7%A3%E6%9E%90/index.html">
 <meta property="og:site_name" content="DaliBlogs">
 <meta property="og:description" content="开始（以3.X版本为例，内容有过时的还没更新）123456789&#x2F;&#x2F;新建文件夹mkdir webpack_democd webpack_demo&#x2F;&#x2F;全局安装webpacknpm install -g webpack@3.6.0&#x2F;&#x2F;初始化生成package.jsonnpm init &#x2F;&#x2F;开发时依赖npm install">
 <meta property="og:image" content="http://7xjyw1.com1.z0.glb.clouddn.com/webpack_aadd.png">
 <meta property="og:image" content="https://img-blog.csdn.net/20180719162034769?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNjE4NTAyOA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
 <meta property="og:image" content="https://img-blog.csdn.net/20180719162218590?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNjE4NTAyOA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
 <meta property="article:published_time" content="2020-09-21T09:29:49.000Z">
-<meta property="article:modified_time" content="2020-09-22T09:48:23.461Z">
+<meta property="article:modified_time" content="2020-09-27T09:02:33.707Z">
 <meta property="article:author" content="Dali">
-<meta property="article:tag" content="webpack">
+<meta property="article:tag" content="webpack3">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://7xjyw1.com1.z0.glb.clouddn.com/webpack_aadd.png">
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/09/21/webpack最全解析/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/09/21/webpack3最全解析/"/>
 
 
 
 
 
-  <title>webpack最全解析 | DaliBlogs</title>
+  <title>webpack3最全解析 | DaliBlogs</title>
   
 
 
@@ -302,7 +302,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/21/webpack%E6%9C%80%E5%85%A8%E8%A7%A3%E6%9E%90/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/21/webpack3%E6%9C%80%E5%85%A8%E8%A7%A3%E6%9E%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Dali">
@@ -319,7 +319,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">webpack最全解析</h1>
+          <h1 class="post-title" itemprop="name headline">webpack3最全解析</h1>
         
 
         <div class="post-meta">
@@ -354,8 +354,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/webpack/" itemprop="url" rel="index">
-                    <span itemprop="name">webpack</span>
+                  <a href="/categories/webpack3/" itemprop="url" rel="index">
+                    <span itemprop="name">webpack3</span>
                   </a>
                 </span>
 
@@ -456,7 +456,7 @@
 
 <p>可以看到代码的第7和14行进行了增加和修改，在入口文件配置中，增加了一个entry2.js的入口文件（这个文件你需要自己手动建立），这时候要打包的就有了两个入口文件。在代码14行我们把原来的bundle.js修改成了<code>[name].js</code>。</p>
 <p><code>[name]</code>的意思是根据入口文件的名称，打包成相同的名称，有几个入口文件，就可以打包出几个文件。</p>
-<h4 id="配置文件：-服务和热更新-webpack-dev-server"><a href="#配置文件：-服务和热更新-webpack-dev-server" class="headerlink" title="配置文件： 服务和热更新-webpack-dev-server**"></a>配置文件： 服务和热更新-webpack-dev-server**</h4><p>作为一个前端工程师，最大的编程需求之一就是所见即所得的工具，也就是常说的热更新。这节课就学习用webpack3.6版本实现热更新效果。</p>
+<h4 id="配置文件：-服务和热更新-webpack-dev-server"><a href="#配置文件：-服务和热更新-webpack-dev-server" class="headerlink" title="配置文件： 服务和热更新-webpack-dev-server"></a>配置文件： 服务和热更新-webpack-dev-server</h4><p>作为一个前端工程师，最大的编程需求之一就是所见即所得的工具，也就是常说的热更新。这节课就学习用webpack3.6版本实现热更新效果。</p>
 <p><strong>设置webpack-dev-server</strong></p>
 <p>要执行<code>webpack-dev-server</code>是要先用<code>npm install webpack-dev-server –save-dev</code>来进行下载的。下载好后，需要配置一下devServer。最简单的devServer配置项只有四个。先看一下代码，然后我再作解释。</p>
 <p>/webpack.config.js</p>
@@ -647,7 +647,7 @@
 <p>配置完成后，可以在控制台输入npm run build 进行打包。</p>
 <p><strong>如何把图片放到指定的文件夹下</strong></p>
 <p>前边两节课程，打包后的图片并没有放到images文件夹下，要放到images文件夹下，其实只需要配置我们的url-loader选项就可以了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">module:&#123;</span><br><span class="line">        rules: [</span><br><span class="line">            &#123;</span><br><span class="line">              test: &#x2F;\.css$&#x2F;,</span><br><span class="line">              use: extractTextPlugin.extract(&#123;</span><br><span class="line">                fallback: &quot;style-loader&quot;,</span><br><span class="line">                use: &quot;css-loader&quot;</span><br><span class="line">              &#125;)</span><br><span class="line">            &#125;,&#123;</span><br><span class="line">               test:&#x2F;\.(png|jpg|gif)&#x2F; ,</span><br><span class="line">               use:[&#123;</span><br><span class="line">                   loader:&#39;url-loader&#39;,</span><br><span class="line">                   options:&#123;</span><br><span class="line">                       limit:5000,</span><br><span class="line">                       outputPath:&#39;images&#x2F;&#39;,</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125;]</span><br><span class="line">            &#125;</span><br><span class="line">          ]</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">module:&#123;</span><br><span class="line">        rules: [</span><br><span class="line">            &#123;</span><br><span class="line">              test: &#x2F;\.css$&#x2F;,</span><br><span class="line">              use: extractTextPlugin.extract(&#123;</span><br><span class="line">                fallback: &quot;style-loader&quot;,</span><br><span class="line">                use: &quot;css-loader&quot;</span><br><span class="line">              &#125;)</span><br><span class="line">            &#125;,&#123;</span><br><span class="line">               test:&#x2F;\.(png|jpg|gif)&#x2F; ,</span><br><span class="line">               use:[&#123;</span><br><span class="line">                   loader:&#39;url-loader&#39;,</span><br><span class="line">                   options:&#123;</span><br><span class="line">                       limit:5000,</span><br><span class="line">                       name:[name]_[hash:7].[ext]&#x2F;&#x2F;占位符，name引用原来图片的名字，hash打包的时候的hash值，ext引用原来图片的后缀</span><br><span class="line">                       outputPath:&#39;images&#x2F;&#39;,&#x2F;&#x2F;输入文件夹</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125;]</span><br><span class="line">            &#125;</span><br><span class="line">          ]</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
 
 <p>这回你再执行打包就可以把图片打包到images文件夹里了。</p>
 <p><strong>html-withimg-loader</strong></p>
@@ -728,7 +728,7 @@
 <p>postcss.config.js</p>
 <p>postCSS推荐在项目根目录（和webpack.config.js同级），建立一个postcss.config.js文件。</p>
 <p>postcss.config.js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">    plugins: &#123;  </span><br><span class="line">        &#39;autoprefixer&#39;: &#123;browsers: &#39;last 5 version&#39;&#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">    plugins: &#123;  </span><br><span class="line">        &#39;autoprefixer&#39;: &#123;browsers: &#39;last 5 version&#39;&#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br><span class="line">或者</span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">    plugins: [</span><br><span class="line">        require(&#39;autoprefixer&#39;)</span><br><span class="line">    ] </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这就是对postCSS一个简单的配置，引入了autoprefixer插件。让postCSS拥有添加前缀的能力，它会根据 can i use 来增加相应的css3属性前缀。</p>
 <p><strong>编写loader</strong></p>
@@ -763,6 +763,10 @@
 <p>这里配置了一个paths，主要是需找html模板，purifycss根据这个配置会遍历你的文件，查找哪些css被使用了。</p>
 <p><strong>注意：</strong>使用这个插件必须配合extract-text-webpack-plugin这个插件，这个插件在前边的课程已经讲解过了。如果你还不会请自学一下。</p>
 <p>配置好上边的代码，我们可以故意在css文件里写一些用不到的属性，然后用webpack打包，你会发现没用的CSS已经自动给你删除掉了。在工作中记得一定要配置这个plugins，因为这决定你代码的质量，非常有用。</p>
+<h4 id="打包iconfont字体文件"><a href="#打包iconfont字体文件" class="headerlink" title="打包iconfont字体文件"></a>打包iconfont字体文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">        test: &#x2F;\.(woff2?|eot|ttf|otf)(\?.*)?$&#x2F;,</span><br><span class="line">        loader: &quot;url-loader&quot;,</span><br><span class="line">        options: &#123;</span><br><span class="line">          limit: 10000,</span><br><span class="line">          name: utils.assetsPath(&quot;fonts&#x2F;[name].[hash:7].[ext]&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 <h4 id="给webpack增加bable支持（es6转es5）"><a href="#给webpack增加bable支持（es6转es5）" class="headerlink" title="给webpack增加bable支持（es6转es5）"></a>给webpack增加bable支持（es6转es5）</h4><p>在前端开发中都开始使用ES6的语法了，虽然说webpack3增加了一些ES6的转换支持，但是实际效果不是很好，也可能是本人技术有限，没发挥出真正的功能。所以我在开发中还是喜欢添加Babel-loader的，我也查看了一些别人的webpack配置也都增加了babel-loader，所以这节课我们学习一下如何增加Babel支持。（此节文章部分内容引用了zhangwang大神的文章内容）</p>
 <p>Babel是什么？ Babel其实是一个编译JavaScript的平台，它的强大之处表现在可以通过便宜帮你达到以下目的：</p>
 <p>使用下一代的javaScript代码(ES6,ES7….)，即使这些标准目前并未被当前的浏览器完全支持。</p>
@@ -944,7 +948,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/webpack/" rel="tag"># webpack</a>
+            <a href="/tags/webpack3/" rel="tag"># webpack3</a>
           
         </div>
       
@@ -1050,7 +1054,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">106</span>
+                  <span class="site-state-item-count">114</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1061,7 +1065,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">58</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1072,7 +1076,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">107</span>
+                  <span class="site-state-item-count">120</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1112,7 +1116,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#开始（以3-X版本为例，内容有过时的还没更新）"><span class="nav-number">1.</span> <span class="nav-text">开始（以3.X版本为例，内容有过时的还没更新）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实操"><span class="nav-number">2.</span> <span class="nav-text">实操</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#新建文件目录-编写程序文件"><span class="nav-number">2.1.</span> <span class="nav-text">新建文件目录-编写程序文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第一次Webpack打包"><span class="nav-number">2.2.</span> <span class="nav-text">第一次Webpack打包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置文件：入口和出口-配置文件webpack-config-js"><span class="nav-number">2.3.</span> <span class="nav-text">配置文件：入口和出口-配置文件webpack.config.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置文件：-服务和热更新-webpack-dev-server"><span class="nav-number">2.4.</span> <span class="nav-text">配置文件： 服务和热更新-webpack-dev-server**</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模块：CSS文件打包"><span class="nav-number">2.5.</span> <span class="nav-text">模块：CSS文件打包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JS压缩插件"><span class="nav-number">2.6.</span> <span class="nav-text">JS压缩插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML文件的发布"><span class="nav-number">2.7.</span> <span class="nav-text">HTML文件的发布</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图片迈坑：CSS中的图片处理（采用file-loader、url-loader）"><span class="nav-number">2.8.</span> <span class="nav-text">图片迈坑：CSS中的图片处理（采用file-loader、url-loader）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CSS分离与图片路径处理（extract-text-webpack-plugin插件-）"><span class="nav-number">2.9.</span> <span class="nav-text">CSS分离与图片路径处理（extract-text-webpack-plugin插件&#x2F;）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图片迈坑：处理HTML中的图片-html-withimg-loader"><span class="nav-number">2.10.</span> <span class="nav-text">图片迈坑：处理HTML中的图片(html-withimg-loader)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CSS进阶：Less文件的打包和分离"><span class="nav-number">2.11.</span> <span class="nav-text">CSS进阶：Less文件的打包和分离</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CSS进阶：SASS文件的打包和分离"><span class="nav-number">2.12.</span> <span class="nav-text">CSS进阶：SASS文件的打包和分离</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CSS进阶：自动处理css前缀，兼容浏览器"><span class="nav-number">2.13.</span> <span class="nav-text">CSS进阶：自动处理css前缀，兼容浏览器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CSS进阶：消除未使用的CSS"><span class="nav-number">2.14.</span> <span class="nav-text">CSS进阶：消除未使用的CSS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#给webpack增加bable支持（es6转es5）"><span class="nav-number">2.15.</span> <span class="nav-text">给webpack增加bable支持（es6转es5）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打包后如何调试"><span class="nav-number">2.16.</span> <span class="nav-text">打包后如何调试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实战技巧：开发和生产并行设置"><span class="nav-number">2.17.</span> <span class="nav-text">实战技巧：开发和生产并行设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实战技巧：webpack模块化配置"><span class="nav-number">2.18.</span> <span class="nav-text">实战技巧：webpack模块化配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实战技巧：优雅打包第三方类库（JQuery）"><span class="nav-number">2.19.</span> <span class="nav-text">实战技巧：优雅打包第三方类库（JQuery）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打包多个文件"><span class="nav-number">3.</span> <span class="nav-text">打包多个文件</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#开始（以3-X版本为例，内容有过时的还没更新）"><span class="nav-number">1.</span> <span class="nav-text">开始（以3.X版本为例，内容有过时的还没更新）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实操"><span class="nav-number">2.</span> <span class="nav-text">实操</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#新建文件目录-编写程序文件"><span class="nav-number">2.1.</span> <span class="nav-text">新建文件目录-编写程序文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第一次Webpack打包"><span class="nav-number">2.2.</span> <span class="nav-text">第一次Webpack打包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置文件：入口和出口-配置文件webpack-config-js"><span class="nav-number">2.3.</span> <span class="nav-text">配置文件：入口和出口-配置文件webpack.config.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置文件：-服务和热更新-webpack-dev-server"><span class="nav-number">2.4.</span> <span class="nav-text">配置文件： 服务和热更新-webpack-dev-server</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模块：CSS文件打包"><span class="nav-number">2.5.</span> <span class="nav-text">模块：CSS文件打包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JS压缩插件"><span class="nav-number">2.6.</span> <span class="nav-text">JS压缩插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML文件的发布"><span class="nav-number">2.7.</span> <span class="nav-text">HTML文件的发布</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图片迈坑：CSS中的图片处理（采用file-loader、url-loader）"><span class="nav-number">2.8.</span> <span class="nav-text">图片迈坑：CSS中的图片处理（采用file-loader、url-loader）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CSS分离与图片路径处理（extract-text-webpack-plugin插件-）"><span class="nav-number">2.9.</span> <span class="nav-text">CSS分离与图片路径处理（extract-text-webpack-plugin插件&#x2F;）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图片迈坑：处理HTML中的图片-html-withimg-loader"><span class="nav-number">2.10.</span> <span class="nav-text">图片迈坑：处理HTML中的图片(html-withimg-loader)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CSS进阶：Less文件的打包和分离"><span class="nav-number">2.11.</span> <span class="nav-text">CSS进阶：Less文件的打包和分离</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CSS进阶：SASS文件的打包和分离"><span class="nav-number">2.12.</span> <span class="nav-text">CSS进阶：SASS文件的打包和分离</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CSS进阶：自动处理css前缀，兼容浏览器"><span class="nav-number">2.13.</span> <span class="nav-text">CSS进阶：自动处理css前缀，兼容浏览器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CSS进阶：消除未使用的CSS"><span class="nav-number">2.14.</span> <span class="nav-text">CSS进阶：消除未使用的CSS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打包iconfont字体文件"><span class="nav-number">2.15.</span> <span class="nav-text">打包iconfont字体文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#给webpack增加bable支持（es6转es5）"><span class="nav-number">2.16.</span> <span class="nav-text">给webpack增加bable支持（es6转es5）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打包后如何调试"><span class="nav-number">2.17.</span> <span class="nav-text">打包后如何调试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实战技巧：开发和生产并行设置"><span class="nav-number">2.18.</span> <span class="nav-text">实战技巧：开发和生产并行设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实战技巧：webpack模块化配置"><span class="nav-number">2.19.</span> <span class="nav-text">实战技巧：webpack模块化配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实战技巧：优雅打包第三方类库（JQuery）"><span class="nav-number">2.20.</span> <span class="nav-text">实战技巧：优雅打包第三方类库（JQuery）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打包多个文件"><span class="nav-number">3.</span> <span class="nav-text">打包多个文件</span></a></li></ol></div>
             
 
           </div>

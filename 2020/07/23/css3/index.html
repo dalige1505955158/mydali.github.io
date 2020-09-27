@@ -99,7 +99,7 @@
 <meta property="og:image" content="https://images.cnblogs.com/cnblogs_com/2050/201208/201208101725587335.png">
 <meta property="og:image" content="https://images.cnblogs.com/cnblogs_com/2050/201208/201208101726046184.png">
 <meta property="article:published_time" content="2020-07-23T05:46:14.000Z">
-<meta property="article:modified_time" content="2020-09-17T06:02:47.407Z">
+<meta property="article:modified_time" content="2020-09-27T06:20:20.229Z">
 <meta property="article:author" content="Dali">
 <meta property="article:tag" content="css">
 <meta name="twitter:card" content="summary">
@@ -894,10 +894,17 @@
 <ol start="24">
 <li>word-wrap和word-break</li>
 </ol>
-<p>word-wrap:break-work;（换行后截断）</p>
+<p>word-wrap:break-word;（换行后截断）</p>
 <p><img src="https://images.cnblogs.com/cnblogs_com/2050/201208/201208101725587335.png" alt="01"></p>
 <p>word-break：break-all（直接截断）</p>
 <p><img src="https://images.cnblogs.com/cnblogs_com/2050/201208/201208101726046184.png" alt="01"></p>
+<ol start="25">
+<li>classList对象</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">document.getElementById(&quot;myDIV&quot;).classList.add(&quot;mystyle&quot;);</span><br><span class="line"></span><br><span class="line">add(class1, class2, ...)	在元素中添加一个或多个类名。</span><br><span class="line">如果指定的类名已存在，则不会添加</span><br><span class="line"></span><br><span class="line">contains(class)	返回布尔值，判断指定的类名是否存在。</span><br><span class="line">可能值：</span><br><span class="line">true - 元素包已经包含了该类名</span><br><span class="line">false - 元素中不存在该类名</span><br><span class="line">item(index)	返回元素中索引值对应的类名。索引值从 0 开始。</span><br><span class="line">如果索引值在区间范围外则返回 null</span><br><span class="line"></span><br><span class="line">remove(class1, class2, ...)	移除元素中一个或多个类名。</span><br><span class="line">注意： 移除不存在的类名，不会报错。</span><br><span class="line"></span><br><span class="line">toggle(class, true|false)	在元素中切换类名。</span><br><span class="line">第一个参数为要在元素中移除的类名，并返回 false。</span><br><span class="line">如果该类名不存在则会在元素中添加类名，并返回 true。</span><br><span class="line"></span><br><span class="line">第二个是可选参数，是个布尔值用于设置元素是否强制添加或移除类，不管该类名是否存在。例如：</span><br><span class="line"></span><br><span class="line">移除一个 class: element.classList.toggle(&quot;classToRemove&quot;, false);</span><br><span class="line">添加一个 class: element.classList.toggle(&quot;classToAdd&quot;, true);</span><br><span class="line"></span><br><span class="line">注意： Internet Explorer 或 Opera 12 及其更早版本不支持第二个参数。</span><br></pre></td></tr></table></figure>
+
+
+
 <ol start="24">
 <li>8种让人眼前一亮的hover效果</li>
 </ol>
@@ -1025,7 +1032,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">106</span>
+                  <span class="site-state-item-count">114</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1036,7 +1043,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">58</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1047,7 +1054,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">107</span>
+                  <span class="site-state-item-count">120</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

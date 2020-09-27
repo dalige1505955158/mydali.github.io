@@ -88,7 +88,7 @@
 <meta property="og:site_name" content="DaliBlogs">
 <meta property="og:description" content="JS数组reduce()方法详解及高级技巧1、语法1arr.reduce(callback,[initialValue])  reduce 为数组中的每一个元素依次执行回调函数，不包括数组中被删除或从未被赋值的元素，接受四个参数：初始值（或者上一次回调函数的返回值），当前元素值，当前索引，调用 reduce 的数组。">
 <meta property="article:published_time" content="2020-08-25T06:26:42.000Z">
-<meta property="article:modified_time" content="2020-08-25T07:33:38.807Z">
+<meta property="article:modified_time" content="2020-09-27T04:00:17.474Z">
 <meta property="article:author" content="Dali">
 <meta property="article:tag" content="js">
 <meta property="article:tag" content="数组">
@@ -449,7 +449,7 @@
 
 
 <p>（2）数组去重</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">方法一</span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">5</span>]</span><br><span class="line"><span class="keyword">var</span> newArr = arr.reduce(<span class="function"><span class="keyword">function</span> (<span class="params">prev, cur,index,curarr</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'curarr:'</span>,curarr,<span class="string">'prev:'</span>,prev)<span class="comment">//[1,2,3,3,4,4,2,1,5]</span></span><br><span class="line">    prev.indexOf(cur) === <span class="number">-1</span> &amp;&amp; prev.push(cur);</span><br><span class="line">    <span class="comment">//这里表示prev第一次去设置的init值[]，当满足当前的新数组没有cur（当前元素）时才执行push</span></span><br><span class="line">    <span class="keyword">return</span> prev;</span><br><span class="line">&#125;,[]);</span><br><span class="line"><span class="built_in">console</span>.log(newArr);<span class="comment">//[1,2,3,4,5]</span></span><br><span class="line"></span><br><span class="line">方法二</span><br><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">1</span>]</span><br><span class="line"><span class="keyword">let</span> newArr = arr.reduce(<span class="function">(<span class="params">pre,cur</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!pre.includes(cur))&#123;</span><br><span class="line">      <span class="keyword">return</span> pre.concat(cur)</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> pre</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,[])</span><br><span class="line"><span class="built_in">console</span>.log(newArr);<span class="comment">// [1, 2, 3, 4]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">方法一</span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">5</span>]</span><br><span class="line"><span class="keyword">var</span> newArr = arr.reduce(<span class="function"><span class="keyword">function</span> (<span class="params">prev, cur,index,curarr</span>) </span>&#123;</span><br><span class="line">    prev.indexOf(cur) === <span class="number">-1</span> &amp;&amp; prev.push(cur);</span><br><span class="line">    <span class="comment">//这里表示prev第一次去设置的init值[]，当满足当前的新数组没有cur（当前元素）时才执行push</span></span><br><span class="line">    <span class="keyword">return</span> prev;</span><br><span class="line">&#125;,[]);</span><br><span class="line"><span class="built_in">console</span>.log(newArr);<span class="comment">//[1,2,3,4,5]</span></span><br><span class="line"></span><br><span class="line">方法二</span><br><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">1</span>]</span><br><span class="line"><span class="keyword">let</span> newArr = arr.reduce(<span class="function">(<span class="params">pre,cur</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!pre.includes(cur))&#123;</span><br><span class="line">      <span class="keyword">return</span> pre.concat(cur)</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> pre</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,[])</span><br><span class="line"><span class="built_in">console</span>.log(newArr);<span class="comment">// [1, 2, 3, 4]</span></span><br></pre></td></tr></table></figure>
 
 <p>（3）将二维数组转化为一维</p>
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [[<span class="number">0</span>, <span class="number">1</span>], [<span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>]]</span><br><span class="line"><span class="keyword">let</span> newArr = arr.reduce(<span class="function">(<span class="params">pre,cur</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> pre.concat(cur)</span><br><span class="line">&#125;,[])</span><br><span class="line"><span class="built_in">console</span>.log(newArr); <span class="comment">// [0, 1, 2, 3, 4, 5]</span></span><br></pre></td></tr></table></figure>
@@ -593,7 +593,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">106</span>
+                  <span class="site-state-item-count">114</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -604,7 +604,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">58</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -615,7 +615,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">107</span>
+                  <span class="site-state-item-count">120</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
