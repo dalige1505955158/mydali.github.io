@@ -91,8 +91,10 @@
 <meta property="og:image" content="http://yoursite.com/2020/07/24/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94%EF%BC%88%E4%B8%80%EF%BC%89/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/251ac7f7360748fe8f80002cfe80af9e/816184028689.png">
 <meta property="og:image" content="http://yoursite.com/2020/07/24/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94%EF%BC%88%E4%B8%80%EF%BC%89/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/6c63b95b03214999a9f7a0bd92a2f6b9/081618435245.png">
 <meta property="og:image" content="http://yoursite.com/2020/07/24/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94%EF%BC%88%E4%B8%80%EF%BC%89/image-20200927102756626.png">
+<meta property="og:image" content="https://img-blog.csdn.net/20180422115731135">
+<meta property="og:image" content="https://img-blog.csdn.net/20180422115740142">
 <meta property="article:published_time" content="2020-07-24T05:21:58.000Z">
-<meta property="article:modified_time" content="2020-09-27T02:28:00.426Z">
+<meta property="article:modified_time" content="2020-10-10T08:27:55.102Z">
 <meta property="article:author" content="Dali">
 <meta property="article:tag" content="小程序">
 <meta name="twitter:card" content="summary">
@@ -448,6 +450,80 @@
 <h3 id="wx-if和hidden"><a href="#wx-if和hidden" class="headerlink" title="wx:if和hidden"></a>wx:if和hidden</h3><p>wx:if条件为true显示，hidden条件为false显示</p>
 <h3 id="微信小程序“对应的服务器证书无效”"><a href="#微信小程序“对应的服务器证书无效”" class="headerlink" title="微信小程序“对应的服务器证书无效”"></a>微信小程序“对应的服务器证书无效”</h3><p><img src="/2020/07/24/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94%EF%BC%88%E4%B8%80%EF%BC%89/image-20200927102756626.png" alt="image-20200927102756626"></p>
 <p>到腾讯云上，SSL证书管理，可以申请一个免费的证书，申请好了放到nginx配置中，验证可以通过。</p>
+<h3 id="分包"><a href="#分包" class="headerlink" title="分包"></a>分包</h3><p>对于用户来说，小程序加载流程变成了：</p>
+<p>1.首次启动时，先下载小程序主包，显示主包内的页面；</p>
+<p>2.如果用户进入了某个分包的页面，再下载这个对应分包，下载完毕后，显示分包的页面。</p>
+<p>采用分包加载，对开发者而言，能使小程序有更大的代码体积，承载更多的功能与服务；而对用户而言，可以更快地打开小程序，同时在不影响启动速度前提下使用更多功能</p>
+<p><strong>attention：</strong></p>
+<p>1.无法在首页面或tabbar页面打开分包中的页面，必须先链接到非首页面或tabbar页面，再进行跳转到分包中的页面。</p>
+<p>2.每个页面的js文件必须初始化page({})。</p>
+<p>3.避免分包与分包之间引用上的耦合。因为分包的加载是由用户操作触发的，并不能确保某分包加载时，另外一个分包就一定存在，这个时候可能会导致 JS 逻辑异常的情况，例如报「”xxx.js” is not defined」这样的错误；</p>
+<p>4.一些公共用到的自定义组件，需要放在主包内。</p>
+<p>5.整个小程序所有分包大小不超过 4M</p>
+<p>6.单个分包/主包大小不能超过 2M</p>
+<p>7.微信 6.6.0 版本开始支持分包加载，而对于低于这个版本的客户端，我们做了兼容处理，开发者不需要对老版本微信客户端做兼容。</p>
+<p>对于老版本的客户端，编译后台会将所有的分包打包成一个整包，老版本的客户端依然按照整包的方式进行加载。</p>
+<p><strong>how:</strong></p>
+<p>当理清了分包的划分后，就可以进行分包的配置了，这一步并不复杂。</p>
+<p>假设支持分包的小程序目录结构如下：</p>
+<p><img src="https://img-blog.csdn.net/20180422115731135" alt="img"></p>
+<p>开发者通过在 app.json<code>subPackages</code>字段声明项目分包结构：</p>
+<p><img src="https://img-blog.csdn.net/20180422115740142" alt="img"></p>
+<h3 id="添加到我的小程序"><a href="#添加到我的小程序" class="headerlink" title="添加到我的小程序"></a>添加到我的小程序</h3><p>当用户进入小程序后，</p>
+<p>能否判断用户是否将当前小程序添加到我的小程序中-否</p>
+<p>能否通过js操作将当前小程序添加到我的小程序中-否</p>
+<h3 id="AppID、AppKey、AppSecret"><a href="#AppID、AppKey、AppSecret" class="headerlink" title="AppID、AppKey、AppSecret"></a>AppID、AppKey、AppSecret</h3><p>AppID：应用的唯一标识（是用来标记你的开发者账号的）<br>AppKey：公匙（相当于账号）<br>AppSecret：私匙（相当于密码）</p>
+<p>token：令牌（过期失效）</p>
+<p>使用方法</p>
+<p>\1. 向第三方服务器请求授权时，带上AppKey和AppSecret（需存在服务器端）</p>
+<p>\2. 第三方服务器验证AppKey和AppSecret在DB中有无记录</p>
+<p>\3. 如果有，生成一串唯一的字符串（token令牌），返回给服务器，服务器再返回给客户端</p>
+<p>\4. 客户端下次请求敏感数据时带上令牌</p>
+<p>关于第一点，可以采用签名的方式发送，当应用服务端向第三方服务端发请求时，带上AppKey、时间戳、随机数、签名，签名可以使用 AppSecret + 时间戳 + 随机数使用sha1生成，第三方服务端收到后，生成本地签名和收到的签名比对，如果一致，校验成功</p>
+<h3 id="常见open-type"><a href="#常见open-type" class="headerlink" title="常见open-type"></a>常见open-type</h3><table>
+<thead>
+<tr>
+<th align="left">值</th>
+<th align="left">说明</th>
+<th align="left">最低版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">contact</td>
+<td align="left">打开客服会话，如果用户在会话中点击消息卡片后返回小程序，可以从 bindcontact 回调中获得具体信息，<a href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/customer-message/customer-message.html" target="_blank" rel="noopener">具体说明</a></td>
+<td align="left"><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html" target="_blank" rel="noopener">1.1.0</a></td>
+</tr>
+<tr>
+<td align="left">share</td>
+<td align="left">触发用户转发，使用前建议先阅读<a href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/share.html#使用指引" target="_blank" rel="noopener">使用指引</a></td>
+<td align="left"><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html" target="_blank" rel="noopener">1.2.0</a></td>
+</tr>
+<tr>
+<td align="left">getPhoneNumber</td>
+<td align="left">获取用户手机号，可以从bindgetphonenumber回调中获取到用户信息，<a href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/getPhoneNumber.html" target="_blank" rel="noopener">具体说明</a></td>
+<td align="left"><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html" target="_blank" rel="noopener">1.2.0</a></td>
+</tr>
+<tr>
+<td align="left">getUserInfo</td>
+<td align="left">获取用户信息，可以从bindgetuserinfo回调中获取到用户信息</td>
+<td align="left"><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html" target="_blank" rel="noopener">1.3.0</a></td>
+</tr>
+<tr>
+<td align="left">launchApp</td>
+<td align="left">打开APP，可以通过app-parameter属性设定向APP传的参数<a href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/launchApp.html" target="_blank" rel="noopener">具体说明</a></td>
+<td align="left"><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html" target="_blank" rel="noopener">1.9.5</a></td>
+</tr>
+<tr>
+<td align="left">openSetting</td>
+<td align="left">打开授权设置页</td>
+<td align="left"><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html" target="_blank" rel="noopener">2.0.7</a></td>
+</tr>
+<tr>
+<td align="left">feedback</td>
+<td align="left">打开“意见反馈”页面，用户可提交反馈内容并上传<a href="https://developers.weixin.qq.com/miniprogram/dev/api/base/debug/wx.getLogManager.html" target="_blank" rel="noopener">日志</a>，开发者可以登录<a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener">小程序管理后台</a>后进入左侧菜单“客服反馈”页面获取到反馈内容</td>
+<td align="left"><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html" target="_blank" rel="noopener">2.1.0</a></td>
+</tr>
+</tbody></table>
 
       
     </div>
@@ -571,7 +647,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-count">122</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -593,7 +669,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">120</span>
+                  <span class="site-state-item-count">128</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -633,7 +709,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#绝对路径和相对路径"><span class="nav-number">1.</span> <span class="nav-text">绝对路径和相对路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给对象属性赋值，增加属性"><span class="nav-number">2.</span> <span class="nav-text">给对象属性赋值，增加属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#页面栈（带参数返回上一个页面）"><span class="nav-number">3.</span> <span class="nav-text">页面栈（带参数返回上一个页面）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过id直接调用组件内部方法"><span class="nav-number">4.</span> <span class="nav-text">通过id直接调用组件内部方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#禁止下拉-ios下拉空白"><span class="nav-number">5.</span> <span class="nav-text">禁止下拉(ios下拉空白)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自带水平和垂直滚动事件"><span class="nav-number">6.</span> <span class="nav-text">自带水平和垂直滚动事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#text套text，内部text绑定点击事件失效"><span class="nav-number">7.</span> <span class="nav-text">text套text，内部text绑定点击事件失效</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hover添加class事件"><span class="nav-number">8.</span> <span class="nav-text">hover添加class事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用button标签的open-type-”getUserInfo”引导用户去授权"><span class="nav-number">9.</span> <span class="nav-text">使用button标签的open-type&#x3D;”getUserInfo”引导用户去授权]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#页面跳转方法总结"><span class="nav-number">10.</span> <span class="nav-text">页面跳转方法总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wxml-页面组件跳转（可以通过设置open-type属性指明页面跳转方式）："><span class="nav-number">11.</span> <span class="nav-text">wxml 页面组件跳转（可以通过设置open-type属性指明页面跳转方式）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#离开页面清除定时器"><span class="nav-number">12.</span> <span class="nav-text">离开页面清除定时器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ios页面回弹"><span class="nav-number">13.</span> <span class="nav-text">ios页面回弹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wx-if和hidden"><span class="nav-number">14.</span> <span class="nav-text">wx:if和hidden</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微信小程序“对应的服务器证书无效”"><span class="nav-number">15.</span> <span class="nav-text">微信小程序“对应的服务器证书无效”</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#绝对路径和相对路径"><span class="nav-number">1.</span> <span class="nav-text">绝对路径和相对路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给对象属性赋值，增加属性"><span class="nav-number">2.</span> <span class="nav-text">给对象属性赋值，增加属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#页面栈（带参数返回上一个页面）"><span class="nav-number">3.</span> <span class="nav-text">页面栈（带参数返回上一个页面）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过id直接调用组件内部方法"><span class="nav-number">4.</span> <span class="nav-text">通过id直接调用组件内部方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#禁止下拉-ios下拉空白"><span class="nav-number">5.</span> <span class="nav-text">禁止下拉(ios下拉空白)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自带水平和垂直滚动事件"><span class="nav-number">6.</span> <span class="nav-text">自带水平和垂直滚动事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#text套text，内部text绑定点击事件失效"><span class="nav-number">7.</span> <span class="nav-text">text套text，内部text绑定点击事件失效</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hover添加class事件"><span class="nav-number">8.</span> <span class="nav-text">hover添加class事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用button标签的open-type-”getUserInfo”引导用户去授权"><span class="nav-number">9.</span> <span class="nav-text">使用button标签的open-type&#x3D;”getUserInfo”引导用户去授权]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#页面跳转方法总结"><span class="nav-number">10.</span> <span class="nav-text">页面跳转方法总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wxml-页面组件跳转（可以通过设置open-type属性指明页面跳转方式）："><span class="nav-number">11.</span> <span class="nav-text">wxml 页面组件跳转（可以通过设置open-type属性指明页面跳转方式）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#离开页面清除定时器"><span class="nav-number">12.</span> <span class="nav-text">离开页面清除定时器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ios页面回弹"><span class="nav-number">13.</span> <span class="nav-text">ios页面回弹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wx-if和hidden"><span class="nav-number">14.</span> <span class="nav-text">wx:if和hidden</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微信小程序“对应的服务器证书无效”"><span class="nav-number">15.</span> <span class="nav-text">微信小程序“对应的服务器证书无效”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分包"><span class="nav-number">16.</span> <span class="nav-text">分包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加到我的小程序"><span class="nav-number">17.</span> <span class="nav-text">添加到我的小程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AppID、AppKey、AppSecret"><span class="nav-number">18.</span> <span class="nav-text">AppID、AppKey、AppSecret</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见open-type"><span class="nav-number">19.</span> <span class="nav-text">常见open-type</span></a></li></ol></div>
             
 
           </div>

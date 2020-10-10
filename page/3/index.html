@@ -294,6 +294,1247 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86%E7%9A%84%E4%B8%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86%E7%9A%84%E4%B8%89/" itemprop="url">vue之上拉加载原理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-16T14:20:24+08:00">
+                2020-09-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h1><p>贴上效果展示：<br><img src="https://mmbiz.qpic.cn/mmbiz_gif/1NOXMW586usqMUQjWlJXNU83Pxk8DicribgBBbuvZ13dRfOBLsInRicV51f90TJDiblOfwq1LuN27vTaqssPfF5NeQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
+<h1 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h1><p>样式方面不多赘述，滚动区域是给固定高度，设置 <code>overflow-y: auto</code> 来实现。</p>
+<p>接下来看看js方面的实现，其实也很简单，触发的条件是：<code>可视高度</code> + <code>滚动距离</code> &gt;= <code>实际高度</code> 。例子我会使用<code>vue</code>来实现，和原生实现是一样的。</p>
+<ul>
+<li>可视高度(offsetHeight)：通过 <code>dom</code> 的 <code>offsetHeight</code> 获得，表示区域固定的高度。这里我推荐通过 <code>getBoundingClientRect()</code> 来获取高度，因为使用前者会引起浏览器回流，造成一些性能问题。</li>
+<li>滚动高度(scrollTop)：滚动事件中通过 <code>e.target.scrollTop</code> 获取，表示滚动条距离顶部的px</li>
+<li>实际高度(scrollHeight)：通过 <code>dom</code> 的 <code>scrollHeight</code> 获得，表示区域内所有内容的高度（包括滚动距离），也就是实际高度</li>
+</ul>
+<h1 id="基础实现"><a href="#基础实现" class="headerlink" title="基础实现"></a>基础实现</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">onScroll(e) &#123;</span><br><span class="line">    let scrollTop &#x3D; e.target.scrollTop</span><br><span class="line">    let scrollHeight &#x3D; e.target.scrollHeight</span><br><span class="line">    let offsetHeight &#x3D; Math.ceil(e.target.getBoundingClientRect().height)</span><br><span class="line">    let currentHeight &#x3D; scrollTop + offsetHeight</span><br><span class="line">    if (currentHeight &gt;&#x3D; scrollHeight) &#123;</span><br><span class="line">        console.log(&#39;触底&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/1NOXMW586usqMUQjWlJXNU83Pxk8Dicribp9bOZENlSxoMU2MQtaNovYQXIb65qUPxKwWtTibqm9icMicOxXsFSUlMQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
+<p>so easy~</p>
+<h1 id="加点细节"><a href="#加点细节" class="headerlink" title="加点细节"></a>加点细节</h1><p>加点细节，现在我们希望是离底部一定距离就触发事件，而不是等到完全触底。如果你做过小程序，这和<code>onReachBottom</code>差不多的意思。</p>
+<p>声明一个离底部的距离变量<code>reachBottomDistance</code></p>
+<p>这时候触发条件：<code>可视高度</code> + <code>滚动距离</code> + <code>reachBottomDistance</code> &gt;= <code>实际高度</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  data()&#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      reachBottomDistance: 100</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    onScroll(e) &#123;</span><br><span class="line">        let scrollTop &#x3D; e.target.scrollTop</span><br><span class="line">        let scrollHeight &#x3D; e.target.scrollHeight</span><br><span class="line">        let offsetHeight &#x3D; Math.ceil(e.target.getBoundingClientRect().height)</span><br><span class="line">        let currentHeight &#x3D; scrollTop + offsetHeight + this.reachBottomDistance</span><br><span class="line">        if (currentHeight &gt;&#x3D; scrollHeight) &#123;</span><br><span class="line">            console.log(&#39;触底&#39;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/1NOXMW586usqMUQjWlJXNU83Pxk8DicribkC2ZSbcwoQfvEQdXUGzpzibj2IK0xQawxOm2q1t6L5N0Sj21Mmb2fJw/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
+<p>在距离底部100px时成功触发事件，但由于100px往下的区域是符合条件的，会导致一直触发，这不是我们想要的。</p>
+<p>接下来做一些处理，让其进入后只触发一次:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  data()&#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      isReachBottom: false,</span><br><span class="line">      reachBottomDistance: 100</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    onScroll(e) &#123;</span><br><span class="line">        let scrollTop &#x3D; e.target.scrollTop</span><br><span class="line">        let scrollHeight &#x3D; e.target.scrollHeight</span><br><span class="line">        let offsetHeight &#x3D; Math.ceil(e.target.getBoundingClientRect().height)</span><br><span class="line">        let currentHeight &#x3D; scrollTop + offsetHeight + this.reachBottomDistance</span><br><span class="line"></span><br><span class="line">        if(currentHeight &lt; scrollHeight &amp;&amp; this.isReachBottom)&#123;</span><br><span class="line">          this.isReachBottom &#x3D; false</span><br><span class="line">        &#125;</span><br><span class="line">        if(this.isReachBottom)&#123;</span><br><span class="line">          return</span><br><span class="line">        &#125;</span><br><span class="line">        if (currentHeight &gt;&#x3D; scrollHeight) &#123;</span><br><span class="line">          this.isReachBottom &#x3D; true</span><br><span class="line">          console.log(&#39;触底&#39;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/1NOXMW586usqMUQjWlJXNU83Pxk8Dicribqic9sKlSTeB0CianJYNJMViaUdChLxbic397ItI3Gb0O8VhpoadpCSzAQA/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
+<h1 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h1><p>实时去获取位置信息稍微会损耗性能，我们应该把不变的缓存起来，只实时获取可变的部分</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  data()&#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      isReachBottom: false,</span><br><span class="line">      reachBottomDistance: 100</span><br><span class="line">      scrollHeight: 0,</span><br><span class="line">      offsetHeight: 0,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted()&#123;</span><br><span class="line">    &#x2F;&#x2F; 页面加载完成后  将高度存储起来</span><br><span class="line">    let dom &#x3D; document.querySelector(&#39;.comment-area .comment-list&#39;)</span><br><span class="line">    this.scrollHeight &#x3D; dom.scrollHeight</span><br><span class="line">    this.offsetHeight &#x3D; Math.ceil(dom.getBoundingClientRect().height)</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    onScroll(e) &#123;</span><br><span class="line">        let scrollTop &#x3D; e.target.scrollTop</span><br><span class="line">        let currentHeight &#x3D; scrollTop + this.offsetHeight + this.reachBottomDistance</span><br><span class="line"></span><br><span class="line">        if(currentHeight &lt; this.scrollHeight &amp;&amp; this.isReachBottom)&#123;</span><br><span class="line">          this.isReachBottom &#x3D; false</span><br><span class="line">        &#125;</span><br><span class="line">        if(this.isReachBottom)&#123;</span><br><span class="line">          return</span><br><span class="line">        &#125;</span><br><span class="line">        if (currentHeight &gt;&#x3D; this.scrollHeight) &#123;</span><br><span class="line">          this.isReachBottom &#x3D; true</span><br><span class="line">          console.log(&#39;触底&#39;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实现到这里就告一段落，如果你有更好的思路和值得改进的地方，欢迎交流~</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86/" itemprop="url">vue之上拉加载原理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-16T14:20:24+08:00">
+                2020-09-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h1><p>贴上效果展示：<br><img src="https://mmbiz.qpic.cn/mmbiz_gif/1NOXMW586usqMUQjWlJXNU83Pxk8DicribgBBbuvZ13dRfOBLsInRicV51f90TJDiblOfwq1LuN27vTaqssPfF5NeQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
+<h1 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h1><p>样式方面不多赘述，滚动区域是给固定高度，设置 <code>overflow-y: auto</code> 来实现。</p>
+<p>接下来看看js方面的实现，其实也很简单，触发的条件是：<code>可视高度</code> + <code>滚动距离</code> &gt;= <code>实际高度</code> 。例子我会使用<code>vue</code>来实现，和原生实现是一样的。</p>
+<ul>
+<li>可视高度(offsetHeight)：通过 <code>dom</code> 的 <code>offsetHeight</code> 获得，表示区域固定的高度。这里我推荐通过 <code>getBoundingClientRect()</code> 来获取高度，因为使用前者会引起浏览器回流，造成一些性能问题。</li>
+<li>滚动高度(scrollTop)：滚动事件中通过 <code>e.target.scrollTop</code> 获取，表示滚动条距离顶部的px</li>
+<li>实际高度(scrollHeight)：通过 <code>dom</code> 的 <code>scrollHeight</code> 获得，表示区域内所有内容的高度（包括滚动距离），也就是实际高度</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/16/git%E4%B9%8B%E9%94%99%E8%AF%AF%E5%88%86%E6%94%AF%E5%BC%80%E5%8F%91%E7%9A%84%E4%B8%89%E7%A7%8D%E6%83%85%E5%86%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/16/git%E4%B9%8B%E9%94%99%E8%AF%AF%E5%88%86%E6%94%AF%E5%BC%80%E5%8F%91%E7%9A%84%E4%B8%89%E7%A7%8D%E6%83%85%E5%86%B5/" itemprop="url">git之错误分支开发的三种情况</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-16T11:35:00+08:00">
+                2020-09-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="还没有commit"><a href="#还没有commit" class="headerlink" title="还没有commit"></a>还没有commit</h3><p>在这种情况下我们可以在当前分支下使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash</span><br></pre></td></tr></table></figure>
+
+<p>这个命令表示<strong>把我们当前修改的内容暂存起来，然后我们的工作区就恢复到在没有开发新功能之前的样子。</strong></p>
+<p>这个时候我们需要切换到正确的工作分支，然后运行命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash apply</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/09/16/git%E4%B9%8B%E9%94%99%E8%AF%AF%E5%88%86%E6%94%AF%E5%BC%80%E5%8F%91%E7%9A%84%E4%B8%89%E7%A7%8D%E6%83%85%E5%86%B5/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/15/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E5%A4%8D%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/15/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E5%A4%8D%E4%B9%A0/" itemprop="url">前端面试复习</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-15T14:10:37+08:00">
+                2020-09-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9D%A2%E8%AF%95/" itemprop="url" rel="index">
+                    <span itemprop="name">面试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>参考：<a href="https://mp.weixin.qq.com/s/QX0HL1tCAGU70zEb-HJQlQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/QX0HL1tCAGU70zEb-HJQlQ</a></p>
+<p>手写函数合集</p>
+<p><a href="https://mp.weixin.qq.com/s/5mlf4yo6v4gRJnePAluqgg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/5mlf4yo6v4gRJnePAluqgg</a></p>
+<p>遍历A节点的父节点下的所有子节点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    var b&#x3D;document.getElementById(&quot;a&quot;).parentNode.children;</span><br><span class="line">    console.log(b)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>target、currentTarget的区别？</p>
+<p>currentTarget当前所绑定事件的元素（指向出发事件的函数，始终不变）</p>
+<p>target当前被点击的元素</p>
+<p>在浏览器地址栏中输入URL后发生了什么</p>
+<h4 id="基本流程："><a href="#基本流程：" class="headerlink" title="基本流程："></a>基本流程：</h4><p>①查询ip地址</p>
+<p>②建立tcp连接，接入服务器</p>
+<p>③浏览器发起http请求</p>
+<p>④服务器后台操作并做出http响应</p>
+<p>⑤网页的解析与渲染</p>
+<p>优化：</p>
+<h5 id="从此可以得出网站的一些优化的方法"><a href="#从此可以得出网站的一些优化的方法" class="headerlink" title="从此可以得出网站的一些优化的方法:"></a>从此可以得出网站的一些优化的方法:</h5><p>①减少DNS查询:将服务器域名的ip信息加入本地host文件。</p>
+<p>②减少http请求数量，对于图片使用雪碧图,对于html文件和css文件，js文件分别进行合并操作。</p>
+<p>③减少下载时间：压缩图片，使用压缩应用压缩文档中的空格，删除文件多余的语句和注释，创造自己的js精简库和精简框架,使用本地浏览器缓存。</p>
+<p>④提前渲染开始时间：将css链接放在html头部。</p>
+<p>⑤减轻解析器的阻塞：将js链接放在body尾部。</p>
+<p>参考：<a href="https://www.cnblogs.com/yanruizhe/p/11462462.html" target="_blank" rel="noopener">https://www.cnblogs.com/yanruizhe/p/11462462.html</a></p>
+<p>页面渲染html的过程？</p>
+<blockquote>
+<p>不需要死记硬背，理解整个过程即可</p>
+</blockquote>
+<p>浏览器渲染页面的一般过程：</p>
+<p>1.浏览器解析html源码，然后创建一个 DOM树。并行请求 css/image/js在DOM树中，每一个HTML标签都有一个对应的节点，并且每一个文本也都会有一个对应的文本节点。DOM树的根节点就是 documentElement，对应的是html标签。</p>
+<p>2.浏览器解析CSS代码，计算出最终的样式数据。构建CSSOM树。对CSS代码中非法的语法它会直接忽略掉。解析CSS的时候会按照如下顺序来定义优先级：浏览器默认设置 &lt; 用户设置 &lt; 外链样式 &lt; 内联样式 &lt; html中的style。</p>
+<p>3.DOM Tree + CSSOM –&gt; 渲染树（rendering tree）。渲染树和DOM树有点像，但是是有区别的。</p>
+<p>DOM树完全和html标签一一对应，但是渲染树会忽略掉不需要渲染的元素，比如head、display:none的元素等。而且一大段文本中的每一个行在渲染树中都是独立的一个节点。渲染树中的每一个节点都存储有对应的css属性。</p>
+<p>4.一旦渲染树创建好了，浏览器就可以根据渲染树直接把页面绘制到屏幕上。</p>
+<p>以上四个步骤并不是一次性顺序完成的。如果DOM或者CSSOM被修改，以上过程会被重复执行。实际上，CSS和JavaScript往往会多次修改DOM或者CSSOM。</p>
+<p>说一下CORS？</p>
+<p>CORS是一种新标准，支持同源通信，也支持跨域通信。fetch是实现CORS通信的</p>
+<p>如何中断ajax请求？</p>
+<p>一种是设置超时时间让ajax自动断开，另一种是手动停止ajax请求，其核心是调用XML对象的abort方法，ajax.abort()</p>
+<p>用js递归的方式写1到100求和？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function num(n)&#123;</span><br><span class="line">    if(n&#x3D;&#x3D;1) return 1;</span><br><span class="line">    return num(n-1)+n;</span><br><span class="line">&#125;</span><br><span class="line">num(100);    </span><br><span class="line">延申：</span><br><span class="line">var sum &#x3D; 0;</span><br><span class="line">    for(var i &#x3D; 1 ; i &lt;&#x3D; 100; i++)&#123;</span><br><span class="line">    sum +&#x3D; i;</span><br><span class="line">&#125;</span><br><span class="line">document.writeln(&quot;1~100以内的和为：&quot;+ sum);</span><br></pre></td></tr></table></figure>
+
+
+
+<p>数组去重</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">第一种：</span><br><span class="line">var arr&#x3D;[&#39;12&#39;,&#39;32&#39;,&#39;89&#39;,&#39;12&#39;,&#39;12&#39;,&#39;78&#39;,&#39;12&#39;,&#39;32&#39;];</span><br><span class="line">    &#x2F;&#x2F; 最简单数组去重法</span><br><span class="line">    function unique1(array)&#123;</span><br><span class="line">        var n &#x3D; []; &#x2F;&#x2F;一个新的临时数组</span><br><span class="line">        for(var i &#x3D; 0; i &lt; array.length; i++)&#123; &#x2F;&#x2F;遍历当前数组</span><br><span class="line">            if (n.indexOf(array[i]) &#x3D;&#x3D; -1)</span><br><span class="line">                n.push(array[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        return n;</span><br><span class="line">    &#125;</span><br><span class="line">arr&#x3D;unique1(arr);</span><br><span class="line"></span><br><span class="line">第二种</span><br><span class="line">es6方法数组去重</span><br><span class="line">arr&#x3D;[...new Set(arr)];</span><br><span class="line"></span><br><span class="line">第三种</span><br><span class="line">es6方法数组去重，第二种方法</span><br><span class="line">function dedupe(array) &#123;</span><br><span class="line">  return Array.from(new Set(array));       &#x2F;&#x2F;Array.from()能把set结构转换为数组</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>变量提升</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">console.log(a);  &#x2F;&#x2F;undefined</span><br><span class="line">var a &#x3D; 123;</span><br><span class="line"></span><br><span class="line">经典案例</span><br><span class="line">console.log(v1);</span><br><span class="line">var v1 &#x3D; 100;</span><br><span class="line">function foo() &#123;</span><br><span class="line">    console.log(v1);</span><br><span class="line">    var v1 &#x3D; 200;</span><br><span class="line">    console.log(v1);</span><br><span class="line">&#125;</span><br><span class="line">foo();</span><br><span class="line">console.log(v1);</span><br><span class="line">&#x2F;&#x2F; undefined  undefined 200  100</span><br></pre></td></tr></table></figure>
+
+<p>函数提升</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">函数字面量式</span><br><span class="line">bar()</span><br><span class="line">var bar &#x3D; function() &#123;</span><br><span class="line">  console.log(1);</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 报错：TypeError: bar is not a function</span><br><span class="line"></span><br><span class="line">函数声明式</span><br><span class="line">bar()</span><br><span class="line">function bar() &#123;</span><br><span class="line">  console.log(1);</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;输出结果1</span><br></pre></td></tr></table></figure>
+
+
+
+<p>虚拟dom的产生</p>
+<p>改变页面展示的内容只能通过遍历查询 dom 树的方式找到需要修改的 dom 然后修改样式行为或者结构，来达到更新 ui 的目的。这种方式相当消耗计算资源，因为每次查询 dom 几乎都需要遍历整颗 dom 树。</p>
+<p>如果建立一个与 dom 树对应的虚拟 dom 对象（ js 对象），以对象嵌套的方式来表示 dom 树，那么每次 dom 的更改就变成了 js 对象的属性的更改，这样一来就能查找 js 对象的属性变化要比查询 dom 树的性能开销小</p>
+<p>vue </p>
+<p>采用的是虚拟 dom 通过重写 setter ， getter 实现观察者监听 data 属性的变化生成新的虚拟 dom 通过 h 函数创建真实 dom 替换掉dom树上对应的旧 dom。</p>
+<p>react</p>
+<p>react 也是通过虚拟 dom 和 setState 更改 data 生成新的虚拟 dom 以及 diff 算法来计算和生成需要替换的 dom 做到局部更新的。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/15/js%E4%B9%8BBigNumber-js/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/15/js%E4%B9%8BBigNumber-js/" itemprop="url">js之BigNumber.js</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-15T11:54:49+08:00">
+                2020-09-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>vue使用BigNumber.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save bignumber.js</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var BigNumber &#x3D; require(&#39;bignumber.js&#39;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 转为 bignumber</span><br><span class="line">const x&#x3D; new BigNumber(&#39;123456789.123456789&#39;);</span><br><span class="line">&#x2F;&#x2F; 转为 普通数字</span><br><span class="line">x.toNumber()</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 格式化(小数点)</span><br><span class="line">x.toFormat()    &#x2F;&#x2F; &#39;123,456,789.123456789&#39;</span><br><span class="line">x.toFormat(3)   &#x2F;&#x2F; &#39;123,456,789.123&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 计算</span><br><span class="line">x.plus(0.1)  &#x2F;&#x2F; 加法</span><br><span class="line">x.minus(0.1)  &#x2F;&#x2F; 减法</span><br><span class="line">x.times(0.1)  &#x2F;&#x2F; 乘法</span><br><span class="line">x.div(0.1)  &#x2F;&#x2F; 除法</span><br><span class="line">x.mod(3)  &#x2F;&#x2F; 取模&#x2F;取余</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 比较大小</span><br><span class="line">x.eq(y) &#x2F;&#x2F; isEqualTo 的简写，是否相等</span><br><span class="line">x.gt(y) &#x2F;&#x2F; isGreaterThan 的简写，是否大于</span><br><span class="line">x.gte(y) &#x2F;&#x2F; isGreaterThanOrEqualTo 的简写，是否大于等于</span><br><span class="line">x.lt(y) &#x2F;&#x2F; isLessThan 的简写，是否小于</span><br><span class="line">x.lte(y) &#x2F;&#x2F; isLessThanOrEqualTo 的简写，是否小于等于</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 取非，改变数字的正负号</span><br><span class="line">x.negated()</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/15/express%E5%92%8Ckoa/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/15/express%E5%92%8Ckoa/" itemprop="url">express和koa</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-15T11:42:51+08:00">
+                2020-09-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/es6/" itemprop="url" rel="index">
+                    <span itemprop="name">es6</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Koa和Express都是NodeJS的主流应用开发框架。</p>
+<p>Express是一个完整的nodejs应用框架。Koa是由Express团队开发的，但是它有不同的关注点。Koa致力于核心中间件功能。nodejs中间件是访问请求对象（req）和响应对象（res）的例程。这些例程在路由处理程序之前被调用，因此它们位于客户端与生成响应的路由逻辑的“中间”。nodejs应用程序可以将中间件例程“链接”到自定义请求/响应管道中。管道可以根据请求和响应进行操作，包括头和主体。Express和Koa都包含中间件，但实现方法却截然不同。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/09/15/express%E5%92%8Ckoa/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/14/vue%E9%9D%A2%E8%AF%95%E9%A2%98%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/14/vue%E9%9D%A2%E8%AF%95%E9%A2%98%E8%AE%B0%E5%BD%95/" itemprop="url">vue面试题记录</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-14T18:26:56+08:00">
+                2020-09-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="单选题"><a href="#单选题" class="headerlink" title="单选题"></a>单选题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">1. Vue 实例的 data 属性，可以在哪些生命周期中获取到？bcd</span><br><span class="line">A. beforeCreate</span><br><span class="line">B. created</span><br><span class="line">C. beforeMount</span><br><span class="line">D. mounted</span><br><span class="line"></span><br><span class="line">2. 下列对 Vue 原理的叙述，哪些是正确的？abcd</span><br><span class="line">A. Vue 中的数组变更通知，通过拦截数组操作方法而实现</span><br><span class="line">B. 编译器目标是创建渲染函数，渲染函数执行后将得到 VNode 树</span><br><span class="line">C. 组件内 data 发生变化时会通知其对应 watcher，执行异步更新</span><br><span class="line">D. patching 算法首先进行同层级比较，可能执行的操作是节点的增加、删除和更新</span><br><span class="line"></span><br><span class="line">3. 对于 Vue 中响应式数据原理的说法，下列哪项是不正确的？bd</span><br><span class="line">A. 采用数据劫持方式，即 Object.defineProperty() 劫持 data 中各属性，实现响应式数据</span><br><span class="line">B. 视图中的变化会通过 watcher 更新 data 中的数据</span><br><span class="line">C. 若 data 中某属性多次发生变化，watcher 仅会进入更新队列一次</span><br><span class="line">D. 通过编译过程进行依赖收集</span><br><span class="line"></span><br><span class="line">4. 下列说法不正确的是哪项？b</span><br><span class="line">A. key 的作用主要是为了高效地更新虚拟 DOM</span><br><span class="line">B. 若指定了组件的 template 选项，render 函数不会执行</span><br><span class="line">C. 使用 vm.$nextTick 可以确保获得 DOM 异步更新的结果</span><br><span class="line">D. 若没有 el 选项，vm.$mount(dom) 可将 Vue 实例挂载于指定元素上</span><br><span class="line"></span><br><span class="line">5. 下列关于 Vuex 的描述，不正确的是哪项？c</span><br><span class="line">A. Vuex 通过 Vue 实现响应式状态，因此只能用于 Vue</span><br><span class="line">B. Vuex 是一个状态管理模式</span><br><span class="line">C. Vuex 主要用于多视图间状态全局共享与管理</span><br><span class="line">D. 在 Vuex 中改变状态，可以通过 mutations 和 actions</span><br><span class="line"></span><br><span class="line">6. 关于 Vue 组件间的参数传递，下列哪项是不正确的？b</span><br><span class="line">A. 若子组件给父组件传值，可使用 $emit 方法</span><br><span class="line">B. 祖孙组件之间可以使用 provide 和 inject 方式跨层级相互传值</span><br><span class="line">C. 若子组件使用 $emit(&#39;say&#39;) 派发事件，父组件可使用 @say 监听</span><br><span class="line">D. 若父组件给子组件传值，子组件可通过 props 接受数据</span><br><span class="line"></span><br><span class="line">7. 下列关于 vue-router 的描述，不正确的是哪项？c</span><br><span class="line">A. vue-router 的常用模式有 hash 和 history 两种</span><br><span class="line">B. 可通过 addRoutes 方法动态添加路由</span><br><span class="line">C. 可通过 beforeEnter 对单个组件进行路由守卫</span><br><span class="line">D. vue-router 借助 Vue 实现响应式的路由，因此只能用于 Vue</span><br><span class="line"></span><br><span class="line">8. 下列说法不正确的是哪项？c</span><br><span class="line">A. 可通过 this.$parent 查找当前组件的父组件</span><br><span class="line">B. 可使用 this.$refs 查找命名子组件</span><br><span class="line">C. 可使用 this.$children 按顺序查找当前组件的直接子组件</span><br><span class="line">D. 可使用 $root 查找根组件，并可配合 children 遍历全部组件</span><br><span class="line"></span><br><span class="line">9. 下列关于 v-model 的说法，哪项是不正确的？c</span><br><span class="line">A. v-model 能实现双向绑定</span><br><span class="line">B. v-model 本质上是语法糖，它负责监听用户的输入事件以更新数据</span><br><span class="line">C. v-model 是内置指令，不能用在自定义组件上</span><br><span class="line">D. 对 input 使用 v-model，实际上是指定其 :value 和 :input</span><br><span class="line"></span><br><span class="line">10. 关于 Vue 的生命周期，下列哪项是不正确的？d</span><br><span class="line">A. DOM 渲染在 mounted 中就已经完成了</span><br><span class="line">B. Vue 实例从创建到销毁的过程，就是生命周期</span><br><span class="line">C. created 表示完成数据观测、属性和方法的运算和初始化事件，此时 $el 属性还未显示出来</span><br><span class="line">D. 页面首次加载过程中，会依次触发 beforeCreate，created，beforeMount，mounted，beforeUpdate，updated</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/09/14/vue%E9%9D%A2%E8%AF%95%E9%A2%98%E8%AE%B0%E5%BD%95/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/14/js%E4%B9%8Bcall%E5%92%8Capply/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/14/js%E4%B9%8Bcall%E5%92%8Capply/" itemprop="url">js之call和apply</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-14T17:43:15+08:00">
+                2020-09-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="是做啥的"><a href="#是做啥的" class="headerlink" title="是做啥的"></a>是做啥的</h3><p>call()、apply()、bind()是用来改变this的指向的。</p>
+<h3 id="call和apply的区别和用法"><a href="#call和apply的区别和用法" class="headerlink" title="call和apply的区别和用法"></a>call和apply的区别和用法</h3><h4 id="call和apply的区别"><a href="#call和apply的区别" class="headerlink" title="call和apply的区别"></a>call和apply的区别</h4><p>obj.call(thisObj, arg1, arg2, …);<br>obj.apply(thisObj, [arg1, arg2, …]);<br>call和apply作用都是把obj绑定到thisObj的作用，即改变this的指向，然而唯一的区别就是apply传递的参数必须得是数组的形式传递，而call则直接连续参数传递</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/09/14/js%E4%B9%8Bcall%E5%92%8Capply/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/14/es6%E4%B9%8Bmap%E5%92%8Cset%E7%BB%93%E6%9E%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -348,8 +1589,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ESLint/" itemprop="url" rel="index">
-                    <span itemprop="name">ESLint</span>
+                  <a href="/categories/es6/" itemprop="url" rel="index">
+                    <span itemprop="name">es6</span>
                   </a>
                 </span>
 
@@ -496,8 +1737,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ESLint/" itemprop="url" rel="index">
-                    <span itemprop="name">ESLint</span>
+                  <a href="/categories/es6/" itemprop="url" rel="index">
+                    <span itemprop="name">es6</span>
                   </a>
                 </span>
 
@@ -576,1180 +1817,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/14/WebSocket/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dali">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DaliBlogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/14/WebSocket/" itemprop="url">WebSocket</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-14T15:00:35+08:00">
-                2020-09-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/WebSocket/" itemprop="url" rel="index">
-                    <span itemprop="name">WebSocket</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="什么是WebSocket"><a href="#什么是WebSocket" class="headerlink" title="什么是WebSocket"></a><strong>什么是WebSocket</strong></h2><p>首先需要明白webSocket的概念，下边是维基百科的解释</p>
-<blockquote>
-<p>WebSocket是一种通信协议，可在单个TCP连接上进行全双工通信。WebSocket使得客户端和服务器之间的数据交换变得更加简单，允许服务端主动向客户端推送数据。在WebSocket API中，浏览器和服务器只需要完成一次握手，两者之间就可以建立持久性的连接，并进行双向数据传输。</p>
-</blockquote>
-<p>首先，要明白WebSocket是一种通信协议，区别于HTTP协议，HTTP协议只能实现客户端请求，服务端响应的这种单项通信。<br>而WebSocket可以实现客户端与服务端的双向通讯，说白了，最大也是最明显的区别就是可以做到服务端主动将消息推送给客户端。<br>其余的特点有：</p>
-<ul>
-<li>握手阶段采用 HTTP 协议。</li>
-<li>数据格式轻量，性能开销小。客户端与服务端进行数据交换时，服务端到客户端的数据包头只有2到10字节，客户端到服务端需要加上另外4字节的掩码。HTTP每次都需要携带完整头部。</li>
-<li>更好的二进制支持，可以发送文本，和二进制数据</li>
-<li>没有同源限制，客户端可以与任意服务器通信</li>
-<li>协议标识符是ws（如果加密，则是wss），请求的地址就是后端支持websocket的API。</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/09/14/WebSocket/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/10/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8Bwx-request%E5%B0%81%E8%A3%85/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dali">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DaliBlogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/10/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8Bwx-request%E5%B0%81%E8%A3%85/" itemprop="url">小程序之wx-request封装</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-10T18:19:40+08:00">
-                2020-09-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="微信请求-Promise-化"><a href="#微信请求-Promise-化" class="headerlink" title="微信请求 Promise 化"></a>微信请求 Promise 化</h2><h3 id="2-1-使用现成的库"><a href="#2-1-使用现成的库" class="headerlink" title="2.1 使用现成的库"></a>2.1 使用现成的库</h3>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/09/10/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8Bwx-request%E5%B0%81%E8%A3%85/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/10/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8Bwx-upData/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dali">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DaliBlogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/10/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8Bwx-upData/" itemprop="url">小程序之wx-upData</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-10T18:09:20+08:00">
-                2020-09-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/soft/" itemprop="url" rel="index">
-                    <span itemprop="name">soft</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>鉴于在下使用微信小程序开发时使用 <code>setData</code> 的蹩脚体验，开发了个库函数 <code>wx-updata</code>，项目上线之后，我把这个自用的库函数整理放到 Github 上开源出来 wx-updata，这个库函数在开发的时候对我很有帮助，希望也可以帮到大家 ????</p>
-<p>如果大家在使用中遇到了问题，可以给我提 pr，提 issue，一起来改善小程序开发体验加油～</p>
-<ol>
-<li><code>wx-updata</code> 版本 0.0.10</li>
-<li>Github 地址：<a href="https://github.com/SHERlocked93/wx-updata" target="_blank" rel="noopener">https://github.com/SHERlocked93/wx-updata</a></li>
-<li>小程序代码片段预览地址：<a href="https://developers.weixin.qq.com/s/CcXdO1mc73jD" target="_blank" rel="noopener">https://developers.weixin.qq.com/s/CcXdO1mc73jD</a></li>
-<li>小程序代码片段代码地址：<a href="https://github.com/SHERlocked93/wx-updata-demo" target="_blank" rel="noopener">https://github.com/SHERlocked93/wx-updata-demo</a></li>
-</ol>
-<h2 id="1-setData-不方便的地方"><a href="#1-setData-不方便的地方" class="headerlink" title="1. setData 不方便的地方"></a><strong>1. setData 不方便的地方</strong></h2><p>你在使用 <code>setData</code> 的时候，是不是有时候觉得很难受，举个简单的例子：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 你的 data</span></span><br><span class="line">data: &#123;</span><br><span class="line">    name: <span class="string">'蜡笔小新'</span>,</span><br><span class="line">    info: &#123; height: <span class="number">140</span>, color: <span class="string">'黄色'</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/09/10/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8Bwx-upData/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/10/Vue%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E4%BD%86%E9%A1%B5%E9%9D%A2%E6%B2%A1%E6%9C%89%E6%9B%B4%E6%96%B0%E7%9A%847%E7%A7%8D%E6%83%85%E5%86%B5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dali">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DaliBlogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/10/Vue%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E4%BD%86%E9%A1%B5%E9%9D%A2%E6%B2%A1%E6%9C%89%E6%9B%B4%E6%96%B0%E7%9A%847%E7%A7%8D%E6%83%85%E5%86%B5/" itemprop="url">Vue数据更新但页面没有更新的7种情况</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-10T17:27:58+08:00">
-                2020-09-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue/" itemprop="url" rel="index">
-                    <span itemprop="name">vue</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="Vue-set与-vue-set在使用中的区别-delete和this-delete"><a href="#Vue-set与-vue-set在使用中的区别-delete和this-delete" class="headerlink" title="Vue.set与 vue.$set在使用中的区别(delete和this.$delete)"></a>Vue.set与 vue.$set在使用中的区别(delete和this.$delete)</h3><p>Vue.set 可以设置实例创建之后添加的属性，如sex，而this.$set/vue.$set/vm.$set只能设置实例创建后存在的属性。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">var</span> data = &#123;</span><br><span class="line">    name: <span class="string">"简书"</span>,</span><br><span class="line">    age: <span class="string">'3'</span>,</span><br><span class="line">    info: &#123;</span><br><span class="line">        content: <span class="string">'my name is test'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;   </span><br><span class="line"><span class="keyword">var</span> key = <span class="string">'content'</span>;</span><br><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el:<span class="string">'#app'</span>,</span><br><span class="line">    data: data,</span><br><span class="line">    ready: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        Vue.set(data,<span class="string">'sex'</span>, <span class="string">'男'</span>)</span><br><span class="line">        <span class="keyword">this</span>.$<span class="keyword">set</span>('sex', '女')</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/09/10/Vue%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E4%BD%86%E9%A1%B5%E9%9D%A2%E6%B2%A1%E6%9C%89%E6%9B%B4%E6%96%B0%E7%9A%847%E7%A7%8D%E6%83%85%E5%86%B5/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/10/vue-skeleton-webpack-plugin/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dali">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DaliBlogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/10/vue-skeleton-webpack-plugin/" itemprop="url">vue-skeleton-webpack-plugin</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-10T11:51:14+08:00">
-                2020-09-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue/" itemprop="url" rel="index">
-                    <span itemprop="name">vue</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="架构图"><a href="#架构图" class="headerlink" title="架构图"></a>架构图</h3><p><img src="/2020/09/10/vue-skeleton-webpack-plugin/image-20200910115921296.png" alt="image-20200910115921296"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/09/10/vue-skeleton-webpack-plugin/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E9%AA%A8%E6%9E%B6%E5%B1%8F%E7%9A%84%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dali">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DaliBlogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E9%AA%A8%E6%9E%B6%E5%B1%8F%E7%9A%84%E4%BD%BF%E7%94%A8/" itemprop="url">小程序之骨架屏的使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-09T15:47:36+08:00">
-                2020-09-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/soft/" itemprop="url" rel="index">
-                    <span itemprop="name">soft</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="自定义骨架屏"><a href="#自定义骨架屏" class="headerlink" title="自定义骨架屏"></a>自定义骨架屏</h3><p>index.wxml:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 作为组件在页面中使用 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">skeleton</span> <span class="attr">selector</span>=<span class="string">"skeleton"</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag"><span class="attr">loading</span>=<span class="string">"spin"</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag"><span class="attr">bgcolor</span>=<span class="string">"#FFF"</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag"><span class="attr">wx:if</span>=<span class="string">"&#123;&#123;showSkeleton&#125;&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">skeleton</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--index.wxml--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 渲染的根节点，加上 .skeleton --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"container skeleton"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"userinfo"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">block</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 要渲染的圆形节点，加上 .skeleton-radius --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">image</span> <span class="attr">class</span>=<span class="string">"userinfo-avatar skeleton-radius"</span> <span class="attr">src</span>=<span class="string">"&#123;&#123;userInfo.avatarUrl&#125;&#125;"</span> <span class="attr">mode</span>=<span class="string">"cover"</span>&gt;</span><span class="tag">&lt;/<span class="name">image</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 要渲染的矩形节点，加上 .skeleton-rect --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">text</span> <span class="attr">class</span>=<span class="string">"userinfo-nickname skeleton-rect"</span>&gt;</span>&#123;&#123;userInfo.nickName&#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">block</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">style</span>=<span class="string">"margin: 20px 0"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:for</span>=<span class="string">"&#123;&#123;lists&#125;&#125;"</span> <span class="attr">wx:key</span>=<span class="string">"&#123;&#123;index&#125;&#125;"</span> <span class="attr">class</span>=<span class="string">"lists"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">icon</span> <span class="attr">type</span>=<span class="string">"success"</span> <span class="attr">size</span>=<span class="string">"20"</span> <span class="attr">class</span>=<span class="string">"list skeleton-radius"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">text</span> <span class="attr">class</span>=<span class="string">"skeleton-rect"</span>&gt;</span>&#123;&#123;item&#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"usermotto"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">text</span> <span class="attr">class</span>=<span class="string">"user-motto skeleton-rect"</span>&gt;</span>&#123;&#123;motto&#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">style</span>=<span class="string">"margin-top: 200px;"</span>&gt;</span>aaaaaaaaaaa<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E9%AA%A8%E6%9E%B6%E5%B1%8F%E7%9A%84%E4%BD%BF%E7%94%A8/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/09/js%E4%B9%8B%E4%BB%8A%E5%A4%A9%E6%98%AF%E6%98%9F%E6%9C%9F%E5%87%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dali">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DaliBlogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/09/js%E4%B9%8B%E4%BB%8A%E5%A4%A9%E6%98%AF%E6%98%9F%E6%9C%9F%E5%87%A0/" itemprop="url">js之今天是星期几</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-09T10:02:30+08:00">
-                2020-09-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/js/" itemprop="url" rel="index">
-                    <span itemprop="name">js</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="初学"><a href="#初学" class="headerlink" title="初学"></a>初学</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function returnWeekday()&#123;</span><br><span class="line">    let string &#x3D; &quot;今天是星期&quot;;</span><br><span class="line">    let date &#x3D; new Date().getDay();</span><br><span class="line">    if (date &#x3D;&#x3D;&#x3D; 0) &#123;</span><br><span class="line">        string +&#x3D; &quot;日&quot;;</span><br><span class="line">    &#125; else if (date &#x3D;&#x3D;&#x3D; 1) &#123;</span><br><span class="line">        string +&#x3D; &quot;一&quot;;</span><br><span class="line">    &#125; else if (date &#x3D;&#x3D;&#x3D; 2) &#123;</span><br><span class="line">        string +&#x3D; &quot;二&quot;;</span><br><span class="line">    &#125; else if (date &#x3D;&#x3D;&#x3D; 3) &#123;</span><br><span class="line">        string +&#x3D; &quot;三&quot;;</span><br><span class="line">    &#125; else if (date &#x3D;&#x3D;&#x3D; 4) &#123;</span><br><span class="line">        string +&#x3D; &quot;四&quot;;</span><br><span class="line">    &#125; else if (date &#x3D;&#x3D;&#x3D; 5) &#123;</span><br><span class="line">        string +&#x3D; &quot;五&quot;;</span><br><span class="line">    &#125; else if (date &#x3D;&#x3D;&#x3D; 6) &#123;</span><br><span class="line">        string +&#x3D; &quot;六&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    return string</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/09/09/js%E4%B9%8B%E4%BB%8A%E5%A4%A9%E6%98%AF%E6%98%9F%E6%9C%9F%E5%87%A0/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90%E6%B5%B7%E6%8A%A5%E5%88%86%E4%BA%AB%E6%9C%8B%E5%8F%8B%E5%9C%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dali">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DaliBlogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90%E6%B5%B7%E6%8A%A5%E5%88%86%E4%BA%AB%E6%9C%8B%E5%8F%8B%E5%9C%88/" itemprop="url">小程序如何生成海报分享朋友圈</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-09T09:35:08+08:00">
-                2020-09-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/soft/" itemprop="url" rel="index">
-                    <span itemprop="name">soft</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>利用微信强大的社交能力通过小程序达到裂变的目的，拉取新用户。<br>生成的海报如下</p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/1NOXMW586uvu1YtvSoiajLEyawsNz1JTxLpJb1T6GDwktsib3UBrOEz9KYatzRbhE9fIxjYGteosUh33C4Ysq2icw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/09/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90%E6%B5%B7%E6%8A%A5%E5%88%86%E4%BA%AB%E6%9C%8B%E5%8F%8B%E5%9C%88/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/4/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/2/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/4/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -1799,7 +1871,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-count">122</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1821,7 +1893,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">120</span>
+                  <span class="site-state-item-count">128</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

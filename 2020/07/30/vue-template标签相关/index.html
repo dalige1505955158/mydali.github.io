@@ -88,8 +88,9 @@
 <meta property="og:site_name" content="DaliBlogs">
 <meta property="og:description" content="事件12v-on:keyup.enter--@dblclick(双击)v-on:dblclick--@dblclick(双击)">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200305115116484.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3F3cTE1MDM=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/nyQjSftfElZ8QI3e1icLryxdaRFq0iaHdytHUuoDluRyGKZsr2MicRaRLHKqD7sYaYhYSHKpI0rgF6ERUbGyzN2kA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
 <meta property="article:published_time" content="2020-07-30T10:38:36.000Z">
-<meta property="article:modified_time" content="2020-09-27T08:24:30.646Z">
+<meta property="article:modified_time" content="2020-10-10T08:50:00.626Z">
 <meta property="article:author" content="Dali">
 <meta property="article:tag" content="vue">
 <meta property="article:tag" content="标签">
@@ -461,7 +462,66 @@
 
 
 
+<h3 id="data-v-23d425f8-属性"><a href="#data-v-23d425f8-属性" class="headerlink" title="[data-v-23d425f8]属性"></a>[data-v-23d425f8]属性</h3><p> 这是在标记vue文件中css时使用scoped标记产生的，因为要保证各文件中的css不相互影响，给每个component都做了唯一的标记，所以每引入一个component就会出现一个新的’data-v-xxx’标记</p>
+<p>使用深度选择器/deep/可以改变第三方的样式，并且会又data-v属性，不会污染全局，只在当前作用域生效，相当于scoped</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.van-tabs &#x2F;deep&#x2F; .van-ellipsis &#123; color: blue&#125;;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
 
+<p>编译后的结果就是：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz/nyQjSftfElZ8QI3e1icLryxdaRFq0iaHdytHUuoDluRyGKZsr2MicRaRLHKqD7sYaYhYSHKpI0rgF6ERUbGyzN2kA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>这样就不会给van-ellipsis也添加[data-v-23d425f8]属性了。至此你可以愉快的修改第三方组件的样式了。</p>
+<p>当然了这里的深度选择器<code>/deep/</code>是因为我用的<code>less</code>语言，如果你没有使用<code>less/sass</code>等，可以用<code>&gt;&gt;&gt;</code>符号。</p>
+<style scoped>
+    .parent >>> .child { /* ... */ }
+</style>
+
+
+
+<h3 id="清除定时器的-once方法"><a href="#清除定时器的-once方法" class="headerlink" title="清除定时器的$once方法"></a>清除定时器的$once方法</h3><p>该方法是通过$once这个事件侦听器器在定义完定时器之后的位置来清除定时器。以下是完整代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const timer &#x3D; setInterval(() &#x3D;&gt;&#123;                    </span><br><span class="line">    &#x2F;&#x2F; 某些定时器操作                </span><br><span class="line">&#125;, 500);            </span><br><span class="line">&#x2F;&#x2F; 通过$once来监听定时器，在beforeDestroy钩子可以被清除。</span><br><span class="line">this.$once(&#39;hook:beforeDestroy&#39;, () &#x3D;&gt; &#123;            </span><br><span class="line">    clearInterval(timer);                                    </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="rem文件的导入问题："><a href="#rem文件的导入问题：" class="headerlink" title="rem文件的导入问题："></a>rem文件的导入问题：</h3><p>我们在做手机端时，适配是必须要处理的一个问题。例如，我们处理适配的方案就是通过写一个rem.js，原理很简单，就是根据网页尺寸计算html的font-size大小，基本上小伙伴们都知道，这里直接附上代码，不多做介绍。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(function(c, d) &#123;</span><br><span class="line">    var e &#x3D; document.documentElement || document.body,</span><br><span class="line">    a &#x3D; &quot;orientationchange&quot; in window ? &quot;orientationchange&quot;: &quot;resize&quot;,</span><br><span class="line">    b &#x3D; function() &#123;</span><br><span class="line">        var f &#x3D; e.clientWidth;</span><br><span class="line">        e.style.fontSize &#x3D; (f &gt;&#x3D; 750) ? &quot;100px&quot;: 100 * (f &#x2F; 750) + &quot;px&quot;</span><br><span class="line">    &#125;;</span><br><span class="line">    b();</span><br><span class="line">    c.addEventListener(a, b, false)</span><br><span class="line">&#125;)(window);</span><br></pre></td></tr></table></figure>
+
+<p>这里说下怎么引入的问题，很简单。在main.js中，直接<code>import &#39;./config/rem&#39;</code>导入即可。import的路径根据你的文件路径去填写。</p>
+<h3 id="双向数据绑定"><a href="#双向数据绑定" class="headerlink" title="双向数据绑定"></a>双向数据绑定</h3><p><strong>方式一：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;empty v-model&#x3D;&quot;msg&quot;&gt;&lt;&#x2F;empty&gt;复制代码</span><br></pre></td></tr></table></figure>
+
+<p>子组件写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 点击该按钮触发父子组件的数据同步</span><br><span class="line">&lt;div class&#x3D;&quot;share-btn&quot; @click&#x3D;&quot;confirm&quot;&gt;确定&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 接收父组件传递的value值</span><br><span class="line">&#x2F;&#x2F; 注意，这种实现方法，这里只能使用value属性名</span><br><span class="line">props: &#123;            </span><br><span class="line">    value: &#123;                </span><br><span class="line">        type: Boolean,                </span><br><span class="line">        default: false            </span><br><span class="line">    &#125;        </span><br><span class="line">&#125;,</span><br><span class="line">methods: &#123;            </span><br><span class="line">    confirm () &#123;                </span><br><span class="line">        &#x2F;&#x2F; 双向数据绑定父组件:value对应的值 </span><br><span class="line">        &#x2F;&#x2F; 通过$emit触发父组件input事件，第二个参数为传递给父组件的值，这里传递了一个false值 </span><br><span class="line">        &#x2F;&#x2F; 可以理解为最上面展示的@input&#x3D;&quot;msg &#x3D; $event.target.value&quot;这个事件</span><br><span class="line">        &#x2F;&#x2F; 即触发父组件的input事件，并将传递的值‘false’赋值给msg             </span><br><span class="line">        this.$emit(&#39;input&#39;, false)            </span><br><span class="line">    &#125;        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>方式二：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;empty v-model&#x3D;&quot;msg&quot;&gt;&lt;&#x2F;empty&gt;复制代码</span><br></pre></td></tr></table></figure>
+
+<p>子组件写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class&#x3D;&quot;share-btn&quot; @click&#x3D;&quot;confirm&quot;&gt;确定&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; model选项用来避免冲突</span><br><span class="line">&#x2F;&#x2F; prop属性用来指定props属性中的哪个值用来接收父组件v-model传递的值</span><br><span class="line">&#x2F;&#x2F; 例如这里用props中的show来接收父组件传递的v-model值</span><br><span class="line">&#x2F;&#x2F; event：为了方便理解，可以简单理解为父组件@input的别名，从而避免冲突</span><br><span class="line">&#x2F;&#x2F; event的值对应了你emit时要提交的事件名，你可以叫aa，也可以叫bb，但是要命名要有意义哦！！！</span><br><span class="line">model: &#123;            </span><br><span class="line">    prop: &#39;show&#39;,            </span><br><span class="line">    event: &#39;changed&#39;        </span><br><span class="line">&#125;,</span><br><span class="line">props: &#123;</span><br><span class="line">    &#x2F;&#x2F; 由于model选项中的prop属性指定了，所以show接收的是父组件v-model传递的值            </span><br><span class="line">    show: &#123;                </span><br><span class="line">        type: Boolean,                </span><br><span class="line">        default: false            </span><br><span class="line">    &#125;        </span><br><span class="line">&#125;,        </span><br><span class="line">methods: &#123;            </span><br><span class="line">    confirm () &#123;                </span><br><span class="line">        &#x2F;&#x2F; 双向数据绑定父组件传递的值</span><br><span class="line">        &#x2F;&#x2F; 第一个参数，对应model选项的event的值，你可以叫aa，bbb，ccc，起名随你 </span><br><span class="line">        this.$emit(&#39;changed&#39;, false)            </span><br><span class="line">    &#125;        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>方式三：.sync</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;empty :oneprop.sync&#x3D;&quot;msg&quot;&gt;&lt;&#x2F;empty&gt;</span><br><span class="line"></span><br><span class="line">data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">        msg: &#39;&#39;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;复制代码</span><br></pre></td></tr></table></figure>
+
+<p>子组件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class&#x3D;&quot;share-btn&quot; @click&#x3D;&quot;changeMsg&quot;&gt;改变msg值&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">props: &#123;            </span><br><span class="line">    oneprop: &#123;                </span><br><span class="line">        type: String,                </span><br><span class="line">        default: &#39;hello world&#39;</span><br><span class="line">    &#125;        </span><br><span class="line">&#125;,        </span><br><span class="line">methods: &#123;            </span><br><span class="line">    changeMsg () &#123;                </span><br><span class="line">        &#x2F;&#x2F; 双向数据流</span><br><span class="line">        this.$emit(&#39;update:msg&#39;, &#39;helow world&#39;)           </span><br><span class="line">    &#125;        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="事件们"><a href="#事件们" class="headerlink" title="事件们"></a>事件们</h3><ul>
+<li><code>vm.$emit(event ,[...args])</code>这个api，其主要作用就是用来触发当前实例上的事件。附加参数都会传给监听器回调。子组件也属于当前实例。第一个参数：要触发的事件名称。后续的参数可选：即作为参数传递给要触发的事件。文档</li>
+<li>监听当前实例上的自定义事件，事件可以有$emit触发，也能<strong>通过hook监听到钩子函数，</strong></li>
+</ul>
+<p>vm.$on( event, callback )：一直监听；文档</p>
+<p>vm.$once( event, callback )：监听一次；文档</p>
+<p>vm.$off( [event, callback] )：移除监听；文档</p>
+<p>监听$emit触发的自定义事件，上面已经有过用法了，监听钩子函数，在上面的定时器那块也有演示到。监听钩子函数的场景使用的不多，但是还是要知道的。</p>
+<ul>
+<li>vm.$attrs：可以获取到父组件传递的除class和style外的所有自定义属性。</li>
+<li>vm.$listeners：可以获取到父组件传递的所有自定义事件</li>
+</ul>
+<p>例如：父组件:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;empty</span><br><span class="line">    :msg&#x3D;&quot;message&quot;</span><br><span class="line">    :title&#x3D;&quot;articleTitle&quot;</span><br><span class="line">    @confirm&#x3D;&quot;func1&quot;</span><br><span class="line">    @cancel&#x3D;&quot;func2&quot;</span><br><span class="line">&gt;&lt;&#x2F;empty&gt;复制代码</span><br></pre></td></tr></table></figure>
+
+<p>就可以在子组件中获取父组件传递的属性和事件，而不用在props中定义。子组件简单演示如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">created() &#123;            </span><br><span class="line">    const msg &#x3D; this.$attrs.msg; &#x2F;&#x2F; 获取父组件传递的msg</span><br><span class="line">    this.$listeners.confirm &amp;&amp; this.$listeners.confirm(); &#x2F;&#x2F;若组件传递事件confirm则执行</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -586,7 +646,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-count">122</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -608,7 +668,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">120</span>
+                  <span class="site-state-item-count">128</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -648,7 +708,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#事件"><span class="nav-number">1.</span> <span class="nav-text">事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表单修饰符"><span class="nav-number">2.</span> <span class="nav-text">表单修饰符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#is的作用"><span class="nav-number">3.</span> <span class="nav-text">:is的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue中’-native’修饰符的使用"><span class="nav-number">4.</span> <span class="nav-text">vue中’. native’修饰符的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#class类名"><span class="nav-number">5.</span> <span class="nav-text">class类名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引入less注意点"><span class="nav-number">6.</span> <span class="nav-text">引入less注意点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-once-保持插值表达式值不变，无法在console里改变app的值非响应式"><span class="nav-number">7.</span> <span class="nav-text">v-once(保持插值表达式值不变，无法在console里改变app的值非响应式 )</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-pre（不要解析变量-v-pre-原样输出）"><span class="nav-number">8.</span> <span class="nav-text">v-pre（不要解析变量 v-pre 原样输出）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#keep-alive"><span class="nav-number">9.</span> <span class="nav-text">keep-alive</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#事件"><span class="nav-number">1.</span> <span class="nav-text">事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表单修饰符"><span class="nav-number">2.</span> <span class="nav-text">表单修饰符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#is的作用"><span class="nav-number">3.</span> <span class="nav-text">:is的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue中’-native’修饰符的使用"><span class="nav-number">4.</span> <span class="nav-text">vue中’. native’修饰符的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#class类名"><span class="nav-number">5.</span> <span class="nav-text">class类名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引入less注意点"><span class="nav-number">6.</span> <span class="nav-text">引入less注意点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-once-保持插值表达式值不变，无法在console里改变app的值非响应式"><span class="nav-number">7.</span> <span class="nav-text">v-once(保持插值表达式值不变，无法在console里改变app的值非响应式 )</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-pre（不要解析变量-v-pre-原样输出）"><span class="nav-number">8.</span> <span class="nav-text">v-pre（不要解析变量 v-pre 原样输出）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#keep-alive"><span class="nav-number">9.</span> <span class="nav-text">keep-alive</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#data-v-23d425f8-属性"><span class="nav-number">10.</span> <span class="nav-text">[data-v-23d425f8]属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#清除定时器的-once方法"><span class="nav-number">11.</span> <span class="nav-text">清除定时器的$once方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rem文件的导入问题："><span class="nav-number">12.</span> <span class="nav-text">rem文件的导入问题：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双向数据绑定"><span class="nav-number">13.</span> <span class="nav-text">双向数据绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件们"><span class="nav-number">14.</span> <span class="nav-text">事件们</span></a></li></ol></div>
             
 
           </div>

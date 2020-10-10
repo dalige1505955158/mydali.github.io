@@ -94,7 +94,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/07/30/js%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/c5aa3be1f55f4308a73d94fedf91ec0b/7a5080667b91dd81a3e75ad1c0ff8dc.png">
 <meta property="og:image" content="http://yoursite.com/2020/07/30/js%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/Users/admin/AppData/Local/YNote/data/weixinobU7VjrjuSqZnu6-xPbfCXnjhBIM/9a4d248972f74ac184f5ee7787a651d7/5e1f34890adcd7abba1b3fc9c0f0503.jpg">
 <meta property="article:published_time" content="2020-07-30T02:07:37.000Z">
-<meta property="article:modified_time" content="2020-09-27T03:56:46.144Z">
+<meta property="article:modified_time" content="2020-09-28T07:24:23.136Z">
 <meta property="article:author" content="Dali">
 <meta property="article:tag" content="js">
 <meta property="article:tag" content="数组">
@@ -463,7 +463,7 @@
 <p>(除了将所有值都强制转换为整数，还可以通过简单地更改map函数的参数将数组中的所有值强制转换为布尔值。)</p>
 <p>5、flat（）</p>
 <p>此方法创建一个新数组，其中包含子数组上的holden元素，并将其平整到新数组中。请注意，此方法只能进行一个级别的深度。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const myAwesomeArray &#x3D; [[1, 2], [3, 4], 5]</span><br><span class="line"></span><br><span class="line">myAwesomeArray.flat()</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;-------&gt; Output : [1, 2, 3, 4, 5]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const myAwesomeArray &#x3D; [[1, 2], [3, 4], 5]</span><br><span class="line"></span><br><span class="line">myAwesomeArray.flat()</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;-------&gt; Output : [1, 2, 3, 4, 5]</span><br><span class="line"></span><br><span class="line">const myAwesomeArray &#x3D; [[1, 2], [3, 4], 5,[7,[9,10]]]</span><br><span class="line">myAwesomeArray.flat(Infinity)</span><br><span class="line">&#x2F;&#x2F;无限内循环</span><br><span class="line">&#x2F;&#x2F;-------&gt; Output : [1, 2, 3, 4, 5]</span><br></pre></td></tr></table></figure>
 
 
 
@@ -534,7 +534,7 @@
 
 
 <p>16、 indexOf（）()</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var fruits &#x3D; [&quot;Banana&quot;, &quot;Orange&quot;, &quot;Apple&quot;, &quot;Mango&quot;];</span><br><span class="line">var a &#x3D; fruits.indexOf(&quot;Apple&quot;);</span><br><span class="line">结果输出：</span><br><span class="line">2</span><br><span class="line"></span><br><span class="line">注意：</span><br><span class="line">findOf是传入一个值.找到了返回索引,没有找到返回-1</span><br><span class="line">findIndex是传入一个测试条件,也就是函数,找到了返回索引,没有找到返回-1.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var fruits &#x3D; [&quot;Banana&quot;, &quot;Orange&quot;, &quot;Apple&quot;, &quot;Mango&quot;];</span><br><span class="line">var a &#x3D; fruits.indexOf(&quot;Apple&quot;);</span><br><span class="line">结果输出：</span><br><span class="line">2</span><br><span class="line"></span><br><span class="line">注意：</span><br><span class="line">indexOf是传入一个值.找到了返回索引,没有找到返回-1</span><br><span class="line">findIndex是传入一个测试条件,也就是函数,找到了返回索引,没有找到返回-1.</span><br></pre></td></tr></table></figure>
 
 
 
@@ -588,10 +588,6 @@
 </li>
 </ul>
 <h2 id="3-数组去重"><a href="#3-数组去重" class="headerlink" title="3. 数组去重"></a>3. 数组去重</h2><p>我一直不明白为什么数组不提供一个内置函数可以让我们方便的取到去重以后的值。扩展运算符帮到了我们，使用扩展运算符配合 Set可以生成一个不重复的数组。</p>
-<ul>
-<li></li>
-<li></li>
-</ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const arr &#x3D; [...new Set([1, 2, 3, 3])];&#x2F;&#x2F; [1, 2, 3]</span><br></pre></td></tr></table></figure>
 
 
@@ -742,7 +738,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-count">122</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -764,7 +760,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">120</span>
+                  <span class="site-state-item-count">128</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="vue,axios,get,post," />
+  <meta name="keywords" content="axios,vue,get,post," />
 
 
 
@@ -81,12 +81,12 @@
 
 
 
-<meta name="description" content="什么是GET和POST请求GET：向指定路径资源发送请求，通常用于获取数据 POST：向指定路径资源提交数据进行处理请求，通常用于提交表单或者上传文件 GET和POST请求的区别1，GET一般是从服务器上获取数据，POST是向服务器提交数据。 2，GET通过URL提交数据，数据在URL中可以看到，POST则是在HEADER内提交。 3，GET提交的数据不能大于2KB，而POST不受限制。 4，GE">
+<meta name="description" content="1.get传参方式是通过地址栏URL传递，是可以直接看到get传递的参数，post传参方式参数URL不可见，get把请求的数据在URL后通过？连接，通过&amp;进行参数分割。psot将参数存放在HTTP的包体内 2.get传递数据是通过URL进行传递，对传递的数据长度是受到URL大小的限制，URL最大长度是2048个字符。post没有长度限制 3.get后退不会有影响，post后退会重新进行提交">
 <meta property="og:type" content="article">
 <meta property="og:title" content="axios之get和post">
 <meta property="og:url" content="http://yoursite.com/2020/09/27/axios%E4%B9%8Bget%E5%92%8Cpost/index.html">
 <meta property="og:site_name" content="DaliBlogs">
-<meta property="og:description" content="什么是GET和POST请求GET：向指定路径资源发送请求，通常用于获取数据 POST：向指定路径资源提交数据进行处理请求，通常用于提交表单或者上传文件 GET和POST请求的区别1，GET一般是从服务器上获取数据，POST是向服务器提交数据。 2，GET通过URL提交数据，数据在URL中可以看到，POST则是在HEADER内提交。 3，GET提交的数据不能大于2KB，而POST不受限制。 4，GE">
+<meta property="og:description" content="1.get传参方式是通过地址栏URL传递，是可以直接看到get传递的参数，post传参方式参数URL不可见，get把请求的数据在URL后通过？连接，通过&amp;进行参数分割。psot将参数存放在HTTP的包体内 2.get传递数据是通过URL进行传递，对传递的数据长度是受到URL大小的限制，URL最大长度是2048个字符。post没有长度限制 3.get后退不会有影响，post后退会重新进行提交">
 <meta property="og:image" content="https://exp-picture.cdn.bcebos.com/dd58d02c5b1b1edea3f5908d981fceecd2d90fbd.jpg?x-bce-process=image%252Fresize%252Cm_lfit%252Cw_500%252Climit_1">
 <meta property="og:image" content="https://exp-picture.cdn.bcebos.com/125ed0ecd3d96975afeddc2dd243040149fe09bd.jpg?x-bce-process=image%252Fresize%252Cm_lfit%252Cw_500%252Climit_1">
 <meta property="og:image" content="https://exp-picture.cdn.bcebos.com/49bf00425d6b04d12c00aa3cb213e8e5edee01bd.jpg?x-bce-process=image%252Fresize%252Cm_lfit%252Cw_500%252Climit_1">
@@ -98,10 +98,10 @@
 <meta property="og:image" content="https://exp-picture.cdn.bcebos.com/22c4fe36e29147e8bfc909c6b603bbea3f8658bd.jpg?x-bce-process=image%252Fresize%252Cm_lfit%252Cw_500%252Climit_1">
 <meta property="og:image" content="https://exp-picture.cdn.bcebos.com/46a92de039723d0334c30e32bb486143d6d457bd.jpg?x-bce-process=image%252Fresize%252Cm_lfit%252Cw_500%252Climit_1">
 <meta property="article:published_time" content="2020-09-27T03:04:09.000Z">
-<meta property="article:modified_time" content="2020-09-27T10:10:34.541Z">
+<meta property="article:modified_time" content="2020-09-28T02:48:41.763Z">
 <meta property="article:author" content="Dali">
-<meta property="article:tag" content="vue">
 <meta property="article:tag" content="axios">
+<meta property="article:tag" content="vue">
 <meta property="article:tag" content="get">
 <meta property="article:tag" content="post">
 <meta name="twitter:card" content="summary">
@@ -412,7 +412,14 @@
       
 
       
-        <h3 id="什么是GET和POST请求"><a href="#什么是GET和POST请求" class="headerlink" title="什么是GET和POST请求"></a>什么是GET和POST请求</h3><p>GET：向指定路径资源发送请求，通常用于获取数据</p>
+        <p>1.get传参方式是通过地址栏URL传递，是可以直接看到get传递的参数，post传参方式参数URL不可见，get把请求的数据在URL后通过？连接，通过&amp;进行参数分割。psot将参数存放在HTTP的包体内</p>
+<p>2.get传递数据是通过URL进行传递，对传递的数据长度是受到URL大小的限制，URL最大长度是2048个字符。post没有长度限制</p>
+<p>3.get后退不会有影响，post后退会重新进行提交</p>
+<p>4.get请求可以被缓存，post不可以被缓存</p>
+<p>5.get请求只URL编码，post支持多种编码方式</p>
+<p>6.get请求的记录会留在历史记录中，post请求不会留在历史记录</p>
+<p>7.get只支持ASCII字符，post没有字符类型限制</p>
+<h3 id="什么是GET和POST请求"><a href="#什么是GET和POST请求" class="headerlink" title="什么是GET和POST请求"></a>什么是GET和POST请求</h3><p>GET：向指定路径资源发送请求，通常用于获取数据</p>
 <p>POST：向指定路径资源提交数据进行处理请求，通常用于提交表单或者上传文件</p>
 <h3 id="GET和POST请求的区别"><a href="#GET和POST请求的区别" class="headerlink" title="GET和POST请求的区别"></a>GET和POST请求的区别</h3><p>1，GET一般是从服务器上获取数据，POST是向服务器提交数据。</p>
 <p>2，GET通过URL提交数据，数据在URL中可以看到，POST则是在HEADER内提交。</p>
@@ -456,9 +463,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/vue/" rel="tag"># vue</a>
-          
             <a href="/tags/axios/" rel="tag"># axios</a>
+          
+            <a href="/tags/vue/" rel="tag"># vue</a>
           
             <a href="/tags/get/" rel="tag"># get</a>
           
@@ -568,7 +575,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-count">122</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -590,7 +597,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">120</span>
+                  <span class="site-state-item-count">128</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
