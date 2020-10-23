@@ -107,8 +107,9 @@
 <meta property="og:image" content="https://pic3.zhimg.com/80/v2-84098f5dea9e38ef386963dfc4f68563_720w.jpg">
 <meta property="og:image" content="https://pic2.zhimg.com/v2-61ca010cd343e84a71c2ed0c55d76884_b.jpg">
 <meta property="og:image" content="https://pic2.zhimg.com/80/v2-61ca010cd343e84a71c2ed0c55d76884_720w.jpg">
+<meta property="og:image" content="https://aldpicsh-1252823355.cossh.myqcloud.com/ueditor/1578224507.jpg">
 <meta property="article:published_time" content="2020-10-09T02:58:52.000Z">
-<meta property="article:modified_time" content="2020-10-09T08:59:37.750Z">
+<meta property="article:modified_time" content="2020-10-16T06:05:56.253Z">
 <meta property="article:author" content="Dali">
 <meta property="article:tag" content="小程序">
 <meta property="article:tag" content="阿拉丁">
@@ -464,6 +465,44 @@
 <p>验证成功后，将所有代码提交至微信审核，审核通过后需<strong>发布版本</strong>。</p>
 <p>以上流程全部配置完成后了，表示小程序已经成功接入了阿拉丁统计平台。</p>
 <p>如果遇到问题可以咨询您的同事（前端技术人员）或者咨询阿拉丁统计平台客服（微信ID：alddandan)。</p>
+<h2 id="增加统计埋点"><a href="#增加统计埋点" class="headerlink" title="增加统计埋点"></a>增加统计埋点</h2><h3 id="一、自定义事件上报方法"><a href="#一、自定义事件上报方法" class="headerlink" title="一、自定义事件上报方法"></a>一、自定义事件上报方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wx.aldstat.sendEvent( key, value )</span><br></pre></td></tr></table></figure>
+
+<p>定义：该方法接收两个参数，第一个参数key为事件名称。第二个参数vaule为事件本身的参数，该参数可以为一个字符串( String )或者一个JavaScript对象 ( Object )。</p>
+<p>参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">key ： string</span><br><span class="line">value： &#123;  string | object &#125;</span><br></pre></td></tr></table></figure>
+
+<p>规则：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>事件名称</td>
+<td>string</td>
+<td>描述用户的动作名称，不超过255个字符，支持特殊字符</td>
+</tr>
+<tr>
+<td>参数</td>
+<td>string</td>
+<td>动作的参数，不超过255个字符，支持特殊字符但不包括（英文逗号 , 英文冒号 : 点 .）</td>
+</tr>
+<tr>
+<td>参数值</td>
+<td>string</td>
+<td>动作的参数值，不超过255个字符，支持特殊字符但不包括（英文逗号 , 英文冒号 : 点 .）</td>
+</tr>
+</tbody></table>
+<p>满足上述规则时，SDK才会上报事件及其参数。否则SDK 不会上报。</p>
+<h3 id="二、自定义事件成功检测"><a href="#二、自定义事件成功检测" class="headerlink" title="二、自定义事件成功检测"></a>二、自定义事件成功检测</h3><p>例如，以<strong>获取用户昵称</strong>为例，进行事件上报，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wx.aldstat.sendEvent(&#39;获取用户昵称&#39;, &#123;</span><br><span class="line">        &quot;用户昵称&quot;: &quot;DemoChen&quot;</span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>上报成功后如下图所示：</p>
+<p><img src="https://aldpicsh-1252823355.cossh.myqcloud.com/ueditor/1578224507.jpg" alt="img"></p>
+<p>埋点验证成功后，将所有代码提交至微信审核，审核通过后需<strong>发布版本</strong></p>
 
       
     </div>
@@ -589,7 +628,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">122</span>
+                  <span class="site-state-item-count">123</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -611,7 +650,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">128</span>
+                  <span class="site-state-item-count">129</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -651,7 +690,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#关键步骤："><span class="nav-number">1.</span> <span class="nav-text">关键步骤：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一步：注册-登录-阿拉丁统计平台"><span class="nav-number"></span> <span class="nav-text">第一步：注册&#x2F;登录 阿拉丁统计平台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二步：-创建阿拉丁小程序"><span class="nav-number"></span> <span class="nav-text">第二步： 创建阿拉丁小程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三步：接入阿拉丁统计SDK（重点）"><span class="nav-number"></span> <span class="nav-text">第三步：接入阿拉丁统计SDK（重点）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实际操作"><span class="nav-number"></span> <span class="nav-text">实际操作</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#关键步骤："><span class="nav-number">1.</span> <span class="nav-text">关键步骤：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一步：注册-登录-阿拉丁统计平台"><span class="nav-number"></span> <span class="nav-text">第一步：注册&#x2F;登录 阿拉丁统计平台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二步：-创建阿拉丁小程序"><span class="nav-number"></span> <span class="nav-text">第二步： 创建阿拉丁小程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三步：接入阿拉丁统计SDK（重点）"><span class="nav-number"></span> <span class="nav-text">第三步：接入阿拉丁统计SDK（重点）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实际操作"><span class="nav-number"></span> <span class="nav-text">实际操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增加统计埋点"><span class="nav-number"></span> <span class="nav-text">增加统计埋点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、自定义事件上报方法"><span class="nav-number">1.</span> <span class="nav-text">一、自定义事件上报方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、自定义事件成功检测"><span class="nav-number">2.</span> <span class="nav-text">二、自定义事件成功检测</span></a></li></ol></div>
             
 
           </div>

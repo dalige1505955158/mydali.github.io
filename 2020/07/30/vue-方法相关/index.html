@@ -88,7 +88,7 @@
 <meta property="og:site_name" content="DaliBlogs">
 <meta property="og:description" content="匹配字体标红123456789101112brightenKeyword: function(val, keyword) &amp;#123;    &#x2F;&#x2F;val &#x3D; val + &#39;&#39;;    &#x2F;&#x2F;if (val.indexOf(keyword) !&#x3D;&#x3D; -1 &amp;&amp; keyword !&#x3D;&amp;#x3D">
 <meta property="article:published_time" content="2020-07-30T10:51:47.000Z">
-<meta property="article:modified_time" content="2020-10-09T09:10:21.938Z">
+<meta property="article:modified_time" content="2020-10-21T01:50:51.772Z">
 <meta property="article:author" content="Dali">
 <meta property="article:tag" content="vue">
 <meta property="article:tag" content="方法">
@@ -410,6 +410,9 @@
 
 <h3 id="常用js库"><a href="#常用js库" class="headerlink" title="常用js库"></a>常用js库</h3><h4 id="lodash"><a href="#lodash" class="headerlink" title="lodash"></a>lodash</h4><p>一个著名的javascript原生库，不需要引入其他第三方依赖</p>
 <h4 id="echarts"><a href="#echarts" class="headerlink" title="echarts"></a>echarts</h4><p>一个纯JavaScript图表库 –<a href="https://echarts.apache.org/zh/index.html" target="_blank" rel="noopener">echarts.apache.org</a></p>
+<h3 id="双向绑定原理"><a href="#双向绑定原理" class="headerlink" title="双向绑定原理"></a>双向绑定原理</h3><p>vue实现数据双向绑定主要是：采用数据劫持结合发布者-订阅者模式的方式，通过Object.defineProperty（）来劫持各个属性的setter，getter，在数据变动时发布消息给订阅者，触发相应监听回调。当把一个普通 Javascript 对象传给 Vue 实例来作为它的 data 选项时，Vue 将遍历它的属性，用 Object.defineProperty 将它们转为 getter/setter。用户看不到 getter/setter，但是在内部它们让 Vue 追踪依赖，在属性被访问和修改时通知变化。</p>
+<h3 id="static和assets"><a href="#static和assets" class="headerlink" title="static和assets"></a>static和assets</h3><p>1.static中的文件是不会经过webpack编译的，一般建议存放一些外部第三方（公用）的静态资源文件。</p>
+<p>2.assets因为会经过webpack编译，建议是存放一些只有组件自己使用到的静态资源。</p>
 
       
     </div>
@@ -535,7 +538,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">122</span>
+                  <span class="site-state-item-count">123</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -557,7 +560,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">128</span>
+                  <span class="site-state-item-count">129</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -597,7 +600,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#匹配字体标红"><span class="nav-number">1.</span> <span class="nav-text">匹配字体标红</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片的循环输出"><span class="nav-number">2.</span> <span class="nav-text">图片的循环输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#别名-需要重启vscode才能生效"><span class="nav-number">3.</span> <span class="nav-text">别名(需要重启vscode才能生效)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#this指向"><span class="nav-number">4.</span> <span class="nav-text">this指向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非父子组件通信–创建空实例"><span class="nav-number">5.</span> <span class="nav-text">非父子组件通信–创建空实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用js库"><span class="nav-number">6.</span> <span class="nav-text">常用js库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lodash"><span class="nav-number">6.1.</span> <span class="nav-text">lodash</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#echarts"><span class="nav-number">6.2.</span> <span class="nav-text">echarts</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#匹配字体标红"><span class="nav-number">1.</span> <span class="nav-text">匹配字体标红</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片的循环输出"><span class="nav-number">2.</span> <span class="nav-text">图片的循环输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#别名-需要重启vscode才能生效"><span class="nav-number">3.</span> <span class="nav-text">别名(需要重启vscode才能生效)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#this指向"><span class="nav-number">4.</span> <span class="nav-text">this指向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非父子组件通信–创建空实例"><span class="nav-number">5.</span> <span class="nav-text">非父子组件通信–创建空实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用js库"><span class="nav-number">6.</span> <span class="nav-text">常用js库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lodash"><span class="nav-number">6.1.</span> <span class="nav-text">lodash</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#echarts"><span class="nav-number">6.2.</span> <span class="nav-text">echarts</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双向绑定原理"><span class="nav-number">7.</span> <span class="nav-text">双向绑定原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#static和assets"><span class="nav-number">8.</span> <span class="nav-text">static和assets</span></a></li></ol></div>
             
 
           </div>
