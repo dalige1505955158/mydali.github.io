@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-09-17T06:46:24.009Z</updated>
+  <updated>2020-10-29T09:28:41.041Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,56 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vue之seekcy开发历程记录1</title>
+    <link href="http://yoursite.com/2020/10/29/vue%E4%B9%8Bseekcy%E5%BC%80%E5%8F%91%E5%8E%86%E7%A8%8B%E8%AE%B0%E5%BD%951/"/>
+    <id>http://yoursite.com/2020/10/29/vue%E4%B9%8Bseekcy%E5%BC%80%E5%8F%91%E5%8E%86%E7%A8%8B%E8%AE%B0%E5%BD%951/</id>
+    <published>2020-10-29T09:23:30.000Z</published>
+    <updated>2020-10-29T09:28:41.041Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Router&quot;&gt;&lt;a href=&quot;#Router&quot; class=&quot;headerlink&quot; title=&quot;Router&quot;&gt;&lt;/a&gt;Router&lt;/h2&gt;&lt;h3 id=&quot;解决vue路由跳转未匹配路径时出现空白页的问题&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>计算机设置相关</title>
+    <link href="http://yoursite.com/2020/10/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AE%BE%E7%BD%AE%E7%9B%B8%E5%85%B3/"/>
+    <id>http://yoursite.com/2020/10/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AE%BE%E7%BD%AE%E7%9B%B8%E5%85%B3/</id>
+    <published>2020-10-29T09:18:44.000Z</published>
+    <updated>2020-10-29T09:22:46.772Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;设置与关闭自启动软件&quot;&gt;&lt;a href=&quot;#设置与关闭自启动软件&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="计算机" scheme="http://yoursite.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/"/>
+    
+    
+      <category term="计算机" scheme="http://yoursite.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/"/>
+    
+  </entry>
   
   <entry>
     <title>flex</title>
@@ -471,64 +521,6 @@
       <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
     
       <category term="滚动" scheme="http://yoursite.com/tags/%E6%BB%9A%E5%8A%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>本地文件夹上传github</title>
-    <link href="http://yoursite.com/2020/09/22/%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8A%E4%BC%A0github/"/>
-    <id>http://yoursite.com/2020/09/22/%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8A%E4%BC%A0github/</id>
-    <published>2020-09-22T10:12:50.000Z</published>
-    <updated>2020-09-22T10:16:55.364Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;首先你需要一个github账号，所有还没有的话先去注册吧！&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://github.com/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;我们使用git需要先安装git工具，这里给出下载地址，下载后一路直接安装即可：&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://git-for-windows.github.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://git-for-windows.github.io/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;1.进入Github首页，点击New repository新建一个项目&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://images2015.cnblogs.com/blog/913913/201608/913913-20160823164154526-418441991.png&quot; alt=&quot;img&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="github" scheme="http://yoursite.com/categories/github/"/>
-    
-    
-      <category term="github" scheme="http://yoursite.com/tags/github/"/>
-    
-      <category term="上传文件夹" scheme="http://yoursite.com/tags/%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E5%A4%B9/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>webpack常见loader和plugins</title>
-    <link href="http://yoursite.com/2020/09/22/webpack%E5%B8%B8%E8%A7%81loader%E5%92%8Cplugins/"/>
-    <id>http://yoursite.com/2020/09/22/webpack%E5%B8%B8%E8%A7%81loader%E5%92%8Cplugins/</id>
-    <published>2020-09-22T08:48:58.000Z</published>
-    <updated>2020-09-27T09:50:22.934Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;常用webpack插件&quot;&gt;&lt;a href=&quot;#常用webpack插件&quot; class=&quot;headerlink&quot; title=&quot;常用webpack插件&quot;&gt;&lt;/a&gt;常用webpack插件&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;注意：插件的引入都在webpack.config.js中&lt;/strong&gt;&lt;/p&gt;
-&lt;h4 id=&quot;live-server-必须全局安装，命令直接使用&quot;&gt;&lt;a href=&quot;#live-server-必须全局安装，命令直接使用&quot; class=&quot;headerlink&quot; title=&quot;live-server (必须全局安装，命令直接使用)&quot;&gt;&lt;/a&gt;live-server (必须全局安装，命令直接使用)&lt;/h4&gt;&lt;p&gt;一款npm工具，全局npm i -g live-server后，项目目录使用live-server命令行命令便可直接在浏览器中预览（默认找index.html，其他请自行带上文件名空格后跟在后面），并且自动全局监听实时更新&lt;/p&gt;
-&lt;p&gt;1.新建一个文件夹（最好英文），执行npm init命令；&lt;/p&gt;
-&lt;p&gt;2.生成package.json文件后，执行npm install -g live-server命令；&lt;/p&gt;
-&lt;p&gt;3.安装完成后，就可以执行live-server命令启动；&lt;/p&gt;
-&lt;p&gt;设置快捷方式如下：&lt;/p&gt;
-&lt;p&gt;1.找到package.json文件，然后找到”script”，写入：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;quot;scripts&amp;quot;: &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;quot;server&amp;quot;:&amp;quot;live-server .&amp;#x2F;port&amp;#x3D;9090&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &amp;#125;,&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="webpack" scheme="http://yoursite.com/categories/webpack/"/>
-    
-    
-      <category term="plugins" scheme="http://yoursite.com/tags/plugins/"/>
-    
-      <category term="loader" scheme="http://yoursite.com/tags/loader/"/>
     
   </entry>
   
