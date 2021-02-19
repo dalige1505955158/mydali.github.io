@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="vue," />
 
 
 
@@ -87,10 +87,21 @@
 <meta property="og:url" content="http://yoursite.com/2020/10/29/vue%E4%B9%8Bseekcy%E5%BC%80%E5%8F%91%E5%8E%86%E7%A8%8B%E8%AE%B0%E5%BD%951/index.html">
 <meta property="og:site_name" content="DaliBlogs">
 <meta property="og:description" content="Router解决vue路由跳转未匹配路径时出现空白页的问题利用该特性，可以使用下面的代码端解决未匹配路由的问题： 1234567router.beforeEach((to, from, next) &#x3D;&gt; &amp;#123;  if (to.matched.length &#x3D;&#x3D;&#x3D;0) &amp;#123;  &#x2F;&#x2F;如果未匹配到路由    from.path? next(&amp;#123; path:from.path">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020082419134573.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzA4NDI3NQ==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="http://yoursite.com/2020/10/29/vue%E4%B9%8Bseekcy%E5%BC%80%E5%8F%91%E5%8E%86%E7%A8%8B%E8%AE%B0%E5%BD%951/C:%5CUsers%5Cdali%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201102193540065.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/29/vue%E4%B9%8Bseekcy%E5%BC%80%E5%8F%91%E5%8E%86%E7%A8%8B%E8%AE%B0%E5%BD%951/C:%5CUsers%5Cdali%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201103113345574.png">
+<meta property="og:image" content="https://img2018.cnblogs.com/blog/1149000/201901/1149000-20190108162846264-467114685.png">
+<meta property="og:image" content="https://img2018.cnblogs.com/blog/1149000/201901/1149000-20190108162728713-1887350521.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1202246/201711/1202246-20171121095445961-1591205997.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191104102906668.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjcxOTk2,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img2018.cnblogs.com/blog/935329/201905/935329-20190528164613052-25776252.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/29/vue%E4%B9%8Bseekcy%E5%BC%80%E5%8F%91%E5%8E%86%E7%A8%8B%E8%AE%B0%E5%BD%951/require(">
 <meta property="article:published_time" content="2020-10-29T09:23:30.000Z">
-<meta property="article:modified_time" content="2020-10-29T09:28:41.041Z">
+<meta property="article:modified_time" content="2021-02-19T08:41:41.509Z">
 <meta property="article:author" content="Dali">
+<meta property="article:tag" content="vue">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/2020082419134573.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzA4NDI3NQ==,size_16,color_FFFFFF,t_70#pic_center">
 
 
 
@@ -337,6 +348,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -367,7 +400,7 @@
         <h2 id="Router"><a href="#Router" class="headerlink" title="Router"></a>Router</h2><h3 id="解决vue路由跳转未匹配路径时出现空白页的问题"><a href="#解决vue路由跳转未匹配路径时出现空白页的问题" class="headerlink" title="解决vue路由跳转未匹配路径时出现空白页的问题"></a>解决vue路由跳转未匹配路径时出现空白页的问题</h3><p>利用该特性，可以使用下面的代码端解决未匹配路由的问题：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">router.beforeEach(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (to.matched.length ===<span class="number">0</span>) &#123;  <span class="comment">//如果未匹配到路由</span></span><br><span class="line">    <span class="keyword">from</span>.path? next(&#123; <span class="attr">path</span>:<span class="keyword">from</span>.path&#125;) : next(<span class="string">'/'</span>);   <span class="comment">//如果上级也未匹配到路由则跳转主页面，如果上级能匹配到则转上级路由</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    next();    <span class="comment">//如果匹配到正确跳转</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
-
+<a id="more"></a> 
 
 <p>2.匹配所有路由</p>
 <p>路由的匹配规则是按照书写的顺序执行的，第一条匹配成功则不去匹配下一条，利用这一特性，可以在所有匹配路由的下面拦截匹配所有路由：</p>
@@ -379,15 +412,473 @@
 
 
 
-<h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><h3 id="v-focus"><a href="#v-focus" class="headerlink" title="v-focus"></a>v-focus</h3><p>自定义指令解决autofocus失效<br>directives: {<br>    focus: {<br>      inserted: function(el) {<br>        el.querySelector(“input”).focus();<br>      }<br>    }<br>  },</p>
+<p>报错</p>
+<p><img src="https://img-blog.csdnimg.cn/2020082419134573.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NzA4NDI3NQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p><a href="mailto:vue-router@3.0">vue-router@3.0</a>版本及以上回调形式已经改成promise api的形式了，返回的是一个promise，如果路由地址跳转相同（<code>重复路由跳转</code>）, 且没有捕获到错误，控制台始终会出现如图所示的警告 （注：3.0以下版本则不会出现以下警告！！！，因路由回调问题…，可以直接降到3.0一下版本）</p>
+<p><img src="/2020/10/29/vue%E4%B9%8Bseekcy%E5%BC%80%E5%8F%91%E5%8E%86%E7%A8%8B%E8%AE%B0%E5%BD%951/C:%5CUsers%5Cdali%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201102193540065.png" alt="image-20201102193540065"></p>
+<p>问题出现原因：<code>重复路由跳转</code>，比如说当前路由是商品详情页面/goodsDetail，但是点击按钮进行this.$router.push操作，要跳转的还是商品详情页面/goodsDetail。</p>
+<p>综合解决方案</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import Router from &#39;vue-router&#39;</span><br><span class="line"></span><br><span class="line">const originalPush &#x3D; Router.prototype.push</span><br><span class="line">Router.prototype.push &#x3D; function push(location) &#123;</span><br><span class="line">  return originalPush.call(this, location).catch(err &#x3D;&gt; err)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">注：官方vue-router@3.0及以上新版本路由默认回调返回的都是promise，原先旧版本的路由回调将废弃！！！！</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="addRoutes"><a href="#addRoutes" class="headerlink" title="addRoutes"></a>addRoutes</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">this.$router.addRoutes(</span><br><span class="line">    routeData.concat([</span><br><span class="line">        &#123; path: &#39;&#x2F;404&#39;, component: NotFound &#125;,</span><br><span class="line">        &#123; path: &#39;*&#39;, redirect: &#39;&#x2F;404&#39; &#125;</span><br><span class="line">    ])</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h2 id="指令（directive）"><a href="#指令（directive）" class="headerlink" title="指令（directive）"></a>指令（directive）</h2><p>全局的自定义指令需要写在 <strong>new Vue()</strong> 的前面</p>
+<h3 id="v-focus-自定义指令解决autofocus失效"><a href="#v-focus-自定义指令解决autofocus失效" class="headerlink" title="v-focus(自定义指令解决autofocus失效)"></a>v-focus(自定义指令解决autofocus失效)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">directives: &#123;</span><br><span class="line">    focus: &#123;</span><br><span class="line">      inserted: function(el) &#123;</span><br><span class="line">        el.querySelector(&quot;input&quot;).focus();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+<h3 id="动态指令参数"><a href="#动态指令参数" class="headerlink" title="动态指令参数"></a>动态指令参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;div @click&#x3D;&quot;link&quot; v-style:[mystyle]&#x3D;&quot;&#39;100px&#39;&quot;&gt;带参数跳转&lt;&#x2F;div&gt;</span><br><span class="line">js</span><br><span class="line">data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">    	mystyle: &#39;margin&#39;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">main.js</span><br><span class="line">Vue.directive(&quot;style&quot;, function (el, binding, vnode) &#123;</span><br><span class="line">    el.style[binding.arg] &#x3D; binding.value </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="高精度权限控制—自定义指令directive"><a href="#高精度权限控制—自定义指令directive" class="headerlink" title="高精度权限控制—自定义指令directive"></a>高精度权限控制—自定义指令directive</h3><p>我们先在新建个 array.js 文件，用于存放与权限相关的全局函数；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; array.js</span><br><span class="line">export function checkArray (key) &#123;</span><br><span class="line">  let arr &#x3D; [&#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;demo&#39;]</span><br><span class="line">  let index &#x3D; arr.indexOf(key)</span><br><span class="line">  if (index &gt; -1) &#123;</span><br><span class="line">    return true &#x2F;&#x2F; 有权限</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return false &#x2F;&#x2F; 无权限</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后在将 array 文件挂载到全局中:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; main.js</span><br><span class="line">import &#123; checkArray &#125; from &quot;.&#x2F;common&#x2F;array&quot;;</span><br><span class="line">Vue.directive(&quot;permission&quot;, &#123;</span><br><span class="line">  inserted (el, binding) &#123;</span><br><span class="line">    let permission &#x3D; binding.value; &#x2F;&#x2F; 获取到 v-permission的值</span><br><span class="line">    if (permission) &#123;</span><br><span class="line">      let hasPermission &#x3D; checkArray(permission);</span><br><span class="line">      if (!hasPermission) &#123; &#x2F;&#x2F; 没有权限 移除Dom元素</span><br><span class="line">        el.parentNode &amp;&amp; el.parentNode.removeChild(el);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>最后我们在页面中就可以通过自定义指令 v-permission 来判断：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class&#x3D;&quot;btns&quot;&gt;</span><br><span class="line">    &lt;button v-permission&#x3D;&quot;&#39;1&#39;&quot;&gt;权限按钮1&lt;&#x2F;button&gt;  &#x2F;&#x2F; 会显示</span><br><span class="line">    &lt;button v-permission&#x3D;&quot;&#39;2&#39;&quot;&gt;权限按钮2&lt;&#x2F;button&gt;  &#x2F;&#x2F; 无显示</span><br><span class="line">    &lt;button v-permission&#x3D;&quot;&#39;demo&#39;&quot;&gt;权限按钮demo&lt;&#x2F;button&gt; &#x2F;&#x2F; 会显示</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="修改dev地址为自动获取本地ip"><a href="#修改dev地址为自动获取本地ip" class="headerlink" title="修改dev地址为自动获取本地ip"></a>修改dev地址为自动获取本地ip</h2><p><img src="/2020/10/29/vue%E4%B9%8Bseekcy%E5%BC%80%E5%8F%91%E5%8E%86%E7%A8%8B%E8%AE%B0%E5%BD%951/C:%5CUsers%5Cdali%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201103113345574.png" alt="image-20201103113345574"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;* 修改启动时浏览器地址localhost为自动获取本地ip,并以ip为地址 *&#x2F;</span><br><span class="line">const os &#x3D; require(&#39;os&#39;)</span><br><span class="line">let localhost &#x3D; &#39;&#39;</span><br><span class="line">try &#123;</span><br><span class="line">    const network &#x3D; os.networkInterfaces()</span><br><span class="line">    localhost &#x3D; network[Object.keys(network)[0]][1].address</span><br><span class="line">&#125; catch (e) &#123;</span><br><span class="line">    localhost &#x3D; &#39;localhost&#39;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h2><p>查看三部曲：</p>
+<ul>
+<li>build文件夹下的utils.js 中 publicPath：” ../../“</li>
+<li>config 中的 index.js 中 assetsPublicPath: “./“</li>
+<li>webpack.prod.conf.js 中 output模块中添加 publicPath: “./“</li>
+</ul>
+<p>总结一下，vue里面引用图片在打包后仍能正常使用的正确引用方式：</p>
+<ul>
+<li><p><strong>html内：</strong>img src以相对路径引入；</p>
+</li>
+<li><p><strong>css：</strong>style以background属性作为背景图片以相对路径引入，需以类名方式引入，行内样式可能会不生效；</p>
+</li>
+<li><p><strong>js：</strong>以require(‘…/url’)引入，赋予变量；</p>
+</li>
+</ul>
+<h3 id="js-css找不到"><a href="#js-css找不到" class="headerlink" title="js/css找不到"></a>js/css找不到</h3><p>因为项目打包后的CSS和JS的引用路径是绝对路径，项目部署后会将静态当成根目录，就造成了文件引用路径的错误，解决方法是通过修改配置文件，将绝对路径改为相对路径，从而达到资源的相对引用。</p>
+<p>一。<strong>‘/’指的是项目的根目录 ，’./’指的是当前目录</strong></p>
+<p>1.publicPath 并不会对生成文件的路径造成影响，主要是对你的页面里面引入的资源的路径做对应的补全，常见的就是css文件里面引入的图片</p>
+<p>2.assetsPublicPath属性作用是指定编译发布的根目录</p>
+<p>具体操作如下：</p>
+<p>1.打开webpack.prod.conf.js；</p>
+<p>2.在output模块中添加 publicPath: ‘./‘ ，如下图所示：</p>
+<p><img src="https://img2018.cnblogs.com/blog/1149000/201901/1149000-20190108162846264-467114685.png" alt="img"></p>
+<h3 id="背景图片找不到"><a href="#背景图片找不到" class="headerlink" title="背景图片找不到"></a>背景图片找不到</h3><p>修改打包后背景图片的引用路径<br>资源内的图片是通过css加载的，CSS代码如：background：url（../ assets / img-bg / buttonbg.png）no-repeat;</p>
+<p>但是打包过后的CSS变成了背景：url（../../ static / img / buttonbg.68979b3.png）no-repeat;我们需要修改配置文件，是的CSS代码打包后，资源引用路径还是相对路径;</p>
+<p>解决办法：</p>
+<p>1.打开build文件夹下的utils.js ;</p>
+<p>2.在下图位置添加 publicPath：” ../../</p>
+<p> <img src="https://img2018.cnblogs.com/blog/1149000/201901/1149000-20190108162728713-1887350521.png" alt="img"></p>
+<h3 id="router-view中的内容显示不出来（关闭路由history模式）"><a href="#router-view中的内容显示不出来（关闭路由history模式）" class="headerlink" title="router-view中的内容显示不出来（关闭路由history模式）"></a>router-view中的内容显示不出来（关闭路由history模式）</h3><p><strong>第二个问题：router-view中的内容显示不出来。</strong>路由history模式。</p>
+<p>这个坑是当你使用了路由之后，<strong>在没有后端配合的情况下就手贱打开路由history模式的时候</strong>，打包出来的文件也会是一片空白的情况，</p>
+<p>很多人踩这个坑的时候花了很多时间，网上的教程基本上都是说的第一个坑，这个坑很少有人提起。</p>
+<p><strong><img src="https://images2017.cnblogs.com/blog/1202246/201711/1202246-20171121095445961-1591205997.png" alt="img"></strong></p>
+<p>解决：<code>// mode: &#39;history&#39;,//将这个模式关闭就好</code></p>
+<h3 id="打包出错显示空白页，或者Failed-to-load-resource-net-ERR-FILE-NOT-FOUND"><a href="#打包出错显示空白页，或者Failed-to-load-resource-net-ERR-FILE-NOT-FOUND" class="headerlink" title="打包出错显示空白页，或者Failed to load resource: net::ERR_FILE_NOT_FOUND"></a>打包出错显示空白页，或者Failed to load resource: net::ERR_FILE_NOT_FOUND</h3><p>解决办法</p>
+<p>​        webpack.prod.conf.js 中output添加参数publicPath:’./‘</p>
+<p><img src="https://img-blog.csdnimg.cn/20191104102906668.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjcxOTk2,size_16,color_FFFFFF,t_70" alt="img"></p>
+<h3 id="Vue-elementUI-build打包部署后字体图标丢失，控制台显示文件element-icons-woff和element-icons-ttf文件404"><a href="#Vue-elementUI-build打包部署后字体图标丢失，控制台显示文件element-icons-woff和element-icons-ttf文件404" class="headerlink" title="Vue+elementUI  build打包部署后字体图标丢失，控制台显示文件element-icons.woff和element-icons.ttf文件404"></a>Vue+elementUI  build打包部署后字体图标丢失，控制台显示文件element-icons.woff和element-icons.ttf文件404</h3><p><img src="https://img2018.cnblogs.com/blog/935329/201905/935329-20190528164613052-25776252.png" alt="img"></p>
+<p>解决办法</p>
+<p>webpack utils.js 修改：（build目录下utils.js）</p>
+<p>添加  publicPath: ‘../../‘</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">if (options.extract) &#123;</span><br><span class="line">    return ExtractTextPlugin.extract(&#123;</span><br><span class="line">        use: loaders,</span><br><span class="line">        fallback: &#39;vue-style-loader&#39;,</span><br><span class="line">        publicPath: &#39;..&#x2F;..&#x2F;&#39;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125; else &#123;</span><br><span class="line">	return [&#39;vue-style-loader&#39;].concat(loaders)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><blockquote>
 <p>You have not concluded your merge (MERGE_HEAD exists). Please, commit your changes before you can merge.</p>
 </blockquote>
 <h4 id="报错原因"><a href="#报错原因" class="headerlink" title="报错原因"></a>报错原因</h4><p>上一次pull的代码有冲突自动合并失败，在下一次pull之前你没有很好的解决这个冲突</p>
 <h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>撤销这次合并</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1、git merge --abort</span><br><span class="line">2、git reset --merge</span><br></pre></td></tr></table></figure>
-<p>3、解决冲突<br>4、<code>git add</code>和<code>git commit</code><br>5、 这时候<code>git pull</code>应该就可以使用了<br>```</p>
+<p>3、解决冲突<br>4、<code>git add</code>和<code>git commit</code><br>5、 这时候<code>git pull</code>应该就可以使用了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## js</span><br><span class="line"></span><br><span class="line">### 判断数组和数组对象中是否有重复值</span><br><span class="line"></span><br><span class="line">数组：</span><br></pre></td></tr></table></figure>
+<p>简单方式一<br>const elementsAreEqual = array =&gt; array.some(el =&gt; el === array[0]);<br>elementsAreEqual([9, 8, 7, 7, 5]); // true<br>复杂方式二<br>isRepeat(arr) {<br>            var hash = {};<br>            let that = this;<br>            for (var i in arr) {<br>                if (hash[arr[i]]){<br>                    that.repeatSn = arr[i];<br>                    return true;<br>                }<br>                hash[arr[i]] = true;<br>            }<br>            return false;<br>        },<br>true – 有重复值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">数组对象</span><br></pre></td></tr></table></figure>
+<p>isRepeat(arr) {<br>      for (var i = 0; i &lt; arr.length - 1; i++) {<br>        for (var j = i + 1; j &lt; arr.length; j++) {<br>          if (arr[i].sn === arr[j].sn) {<br>            this.repeatSn=arr[i].sn;<br>            return false;<br>          }<br>        }<br>      }<br>      return true;<br>    },<br>false – 有重复值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 返回数字数组中的最大值（一个或多个）</span><br></pre></td></tr></table></figure>
+<p>const maxElementsFromArray = (array, len = 1) =&gt; […array].sort((x, y) =&gt; y - x).slice(0, len);</p>
+<p>maxElementsFromArray([1, 2, 3, 4, 5]); // [5]<br>maxElementsFromArray([7, 8, 9, 10, 10], 2); // [10, 10]</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 论如何优雅的取随机字符串</span><br></pre></td></tr></table></figure>
+<p>Math.random().toString(16).substring(2) // 13位<br>Math.random().toString(36).substring(2) // 11位</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 如何优雅的实现金钱格式化</span><br><span class="line"></span><br><span class="line">用正则魔法实现：</span><br></pre></td></tr></table></figure>
+<p>var test1 = ‘1234567890’<br>var format = test1.replace(/\B(?=(\d{3})+(?!\d))/g, ‘,’)<br>console.log(format) // 1,234,567,890</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">非正则的优雅实现：</span><br></pre></td></tr></table></figure>
+<p> function formatCash(str) {<br>       return str.split(‘’).reverse().reduce((prev, next, index) =&gt; {<br>            return ((index % 3) ? next : (next + ‘,’)) + prev<br>       })<br>}<br>console.log(formatCash(‘1234567890’)) // 1,234,567,890</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 论如何最佳的让两个整数交换数值</span><br></pre></td></tr></table></figure>
+<p>a ^= b;<br>b ^= a;<br>a ^= b;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 用最短的代码实现一个长度为m(6)且值都n(8)的数组</span><br></pre></td></tr></table></figure>
+<p>Array(6).fill(8)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 短路表达式</span><br></pre></td></tr></table></figure>
+<p>var a = b &amp;&amp; 1<br>    // 相当于<br>if (b) {<br>    a = 1<br>} else {<br>    a = b<br>}<br>var a = b || 1<br>    // 相当于<br>if (b) {<br>    a = b<br>} else {<br>    a = 1<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### js提取字符串中的数字</span><br></pre></td></tr></table></figure>
+<p>1.前面带数字,后面非数字,可以直接用parseFloat()函数:<br>var num1 = parseFloat(“2.89元”); //num1 : 2.89</p>
+<p>2.像”生于1999年”这样字符串中只含有一个整型数值的字符串,直接使用正则表达式将数字的字符删除掉就行<br>var str1 = ‘生于1999年’;<br>var num1 = str1.replace(/[^\d]/g,’ ‘);</p>
+<p>3.对于字符串中含有多数值,使用字符串的match方法,通过正则表达式提取字符串的所有数字(包含整数和小数):<br>var str=”1 plus 2 equal 3”<br>var arr=str.match(/\d+/g)<br>// arr: [‘1’,’2’,’3’]</p>
+<p>var str = ‘大米:2.57斤/元,白菜:3.65元/斤’;<br>var arr = str.match(/\d+(.\d+)?/g);<br>// arr: [“2.75”,”3.65”]</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 对于如何替换JS字符串中匹配到多处中某一指定节点</span><br></pre></td></tr></table></figure>
+<p>const str =”这是主体内容，有很多内容，喜欢看这个内容就关注吧”;<br>const reg = new RegExp(‘内容‘, ‘g‘);<br>let ret;<br>const arr=[];<br>while((ret = reg.exec(str))!==null) {<br>    arr.push({id:ret.index,content:ret.input})<br>}<br>const replaceStr = (strs, index, text,len) =&gt; {<br>    return strs.substring(0, index) + text + strs.substring(index + len);<br>};<br> // 替换文本的第三处“内容”为 “文章”<br>const newVal= replaceStr(str, arr[2].id, ‘文章‘,2);<br>console.log(newVal)  // 这是主体内容，有很多内容，喜欢看这个文章就关注吧</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 打字机动画</span><br></pre></td></tr></table></figure>
+<p>(function () {<br>  const container = document.getElementById(‘content’)<br>  const data = ‘与 setTimeout 相比，requestAnimationFrame 最大的优势是 由系统来决定回调函数的执行时机。具体一点讲就是，系统每次绘制之前会主动调用 requestAnimationFrame 中的回调函数，如果系统绘制率是 60Hz，那么回调函数就每16.7ms 被执行一次，如果绘制频率是75Hz，那么这个间隔时间就变成了 1000/75=13.3ms。换句话说就是，requestAnimationFrame 的执行步伐跟着系统的绘制频率走。它能保证回调函数在屏幕每一次的绘制间隔中只被执行一次，这样就不会引起丢帧现象，也不会导致动画出现卡顿的问题。’.split(‘’)<br>  let index = 0<br>  function writing() {<br>        if (index &lt; data.length) {<br>          container.innerHTML += data[index++]<br>          window.requestAnimationFrame(writing)<br>          //减慢速度<br>          setTimeout(() =&gt; {<br>            window.requestAnimationFrame(writing)<br>          }, 200);<br>          //<br>      }<br>  }<br>      writing()<br>})();</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 小技巧</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>交换两个变量<br>[x, y] = [y, x];</p>
+</li>
+<li><p>多条件检查<br>if ([1, ‘one’, 2, ‘two’].indexOf(value) &gt;= 0) {<br> // Execute some code<br>}</p>
+</li>
+</ol>
+<p>if ([1, ‘one’, 2, ‘two’].includes(value)) {<br>    // Execute some code<br>}</p>
+<ol start="3">
+<li><p>对象属性复制<br>let firstname = ‘Amitav’;<br>let lastname = ‘Mishra’;<br>let obj = {firstname, lastname};</p>
+</li>
+<li><p>重复一个字符串多次<br>‘sorry\n’.repeat(100);</p>
+</li>
+<li><p>指数幂<br>const power = 4**3</p>
+</li>
+<li><p>双非位运算符 (<del>)<br>const floor = ~</del>6.8;</p>
+</li>
+</ol>
+<p>7.找出数组中的最大和最小数字<br>const arr = [2, 8, 15, 4];<br>Math.max(…arr); // 15<br>Math.min(…arr); // 2</p>
+<p>8.深拷贝多级对象<br>let obj = {x: 20, y: {z: 30}};<br>//Longhand<br>const makeDeepClone = (obj) =&gt; {<br>  let newObject = {};<br>  Object.keys(obj).map(key =&gt; {<br>    if(typeof obj[key] === ‘object’){<br>      newObject[key] = makeDeepClone(obj[key]);<br>    } else {<br>      newObject[key] = obj[key];<br>    }<br>  });<br> return newObject;<br>}<br>const cloneObj = makeDeepClone(obj);</p>
+<p>//Shorthand<br>const cloneObj = JSON.parse(JSON.stringify(obj));</p>
+<p>//Shorthand for single level object<br>let obj = {x: 20, y: ‘hello’};<br>const cloneObj = {…obj};</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 数阶乘</span><br></pre></td></tr></table></figure>
+<p>const factorialOfNumber = number =&gt;<br>  number &lt; 0<br>    ? (() =&gt; {<br>      throw new TypeError(‘No negative numbers please’);<br>    })()<br>    : number &lt;= 1<br>      ? 1<br>      : number * factorialOfNumber(number - 1);</p>
+<p>factorialOfNumber(4); // 24</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 整数转数组</span><br></pre></td></tr></table></figure>
+<p>const convertToArray = number =&gt; […<code>${number}</code>].map(el =&gt; parseInt(el))</p>
+<p>convertToArray(5678); // [5, 6, 7, 8]</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 检查是否为2的幂数</span><br></pre></td></tr></table></figure>
+<p>const isNumberPowerOfTwo = number =&gt; !!number &amp;&amp; (number &amp; (number - 1)) === 0;</p>
+<p>isNumberPowerOfTwo(100); // false<br>isNumberPowerOfTwo(128); // true</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## vue全局防抖和节流</span><br></pre></td></tr></table></figure>
+<p>// 防抖处理-立即执行<br>const on = Vue.prototype.$on<br>Vue.prototype.$on = function (event, func) {<br>  let timer;<br>  let flag = true;<br>  let newFunc = func<br>  if (event == ‘click’) {<br>    newFunc = function () {<br>      if(flag) {<br>        func.apply(this, arguments)<br>        flag = false<br>      }<br>      clearTimeout(timer)<br>      timer = setTimeout(function () {<br>        flag = true<br>      }, 500)<br>    }<br>  }<br>  on.call(this, event, newFunc)<br>}</p>
+<p>// 防抖处理 – 最后执行<br>const on = Vue.prototype.$on<br>Vue.prototype.$on = function (event, func) {<br>  let timer<br>  let newFunc = func<br>  if (event === ‘click’) {<br>    newFunc = function () {<br>      clearTimeout(timer)<br>      timer = setTimeout(function () {<br>        func.apply(this, arguments)<br>      }, 500)<br>    }<br>  }<br>  on.call(this, event, newFunc)<br>}</p>
+<p>// 节流<br>const on = Vue.prototype.$on<br>Vue.prototype.$on = function (event, func) {<br>  let previous = 0<br>  let newFunc = func<br>  if (event === ‘click’) {<br>    newFunc = function () {<br>      const now = new Date().getTime()<br>      if (previous + 1000 &lt;= now) {<br>        func.apply(this, arguments)<br>        previous = now<br>      }<br>    }<br>  }<br>  on.call(this, event, newFunc)<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 支持webp格式图片</span><br><span class="line"></span><br><span class="line">npm install file-loader</span><br></pre></td></tr></table></figure>
+<p>rules中新增</p>
+<p>{<br>                test: /.webp$/,<br>                use: [<br>                    {<br>                        loader: ‘file-loader’,<br>                        query: {<br>                            limit: 10000,<br>                            name: utils.assetsPath(‘img/[name].[hash:7].[ext]’)<br>                        }<br>                    }<br>                ]<br>}</p>
+<p>服务器可能不支持webp格式图片，做了拦截<br>原来是服务器上面不能解析webp，自己在百度上面上找到了方法解决，在iis的MIME类型中中添加webp</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 标签中src循环图片</span><br></pre></td></tr></table></figure>
+<img :src="require('../../../static/imgs/board/'+item.url+'.png')" style="width:36px">
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 禁止蒙层底部页面跟随滚动</span><br><span class="line"></span><br><span class="line">将页面固定视窗后，内容会回头最顶端，这里我们需要记录一下，同步top值。</span><br></pre></td></tr></table></figure>
+let bodyEl = document.body
+let top = 0
+data() {
+    return {
+        isFixed: true
+    }
+},
+watch: {
+    isFixed() {
+        this.stopBodyScroll();
+    }
+},
 
+<p>function stopBodyScroll (isFixed) {<br>  if (this.isFixed) {<br>    top = window.scrollY<br>    bodyEl.style.position = ‘fixed’<br>    bodyEl.style.top = -top + ‘px’<br>  } else {<br>    bodyEl.style.position = ‘’<br>    bodyEl.style.top = ‘’<br>    window.scrollTo(0, top) // 回到原先的top<br>  }<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## css</span><br><span class="line"></span><br><span class="line">css文字超出显示省略号</span><br><span class="line"></span><br><span class="line">### 单号：</span><br></pre></td></tr></table></figure>
+<p>white-space:nowrap;<br>overflow:hidden;<br>text-overflow:ellipsis;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 多行：</span><br></pre></td></tr></table></figure>
+<p>word-break: break-all;<br>text-overflow: ellipsis;<br>overflow: hidden;<br>display: -webkit-box;<br>-webkit-line-clamp: 2;<br>-webkit-box-orient: vertical;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 通过background:linear-gradient写矩形边角</span><br></pre></td></tr></table></figure>
+<p>.rect {<br>    position: absolute;<br>    width: 200px;<br>    height: 200px;<br>    background:<br>    linear-gradient(to left, red, red) left top no-repeat,<br>        linear-gradient(to bottom, red, red) left top no-repeat,<br>        linear-gradient(to left, red, red) right top no-repeat,<br>        linear-gradient(to bottom, red, red) right top no-repeat,<br>        linear-gradient(to left, red, red) left bottom no-repeat,<br>        linear-gradient(to bottom, red, red) left bottom no-repeat,<br>        linear-gradient(to left, red, red) right bottom no-repeat,<br>        linear-gradient(to left, red, red) right bottom no-repeat;<br>    background-size: 10px 40px, 40px 10px, 10px 40px, 40px 10px;<br>    background-color: #00ff00;<br>}</p>
+<p>scss的混合宏封装<br>@mixin four-corner($color,$width,$height,$bgcolor){<br>    background: linear-gradient(to left, $color, $color) left top no-repeat,<br>        linear-gradient(to bottom, $color, $color) left top no-repeat,<br>        linear-gradient(to left, $color, $color) right top no-repeat,<br>        linear-gradient(to bottom, $color, $color) right top no-repeat,<br>        linear-gradient(to left, $color, $color) left bottom no-repeat,<br>        linear-gradient(to bottom, $color, $color) left bottom no-repeat,<br>        linear-gradient(to left, $color, $color) right bottom no-repeat,<br>        linear-gradient(to left, $color, $color) right bottom no-repeat;<br>    background-size: $height $width, $width $height, $height $width, $width $height;<br>    background-color: $bgcolor;<br>}<br>.rect {<br>     @include four-corner(red,40px,10px,#00ff00);<br>    position: absolute;<br>    width: 200px;<br>    height: 200px;<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 滚动条的样式</span><br></pre></td></tr></table></figure>
+<p>在app.vue中</p>
+<p>::-webkit-scrollbar {<br>    width: 20px;//竖直方向的宽度，高度自适应<br>    height: 20px;//水平方向的高度，宽度自适应<br>}<br>::-webkit-scrollbar-thumb {<br>    border-radius: 20px;<br>    background:blue;<br>}<br>::-webkit-scrollbar-track {<br>    border-radius: 0;<br>    background:green;<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### transition(通过它简单控制css属性的动画效果)</span><br><span class="line"></span><br><span class="line">transition: *property duration timing-function delay*;</span><br><span class="line"></span><br><span class="line">| 值                                                           |                    描述                    |</span><br><span class="line">| :----------------------------------------------------------- | :----------------------------------------: |</span><br><span class="line">| *[transition-property](https:&#x2F;&#x2F;www.runoob.com&#x2F;cssref&#x2F;css3-pr-transition-property.html)* |     指定CSS属性的name，transition效果      |</span><br><span class="line">| *[transition-duration](https:&#x2F;&#x2F;www.runoob.com&#x2F;cssref&#x2F;css3-pr-transition-duration.html)* | transition效果需要指定多少秒或毫秒才能完成 |</span><br><span class="line">| *[transition-timing-function](https:&#x2F;&#x2F;www.runoob.com&#x2F;cssref&#x2F;css3-pr-transition-timing-function.html)* |        指定transition效果的转速曲线        |</span><br><span class="line">| *[transition-delay](https:&#x2F;&#x2F;www.runoob.com&#x2F;cssref&#x2F;css3-pr-transition-delay.html)* |        定义transition效果开始的时候        |</span><br></pre></td></tr></table></figure>
+<p>.search{<br>    width:80px;<br>    height:40px;<br>    border-radius:40px;<br>    border:2px solid lightblue;<br>    position: absolute;<br>    right:200px;<br>    outline:none;<br>    text-indent:12px;<br>    color:#666;<br>    font-size:16px;<br>    padding:0;<br>    -webkit-transition:width 5s;<br>    -webkit-transition:height 5s;<br>    -webkit-transition:background-color 5s;<br>    -webkit-transition:color 5s;<br>    -webkit-transition:opacity 5s;<br>}<br>.search:focus{<br>    width:200px;<br>    height: 100px;<br>    background: red;<br>    color:blue;<br>    opacity: 0;<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 伪元素和伪类</span><br><span class="line"></span><br><span class="line">其中伪类和伪元素的根本区别在于：**它们是否创造了新的元素。**</span><br><span class="line"></span><br><span class="line">伪元素选择符</span><br><span class="line">![在这里插入图片描述](https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;2019052717580919.png?x-oss-process&#x3D;image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI3Njc0NDM5,size_16,color_FFFFFF,t_70)</span><br><span class="line">伪类：存在DOM文档中，逻辑上存在但在文档树中却无须标识的“幽灵”分类。</span><br><span class="line"></span><br><span class="line">伪类选择符</span><br><span class="line"></span><br><span class="line">![在这里插入图片描述](https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20190527175840224.png?x-oss-process&#x3D;image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI3Njc0NDM5,size_16,color_FFFFFF,t_70)</span><br><span class="line"></span><br><span class="line">### 输入框光标的颜色</span><br></pre></td></tr></table></figure>
+<p>caret-color: red;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### max() &#x2F; min()</span><br></pre></td></tr></table></figure>
+<p>width: max(50vw, 300px);<br>width: min(50vw, 300px);<br>font-size:min(50vw, 300px);</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### clamp() [在定义的 三个值之间，取大小在中间的那个值]</span><br></pre></td></tr></table></figure>
+<p>font-size: clamp(1px, 3px, 2px);    //中间值为2px<br>width: clamp(200rem, 25vw, 150px); //在这三个之间取中间值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## watch</span><br><span class="line"></span><br><span class="line">#### echarts数据更新页面不更新</span><br><span class="line"></span><br><span class="line">深度监听对象数组</span><br></pre></td></tr></table></figure>
+<p>watch: {<br>//监听对象数组的变化<br>bet: {<br>　　　　handler(newValue, oldValue) {<br>　　　　　　console.log(newValue)<br>　　　　},<br>　　　　deep: true<br>　　},<br>//深拷贝<br>　　winChips: {<br>　　　　handler(newValue, oldValue) {<br>　　　　　　for (let i = 0; i &lt; newValue.length; i++) {<br>　　　　　　　　if (oldValue[i] != newValue[i]) {<br>　　　　　　　　　　console.log(newValue)<br>　　　　　　　　}<br>　　　　　　}<br>　　　　},<br>　　　　deep: true<br>　　}<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## Promise(C 依赖 B 的结果，D 依赖 ABC 的结果，最终输出 D 的结果)</span><br></pre></td></tr></table></figure>
+<p>function A() {<br>    return new Promise(r =&gt; {<br>        let timeObj = setTimeout(() =&gt; {<br>            console.log(‘AAAAAAAAA’);<br>            clearTimeout(timeObj);<br>            r(“a”)<br>        }, 2000);<br>    })<br>}<br>function B() {<br>    return new Promise(r =&gt; {<br>        let timeObj = setTimeout(() =&gt; {<br>            console.log(‘BBBBBBBBBBBB’);<br>            clearTimeout(timeObj)<br>            r(“b”)<br>        }, 2000);<br>    })<br>}<br>function C() {<br>    return new Promise(r =&gt; {<br>        let timeObj = setTimeout(() =&gt; {<br>            console.log(‘CCCCCCCCCCCC’);<br>            clearTimeout(timeObj)<br>            r(“c”)<br>        }, 2000);<br>    })<br>}<br>function D() {<br>    return new Promise(r =&gt; {<br>        let timeObj = setTimeout(() =&gt; {<br>            console.log(‘DDDDDDDDDDDDDD’);<br>            clearTimeout(timeObj)<br>            r(“d1321231”)<br>        }, 2000);<br>    })<br>}<br>async function asyncBC() {<br>    const resb = await B();<br>    const resc = await C(resb);<br>    return {resb,resc}<br>}<br>async function asyncTask() {<br>    const [resa,{resb,resc}]=await Promise.all([A(),asyncBC()])<br>    const resd=await D(resa,resb,resc)<br>    return resd<br>}<br>asyncTask().then(resd=&gt;{<br>    console.log(‘this is D result’,resd);</p>
+<p>})</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## Axios</span><br><span class="line"></span><br><span class="line">Form Data 和 Request Payload 区别</span><br><span class="line"></span><br><span class="line">1. 设置Content-Type: application&#x2F;x-www-form-urlencoded，那么这个请求被认为是表单请求，参数出现在Form Data里，格式为key&#x3D;value&amp;key&#x3D;value&amp;key&#x3D;value…,请求参数应为json对象。</span><br><span class="line">2. 设置Content-Type:application&#x2F;json，或者使用默认的请求头Content-Type:text&#x2F;plain;参数会显示在Request payload块里提交。请求参数应为字符串。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">qs.stringify和json.stringify区别</span><br></pre></td></tr></table></figure>
+<p>var a = {name:’hehe’,age:10};<br> qs.stringify(a)<br>// ‘name=hehe&amp;age=10’<br>JSON.stringify(a)<br>// ‘{“name”:”hehe”,”age”:10}’</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">qs.parse()</span><br></pre></td></tr></table></figure>
+<p>let url = ‘method=query_sql_dataset_data&amp;projectId=85&amp;appToken=7d22e38e-5717-11e7-907b-a6006ad3dba0’;<br>qs.parse(url);<br>{<br>method:query_sql_dataset_data,<br>projectId:85,<br>appToken:7d22e38e-5717-11e7-907b-a6006ad3dba0<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 结合axiso，elementUI全局loading（部分接口不请求配置）</span><br></pre></td></tr></table></figure>
+
+<p>import axios from ‘axios’;<br>import { Message, Loading } from ‘element-ui’;</p>
+<p>// import store from ‘../store’;<br>import qs from ‘qs’;<br>import router from ‘../router’</p>
+<p>//全局loading在请求接口时出现，结束时消失<br>let loading;<br>let loadingNum = 0;<br>//开始loading<br>function startLoading() {<br>    if (loadingNum == 0) {<br>        loading = Loading.service({<br>            lock: true,<br>              text: ‘Loading’,<br>              spinner: ‘el-icon-loading’,<br>              background: ‘rgba(0, 0, 0, 0.7)’,<br>              //target: document.querySelector(‘.div1’)<br>        })<br>    }<br>    loadingNum++;<br>}</p>
+<p>//结束loading<br>function endLoading() {<br>    loading.close()<br>}</p>
+<p>function tryHideLoading() {<br>    if (loadingNum &lt;= 0) return<br>    loadingNum–<br>    if (loadingNum === 0) {<br>        setInterval(() =&gt; {<br>            endLoading()<br>        }, 500);<br>    }<br>}</p>
+<p>// 创建axios实例<br>const http = axios.create({<br>    baseURL: ‘/vital-signs/‘,<br>    timeout: 600000,                  // 请求超时时间<br>    transformRequest: obj =&gt; qs.stringify(obj)<br>    // headers: { ‘Content-Type’: ‘application/json’ }<br>});</p>
+<p>// request拦截器<br>http.interceptors.request.use(<br>    config =&gt; {<br>        if (config.headers.showLoading !== false) {<br>            startLoading();<br>        }<br>        if (!sessionStorage.getItem(‘token’) &amp;&amp; config.url.indexOf(“login”) == -1) {<br>            Message({<br>                message: “登录信息失效，请重新登录”,<br>                type: ‘error’<br>            });<br>            if (config.url.indexOf(“loginAuto”)!=-1){<br>              return<br>          }<br>            setTimeout(() =&gt; {<br>                router.replace(‘/login’)<br>                location.reload()<br>            }, 2000);<br>        }<br>        config.headers.Authorization = “Bearer “ + sessionStorage.getItem(‘token’);<br>        config.headers.buildId = sessionStorage.getItem(“buildId”) || “200036”;<br>        config.headers.deptId = localStorage.getItem(“departmentId”)<br>        return config;<br>    },<br>    error =&gt; {<br>        tryHideLoading();<br>        Promise.reject(error);<br>    }<br>)</p>
+<p>// respone拦截器<br>http.interceptors.response.use(<br>    response =&gt; {<br>        tryHideLoading();<br>        if (response.data.code === 0) {<br>            // console.dir(response);<br>            return Promise.resolve(response);<br>        } else {<br>            Message({<br>                message: response.data.msg,<br>                type: ‘error’,<br>            });<br>            return Promise.reject(response);<br>            // return Promise.resolve(response);<br>        }<br>    },<br>    error =&gt; {<br>        tryHideLoading();<br>        console.dir(error);// for debug<br>        if (error.response) {<br>            if (error.response.status == ‘401’&amp;&amp;sessionStorage.getItem(‘token’)) {<br>                Message({<br>                    message: error.response.data.msg,<br>                    type: ‘error’<br>                });<br>                setTimeout(() =&gt; {<br>                    router.push({ path: “/login” })<br>                }, 3000);</p>
+<pre><code>            return;
+        } else if (error.response.status == 500) {
+            Message({
+                message: error.response.data.error,
+                type: &apos;error&apos;
+            });
+        }
+    } else {
+        let msg = &apos;服务器请求出错&apos;;
+        if (error.message.indexOf(&apos;timeout&apos;) !== -1) {
+            msg = &apos;请求超时&apos;;
+        } else if (error.message.indexOf(&apos;Network Error&apos;) !== -1) {
+            msg = &apos;网络出错&apos;;
+        }
+
+    }
+    return Promise.reject(error);
+}</code></pre><p>)</p>
+<p>http.postJson = (path, params) =&gt; http({</p>
+<pre><code>url: path,
+method: &apos;post&apos;,
+data: addparams(params),
+transformRequest: obj =&gt; JSON.stringify(obj),
+headers: { &apos;Content-Type&apos;: &apos;application/json&apos; }</code></pre><p>})</p>
+<p>http.put = (path, params) =&gt; http({<br>    url: path,<br>    method: ‘put’,<br>    data: addparams(params),<br>    transformRequest: obj =&gt; JSON.stringify(obj),<br>    headers: { ‘Content-Type’: ‘application/json’ }<br>})</p>
+<p>http.uploadFile = (path, params) =&gt; http({<br>    url: path,<br>    method: ‘post’,<br>    data: { file: params.file },<br>    transformRequest: (obj) =&gt; {</p>
+<pre><code>},
+headers: {
+    &apos;Content-Type&apos;: &apos;application/x-www-form-urlencoded&apos;,
+    &apos;Authorization&apos;: &quot;Bearer &quot; + sessionStorage.getItem(&apos;token&apos;),
+    &apos;buildId&apos;: &quot;200036&quot;
+}</code></pre><p>})</p>
+<p>http.login = (path, params) =&gt; http({</p>
+<pre><code>url: path,
+method: &apos;post&apos;,
+data: params,
+
+
+transformRequest: obj =&gt; JSON.stringify(obj),
+headers: { &apos;Content-Type&apos;: &apos;application/json&apos; }</code></pre><p>})</p>
+<p>function addparams(params) {<br>    //数组不转换<br>    if (params instanceof Array) {<br>        return params<br>    } else if (params instanceof Object){<br>        const pp = {<br>            // timestamp: Date.parse(new Date()) / 1000<br>        }<br>        return Object.assign(pp, params);<br>    }<br>}</p>
+<p>export default http;</p>
+<p>.vue<br>get请求<br> this.$http.get(‘/alarm/getNumOfAlarm/‘,{headers:{showLoading:false},params:{id:id}})<br>                .then(res =&gt; {<br>                    this.remindCount = res.data.data;<br>                })<br> post请求<br>this.$http.post(‘/alarm/getNumOfAlarm/‘,{id:id},{headers:{showLoading:false}})<br>                .then(res =&gt; {<br>                    this.remindCount = res.data.data;<br>                })</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">参考链接</span><br><span class="line"></span><br><span class="line">https:&#x2F;&#x2F;blog.csdn.net&#x2F;lianzhang861&#x2F;article&#x2F;details&#x2F;100019049</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 设置elementUI的Message的全局默认属性</span><br><span class="line"></span><br><span class="line">main.js</span><br></pre></td></tr></table></figure>
+<p>Vue.prototype.Message = function (obj) {<br>    ElementUI.Message({<br>        message: obj.message,<br>        type:obj.type,<br>        showClose: true<br>    })<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">plus:消息框多次弹窗解决</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 全局filters</span><br></pre></td></tr></table></figure>
+<p>新建filters/index.js</p>
+<p>const isNullOrEmpty = function(val) {<br>    if (val == null || val == “” || typeof(val) == undefined) {<br>        return true;<br>    } else {<br>        return false;<br>    }<br>}</p>
+<p>const timeFormat = (value, format) =&gt; {<br>    let date = new Date(value);<br>    let y = date.getFullYear();<br>    let m = date.getMonth() + 1;<br>    let d = date.getDate();<br>    let h = date.getHours();<br>    let min = date.getMinutes();<br>    let s = date.getSeconds();<br>    let result = “”;<br>    if (format == undefined) {<br>        result = <code>${y}-${m &lt; 10 ? &quot;0&quot; + m : m}-${d &lt; 10 ? &quot;0&quot; + d : d} ${
+        h &lt; 10 ? &quot;0&quot; + h : h
+      }:${min &lt; 10 ? &quot;0&quot; + min : min}:${s &lt; 10 ? &quot;0&quot; + s : s}</code>;<br>    }<br>    if (format == “yyyy-mm-dd”) {<br>        result = <code>${y}-${m &lt; 10 ? &quot;0&quot; + m : m}-${d &lt; 10 ? &quot;0&quot; + d : d}</code>;<br>    }<br>    if (format == “yyyy-mm”) {<br>        result = <code>${y}-${m &lt; 10 ? &quot;0&quot; + m : m}</code>;<br>    }<br>    if (format == “mm-dd”) {<br>        result = <code>${mm &lt; 10 ? &quot;0&quot; + mm : mm}:${ddmin &lt; 10 ? &quot;0&quot; + dd : dd}</code>;<br>    }<br>    if (format == “hh:mm”) {<br>        result = <code>${h &lt; 10 ? &quot;0&quot; + h : h}:${min &lt; 10 ? &quot;0&quot; + min : min}</code>;<br>    }<br>    if (format == “yyyy”) {<br>        result = <code>${y}</code>;<br>    }<br>    return result;<br>};</p>
+<p>export {<br>    isNullOrEmpty,<br>    timeFormat<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">在main.js中引入和注册全局过滤器</span><br></pre></td></tr></table></figure>
+<p>import * as filters from ‘../filters/index’<br>Object.keys(filters).forEach(key =&gt; {<br>    Vue.filter(key, filters[key])<br>})</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">此时就可以在不同的.vue中使用定义的全局过滤器了</span><br></pre></td></tr></table></figure>
+<p><span>{date|isNullOrEmpty}是否为空</span></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">简易版</span><br></pre></td></tr></table></figure>
+<p>main.js<br>Vue.filter(‘tofixed’, function (value,num=2) {<br>  if (!value) return 0<br>  return value.toFixed(num)<br>})</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 使用特殊字体（digital等）</span><br><span class="line"></span><br><span class="line">一、CDN引入</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &lt;style&gt;</span><br><span class="line">    @font-face&#123;</span><br><span class="line">        font-family:QingKe;</span><br><span class="line">        src:url(&quot;https:&#x2F;&#x2F;g.alicdn.com&#x2F;TSG&#x2F;damo-static&#x2F;2019.918.162009&#x2F;damo&#x2F;css&#x2F;font&#x2F;iozzkhwu.ttf&quot;)</span><br><span class="line">        &#x2F;* src: url-loader(&quot;@&#x2F;assets&#x2F;iozzkhwu.ttf&quot;);  这种方式是错误的*&#x2F;</span><br><span class="line">    &#125;</span><br><span class="line">    @font-face&#123;</span><br><span class="line">        font-family:SYHT;</span><br><span class="line">        src: url(&#39;https:&#x2F;&#x2F;tuyu.hnbcdn.com&#x2F;SHSCN-ELight.eot&#39;);</span><br><span class="line">        src:url(https:&#x2F;&#x2F;tuyu.hnbcdn.com&#x2F;SHSCN-ELight.eot);</span><br><span class="line">        src:local(&#39;鈽�&#39;),url(https:&#x2F;&#x2F;tuyu.hnbcdn.com&#x2F;SHSCN-ELight.woff) format(&#39;woff&#39;),url(https:&#x2F;&#x2F;tuyu.hnbcdn.com&#x2F;SHSCN-ELight.ttf) format(&#39;truetype&#39;),url(https:&#x2F;&#x2F;tuyu.hnbcdn.com&#x2F;SHSCN-ELight.svg) format(&#39;svg&#39;);font-weight:400;font-style:normal</span><br><span class="line">    &#125;</span><br><span class="line">    .wenzi&#123;</span><br><span class="line">      font-family: SYHT;</span><br><span class="line">          letter-spacing:3px;</span><br><span class="line">          font-weight: 100;</span><br><span class="line">    &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">二、assets中引入静态文件</span><br></pre></td></tr></table></figure>
+<p>@font-face {<br> font-family: ‘SHIZHONGZITI’;<br> src: url(./assets/DIGITAL-7_MONO-WEBFONT.ttf);<br>}</p>
+<p>.teshu {<br> font-family: SHIZHONGZITI;<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">## sass安装失败</span><br><span class="line"></span><br><span class="line">坑四：安装sass失败</span><br><span class="line"></span><br><span class="line">由于sass-loader依赖于node-sass，所以按如下顺序分别下载依赖：</span><br></pre></td></tr></table></figure>
+<p>npm install –save-dev node-sass<br>npm install –save-dev sass-loader</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## **随机获取布尔值（true&#x2F;false**</span><br></pre></td></tr></table></figure>
+<p>const randomBoolean = () =&gt; Math.random() &gt;= 0.5;<br>console.log(randomBoolean());</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## **判断给的日期是否为工作日**</span><br></pre></td></tr></table></figure>
+<p>const isWeekday = (date) =&gt; date.getDay() % 6 !== 0;<br>console.log(isWeekday(new Date(2021, 0, 11)));<br>// Result: true (Monday)  getDay()=[0,1,2,3,4,5,6]</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## localstorage清除特定的一类</span><br></pre></td></tr></table></figure>
+<p>Object.keys(localStorage).forEach(item =&gt; item.indexOf(‘mine’) !== -1 ? localStorage.removeItem(item) : ‘’);</p>
+<p>删除带mine字段的缓存</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 布署服务器后刷新404</span><br><span class="line"></span><br><span class="line">参考链接 https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;DqS4shzElGQUqwKGD5oweA</span><br><span class="line"></span><br><span class="line">### 为什么history模式下有问题</span><br><span class="line"></span><br><span class="line">&#96;Vue&#96;是属于单页应用（single-page application）</span><br><span class="line"></span><br><span class="line">而&#96;SPA&#96;是一种网络应用程序或网站的模型，所有用户交互是通过动态重写当前页面，前面我们也看到了，不管我们应用有多少页面，构建物都只会产出一个&#96;index.html&#96;</span><br><span class="line"></span><br><span class="line">现在，我们回头来看一下我们的&#96;nginx&#96;配置</span><br></pre></td></tr></table></figure>
+
+<p>server {<br>  listen  80;<br>  server_name  <a href="http://www.xxx.com" target="_blank" rel="noopener">www.xxx.com</a>;</p>
+<p>  location / {<br>    index  /data/dist/index.html;<br>  }<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">可以根据 &#96;nginx&#96; 配置得出，当我们在地址栏输入 &#96;www.xxx.com&#96; 时，这时会打开我们 &#96;dist&#96;目录下的 &#96;index.html&#96; 文件，然后我们在跳转路由进入到 &#96;www.xxx.com&#x2F;login&#96;</span><br><span class="line"></span><br><span class="line">关键在这里，当我们在 &#96;website.com&#x2F;login&#96; 页执行刷新操作，&#96;nginx location&#96; 是没有相关配置的，所以就会出现 404 的情况</span><br><span class="line"></span><br><span class="line">### 为什么hash模式下没有问题</span><br></pre></td></tr></table></figure>
+<p>router hash<code>模式我们都知道是用符号#表示的，如</code>website.com/#/login<code>,</code>hash<code>的值为</code>#/login</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">它的特点在于：&#96;hash&#96; 虽然出现在 &#96;URL&#96; 中，但不会被包括在 &#96;HTTP&#96; 请求中，对服务端完全没有影响，因此改变 &#96;hash&#96; 不会重新加载页面</span><br><span class="line"></span><br><span class="line">&#96;hash&#96; 模式下，仅 &#96;hash&#96; 符号之前的内容会被包含在请求中，如 &#96;website.com&#x2F;#&#x2F;login&#96; 只有&#96;website.com&#96; 会被包含在请求中 ，因此对于服务端来说，即使没有配置&#96;location&#96;，也不会返回404错误</span><br><span class="line"></span><br><span class="line">### 解决方案</span><br><span class="line"></span><br><span class="line">看到这里我相信大部分同学都能想到怎么解决问题了，</span><br><span class="line"></span><br><span class="line">产生问题的本质是因为我们的路由是通过JS来执行视图切换的，</span><br><span class="line"></span><br><span class="line">当我们进入到子路由时刷新页面，&#96;web&#96;容器没有相对应的页面此时会出现404</span><br><span class="line"></span><br><span class="line">所以我们只需要配置将任意页面都重定向到 &#96;index.html&#96;，把路由交由前端处理</span><br><span class="line"></span><br><span class="line">对&#96;nginx&#96;配置文件&#96;.conf&#96;修改，添加&#96;try_files $uri $uri&#x2F; &#x2F;index.html;&#96;</span><br></pre></td></tr></table></figure>
+<p>server {<br>  listen  80;<br>  server_name  <a href="http://www.xxx.com" target="_blank" rel="noopener">www.xxx.com</a>;</p>
+<p>  location / {<br>    index  /data/dist/index.html;<br>    try_files $uri $uri/ /index.html;<br>  }<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">修改完配置文件后记得配置的更新</span><br></pre></td></tr></table></figure>
+<p>nginx -s reload</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">这么做以后，你的服务器就不再返回 404 错误页面，因为对于所有路径都会返回 &#96;index.html&#96;文件</span><br><span class="line"></span><br><span class="line">为了避免这种情况，你应该在 &#96;Vue&#96; 应用里面覆盖所有的路由情况，然后在给出一个 404 页面</span><br></pre></td></tr></table></figure>
+<p>const router = new VueRouter({<br>  mode: ‘history’,<br>  routes: [<br>    { path: ‘*’, component: NotFoundComponent }<br>  ]<br>})</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 监听页面或者元素的滚动&#x2F;控制元素的滚动（jquery）</span><br><span class="line"></span><br><span class="line">1. 监听页面滚动</span><br><span class="line"></span><br><span class="line">在生命周期mounted中进行监听滚动：</span><br></pre></td></tr></table></figure>
+<p>mounted () {<br>    window.addEventListener(‘scroll’, this.scrollToTop)<br>},</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">在方法中定义监听滚动执行的方法：</span><br></pre></td></tr></table></figure>
+<p>scrollToTop() {<br> 　　var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;<br> 　　console.log(scrollTop)<br>},</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2. 监听某元素滚动</span><br><span class="line"></span><br><span class="line">tips：监听的这个元素是父级元素，固定高度后overflow:auto,</span><br><span class="line"></span><br><span class="line">vue组件中：</span><br></pre></td></tr></table></figure>
+<div id="scrollcont" style="height:350px;overflow:auto;background:red;" @scroll="scrollEvent">
+    <div class="read-con" style="height:1000px;margin:10px;background:pink;"></div>           
+</div>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">在方法中定义scrolldiv，是监听class为read-con滚动以后需要执行的方法</span><br></pre></td></tr></table></figure>
+scrollEvent () {
+   let _this = this
+   let scrollcont = _this.$el.querySelector('#scrollcont')
+   console.log(scrollcont.scrollToTop)
+},
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3. vue中控制元素滚动到底部</span><br></pre></td></tr></table></figure>
+clickMe(){
+  let _this = this
+  let read = _this.$el.querySelector('.test')  
+  //返回第一个class为test元素，this.$el.querySelectorAll('.test')，返回所有
+  read.scrollTop = read.scrollHeight
+},
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">4. jquery控制元素滚动到底部</span><br><span class="line"></span><br><span class="line">jquery取 scrollHeight, $(&quot;#scrollTopCont&quot;).scrollHeight 拿不到</span><br><span class="line">$(&quot;#scrollTopCont&quot;)[0].scrollHeight &#x2F;&#x2F;取值scrollHeight</span><br></pre></td></tr></table></figure>
+setTimeout(() => {
+   // console.log($("#scrollTopCont")[0].scrollHeight, );
+   $("#scrollTopCont").scrollTop($("#scrollTopCont")[0].scrollHeight)
+}, 100);
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 上传图片&#x2F;excel文件到接口</span><br></pre></td></tr></table></figure>
+submitData() {
+    const that = this;
+    const fd = new FormData()// FormData 对象
+    fd.append('file', this.fileObj)// 文件对象  'upload'是后台接收的参数名
+    const config = {
+        headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Authorization": localStorage.getItem('token_IOT'),
+        "buildId": localStorage.getItem("buildId_IOT")
+        }
+    };
+    axios.post(axiosUrl, fd, config)
+    .then(function (response) {
+
+<pre><code>})</code></pre><p>},</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## **preserveWhitespace**(去除空格)</span><br><span class="line"></span><br><span class="line">场景:开发 vue 代码一般会有空格,这个时候打包压缩如果不去掉空格会加大包的体积</span><br><span class="line">配置preserveWhitespace可以减小包的体积</span><br></pre></td></tr></table></figure>
+<p> rules: [<br>      {<br>        test: /.vue$/,<br>        loader: ‘vue-loader’,<br>        options: {<br>          compilerOptions: {<br>            preserveWhitespace: false<br>          }<br>        }<br>      },<br> ]</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## **img 加载失败**</span><br></pre></td></tr></table></figure>
+<p>// page 代码<br>&lt;img :src=”imgUrl” @error=”handleError” alt=””&gt;</p>
+<script>
+export default{
+ data(){
+  return{
+   imgUrl:''
+  }
+ },
+ methods:{
+  handleError(e){
+   e.target.src=reqiure('图片路径') 
+  }
+ }
+}
+</script>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## **require.context()**</span><br><span class="line"></span><br><span class="line">1.场景:如页面需要导入多个组件,原始写法:</span><br></pre></td></tr></table></figure>
+<p>import titleCom from ‘@/components/home/titleCom’<br>import bannerCom from ‘@/components/home/bannerCom’<br>import cellCom from ‘@/components/home/cellCom’<br>components:{titleCom,bannerCom,cellCom}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2.这样就写了大量重复的代码,利用 require.context 可以写成</span><br></pre></td></tr></table></figure>
+<p>const path = require(‘path’)<br>const files = require.context(‘@/components/home’, false, /.vue$/)<br>const modules = {}<br>files.keys().forEach(key =&gt; {<br> const name = path.basename(key, ‘.vue’)<br> modules[name] = files(key).default || files(key)<br>})<br>components:modules</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">这样不管页面引入多少组件,都可以使用这个方法</span><br><span class="line"></span><br><span class="line">3.API 方法</span><br><span class="line"></span><br><span class="line">&gt; 实际上是 webpack 的方法,vue 工程一般基于 webpack,所以可以使用</span><br><span class="line">&gt; require.context(directory,useSubdirectories,regExp)</span><br><span class="line">&gt; 接收三个参数:</span><br><span class="line">&gt; directory：说明需要检索的目录</span><br><span class="line">&gt; useSubdirectories：是否检索子目录</span><br><span class="line">&gt; regExp: 匹配文件的正则表达式,一般是文件名</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 在vue项目中监听键盘事件的方法</span><br><span class="line"></span><br><span class="line">1在main.js文件中写入以下代码：</span><br></pre></td></tr></table></figure>
+<p>Vue.prototype.$keyBoard = function (vm, methodName, code) {</p>
+<p> document.onkeydown = function () {</p>
+<p>  let key = window.event.keyCode;</p>
+<p>  if (key == code) {</p>
+<p>   vm<a href="code">methodName</a>; // 触发methodName事件</p>
+<p>  }</p>
+<p> };</p>
+<p>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2在需要监听键盘事件的组件里的mounted 生命周期内写入：</span><br></pre></td></tr></table></figure>
+<p>mounted () {</p>
+<p>  this.$keyBoard(this, ‘onClickEnter’, 13) // 13就是回车键的keycode,这样点击回车就能触发onClickEnter这个事件了</p>
+<p> },</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">3在组件中定义被键盘事件触发的方法：</span><br></pre></td></tr></table></figure>
+<p>methods: {</p>
+<p>  onClickEnter () {</p>
+<p>   alert(‘哈哈’)</p>
+<p>  },</p>
+<p>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 使用插件vue-clipboard2复制内容至剪切板(两种使用方法)</span><br></pre></td></tr></table></figure>
+<p>npm install –save vue-clipboard2</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>import Vue from ‘vue’<br>import VueClipboard from ‘vue-clipboard2’</p>
+<p>Vue.use(VueClipboard)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">##### 方式一</span><br></pre></td></tr></table></figure>
+<template>
+  <div class="container">
+    <input type="text" v-model="message">
+  <button class="fs12" v-clipboard:copy="'地址：'+detail.address+'\n姓名：'+detail.name+'\n电话：'+detail.phone" v-clipboard:success="onCopy" v-clipboard:error="onError">复制</button>
+  </div>
+</template>
+<script>
+  export default {
+    data() {
+      return {
+       detail:{
+        address:'地址',
+        name:'名字',
+        phone:'1234567'
+           }
+      }
+    },
+    methods: {
+      onCopy: function (e) {
+        alert('You just copied: ' + e.text)
+      },
+      onError: function (e) {
+        console.log(e)
+        alert('Failed to copy texts')
+      }
+    }
+  }
+</script>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">##### 方式二</span><br></pre></td></tr></table></figure>
+<template>
+  <div class="container">
+     <button class="fs12" @click="copyCode">复制</button>
+  </div>
+</template>
+<script>
+  export default {
+    data() {
+      return {
+        detail:{
+        address:'地址',
+        name:'名字',
+        phone:'1234567'
+           }
+      }
+    },
+    methods: {
+    copyCode() {
+    this.$copyText(`地址：${this.detail.address}\n收件人：    ${this.detail.name}\n电话：${this.detail.phone}`).then(
+                res => {
+                  console.log(res)
+                  this.$toast("已成功复制，可直接去粘贴");
+                },
+                err => {
+                  this.$toast("复制失败");
+                }
+              )
+            }
+    }
+  }
+</script>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## document文档加载过程分析</span><br></pre></td></tr></table></figure>
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        console.log("初始DOM 加载并解析");
+    });
+    window.addEventListener("load", function (event) {
+        console.log("window 所有资源加载完成");
+    });
+
+<pre><code>document.onreadystatechange = function () {
+    console.log(document.readyState)
+       if (document.readyState === &quot;complete&quot;) {
+        console.log(&apos;初始DOM,加载解析完成&apos;)
+    }
+}
+window.addEventListener(&quot;beforeunload&quot;, function (event) {
+    console.log(&apos;即将关闭1&apos;)
+    event.returnValue = &quot;\o/&quot;;
+});
+window.addEventListener(&apos;unload&apos;, function (event) {
+    console.log(&apos;即将关闭2&apos;);
+});</code></pre><p></script><br>console.log<br>interactive //(index):15<br>初始DOM 加载并解析 //(index):8<br>complet//(index):15<br>初始DOM,加载解析完成//(index):17<br>window 所有资源加载完成//(index):11<br>//点击关闭按钮<br>即将关闭1<br>即将关闭2<p></p>
+<pre><code></code></pre>
       
     </div>
     
@@ -401,6 +892,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vue/" rel="tag"># vue</a>
+          
+        </div>
       
 
       
@@ -420,6 +917,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/10/30/xshell%E4%B9%8B%E5%88%9D%E8%A7%81/" rel="prev" title="xshell之初见">
+                xshell之初见 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -500,7 +1001,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">125</span>
+                  <span class="site-state-item-count">140</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -511,7 +1012,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-count">68</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -522,7 +1023,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">130</span>
+                  <span class="site-state-item-count">143</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -562,7 +1063,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Router"><span class="nav-number">1.</span> <span class="nav-text">Router</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决vue路由跳转未匹配路径时出现空白页的问题"><span class="nav-number">1.1.</span> <span class="nav-text">解决vue路由跳转未匹配路径时出现空白页的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指令"><span class="nav-number">2.</span> <span class="nav-text">指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#v-focus"><span class="nav-number">2.1.</span> <span class="nav-text">v-focus</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git"><span class="nav-number">3.</span> <span class="nav-text">Git</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#报错原因"><span class="nav-number">3.0.1.</span> <span class="nav-text">报错原因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方案"><span class="nav-number">3.0.2.</span> <span class="nav-text">解决方案</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Router"><span class="nav-number">1.</span> <span class="nav-text">Router</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决vue路由跳转未匹配路径时出现空白页的问题"><span class="nav-number">1.1.</span> <span class="nav-text">解决vue路由跳转未匹配路径时出现空白页的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#addRoutes"><span class="nav-number">1.2.</span> <span class="nav-text">addRoutes</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指令（directive）"><span class="nav-number">2.</span> <span class="nav-text">指令（directive）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#v-focus-自定义指令解决autofocus失效"><span class="nav-number">2.1.</span> <span class="nav-text">v-focus(自定义指令解决autofocus失效)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态指令参数"><span class="nav-number">2.2.</span> <span class="nav-text">动态指令参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高精度权限控制—自定义指令directive"><span class="nav-number">2.3.</span> <span class="nav-text">高精度权限控制—自定义指令directive</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改dev地址为自动获取本地ip"><span class="nav-number">3.</span> <span class="nav-text">修改dev地址为自动获取本地ip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打包"><span class="nav-number">4.</span> <span class="nav-text">打包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#js-css找不到"><span class="nav-number">4.1.</span> <span class="nav-text">js&#x2F;css找不到</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#背景图片找不到"><span class="nav-number">4.2.</span> <span class="nav-text">背景图片找不到</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#router-view中的内容显示不出来（关闭路由history模式）"><span class="nav-number">4.3.</span> <span class="nav-text">router-view中的内容显示不出来（关闭路由history模式）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打包出错显示空白页，或者Failed-to-load-resource-net-ERR-FILE-NOT-FOUND"><span class="nav-number">4.4.</span> <span class="nav-text">打包出错显示空白页，或者Failed to load resource: net::ERR_FILE_NOT_FOUND</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue-elementUI-build打包部署后字体图标丢失，控制台显示文件element-icons-woff和element-icons-ttf文件404"><span class="nav-number">4.5.</span> <span class="nav-text">Vue+elementUI  build打包部署后字体图标丢失，控制台显示文件element-icons.woff和element-icons.ttf文件404</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git"><span class="nav-number">5.</span> <span class="nav-text">Git</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#报错原因"><span class="nav-number">5.0.1.</span> <span class="nav-text">报错原因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方案"><span class="nav-number">5.0.2.</span> <span class="nav-text">解决方案</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -582,7 +1083,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

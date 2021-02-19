@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="js,图片懒加载," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="DaliBlogs" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="参考链接  https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;wsaB9pT75msm9usT9i3Xig window.innerHeight和document.documentElement.clientHeight区别(window.innerHeight和clentWidth同理) 1.window.innerHeight属于BOM（浏览器对象模型），而document.documen">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js之图片懒加载">
+<meta property="og:url" content="http://yoursite.com/2021/02/01/js%E4%B9%8B%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD/index.html">
+<meta property="og:site_name" content="DaliBlogs">
+<meta property="og:description" content="参考链接  https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;wsaB9pT75msm9usT9i3Xig window.innerHeight和document.documentElement.clientHeight区别(window.innerHeight和clentWidth同理) 1.window.innerHeight属于BOM（浏览器对象模型），而document.documen">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-af1ab0c5f34e468e8647135c1f9f51e4_720w.jpg">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/LNrWl4n5XIIK2zJ2Sib4NcyG27o0KmtgwLlWQAyRI4Y2vy2Du4JDDmrmNvD8eJMvgvv8lFCfgtkx8R8JgZ7piabA/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_gif/LNrWl4n5XIIK2zJ2Sib4NcyG27o0KmtgwqVrRibSL2Qphibt4wUmg4O50icQ1zyw9tCDEqaA3zCtAxEwaujs2ttSJw/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/LNrWl4n5XIIK2zJ2Sib4NcyG27o0KmtgwYtRjlRFEmic0tcibqgmiak9CzMTKtYNMKcZT6P4E6hfkRPKpjFg9Z5G0w/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="article:published_time" content="2021-02-01T01:48:03.000Z">
+<meta property="article:modified_time" content="2021-02-19T08:48:06.256Z">
+<meta property="article:author" content="Dali">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="图片懒加载">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.zhimg.com/80/v2-af1ab0c5f34e468e8647135c1f9f51e4_720w.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/02/01/js之图片懒加载/"/>
+
+
+
+
+
+  <title>js之图片懒加载 | DaliBlogs</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DaliBlogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/01/js%E4%B9%8B%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">js之图片懒加载</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-01T09:48:03+08:00">
+                2021-02-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>参考链接 </p>
+<p><a href="https://mp.weixin.qq.com/s/wsaB9pT75msm9usT9i3Xig" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/wsaB9pT75msm9usT9i3Xig</a></p>
+<p>window.innerHeight和document.documentElement.clientHeight区别(window.innerHeight和clentWidth同理)</p>
+<p><strong>1.window.innerHeight属于BOM（浏览器对象模型），而document.documentElement.clientHeight则属于文档对象模型</strong></p>
+<p><strong>2.window.innerHeight获取的高度包含横向滚动条，而document.documentElement.clientHeight不包含横向滚动条</strong></p>
+<h2 id="基于原生-js-实现图片懒加载"><a href="#基于原生-js-实现图片懒加载" class="headerlink" title="基于原生 js 实现图片懒加载"></a>基于原生 js 实现图片懒加载</h2><h4 id="document-documentElement-clientHeight"><a href="#document-documentElement-clientHeight" class="headerlink" title="document.documentElement.clientHeight"></a>document.documentElement.clientHeight</h4><p>获取屏幕可视区域的高度。</p>
+<h4 id="element-offsetTop"><a href="#element-offsetTop" class="headerlink" title="element.offsetTop"></a>element.offsetTop</h4><p>获取元素相对于文档顶部的高度。</p>
+<h4 id="document-documentElement-scrollTop"><a href="#document-documentElement-scrollTop" class="headerlink" title="document.documentElement.scrollTop"></a>document.documentElement.scrollTop</h4><p>获取浏览器窗口顶部与文档顶部之间的距离，也就是滚动条滚动的距离。</p>
+<a id="more"></a>
+
+<p>通过上面三个 API，我们获得了三个值：可视区域的高度、元素相对于其父元素容器顶部的距离、浏览器窗口顶部与容器元素顶部的距离也就是滚动条滚动的高度。</p>
+<p>虽然这几个<code>API</code>很简单，但是单纯的去说还是有点抽象，这里我们还是用图来展示一下：</p>
+<p><img src="https://pic1.zhimg.com/80/v2-af1ab0c5f34e468e8647135c1f9f51e4_720w.jpg" alt="img"></p>
+<p>看完上面这张图片，我想你已经明白了：如果满足<code>offsetTop-scrollTop&lt;clientHeight</code>，则图片进入了可视区内，我们就去请求进入可视区域的图片。</p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p>基于上面的分析，我们很容易就可以写出如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;ie&#x3D;edge&quot;&gt;</span><br><span class="line">    &lt;title&gt;基于原生 js 实现图片懒加载&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        img &#123;</span><br><span class="line">            display: block;</span><br><span class="line">            width: 100%;</span><br><span class="line">            height: 300px;</span><br><span class="line">            margin-bottom: 20px;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;img data-src&#x3D;&quot;.&#x2F;img&#x2F;1.png&quot; alt&#x3D;&quot;&quot;&gt;</span><br><span class="line">    &lt;img data-src&#x3D;&quot;.&#x2F;img&#x2F;2.png&quot; alt&#x3D;&quot;&quot;&gt;</span><br><span class="line">    &lt;img data-src&#x3D;&quot;.&#x2F;img&#x2F;3.png&quot; alt&#x3D;&quot;&quot;&gt;</span><br><span class="line">    &lt;img data-src&#x3D;&quot;.&#x2F;img&#x2F;4.png&quot; alt&#x3D;&quot;&quot;&gt;</span><br><span class="line">    &lt;img data-src&#x3D;&quot;.&#x2F;img&#x2F;5.png&quot; alt&#x3D;&quot;&quot;&gt;</span><br><span class="line">    &lt;img data-src&#x3D;&quot;.&#x2F;img&#x2F;6.png&quot; alt&#x3D;&quot;&quot;&gt;</span><br><span class="line">    &lt;img data-src&#x3D;&quot;.&#x2F;img&#x2F;7.png&quot; alt&#x3D;&quot;&quot;&gt;</span><br><span class="line">    &lt;img data-src&#x3D;&quot;.&#x2F;img&#x2F;8.png&quot; alt&#x3D;&quot;&quot;&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">        var imgs &#x3D; document.querySelectorAll(&#39;img&#39;);</span><br><span class="line">        &#x2F;&#x2F;offsetTop是元素与offsetParent的距离，循环获取直到页面顶部</span><br><span class="line">        function getRealTop(e) &#123;</span><br><span class="line">            var realTop &#x3D; e.offsetTop;</span><br><span class="line">            while(e &#x3D; e.offsetParent) &#123;</span><br><span class="line">                realTop +&#x3D; e.offsetTop;</span><br><span class="line">            &#125;</span><br><span class="line">            return realTop;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        function lazyLoad(imgs) &#123;</span><br><span class="line">            var H &#x3D; document.documentElement.clientHeight;&#x2F;&#x2F;获取可视区域高度</span><br><span class="line">            var S &#x3D; document.documentElement.scrollTop || document.body.scrollTop;</span><br><span class="line">            for (var i &#x3D; 0; i &lt; imgs.length; i++) &#123;</span><br><span class="line">                if (H + S &gt; getRealTop(imgs[i])) &#123;</span><br><span class="line">                    imgs[i].src &#x3D; imgs[i].getAttribute(&#39;data-src&#39;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        window.onload &#x3D; window.onscroll &#x3D; function () &#123; &#x2F;&#x2F;onscroll()在滚动条滚动的时候触发</span><br><span class="line">            lazyLoad(imgs);</span><br><span class="line">        &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>但上面的代码如果你在<code>lazyLoad</code>中打印，你会发现滚动条上下滚动时，<code>lazyLoad</code>会被频繁调用，造成很大的性能损失，这里我们可以给事件加上节流<code>throttle</code></p>
+</blockquote>
+<h2 id="基于-getBoundingClientRect-实现图片懒加载"><a href="#基于-getBoundingClientRect-实现图片懒加载" class="headerlink" title="基于 getBoundingClientRect()实现图片懒加载"></a>基于 getBoundingClientRect()实现图片懒加载</h2><p>先来了解一下这个<code>API</code>吧：</p>
+<p><code>getBoundingClientRect()</code>用于获得页面中某个元素的左，上，右和下分别相对浏览器视窗的位置。<code>getBoundingClientRect()</code>是<code>DOM</code>元素到浏览器可视范围的距离（不包含页面看不见的部分）。</p>
+<p>该函数返回一个<code>rectObject</code>对象，该对象有 6 个属性：<code>top</code>, <code>left</code>, <code>bottom</code>, <code>right</code>,<code>width</code>, <code>height</code>；这里的<code>top</code>、<code>left</code>和<code>css</code>中的理解很相似，<code>width</code>、<code>height</code>是元素自身的宽高，但是<code>right</code>，<code>bottom</code>和<code>css</code>中的理解有点不一样。<code>right</code>是指元素右边界距窗口最左边的距离，<code>bottom</code>是指元素下边界距窗口最上面的距离。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/LNrWl4n5XIIK2zJ2Sib4NcyG27o0KmtgwLlWQAyRI4Y2vy2Du4JDDmrmNvD8eJMvgvv8lFCfgtkx8R8JgZ7piabA/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<h3 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h3><p>通过这个 API，我们就很容易获取<code>img</code>元素相对于视口的顶点位置<code>rectObject.top</code>，只要这个值小于浏览器的高度<code>window.innerHeight</code>就说明进入可视区域：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function isInSight(el)&#123;</span><br><span class="line">  const bound &#x3D; el.getBoundingClientRect();</span><br><span class="line">  const clientHeight &#x3D; window.innerHeight;</span><br><span class="line">  return bound.top &lt;&#x3D; clientHeight;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h3><p>这里结合第一种实现方式，做下改造，就得到了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function loadImg(el)&#123;</span><br><span class="line"> if(!el.src)&#123;</span><br><span class="line">   const source &#x3D; el.getAttribute(&#39;data-src&#39;);;</span><br><span class="line">   el.src &#x3D; source;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line">function checkImgs()&#123;</span><br><span class="line">  const imgs &#x3D; document.querySelectorAll(&#39;img&#39;);</span><br><span class="line">  Array.from(imgs).forEach(el &#x3D;&gt;&#123;</span><br><span class="line">    if (isInSight(el))&#123;</span><br><span class="line">      loadImg(el);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line">window.onload &#x3D; function()&#123;</span><br><span class="line">  checkImgs();</span><br><span class="line">&#125;</span><br><span class="line">document.onscroll &#x3D; function () &#123;</span><br><span class="line">  checkImgs();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="基于-IntersectionObserver-实现图片懒加载"><a href="#基于-IntersectionObserver-实现图片懒加载" class="headerlink" title="基于 IntersectionObserver 实现图片懒加载"></a>基于 IntersectionObserver 实现图片懒加载</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>我们在平时的开发中，常常需要了解某个元素是否进入了”视口”（viewport），即用户能不能看到它。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/LNrWl4n5XIIK2zJ2Sib4NcyG27o0KmtgwqVrRibSL2Qphibt4wUmg4O50icQ1zyw9tCDEqaA3zCtAxEwaujs2ttSJw/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="图片"></p>
+<p>上图的绿色方块不断滚动，顶部会提示它的可见性。</p>
+<p>传统的实现方法是，监听到<code>scroll</code>事件后，调用目标元素（绿色方块）的<code>getBoundingClientRect()</code>方法，得到它对应于视口左上角的坐标，再判断是否在视口之内。这种方法的缺点是，由于<code>scroll</code>事件密集发生，计算量很大，容易造成性能问题。</p>
+<p>目前有一个新的 <code>IntersectionObserver API</code>，可以自动”观察”元素是否可见，<code>Chrome 51+</code>已经支持。由于可见（<code>visible</code>）的本质是，目标元素与视口产生一个交叉区，所以这个 API 叫做<code>交叉观察器</code>。</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>它的用法也非常简单。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var io &#x3D; new IntersectionObserver(callback, option);</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，<code>IntersectionObserver</code>是浏览器原生提供的构造函数，接受两个参数：<code>callback</code>是可见性变化时的回调函数，<code>option</code>是配置对象（该参数可选）。</p>
+<p>构造函数的返回值是一个观察器实例。实例的<code>observe</code>方法可以指定观察哪个 <code>DOM</code> 节点。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 开始观察</span><br><span class="line">io.observe(document.getElementById(&#39;container&#39;));</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 停止观察</span><br><span class="line">io.unobserve(element);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 关闭观察器</span><br><span class="line">io.disconnect();</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，<code>observe</code>的参数是一个 <code>DOM</code> 节点对象。</p>
+<p>如果要观察多个节点，就要多次调用这个方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">io.observe(elementA);</span><br><span class="line">io.observe(elementB);</span><br></pre></td></tr></table></figure>
+
+<h3 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h3><p>看完相关的<code>API</code>，下面就让我们基于<code>IntersectionObserver</code>来实现图片懒加载：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">const imgs &#x3D; document.querySelectorAll(&#39;img&#39;) &#x2F;&#x2F;获取所有待观察的目标元素</span><br><span class="line">var options &#x3D; &#123;&#125;</span><br><span class="line">function lazyLoad(target) &#123;</span><br><span class="line">  const observer &#x3D; new IntersectionObserver((entries, observer) &#x3D;&gt; &#123;</span><br><span class="line">    entries.forEach(entrie &#x3D;&gt; &#123;</span><br><span class="line">      if (entrie.isIntersecting) &#123;</span><br><span class="line">        const img &#x3D; entrie.target;</span><br><span class="line">        const src &#x3D; img.getAttribute(&#39;data-src&#39;);</span><br><span class="line">        img.setAttribute(&#39;src&#39;, src)</span><br><span class="line">        observer.unobserve(img); &#x2F;&#x2F; 停止监听已开始加载的图片</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;, options);</span><br><span class="line">  observer.observe(target)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">imgs.forEach(lazyLoad)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="img-loading-lazy"><a href="#img-loading-lazy" class="headerlink" title="img.loading=lazy"></a>img.loading=lazy</h2><p>最后这种相对就简单很多了，它是 <code>Chrome</code> 自带的原生 <code>lazyload</code> 属性。我们先来看下他在各大浏览器的支持程度：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/LNrWl4n5XIIK2zJ2Sib4NcyG27o0KmtgwYtRjlRFEmic0tcibqgmiak9CzMTKtYNMKcZT6P4E6hfkRPKpjFg9Z5G0w/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<blockquote>
+<p>“</p>
+<p>其实支持程度还不是特别好，我们你的应用对于浏览器兼容性要求比较高的话，建议还是先观望一波～</p>
+</blockquote>
+<p>它的使用也非常简单，如标题所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src&#x3D;&quot;example.jpg&quot; loading&#x3D;&quot;lazy&quot; alt&#x3D;&quot;zhangxinxu&quot; width&#x3D;&quot;250&quot; height&#x3D;&quot;150&quot;&gt;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag"># js</a>
+          
+            <a href="/tags/%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD/" rel="tag"># 图片懒加载</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/01/21/34%E6%9D%A1%E6%88%91%E8%83%BD%E5%91%8A%E8%AF%89%E4%BD%A0%E7%9A%84Vue%E4%B9%8B%E5%AE%9E%E6%93%8D%E7%AF%87/" rel="next" title="34条我能告诉你的Vue之实操篇">
+                <i class="fa fa-chevron-left"></i> 34条我能告诉你的Vue之实操篇
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/02/01/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" rel="prev" title="浏览器的垃圾回收">
+                浏览器的垃圾回收 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="Dali" />
+            
+              <p class="site-author-name" itemprop="name">Dali</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">140</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">143</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基于原生-js-实现图片懒加载"><span class="nav-number">1.</span> <span class="nav-text">基于原生 js 实现图片懒加载</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#document-documentElement-clientHeight"><span class="nav-number">1.0.1.</span> <span class="nav-text">document.documentElement.clientHeight</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#element-offsetTop"><span class="nav-number">1.0.2.</span> <span class="nav-text">element.offsetTop</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#document-documentElement-scrollTop"><span class="nav-number">1.0.3.</span> <span class="nav-text">document.documentElement.scrollTop</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">1.1.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于-getBoundingClientRect-实现图片懒加载"><span class="nav-number">2.</span> <span class="nav-text">基于 getBoundingClientRect()实现图片懒加载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路分析"><span class="nav-number">2.1.</span> <span class="nav-text">思路分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现-1"><span class="nav-number">2.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于-IntersectionObserver-实现图片懒加载"><span class="nav-number">3.</span> <span class="nav-text">基于 IntersectionObserver 实现图片懒加载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念"><span class="nav-number">3.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-number">3.2.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现-2"><span class="nav-number">3.3.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#img-loading-lazy"><span class="nav-number">4.</span> <span class="nav-text">img.loading&#x3D;lazy</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dali</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

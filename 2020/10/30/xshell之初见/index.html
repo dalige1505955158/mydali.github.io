@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Xshell," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="DaliBlogs" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Xshell概述Xshell软件的介绍百度上太多，也凸显不出重点，大家不能很好地理解，这里简要概况一下。 Xshell是一个强大的安全终端模拟软件，可以在Windows界面下用来访问远端不同系统下的服务器，从而比较好的达到远程控制终端的目的，比如说用Xshell（地点在上海）连接远程Linux服务器系统（地点在北京），只需要在Xshell中输入Linux服务器系统的IP地址，这样就可以将远程（北京">
+<meta property="og:type" content="article">
+<meta property="og:title" content="xshell之初见">
+<meta property="og:url" content="http://yoursite.com/2020/10/30/xshell%E4%B9%8B%E5%88%9D%E8%A7%81/index.html">
+<meta property="og:site_name" content="DaliBlogs">
+<meta property="og:description" content="Xshell概述Xshell软件的介绍百度上太多，也凸显不出重点，大家不能很好地理解，这里简要概况一下。 Xshell是一个强大的安全终端模拟软件，可以在Windows界面下用来访问远端不同系统下的服务器，从而比较好的达到远程控制终端的目的，比如说用Xshell（地点在上海）连接远程Linux服务器系统（地点在北京），只需要在Xshell中输入Linux服务器系统的IP地址，这样就可以将远程（北京">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7940255-ee15b04539696d40.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/688/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7940255-0c785451af551b83.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/607/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7940255-294c4b8a251cc988.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/681/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7940255-5859bb07a65fff00.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/492/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7940255-f2fe9a106583f6c3.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/625/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7940255-698e0fec8715d6da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/573/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7940255-9934c6a56b3ddbd0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/237/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7940255-4c0a5c8f73e898c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/547/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7940255-6db92986719dd757.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/489/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7940255-edf892e8763d2866.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/362/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7940255-8e9254efc020c0ce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/458/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7940255-fa29bc736ab7f24f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/548/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7940255-e2d4ee8ecf3aee91.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/507/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7940255-a8389c4daa229bc0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/474/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7940255-917d296d6f0c80e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/459/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7940255-62050f6ef3743c77.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/299/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7940255-cd776ec8747a01ac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/593/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7940255-63784f8ac598b076.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/445/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7940255-02980fa7810c5aa8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/586/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7940255-7dba8a32f5d9533f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/532/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7940255-d893db1510cc101c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/553/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7940255-71d2e35bb6cd01f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/390/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7940255-e416369a916e2af5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/341/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7940255-19168210f42717bf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/526/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7940255-b72e646b718428e5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/612/format/webp">
+<meta property="article:published_time" content="2020-10-30T02:24:42.000Z">
+<meta property="article:modified_time" content="2021-01-21T07:09:38.540Z">
+<meta property="article:author" content="Dali">
+<meta property="article:tag" content="Xshell">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7940255-ee15b04539696d40.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/688/format/webp">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/10/30/xshell之初见/"/>
+
+
+
+
+
+  <title>xshell之初见 | DaliBlogs</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DaliBlogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/30/xshell%E4%B9%8B%E5%88%9D%E8%A7%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">xshell之初见</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-30T10:24:42+08:00">
+                2020-10-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Xshell/" itemprop="url" rel="index">
+                    <span itemprop="name">Xshell</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Xshell概述"><a href="#Xshell概述" class="headerlink" title="Xshell概述"></a>Xshell概述</h3><p>Xshell软件的介绍百度上太多，也凸显不出重点，大家不能很好地理解，这里简要概况一下。</p>
+<p>Xshell是一个强大的安全终端模拟软件，可以在Windows界面下用来访问远端不同系统下的服务器，从而比较好的达到远程控制终端的目的，比如说用Xshell（地点在上海）连接远程Linux服务器系统（地点在北京），只需要在Xshell中输入Linux服务器系统的IP地址，这样就可以将远程（北京）的Linux服务器系统连接到Xshell（上海）了，实现了远程的模拟控制。直白点说，就是在上海的Xshell可以控制远在北京的Linux服务器系统，通过Linux命令实现需要完成的功能。</p>
+<a id="more"></a>
+
+<h3 id="1-Xshell下载与安装"><a href="#1-Xshell下载与安装" class="headerlink" title="1.Xshell下载与安装"></a>1.Xshell下载与安装</h3><p>进入<a href="https://link.jianshu.com?t=https%3A%2F%2Fwww.netsarang.com%2Fdownload%2Fmain.html" target="_blank" rel="noopener">xshell官网下载页面</a>，找到xshell5，点击后面的download</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/7940255-ee15b04539696d40.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/688/format/webp" alt="img"></p>
+<p>它会跳转到另一个页面，选择Evaluation user / Home &amp; School user， license type要选择home and school use，这种是可以免费使用的，其他的按要求填好即可。填好之后再点submit</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/7940255-0c785451af551b83.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/607/format/webp" alt="img"></p>
+<p>发送成功后会有提示</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/7940255-294c4b8a251cc988.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/681/format/webp" alt="img"></p>
+<p>然后进入到你的前文填写的邮箱，会收到一个邮件，里面有一个下载链接，直接点开就可以下载XSHELL软件了。</p>
+<p>下载完以后，点击安装，一直点下一步即可，需要注意这一步要选择免费为家庭/学校。</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/7940255-5859bb07a65fff00.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/492/format/webp" alt="img"></p>
+<h3 id="2-在xshell里添加会话"><a href="#2-在xshell里添加会话" class="headerlink" title="2. 在xshell里添加会话"></a>2. 在xshell里添加会话</h3><p>新安装的xshell会自动提示你需要添加一个会话，点击新建</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/7940255-f2fe9a106583f6c3.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/625/format/webp" alt="img"></p>
+<p>在弹出的窗口中依次填上如下数据</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/7940255-698e0fec8715d6da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/573/format/webp" alt="img"></p>
+<p><strong>名称</strong>：就是会话的名字，随便写，方便记住就行</p>
+<p><strong>协议</strong>：默认就是SSH，不用管它</p>
+<p><strong>主机</strong>：就是你的空间的IP</p>
+<p><strong>端口号</strong>：就是你空间的端口号ssh port</p>
+<p>其他不填，然后点击确定，添加成功。</p>
+<p>如果要添加多个会话，就点击文件 - 新建，再填上相应的参数即可</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/7940255-9934c6a56b3ddbd0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/237/format/webp" alt="img"></p>
+<h3 id="3-通过xshell连接空间服务器"><a href="#3-通过xshell连接空间服务器" class="headerlink" title="3. 通过xshell连接空间服务器"></a>3. 通过xshell连接空间服务器</h3><p>点击文件-打开，在会话面板中，选中你要链接的会话，然后点击连接</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/7940255-4c0a5c8f73e898c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/547/format/webp" alt="img"></p>
+<p>第一次进入的时候，会出现以下提示，点击接受并保存</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/7940255-6db92986719dd757.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/489/format/webp" alt="img"></p>
+<p>接下来会提示输入ssh 用户名，直接输入root，这个是任何VPS或主机默认的用户名，如果有其他的用户名，就输入其他的。</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/7940255-edf892e8763d2866.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/362/format/webp" alt="img"></p>
+<p>然后在记住用户名前面打勾，再点击确定</p>
+<p>接下来会提示让你输入root的密码，复制密码后，在框中-右键-粘贴为纯文本，并勾选记住密码，再点击确定。</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/7940255-8e9254efc020c0ce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/458/format/webp" alt="img"></p>
+<p>如果xshell面板中出现以下提示，则表示连接成功。如果提示密码不对，就要检查密码，必要时手动输入密码。</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/7940255-fa29bc736ab7f24f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/548/format/webp" alt="img"></p>
+<h3 id="4-Xshell上指令操作步骤"><a href="#4-Xshell上指令操作步骤" class="headerlink" title="4. Xshell上指令操作步骤"></a>4. Xshell上指令操作步骤</h3><p>首先要保证XSHELL跟空间是连通的状态，如下图所示，就是已经连接上</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/7940255-e2d4ee8ecf3aee91.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/507/format/webp" alt="img"></p>
+<p>如果是下图所示这种情况，就是没有连接上，或者退出了，一定要重新连接成功才能继续操作。</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/7940255-a8389c4daa229bc0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/474/format/webp" alt="img"></p>
+<p>XSHELL上面跟远程的VPS空间通信是用指令来完成的，下面是在xshell上面跟linux通信流程</p>
+<p><strong>1）输入指令</strong>： 复制好指令，在面板上-右键-粘贴即可输入，也可以手动输入。注意只支持英文字符半角</p>
+<p>如下图所示，我们以nginx -t这个指令来演示</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/7940255-917d296d6f0c80e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/459/format/webp" alt="img"></p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/7940255-62050f6ef3743c77.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/299/format/webp" alt="img"></p>
+<p><strong>2）回车</strong>：在上一步输入指令后，直接回车</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/7940255-cd776ec8747a01ac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/593/format/webp" alt="img"></p>
+<p><strong>3）服务器执行指令</strong></p>
+<p>有些指令是有反馈结果的，会提示做了哪些事情，花了多少时间或者是提示结果等。如上图，nginx -t是测试nginx软件服务器的状态的，显示状态OK，有两条结果。</p>
+<p>而有些指令又是没有结果的，像service nginx restart，重启nginx服务器，是没有任何结果提示的。无论指令有没有结果提示，最后都会回到新的命令指示符，如下图所示。</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/7940255-63784f8ac598b076.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/445/format/webp" alt="img"></p>
+<h3 id="5-常见ubuntu指令简单介绍"><a href="#5-常见ubuntu指令简单介绍" class="headerlink" title="5. 常见ubuntu指令简单介绍"></a>5. 常见ubuntu指令简单介绍</h3><p>nano 文件编辑命令，后面接你要编辑的文件名带格式 ，如 nano  php.ini</p>
+<p>cd 进入目录命令，后面接你要进入的目录（对应电脑上的文件夹），如cd /etc/nginx/</p>
+<p>cp 复制命令，后面接你要复制的源文件和新文件名， 如 cp php.ini new-php.ini</p>
+<p>ls 列出当前目录下所有的文件及文件夹 ，ls -a 表示加上隐藏文件全部列出</p>
+<p>wget 下载文件到当前目录，后面一般接文件的URL地址， 如</p>
+<p>wget –no-check-certificate <a href="http://wordpress.org/latest.tar.gz" target="_blank" rel="noopener">http://wordpress.org/latest.tar.gz</a> 下载wp最新版本文件的意思</p>
+<p>mv 移动命令，后面接源文件和目的目录 ， 如 mv  wp-config.php  /var/www</p>
+<p>rm 删除命名，后面接文件名， rm -r 删除文件夹的命令</p>
+<p><strong>命令使用注意</strong>：执行命令时一定要慎重，一定要知道自己在做什么，否则就有可能造成无法恢复的trouble!</p>
+<h3 id="6-Xshell使用常见问题"><a href="#6-Xshell使用常见问题" class="headerlink" title="6. Xshell使用常见问题"></a>6. Xshell使用常见问题</h3><p>1）最常见的问题应该是连接不上的问题，这个主要出现在连接国外空间的时候，主要原因是被墙了。如下图所示</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/7940255-02980fa7810c5aa8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/586/format/webp" alt="img"></p>
+<p>不用担心，可以用添加代理的方式解决，方法如下</p>
+<p>1）首先你要有一个能上GOOGLE的SS账号，（SSR应该也可以），如果没有可以自己搭建一个，参考<a href="https://link.jianshu.com?t=https%3A%2F%2Fwww.imhunk.com%2Fvisit-google-freely%2F" target="_blank" rel="noopener">自己动手搭建科学上网工具（V+P+N）</a></p>
+<p>2）然后点击 文件 -打开 -选择连不上的那个会话，然后右键 -点击属性</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/7940255-7dba8a32f5d9533f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/532/format/webp" alt="img"></p>
+<p>点击左侧的代理，然后点击右侧代理服务器后面的浏览</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/7940255-d893db1510cc101c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/553/format/webp" alt="img"></p>
+<p>在弹出的窗口中，点击添加</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/7940255-71d2e35bb6cd01f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/390/format/webp" alt="img"></p>
+<p>然后依次下图填写相应的值，密码填上你的SS的密码，再点击确定</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/7940255-e416369a916e2af5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/341/format/webp" alt="img"></p>
+<p>然后在把代理服务器选择ss，再点击确定</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/7940255-19168210f42717bf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/526/format/webp" alt="img"></p>
+<p>3）再重新连接对话，就可以发现成功连上了！ YEAH!</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/7940255-b72e646b718428e5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/612/format/webp" alt="img"></p>
+<p>2）快捷键的问题</p>
+<p>很多我们日常使用的快捷键是不能用或者意思不同，比如CTRL+C，这个在XSHELL中是强制退出运行程序的意思。一定要注意。</p>
+<p>如果需要复制，就先选中，然后右键-复制。如果需要粘贴，那么先选中，然后右键-粘贴。</p>
+<p>链接：<a href="https://www.jianshu.com/p/20f59a08158b" target="_blank" rel="noopener">https://www.jianshu.com/p/20f59a08158b</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Xshell/" rel="tag"># Xshell</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/10/29/vue%E4%B9%8Bseekcy%E5%BC%80%E5%8F%91%E5%8E%86%E7%A8%8B%E8%AE%B0%E5%BD%951/" rel="next" title="vue之seekcy开发历程记录1">
+                <i class="fa fa-chevron-left"></i> vue之seekcy开发历程记录1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/10/30/Xftp5%E4%B9%8B%E5%88%9D%E8%A7%81/" rel="prev" title="Xftp5之初见">
+                Xftp5之初见 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="Dali" />
+            
+              <p class="site-author-name" itemprop="name">Dali</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">140</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">143</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Xshell概述"><span class="nav-number">1.</span> <span class="nav-text">Xshell概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Xshell下载与安装"><span class="nav-number">2.</span> <span class="nav-text">1.Xshell下载与安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-在xshell里添加会话"><span class="nav-number">3.</span> <span class="nav-text">2. 在xshell里添加会话</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-通过xshell连接空间服务器"><span class="nav-number">4.</span> <span class="nav-text">3. 通过xshell连接空间服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Xshell上指令操作步骤"><span class="nav-number">5.</span> <span class="nav-text">4. Xshell上指令操作步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-常见ubuntu指令简单介绍"><span class="nav-number">6.</span> <span class="nav-text">5. 常见ubuntu指令简单介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-Xshell使用常见问题"><span class="nav-number">7.</span> <span class="nav-text">6. Xshell使用常见问题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dali</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

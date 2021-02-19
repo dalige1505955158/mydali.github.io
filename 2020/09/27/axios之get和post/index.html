@@ -97,8 +97,9 @@
 <meta property="og:image" content="https://exp-picture.cdn.bcebos.com/332d496699cf0253a84a13316b36e29146e85fbd.jpg?x-bce-process=image%252Fresize%252Cm_lfit%252Cw_500%252Climit_1">
 <meta property="og:image" content="https://exp-picture.cdn.bcebos.com/22c4fe36e29147e8bfc909c6b603bbea3f8658bd.jpg?x-bce-process=image%252Fresize%252Cm_lfit%252Cw_500%252Climit_1">
 <meta property="og:image" content="https://exp-picture.cdn.bcebos.com/46a92de039723d0334c30e32bb486143d6d457bd.jpg?x-bce-process=image%252Fresize%252Cm_lfit%252Cw_500%252Climit_1">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1418466/201808/1418466-20180810112625596-2103906128.png">
 <meta property="article:published_time" content="2020-09-27T03:04:09.000Z">
-<meta property="article:modified_time" content="2020-09-28T02:48:41.763Z">
+<meta property="article:modified_time" content="2020-10-30T05:26:11.980Z">
 <meta property="article:author" content="Dali">
 <meta property="article:tag" content="vue">
 <meta property="article:tag" content="axios">
@@ -446,6 +447,27 @@
 <p><img src="https://exp-picture.cdn.bcebos.com/22c4fe36e29147e8bfc909c6b603bbea3f8658bd.jpg?x-bce-process=image%2Fresize%2Cm_lfit%2Cw_500%2Climit_1" alt="Vue实战032：axios如何使用get和post发送请求"></p>
 <h3 id="axios通过POST传文件"><a href="#axios通过POST传文件" class="headerlink" title="axios通过POST传文件"></a>axios通过POST传文件</h3><p>POST除了可以发送数据之后，还可以用于发送文件（如传图片等），那么这时文件就是个对象而并不是参数。这是我们就需要申明一个FormData对象，以formData.append(‘键’,对象)形式将对象添加到formData中然后传递。</p>
 <p><img src="https://exp-picture.cdn.bcebos.com/46a92de039723d0334c30e32bb486143d6d457bd.jpg?x-bce-process=image%2Fresize%2Cm_lfit%2Cw_500%2Climit_1" alt="Vue实战032：axios如何使用get和post发送请求"></p>
+<h3 id="八大请求方式"><a href="#八大请求方式" class="headerlink" title="八大请求方式"></a>八大请求方式</h3><p><img src="https://images2018.cnblogs.com/blog/1418466/201808/1418466-20180810112625596-2103906128.png" alt="img"></p>
+<p><strong>讲解</strong></p>
+<p>1、OPTIONS</p>
+<p>返回服务器针对特定资源所支持的HTTP请求方法，也可以利用向web服务器发送‘*’的请求来测试服务器的功能性</p>
+<p>2、HEAD</p>
+<p>向服务器索与GET请求相一致的响应，只不过响应体将不会被返回。这一方法可以再不必传输整个响应内容的情况下，就可以获取包含在响应小消息头中的元信息。</p>
+<p>3、GET</p>
+<p>向特定的资源发出请求。注意：GET方法不应当被用于产生“副作用”的操作中，例如在Web Application中，其中一个原因是GET可能会被网络蜘蛛等随意访问。Loadrunner中对应get请求函数：web_link和web_url</p>
+<p>4、POST</p>
+<p>向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST请求可能会导致新的资源的建立和/或已有资源的修改。 Loadrunner中对应POST请求函数：web_submit_data,web_submit_form</p>
+<p>5、PUT</p>
+<p>向指定资源位置上传其最新内容</p>
+<p>6、DELETE</p>
+<p>请求服务器删除Request-URL所标识的资源</p>
+<p>7、TRACE</p>
+<p>回显服务器收到的请求，主要用于测试或诊断</p>
+<p>8、CONNECT</p>
+<p>HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。</p>
+<p>注意：</p>
+<p>1）方法名称是区分大小写的，当某个请求所针对的资源不支持对应的请求方法的时候，服务器应当返回状态码405（Mothod Not Allowed）；当服务器不认识或者不支持对应的请求方法时，应返回状态码501（Not Implemented）。</p>
+<p>2）HTTP服务器至少应该实现GET和HEAD/POST方法，其他方法都是可选的，此外除上述方法，特定的HTTP服务器支持扩展自定义的方法。</p>
 
       
     </div>
@@ -575,7 +597,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">125</span>
+                  <span class="site-state-item-count">140</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -586,7 +608,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-count">68</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -597,7 +619,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">130</span>
+                  <span class="site-state-item-count">143</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -637,7 +659,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是GET和POST请求"><span class="nav-number">1.</span> <span class="nav-text">什么是GET和POST请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GET和POST请求的区别"><span class="nav-number">2.</span> <span class="nav-text">GET和POST请求的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Content-Type"><span class="nav-number">3.</span> <span class="nav-text">Content-Type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#axios发送GET请求"><span class="nav-number">4.</span> <span class="nav-text">axios发送GET请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#axios发送POST请求"><span class="nav-number">5.</span> <span class="nav-text">axios发送POST请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#axios通过POST传文件"><span class="nav-number">6.</span> <span class="nav-text">axios通过POST传文件</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是GET和POST请求"><span class="nav-number">1.</span> <span class="nav-text">什么是GET和POST请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GET和POST请求的区别"><span class="nav-number">2.</span> <span class="nav-text">GET和POST请求的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Content-Type"><span class="nav-number">3.</span> <span class="nav-text">Content-Type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#axios发送GET请求"><span class="nav-number">4.</span> <span class="nav-text">axios发送GET请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#axios发送POST请求"><span class="nav-number">5.</span> <span class="nav-text">axios发送POST请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#axios通过POST传文件"><span class="nav-number">6.</span> <span class="nav-text">axios通过POST传文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#八大请求方式"><span class="nav-number">7.</span> <span class="nav-text">八大请求方式</span></a></li></ol></div>
             
 
           </div>
@@ -657,7 +679,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

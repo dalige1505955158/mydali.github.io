@@ -88,7 +88,7 @@
 <meta property="og:site_name" content="DaliBlogs">
 <meta property="og:description" content="Vue.set与 vue.$set在使用中的区别(delete和this.$delete)Vue.set 可以设置实例创建之后添加的属性，如sex，而this.$set&#x2F;vue.$set&#x2F;vm.$set只能设置实例创建后存在的属性。 123456789101112131415161718&lt;script&gt;var data &#x3D; &amp;#123;    name: &quot;简书&quot;,    age: &#39;">
 <meta property="article:published_time" content="2020-09-10T09:27:58.000Z">
-<meta property="article:modified_time" content="2020-09-16T09:18:23.748Z">
+<meta property="article:modified_time" content="2021-02-19T08:18:52.961Z">
 <meta property="article:author" content="Dali">
 <meta property="article:tag" content="vue">
 <meta property="article:tag" content="数据更新">
@@ -395,7 +395,7 @@
 
 <h3 id="Vue-无法检测对象-property-的添加或移除"><a href="#Vue-无法检测对象-property-的添加或移除" class="headerlink" title="Vue 无法检测对象 property 的添加或移除"></a>Vue 无法检测对象 property 的添加或移除</h3><p>原因：官方 - 由于 JavaScript（ES5） 的限制，Vue.js <strong>不能检测到对象属性的添加或删除</strong>。因为 Vue.js 在初始化实例时将属性转为 getter/setter，所以属性必须在 <code>data</code> 对象上才能让 Vue.js 转换它，才能让它是响应的。</p>
 <p>场景：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var vm &#x3D; new Vue(&#123;</span><br><span class="line">  data:&#123;</span><br><span class="line">    obj: &#123;</span><br><span class="line">      id: 001</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#x2F;&#x2F; 页面不会变化</span><br><span class="line">  template: &#39;&lt;div&gt;&#123;&#123; obj.message &#125;&#125;&lt;&#x2F;div&gt;&#39;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">vm.obj.message &#x3D; &#39;hello&#39; &#x2F;&#x2F; 不是响应式的</span><br><span class="line">delete vm.obj.id       &#x2F;&#x2F; 不是响应式的</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var vm &#x3D; new Vue(&#123;</span><br><span class="line">  data:&#123;</span><br><span class="line">    obj: &#123;</span><br><span class="line">      id: 001</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#x2F;&#x2F; 页面不会变化</span><br><span class="line">  template: &#39;&lt;div&gt; obj.message &lt;&#x2F;div&gt;&#39;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">vm.obj.message &#x3D; &#39;hello&#39; &#x2F;&#x2F; 不是响应式的</span><br><span class="line">delete vm.obj.id       &#x2F;&#x2F; 不是响应式的</span><br></pre></td></tr></table></figure>
 
 <p>解决办法：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 动态添加 - Vue.set</span><br><span class="line">Vue.set(vm.obj, propertyName, newValue)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 动态添加 - vm.$set</span><br><span class="line">vm.$set(vm.obj, propertyName, newValue)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 动态添加多个</span><br><span class="line">&#x2F;&#x2F; 代替 Object.assign(this.obj, &#123; a: 1, b: 2 &#125;)</span><br><span class="line">this.obj &#x3D; Object.assign(&#123;&#125;, this.obj, &#123; a: 1, b: 2 &#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 动态移除 - Vue.delete</span><br><span class="line">Vue.delete(vm.obj, propertyName)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 动态移除 - vm.$delete</span><br><span class="line">vm.$delete(vm.obj, propertyName)</span><br></pre></td></tr></table></figure>
@@ -549,7 +549,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">125</span>
+                  <span class="site-state-item-count">140</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -560,7 +560,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-count">68</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -571,7 +571,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">130</span>
+                  <span class="site-state-item-count">143</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -631,7 +631,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

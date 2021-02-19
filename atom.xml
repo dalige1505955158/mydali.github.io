@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-10-29T09:28:41.041Z</updated>
+  <updated>2021-02-19T08:51:03.363Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,274 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>vue之seekcy开发历程记录1</title>
-    <link href="http://yoursite.com/2020/10/29/vue%E4%B9%8Bseekcy%E5%BC%80%E5%8F%91%E5%8E%86%E7%A8%8B%E8%AE%B0%E5%BD%951/"/>
-    <id>http://yoursite.com/2020/10/29/vue%E4%B9%8Bseekcy%E5%BC%80%E5%8F%91%E5%8E%86%E7%A8%8B%E8%AE%B0%E5%BD%951/</id>
-    <published>2020-10-29T09:23:30.000Z</published>
-    <updated>2020-10-29T09:28:41.041Z</updated>
+    <title>vue之videojs的使用</title>
+    <link href="http://yoursite.com/2021/02/03/vue%E4%B9%8Bvideojs%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>http://yoursite.com/2021/02/03/vue%E4%B9%8Bvideojs%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
+    <published>2021-02-03T05:52:50.000Z</published>
+    <updated>2021-02-19T08:51:03.363Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在vue中使用videojs&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="video" scheme="http://yoursite.com/categories/video/"/>
+    
+    
+      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
+    
+      <category term="video" scheme="http://yoursite.com/tags/video/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>应用性能优化实践</title>
+    <link href="http://yoursite.com/2021/02/02/%E7%88%B1%E5%A5%87%E8%89%BA%E5%89%8D%E7%AB%AF%E5%BA%94%E7%94%A8%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%AE%9E%E8%B7%B5/"/>
+    <id>http://yoursite.com/2021/02/02/%E7%88%B1%E5%A5%87%E8%89%BA%E5%89%8D%E7%AB%AF%E5%BA%94%E7%94%A8%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%AE%9E%E8%B7%B5/</id>
+    <published>2021-02-02T02:12:50.000Z</published>
+    <updated>2021-02-19T08:02:06.227Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;问题梳理&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;参考链接&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/H88469QNdE-IChc8u-pBaQ&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://mp.weixin.qq.com/s/H88469QNdE-IChc8u-pBaQ&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;我们先通过提问题的方式，从&lt;strong&gt;资源文件加载、页面渲染性能、接口响应速度&lt;/strong&gt;等三个方面分别列出了一些可能存在性能瓶颈的环节。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="前端优化方案" scheme="http://yoursite.com/categories/%E5%89%8D%E7%AB%AF%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/"/>
+    
+    
+      <category term="前端优化方案" scheme="http://yoursite.com/tags/%E5%89%8D%E7%AB%AF%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>js之实现图片等比缩放</title>
+    <link href="http://yoursite.com/2021/02/01/js%E4%B9%8B%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E7%AD%89%E6%AF%94%E7%BC%A9%E6%94%BE/"/>
+    <id>http://yoursite.com/2021/02/01/js%E4%B9%8B%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E7%AD%89%E6%AF%94%E7%BC%A9%E6%94%BE/</id>
+    <published>2021-02-01T03:27:11.000Z</published>
+    <updated>2021-02-19T08:47:19.939Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;需求&quot;&gt;&lt;a href=&quot;#需求&quot; class=&quot;headerlink&quot; title=&quot;需求&quot;&gt;&lt;/a&gt;需求&lt;/h3&gt;&lt;p&gt;在容器等高或者等宽的时候，实现图片不变形&lt;/p&gt;
+&lt;h3 id=&quot;思路&quot;&gt;&lt;a href=&quot;#思路&quot; class=&quot;headerlink&quot; title=&quot;思路&quot;&gt;&lt;/a&gt;思路&lt;/h3&gt;&lt;p&gt;图片的高和宽都超限了，这时要算一下哪个超的多，按超多的缩放比例等比计算宽和高。&lt;/p&gt;
+&lt;p&gt;高超限，宽未超限，按高的缩放等比计算。&lt;/p&gt;
+&lt;p&gt;宽超限，高未超退，按宽的缩放等比计算。&lt;/p&gt;
+&lt;p&gt;高宽均未超限，返回原始宽和高。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="js" scheme="http://yoursite.com/categories/js/"/>
+    
+    
+      <category term="js" scheme="http://yoursite.com/tags/js/"/>
+    
+      <category term="图片等比缩放" scheme="http://yoursite.com/tags/%E5%9B%BE%E7%89%87%E7%AD%89%E6%AF%94%E7%BC%A9%E6%94%BE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>浏览器的垃圾回收</title>
+    <link href="http://yoursite.com/2021/02/01/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/"/>
+    <id>http://yoursite.com/2021/02/01/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/</id>
+    <published>2021-02-01T02:45:49.000Z</published>
+    <updated>2021-02-19T08:47:35.490Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;参考链接&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/iZDB6RiQHB_KNvZK5jvz-Q&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://mp.weixin.qq.com/s/iZDB6RiQHB_KNvZK5jvz-Q&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;面试题1：浏览器怎么进行垃圾回收？&quot;&gt;&lt;a href=&quot;#面试题1：浏览器怎么进行垃圾回收？&quot; class=&quot;headerlink&quot; title=&quot;面试题1：浏览器怎么进行垃圾回收？&quot;&gt;&lt;/a&gt;面试题1：浏览器怎么进行垃圾回收？&lt;/h1&gt;&lt;p&gt;从三个点来回答什么是垃圾、如何捡垃圾、什么时候捡垃圾。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;什么是垃圾&lt;/p&gt;
+&lt;p&gt;不再需要，即为垃圾&lt;/p&gt;
+&lt;p&gt;全局变量随时可能用到，所以一定不是垃圾&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;如何捡垃圾（遍历算法）&lt;/p&gt;
+&lt;p&gt;标记空间中「可达」值。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;- 从根节点（Root）出发，遍历所有的对象。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- 可以遍历到的对象，是可达的（reachable）。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- 没有被遍历到的对象，不可达的（unreachable）&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;回收「不可达」的值所占据的内存。&lt;/p&gt;
+&lt;p&gt;做内存整理。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;什么时候捡垃圾&lt;/p&gt;
+&lt;p&gt;前端有其特殊性，垃圾回收的时候会造成页面卡顿。&lt;/p&gt;
+&lt;p&gt;分代收集、增量收集、闲时收集。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+    
+      <category term="浏览器回收垃圾" scheme="http://yoursite.com/categories/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9B%9E%E6%94%B6%E5%9E%83%E5%9C%BE/"/>
+    
+    
+      <category term="浏览器回收垃圾" scheme="http://yoursite.com/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9B%9E%E6%94%B6%E5%9E%83%E5%9C%BE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>js之图片懒加载</title>
+    <link href="http://yoursite.com/2021/02/01/js%E4%B9%8B%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD/"/>
+    <id>http://yoursite.com/2021/02/01/js%E4%B9%8B%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD/</id>
+    <published>2021-02-01T01:48:03.000Z</published>
+    <updated>2021-02-19T08:48:06.256Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;参考链接 &lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/wsaB9pT75msm9usT9i3Xig&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://mp.weixin.qq.com/s/wsaB9pT75msm9usT9i3Xig&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;window.innerHeight和document.documentElement.clientHeight区别(window.innerHeight和clentWidth同理)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1.window.innerHeight属于BOM（浏览器对象模型），而document.documentElement.clientHeight则属于文档对象模型&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2.window.innerHeight获取的高度包含横向滚动条，而document.documentElement.clientHeight不包含横向滚动条&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&quot;基于原生-js-实现图片懒加载&quot;&gt;&lt;a href=&quot;#基于原生-js-实现图片懒加载&quot; class=&quot;headerlink&quot; title=&quot;基于原生 js 实现图片懒加载&quot;&gt;&lt;/a&gt;基于原生 js 实现图片懒加载&lt;/h2&gt;&lt;h4 id=&quot;document-documentElement-clientHeight&quot;&gt;&lt;a href=&quot;#document-documentElement-clientHeight&quot; class=&quot;headerlink&quot; title=&quot;document.documentElement.clientHeight&quot;&gt;&lt;/a&gt;document.documentElement.clientHeight&lt;/h4&gt;&lt;p&gt;获取屏幕可视区域的高度。&lt;/p&gt;
+&lt;h4 id=&quot;element-offsetTop&quot;&gt;&lt;a href=&quot;#element-offsetTop&quot; class=&quot;headerlink&quot; title=&quot;element.offsetTop&quot;&gt;&lt;/a&gt;element.offsetTop&lt;/h4&gt;&lt;p&gt;获取元素相对于文档顶部的高度。&lt;/p&gt;
+&lt;h4 id=&quot;document-documentElement-scrollTop&quot;&gt;&lt;a href=&quot;#document-documentElement-scrollTop&quot; class=&quot;headerlink&quot; title=&quot;document.documentElement.scrollTop&quot;&gt;&lt;/a&gt;document.documentElement.scrollTop&lt;/h4&gt;&lt;p&gt;获取浏览器窗口顶部与文档顶部之间的距离，也就是滚动条滚动的距离。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="js" scheme="http://yoursite.com/categories/js/"/>
+    
+    
+      <category term="js" scheme="http://yoursite.com/tags/js/"/>
+    
+      <category term="图片懒加载" scheme="http://yoursite.com/tags/%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>34条我能告诉你的Vue之实操篇</title>
+    <link href="http://yoursite.com/2021/01/21/34%E6%9D%A1%E6%88%91%E8%83%BD%E5%91%8A%E8%AF%89%E4%BD%A0%E7%9A%84Vue%E4%B9%8B%E5%AE%9E%E6%93%8D%E7%AF%87/"/>
+    <id>http://yoursite.com/2021/01/21/34%E6%9D%A1%E6%88%91%E8%83%BD%E5%91%8A%E8%AF%89%E4%BD%A0%E7%9A%84Vue%E4%B9%8B%E5%AE%9E%E6%93%8D%E7%AF%87/</id>
+    <published>2021-01-21T02:51:01.000Z</published>
+    <updated>2021-02-19T08:22:20.866Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;参考链接 &lt;a href=&quot;https://mp.weixin.qq.com/s/MchD5YiXvuIjhvkj86hTlg&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://mp.weixin.qq.com/s/MchD5YiXvuIjhvkj86hTlg&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;组件通信方式&quot;&gt;&lt;a href=&quot;#组件通信方式&quot; class=&quot;headerlink&quot; title=&quot;组件通信方式&quot;&gt;&lt;/a&gt;组件通信方式&lt;/h2&gt;&lt;h3 id=&quot;props-on-emit&quot;&gt;&lt;a href=&quot;#props-on-emit&quot; class=&quot;headerlink&quot; title=&quot;props/@on+$emit&quot;&gt;&lt;/a&gt;props/@on+$emit&lt;/h3&gt;&lt;p&gt;通过 &lt;code&gt;props&lt;/code&gt; 可以把父组件的消息传递给子组件：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;#x2F;&amp;#x2F; parent.vue    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;child :title&amp;#x3D;&amp;quot;title&amp;quot;&amp;gt;&amp;lt;&amp;#x2F;child&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#x2F;&amp;#x2F; child.vue&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;props: &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    title: &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        type: String,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        default: &amp;#39;&amp;#39;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;而通过 &lt;code&gt;@on+$emit&lt;/code&gt; 组合可以实现子组件给父组件传递信息：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;#x2F;&amp;#x2F; parent.vue&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;child @changeTitle&amp;#x3D;&amp;quot;changeTitle&amp;quot;&amp;gt;&amp;lt;&amp;#x2F;child&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#x2F;&amp;#x2F; child.vue&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;this.$emit(&amp;#39;changeTitle&amp;#39;, &amp;#39;bubuzou.com&amp;#39;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="vue" scheme="http://yoursite.com/categories/vue/"/>
+    
+    
+      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vue之顶部进度条</title>
+    <link href="http://yoursite.com/2021/01/19/vue%E4%B9%8B%E9%A1%B6%E9%83%A8%E8%BF%9B%E5%BA%A6%E6%9D%A1/"/>
+    <id>http://yoursite.com/2021/01/19/vue%E4%B9%8B%E9%A1%B6%E9%83%A8%E8%BF%9B%E5%BA%A6%E6%9D%A1/</id>
+    <published>2021-01-19T03:40:15.000Z</published>
+    <updated>2021-01-19T05:46:20.100Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;Vue-页面加载进度条nprogress的使用&quot;&gt;&lt;a href=&quot;#Vue-页面加载进度条nprogress的使用&quot; class=&quot;headerlink&quot; title=&quot;Vue 页面加载进度条nprogress的使用&quot;&gt;&lt;/a&gt;Vue 页面加载进度条nprogress的使用&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/qq_42540989/article/details/109220608&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://blog.csdn.net/qq_42540989/article/details/109220608&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;前言：客户在访问网页的时候想要看到网页加载的进度，所以使用 &lt;strong&gt;nprogress&lt;/strong&gt; 来实现当页面跳转是出现在浏览器顶部的进度条，它是轻量级的进度条组件，使用简便，可以很方便集成到应用中来。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="vue" scheme="http://yoursite.com/categories/vue/"/>
+    
+    
+      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
+    
+      <category term="router" scheme="http://yoursite.com/tags/router/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>echarts属性记录</title>
+    <link href="http://yoursite.com/2021/01/08/echarts%E5%B1%9E%E6%80%A7%E8%AE%B0%E5%BD%95/"/>
+    <id>http://yoursite.com/2021/01/08/echarts%E5%B1%9E%E6%80%A7%E8%AE%B0%E5%BD%95/</id>
+    <published>2021-01-08T10:44:27.000Z</published>
+    <updated>2021-01-08T10:50:57.969Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;参考链接&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.cnblogs.com/zhangxiaoxia/p/9832201.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.cnblogs.com/zhangxiaoxia/p/9832201.html&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;柱状图属性详解&quot;&gt;&lt;a href=&quot;#柱状图属性详解&quot; class=&quot;headerlink&quot; title=&quot;柱状图属性详解&quot;&gt;&lt;/a&gt;柱状图属性详解&lt;/h3&gt;
+    
+    </summary>
+    
+    
+      <category term="echarts" scheme="http://yoursite.com/categories/echarts/"/>
+    
+    
+      <category term="echarts" scheme="http://yoursite.com/tags/echarts/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>seecky之地图开发记录</title>
+    <link href="http://yoursite.com/2020/12/23/seecky%E4%B9%8B%E5%9C%B0%E5%9B%BE%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/"/>
+    <id>http://yoursite.com/2020/12/23/seecky%E4%B9%8B%E5%9C%B0%E5%9B%BE%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/</id>
+    <published>2020-12-23T01:35:47.000Z</published>
+    <updated>2021-02-19T08:26:02.937Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;react开发记录&quot;&gt;&lt;a href=&quot;#react开发记录&quot; class=&quot;headerlink&quot; title=&quot;react开发记录&quot;&gt;&lt;/a&gt;react开发记录&lt;/h2&gt;&lt;h3 id=&quot;基本结构&quot;&gt;&lt;a href=&quot;#基本结构&quot; class=&quot;headerlink&quot; title=&quot;基本结构&quot;&gt;&lt;/a&gt;基本结构&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;class testComp extends Component&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;constructor(props)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	super(props) &amp;#x2F;&amp;#x2F;接受其他组件的参数&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	this.state&amp;#x3D;&amp;#123; &amp;#x2F;&amp;#x2F;定义自己的变量&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			num:1,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			flag:true&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;export default testComp&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="react" scheme="http://yoursite.com/categories/react/"/>
+    
+      <category term="map" scheme="http://yoursite.com/categories/react/map/"/>
+    
+    
+      <category term="map" scheme="http://yoursite.com/tags/map/"/>
+    
+      <category term="react" scheme="http://yoursite.com/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>echarts项目实战记录</title>
+    <link href="http://yoursite.com/2020/11/09/echarts%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98%E8%AE%B0%E5%BD%95/"/>
+    <id>http://yoursite.com/2020/11/09/echarts%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98%E8%AE%B0%E5%BD%95/</id>
+    <published>2020-11-09T01:30:32.000Z</published>
+    <updated>2021-01-13T03:02:25.485Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;柱状图&quot;&gt;&lt;a href=&quot;#柱状图&quot; class=&quot;headerlink&quot; title=&quot;柱状图&quot;&gt;&lt;/a&gt;柱状图&lt;/h3&gt;&lt;h4 id=&quot;初始化圆角&quot;&gt;&lt;a href=&quot;#初始化圆角&quot; class=&quot;headerlink&quot; title=&quot;初始化圆角&quot;&gt;&lt;/a&gt;初始化圆角&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;series : [&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    name:&amp;#39;蒸发量&amp;#39;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    type:&amp;#39;bar&amp;#39;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    data:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    name:&amp;#39;降水量&amp;#39;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    type:&amp;#39;bar&amp;#39;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3],&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    &amp;#x2F;&amp;#x2F;顶部数字展示pzr&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    barWidth: 14,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    itemStyle: &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        &amp;#x2F;&amp;#x2F;柱形图圆角，鼠标移上去效果&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        emphasis: &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                            barBorderRadius: [10, 10, 10, 10]&amp;#x2F;&amp;#x2F;barBorderRadius:11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        &amp;#125;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                         &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        normal: &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                            &amp;#x2F;&amp;#x2F;柱形图圆角，初始化效果&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                            barBorderRadius:[10, 10, 10, 10] &amp;#x2F;&amp;#x2F;barBorderRadius:11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    &amp;#125;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            ]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="echarts" scheme="http://yoursite.com/categories/echarts/"/>
+    
+    
+      <category term="echarts" scheme="http://yoursite.com/tags/echarts/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>eleui之input正则记录</title>
+    <link href="http://yoursite.com/2020/11/02/eleui%E4%B9%8Binput%E6%AD%A3%E5%88%99%E8%AE%B0%E5%BD%95/"/>
+    <id>http://yoursite.com/2020/11/02/eleui%E4%B9%8Binput%E6%AD%A3%E5%88%99%E8%AE%B0%E5%BD%95/</id>
+    <published>2020-11-02T08:33:43.000Z</published>
+    <updated>2021-01-08T10:45:35.077Z</updated>
     
     <summary type="html">
     
@@ -29,13 +292,143 @@
       
         
         
-          &lt;h2 id=&quot;Router&quot;&gt;&lt;a href=&quot;#Router&quot; class=&quot;headerlink&quot; title=&quot;Router&quot;&gt;&lt;/a&gt;Router&lt;/h2&gt;&lt;h3 id=&quot;解决vue路由跳转未匹配路径时出现空白页的问题&quot;&gt;&lt;a
+          &lt;h3 id=&quot;正整数&quot;&gt;&lt;a href=&quot;#正整数&quot; class=&quot;headerlink&quot; title=&quot;正整数&quot;&gt;&lt;/a&gt;正整数&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
         
       
     
     </summary>
     
     
+      <category term="reg" scheme="http://yoursite.com/categories/reg/"/>
+    
+    
+      <category term="reg" scheme="http://yoursite.com/tags/reg/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>&#39;element-ui&#39;</title>
+    <link href="http://yoursite.com/2020/11/02/element-ui/"/>
+    <id>http://yoursite.com/2020/11/02/element-ui/</id>
+    <published>2020-11-02T03:43:10.000Z</published>
+    <updated>2021-01-08T10:44:54.093Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;vue引入&quot;&gt;&lt;a href=&quot;#vue引入&quot; class=&quot;headerlink&quot; title=&quot;vue引入&quot;&gt;&lt;/a&gt;vue引入&lt;/h3&gt;&lt;h4 id=&quot;全局引入&quot;&gt;&lt;a href=&quot;#全局引入&quot; class=&quot;headerlink&quot; title=&quot;全局引入&quot;&gt;&lt;/a&gt;全局引入&lt;/h4&gt;&lt;p&gt;npm i element-ui -S&lt;/p&gt;
+&lt;p&gt;在 main.js 中写入以下内容：&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; Vue &lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;vue&#39;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; ElementUI &lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;element-ui&#39;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;element-ui/lib/theme-chalk/index.css&#39;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; App &lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;./App.vue&#39;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Vue.use(ElementUI);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Vue(&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  el: &lt;span class=&quot;string&quot;&gt;&#39;#app&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  render: &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;params&quot;&gt;h&lt;/span&gt; =&amp;gt;&lt;/span&gt; h(App)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;以上代码便完成了 Element 的引入。需要注意的是，样式文件需要单独引入。&lt;/p&gt;
+&lt;h4 id=&quot;按需引入&quot;&gt;&lt;a href=&quot;#按需引入&quot; class=&quot;headerlink&quot; title=&quot;按需引入&quot;&gt;&lt;/a&gt;按需引入&lt;/h4&gt;&lt;p&gt;借助 &lt;a href=&quot;https://github.com/QingWei-Li/babel-plugin-component&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;babel-plugin-component&lt;/a&gt;，我们可以只引入需要的组件，以达到减小项目体积的目的。&lt;/p&gt;
+&lt;p&gt;首先，安装 babel-plugin-component：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;npm install babel-plugin-component -D&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="es6" scheme="http://yoursite.com/categories/es6/"/>
+    
+    
+      <category term="es6" scheme="http://yoursite.com/tags/es6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>cookie/session/localstorage/sessionstorage</title>
+    <link href="http://yoursite.com/2020/10/30/cookie-session-localstorage-sessionstorage/"/>
+    <id>http://yoursite.com/2020/10/30/cookie-session-localstorage-sessionstorage/</id>
+    <published>2020-10-30T03:56:14.000Z</published>
+    <updated>2021-02-19T08:44:09.633Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;HTML4的本地存储 cookie&lt;/p&gt;
+&lt;p&gt;浏览器的缓存机制提供了可以将用户数据存储在客户端上的方式，可以利用cookie,session等跟服务端进行数据交互。&lt;/p&gt;
+&lt;p&gt;一、cookie和session&lt;/p&gt;
+&lt;p&gt;cookie和session都是用来跟踪浏览器用户身份的会话方式。&lt;/p&gt;
+&lt;p&gt;区别：&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="储存" scheme="http://yoursite.com/categories/%E5%82%A8%E5%AD%98/"/>
+    
+    
+      <category term="cookie" scheme="http://yoursite.com/tags/cookie/"/>
+    
+      <category term="session" scheme="http://yoursite.com/tags/session/"/>
+    
+      <category term="localstorage" scheme="http://yoursite.com/tags/localstorage/"/>
+    
+      <category term="sessionstorage" scheme="http://yoursite.com/tags/sessionstorage/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Xftp5之初见</title>
+    <link href="http://yoursite.com/2020/10/30/Xftp5%E4%B9%8B%E5%88%9D%E8%A7%81/"/>
+    <id>http://yoursite.com/2020/10/30/Xftp5%E4%B9%8B%E5%88%9D%E8%A7%81/</id>
+    <published>2020-10-30T02:37:26.000Z</published>
+    <updated>2021-01-21T07:09:27.933Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Xftp是一个功能强大的&lt;a href=&quot;https://baike.baidu.com/item/SFTP/1184182&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;SFTP&lt;/a&gt;、&lt;a href=&quot;https://baike.baidu.com/item/FTP/13839&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;FTP&lt;/a&gt; 文件传输软件。使用了 Xftp 以后，Windows 用户能安全地在 Linux 和 Windows之间传输文件。&lt;/p&gt;
+&lt;h3 id=&quot;Xftp5软件使用详解&quot;&gt;&lt;a href=&quot;#Xftp5软件使用详解&quot; class=&quot;headerlink&quot; title=&quot;Xftp5软件使用详解&quot;&gt;&lt;/a&gt;Xftp5软件使用详解&lt;/h3&gt;&lt;p&gt;一、首先运行Xftp5，然后导航栏上面有个小加号，点击进去。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://images2018.cnblogs.com/blog/1126989/201808/1126989-20180831103255255-1718023639.png&quot; alt=&quot;img&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="ftp" scheme="http://yoursite.com/categories/ftp/"/>
+    
+    
+      <category term="ftp" scheme="http://yoursite.com/tags/ftp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>xshell之初见</title>
+    <link href="http://yoursite.com/2020/10/30/xshell%E4%B9%8B%E5%88%9D%E8%A7%81/"/>
+    <id>http://yoursite.com/2020/10/30/xshell%E4%B9%8B%E5%88%9D%E8%A7%81/</id>
+    <published>2020-10-30T02:24:42.000Z</published>
+    <updated>2021-01-21T07:09:38.540Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;Xshell概述&quot;&gt;&lt;a href=&quot;#Xshell概述&quot; class=&quot;headerlink&quot; title=&quot;Xshell概述&quot;&gt;&lt;/a&gt;Xshell概述&lt;/h3&gt;&lt;p&gt;Xshell软件的介绍百度上太多，也凸显不出重点，大家不能很好地理解，这里简要概况一下。&lt;/p&gt;
+&lt;p&gt;Xshell是一个强大的安全终端模拟软件，可以在Windows界面下用来访问远端不同系统下的服务器，从而比较好的达到远程控制终端的目的，比如说用Xshell（地点在上海）连接远程Linux服务器系统（地点在北京），只需要在Xshell中输入Linux服务器系统的IP地址，这样就可以将远程（北京）的Linux服务器系统连接到Xshell（上海）了，实现了远程的模拟控制。直白点说，就是在上海的Xshell可以控制远在北京的Linux服务器系统，通过Linux命令实现需要完成的功能。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Xshell" scheme="http://yoursite.com/categories/Xshell/"/>
+    
+    
+      <category term="Xshell" scheme="http://yoursite.com/tags/Xshell/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vue之seekcy开发历程记录1</title>
+    <link href="http://yoursite.com/2020/10/29/vue%E4%B9%8Bseekcy%E5%BC%80%E5%8F%91%E5%8E%86%E7%A8%8B%E8%AE%B0%E5%BD%951/"/>
+    <id>http://yoursite.com/2020/10/29/vue%E4%B9%8Bseekcy%E5%BC%80%E5%8F%91%E5%8E%86%E7%A8%8B%E8%AE%B0%E5%BD%951/</id>
+    <published>2020-10-29T09:23:30.000Z</published>
+    <updated>2021-02-19T08:41:41.509Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Router&quot;&gt;&lt;a href=&quot;#Router&quot; class=&quot;headerlink&quot; title=&quot;Router&quot;&gt;&lt;/a&gt;Router&lt;/h2&gt;&lt;h3 id=&quot;解决vue路由跳转未匹配路径时出现空白页的问题&quot;&gt;&lt;a href=&quot;#解决vue路由跳转未匹配路径时出现空白页的问题&quot; class=&quot;headerlink&quot; title=&quot;解决vue路由跳转未匹配路径时出现空白页的问题&quot;&gt;&lt;/a&gt;解决vue路由跳转未匹配路径时出现空白页的问题&lt;/h3&gt;&lt;p&gt;利用该特性，可以使用下面的代码端解决未匹配路由的问题：&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;router.beforeEach(&lt;span class=&quot;function&quot;&gt;(&lt;span class=&quot;params&quot;&gt;to, &lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt;, next&lt;/span&gt;) =&amp;gt;&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (to.matched.length ===&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;) &amp;#123;  &lt;span class=&quot;comment&quot;&gt;//如果未匹配到路由&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt;.path? next(&amp;#123; &lt;span class=&quot;attr&quot;&gt;path&lt;/span&gt;:&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt;.path&amp;#125;) : next(&lt;span class=&quot;string&quot;&gt;&#39;/&#39;&lt;/span&gt;);   &lt;span class=&quot;comment&quot;&gt;//如果上级也未匹配到路由则跳转主页面，如果上级能匹配到则转上级路由&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125; &lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    next();    &lt;span class=&quot;comment&quot;&gt;//如果匹配到正确跳转&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="vue" scheme="http://yoursite.com/categories/vue/"/>
+    
+    
+      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
     
   </entry>
   
@@ -71,7 +464,7 @@
     <link href="http://yoursite.com/2020/10/28/flex/"/>
     <id>http://yoursite.com/2020/10/28/flex/</id>
     <published>2020-10-28T00:57:15.059Z</published>
-    <updated>2020-09-17T06:46:24.009Z</updated>
+    <updated>2020-11-04T06:03:16.735Z</updated>
     
     <summary type="html">
     
@@ -139,388 +532,6 @@
       <category term="webview" scheme="http://yoursite.com/tags/webview/"/>
     
       <category term="跳转" scheme="http://yoursite.com/tags/%E8%B7%B3%E8%BD%AC/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>小程序开发之下载保存图片</title>
-    <link href="http://yoursite.com/2020/10/10/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E4%B8%8B%E8%BD%BD%E4%BF%9D%E5%AD%98%E5%9B%BE%E7%89%87/"/>
-    <id>http://yoursite.com/2020/10/10/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E4%B8%8B%E8%BD%BD%E4%BF%9D%E5%AD%98%E5%9B%BE%E7%89%87/</id>
-    <published>2020-10-10T07:15:19.000Z</published>
-    <updated>2020-10-15T10:06:56.412Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;下载pdf&quot;&gt;&lt;a href=&quot;#下载pdf&quot; class=&quot;headerlink&quot; title=&quot;下载pdf&quot;&gt;&lt;/a&gt;下载pdf&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;downloadFile: function(e) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    let url &amp;#x3D; e.currentTarget.dataset.url;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    wx.downloadFile(&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        url: url,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        success: function(res) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            var filePath &amp;#x3D; res.tempFilePath;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            wx.openDocument(&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                filePath: filePath,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                fileType:&amp;quot;pdf&amp;quot;,&amp;#x2F;&amp;#x2F;必填&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                success: function(res) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    console.log(&amp;#39;打开文档成功&amp;#39;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                fail: function(res) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    console.log(res);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                complete: function(res) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    console.log(res);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        fail: function(res) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            console.log(&amp;#39;文件下载失败&amp;#39;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        complete: function(res) &amp;#123;&amp;#125;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="soft" scheme="http://yoursite.com/categories/soft/"/>
-    
-    
-      <category term="小程序" scheme="http://yoursite.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>js之loadshJs</title>
-    <link href="http://yoursite.com/2020/10/09/js%E4%B9%8BloadshJs/"/>
-    <id>http://yoursite.com/2020/10/09/js%E4%B9%8BloadshJs/</id>
-    <published>2020-10-09T09:54:03.000Z</published>
-    <updated>2020-10-09T10:17:49.048Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h3&gt;&lt;p&gt;Lodash是一个著名的javascript原生库，不需要引入其他第三方依赖。是一个意在提高开发者效率,提高JS原生方法性能的JS库。简单的说就是，很多方法lodash已经帮你写好了，直接调用就行，不用自己费尽心思去写了，而且可以统一方法的一致性。Lodash使用了一个简单的 _ 符号，就像Jquery的 $ 一样，十分简洁。&lt;br&gt; 类似的还有Underscore.js和Lazy.js&lt;/p&gt;
-&lt;h4 id=&quot;支持&quot;&gt;&lt;a href=&quot;#支持&quot; class=&quot;headerlink&quot; title=&quot;支持&quot;&gt;&lt;/a&gt;支持&lt;/h4&gt;&lt;p&gt;chrome 43往上&lt;br&gt; Firefox 38往上&lt;br&gt; IE 6-11&lt;br&gt; MS Edge&lt;br&gt; Safari 5往上&lt;br&gt; （几乎涵盖现在市面上可以见到的大部分浏览器）&lt;/p&gt;
-&lt;h4 id=&quot;如何安装&quot;&gt;&lt;a href=&quot;#如何安装&quot; class=&quot;headerlink&quot; title=&quot;如何安装&quot;&gt;&lt;/a&gt;如何安装&lt;/h4&gt;
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>小程序开发之阿拉丁统计平台</title>
-    <link href="http://yoursite.com/2020/10/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E9%98%BF%E6%8B%89%E4%B8%81%E7%BB%9F%E8%AE%A1%E5%B9%B3%E5%8F%B0/"/>
-    <id>http://yoursite.com/2020/10/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E9%98%BF%E6%8B%89%E4%B8%81%E7%BB%9F%E8%AE%A1%E5%B9%B3%E5%8F%B0/</id>
-    <published>2020-10-09T02:58:52.000Z</published>
-    <updated>2020-10-16T06:05:56.253Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;关键步骤：&quot;&gt;&lt;a href=&quot;#关键步骤：&quot; class=&quot;headerlink&quot; title=&quot;关键步骤：&quot;&gt;&lt;/a&gt;&lt;strong&gt;关键步骤：&lt;/strong&gt;&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;注册/登录统计平台&lt;/li&gt;
-&lt;li&gt;创建小程序&lt;/li&gt;
-&lt;li&gt;接入SDK&lt;/li&gt;
-&lt;li&gt;检测SDK&lt;/li&gt;
-&lt;li&gt;集成成功&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-      <category term="soft" scheme="http://yoursite.com/categories/soft/"/>
-    
-    
-      <category term="小程序" scheme="http://yoursite.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
-    
-      <category term="阿拉丁" scheme="http://yoursite.com/tags/%E9%98%BF%E6%8B%89%E4%B8%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>js数组方法之sort</title>
-    <link href="http://yoursite.com/2020/09/30/js%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95%E4%B9%8Bsort/"/>
-    <id>http://yoursite.com/2020/09/30/js%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95%E4%B9%8Bsort/</id>
-    <published>2020-09-30T03:16:57.000Z</published>
-    <updated>2020-10-16T03:22:47.692Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;总之：return -1 和return b-a是降序&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;总之：return 1 和return a-b是升序&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code&gt;sort()&lt;/code&gt;&lt;/strong&gt; 方法用于对数组的元素进行排序,并返回数组。默认排序顺序是根据字符串&lt;strong&gt;&lt;code&gt;Unicode&lt;/code&gt;&lt;/strong&gt;码点。&lt;br&gt;语法：arrayObject.sort(sortby)；参数sortby可选。规定排序顺序。必须是函数。&lt;br&gt;注：如果调用该方法时没有使用参数，将按字母顺序对数组中的元素进行排序，说得更精确点，是按照字符编码的顺序进行排序。要实现这一点，首先应把数组的元素都转换成字符串（如有必要），以便进行比较。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="js" scheme="http://yoursite.com/categories/js/"/>
-    
-    
-      <category term="js" scheme="http://yoursite.com/tags/js/"/>
-    
-      <category term="数组" scheme="http://yoursite.com/tags/%E6%95%B0%E7%BB%84/"/>
-    
-      <category term="sort" scheme="http://yoursite.com/tags/sort/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>js之防抖和节流</title>
-    <link href="http://yoursite.com/2020/09/29/js%E4%B9%8B%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/"/>
-    <id>http://yoursite.com/2020/09/29/js%E4%B9%8B%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/</id>
-    <published>2020-09-29T07:55:43.000Z</published>
-    <updated>2020-09-29T08:00:55.898Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;防抖&quot;&gt;&lt;a href=&quot;#防抖&quot; class=&quot;headerlink&quot; title=&quot;防抖&quot;&gt;&lt;/a&gt;防抖&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;在事件被触发n秒后再执行回调，如果在这n秒内又被触发，则重新计时。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-&lt;p&gt;举个例子：&lt;br&gt; 当鼠标移动到一个div上时，div的内容一直在更新，如果不用防抖处理，效果如下图&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;var mydiv &amp;#x3D; document.getElementById(&amp;#39;mydiv&amp;#39;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       let count &amp;#x3D; 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       function myEvent()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;           mydiv.innerText &amp;#x3D; count++;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       mydiv.addEventListener(&amp;#39;mouseover&amp;#39;, function(event)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;           myEvent();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>js之快速理解i闭包</title>
-    <link href="http://yoursite.com/2020/09/29/js%E4%B9%8B%E5%BF%AB%E9%80%9F%E7%90%86%E8%A7%A3i%E9%97%AD%E5%8C%85/"/>
-    <id>http://yoursite.com/2020/09/29/js%E4%B9%8B%E5%BF%AB%E9%80%9F%E7%90%86%E8%A7%A3i%E9%97%AD%E5%8C%85/</id>
-    <published>2020-09-29T07:34:52.000Z</published>
-    <updated>2020-09-29T07:57:30.760Z</updated>
-    
-    <summary type="html">
-    
-      &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;#x2F;&amp;#x2F; 累加器&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;function counter() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#x2F;&amp;#x2F; 秒数&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  let second &amp;#x3D; 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  function doCounter() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#x2F;&amp;#x2F; 到达10秒后停止&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    if (second &amp;#x3D;&amp;#x3D;&amp;#x3D; 10) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      clearInterval(recordSecond);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      console.log(&amp;#39;计时结束!&amp;#39;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      return;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    second +&amp;#x3D; 1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    console.log(&amp;#96;$&amp;#123;second&amp;#125;秒&amp;#96;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  return doCounter;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#x2F;&amp;#x2F; 得到累加器&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;const doCounterFn &amp;#x3D; counter();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;const recordSecond &amp;#x3D; setInterval(function () &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#x2F;&amp;#x2F; 调用累加器&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  doCounterFn();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;, 1000);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="js" scheme="http://yoursite.com/categories/js/"/>
-    
-    
-      <category term="js" scheme="http://yoursite.com/tags/js/"/>
-    
-      <category term="闭包" scheme="http://yoursite.com/tags/%E9%97%AD%E5%8C%85/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>es6之arrayFrom</title>
-    <link href="http://yoursite.com/2020/09/28/es6%E4%B9%8BarrayFrom/"/>
-    <id>http://yoursite.com/2020/09/28/es6%E4%B9%8BarrayFrom/</id>
-    <published>2020-09-28T02:43:20.000Z</published>
-    <updated>2020-10-10T08:52:39.872Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Array.from()方法就是将一个类数组对象或者可遍历对象转换成一个真正的数组。&lt;/p&gt;
-&lt;p&gt;　　那么什么是类数组对象呢？所谓类数组对象，最基本的要求就是具有length属性的对象。&lt;/p&gt;
-&lt;p&gt;　　1、将类数组对象转换为真正数组：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;let arrayLike &amp;#x3D; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    0: &amp;#39;tom&amp;#39;, &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    1: &amp;#39;65&amp;#39;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    2: &amp;#39;男&amp;#39;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    3: [&amp;#39;jane&amp;#39;,&amp;#39;john&amp;#39;,&amp;#39;Mary&amp;#39;],&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#39;length&amp;#39;: 4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;let arr &amp;#x3D; Array.from(arrayLike)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(arr) &amp;#x2F;&amp;#x2F; [&amp;#39;tom&amp;#39;,&amp;#39;65&amp;#39;,&amp;#39;男&amp;#39;,[&amp;#39;jane&amp;#39;,&amp;#39;john&amp;#39;,&amp;#39;Mary&amp;#39;]]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-&lt;p&gt;　　那么，如果将上面代码中length属性去掉呢？实践证明，答案会是一个长度为0的空数组。&lt;/p&gt;
-&lt;p&gt;　　这里将代码再改一下，就是具有length属性，但是对象的属性名不再是数字类型的，而是其他字符串型的，代码如下：&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="es6" scheme="http://yoursite.com/categories/es6/"/>
-    
-    
-      <category term="es6" scheme="http://yoursite.com/tags/es6/"/>
-    
-      <category term="arrayFrom" scheme="http://yoursite.com/tags/arrayFrom/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>this之常见的四种用法</title>
-    <link href="http://yoursite.com/2020/09/27/this%E4%B9%8B%E5%B8%B8%E8%A7%81%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%94%A8%E6%B3%95/"/>
-    <id>http://yoursite.com/2020/09/27/this%E4%B9%8B%E5%B8%B8%E8%A7%81%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%94%A8%E6%B3%95/</id>
-    <published>2020-09-27T08:04:03.000Z</published>
-    <updated>2020-09-27T10:10:49.667Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;span style=&quot;color:red;&quot;&gt;箭头函数的this指向window！！！！！！！！&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;1.在一般函数方法中使用 this 指代全局对象&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;function test()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;　　　　this.x &amp;#x3D; 1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;　　　　alert(this.x);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;test(); &amp;#x2F;&amp;#x2F; 1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="js" scheme="http://yoursite.com/categories/js/"/>
-    
-    
-      <category term="js" scheme="http://yoursite.com/tags/js/"/>
-    
-      <category term="this" scheme="http://yoursite.com/tags/this/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>axios之get和post</title>
-    <link href="http://yoursite.com/2020/09/27/axios%E4%B9%8Bget%E5%92%8Cpost/"/>
-    <id>http://yoursite.com/2020/09/27/axios%E4%B9%8Bget%E5%92%8Cpost/</id>
-    <published>2020-09-27T03:04:09.000Z</published>
-    <updated>2020-09-28T02:48:41.763Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;1.get传参方式是通过地址栏URL传递，是可以直接看到get传递的参数，post传参方式参数URL不可见，get把请求的数据在URL后通过？连接，通过&amp;amp;进行参数分割。psot将参数存放在HTTP的包体内&lt;/p&gt;
-&lt;p&gt;2.get传递数据是通过URL进行传递，对传递的数据长度是受到URL大小的限制，URL最大长度是2048个字符。post没有长度限制&lt;/p&gt;
-&lt;p&gt;3.get后退不会有影响，post后退会重新进行提交&lt;/p&gt;
-&lt;p&gt;4.get请求可以被缓存，post不可以被缓存&lt;/p&gt;
-&lt;p&gt;5.get请求只URL编码，post支持多种编码方式&lt;/p&gt;
-&lt;p&gt;6.get请求的记录会留在历史记录中，post请求不会留在历史记录&lt;/p&gt;
-&lt;p&gt;7.get只支持ASCII字符，post没有字符类型限制&lt;/p&gt;
-&lt;h3 id=&quot;什么是GET和POST请求&quot;&gt;&lt;a href=&quot;#什么是GET和POST请求&quot; class=&quot;headerlink&quot; title=&quot;什么是GET和POST请求&quot;&gt;&lt;/a&gt;什么是GET和POST请求&lt;/h3&gt;&lt;p&gt;GET：向指定路径资源发送请求，通常用于获取数据&lt;/p&gt;
-&lt;p&gt;POST：向指定路径资源提交数据进行处理请求，通常用于提交表单或者上传文件&lt;/p&gt;
-&lt;h3 id=&quot;GET和POST请求的区别&quot;&gt;&lt;a href=&quot;#GET和POST请求的区别&quot; class=&quot;headerlink&quot; title=&quot;GET和POST请求的区别&quot;&gt;&lt;/a&gt;GET和POST请求的区别&lt;/h3&gt;&lt;p&gt;1，GET一般是从服务器上获取数据，POST是向服务器提交数据。&lt;/p&gt;
-&lt;p&gt;2，GET通过URL提交数据，数据在URL中可以看到，POST则是在HEADER内提交。&lt;/p&gt;
-&lt;p&gt;3，GET提交的数据不能大于2KB，而POST不受限制。&lt;/p&gt;
-&lt;p&gt;4，GET数据容易泄露，POST较为安全&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="axios" scheme="http://yoursite.com/categories/axios/"/>
-    
-      <category term="vue" scheme="http://yoursite.com/categories/axios/vue/"/>
-    
-    
-      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
-    
-      <category term="axios" scheme="http://yoursite.com/tags/axios/"/>
-    
-      <category term="get" scheme="http://yoursite.com/tags/get/"/>
-    
-      <category term="post" scheme="http://yoursite.com/tags/post/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>js之对象的方法合集</title>
-    <link href="http://yoursite.com/2020/09/25/js%E4%B9%8B%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E6%B3%95%E5%90%88%E9%9B%86/"/>
-    <id>http://yoursite.com/2020/09/25/js%E4%B9%8B%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E6%B3%95%E5%90%88%E9%9B%86/</id>
-    <published>2020-09-25T09:40:57.000Z</published>
-    <updated>2020-09-28T08:47:47.758Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;Object构造方法&quot;&gt;&lt;a href=&quot;#Object构造方法&quot; class=&quot;headerlink&quot; title=&quot;Object构造方法&quot;&gt;&lt;/a&gt;&lt;code&gt;Object&lt;/code&gt;构造方法&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;code&gt;Object.assign()&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;将所有可枚举的自身属性的值从一个或多个源对象复制到目标对象。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;code&gt;Object.create()&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;用指定的原型对象和属性创建一个新对象。&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
-    
-    </summary>
-    
-    
-      <category term="js" scheme="http://yoursite.com/categories/js/"/>
-    
-    
-      <category term="js" scheme="http://yoursite.com/tags/js/"/>
-    
-      <category term="对象的方法" scheme="http://yoursite.com/tags/%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>react之井字棋</title>
-    <link href="http://yoursite.com/2020/09/25/react%E4%B9%8B%E4%BA%95%E5%AD%97%E6%A3%8B/"/>
-    <id>http://yoursite.com/2020/09/25/react%E4%B9%8B%E4%BA%95%E5%AD%97%E6%A3%8B/</id>
-    <published>2020-09-25T05:18:36.000Z</published>
-    <updated>2020-09-27T10:19:37.178Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;见下文&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="react" scheme="http://yoursite.com/categories/react/"/>
-    
-    
-      <category term="react" scheme="http://yoursite.com/tags/react/"/>
-    
-      <category term="井字棋" scheme="http://yoursite.com/tags/%E4%BA%95%E5%AD%97%E6%A3%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>js之构造函数原型实例</title>
-    <link href="http://yoursite.com/2020/09/25/js%E4%B9%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%8E%9F%E5%9E%8B%E5%AE%9E%E4%BE%8B/"/>
-    <id>http://yoursite.com/2020/09/25/js%E4%B9%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%8E%9F%E5%9E%8B%E5%AE%9E%E4%BE%8B/</id>
-    <published>2020-09-25T02:05:09.000Z</published>
-    <updated>2020-09-27T10:14:01.734Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;首先用构造函数（一会解释什么叫做构造函数）的方法创建一个对象&lt;/p&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; M=&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.name=&lt;span class=&quot;string&quot;&gt;&#39;123&#39;&lt;/span&gt;&amp;#125;   &lt;span class=&quot;comment&quot;&gt;//ƒ ()&amp;#123;this.name=&#39;123&#39;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; a1=&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; M()  &lt;span class=&quot;comment&quot;&gt;//M &amp;#123;name: &quot;123&quot;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(a1.name)  &lt;span class=&quot;comment&quot;&gt;//123&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;strong&gt;构造函数：&lt;/strong&gt;现在M就是构造函数，因为他被new过了！–在js中，只要是被new过的函数都被成为构造函数。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;实例对象：&lt;/strong&gt;现在a1就叫做实例，因为他是被new出来的！–在js中，只要是被new出来的对象都叫做实例对象。也叫实例。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;原型对象：&lt;/strong&gt;现在M.prototype就是原型对象，构造函数函数被创建出来的时候，天生就带一个prototype属性，而这个属性里面的东西就叫原型对象。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="js" scheme="http://yoursite.com/categories/js/"/>
-    
-    
-      <category term="js" scheme="http://yoursite.com/tags/js/"/>
-    
-      <category term="构造函数" scheme="http://yoursite.com/tags/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/"/>
-    
-      <category term="原型对象" scheme="http://yoursite.com/tags/%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1/"/>
-    
-      <category term="实例对象" scheme="http://yoursite.com/tags/%E5%AE%9E%E4%BE%8B%E5%AF%B9%E8%B1%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>webpack4最全解析</title>
-    <link href="http://yoursite.com/2020/09/23/webpack4%E6%9C%80%E5%85%A8%E8%A7%A3%E6%9E%90/"/>
-    <id>http://yoursite.com/2020/09/23/webpack4%E6%9C%80%E5%85%A8%E8%A7%A3%E6%9E%90/</id>
-    <published>2020-09-23T11:21:53.000Z</published>
-    <updated>2020-09-27T10:13:33.050Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;命令合集&quot;&gt;&lt;a href=&quot;#命令合集&quot; class=&quot;headerlink&quot; title=&quot;命令合集&quot;&gt;&lt;/a&gt;命令合集&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;webpack-cli可以让我们在命令行里输入webpack相关命令&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;本地安装webpack webpack-cli&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;npm webpack webpack-cli -D &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;生成默认的packpage.json&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;npm init -y&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;查看旧的版本号&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;npm info webpack&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;全局安装翻译某个js&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;webpack index.js&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;本地安装翻译某个js&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;npx webpack index.js&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;查看本地安装的webpack&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;npx webpack -v &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;更改配置文件(由默认的webpack.config.js改成webpackconfig.js)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;npx webpack --config webpackconfig.js&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="webpack4" scheme="http://yoursite.com/categories/webpack4/"/>
-    
-    
-      <category term="webpack4" scheme="http://yoursite.com/tags/webpack4/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>js之Math</title>
-    <link href="http://yoursite.com/2020/09/23/js%E4%B9%8BMath/"/>
-    <id>http://yoursite.com/2020/09/23/js%E4%B9%8BMath/</id>
-    <published>2020-09-23T06:33:58.000Z</published>
-    <updated>2020-09-27T10:13:01.060Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;Math-对象方法&quot;&gt;&lt;a href=&quot;#Math-对象方法&quot; class=&quot;headerlink&quot; title=&quot;Math 对象方法&quot;&gt;&lt;/a&gt;Math 对象方法&lt;/h2&gt;
-    
-    </summary>
-    
-    
-      <category term="Math" scheme="http://yoursite.com/categories/Math/"/>
-    
-    
-      <category term="Math" scheme="http://yoursite.com/tags/Math/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vue之惯性滚动动效</title>
-    <link href="http://yoursite.com/2020/09/23/vue%E4%B9%8B%E6%83%AF%E6%80%A7%E6%BB%9A%E5%8A%A8%E5%8A%A8%E6%95%88/"/>
-    <id>http://yoursite.com/2020/09/23/vue%E4%B9%8B%E6%83%AF%E6%80%A7%E6%BB%9A%E5%8A%A8%E5%8A%A8%E6%95%88/</id>
-    <published>2020-09-23T05:31:19.000Z</published>
-    <updated>2020-09-27T10:19:02.545Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;见下文&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="vue" scheme="http://yoursite.com/categories/vue/"/>
-    
-    
-      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
-    
-      <category term="滚动" scheme="http://yoursite.com/tags/%E6%BB%9A%E5%8A%A8/"/>
     
   </entry>
   

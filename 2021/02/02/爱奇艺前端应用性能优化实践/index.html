@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端优化方案," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="DaliBlogs" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="问题梳理 参考链接 https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;H88469QNdE-IChc8u-pBaQ 我们先通过提问题的方式，从资源文件加载、页面渲染性能、接口响应速度等三个方面分别列出了一些可能存在性能瓶颈的环节。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="应用性能优化实践">
+<meta property="og:url" content="http://yoursite.com/2021/02/02/%E7%88%B1%E5%A5%87%E8%89%BA%E5%89%8D%E7%AB%AF%E5%BA%94%E7%94%A8%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%AE%9E%E8%B7%B5/index.html">
+<meta property="og:site_name" content="DaliBlogs">
+<meta property="og:description" content="问题梳理 参考链接 https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;H88469QNdE-IChc8u-pBaQ 我们先通过提问题的方式，从资源文件加载、页面渲染性能、接口响应速度等三个方面分别列出了一些可能存在性能瓶颈的环节。">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/unymlvueOvtoF6a4RQzicPDXuV98FRlHo3ib1rbSPHaKNjVADB3qUg8kAJwOfl1HiaiaMWKAcwCtnPfV9pYNrf5AMg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/unymlvueOvtoF6a4RQzicPDXuV98FRlHobdvGb2ITB0DEtaNibKictHjI2a7ByK4LGYhTHawIVkWoqZmFzQEI0Xlw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/unymlvueOvtoF6a4RQzicPDXuV98FRlHodKRiaWXzP1szQX4owLNcjM1yvQbL4zSPNicBhUs4ibhdZckQKFib0lt8yw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/unymlvueOvtoF6a4RQzicPDXuV98FRlHoXlpCKz9mRuRtQJXYaPp0KXqkJe384kib3b9tIn7NHjtBibZTV9TtPk3Q/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/unymlvueOvtoF6a4RQzicPDXuV98FRlHoEKXz9y6ZWTGYjMZLr78Obd4TcoITge2NfI7cAoXSU3JiaX5vvqHeZsg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/unymlvueOvtoF6a4RQzicPDXuV98FRlHo3A53CavcXYjuYuDEav9zgqic1YE8uzC7P0Oz0HBShiacw8BOa5jIiaKqw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/unymlvueOvtoF6a4RQzicPDXuV98FRlHoEd1LaTYJ3fP2Giabojt3B8Aop3QiaoOpD74RQ7XWfuvMYqfoVaPicibCCw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="article:published_time" content="2021-02-02T02:12:50.000Z">
+<meta property="article:modified_time" content="2021-02-19T08:02:06.227Z">
+<meta property="article:author" content="Dali">
+<meta property="article:tag" content="前端优化方案">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mmbiz.qpic.cn/mmbiz_png/unymlvueOvtoF6a4RQzicPDXuV98FRlHo3ib1rbSPHaKNjVADB3qUg8kAJwOfl1HiaiaMWKAcwCtnPfV9pYNrf5AMg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/02/02/爱奇艺前端应用性能优化实践/"/>
+
+
+
+
+
+  <title>应用性能优化实践 | DaliBlogs</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DaliBlogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/02/%E7%88%B1%E5%A5%87%E8%89%BA%E5%89%8D%E7%AB%AF%E5%BA%94%E7%94%A8%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%AE%9E%E8%B7%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">应用性能优化实践</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-02T10:12:50+08:00">
+                2021-02-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/" itemprop="url" rel="index">
+                    <span itemprop="name">前端优化方案</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>问题梳理</strong></p>
+<p>参考链接</p>
+<p><a href="https://mp.weixin.qq.com/s/H88469QNdE-IChc8u-pBaQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/H88469QNdE-IChc8u-pBaQ</a></p>
+<p>我们先通过提问题的方式，从<strong>资源文件加载、页面渲染性能、接口响应速度</strong>等三个方面分别列出了一些可能存在性能瓶颈的环节。</p>
+<a id="more"></a>
+
+<p><strong>资源加载问题</strong></p>
+<p>在一个复杂的 Web 应用中，通常会依赖很多 JS/CSS/Images 等资源文件。如何在最短时间内获取页面所需的最小资源，我们需要考虑以下几个问题：</p>
+<ul>
+<li><p>源码中有无<strong>冗余的模块</strong>？是否进行了<strong>压缩、合并</strong>等操作？</p>
+</li>
+<li><p>服务器响应及网络传输速度是否正常？有没有最大化利用浏览器的并发请求？</p>
+</li>
+<li><p>资源文件的缓存策略是否合理？是否每次发布上线都需要重新请求所有文件？</p>
+</li>
+<li><p>首次页面渲染是否下载了不必要的资源文件？每次渲染所需的资源文件能不能提前加载？</p>
+</li>
+</ul>
+<p><strong>页面渲染问题</strong></p>
+<p>由于 JS 是在单线程中执行，而 Vue.js 框架的大部分渲染任务都在浏览器端完成。为了解决白屏、卡顿等问题，我们需要考虑以下几个问题：</p>
+<ul>
+<li><p>是否可以通过骨架屏等方式提前渲染核心布局？</p>
+</li>
+<li><p>主线程是否存在非常耗时的长任务？是否可以进行任务分片、延迟渲染？</p>
+</li>
+<li><p>是否存在时间复杂度过高的算法？是否存在大量重复计算？</p>
+</li>
+<li><p>是否重复初始化相同的对象？是否存在内存泄露？</p>
+</li>
+</ul>
+<p><strong>接口速度问题</strong></p>
+<p>在列表查询等依赖后台数据展示的页面，接口的响应速度也至关重要。由于我们通过 Node.js 搭建的 BFF 来整合多个服务提供方的接口，因此可能存在以下几个问题：</p>
+<ul>
+<li><p>后端服务提供的接口速度是否响应慢？网关、数据库、索引等服务是否正常？</p>
+</li>
+<li><p>针对实时性要求较低的数据，是否可以利用缓存服务？</p>
+</li>
+<li><p>同时调用多方接口时，是否最大化进行并发请求？非必要接口是否可以单独发起请求？</p>
+</li>
+<li><p>与浏览器脚本一样，是否存在复杂算法、内存泄露等问题代码？</p>
+</li>
+</ul>
+<p><strong>解决方案</strong></p>
+<p>带着以上的这些问题，我们开始着手对现有的应用进行一次详细的检查，逐步定位影响性能的关键问题并一一进行解决。</p>
+<p><strong>资源加载优化</strong></p>
+<p>Webpack 构建问题分析</p>
+<p>由于我们的项目通过 Webpack 4.x 构建，因此为了分析资源文件的个数及大小，采用了 Webpack 插件webpack-bundle-analyzer对产出的静态资源文件进行了统计，如下图所示（截取了几个体积较大的文件）。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/unymlvueOvtoF6a4RQzicPDXuV98FRlHo3ib1rbSPHaKNjVADB3qUg8kAJwOfl1HiaiaMWKAcwCtnPfV9pYNrf5AMg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>根据统计我们发现了以下几个主要问题：</p>
+<ul>
+<li><p>缓存问题。每次改动任意代码，所有生成的 JS/CSS 等文件的 Hash 值都发生了变化，这意味着每次发布上线，浏览器都需要重新请求全部资源。</p>
+</li>
+<li><p>文件大小。通过 node_modules 生成的 chunk-vendor 原始大小超过 1.5 M。其中，体积最大的是 ElementUI，超过 650K，其次是 moment.js，体积超过 250K。剩余部分则由 Vue.js、Lodash 等基础类库组成。</p>
+</li>
+<li><p>重复打包。部分业务模块对应的 chunk 文件原始大小在 500K 左右。其原因是使用到了 d3，echarts 等依赖的模块，直接将它们打包到了对应模块中。而这些第三方库，占整个文件大小的 70% 左右。</p>
+</li>
+<li><p>资源个数。由 Webpack 自动生成了多个模块间的公共 chunk，大小在几 K 到一百多 K 不等。例如有三个模块 a，b，c，则自动生成的 chunk 包含多种不同的组合 a<del>b.js，a</del>c.js，a<del>b</del>c.js，请求 a 模块的时候也会同步加载这几个文件。随着模块数量增加，组合也更复杂，无形中也增加了请求的数量。</p>
+</li>
+</ul>
+<p>浏览器加载速度分析</p>
+<p>通过浏览器 Network 工具，我们发现服务器缓存、网络传输等对加载速度影响很小，导致慢的几个主要问题如下：</p>
+<ul>
+<li><p>并发数量。通过构建得到的静态资源文件都部署到一个静态域名下面，导致需要排队下载文件。</p>
+</li>
+<li><p>顺序问题。一些非首次渲染所需要的 JS 文件（如播放器 SDK 、流程图 SDK 等）在页面打开的时候就进行了阻塞加载。</p>
+</li>
+</ul>
+<p>资源构建及部署优化方案</p>
+<p>针对以上问题，我们对 Webpack 配置方式做了以下几点改进。</p>
+<ul>
+<li><p>单独部署基础库至 CDN。生产环境将 Vue.js + VueRouter + Vuex + VueCompositionAPI + ElementUI + Lodash 等基础类库通过 webpack.DllPlugin 提前构建为 library.dll.js 并单独部署，同时整个站点中通过 prefetch 提前加载。</p>
+</li>
+<li><p>单独部署样式主题至 CDN。项目中用到的 ElementUI 组件样式及团队内部开发的 MaterialTheme 主题样式放弃从 NPM 引入 Sass 源码。而是提前构建好 9 种不同颜色的主题，提前部署至 CDN，并通过 prefetch 提前加载。项目中的自定义样式则通过 Sass Mixin 生成不同主题的规则。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;link</span><br><span class="line">  href&#x3D;&quot;&#x2F;&#x2F;static.iqiyi.com&#x2F;lego&#x2F;theme&#x2F;element-ui&#x2F;1.0.0&#x2F;css&#x2F;cyan.css&quot;</span><br><span class="line">  rel&#x3D;&quot;prefetch&quot;</span><br><span class="line">&#x2F;&gt;</span><br><span class="line">&lt;link</span><br><span class="line">  href&#x3D;&quot;&#x2F;&#x2F;static.iqiyi.com&#x2F;lego&#x2F;theme&#x2F;element-material&#x2F;2.0.0&#x2F;css&#x2F;cyan.css&quot;</span><br><span class="line">  rel&#x3D;&quot;prefetch&quot;</span><br><span class="line">&#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p>将业务代码部署至与基础库不同的域名。提升浏览器并发请求的数量。</p>
+</li>
+<li><p>将播放器 SDK、流程图 SDK 等非首次渲染必须的 JS 文件通过 defer 等方式进行异步加载，或改为组件初始化时动态请求。</p>
+</li>
+<li><p>删除 moment.js 等非必须的第三方类库。通过查看项目源码，发现仅几个地方用到了 moment.js 的格式化功能，因此我们选择通过自己实现一个仅几十行的工具函数来替换。此外根据项目实际情况，也可以考虑在项目中引入体积更小的类库，例如 Day.js 等。</p>
+</li>
+<li><p>优化 Webpack 的 splitChunks 策略。将 d3，echarts 等依赖抽取为单独的 chunk。此外，考虑到不同模块之间自动生成的公共 chunk（类似 a<del>b</del>c.js）文件不大，反而增加了请求数量，因此禁用了该项配置。同时，显示地将各模块间公共的部分（项目中统一放在 src/common 目录下）打包至 chunk-common 文件中。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; webpack config</span><br><span class="line">&#123;</span><br><span class="line">  optimization: &#123;</span><br><span class="line">    splitChunks: &#123;</span><br><span class="line">      cacheGroups: &#123;</span><br><span class="line">        &#x2F;&#x2F; 禁用默认拆分的 chunk</span><br><span class="line">        default: false,</span><br><span class="line">        &#x2F;&#x2F; 显示抽取项目公共 chunk</span><br><span class="line">        common: &#123;</span><br><span class="line">          name: &#39;chunk-common&#39;,</span><br><span class="line">          test: &#x2F;src[\\&#x2F;]common&#x2F;,</span><br><span class="line">          chunks: &#39;all&#39;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#x2F;&#x2F; 抽取 d3&#x2F;echarts 等第三方类库</span><br><span class="line">        d3: &#123;</span><br><span class="line">          name: &#39;chunk-d3&#39;,</span><br><span class="line">          test: &#x2F;[\\&#x2F;]node_modules[\\&#x2F;](d3|dagre|graphlib)&#x2F;,</span><br><span class="line">          priority: 100,</span><br><span class="line">          chunks: &#39;all&#39;</span><br><span class="line">        &#125;,</span><br><span class="line">        echarts: &#123;</span><br><span class="line">          name: &#39;chunk-echarts&#39;,</span><br><span class="line">          test: &#x2F;[\\&#x2F;]node_modules[\\&#x2F;](echarts|zrender)&#x2F;,</span><br><span class="line">          priority: 110,</span><br><span class="line">          chunks: &#39;all&#39;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>优化构建后文件名中的Hash。在生产环境改用 contenthash 来命名文件，仅当包含的文件内容发生改变时才会重新生成新的文件名，最大化利用缓存。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; webpack config</span><br><span class="line">&#123;</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: &#39;js&#x2F;[name].[contenthash].js&#39;,</span><br><span class="line">    chunkFilename: &#39;js&#x2F;[name].[contenthash].js&#39;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>经过以上优化，最终构建的 chunk-vendor 大小在 500K 左右，体积大约减小 2/3；新抽取的项目公共文件 chunk-common 大小 300K 左右；各个模块打包的文件大小则在 200K 左右， 体积大约减小 3/5。同时，结合 CDN 部署基础类库，prefetch 预加载及 contenthash 缓存控制等，资源加载的速度大幅度提升。</p>
+<p><strong>页面渲染优化</strong></p>
+<p>考虑到业务场景及开发成本，新版本的前端应用并没有实现服务器端渲染，存在着较长的白屏时间。而老版本则通过 Java + Velocity 在服务器端完成渲染，两相对比，用户体验相差甚多。</p>
+<p>浏览器渲染性能分析</p>
+<p>为了解决这个问题，我们通过 Chrome Performance 对页面的渲染性能进行了完整的分析。</p>
+<p>由于生产环境代码已经压缩，这里建议在开发环境录制 Profile，可以直接定位到相关源码。录制后的时间线展示参见下面截图。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/unymlvueOvtoF6a4RQzicPDXuV98FRlHobdvGb2ITB0DEtaNibKictHjI2a7ByK4LGYhTHawIVkWoqZmFzQEI0Xlw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>其中我们需要重点关注的几个维度如下：</p>
+<ul>
+<li><p>Frames：渲染的 FPS 以及不同时间点的渲染结果。</p>
+</li>
+<li><p>Main：渲染主线程，包括 HTML 解析，JavaScript 执行等任务。</p>
+</li>
+<li><p>Timings：包括 FP、DCL、FCP、LCP 等指标，以及通过 Performance API 记录的运行时间。Vue.js 2.x 中可以通过 Vue.config.performance = true; 开启组件性能记录。下图的截图展示了 Vue.js 组件的渲染耗时情况。</p>
+</li>
+</ul>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/unymlvueOvtoF6a4RQzicPDXuV98FRlHodKRiaWXzP1szQX4owLNcjM1yvQbL4zSPNicBhUs4ibhdZckQKFib0lt8yw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>经过分析，我们发现以下几个主要问题：</p>
+<ul>
+<li><p>路由激活后的首次渲染任务耗时特别长，已经超过了 2 秒。其中，站点导航、侧边栏等就占用了一半以上的时间。</p>
+</li>
+<li><p>导航组件中，用于判断链接权限的 AuthService.hasURIAuth 方法占用了 80% 的时间。</p>
+</li>
+<li><p>在通过配置渲染的动态表单页中，核心组件 FormBuilder 渲染时间也在 2 秒左右。</p>
+</li>
+</ul>
+<p>页面渲染整体优化方案</p>
+<p>针对以上问题，我们进行了以下几点改进：</p>
+<ul>
+<li><p>通过服务器端渲染骨架屏，包括导航等页面基础布局。从视觉效果上减少用户的心理等待。</p>
+</li>
+<li><p>减少首屏渲染的组件数量。将初始为隐藏状态的导航二级菜单、站点侧边栏、列表高级搜索弹窗等组件通过 webpack 提取至异步 chunk 中，在用户交互时再异步渲染。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; AppLayout.vue</span><br><span class="line">&#123;</span><br><span class="line">  components: &#123;</span><br><span class="line">    AppDrawer: () &#x3D;&gt;</span><br><span class="line">      import(</span><br><span class="line">        &#x2F;* webpackChunkName: &#39;chunk-async-common&#39; *&#x2F;</span><br><span class="line">        &#39;.&#x2F;AppDrawer&#39;</span><br><span class="line">      ),</span><br><span class="line">    AppHeader</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p>优化耗时的 JavaScript 函数。这一步需要结合实际代码实现进行优化，以上面提到的权限判断方法 AuthService.hasURIAuth 为例，其中最突出的问题就是循环内函数重复执行以及正则表达式重复创建。我们通过 Memoization 的方式为耗时函数添加记忆化功能，当参数相同时直接返回记忆值；通过 Cache 将正则表达式实例缓存起来以便重复使用。</p>
+</li>
+<li><p>将根据配置进行渲染的动态表单 FormBuilder 手动拆分为多个渲染任务。由于业务场景的复杂性，通常一个表单拥有 80 余个字段。而在 Vue.js 里面，一次数据变化触发的渲染任务是无法直接拆分的。这里我们采取了另一种方式，将表单配置拆分为多段，首次渲染时仅传递第一段配置，然后在后续的渲染周期依次将配置拼接上去。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;form-builder :config&#x3D;&quot;formConfig&quot;&gt;&lt;&#x2F;form-builder&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  created() &#123;</span><br><span class="line">    this.getFormConfig().then(() &#x3D;&gt; &#123;</span><br><span class="line">      this.startWork();</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    startWork() &#123;</span><br><span class="line">      const work &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">        &#x2F;&#x2F; 任务调度器</span><br><span class="line">        return scheduler.next(() &#x3D;&gt; &#123;</span><br><span class="line">          &#x2F;&#x2F; 逐步拼接表单配置</span><br><span class="line">          this.formConfig &#x3D; this.concatNextFormConfig();</span><br><span class="line"></span><br><span class="line">          if (!scheduler.done()) &#123;</span><br><span class="line">            &#x2F;&#x2F; 循环执行任务</span><br><span class="line">            work();</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;;</span><br><span class="line">      </span><br><span class="line">      &#x2F;&#x2F; 启动首次任务</span><br><span class="line">      work();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>接口速度优化</strong></p>
+<p>BFF 性能分析</p>
+<p>由于业务流程复杂，前端会调用多个服务接口，并对数据进行二次处理，因此一直由前端来负责Java Web层(BFF)的开发。本次升级为了开发更简便，引入了基于TypeScript的NestJS框架替换原来Spring MVC，由NestJS封装面向前端的接口给 VueJS应用。为了定位其中潜在的性能问题，我们做了一些通用的扩展：</p>
+<ul>
+<li><p>为所有封装的接口添加自定义中间件 TimeMiddleware，用于统计接口的整体响应速度。</p>
+</li>
+<li><p>为 axios 统一添加 interceptor，用于统计 BFF 调用第三方接口的响应速度。</p>
+</li>
+</ul>
+<p>最后，通过日志、Apache JMeter 等工具对核心接口进行分析，我们主要发现以下几个问题：</p>
+<ul>
+<li><p>在对千万量级的索引数据进行分页查询的接口 A 中，当前 ES 的查询速度不理想，平均耗时在 2.6 秒左右。</p>
+</li>
+<li><p>在同时调用多方服务的接口 B 中，存在不必要的串行。此外，其中一个标签查询服务平均耗时在 700ms 左右，成为影响速度的关键因素。</p>
+</li>
+<li><p>在获取用户信息的接口 C 中，有 20% 左右的请求耗时在 600ms 左右，而其他的请求仅耗时 50ms。经过定位发现是服务集群中某台服务器跨地区导致。</p>
+</li>
+<li><p>大部分接口都依赖了一个获取频道列表的基础服务，实时性要求很低，然而每次都是通过接口实时获取，耗时大约 50 ms。</p>
+</li>
+<li><p>整个应用的日志服务继承了 NestJS 的 logger.service ，它默认是通过 process.stdout 同步输出的。因此日志内容较多时在部分机器上开销也很大，平均耗时 100ms 左右。</p>
+</li>
+</ul>
+<p>BFF 整体优化方案</p>
+<p>针对以上问题，我们进行了以下几点改进：</p>
+<ul>
+<li><p>后端同学优化 ES 查询服务，新增多台物理机进行扩容。优化后平均耗时小于 1 秒，速度提升超过 60%。</p>
+</li>
+<li><p>后端同学为标签查询服务添加缓存机制，优化后平均耗时 200ms 左右，整体提升超过 70%。</p>
+</li>
+<li><p>移除集群中的跨地区服务器，保证各服务之间尽量在同一个地区、机房。</p>
+</li>
+<li><p>大化地并行请求，减少请求耗时的关键路径。以其中一个接口为例，优化前平均耗时 1.3 秒，优化后平均耗时仅 700ms，提升 45% 左右。</p>
+</li>
+<li><p>实时性要求较低的服务通过 Redis 缓存查询结果，例如频道查询服务，平均耗时从 50ms 减少至 15ms，提升 70% 左右。</p>
+</li>
+<li><p>生产环境的日志取消输出到 process.stdout，通过 winston 等日志框架将其异步写入至指定文件中。</p>
+</li>
+</ul>
+<p><strong>优化后整体效果展示</strong></p>
+<p>资源加载速度展示</p>
+<p>通过减少文件大小及个数、缓存、并发、预加载、懒加载等各种优化，获取核心资源整体耗时控制在 200ms 左右。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/unymlvueOvtoF6a4RQzicPDXuV98FRlHoXlpCKz9mRuRtQJXYaPp0KXqkJe384kib3b9tIn7NHjtBibZTV9TtPk3Q/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>首次加载主题样式与切换主题示例（Prefetch）</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/unymlvueOvtoF6a4RQzicPDXuV98FRlHoEKXz9y6ZWTGYjMZLr78Obd4TcoITge2NfI7cAoXSU3JiaX5vvqHeZsg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>异步加载路由及组件示例（Prefetch）</p>
+<p>页面渲染速度展示</p>
+<p>通过异步渲染隐藏组件、优化耗时函数、任务分片、骨架屏等方式，让用户尽早看到内容的同时，将首次路由渲染的时间控制在 1 秒以内，结合浏览器自身的优化，在电脑网速及性能正常的情况下，已经感知不到白屏的存在。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/unymlvueOvtoF6a4RQzicPDXuV98FRlHo3A53CavcXYjuYuDEav9zgqic1YE8uzC7P0Oz0HBShiacw8BOa5jIiaKqw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>接口相应速度展示</p>
+<p>通过扩容、缓存、并发、优化耗时函数等方式，我们将核心的几个查询接口的速度也控制在了 1 秒左右。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/unymlvueOvtoF6a4RQzicPDXuV98FRlHoEd1LaTYJ3fP2Giabojt3B8Aop3QiaoOpD74RQ7XWfuvMYqfoVaPicibCCw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>优化前后核心数据对比</p>
+<table>
+<thead>
+<tr>
+<th>优化环节</th>
+<th>优化前</th>
+<th>优化后</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>首次下载脚本资源</td>
+<td>实际下载 JS 文件 7 个，整体大小 3.5M</td>
+<td>实际下载 JS 文件 4 个，整体大小 1.8M</td>
+</tr>
+<tr>
+<td>路由首次渲染时间</td>
+<td>平均 2.66 秒</td>
+<td>平均 790ms</td>
+</tr>
+<tr>
+<td>索引分页查询响应时间</td>
+<td>平均 2.60 秒</td>
+<td>平均 1.03 秒</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/" rel="tag"># 前端优化方案</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/02/01/js%E4%B9%8B%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E7%AD%89%E6%AF%94%E7%BC%A9%E6%94%BE/" rel="next" title="js之实现图片等比缩放">
+                <i class="fa fa-chevron-left"></i> js之实现图片等比缩放
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/02/03/vue%E4%B9%8Bvideojs%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="prev" title="vue之videojs的使用">
+                vue之videojs的使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="Dali" />
+            
+              <p class="site-author-name" itemprop="name">Dali</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">140</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">143</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dali</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

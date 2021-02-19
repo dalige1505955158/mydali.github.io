@@ -88,7 +88,7 @@
 <meta property="og:site_name" content="DaliBlogs">
 <meta property="og:description" content="获取服务器时间">
 <meta property="article:published_time" content="2020-07-23T07:39:35.000Z">
-<meta property="article:modified_time" content="2020-09-15T10:37:19.543Z">
+<meta property="article:modified_time" content="2021-02-19T08:15:45.355Z">
 <meta property="article:author" content="Dali">
 <meta property="article:tag" content="js">
 <meta property="article:tag" content="服务器时间">
@@ -444,6 +444,11 @@
 
 
 
+<p>计算两个时间相隔几天几个小时几分钟几秒几毫秒</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">var  dt1 &#x3D;  &quot;2009-11-5 10:30:01:69&quot;  ;</span><br><span class="line">     var  dt2 &#x3D;  &quot;2009-11-8 9:20:02&quot;</span><br><span class="line">     function  getHoursDiff(dt1,dt2) &#123;</span><br><span class="line">         if ( typeof (dt1)&#x3D;&#x3D; &quot;string&quot; ) &#123;</span><br><span class="line">             dt1&#x3D; new  Date(dt1.replace(&#x2F;-&#x2F;, &#39;&#x2F;&#39; ));</span><br><span class="line">             dt2&#x3D; new  Date(dt2.replace(&#x2F;-&#x2F;, &#39;&#x2F;&#39; ));</span><br><span class="line">         &#125;</span><br><span class="line">         var  res&#x3D;dt2.getTime()-dt1.getTime();</span><br><span class="line">         if (isNaN(res))</span><br><span class="line">             throw  Error( &quot;invalid dates arguments&quot; );</span><br><span class="line"></span><br><span class="line">        var ss &#x3D; 1000;</span><br><span class="line">        var mi &#x3D; ss * 60;</span><br><span class="line">        var hh &#x3D; mi * 60;</span><br><span class="line">        var dd &#x3D; hh * 24;</span><br><span class="line"> </span><br><span class="line">        var day &#x3D; parseInt(res &#x2F; dd);</span><br><span class="line">        var hour &#x3D; parseInt((res&#x2F;hh-day*24));</span><br><span class="line">        var minute &#x3D; parseInt((res&#x2F;mi-day*24*60-hour*60));</span><br><span class="line">        var second &#x3D; parseInt((res&#x2F;ss-day*24*60*60-hour*60*60 -minute*60));</span><br><span class="line">        var milliSecond &#x3D; parseInt((res-day*dd-hour*hh -minute*mi - second*ss));</span><br><span class="line"></span><br><span class="line">        if (day &gt; 0) &#123;</span><br><span class="line">            return parseInt(day) + &quot;天&quot; + hour + &quot;小时&quot; + minute + &quot;分钟&quot; + second +&quot;秒&quot;+ milliSecond +&quot;毫秒&quot;;</span><br><span class="line">        &#125; else if (hour &gt; 0) &#123;</span><br><span class="line">            return hour + &quot;小时&quot; + minute + &quot;分钟&quot;;</span><br><span class="line">        &#125; else if (minute &gt; 0) &#123;</span><br><span class="line">            return minute + &quot;分钟&quot;;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return 0 + &quot;分钟&quot;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line">  </span><br><span class="line">var  re&#x3D;getHoursDiff(dt1,dt2);</span><br></pre></td></tr></table></figure>
+
+
+
 <h3 id="距离当前日期多少天后的日期"><a href="#距离当前日期多少天后的日期" class="headerlink" title="距离当前日期多少天后的日期"></a>距离当前日期多少天后的日期</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">GetDateStr</span>(<span class="params">AddDayCount</span>) </span>&#123;   </span><br><span class="line">      <span class="keyword">var</span> dd = <span class="keyword">new</span> <span class="built_in">Date</span>();  </span><br><span class="line">      dd.setDate(dd.getDate()+AddDayCount);<span class="comment">//获取AddDayCount天后的日期</span></span><br><span class="line">      <span class="keyword">var</span> y = dd.getFullYear();   </span><br><span class="line">      <span class="keyword">var</span> m = (dd.getMonth()+<span class="number">1</span>)&lt;<span class="number">10</span>?<span class="string">"0"</span>+(dd.getMonth()+<span class="number">1</span>):(dd.getMonth()+<span class="number">1</span>);<span class="comment">//获取当前月份的日期，不足10补0</span></span><br><span class="line">      <span class="keyword">var</span> d = dd.getDate()&lt;<span class="number">10</span>?<span class="string">"0"</span>+dd.getDate():dd.getDate();<span class="comment">//获取当前几号，不足10补0</span></span><br><span class="line">      <span class="keyword">return</span> y+<span class="string">"-"</span>+m+<span class="string">"-"</span>+d;   </span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 
 
@@ -492,7 +497,7 @@
 
 
 
-<h3 id="img标签的onerror事件"><a href="#img标签的onerror事件" class="headerlink" title="img标签的onerror事件"></a>img标签的onerror事件</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>循环里的图片直接引用原生事件</span><br><span class="line">&lt; div v-<span class="keyword">for</span>= <span class="string">"(item,index) in imgSrcList"</span> &gt;</span><br><span class="line">    &lt;p&gt;&#123;&#123; item.test &#125;&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">    &lt;img :src="'/i</span>travel/itravel/assets/images/common/<span class="string">'+item.test+'</span>.png<span class="string">'" onerror="javascript:this.src='</span>/itravel/itravel/assets/images/ticket/child-desc.png<span class="string">';" /&gt;</span></span><br><span class="line"><span class="string">&lt;div/ &gt;</span></span><br><span class="line"><span class="string">2.只有一个路径</span></span><br><span class="line"><span class="string">    &lt;div class="pic" &gt;</span></span><br><span class="line"><span class="string">        &lt;img v-bind: src="item.productInfo.images[0].url" v-on: error="imgError(item)" /&gt;</span></span><br><span class="line"><span class="string">    &lt;div/ &gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">imgError: function (item) &#123;</span></span><br><span class="line"><span class="string">    item.productInfo.images[0].url = '</span>http:<span class="comment">//t.cn/RmxJlMa'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="img标签的onerror事件"><a href="#img标签的onerror事件" class="headerlink" title="img标签的onerror事件"></a>img标签的onerror事件</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>循环里的图片直接引用原生事件</span><br><span class="line">&lt; div v-<span class="keyword">for</span>= <span class="string">"(item,index) in imgSrcList"</span> &gt;</span><br><span class="line">    &lt;p&gt; item.test &lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">    &lt;img :src="'/i</span>travel/itravel/assets/images/common/<span class="string">'+item.test+'</span>.png<span class="string">'" onerror="javascript:this.src='</span>/itravel/itravel/assets/images/ticket/child-desc.png<span class="string">';" /&gt;</span></span><br><span class="line"><span class="string">&lt;div/ &gt;</span></span><br><span class="line"><span class="string">2.只有一个路径</span></span><br><span class="line"><span class="string">    &lt;div class="pic" &gt;</span></span><br><span class="line"><span class="string">        &lt;img v-bind: src="item.productInfo.images[0].url" v-on: error="imgError(item)" /&gt;</span></span><br><span class="line"><span class="string">    &lt;div/ &gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">imgError: function (item) &#123;</span></span><br><span class="line"><span class="string">    item.productInfo.images[0].url = '</span>http:<span class="comment">//t.cn/RmxJlMa'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -623,7 +628,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">125</span>
+                  <span class="site-state-item-count">140</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -634,7 +639,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-count">68</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -645,7 +650,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">130</span>
+                  <span class="site-state-item-count">143</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -705,7 +710,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="map,react," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="DaliBlogs" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="react开发记录基本结构123456789101112class testComp extends Component&amp;#123;constructor(props)&amp;#123;	super(props) &#x2F;&#x2F;接受其他组件的参数	this.state&#x3D;&amp;#123; &#x2F;&#x2F;定义自己的变量			num:1,			flag:true		&amp;#125;	&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="seecky之地图开发记录">
+<meta property="og:url" content="http://yoursite.com/2020/12/23/seecky%E4%B9%8B%E5%9C%B0%E5%9B%BE%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="DaliBlogs">
+<meta property="og:description" content="react开发记录基本结构123456789101112class testComp extends Component&amp;#123;constructor(props)&amp;#123;	super(props) &#x2F;&#x2F;接受其他组件的参数	this.state&#x3D;&amp;#123; &#x2F;&#x2F;定义自己的变量			num:1,			flag:true		&amp;#125;	&amp;#">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/16775500-8d325f8093591c76.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/740/format/webp">
+<meta property="article:published_time" content="2020-12-23T01:35:47.000Z">
+<meta property="article:modified_time" content="2021-02-19T08:26:02.937Z">
+<meta property="article:author" content="Dali">
+<meta property="article:tag" content="map">
+<meta property="article:tag" content="react">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/16775500-8d325f8093591c76.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/740/format/webp">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/12/23/seecky之地图开发记录/"/>
+
+
+
+
+
+  <title>seecky之地图开发记录 | DaliBlogs</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DaliBlogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/23/seecky%E4%B9%8B%E5%9C%B0%E5%9B%BE%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">seecky之地图开发记录</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-23T09:35:47+08:00">
+                2020-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react/map/" itemprop="url" rel="index">
+                    <span itemprop="name">map</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="react开发记录"><a href="#react开发记录" class="headerlink" title="react开发记录"></a>react开发记录</h2><h3 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class testComp extends Component&#123;</span><br><span class="line">constructor(props)&#123;</span><br><span class="line">	super(props) &#x2F;&#x2F;接受其他组件的参数</span><br><span class="line">	this.state&#x3D;&#123; &#x2F;&#x2F;定义自己的变量</span><br><span class="line">			num:1,</span><br><span class="line">			flag:true</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">export default testComp</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h3 id="生命周期（钩子函数）"><a href="#生命周期（钩子函数）" class="headerlink" title="生命周期（钩子函数）"></a>生命周期（钩子函数）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">dom渲染成功前（相当于beforeMounted）</span><br><span class="line">componentWillMount()&#123;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br><span class="line">渲染函数</span><br><span class="line">render()&#123;</span><br><span class="line">	return (</span><br><span class="line">		&lt;div&gt;</span><br><span class="line">			123456</span><br><span class="line">			&lt;div&gt;123456&lt;&#x2F;div&gt;</span><br><span class="line">		&lt;&#x2F;div&gt;</span><br><span class="line">	)</span><br><span class="line">&#125;</span><br><span class="line">dom渲染成功后（相当于mounted）</span><br><span class="line">componentDidMount()&#123;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br><span class="line">卸载前</span><br><span class="line">componentWillUnmount()&#123;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/16775500-8d325f8093591c76.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/740/format/webp" alt="img"></p>
+<h3 id="JSX语法"><a href="#JSX语法" class="headerlink" title="JSX语法"></a>JSX语法</h3><p>JSX 即Javascript XML，它是对JavaScript 语法扩展。React 使用 JSX 来替代常规的 JavaScript。你也可以认为JSX其实就是JavaScript。当遇到&lt;，JSX就当HTML解析，遇到{就当JavaScript解析。</p>
+<p><strong>最外层只能嵌套一个母标签，不要嵌套多个</strong></p>
+<p><strong>支持表达式，只需要将表达式写到{}内即可，不能使用if else 的，但可以使用三元运算表达式</strong><br><strong>所有变量或者方法使用{}，style使用插值表达式，方式调用或者是</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type&#x3D;&quot;text&#x2F;babel&quot;&gt;</span><br><span class="line">    var ok&#x3D;1;</span><br><span class="line">    ReactDOM.render(</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;p&gt;&#123;ok&#x3D;&#x3D;1?&quot;我很帅&quot;:&quot;我很有才华&quot;&#125;&lt;&#x2F;p&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;,</span><br><span class="line">        document.querySelector(&quot;#wrap&quot;)</span><br><span class="line">    )</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="JSX上的style"><a href="#JSX上的style" class="headerlink" title="JSX上的style"></a>JSX上的style</h3><h4 id="方式一"><a href="#方式一" class="headerlink" title="方式一"></a>方式一</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/babel"</span>&gt;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> ok=<span class="number">1</span>;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> myStyle=&#123;</span></span><br><span class="line"><span class="actionscript">        color:<span class="string">"red"</span>,</span></span><br><span class="line">        fontSize:50</span><br><span class="line">    &#125;</span><br><span class="line">    ReactDOM.render(</span><br><span class="line"><span class="handlebars"><span class="xml">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span></span><br><span class="line"><span class="handlebars"><span class="xml">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&#123;myStyle&#125;</span>&gt;</span>&#123;ok==1?"我很帅":"我很有才华"&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span></span><br><span class="line"><span class="handlebars"><span class="xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span>,</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">document</span>.querySelector(<span class="string">"#wrap"</span>)</span></span><br><span class="line">    )</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="方式二"><a href="#方式二" class="headerlink" title="方式二"></a>方式二</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/babel"</span>&gt;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> ok=<span class="number">1</span>;</span></span><br><span class="line">    ReactDOM.render(</span><br><span class="line"><span class="handlebars"><span class="xml">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span></span><br><span class="line"><span class="actionscript">            <span class="comment">//style此处应为双括号</span></span></span><br><span class="line"><span class="handlebars"><span class="xml">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&#123;</span></span></span></span></span><br><span class="line"><span class="actionscript">                color:<span class="string">"red"</span>,</span></span><br><span class="line">                fontSize:50</span><br><span class="line"><span class="actionscript">            &#125;&gt;&#123;ok==<span class="number">1</span>?<span class="string">"我很帅"</span>:<span class="string">"我很有才华"</span>&#125;&lt;/p&gt;</span></span><br><span class="line"><span class="handlebars"><span class="xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span>,</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">document</span>.querySelector(<span class="string">"#wrap"</span>)</span></span><br><span class="line">    )</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="JSX上的数组输出"><a href="#JSX上的数组输出" class="headerlink" title="JSX上的数组输出"></a>JSX上的数组输出</h3><h4 id="方式一-1"><a href="#方式一-1" class="headerlink" title="方式一"></a>方式一</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/babel"</span>&gt;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> arr=[</span></span><br><span class="line"><span class="handlebars"><span class="xml">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>你是风儿<span class="tag">&lt;/<span class="name">h1</span>&gt;</span>,</span></span></span><br><span class="line"><span class="handlebars"><span class="xml">        <span class="tag">&lt;<span class="name">h2</span>&gt;</span>我是沙<span class="tag">&lt;/<span class="name">h2</span>&gt;</span>,</span></span></span><br><span class="line"><span class="handlebars"><span class="xml">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>缠缠绵绵到天涯<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></span></span><br><span class="line">    ];</span><br><span class="line">    ReactDOM.render(</span><br><span class="line"><span class="handlebars"><span class="xml">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span></span><br><span class="line">            &#123;arr&#125;</span><br><span class="line"><span class="handlebars"><span class="xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span>,</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">document</span>.querySelector(<span class="string">"#wrap"</span>)</span></span><br><span class="line">    )</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="方式二（map渲染）"><a href="#方式二（map渲染）" class="headerlink" title="方式二（map渲染）"></a>方式二（<strong>map渲染</strong>）</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/babel"</span>&gt;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> arr=[<span class="string">"你是风儿"</span>,<span class="string">"我是沙"</span>,<span class="string">"缠缠绵绵到天涯"</span>];</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> lis=arr.map(<span class="function"><span class="keyword">function</span><span class="params">(v)</span></span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>&#123;v&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></span></span><br><span class="line">    &#125;)</span><br><span class="line">    ReactDOM.render(</span><br><span class="line"><span class="handlebars"><span class="xml">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span></span><br><span class="line">            &#123;lis&#125;</span><br><span class="line"><span class="handlebars"><span class="xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span>,</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">document</span>.querySelector(<span class="string">"#wrap"</span>)</span></span><br><span class="line">    )</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="方法调用"><a href="#方法调用" class="headerlink" title="方法调用"></a>方法调用</h3><h4 id="方式一：内联调用法"><a href="#方式一：内联调用法" class="headerlink" title="方式一：内联调用法"></a>方式一：内联调用法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &#39;react&#39;;</span><br><span class="line"></span><br><span class="line">class func extends Component&#123;</span><br><span class="line">    constructor(porps)&#123;</span><br><span class="line">        super(props);</span><br><span class="line">    &#125;</span><br><span class="line">    funcOne()&#123;</span><br><span class="line">        console.log(&#39;内联调用法&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;button onClick&#x3D;&#123;this.funcOne.bind(this)&#125;&gt;&lt;&#x2F;button&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方式二：配置中调用法"><a href="#方式二：配置中调用法" class="headerlink" title="方式二：配置中调用法"></a>方式二：配置中调用法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &#39;react&#39;;</span><br><span class="line"></span><br><span class="line">class func extends Component&#123;</span><br><span class="line">    constructor(porps)&#123;</span><br><span class="line">        super(props);</span><br><span class="line">        this.funcTwo &#x3D; this.funcTwo.bind(this)</span><br><span class="line">    &#125;</span><br><span class="line">    funcTwo()&#123;</span><br><span class="line">        console.log(&#39;配置中调用法&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;button onClick&#x3D;&#123;this.funcTwo&#125;&gt;&lt;&#x2F;button&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方式三：箭头函数调用法（最推荐）"><a href="#方式三：箭头函数调用法（最推荐）" class="headerlink" title="方式三：箭头函数调用法（最推荐）"></a>方式三：箭头函数调用法（最推荐）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &#39;react&#39;;</span><br><span class="line"></span><br><span class="line">class func extends Component&#123;</span><br><span class="line">    constructor(porps)&#123;</span><br><span class="line">        super(props);</span><br><span class="line">    &#125;</span><br><span class="line">    funcThree:() &#x3D;&gt; &#123;</span><br><span class="line">        console.log(&#39;箭头函数调用法&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;button onClick&#x3D;&#123;this.funcThree&#125;&gt;&lt;&#x2F;button&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="map配置"><a href="#map配置" class="headerlink" title="map配置"></a>map配置</h2><h3 id="从接口读取map配置"><a href="#从接口读取map配置" class="headerlink" title="从接口读取map配置"></a>从接口读取map配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">getMapParams() &#123;</span><br><span class="line">        let that &#x3D; this;</span><br><span class="line">        mapAction.getMapParams(that, &#123;</span><br><span class="line">            mapCode: &quot;bigMap&quot;,</span><br><span class="line">            dataReturn: function (params) &#123;</span><br><span class="line">                that.setState(&#123;</span><br><span class="line">                    mapParams: params</span><br><span class="line">                &#125;)</span><br><span class="line">                setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">                    that.mapInit();</span><br><span class="line">                &#125;, 500);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="地图初始化"><a href="#地图初始化" class="headerlink" title="地图初始化"></a>地图初始化</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">mapInit() &#123;</span><br><span class="line">        if (map &#x3D;&#x3D; null) &#123;</span><br><span class="line">            let mapUrl &#x3D; &quot;.&#x2F;file&#x2F;loadFMap&quot;;</span><br><span class="line">            map &#x3D; new commonMap.FMMap(&#123;</span><br><span class="line">                &#x2F;&#x2F;渲染dom</span><br><span class="line">                container: document.getElementById(&#39;mapApplyContainer&#39;),</span><br><span class="line">                &#x2F;&#x2F;地图服务器地址</span><br><span class="line">                mapServerURL: mapUrl,</span><br><span class="line">                &#x2F;&#x2F;主题服务地址</span><br><span class="line">                mapThemeURL: &#39;.&#x2F;fmaptheme&#x2F;&#39; + localStorage.appid_device + &#39;&#x2F;&#39; + localStorage.buildId_device,</span><br><span class="line">                &#x2F;&#x2F;主题id</span><br><span class="line">                defaultThemeName: this.state.mapParams.themeId,</span><br><span class="line">                &#x2F;&#x2F;地图默认比例尺级别</span><br><span class="line">                defaultMapScaleLevel: this.state.mapParams.defaultMapScaleLevel,</span><br><span class="line">                &#x2F;&#x2F;地图默认自定义比例尺</span><br><span class="line">                defaultMapScale: this.state.mapParams.defaultMapScale,</span><br><span class="line">                &#x2F;&#x2F;支持单击模型高亮，false为单击时模型不高亮</span><br><span class="line">                modelSelectedEffect: false,</span><br><span class="line">                &#x2F;&#x2F;默认旋转角</span><br><span class="line">                rotateAngle: this.state.mapParams.rotateAngle,</span><br><span class="line">                &#x2F;&#x2F;默认倾斜角</span><br><span class="line">                defaultTiltAngle: this.state.mapParams.defaultTiltAngle,</span><br><span class="line">                &#x2F;&#x2F;楼层间距</span><br><span class="line">                defaultGroupSpace: this.state.mapParams.defaultGroupSpace,</span><br><span class="line">                &#x2F;&#x2F;默认地图模型（2D&#x2F;3D）</span><br><span class="line">                defaultViewMode: this.state.mapParams.defaultViewMode &#x3D;&#x3D; &quot;2D&quot; ? commonMap.FMViewMode.MODE_2D : commonMap.FMViewMode.MODE_3D,</span><br><span class="line">                &#x2F;&#x2F;开场动画</span><br><span class="line">                viewModeAnimateMode: true,</span><br><span class="line">                focusAlphaMode: false,</span><br><span class="line">                focusAnimateMode: false,</span><br><span class="line">                focusAlpha: 0.1,</span><br><span class="line">                key: this.state.mapParams.webKey,</span><br><span class="line">                appName: this.state.mapParams.webName,</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F;buildId_device -- 建筑id</span><br><span class="line">        map.openMapById(localStorage.buildId_device);</span><br><span class="line">        const that &#x3D; this;</span><br><span class="line">        &#x2F;&#x2F;地图渲染结束回调</span><br><span class="line">        map.on(&quot;loadComplete&quot;, function (event) &#123;</span><br><span class="line">            that.loadComplete(event);</span><br><span class="line">        &#125;)</span><br><span class="line">        &#x2F;&#x2F;地图点击事件</span><br><span class="line">        map.on(&quot;mapClickNode&quot;, function (event) &#123;</span><br><span class="line">            that.MapClickNode(event);</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="地图渲染结束回调"><a href="#地图渲染结束回调" class="headerlink" title="地图渲染结束回调"></a>地图渲染结束回调</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">loadComplete &#x3D; (e) &#x3D;&gt; &#123;</span><br><span class="line">        &#x2F;&#x2F;设置地图背景颜色</span><br><span class="line">        map.setBackgroundColor(&quot;#EEF3F4&quot;, 1);</span><br><span class="line">        &#x2F;&#x2F;进场动画</span><br><span class="line">        var angle &#x3D; this.state.mapParams.rotateAngle % 360;</span><br><span class="line">        map._map.rotateTo(angle, &#123; animate: true &#125;);</span><br><span class="line">        &#x2F;&#x2F;获取可视楼层</span><br><span class="line">        &#x2F;&#x2F;mapGroupNames&#x3D;[&quot;b1&quot;,&quot;f1&quot;,&quot;f2&quot;,&quot;f3&quot;,&quot;f4&quot;,&quot;f5&quot;]</span><br><span class="line">        var mapGroupNames &#x3D; [];</span><br><span class="line">        for (var i &#x3D; 0; i &lt; map.listGroups.length; i++) &#123;</span><br><span class="line">            var floorName &#x3D; map.listGroups[i].gname;</span><br><span class="line">            mapGroupNames.push(floorName.toLowerCase());</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F;渲染楼层切换数据</span><br><span class="line">        &#x2F;&#x2F;读取groupIDs  map.groupIDs&#x3D;[1,2,3,4,5]</span><br><span class="line">        &#x2F;&#x2F;floorList&#x3D;[&#123;floorNum: &quot;b1&quot;,floorStr: &quot;b1楼&quot;,groupID: 1&#125;]...</span><br><span class="line">        floorList &#x3D; mapAction.changeGroupNames(mapGroupNames, map.groupIDs);</span><br><span class="line">        if (!this.state.defaultFloor) &#123;</span><br><span class="line">            this.setState(&#123;</span><br><span class="line">                defaultFloor: floorList[0].floorNum</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F;获取聚焦楼层的id</span><br><span class="line">        focusGroupID &#x3D; mapAction.changeFloorIdToGroupId(this.state.defaultFloor, floorList);</span><br><span class="line">        map.focusGroupID &#x3D; focusGroupID;</span><br><span class="line">        &#x2F;&#x2F;设置楼层可见个数（）</span><br><span class="line">        if (this.state.multiFloorDisplayFlag) &#123;</span><br><span class="line">            map.visibleGroupIDs &#x3D; map.groupIDs;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            map.visibleGroupIDs &#x3D; [map.focusGroupID];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="切换楼层-得到当前的楼层focusGroupID"><a href="#切换楼层-得到当前的楼层focusGroupID" class="headerlink" title="切换楼层(得到当前的楼层focusGroupID)"></a>切换楼层(得到当前的楼层focusGroupID)</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>楼层<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Select</span></span></span><br><span class="line"><span class="tag">            <span class="attr">value</span>=<span class="string">&#123;focusGroupID&#125;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">style</span>=<span class="string">&#123;</span> <span class="attr">width:</span> <span class="attr">150</span> &#125;//此处应为双括号</span></span><br><span class="line"><span class="tag">            <span class="attr">onChange</span>=<span class="string">&#123;this.floorChange&#125;</span></span></span><br><span class="line"><span class="tag">            &gt;</span></span><br><span class="line">        &#123;</span><br><span class="line">        floorList.map(item =&gt; &#123;</span><br><span class="line">        return (item ? <span class="tag">&lt;<span class="name">Select.Option</span> <span class="attr">value</span>=<span class="string">&#123;item.groupID&#125;</span> <span class="attr">key</span>=<span class="string">&#123;item.groupIDs&#125;</span>&gt;</span>&#123;item.floorStr&#125;<span class="tag">&lt;/<span class="name">Select.Option</span>&gt;</span> : null)</span><br><span class="line">        &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">Select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">js</span><br><span class="line">floorChange = (value) =&gt; &#123;</span><br><span class="line">        focusGroupID = value</span><br><span class="line">        map.focusGroupID = value</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="切换单楼层-多楼层-showSingerOrMultiGroup"><a href="#切换单楼层-多楼层-showSingerOrMultiGroup" class="headerlink" title="切换单楼层/多楼层(showSingerOrMultiGroup)"></a>切换单楼层/多楼层(showSingerOrMultiGroup)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;div onClick&#x3D;&#123;this.multiFloorDisplay&#125;&gt;</span><br><span class="line">                            &lt;img src&#x3D;&#123;this.state.multiFloorDisplayFlag ? require(&#39;..&#x2F;..&#x2F;img&#x2F;singleFloor.png&#39;) : require(&#39;..&#x2F;..&#x2F;img&#x2F;mulFloor.png&#39;)&#125;&gt;&lt;&#x2F;img&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">js                   </span><br><span class="line">    multiFloorDisplay &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">        &#x2F;&#x2F;切换flag</span><br><span class="line">        this.setState(&#123;</span><br><span class="line">            multiFloorDisplayFlag: !this.state.multiFloorDisplayFlag</span><br><span class="line">        &#125;)</span><br><span class="line">        let that &#x3D; this;</span><br><span class="line">        setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">            &#x2F;&#x2F;改变单层多层</span><br><span class="line">            map.showSingerOrMultiGroup(that.state.multiFloorDisplayFlag);</span><br><span class="line">            &#x2F;&#x2F;改变2D&#x2F;3D</span><br><span class="line">            if (this.state.multiFloorDisplayFlag) &#123;</span><br><span class="line">                map.viewMode &#x3D; commonMap.FMViewMode.MODE_3D</span><br><span class="line">                this.state.mapParams.defaultViewMode &#x3D; &#39;3D&#39;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, 0);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="切换2D-3D"><a href="#切换2D-3D" class="headerlink" title="切换2D/3D"></a>切换2D/3D</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">onClick</span>=<span class="string">&#123;this.modeChange&#125;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">&#123;</span> <span class="attr">userSelect:</span> '<span class="attr">none</span>' &#125;&gt;</span>&#123;this.state.mapParams.defaultViewMode == '2D' ? '3D' : '2D'&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">js</span><br><span class="line">modeChange = () =&gt; &#123;</span><br><span class="line">        let mode = this.state.mapParams;</span><br><span class="line">        if (mode.defaultViewMode == '2D') &#123;</span><br><span class="line">            mode.defaultViewMode = '3D';</span><br><span class="line">            map.viewMode = commonMap.FMViewMode.MODE_3D</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            mode.defaultViewMode = '2D'</span><br><span class="line">            map.viewMode = commonMap.FMViewMode.MODE_2D</span><br><span class="line">        &#125;</span><br><span class="line">        this.setState(&#123;</span><br><span class="line">            mapParams: mode</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="戳点与更新"><a href="#戳点与更新" class="headerlink" title="戳点与更新"></a>戳点与更新</h3><h4 id="坐标转换"><a href="#坐标转换" class="headerlink" title="坐标转换"></a>坐标转换</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 坐标转换</span><br><span class="line">convertX(x) &#123;</span><br><span class="line">	return parseInt((x - map.minX) * 1000);</span><br><span class="line">&#125;</span><br><span class="line">convertY(y) &#123;</span><br><span class="line">	return parseInt((map.maxY - y) * 1000);</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;接口坐标改为map坐标，戳点</span><br><span class="line">convertFmapX(x) &#123;</span><br><span class="line">	return (x &#x2F; 1000 + map.minX);</span><br><span class="line">&#125;</span><br><span class="line">convertFmapY(y) &#123;</span><br><span class="line">	return (map.maxY - y &#x2F; 1000);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="图标戳点"><a href="#图标戳点" class="headerlink" title="图标戳点"></a>图标戳点</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">addImageMarkerNormal &#x3D; (pointData) &#x3D;&gt; &#123;</span><br><span class="line">        const pointGroupId &#x3D; mapAction.changeFloorStrToGroupID(pointData.floorNo, floorList);</span><br><span class="line">        if (!pointGroupId) &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        let imgSrc &#x3D; require(&#39;..&#x2F;imgs&#x2F;woman.png&#39;);</span><br><span class="line">        var group &#x3D; map.getFMGroup(pointGroupId);</span><br><span class="line">        var layer &#x3D; group.getOrCreateLayer(&#39;imageMarker&#39;);</span><br><span class="line">        var im &#x3D; new commonMap.FMImageMarker(&#123;</span><br><span class="line">            id: pointData.id,</span><br><span class="line">            x: this.convertFmapX(pointData.x),</span><br><span class="line">            y: this.convertFmapY(pointData.y),</span><br><span class="line">            height: 1,</span><br><span class="line">            groupID: pointGroupId,</span><br><span class="line">            url: imgSrc,</span><br><span class="line">            size: 30,</span><br><span class="line">            isAlwaysShow: true,</span><br><span class="line">            callback: function () &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        layer.addMarker(im);</span><br><span class="line">        &#x2F;&#x2F; im.userGroupID &#x3D; pointGroupId;</span><br><span class="line">        pointMarkerList.push(im)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="文本戳点"><a href="#文本戳点" class="headerlink" title="文本戳点"></a>文本戳点</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">addTextMarker &#x3D; (pointData) &#x3D;&gt; &#123;</span><br><span class="line">        let gid &#x3D; mapAction.changeFloorStrToGroupID(pointData.floorNo, floorList)</span><br><span class="line">        if (!gid) &#123;</span><br><span class="line">            return</span><br><span class="line">        &#125;</span><br><span class="line">        var group &#x3D; map.getFMGroup(gid);</span><br><span class="line">        var layer &#x3D; group.getOrCreateLayer(&#39;textMarker&#39;);</span><br><span class="line">        var tm &#x3D; new commonMap.FMTextMarker(&#123;</span><br><span class="line">            id: pointData.id,</span><br><span class="line">            x: this.convertFmapX(pointData.x),</span><br><span class="line">            y: this.convertFmapY(pointData.y),</span><br><span class="line">            groupID: gid,</span><br><span class="line">            name: pointData.name,</span><br><span class="line">            fontsize: 13,</span><br><span class="line">            fillcolor: &#39;72,61,139&#39;,</span><br><span class="line">            &#x2F;&#x2F; isAlwaysShow: false,</span><br><span class="line">            height: 1,</span><br><span class="line">            alpha: &#39;0.3&#39;,</span><br><span class="line">            callback: function () &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        layer.addMarker(tm);</span><br><span class="line">        tm.userGroupID &#x3D; gid;</span><br><span class="line">        textMarkerList.push(tm);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="更新图标点位"><a href="#更新图标点位" class="headerlink" title="更新图标点位"></a>更新图标点位</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">updatePoint &#x3D; (pointData) &#x3D;&gt; &#123;</span><br><span class="line">        const pointGroupId &#x3D; mapAction.changeFloorStrToGroupID(pointData.floorNo, floorList);</span><br><span class="line">        if (!pointGroupId) &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        let imgSrc &#x3D; pointData.alarmStatus ? pointImgObj.warning : pointImgObj.normal;</span><br><span class="line">        imgSrc &#x3D; pointData.localStatus !&#x3D; 1 ? pointImgObj.offline : imgSrc;</span><br><span class="line">        for (let i &#x3D; 0; i &lt; pointMarkerList.length; i++) &#123;</span><br><span class="line">            if (pointMarkerList[i].id_ &#x3D;&#x3D; pointData.id) &#123;</span><br><span class="line">                pointMarkerList[i].setPosition(this.convertFmapX(pointData.x), this.convertFmapY(pointData.y), pointGroupId, 2)</span><br><span class="line">                pointMarkerList[i]._url &#x3D; pointImgObj.warning;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="更新文字点位"><a href="#更新文字点位" class="headerlink" title="更新文字点位"></a>更新文字点位</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">updateTextMarker &#x3D; (pointData) &#x3D;&gt; &#123;</span><br><span class="line">        var gid &#x3D; mapAction.changeFloorStrToGroupID(pointData.floorNo, floorList);</span><br><span class="line">        for (let i &#x3D; 0; i &lt; textMarkerList.length; i++) &#123;</span><br><span class="line">            if (textMarkerList[i].id_ &#x3D;&#x3D; pointData.id || textMarkerList[i].id &#x3D;&#x3D; pointData.id) &#123;</span><br><span class="line">                textMarkerList[i].setPosition(this.convertFmapX(pointData.x), this.convertFmapY(pointData.y), gid, 2)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="根据id删除图片点位"><a href="#根据id删除图片点位" class="headerlink" title="根据id删除图片点位"></a>根据id删除图片点位</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">removeImgMarkerByMarker &#x3D; (id) &#x3D;&gt; &#123;</span><br><span class="line">        var index &#x3D; -1;</span><br><span class="line">        for (let i &#x3D; 0; i &lt; pointMarkerList.length; i++) &#123;</span><br><span class="line">            const obj &#x3D; pointMarkerList[i];</span><br><span class="line">            if ((obj.selfID || obj.id || obj.id_) &#x3D;&#x3D;&#x3D; id) &#123;</span><br><span class="line">                index &#x3D; i;</span><br><span class="line">                var group &#x3D; map.getFMGroup(obj.groupID);</span><br><span class="line">                if (!group) &#123;</span><br><span class="line">                    pointMarkerList.splice(i, 1);</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                var layer &#x3D; group.getOrCreateLayer(&#39;imageMarker&#39;);</span><br><span class="line">                setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">                    layer.removeMarker(obj);</span><br><span class="line">                &#125;, 0);</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (index !&#x3D; -1) &#123;</span><br><span class="line">            pointMarkerList.splice(index, 1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="根据id删除文字点位"><a href="#根据id删除文字点位" class="headerlink" title="根据id删除文字点位"></a>根据id删除文字点位</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">removeTextMarkerById(id) &#123;</span><br><span class="line">        var index &#x3D; -1;</span><br><span class="line">        for (let i &#x3D; 0; i &lt; textMarkerList.length; i++) &#123;</span><br><span class="line">            const obj &#x3D; textMarkerList[i];</span><br><span class="line">            if ((obj.selfID || obj.id || obj.id_) &#x3D;&#x3D;&#x3D; id) &#123;</span><br><span class="line">                index &#x3D; i;</span><br><span class="line">                var group &#x3D; map.getFMGroup(obj.groupID);</span><br><span class="line">                if (!group) &#123;</span><br><span class="line">                    textMarkerList.splice(i, 1);</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                var layer &#x3D; group.getOrCreateLayer(&#39;textMarker&#39;);</span><br><span class="line">                setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">                    layer.removeMarker(obj);</span><br><span class="line">                &#125;, 0);</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (index !&#x3D; -1) &#123;</span><br><span class="line">            textMarkerList.splice(index, 1);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="websocket简单用法"><a href="#websocket简单用法" class="headerlink" title="websocket简单用法"></a>websocket简单用法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line">let webSocketHost &#x3D; &#39;&#39;</span><br><span class="line">let ws &#x3D; null</span><br><span class="line"></span><br><span class="line">componentWillMount() &#123;</span><br><span class="line">        &#x2F;&#x2F;获取websocket请求地址</span><br><span class="line">	var webSocketType &#x3D; (&#39;https:&#39; &#x3D;&#x3D;&#x3D; document.location.protocol) ? &#39;wss&#39; : &#39;ws&#39;;</span><br><span class="line">	webSocketHost &#x3D; webSocketType + &#39;:&#x2F;&#x2F;&#39; + document.location.host + &quot;&#x2F;websocket&#x2F;&quot; + localStorage.buildId_device</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;从websocket中读取数据</span><br><span class="line">webSocketStart() &#123;</span><br><span class="line">        let that &#x3D; this;</span><br><span class="line">        if (ws) &#123;</span><br><span class="line">            ws.close()</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F; ws &#x3D; new WebSocket(&quot;ws:&#x2F;&#x2F;172.16.10.74:8086&#x2F;websocket&#x2F;&quot; + localStorage.buildId_device);</span><br><span class="line">        ws &#x3D; new WebSocket(webSocketHost)</span><br><span class="line">        &#x2F;&#x2F;根据条件查询websocket</span><br><span class="line">        ws.onopen &#x3D; function (evt) &#123;</span><br><span class="line">            if (that.state.exactID !&#x3D; &quot;&quot;) &#123;</span><br><span class="line">                ws.send(&#39;&#123;&quot;direction&quot;:&quot;bTos&quot;,&quot;requestMethod&quot;:&quot;initGoodsByCondition&quot;,id:&quot;&#39; + that.state.exactID + &#39;&quot;&#125;&#39;);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                ws.send(&#39;&#123;&quot;direction&quot;:&quot;bTos&quot;,&quot;requestMethod&quot;:&quot;initGoodsByCondition&quot;,nameOrSn:&quot;&#39; + that.state.vagueField + &#39;&quot;,category:&quot;&#39; + (that.state.wsCategory &#x3D;&#x3D; &#39;全部&#39; ? &#39;&#39; : that.state.wsCategory) + &#39;&quot;,dept:&quot;&#39; + (that.state.wsDept &#x3D;&#x3D; &#39;全部&#39; ? &#39;&#39; : that.state.wsDept) + &#39;&quot;&#125;&#39;);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        ws.onmessage &#x3D; function (evt) &#123;</span><br><span class="line">            const d &#x3D; JSON.parse(evt.data);</span><br><span class="line">            if (d.responseType &#x3D;&#x3D;&#x3D; &quot;ping&quot;) &#123;</span><br><span class="line">                &#x2F;&#x2F;保持呼吸</span><br><span class="line">                ws.send(&#39;&#123;&quot;direction&quot;:&quot;bTos&quot;,&quot;requestMethod&quot;:&quot;pong&quot;,&quot;data&quot;:null&#125;&#39;)</span><br><span class="line">            &#125; else if (d.responseType &#x3D;&#x3D;&#x3D; &quot;initGoodsMonitorPage&quot; || d.responseType &#x3D;&#x3D;&#x3D; &quot;initGoodsByCondition&quot;) &#123;</span><br><span class="line">                &#x2F;&#x2F;处理数据</span><br><span class="line">                &#x2F;&#x2F;移除所有点位</span><br><span class="line">                that.removeAllTextMarker();</span><br><span class="line">                that.removePointMarker();</span><br><span class="line">                if (d.data.ok) &#123;</span><br><span class="line">                    &#x2F;&#x2F;正式数据</span><br><span class="line">                    allResData.data &#x3D; JSON.parse(d.data.data).goodsItems;</span><br><span class="line">                    &#x2F;* 烟感温湿度 *&#x2F;</span><br><span class="line">                    shList &#x3D; JSON.parse(d.data.data).shList;</span><br><span class="line">                    if (showSmokeImg) &#123;</span><br><span class="line">                        for (let kk &#x3D; 0; kk &lt; shList.length; kk++) &#123;</span><br><span class="line">                            const obj &#x3D; shList[kk];</span><br><span class="line">                            that.addSmokeImg(obj);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    &#x2F;* 文字和图片点位的添加 *&#x2F;</span><br><span class="line">                    for (let i &#x3D; 0; i &lt; allResData.data.length; i++) &#123;</span><br><span class="line">                        const obj &#x3D; allResData.data[i];</span><br><span class="line">                        that.addImageMarkerNormal(obj);</span><br><span class="line">                        if (showPointText) &#123;</span><br><span class="line">                            that.addTextMarker(obj);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; else if (d.responseType &#x3D;&#x3D;&#x3D; &#39;goodsLocation&#39;) &#123;</span><br><span class="line">                &#x2F;&#x2F; console.log(&#39;goodsLocation************&#39;, d.data)</span><br><span class="line">                &#x2F;&#x2F; 更新&#x2F;增加点位</span><br><span class="line">                if (!d.data.floorNo) &#123;</span><br><span class="line">                    return;</span><br><span class="line">                &#125;</span><br><span class="line">                &#x2F;&#x2F;判断楼层是否改变，改变先删除定位点再添加</span><br><span class="line">                let isNewPoint &#x3D; true;</span><br><span class="line">                let oldPointFloorChangeFlag &#x3D; true;</span><br><span class="line">                for (let i &#x3D; 0; i &lt; allResData.data.length; i++) &#123;</span><br><span class="line">                    if (d.data.id &#x3D;&#x3D;&#x3D; allResData.data[i].id) &#123;</span><br><span class="line">                        isNewPoint &#x3D; false;</span><br><span class="line">                        if (d.data.floorNo !&#x3D;&#x3D; allResData.data[i].floorNo) &#123;</span><br><span class="line">                            oldPointFloorChangeFlag &#x3D; false;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                &#x2F;&#x2F; 判断是否为新出现的点，如果是，添加点位</span><br><span class="line">                if (isNewPoint) &#123;</span><br><span class="line">                    allResData.data.push(d.data);</span><br><span class="line">                    that.addImageMarkerNormal(d.data);</span><br><span class="line">                    if (showPointText) &#123;</span><br><span class="line">                        that.addTextMarker(d.data);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    if (oldPointFloorChangeFlag) &#123;</span><br><span class="line">                        that.removeImgMarkerByMarker(d.data.id);</span><br><span class="line">                        that.removeTextMarkerById(d.data.id)</span><br><span class="line">                        that.addImageMarkerNormal(d.data);</span><br><span class="line">                        if (showPointText) &#123;</span><br><span class="line">                            that.addTextMarker(d.data);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125; else &#123;</span><br><span class="line">                        if (showPointText) &#123;</span><br><span class="line">                            that.updateTextMarker(d.data);</span><br><span class="line">                        &#125;</span><br><span class="line">                        that.updatePoint(d.data);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                that.changeData(d.data);</span><br><span class="line"></span><br><span class="line">            &#125; else if (d.responseType &#x3D;&#x3D;&#x3D; &#39;smokeTH&#39;) &#123;</span><br><span class="line">                if (showSmokeImg) &#123;</span><br><span class="line">                    for (let i &#x3D; 0; i &lt; shList.length; i++) &#123;</span><br><span class="line">                        if (shList[i].sn &#x3D;&#x3D; d.data.sn) &#123;</span><br><span class="line">                            shList[i].humidity &#x3D; d.data.humidity;</span><br><span class="line">                            shList[i].humidityAlarm &#x3D; d.data.humidityAlarm;</span><br><span class="line">                            shList[i].occurrenceTime &#x3D; d.data.occurrenceTime;</span><br><span class="line">                            shList[i].smokeAlarm &#x3D; d.data.smokeAlarm;</span><br><span class="line">                            shList[i].temperature &#x3D; d.data.temperature;</span><br><span class="line">                            shList[i].temperatureAlarm &#x3D; d.data.temperatureAlarm;</span><br><span class="line">                            that.updateSmokePoint(shList[i]);</span><br><span class="line">                            break;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        ws.onclose &#x3D; function (evt) &#123;</span><br><span class="line">            console.log(&quot;Connection closed.&quot;);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/map/" rel="tag"># map</a>
+          
+            <a href="/tags/react/" rel="tag"># react</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/11/09/echarts%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98%E8%AE%B0%E5%BD%95/" rel="next" title="echarts项目实战记录">
+                <i class="fa fa-chevron-left"></i> echarts项目实战记录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/01/08/echarts%E5%B1%9E%E6%80%A7%E8%AE%B0%E5%BD%95/" rel="prev" title="echarts属性记录">
+                echarts属性记录 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="Dali" />
+            
+              <p class="site-author-name" itemprop="name">Dali</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">140</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">143</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#react开发记录"><span class="nav-number">1.</span> <span class="nav-text">react开发记录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本结构"><span class="nav-number">1.1.</span> <span class="nav-text">基本结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生命周期（钩子函数）"><span class="nav-number">1.2.</span> <span class="nav-text">生命周期（钩子函数）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSX语法"><span class="nav-number">1.3.</span> <span class="nav-text">JSX语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSX上的style"><span class="nav-number">1.4.</span> <span class="nav-text">JSX上的style</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方式一"><span class="nav-number">1.4.1.</span> <span class="nav-text">方式一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方式二"><span class="nav-number">1.4.2.</span> <span class="nav-text">方式二</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSX上的数组输出"><span class="nav-number">1.5.</span> <span class="nav-text">JSX上的数组输出</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方式一-1"><span class="nav-number">1.5.1.</span> <span class="nav-text">方式一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方式二（map渲染）"><span class="nav-number">1.5.2.</span> <span class="nav-text">方式二（map渲染）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法调用"><span class="nav-number">1.6.</span> <span class="nav-text">方法调用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方式一：内联调用法"><span class="nav-number">1.6.1.</span> <span class="nav-text">方式一：内联调用法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方式二：配置中调用法"><span class="nav-number">1.6.2.</span> <span class="nav-text">方式二：配置中调用法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方式三：箭头函数调用法（最推荐）"><span class="nav-number">1.6.3.</span> <span class="nav-text">方式三：箭头函数调用法（最推荐）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#map配置"><span class="nav-number">2.</span> <span class="nav-text">map配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#从接口读取map配置"><span class="nav-number">2.1.</span> <span class="nav-text">从接口读取map配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地图初始化"><span class="nav-number">2.2.</span> <span class="nav-text">地图初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地图渲染结束回调"><span class="nav-number">2.3.</span> <span class="nav-text">地图渲染结束回调</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#切换楼层-得到当前的楼层focusGroupID"><span class="nav-number">2.4.</span> <span class="nav-text">切换楼层(得到当前的楼层focusGroupID)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#切换单楼层-多楼层-showSingerOrMultiGroup"><span class="nav-number">2.5.</span> <span class="nav-text">切换单楼层&#x2F;多楼层(showSingerOrMultiGroup)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#切换2D-3D"><span class="nav-number">2.6.</span> <span class="nav-text">切换2D&#x2F;3D</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#戳点与更新"><span class="nav-number">2.7.</span> <span class="nav-text">戳点与更新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#坐标转换"><span class="nav-number">2.7.1.</span> <span class="nav-text">坐标转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图标戳点"><span class="nav-number">2.7.2.</span> <span class="nav-text">图标戳点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文本戳点"><span class="nav-number">2.7.3.</span> <span class="nav-text">文本戳点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更新图标点位"><span class="nav-number">2.7.4.</span> <span class="nav-text">更新图标点位</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更新文字点位"><span class="nav-number">2.7.5.</span> <span class="nav-text">更新文字点位</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#根据id删除图片点位"><span class="nav-number">2.7.6.</span> <span class="nav-text">根据id删除图片点位</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#根据id删除文字点位"><span class="nav-number">2.7.7.</span> <span class="nav-text">根据id删除文字点位</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#websocket简单用法"><span class="nav-number">3.</span> <span class="nav-text">websocket简单用法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dali</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

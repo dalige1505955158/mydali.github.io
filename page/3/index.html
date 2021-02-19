@@ -294,7 +294,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/22/%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8A%E4%BC%A0github/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/10/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E4%B8%8B%E8%BD%BD%E4%BF%9D%E5%AD%98%E5%9B%BE%E7%89%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Dali">
@@ -313,7 +313,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/09/22/%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8A%E4%BC%A0github/" itemprop="url">本地文件夹上传github</a></h1>
+                <a class="post-title-link" href="/2020/10/10/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E4%B8%8B%E8%BD%BD%E4%BF%9D%E5%AD%98%E5%9B%BE%E7%89%87/" itemprop="url">小程序开发之下载保存图片</a></h1>
         
 
         <div class="post-meta">
@@ -325,8 +325,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-22T18:12:50+08:00">
-                2020-09-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-10T15:15:19+08:00">
+                2020-10-10
               </time>
             
 
@@ -348,8 +348,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/github/" itemprop="url" rel="index">
-                    <span itemprop="name">github</span>
+                  <a href="/categories/soft/" itemprop="url" rel="index">
+                    <span itemprop="name">soft</span>
                   </a>
                 </span>
 
@@ -386,15 +386,10 @@
 
       
         
-          <p>首先你需要一个github账号，所有还没有的话先去注册吧！</p>
-<p><a href="https://github.com/" target="_blank" rel="noopener">https://github.com/</a></p>
-<p>我们使用git需要先安装git工具，这里给出下载地址，下载后一路直接安装即可：</p>
-<p><a href="https://git-for-windows.github.io/" target="_blank" rel="noopener">https://git-for-windows.github.io/</a></p>
-<p>1.进入Github首页，点击New repository新建一个项目</p>
-<p><img src="http://images2015.cnblogs.com/blog/913913/201608/913913-20160823164154526-418441991.png" alt="img"></p>
+          <h3 id="下载pdf"><a href="#下载pdf" class="headerlink" title="下载pdf"></a>下载pdf</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">downloadFile: function(e) &#123;</span><br><span class="line">    let url &#x3D; e.currentTarget.dataset.url;</span><br><span class="line">    wx.downloadFile(&#123;</span><br><span class="line">        url: url,</span><br><span class="line">        success: function(res) &#123;</span><br><span class="line">            var filePath &#x3D; res.tempFilePath;</span><br><span class="line">            wx.openDocument(&#123;</span><br><span class="line">                filePath: filePath,</span><br><span class="line">                fileType:&quot;pdf&quot;,&#x2F;&#x2F;必填</span><br><span class="line">                success: function(res) &#123;</span><br><span class="line">                    console.log(&#39;打开文档成功&#39;)</span><br><span class="line">                &#125;,</span><br><span class="line">                fail: function(res) &#123;</span><br><span class="line">                    console.log(res);</span><br><span class="line">                &#125;,</span><br><span class="line">                complete: function(res) &#123;</span><br><span class="line">                    console.log(res);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;,</span><br><span class="line">        fail: function(res) &#123;</span><br><span class="line">            console.log(&#39;文件下载失败&#39;);</span><br><span class="line">        &#125;,</span><br><span class="line">        complete: function(res) &#123;&#125;,</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/09/22/%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8A%E4%BC%A0github/#more" rel="contents">
+            <a class="btn" href="/2020/10/10/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E4%B8%8B%E8%BD%BD%E4%BF%9D%E5%AD%98%E5%9B%BE%E7%89%87/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -445,7 +440,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/22/webpack%E5%B8%B8%E8%A7%81loader%E5%92%8Cplugins/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/09/js%E4%B9%8BloadshJs/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Dali">
@@ -464,7 +459,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/09/22/webpack%E5%B8%B8%E8%A7%81loader%E5%92%8Cplugins/" itemprop="url">webpack常见loader和plugins</a></h1>
+                <a class="post-title-link" href="/2020/10/09/js%E4%B9%8BloadshJs/" itemprop="url">js之loadshJs</a></h1>
         
 
         <div class="post-meta">
@@ -476,8 +471,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-22T16:48:58+08:00">
-                2020-09-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-09T17:54:03+08:00">
+                2020-10-09
               </time>
             
 
@@ -486,28 +481,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/webpack/" itemprop="url" rel="index">
-                    <span itemprop="name">webpack</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -537,17 +510,12 @@
 
       
         
-          <h3 id="常用webpack插件"><a href="#常用webpack插件" class="headerlink" title="常用webpack插件"></a>常用webpack插件</h3><p><strong>注意：插件的引入都在webpack.config.js中</strong></p>
-<h4 id="live-server-必须全局安装，命令直接使用"><a href="#live-server-必须全局安装，命令直接使用" class="headerlink" title="live-server (必须全局安装，命令直接使用)"></a>live-server (必须全局安装，命令直接使用)</h4><p>一款npm工具，全局npm i -g live-server后，项目目录使用live-server命令行命令便可直接在浏览器中预览（默认找index.html，其他请自行带上文件名空格后跟在后面），并且自动全局监听实时更新</p>
-<p>1.新建一个文件夹（最好英文），执行npm init命令；</p>
-<p>2.生成package.json文件后，执行npm install -g live-server命令；</p>
-<p>3.安装完成后，就可以执行live-server命令启动；</p>
-<p>设置快捷方式如下：</p>
-<p>1.找到package.json文件，然后找到”script”，写入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;server&quot;:&quot;live-server .&#x2F;port&#x3D;9090&quot;</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
+          <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Lodash是一个著名的javascript原生库，不需要引入其他第三方依赖。是一个意在提高开发者效率,提高JS原生方法性能的JS库。简单的说就是，很多方法lodash已经帮你写好了，直接调用就行，不用自己费尽心思去写了，而且可以统一方法的一致性。Lodash使用了一个简单的 _ 符号，就像Jquery的 $ 一样，十分简洁。<br> 类似的还有Underscore.js和Lazy.js</p>
+<h4 id="支持"><a href="#支持" class="headerlink" title="支持"></a>支持</h4><p>chrome 43往上<br> Firefox 38往上<br> IE 6-11<br> MS Edge<br> Safari 5往上<br> （几乎涵盖现在市面上可以见到的大部分浏览器）</p>
+<h4 id="如何安装"><a href="#如何安装" class="headerlink" title="如何安装"></a>如何安装</h4>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/09/22/webpack%E5%B8%B8%E8%A7%81loader%E5%92%8Cplugins/#more" rel="contents">
+            <a class="btn" href="/2020/10/09/js%E4%B9%8BloadshJs/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -598,7 +566,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/21/webpack3%E6%9C%80%E5%85%A8%E8%A7%A3%E6%9E%90/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E9%98%BF%E6%8B%89%E4%B8%81%E7%BB%9F%E8%AE%A1%E5%B9%B3%E5%8F%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Dali">
@@ -617,7 +585,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/09/21/webpack3%E6%9C%80%E5%85%A8%E8%A7%A3%E6%9E%90/" itemprop="url">webpack3最全解析</a></h1>
+                <a class="post-title-link" href="/2020/10/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E9%98%BF%E6%8B%89%E4%B8%81%E7%BB%9F%E8%AE%A1%E5%B9%B3%E5%8F%B0/" itemprop="url">小程序开发之阿拉丁统计平台</a></h1>
         
 
         <div class="post-meta">
@@ -629,8 +597,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-21T17:29:49+08:00">
-                2020-09-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-09T10:58:52+08:00">
+                2020-10-09
               </time>
             
 
@@ -652,8 +620,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/webpack3/" itemprop="url" rel="index">
-                    <span itemprop="name">webpack3</span>
+                  <a href="/categories/soft/" itemprop="url" rel="index">
+                    <span itemprop="name">soft</span>
                   </a>
                 </span>
 
@@ -690,312 +658,16 @@
 
       
         
-          <h3 id="开始（以3-X版本为例，内容有过时的还没更新）"><a href="#开始（以3-X版本为例，内容有过时的还没更新）" class="headerlink" title="开始（以3.X版本为例，内容有过时的还没更新）"></a>开始（以3.X版本为例，内容有过时的还没更新）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;新建文件夹</span><br><span class="line">mkdir webpack_demo</span><br><span class="line">cd webpack_demo</span><br><span class="line">&#x2F;&#x2F;全局安装webpack</span><br><span class="line">npm install -g webpack@3.6.0</span><br><span class="line">&#x2F;&#x2F;初始化生成package.json</span><br><span class="line">npm init </span><br><span class="line">&#x2F;&#x2F;开发时依赖</span><br><span class="line">npm install --save-dev webpack@3.6.0</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/09/21/webpack3%E6%9C%80%E5%85%A8%E8%A7%A3%E6%9E%90/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/21/H5%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%B0%83%E8%AF%95%E5%85%A8%E6%94%BB%E7%95%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dali">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DaliBlogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/21/H5%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%B0%83%E8%AF%95%E5%85%A8%E6%94%BB%E7%95%A5/" itemprop="url">H5移动端调试全攻略</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-21T09:59:13+08:00">
-                2020-09-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%B0%83%E8%AF%95/" itemprop="url" rel="index">
-                    <span itemprop="name">移动端调试</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="H5-移动端调试全攻略"><a href="#H5-移动端调试全攻略" class="headerlink" title="H5 移动端调试全攻略"></a>H5 移动端调试全攻略</h2><h3 id="一、概要"><a href="#一、概要" class="headerlink" title="一、概要"></a>一、概要</h3><p>因为移动端操作系统分为 <code>iOS</code> 和 <code>Android</code> 两派，所以本文的调试技巧也会按照不同的系统来区分。寻找最合适高效的方式，才能让你事半功倍。</p>
-<blockquote>
-<p>文章会列举目前适合移动端调试的多种方案，快来选择你的最佳实践吧！</p>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/09/21/H5%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%B0%83%E8%AF%95%E5%85%A8%E6%94%BB%E7%95%A5/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dali">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DaliBlogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86/" itemprop="url">vue之上拉加载原理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-16T14:20:24+08:00">
-                2020-09-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue/" itemprop="url" rel="index">
-                    <span itemprop="name">vue</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h1><p>贴上效果展示：<br><img src="https://mmbiz.qpic.cn/mmbiz_gif/1NOXMW586usqMUQjWlJXNU83Pxk8DicribgBBbuvZ13dRfOBLsInRicV51f90TJDiblOfwq1LuN27vTaqssPfF5NeQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
-<h1 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h1><p>样式方面不多赘述，滚动区域是给固定高度，设置 <code>overflow-y: auto</code> 来实现。</p>
-<p>接下来看看js方面的实现，其实也很简单，触发的条件是：<code>可视高度</code> + <code>滚动距离</code> &gt;= <code>实际高度</code> 。例子我会使用<code>vue</code>来实现，和原生实现是一样的。</p>
-<ul>
-<li>可视高度(offsetHeight)：通过 <code>dom</code> 的 <code>offsetHeight</code> 获得，表示区域固定的高度。这里我推荐通过 <code>getBoundingClientRect()</code> 来获取高度，因为使用前者会引起浏览器回流，造成一些性能问题。</li>
-<li>滚动高度(scrollTop)：滚动事件中通过 <code>e.target.scrollTop</code> 获取，表示滚动条距离顶部的px</li>
-<li>实际高度(scrollHeight)：通过 <code>dom</code> 的 <code>scrollHeight</code> 获得，表示区域内所有内容的高度（包括滚动距离），也就是实际高度</li>
+          <h3 id="关键步骤："><a href="#关键步骤：" class="headerlink" title="关键步骤："></a><strong>关键步骤：</strong></h3><ul>
+<li>注册/登录统计平台</li>
+<li>创建小程序</li>
+<li>接入SDK</li>
+<li>检测SDK</li>
+<li>集成成功</li>
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86/#more" rel="contents">
+            <a class="btn" href="/2020/10/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E9%98%BF%E6%8B%89%E4%B8%81%E7%BB%9F%E8%AE%A1%E5%B9%B3%E5%8F%B0/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1046,7 +718,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86%E7%9A%84%E4%B8%89/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/30/js%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95%E4%B9%8Bsort/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Dali">
@@ -1065,7 +737,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86%E7%9A%84%E4%B8%89/" itemprop="url">vue之上拉加载原理</a></h1>
+                <a class="post-title-link" href="/2020/09/30/js%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95%E4%B9%8Bsort/" itemprop="url">js数组方法之sort</a></h1>
         
 
         <div class="post-meta">
@@ -1077,508 +749,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-16T14:20:24+08:00">
-                2020-09-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h1><p>贴上效果展示：<br><img src="https://mmbiz.qpic.cn/mmbiz_gif/1NOXMW586usqMUQjWlJXNU83Pxk8DicribgBBbuvZ13dRfOBLsInRicV51f90TJDiblOfwq1LuN27vTaqssPfF5NeQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
-<h1 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h1><p>样式方面不多赘述，滚动区域是给固定高度，设置 <code>overflow-y: auto</code> 来实现。</p>
-<p>接下来看看js方面的实现，其实也很简单，触发的条件是：<code>可视高度</code> + <code>滚动距离</code> &gt;= <code>实际高度</code> 。例子我会使用<code>vue</code>来实现，和原生实现是一样的。</p>
-<ul>
-<li>可视高度(offsetHeight)：通过 <code>dom</code> 的 <code>offsetHeight</code> 获得，表示区域固定的高度。这里我推荐通过 <code>getBoundingClientRect()</code> 来获取高度，因为使用前者会引起浏览器回流，造成一些性能问题。</li>
-<li>滚动高度(scrollTop)：滚动事件中通过 <code>e.target.scrollTop</code> 获取，表示滚动条距离顶部的px</li>
-<li>实际高度(scrollHeight)：通过 <code>dom</code> 的 <code>scrollHeight</code> 获得，表示区域内所有内容的高度（包括滚动距离），也就是实际高度</li>
-</ul>
-<h1 id="基础实现"><a href="#基础实现" class="headerlink" title="基础实现"></a>基础实现</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">onScroll(e) &#123;</span><br><span class="line">    let scrollTop &#x3D; e.target.scrollTop</span><br><span class="line">    let scrollHeight &#x3D; e.target.scrollHeight</span><br><span class="line">    let offsetHeight &#x3D; Math.ceil(e.target.getBoundingClientRect().height)</span><br><span class="line">    let currentHeight &#x3D; scrollTop + offsetHeight</span><br><span class="line">    if (currentHeight &gt;&#x3D; scrollHeight) &#123;</span><br><span class="line">        console.log(&#39;触底&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/1NOXMW586usqMUQjWlJXNU83Pxk8Dicribp9bOZENlSxoMU2MQtaNovYQXIb65qUPxKwWtTibqm9icMicOxXsFSUlMQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
-<p>so easy~</p>
-<h1 id="加点细节"><a href="#加点细节" class="headerlink" title="加点细节"></a>加点细节</h1><p>加点细节，现在我们希望是离底部一定距离就触发事件，而不是等到完全触底。如果你做过小程序，这和<code>onReachBottom</code>差不多的意思。</p>
-<p>声明一个离底部的距离变量<code>reachBottomDistance</code></p>
-<p>这时候触发条件：<code>可视高度</code> + <code>滚动距离</code> + <code>reachBottomDistance</code> &gt;= <code>实际高度</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  data()&#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      reachBottomDistance: 100</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    onScroll(e) &#123;</span><br><span class="line">        let scrollTop &#x3D; e.target.scrollTop</span><br><span class="line">        let scrollHeight &#x3D; e.target.scrollHeight</span><br><span class="line">        let offsetHeight &#x3D; Math.ceil(e.target.getBoundingClientRect().height)</span><br><span class="line">        let currentHeight &#x3D; scrollTop + offsetHeight + this.reachBottomDistance</span><br><span class="line">        if (currentHeight &gt;&#x3D; scrollHeight) &#123;</span><br><span class="line">            console.log(&#39;触底&#39;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/1NOXMW586usqMUQjWlJXNU83Pxk8DicribkC2ZSbcwoQfvEQdXUGzpzibj2IK0xQawxOm2q1t6L5N0Sj21Mmb2fJw/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
-<p>在距离底部100px时成功触发事件，但由于100px往下的区域是符合条件的，会导致一直触发，这不是我们想要的。</p>
-<p>接下来做一些处理，让其进入后只触发一次:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  data()&#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      isReachBottom: false,</span><br><span class="line">      reachBottomDistance: 100</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    onScroll(e) &#123;</span><br><span class="line">        let scrollTop &#x3D; e.target.scrollTop</span><br><span class="line">        let scrollHeight &#x3D; e.target.scrollHeight</span><br><span class="line">        let offsetHeight &#x3D; Math.ceil(e.target.getBoundingClientRect().height)</span><br><span class="line">        let currentHeight &#x3D; scrollTop + offsetHeight + this.reachBottomDistance</span><br><span class="line"></span><br><span class="line">        if(currentHeight &lt; scrollHeight &amp;&amp; this.isReachBottom)&#123;</span><br><span class="line">          this.isReachBottom &#x3D; false</span><br><span class="line">        &#125;</span><br><span class="line">        if(this.isReachBottom)&#123;</span><br><span class="line">          return</span><br><span class="line">        &#125;</span><br><span class="line">        if (currentHeight &gt;&#x3D; scrollHeight) &#123;</span><br><span class="line">          this.isReachBottom &#x3D; true</span><br><span class="line">          console.log(&#39;触底&#39;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/1NOXMW586usqMUQjWlJXNU83Pxk8Dicribqic9sKlSTeB0CianJYNJMViaUdChLxbic397ItI3Gb0O8VhpoadpCSzAQA/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
-<h1 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h1><p>实时去获取位置信息稍微会损耗性能，我们应该把不变的缓存起来，只实时获取可变的部分</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  data()&#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      isReachBottom: false,</span><br><span class="line">      reachBottomDistance: 100</span><br><span class="line">      scrollHeight: 0,</span><br><span class="line">      offsetHeight: 0,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted()&#123;</span><br><span class="line">    &#x2F;&#x2F; 页面加载完成后  将高度存储起来</span><br><span class="line">    let dom &#x3D; document.querySelector(&#39;.comment-area .comment-list&#39;)</span><br><span class="line">    this.scrollHeight &#x3D; dom.scrollHeight</span><br><span class="line">    this.offsetHeight &#x3D; Math.ceil(dom.getBoundingClientRect().height)</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    onScroll(e) &#123;</span><br><span class="line">        let scrollTop &#x3D; e.target.scrollTop</span><br><span class="line">        let currentHeight &#x3D; scrollTop + this.offsetHeight + this.reachBottomDistance</span><br><span class="line"></span><br><span class="line">        if(currentHeight &lt; this.scrollHeight &amp;&amp; this.isReachBottom)&#123;</span><br><span class="line">          this.isReachBottom &#x3D; false</span><br><span class="line">        &#125;</span><br><span class="line">        if(this.isReachBottom)&#123;</span><br><span class="line">          return</span><br><span class="line">        &#125;</span><br><span class="line">        if (currentHeight &gt;&#x3D; this.scrollHeight) &#123;</span><br><span class="line">          this.isReachBottom &#x3D; true</span><br><span class="line">          console.log(&#39;触底&#39;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>实现到这里就告一段落，如果你有更好的思路和值得改进的地方，欢迎交流~</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/16/git%E4%B9%8B%E9%94%99%E8%AF%AF%E5%88%86%E6%94%AF%E5%BC%80%E5%8F%91%E7%9A%84%E4%B8%89%E7%A7%8D%E6%83%85%E5%86%B5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dali">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DaliBlogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/16/git%E4%B9%8B%E9%94%99%E8%AF%AF%E5%88%86%E6%94%AF%E5%BC%80%E5%8F%91%E7%9A%84%E4%B8%89%E7%A7%8D%E6%83%85%E5%86%B5/" itemprop="url">git之错误分支开发的三种情况</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-16T11:35:00+08:00">
-                2020-09-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="还没有commit"><a href="#还没有commit" class="headerlink" title="还没有commit"></a>还没有commit</h3><p>在这种情况下我们可以在当前分支下使用：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash</span><br></pre></td></tr></table></figure>
-
-<p>这个命令表示<strong>把我们当前修改的内容暂存起来，然后我们的工作区就恢复到在没有开发新功能之前的样子。</strong></p>
-<p>这个时候我们需要切换到正确的工作分支，然后运行命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash apply</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/09/16/git%E4%B9%8B%E9%94%99%E8%AF%AF%E5%88%86%E6%94%AF%E5%BC%80%E5%8F%91%E7%9A%84%E4%B8%89%E7%A7%8D%E6%83%85%E5%86%B5/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/15/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E5%A4%8D%E4%B9%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dali">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DaliBlogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/15/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E5%A4%8D%E4%B9%A0/" itemprop="url">前端面试复习</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-15T14:10:37+08:00">
-                2020-09-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9D%A2%E8%AF%95/" itemprop="url" rel="index">
-                    <span itemprop="name">面试</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>参考：<a href="https://mp.weixin.qq.com/s/QX0HL1tCAGU70zEb-HJQlQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/QX0HL1tCAGU70zEb-HJQlQ</a></p>
-<p>手写函数合集</p>
-<p><a href="https://mp.weixin.qq.com/s/5mlf4yo6v4gRJnePAluqgg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/5mlf4yo6v4gRJnePAluqgg</a></p>
-<p>遍历A节点的父节点下的所有子节点</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    var b&#x3D;document.getElementById(&quot;a&quot;).parentNode.children;</span><br><span class="line">    console.log(b)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>target、currentTarget的区别？</p>
-<p>currentTarget当前所绑定事件的元素（指向出发事件的函数，始终不变）</p>
-<p>target当前被点击的元素</p>
-<p>在浏览器地址栏中输入URL后发生了什么</p>
-<h4 id="基本流程："><a href="#基本流程：" class="headerlink" title="基本流程："></a>基本流程：</h4><p>①查询ip地址</p>
-<p>②建立tcp连接，接入服务器</p>
-<p>③浏览器发起http请求</p>
-<p>④服务器后台操作并做出http响应</p>
-<p>⑤网页的解析与渲染</p>
-<p>优化：</p>
-<h5 id="从此可以得出网站的一些优化的方法"><a href="#从此可以得出网站的一些优化的方法" class="headerlink" title="从此可以得出网站的一些优化的方法:"></a>从此可以得出网站的一些优化的方法:</h5><p>①减少DNS查询:将服务器域名的ip信息加入本地host文件。</p>
-<p>②减少http请求数量，对于图片使用雪碧图,对于html文件和css文件，js文件分别进行合并操作。</p>
-<p>③减少下载时间：压缩图片，使用压缩应用压缩文档中的空格，删除文件多余的语句和注释，创造自己的js精简库和精简框架,使用本地浏览器缓存。</p>
-<p>④提前渲染开始时间：将css链接放在html头部。</p>
-<p>⑤减轻解析器的阻塞：将js链接放在body尾部。</p>
-<p>参考：<a href="https://www.cnblogs.com/yanruizhe/p/11462462.html" target="_blank" rel="noopener">https://www.cnblogs.com/yanruizhe/p/11462462.html</a></p>
-<p>页面渲染html的过程？</p>
-<blockquote>
-<p>不需要死记硬背，理解整个过程即可</p>
-</blockquote>
-<p>浏览器渲染页面的一般过程：</p>
-<p>1.浏览器解析html源码，然后创建一个 DOM树。并行请求 css/image/js在DOM树中，每一个HTML标签都有一个对应的节点，并且每一个文本也都会有一个对应的文本节点。DOM树的根节点就是 documentElement，对应的是html标签。</p>
-<p>2.浏览器解析CSS代码，计算出最终的样式数据。构建CSSOM树。对CSS代码中非法的语法它会直接忽略掉。解析CSS的时候会按照如下顺序来定义优先级：浏览器默认设置 &lt; 用户设置 &lt; 外链样式 &lt; 内联样式 &lt; html中的style。</p>
-<p>3.DOM Tree + CSSOM –&gt; 渲染树（rendering tree）。渲染树和DOM树有点像，但是是有区别的。</p>
-<p>DOM树完全和html标签一一对应，但是渲染树会忽略掉不需要渲染的元素，比如head、display:none的元素等。而且一大段文本中的每一个行在渲染树中都是独立的一个节点。渲染树中的每一个节点都存储有对应的css属性。</p>
-<p>4.一旦渲染树创建好了，浏览器就可以根据渲染树直接把页面绘制到屏幕上。</p>
-<p>以上四个步骤并不是一次性顺序完成的。如果DOM或者CSSOM被修改，以上过程会被重复执行。实际上，CSS和JavaScript往往会多次修改DOM或者CSSOM。</p>
-<p>说一下CORS？</p>
-<p>CORS是一种新标准，支持同源通信，也支持跨域通信。fetch是实现CORS通信的</p>
-<p>如何中断ajax请求？</p>
-<p>一种是设置超时时间让ajax自动断开，另一种是手动停止ajax请求，其核心是调用XML对象的abort方法，ajax.abort()</p>
-<p>用js递归的方式写1到100求和？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function num(n)&#123;</span><br><span class="line">    if(n&#x3D;&#x3D;1) return 1;</span><br><span class="line">    return num(n-1)+n;</span><br><span class="line">&#125;</span><br><span class="line">num(100);    </span><br><span class="line">延申：</span><br><span class="line">var sum &#x3D; 0;</span><br><span class="line">for(var i &#x3D; 1 ; i &lt;&#x3D; 100; i++)&#123;</span><br><span class="line">    sum +&#x3D; i;</span><br><span class="line">&#125;</span><br><span class="line">document.writeln(&quot;1~100以内的和为：&quot;+ sum);</span><br></pre></td></tr></table></figure>
-
-
-
-<p>数组去重</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">第一种：</span><br><span class="line">var arr&#x3D;[&#39;12&#39;,&#39;32&#39;,&#39;89&#39;,&#39;12&#39;,&#39;12&#39;,&#39;78&#39;,&#39;12&#39;,&#39;32&#39;];</span><br><span class="line">    &#x2F;&#x2F; 最简单数组去重法</span><br><span class="line">    function unique1(array)&#123;</span><br><span class="line">        var n &#x3D; []; &#x2F;&#x2F;一个新的临时数组</span><br><span class="line">        for(var i &#x3D; 0; i &lt; array.length; i++)&#123; &#x2F;&#x2F;遍历当前数组</span><br><span class="line">            if (n.indexOf(array[i]) &#x3D;&#x3D; -1)</span><br><span class="line">                n.push(array[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        return n;</span><br><span class="line">    &#125;</span><br><span class="line">arr&#x3D;unique1(arr);</span><br><span class="line"></span><br><span class="line">第二种</span><br><span class="line">es6方法数组去重</span><br><span class="line">arr&#x3D;[...new Set(arr)];</span><br><span class="line"></span><br><span class="line">第三种</span><br><span class="line">es6方法数组去重，第二种方法</span><br><span class="line">function dedupe(array) &#123;</span><br><span class="line">  return Array.from(new Set(array));       &#x2F;&#x2F;Array.from()能把set结构转换为数组</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>变量提升</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">console.log(a);  &#x2F;&#x2F;undefined</span><br><span class="line">var a &#x3D; 123;</span><br><span class="line"></span><br><span class="line">经典案例</span><br><span class="line">console.log(v1);</span><br><span class="line">var v1 &#x3D; 100;</span><br><span class="line">function foo() &#123;</span><br><span class="line">    console.log(v1);</span><br><span class="line">    var v1 &#x3D; 200;</span><br><span class="line">    console.log(v1);</span><br><span class="line">&#125;</span><br><span class="line">foo();</span><br><span class="line">console.log(v1);</span><br><span class="line">&#x2F;&#x2F; undefined  undefined 200  100</span><br></pre></td></tr></table></figure>
-
-<p>函数提升</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">函数字面量式</span><br><span class="line">bar()</span><br><span class="line">var bar &#x3D; function() &#123;</span><br><span class="line">  console.log(1);</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 报错：TypeError: bar is not a function</span><br><span class="line"></span><br><span class="line">函数声明式</span><br><span class="line">bar()</span><br><span class="line">function bar() &#123;</span><br><span class="line">  console.log(1);</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;输出结果1</span><br></pre></td></tr></table></figure>
-
-
-
-<p>虚拟dom的产生</p>
-<p>改变页面展示的内容只能通过遍历查询 dom 树的方式找到需要修改的 dom 然后修改样式行为或者结构，来达到更新 ui 的目的。这种方式相当消耗计算资源，因为每次查询 dom 几乎都需要遍历整颗 dom 树。</p>
-<p>如果建立一个与 dom 树对应的虚拟 dom 对象（ js 对象），以对象嵌套的方式来表示 dom 树，那么每次 dom 的更改就变成了 js 对象的属性的更改，这样一来就能查找 js 对象的属性变化要比查询 dom 树的性能开销小</p>
-<p>vue </p>
-<p>采用的是虚拟 dom 通过重写 setter ， getter 实现观察者监听 data 属性的变化生成新的虚拟 dom 通过 h 函数创建真实 dom 替换掉dom树上对应的旧 dom。</p>
-<p>react</p>
-<p>react 也是通过虚拟 dom 和 setState 更改 data 生成新的虚拟 dom 以及 diff 算法来计算和生成需要替换的 dom 做到局部更新的。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/15/js%E4%B9%8BBigNumber-js/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dali">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DaliBlogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/15/js%E4%B9%8BBigNumber-js/" itemprop="url">js之BigNumber.js</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-15T11:54:49+08:00">
-                2020-09-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-30T11:16:57+08:00">
+                2020-09-30
               </time>
             
 
@@ -1638,16 +810,16 @@
 
       
         
-          
-            <p>vue使用BigNumber.js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save bignumber.js</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var BigNumber &#x3D; require(&#39;bignumber.js&#39;);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 转为 bignumber</span><br><span class="line">const x&#x3D; new BigNumber(&#39;123456789.123456789&#39;);</span><br><span class="line">&#x2F;&#x2F; 转为 普通数字</span><br><span class="line">x.toNumber()</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 格式化(小数点)</span><br><span class="line">x.toFormat()    &#x2F;&#x2F; &#39;123,456,789.123456789&#39;</span><br><span class="line">x.toFormat(3)   &#x2F;&#x2F; &#39;123,456,789.123&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 计算</span><br><span class="line">x.plus(0.1)  &#x2F;&#x2F; 加法</span><br><span class="line">x.minus(0.1)  &#x2F;&#x2F; 减法</span><br><span class="line">x.times(0.1)  &#x2F;&#x2F; 乘法</span><br><span class="line">x.div(0.1)  &#x2F;&#x2F; 除法</span><br><span class="line">x.mod(3)  &#x2F;&#x2F; 取模&#x2F;取余</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 比较大小</span><br><span class="line">x.eq(y) &#x2F;&#x2F; isEqualTo 的简写，是否相等</span><br><span class="line">x.gt(y) &#x2F;&#x2F; isGreaterThan 的简写，是否大于</span><br><span class="line">x.gte(y) &#x2F;&#x2F; isGreaterThanOrEqualTo 的简写，是否大于等于</span><br><span class="line">x.lt(y) &#x2F;&#x2F; isLessThan 的简写，是否小于</span><br><span class="line">x.lte(y) &#x2F;&#x2F; isLessThanOrEqualTo 的简写，是否小于等于</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 取非，改变数字的正负号</span><br><span class="line">x.negated()</span><br></pre></td></tr></table></figure>
-
-
-          
+          <p><strong>总之：return -1 和return b-a是降序</strong></p>
+<p><strong>总之：return 1 和return a-b是升序</strong></p>
+<p><strong><code>sort()</code></strong> 方法用于对数组的元素进行排序,并返回数组。默认排序顺序是根据字符串<strong><code>Unicode</code></strong>码点。<br>语法：arrayObject.sort(sortby)；参数sortby可选。规定排序顺序。必须是函数。<br>注：如果调用该方法时没有使用参数，将按字母顺序对数组中的元素进行排序，说得更精确点，是按照字符编码的顺序进行排序。要实现这一点，首先应把数组的元素都转换成字符串（如有必要），以便进行比较。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/09/30/js%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95%E4%B9%8Bsort/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1694,7 +866,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/15/express%E5%92%8Ckoa/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/29/js%E4%B9%8B%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Dali">
@@ -1713,7 +885,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/09/15/express%E5%92%8Ckoa/" itemprop="url">express和koa</a></h1>
+                <a class="post-title-link" href="/2020/09/29/js%E4%B9%8B%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/" itemprop="url">js之防抖和节流</a></h1>
         
 
         <div class="post-meta">
@@ -1725,8 +897,281 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-15T11:42:51+08:00">
-                2020-09-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-29T15:55:43+08:00">
+                2020-09-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="防抖"><a href="#防抖" class="headerlink" title="防抖"></a>防抖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在事件被触发n秒后再执行回调，如果在这n秒内又被触发，则重新计时。</span><br></pre></td></tr></table></figure>
+
+<p>举个例子：<br> 当鼠标移动到一个div上时，div的内容一直在更新，如果不用防抖处理，效果如下图</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var mydiv &#x3D; document.getElementById(&#39;mydiv&#39;);</span><br><span class="line">       let count &#x3D; 0;</span><br><span class="line">       function myEvent()&#123;</span><br><span class="line">           mydiv.innerText &#x3D; count++;</span><br><span class="line">       &#125;</span><br><span class="line">       mydiv.addEventListener(&#39;mouseover&#39;, function(event)&#123;</span><br><span class="line">           myEvent();</span><br><span class="line">       &#125;);</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/09/29/js%E4%B9%8B%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/29/js%E4%B9%8B%E5%BF%AB%E9%80%9F%E7%90%86%E8%A7%A3i%E9%97%AD%E5%8C%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/29/js%E4%B9%8B%E5%BF%AB%E9%80%9F%E7%90%86%E8%A7%A3i%E9%97%AD%E5%8C%85/" itemprop="url">js之快速理解i闭包</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-29T15:34:52+08:00">
+                2020-09-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 累加器</span><br><span class="line">function counter() &#123;</span><br><span class="line">  &#x2F;&#x2F; 秒数</span><br><span class="line">  let second &#x3D; 0;</span><br><span class="line"></span><br><span class="line">  function doCounter() &#123;</span><br><span class="line">    &#x2F;&#x2F; 到达10秒后停止</span><br><span class="line">    if (second &#x3D;&#x3D;&#x3D; 10) &#123;</span><br><span class="line">      clearInterval(recordSecond);</span><br><span class="line">      console.log(&#39;计时结束!&#39;);</span><br><span class="line">      return;</span><br><span class="line">    &#125;</span><br><span class="line">    second +&#x3D; 1;</span><br><span class="line">    console.log(&#96;$&#123;second&#125;秒&#96;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return doCounter;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 得到累加器</span><br><span class="line">const doCounterFn &#x3D; counter();</span><br><span class="line"></span><br><span class="line">const recordSecond &#x3D; setInterval(function () &#123;</span><br><span class="line">  &#x2F;&#x2F; 调用累加器</span><br><span class="line">  doCounterFn();</span><br><span class="line">&#125;, 1000);</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/09/29/js%E4%B9%8B%E5%BF%AB%E9%80%9F%E7%90%86%E8%A7%A3i%E9%97%AD%E5%8C%85/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/28/es6%E4%B9%8BarrayFrom/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/28/es6%E4%B9%8BarrayFrom/" itemprop="url">es6之arrayFrom</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-28T10:43:20+08:00">
+                2020-09-28
               </time>
             
 
@@ -1786,11 +1231,484 @@
 
       
         
-          <p>Koa和Express都是NodeJS的主流应用开发框架。</p>
-<p>Express是一个完整的nodejs应用框架。Koa是由Express团队开发的，但是它有不同的关注点。Koa致力于核心中间件功能。nodejs中间件是访问请求对象（req）和响应对象（res）的例程。这些例程在路由处理程序之前被调用，因此它们位于客户端与生成响应的路由逻辑的“中间”。nodejs应用程序可以将中间件例程“链接”到自定义请求/响应管道中。管道可以根据请求和响应进行操作，包括头和主体。Express和Koa都包含中间件，但实现方法却截然不同。</p>
+          <p>Array.from()方法就是将一个类数组对象或者可遍历对象转换成一个真正的数组。</p>
+<p>　　那么什么是类数组对象呢？所谓类数组对象，最基本的要求就是具有length属性的对象。</p>
+<p>　　1、将类数组对象转换为真正数组：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let arrayLike &#x3D; &#123;</span><br><span class="line">    0: &#39;tom&#39;, </span><br><span class="line">    1: &#39;65&#39;,</span><br><span class="line">    2: &#39;男&#39;,</span><br><span class="line">    3: [&#39;jane&#39;,&#39;john&#39;,&#39;Mary&#39;],</span><br><span class="line">    &#39;length&#39;: 4</span><br><span class="line">&#125;</span><br><span class="line">let arr &#x3D; Array.from(arrayLike)</span><br><span class="line">console.log(arr) &#x2F;&#x2F; [&#39;tom&#39;,&#39;65&#39;,&#39;男&#39;,[&#39;jane&#39;,&#39;john&#39;,&#39;Mary&#39;]]</span><br></pre></td></tr></table></figure>
+
+<p>　　那么，如果将上面代码中length属性去掉呢？实践证明，答案会是一个长度为0的空数组。</p>
+<p>　　这里将代码再改一下，就是具有length属性，但是对象的属性名不再是数字类型的，而是其他字符串型的，代码如下：</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/09/15/express%E5%92%8Ckoa/#more" rel="contents">
+            <a class="btn" href="/2020/09/28/es6%E4%B9%8BarrayFrom/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/27/this%E4%B9%8B%E5%B8%B8%E8%A7%81%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%94%A8%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/27/this%E4%B9%8B%E5%B8%B8%E8%A7%81%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%94%A8%E6%B3%95/" itemprop="url">this之常见的四种用法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-27T16:04:03+08:00">
+                2020-09-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><span style="color:red;">箭头函数的this指向window！！！！！！！！</span></p>
+<p>1.在一般函数方法中使用 this 指代全局对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function test()&#123;</span><br><span class="line">　　　　this.x &#x3D; 1;</span><br><span class="line">　　　　alert(this.x);</span><br><span class="line">&#125;</span><br><span class="line">test(); &#x2F;&#x2F; 1</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/09/27/this%E4%B9%8B%E5%B8%B8%E8%A7%81%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%94%A8%E6%B3%95/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/27/axios%E4%B9%8Bget%E5%92%8Cpost/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/27/axios%E4%B9%8Bget%E5%92%8Cpost/" itemprop="url">axios之get和post</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-27T11:04:09+08:00">
+                2020-09-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/axios/" itemprop="url" rel="index">
+                    <span itemprop="name">axios</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/axios/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>1.get传参方式是通过地址栏URL传递，是可以直接看到get传递的参数，post传参方式参数URL不可见，get把请求的数据在URL后通过？连接，通过&amp;进行参数分割。psot将参数存放在HTTP的包体内</p>
+<p>2.get传递数据是通过URL进行传递，对传递的数据长度是受到URL大小的限制，URL最大长度是2048个字符。post没有长度限制</p>
+<p>3.get后退不会有影响，post后退会重新进行提交</p>
+<p>4.get请求可以被缓存，post不可以被缓存</p>
+<p>5.get请求只URL编码，post支持多种编码方式</p>
+<p>6.get请求的记录会留在历史记录中，post请求不会留在历史记录</p>
+<p>7.get只支持ASCII字符，post没有字符类型限制</p>
+<h3 id="什么是GET和POST请求"><a href="#什么是GET和POST请求" class="headerlink" title="什么是GET和POST请求"></a>什么是GET和POST请求</h3><p>GET：向指定路径资源发送请求，通常用于获取数据</p>
+<p>POST：向指定路径资源提交数据进行处理请求，通常用于提交表单或者上传文件</p>
+<h3 id="GET和POST请求的区别"><a href="#GET和POST请求的区别" class="headerlink" title="GET和POST请求的区别"></a>GET和POST请求的区别</h3><p>1，GET一般是从服务器上获取数据，POST是向服务器提交数据。</p>
+<p>2，GET通过URL提交数据，数据在URL中可以看到，POST则是在HEADER内提交。</p>
+<p>3，GET提交的数据不能大于2KB，而POST不受限制。</p>
+<p>4，GET数据容易泄露，POST较为安全</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/09/27/axios%E4%B9%8Bget%E5%92%8Cpost/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/25/js%E4%B9%8B%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E6%B3%95%E5%90%88%E9%9B%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/25/js%E4%B9%8B%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E6%B3%95%E5%90%88%E9%9B%86/" itemprop="url">js之对象的方法合集</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-25T17:40:57+08:00">
+                2020-09-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Object构造方法"><a href="#Object构造方法" class="headerlink" title="Object构造方法"></a><code>Object</code>构造方法</h2><ul>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign" target="_blank" rel="noopener"><code>Object.assign()</code></a></p>
+<p>将所有可枚举的自身属性的值从一个或多个源对象复制到目标对象。</p>
+</li>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create" target="_blank" rel="noopener"><code>Object.create()</code></a></p>
+<p>用指定的原型对象和属性创建一个新对象。</p></li></ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/09/25/js%E4%B9%8B%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E6%B3%95%E5%90%88%E9%9B%86/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1832,7 +1750,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/4/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/2/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/4/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -1882,7 +1800,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">125</span>
+                  <span class="site-state-item-count">140</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1893,7 +1811,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-count">68</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1904,7 +1822,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">130</span>
+                  <span class="site-state-item-count">143</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1948,7 +1866,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

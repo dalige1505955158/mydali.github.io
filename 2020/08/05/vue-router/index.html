@@ -97,7 +97,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200718154421681.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200718154444639.png">
 <meta property="article:published_time" content="2020-08-05T02:05:24.000Z">
-<meta property="article:modified_time" content="2020-10-10T06:38:21.077Z">
+<meta property="article:modified_time" content="2021-02-19T08:40:50.608Z">
 <meta property="article:author" content="Dali">
 <meta property="article:tag" content="vue">
 <meta property="article:tag" content="router">
@@ -445,7 +445,7 @@
 <p>　　重新配置路由是当匹配到路径符合条件的时候，router-view页面展示部分负责拿符合条件路由的页面来展示，实际上url是没有发生变化的；</p>
 <h5 id="动态路由匹配："><a href="#动态路由匹配：" class="headerlink" title="动态路由匹配："></a>动态路由匹配：</h5><p>　　其实我们的生活中有很多这样的例子，不知道大家留意没有？比如一个网站或者后台管理系统中，在我们登录之后，是不是通常会有一个欢迎回来，XXX之类的提示语，这个我们就可以通过动态路由来实现这个效果；</p>
 <p>首先在src目录下新建一个user.vue文件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;user&lt;&#x2F;h1&gt;</span><br><span class="line">       &#x2F;&#x2F;这里可以通过$route.params.name来获取路由的参数</span><br><span class="line">        &lt;p&gt;欢迎回来,&#123;&#123;$route.params.name&#125;&#125;&lt;&#x2F;p&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    export default &#123;</span><br><span class="line">        data () &#123;</span><br><span class="line">            return &#123;</span><br><span class="line">                msg: &quot;我是page1组件&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;user&lt;&#x2F;h1&gt;</span><br><span class="line">       &#x2F;&#x2F;这里可以通过$route.params.name来获取路由的参数</span><br><span class="line">        &lt;p&gt;欢迎回来,$route.params.name&lt;&#x2F;p&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    export default &#123;</span><br><span class="line">        data () &#123;</span><br><span class="line">            return &#123;</span><br><span class="line">                msg: &quot;我是page1组件&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -496,7 +496,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">router.push(&#123; name: &#39;user&#39;, params: &#123; userId: 123 &#125;&#125;)</span><br></pre></td></tr></table></figure>
 
 <p>这两者都会把路由导航到user/123路径</p>
-<h5 id="路由传参-params-与-query"><a href="#路由传参-params-与-query" class="headerlink" title="路由传参 params 与 query"></a>路由传参 params 与 query</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">query要用path来引入，params要用name来引入</span><br><span class="line">tourlname()&#123;</span><br><span class="line">   this.$router.push(&#123; name: &#39;user&#39;, params: &#123; userId: 123 &#125;&#125;)</span><br><span class="line">&#125;,</span><br><span class="line">tourlpath()&#123;</span><br><span class="line">   this.$router.push(&#123; path: &#39;&#x2F;user&#39;, query: &#123; userId: 123 &#125;&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">获取参数的不同</span><br><span class="line">&#123;&#123;$route.params.userId&#125;&#125;</span><br><span class="line">&#123;&#123;$route.query.userId&#125;&#125;</span><br><span class="line"></span><br><span class="line">params类似于post，不显示参数名</span><br><span class="line">query类似于我们ajax中get传参，在浏览器地址栏中显示参数名，</span><br></pre></td></tr></table></figure>
+<h5 id="路由传参-params-与-query"><a href="#路由传参-params-与-query" class="headerlink" title="路由传参 params 与 query"></a>路由传参 params 与 query</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">query要用path来引入，params要用name来引入</span><br><span class="line">tourlname()&#123;</span><br><span class="line">   this.$router.push(&#123; name: &#39;user&#39;, params: &#123; userId: 123 &#125;&#125;)</span><br><span class="line">&#125;,</span><br><span class="line">tourlpath()&#123;</span><br><span class="line">   this.$router.push(&#123; path: &#39;&#x2F;user&#39;, query: &#123; userId: 123 &#125;&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">获取参数的不同</span><br><span class="line">$route.params.userId</span><br><span class="line">$route.query.userId</span><br><span class="line"></span><br><span class="line">params类似于post，不显示参数名</span><br><span class="line">query类似于我们ajax中get传参，在浏览器地址栏中显示参数名，</span><br></pre></td></tr></table></figure>
 
 <p>使用params传递参数，url上只会出现数据，不会出现具体字段<br><img src="https://img-blog.csdnimg.cn/20200718154856867.png" alt="在这里插入图片描述"><br>而使用查询参数query的方式，url上会出现具体的字段，比较不安全<br><img src="https://img-blog.csdnimg.cn/2020071815491147.png" alt="在这里插入图片描述"></p>
 <p>多个参数<br>直接在路由路径上拼接多个参数<br><img src="https://img-blog.csdnimg.cn/20200718154421681.png" alt="在这里插入图片描述"><br>对应组件使用路由的方法如下：<br><img src="https://img-blog.csdnimg.cn/20200718154444639.png" alt="在这里插入图片描述"></p>
@@ -505,8 +505,8 @@
 
 
 
-
-
+<p>总结：</p>
+<p>params拼接参数值，页面刷新会丢失<br>query拼接参数名和参数值,而且暴露了信息（最常用）<br>props参数值，页面刷新也不会丢失（最保险）</p>
 <h5 id="命名路由："><a href="#命名路由：" class="headerlink" title="命名路由："></a>命名路由：</h5><p>有的时候，通过一个名称来标识一个路由显得更方便一些，所以官方为了方便我们偷懒，又给我们在路由中添加了一个name属性，命名这个属性之后我们访问这个属性就等于直接访问到路由；</p>
 <p>　　普通路由：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">router.push(&#123; path: &#39;&#x2F;user&#x2F;:userId&#39;, params: &#123; userId: 123 &#125;&#125;)</span><br></pre></td></tr></table></figure>
@@ -517,7 +517,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">router.push(&#123; name: &#39;user&#39;, params: &#123; userId: 123 &#125;&#125;)</span><br></pre></td></tr></table></figure>
 
 <p>其实两者并没有什么区别，只是提供了两种方式来访问路由，可以通过路径来匹配也可以通过别名来匹配；</p>
-<h5 id="路由字段"><a href="#路由字段" class="headerlink" title="路由字段"></a>路由字段</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const routes &#x3D; [</span><br><span class="line">  &#123;</span><br><span class="line">    path: &quot;&#x2F;user&#x2F;:name&quot;, &#x2F;&#x2F;动态路由</span><br><span class="line">    name: &quot;user&quot;, &#x2F;&#x2F; 命名设置 name 值</span><br><span class="line">    alias: &#39;&#x2F;home_page&#39;, &#x2F;&#x2F; 别名</span><br><span class="line">    meta: &#123;  &#x2F;&#x2F; 路由元信息 &lt;h1&gt;&#123;&#123; $route.meta.title&#125;&#125;&lt;&#x2F;h1&gt;，可变 this.$route.meta.title &#x3D; &quot;首页&quot;;</span><br><span class="line">      title: &#39;主页&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    component: user, </span><br><span class="line">    components: &#123;  &#x2F;&#x2F; 加s 命名多个视图</span><br><span class="line">      default: () &#x3D;&gt; import(&#39;views&#x2F;child.vue&#39;),</span><br><span class="line">      email: () &#x3D;&gt; import(&#39;views&#x2F;email.vue&#39;),</span><br><span class="line">      tel: () &#x3D;&gt; import(&#39;views&#x2F;tel.vue&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h5 id="路由字段"><a href="#路由字段" class="headerlink" title="路由字段"></a>路由字段</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const routes &#x3D; [</span><br><span class="line">  &#123;</span><br><span class="line">    path: &quot;&#x2F;user&#x2F;:name&quot;, &#x2F;&#x2F;动态路由</span><br><span class="line">    name: &quot;user&quot;, &#x2F;&#x2F; 命名设置 name 值</span><br><span class="line">    alias: &#39;&#x2F;home_page&#39;, &#x2F;&#x2F; 别名</span><br><span class="line">    meta: &#123;  &#x2F;&#x2F; 路由元信息 &lt;h1&gt; $route.meta.title&lt;&#x2F;h1&gt;，可变 this.$route.meta.title &#x3D; &quot;首页&quot;;</span><br><span class="line">      title: &#39;主页&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    component: user, </span><br><span class="line">    components: &#123;  &#x2F;&#x2F; 加s 命名多个视图</span><br><span class="line">      default: () &#x3D;&gt; import(&#39;views&#x2F;child.vue&#39;),</span><br><span class="line">      email: () &#x3D;&gt; import(&#39;views&#x2F;email.vue&#39;),</span><br><span class="line">      tel: () &#x3D;&gt; import(&#39;views&#x2F;tel.vue&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 
 
 
@@ -727,7 +727,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">125</span>
+                  <span class="site-state-item-count">140</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -738,7 +738,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-count">68</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -749,7 +749,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">130</span>
+                  <span class="site-state-item-count">143</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -809,7 +809,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
