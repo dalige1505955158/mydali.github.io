@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2021-03-30T03:37:12.514Z</updated>
+  <updated>2021-03-30T06:50:14.928Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,17 +21,20 @@
     <link href="http://yoursite.com/2021/03/30/mysql%E7%9A%84%E7%AE%80%E5%8D%95%E7%94%A8%E6%B3%95/"/>
     <id>http://yoursite.com/2021/03/30/mysql%E7%9A%84%E7%AE%80%E5%8D%95%E7%94%A8%E6%B3%95/</id>
     <published>2021-03-30T03:35:27.000Z</published>
-    <updated>2021-03-30T03:37:12.514Z</updated>
+    <updated>2021-03-30T06:50:14.928Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;p&gt;参考链接：&lt;a href=&quot;https://mp.weixin.qq.com/s/0hWUZmX72OjQtoVlSfp-PQ&quot; target=&quot;_blank&quot;
-        
-      
+      &lt;p&gt;参考链接：&lt;a href=&quot;https://mp.weixin.qq.com/s/0hWUZmX72OjQtoVlSfp-PQ&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://mp.weixin.qq.com/s/0hWUZmX72OjQtoVlSfp-PQ&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;安装mysql&quot;&gt;&lt;a href=&quot;#安装mysql&quot; class=&quot;headerlink&quot; title=&quot;安装mysql&quot;&gt;&lt;/a&gt;安装mysql&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;使用brew工具安装mysql&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;brew install mysql&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;ol&gt;
+&lt;li&gt;查看安装路径：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;which mysql&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
