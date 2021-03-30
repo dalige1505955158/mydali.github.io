@@ -81,14 +81,14 @@
 
 
 
-<meta name="description" content="*在正则表达式中，如果直接给出字符，就是精确匹配。用\d可以匹配一个数字，\w可以匹配一个字母或数字，所以： 123456789- &#39;00\d&#39;可以匹配&#39;007&#39;，但无法匹配&#39;00A&#39;；- &#39;\d\d\d&#39;可以匹配&#39;010&#39;；- &#39;\w\w&#39;可以匹配&#39;js&#39;；.可以匹配任意字符，所以：-">
+<meta name="description" content="十分钟学会正则(一)限定符1、?:它前面的字符需要出现0次或1次  例如：used?可以匹配到use和used  2、*:它会匹配0个或多个字符  例如：ab*c可以匹配到ac,abc,abbbbbbc  3、+:它会匹配一次及以上的字符  例如：ab+c可以匹配abc,abbbc,而不会匹配ac  4、{}:可以限定匹配的数量  例如：ab{6}c,则匹配到abbbbbbc,而要限定b的数量在2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="正则表达式原理分析">
 <meta property="og:url" content="http://yoursite.com/2020/07/29/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="DaliBlogs">
-<meta property="og:description" content="*在正则表达式中，如果直接给出字符，就是精确匹配。用\d可以匹配一个数字，\w可以匹配一个字母或数字，所以： 123456789- &#39;00\d&#39;可以匹配&#39;007&#39;，但无法匹配&#39;00A&#39;；- &#39;\d\d\d&#39;可以匹配&#39;010&#39;；- &#39;\w\w&#39;可以匹配&#39;js&#39;；.可以匹配任意字符，所以：-">
+<meta property="og:description" content="十分钟学会正则(一)限定符1、?:它前面的字符需要出现0次或1次  例如：used?可以匹配到use和used  2、*:它会匹配0个或多个字符  例如：ab*c可以匹配到ac,abc,abbbbbbc  3、+:它会匹配一次及以上的字符  例如：ab+c可以匹配abc,abbbc,而不会匹配ac  4、{}:可以限定匹配的数量  例如：ab{6}c,则匹配到abbbbbbc,而要限定b的数量在2">
 <meta property="article:published_time" content="2020-07-29T10:18:01.000Z">
-<meta property="article:modified_time" content="2020-07-30T09:31:54.407Z">
+<meta property="article:modified_time" content="2021-02-20T01:14:52.741Z">
 <meta property="article:author" content="Dali">
 <meta property="article:tag" content="正则表达式">
 <meta name="twitter:card" content="summary">
@@ -387,7 +387,44 @@
       
 
       
-        <p>*在正则表达式中，如果直接给出字符，就是精确匹配。用\d可以匹配一个数字，\w可以匹配一个字母或数字，所以：</p>
+        <h3 id="十分钟学会正则"><a href="#十分钟学会正则" class="headerlink" title="十分钟学会正则"></a>十分钟学会正则</h3><h5 id="一-限定符"><a href="#一-限定符" class="headerlink" title="(一)限定符"></a>(一)限定符</h5><p>1、<code>?</code>:它前面的字符需要出现0次或1次</p>
+<blockquote>
+<p>例如：<code>used?</code>可以匹配到<code>use</code>和<code>used</code></p>
+</blockquote>
+<p>2、<code>*</code>:它会匹配0个或多个字符</p>
+<blockquote>
+<p>例如：<code>ab*c</code>可以匹配到<code>ac</code>,<code>abc</code>,<code>abbbbbbc</code></p>
+</blockquote>
+<p>3、<code>+</code>:它会匹配一次及以上的字符</p>
+<blockquote>
+<p>例如：<code>ab+c</code>可以匹配<code>abc</code>,<code>abbbc</code>,而不会匹配<code>ac</code></p>
+</blockquote>
+<p>4、<code>{}</code>:可以限定匹配的数量</p>
+<blockquote>
+<p>例如：<code>ab{6}c</code>,则匹配到<code>abbbbbbc</code>,而要限定<code>b</code>的数量在2到6之间，则是<code>ab{2,6}c</code>，如果只是两次以上，则省略括号里的6，写成<code>ab{2,}c</code></p>
+</blockquote>
+<h5 id="二-”或”运算符"><a href="#二-”或”运算符" class="headerlink" title="(二)”或”运算符"></a>(二)”或”运算符</h5><blockquote>
+<p>例如：<code>a (cat|dog)</code>匹配的是<code>a cat</code>和<code>a dog</code></p>
+</blockquote>
+<h5 id="三-字符类"><a href="#三-字符类" class="headerlink" title="(三)字符类"></a>(三)字符类</h5><p><code>[]</code>:表示里面的内容只能取自于它们</p>
+<blockquote>
+<p>例如：<code>[a-z]</code>表示所有小写的英文字母，<code>[abc]</code>能匹配到<code>abc</code>,<code>aabbcc</code>,<code>abcc</code>,<code>[a-zA-Z]</code>表示所有的英文字母，如果在<code>[]</code>前加上<code>^</code>,表示<code>[]</code>之外的字符</p>
+</blockquote>
+<h5 id="四-元字符"><a href="#四-元字符" class="headerlink" title="(四)元字符"></a>(四)元字符</h5><p><code>\d</code>:数字字符，等同于<code>[0-9]</code><br><code>\w</code>:单词字符<br><code>\s</code>:空白符，包含Tab和换行符<br><code>\D</code>:非数字字符<br><code>\W</code>:非单词字符<br><code>\S</code>:非空白符<br><code>.</code>:代表任意字符，不包含换行符<br><code>^</code>:匹配行首</p>
+<blockquote>
+<p>例如：<code>^a</code>匹配<code>abv</code>,<code>acccn</code></p>
+</blockquote>
+<p><code>$</code>:匹配行尾</p>
+<blockquote>
+<p>例如：<code>a$</code>匹配<code>tea</code>,<code>cba</code></p>
+</blockquote>
+<h5 id="五-贪婪与懒惰匹配"><a href="#五-贪婪与懒惰匹配" class="headerlink" title="(五)贪婪与懒惰匹配"></a>(五)贪婪与懒惰匹配</h5><blockquote>
+<p><strong>贪婪匹配：</strong>正则表达式通常的行为是匹配尽可能多的字符，比如这个表达式：<code>a.*b</code>，它将会匹配最长的以<code>a</code>开始，以<code>b</code>结束的字符串，如果用它来搜索<code>aabab</code>的话，它会匹配整个字符串<code>aabab</code></p>
+</blockquote>
+<blockquote>
+<p><strong>懒惰匹配：</strong>就是匹配尽可能少的字符，在能使整个匹配成功的前提下使用最少的重复，只要在它后面加上一个问号?即可，例如<code>a.*?b</code>匹配最短的，以<code>a</code>开始，以<code>b</code>结束的字符串，如果把它应用于<code>aabab</code>的话，它会匹配<code>aab</code>和<code>ab</code>，为什么第一个匹配是<code>aab</code>（第一到第三个字符）而不是<code>ab</code>（第二到第三个字符）？简单地说，因为正则表达式有一条比懒惰／贪婪规则优先级更高的规则，就是：最先开始的匹配拥有最高的优先权</p>
+</blockquote>
+<p>*在正则表达式中，如果直接给出字符，就是精确匹配。用\d可以匹配一个数字，\w可以匹配一个字母或数字，所以：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- &#39;00\d&#39;可以匹配&#39;007&#39;，但无法匹配&#39;00A&#39;；</span><br><span class="line"></span><br><span class="line">- &#39;\d\d\d&#39;可以匹配&#39;010&#39;；</span><br><span class="line"></span><br><span class="line">- &#39;\w\w&#39;可以匹配&#39;js&#39;；</span><br><span class="line"></span><br><span class="line">.可以匹配任意字符，所以：</span><br><span class="line"></span><br><span class="line">- &#39;js.&#39;可以匹配&#39;jsp&#39;、&#39;jss&#39;、&#39;js!&#39;等等。</span><br></pre></td></tr></table></figure>
 
 <a id="more"></a>
@@ -564,8 +601,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -584,7 +630,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">140</span>
+                  <span class="site-state-item-count">153</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -595,7 +641,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">69</span>
+                  <span class="site-state-item-count">73</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -606,7 +652,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">143</span>
+                  <span class="site-state-item-count">154</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -636,6 +682,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#十分钟学会正则"><span class="nav-number">1.</span> <span class="nav-text">十分钟学会正则</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#一-限定符"><span class="nav-number">1.0.1.</span> <span class="nav-text">(一)限定符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#二-”或”运算符"><span class="nav-number">1.0.2.</span> <span class="nav-text">(二)”或”运算符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#三-字符类"><span class="nav-number">1.0.3.</span> <span class="nav-text">(三)字符类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#四-元字符"><span class="nav-number">1.0.4.</span> <span class="nav-text">(四)元字符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#五-贪婪与懒惰匹配"><span class="nav-number">1.0.5.</span> <span class="nav-text">(五)贪婪与懒惰匹配</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

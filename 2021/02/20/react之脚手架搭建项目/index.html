@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="react,脚手架,create-react-app," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="DaliBlogs" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="一. 认识脚手架1.1. 前端工程的复杂化如果我们只是开发几个小的demo程序，那么永远不需要考虑一些复杂的问题：  比如目录结构如何组织划分； 比如如何管理文件之间的相互依赖； 比如如何管理第三方模块的依赖； 比如项目发布前如何压缩、打包项目； 等等…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react之脚手架搭建项目">
+<meta property="og:url" content="http://yoursite.com/2021/02/20/react%E4%B9%8B%E8%84%9A%E6%89%8B%E6%9E%B6%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE/index.html">
+<meta property="og:site_name" content="DaliBlogs">
+<meta property="og:description" content="一. 认识脚手架1.1. 前端工程的复杂化如果我们只是开发几个小的demo程序，那么永远不需要考虑一些复杂的问题：  比如目录结构如何组织划分； 比如如何管理文件之间的相互依赖； 比如如何管理第三方模块的依赖； 比如项目发布前如何压缩、打包项目； 等等…">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-833ee448306a0de9b3898f7603add168_720w.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-c5c4d577c00109fe720e3f54c69811fc_720w.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-8bf754189d539c0e829480e6df2de34f_720w.jpeg">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-f0e7a077c9560cd6b8b189e59635fa14_720w.jpeg">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-e8adfd153e2ba949d3b21645cda356e1_720w.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-c001ac893f7ecfa2200467b51c698476_720w.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-e2143939102786485db3bb55afe28538_720w.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-c0cbdd82bd4defac7bd0422fafba825a_720w.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-1e864c0d1ea72fa9a3c84d1a47084106_720w.jpeg">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-132539d8ffad9c3a9e66f389cbc132f5_720w.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-5e08b8a2e69d0b1adf6672a5f395f125_720w.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-75a8403d08b6d580ccad8c5de712244c_720w.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-e4a7139edc918d9ef6d0a0583b833523_720w.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-74bc4c6a8ed4f527620ffd0c5e3838ad_720w.jpg">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6334988-218f06c2483c59ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/954/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6334988-1acaaedd68e07674.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/954/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6334988-28182a2ede7ea1f3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/421/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6334988-e7b04222dd82d74f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/365/format/webp">
+<meta property="og:image" content="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015033110.png">
+<meta property="article:published_time" content="2021-02-20T06:36:08.000Z">
+<meta property="article:modified_time" content="2021-03-02T03:43:50.938Z">
+<meta property="article:author" content="Dali">
+<meta property="article:tag" content="react">
+<meta property="article:tag" content="脚手架">
+<meta property="article:tag" content="create-react-app">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.zhimg.com/80/v2-833ee448306a0de9b3898f7603add168_720w.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/02/20/react之脚手架搭建项目/"/>
+
+
+
+
+
+  <title>react之脚手架搭建项目 | DaliBlogs</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DaliBlogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/20/react%E4%B9%8B%E8%84%9A%E6%89%8B%E6%9E%B6%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">react之脚手架搭建项目</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-20T14:36:08+08:00">
+                2021-02-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="一-认识脚手架"><a href="#一-认识脚手架" class="headerlink" title="一. 认识脚手架"></a>一. 认识脚手架</h1><h2 id="1-1-前端工程的复杂化"><a href="#1-1-前端工程的复杂化" class="headerlink" title="1.1. 前端工程的复杂化"></a>1.1. 前端工程的复杂化</h2><p>如果我们只是开发几个小的demo程序，那么永远不需要考虑一些复杂的问题：</p>
+<ul>
+<li>比如目录结构如何组织划分；</li>
+<li>比如如何管理文件之间的相互依赖；</li>
+<li>比如如何管理第三方模块的依赖；</li>
+<li>比如项目发布前如何压缩、打包项目；</li>
+<li>等等…</li>
+</ul>
+<a id="more"></a>
+
+<p>现代的前端项目已经越来越复杂了：</p>
+<ul>
+<li>不会再是在HTML中引入几个css文件，引入几个编写的js文件或者第三方的js文件这么简单；</li>
+<li>比如css可能是使用less、sass等预处理器进行编写，我们需要将它们转成普通的css才能被浏览器解析；</li>
+<li>比如JavaScript代码不再只是编写在几个文件中，而是通过模块化的方式，被组成在<strong>成百上千</strong>个文件中，我们需要通过模块化的技术来管理它们之间的相互依赖；</li>
+<li>比如项目需要依赖很多的第三方库，如何更好的管理它们（比如管理它们的依赖、版本升级等）；</li>
+</ul>
+<p>为了解决上面这些问题，我们需要再去学习一些工具：</p>
+<ul>
+<li>比如babel、webpack、gulp。配置它们转换规则、打包依赖、热更新等等一些的内容；</li>
+<li>你会发现，你还没有开始做项目，你就面临一系列的工程化问题；</li>
+</ul>
+<p><strong>脚手架的出现，就是帮助我们解决这一系列问题的；</strong></p>
+<h2 id="1-2-脚手架是什么呢？"><a href="#1-2-脚手架是什么呢？" class="headerlink" title="1.2. 脚手架是什么呢？"></a>1.2. 脚手架是什么呢？</h2><p>脚手架</p>
+<p>编程中提到的脚手架（Scaffold），其实是一种工具，帮我们可以快速生成项目的工程化结构；</p>
+<ul>
+<li>每个项目作出完成的效果不同，但是它们的基本工程化结构是相似的；</li>
+<li>既然相似，就没有必要每次都从零开始搭建，完全可以使用一些工具，帮助我们生产基本的工程化模板；</li>
+<li>不同的项目，在这个模板的基础之上进行项目开发或者进行一些配置的简单修改即可；</li>
+<li>这样也可以间接保证项目的基本结构一致性，方便后期的维护；</li>
+</ul>
+<p>总结：<strong>脚手架让项目从搭建到开发，再到部署，整个流程变得快速和便捷；</strong></p>
+<p>对于现在比较流行的三大框架都有属于自己的脚手架：</p>
+<ul>
+<li>Vue的脚手架：vue-cli</li>
+<li>Angular的脚手架：angular-cli</li>
+<li>React的脚手架：create-react-app</li>
+</ul>
+<p>它们的作用都是帮助我们生成一个通用的目录结构，并且已经将我们所需的工程环境配置好。</p>
+<p>使用这些脚手架需要依赖什么呢？</p>
+<ul>
+<li>目前这些脚手架都是使用node编写的，并且都是基于webpack的；</li>
+<li>所以我们必须在自己的电脑上安装node环境；</li>
+</ul>
+<p>这里我们主要是学习React，所以我们还是以React的脚手架工具：create-react-app作为讲解；</p>
+<h1 id="二-create-react-app"><a href="#二-create-react-app" class="headerlink" title="二. create-react-app"></a>二. create-react-app</h1><h2 id="2-1-安装相关的依赖"><a href="#2-1-安装相关的依赖" class="headerlink" title="2.1. 安装相关的依赖"></a>2.1. 安装相关的依赖</h2><h2 id="2-1-1-安装node"><a href="#2-1-1-安装node" class="headerlink" title="2.1.1. 安装node"></a>2.1.1. 安装node</h2><p>React脚手架本身需要依赖node，所以我们需要安装node环境：</p>
+<ul>
+<li>无论是windows还是Mac OS，都可以通过node官网直接下载；</li>
+<li>官网地址：<a href="https://link.zhihu.com/?target=https%3A//nodejs.org/en/download/">https://nodejs.org/en/download/</a></li>
+<li>注意：这里推荐大家下载LTS（Long-term support ）版本，是长期支持版本，会比较稳定；</li>
+</ul>
+<p><img src="https://pic1.zhimg.com/80/v2-833ee448306a0de9b3898f7603add168_720w.jpg" alt="img"></p>
+<p>nodejs下载</p>
+<p>下载后，双击安装即可：</p>
+<ul>
+<li>1.安装过程中，会自动配置环境变量；</li>
+<li>2.安装时，会同时帮助我们安装npm管理工具；</li>
+</ul>
+<p><img src="https://pic1.zhimg.com/80/v2-c5c4d577c00109fe720e3f54c69811fc_720w.jpg" alt="img"></p>
+<p>检测安装的版本</p>
+<h2 id="2-1-2-包管理工具"><a href="#2-1-2-包管理工具" class="headerlink" title="2.1.2. 包管理工具"></a>2.1.2. 包管理工具</h2><p><strong>什么是npm？</strong></p>
+<ul>
+<li>全称 Node Package Manager，即“node包管理器”；</li>
+<li>作用肯定是帮助我们管理一下依赖的工具包（比如react、react-dom、axios、babel、webpack等等）；</li>
+<li>作者开发的目的就是为了解决“模块管理很糟糕”的问题；</li>
+</ul>
+<p><strong>另外，还有一个大名鼎鼎的node包管理工具yarn：</strong></p>
+<ul>
+<li>Yarn是由Facebook、Google、Exponent 和 Tilde 联合推出了一个新的 JS 包管理工具；</li>
+<li>Yarn 是为了弥补 npm 的一些缺陷而出现的；</li>
+<li>早期的npm存在很多的缺陷，比如安装依赖速度很慢、版本依赖混乱等等一系列的问题；</li>
+<li>虽然从npm5版本开始，进行了很多的升级和改进，但是依然很多人喜欢使用yarn；</li>
+<li>React脚手架默认也是使用yarn；</li>
+</ul>
+<p>安装yarn：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g yarn</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://pic4.zhimg.com/80/v2-8bf754189d539c0e829480e6df2de34f_720w.jpeg" alt="img"></p>
+<p>检测yarn安装的版本</p>
+<p><strong>yarn和npm的命令对比</strong></p>
+<p>NpmYarnnpm installyarn installnpm install [package]yarn add [package]npm install –save [package]yarn add [package]npm install –save-dev [package]yarn add [package] [–dev/-D]npm rebuildyarn install –forcenpm uninstall [package]yarn remove [package]npm uninstall –save [package]yarn remove [package]npm uninstall –save-dev [package]yarn remove [package]npm uninstall –save-optional [package]yarn remove [package]npm cache cleanyarn cache cleanrm -rf node_modules &amp;&amp; npm installyarn upgrade</p>
+<p><strong>cnpm的使用</strong></p>
+<p>在国内，某些情况使用npm和yarn可能无法正常安装一个库，这个时候我们可以选择使用cnpm</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry&#x3D;https:&#x2F;&#x2F;registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-1-3-安装脚手架"><a href="#2-1-3-安装脚手架" class="headerlink" title="2.1.3. 安装脚手架"></a>2.1.3. 安装脚手架</h2><p>最后一个需要安装的是创建React项目的脚手架：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g create-react-app</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://pic1.zhimg.com/80/v2-f0e7a077c9560cd6b8b189e59635fa14_720w.jpeg" alt="img"></p>
+<p>检查React脚手架</p>
+<h2 id="2-2-创建React项目"><a href="#2-2-创建React项目" class="headerlink" title="2.2. 创建React项目"></a>2.2. 创建React项目</h2><h2 id="2-2-1-创建React项目"><a href="#2-2-1-创建React项目" class="headerlink" title="2.2.1. 创建React项目"></a>2.2.1. 创建React项目</h2><p>现在，我们就可以通过脚手架来创建React项目了。</p>
+<p>创建React项目的命令如下：</p>
+<ul>
+<li>注意：项目名称不能包含大写字母</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create-react-app 项目名称</span><br></pre></td></tr></table></figure>
+
+<p>另外还有更多创建项目的方式，可以参考GitHub的readme</p>
+<ul>
+<li><a href="https://link.zhihu.com/?target=https%3A//github.com/facebook/create-react-app">https://github.com/facebook/create-react-app</a>；</li>
+<li>上面的创建方式，默认使用的yarn来管理整个项目包相关的依赖的；</li>
+<li>如果希望使用npm，也可以在参数后面加上 –use-npm；</li>
+</ul>
+<p><img src="https://pic2.zhimg.com/80/v2-e8adfd153e2ba949d3b21645cda356e1_720w.jpg" alt="img"></p>
+<p>image-20200615115822464</p>
+<p>创建完成后，进入对应的目录，就可以将项目跑起来：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd 01-test-react</span><br><span class="line">yarn start</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://pic3.zhimg.com/80/v2-c001ac893f7ecfa2200467b51c698476_720w.jpg" alt="img"></p>
+<p>项目效果</p>
+<h2 id="2-2-2-目录结构分析"><a href="#2-2-2-目录结构分析" class="headerlink" title="2.2.2. 目录结构分析"></a>2.2.2. 目录结构分析</h2><p>我们可以通过VSCode打开项目：</p>
+<p><img src="https://pic1.zhimg.com/80/v2-e2143939102786485db3bb55afe28538_720w.jpg" alt="img"></p>
+<p>项目目录结构</p>
+<p>目录结构分析：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">test-react</span><br><span class="line">├─ README.md &#x2F;&#x2F; readme说明文档</span><br><span class="line">├─ package.json &#x2F;&#x2F; 对整个应用程序的描述：包括应用名称、版本号、一些依赖包、以及项目的启动、打包等等（node管理项目必备文件）</span><br><span class="line">├─ public</span><br><span class="line">│    ├─ favicon.ico &#x2F;&#x2F; 应用程序顶部的icon图标</span><br><span class="line">│    ├─ index.html &#x2F;&#x2F; 应用的index.html入口文件</span><br><span class="line">│    ├─ logo192.png &#x2F;&#x2F; 被在manifest.json中使用</span><br><span class="line">│    ├─ logo512.png &#x2F;&#x2F; 被在manifest.json中使用</span><br><span class="line">│    ├─ manifest.json &#x2F;&#x2F; 和Web app配置相关</span><br><span class="line">│    └─ robots.txt &#x2F;&#x2F; 指定搜索引擎可以或者无法爬取哪些文件</span><br><span class="line">├─ src</span><br><span class="line">│    ├─ App.css &#x2F;&#x2F; App组件相关的样式</span><br><span class="line">│    ├─ App.js &#x2F;&#x2F; App组件的代码文件</span><br><span class="line">│    ├─ App.test.js &#x2F;&#x2F; App组件的测试代码文件</span><br><span class="line">│    ├─ index.css &#x2F;&#x2F; 全局的样式文件</span><br><span class="line">│    ├─ index.js &#x2F;&#x2F; 整个应用程序的入口文件</span><br><span class="line">│    ├─ logo.svg &#x2F;&#x2F; 刚才启动项目，所看到的React图标</span><br><span class="line">│    ├─ serviceWorker.js &#x2F;&#x2F; 默认帮助我们写好的注册PWA相关的代码</span><br><span class="line">│    └─ setupTests.js &#x2F;&#x2F; 测试初始化文件</span><br><span class="line">└─ yarn.lock</span><br></pre></td></tr></table></figure>
+
+<p>整个目录结构都非常好理解，只是有一个PWA相关的概念：</p>
+<ul>
+<li>PWA全称Progressive Web App，即渐进式WEB应用；</li>
+<li>一个 PWA 应用首先是一个网页, 可以通过 Web 技术编写出一个网页应用. 随后添加上 App Manifest 和 Service Worker 来实现 PWA 的安装和离线等功能；</li>
+<li>这种Web存在的形式，我们也称之为是 Web App；</li>
+</ul>
+<p>PWA解决了哪些问题呢？</p>
+<ul>
+<li>可以添加至主屏幕，点击主屏幕图标可以实现启动动画以及隐藏地址栏；</li>
+<li>实现离线缓存功能，即使用户手机没有网络，依然可以使用一些离线功能；</li>
+<li>实现了消息推送；</li>
+<li>等等一系列类似于Native App相关的功能；</li>
+</ul>
+<p>更多PWA相关的知识，可以自行去学习更多；</p>
+<h2 id="2-2-3-webpack配置"><a href="#2-2-3-webpack配置" class="headerlink" title="2.2.3. webpack配置"></a>2.2.3. webpack配置</h2><p>我们说过React的脚手架是基于Webpack来配置的：</p>
+<ul>
+<li>webpack 是一个现代 JavaScript 应用程序的静态模块打包器(module bundler)；</li>
+<li>当 webpack 处理应用程序时，它会递归地构建一个依赖关系图(dependency graph)，其中包含应用程序需要的每个模块，然后将所有这些模块打包成一个或多个 bundle；</li>
+</ul>
+<p><img src="https://pic3.zhimg.com/80/v2-c0cbdd82bd4defac7bd0422fafba825a_720w.jpg" alt="img"></p>
+<p>webpack</p>
+<p>在这里我们暂时不展开来讲webpack，因为里面的内容是非常多的（后续会有专门讲webpack的专题）；</p>
+<p>但是，很奇怪：我们并没有在目录结构中看到任何webpack相关的内容？</p>
+<ul>
+<li>原因是React脚手架将webpack相关的配置隐藏起来了（其实从Vue CLI3开始，也是进行了隐藏）；</li>
+</ul>
+<p>如果我们希望看到webpack的配置信息，应该怎么来做呢？</p>
+<ul>
+<li>我们可以执行一个package.json文件中的一个脚本：”eject”: “react-scripts eject”</li>
+<li>这个操作是不可逆的，所以在执行过程中会给予我们提示；</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn eject</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://pic3.zhimg.com/80/v2-1e864c0d1ea72fa9a3c84d1a47084106_720w.jpeg" alt="img"></p>
+<p>执行脚本</p>
+<p>查看和学习webpack相关的配置信息：</p>
+<p><img src="https://pic2.zhimg.com/80/v2-132539d8ffad9c3a9e66f389cbc132f5_720w.jpg" alt="img"></p>
+<p>webpack相关配置</p>
+<h2 id="2-3-从零编写项目"><a href="#2-3-从零编写项目" class="headerlink" title="2.3. 从零编写项目"></a>2.3. 从零编写项目</h2><h2 id="2-3-1-文件的删减"><a href="#2-3-1-文件的删减" class="headerlink" title="2.3.1. 文件的删减"></a>2.3.1. 文件的删减</h2><p>通过脚手架创建完项目，很多同学还是会感觉目录结构过于复杂，所以我打算从零带着大家来编写代码。</p>
+<p>我们先将不需要的文件统统删掉：</p>
+<ul>
+<li>1.将src下的所有文件都删除</li>
+<li>2.将public文件下除列favicon.ico和index.html之外的文件都删除掉</li>
+</ul>
+<p><img src="https://pic2.zhimg.com/80/v2-5e08b8a2e69d0b1adf6672a5f395f125_720w.jpg" alt="img"></p>
+<p>删除后的目录结构</p>
+<p>修改index.html文件：</p>
+<ul>
+<li>我们需要删除选中的内容；</li>
+<li>这两行内容是我们之前引入的一个图标和manifest文件</li>
+</ul>
+<p><img src="https://pic1.zhimg.com/80/v2-75a8403d08b6d580ccad8c5de712244c_720w.jpg" alt="img"></p>
+<p>删除选中的两行内容</p>
+<h2 id="2-3-2-开始编写代码"><a href="#2-3-2-开始编写代码" class="headerlink" title="2.3.2. 开始编写代码"></a>2.3.2. 开始编写代码</h2><p>在src目录下，创建一个index.js文件，因为这是webpack打包的入口。</p>
+<p>在index.js中开始编写React代码：</p>
+<ul>
+<li>我们会发现和写的代码是逻辑是一致的；</li>
+<li>只是在模块化开发中，我们需要手动的来导入React、ReactDOM，因为它们都是在我们安装的模块中；</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import React from &quot;react&quot;;</span><br><span class="line">import ReactDOM from &#39;react-dom&#39;;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(&lt;h2&gt;Hello React&lt;&#x2F;h2&gt;, document.getElementById(&quot;root&quot;));</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://pic4.zhimg.com/80/v2-e4a7139edc918d9ef6d0a0583b833523_720w.jpg" alt="img"></p>
+<p>展示效果</p>
+<p>如果我们不希望直接在 ReactDOM.render 中编写过多的代码，就可以单独抽取一个组件App.js：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &#39;react&#39;;</span><br><span class="line"></span><br><span class="line">export default class App extends Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;h2&gt;Hello App&lt;&#x2F;h2&gt;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在index.js中引入App，并且使用它：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import React from &quot;react&quot;;</span><br><span class="line">import ReactDOM from &#39;react-dom&#39;;</span><br><span class="line"></span><br><span class="line">import App from &#39;.&#x2F;App&#39;;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(&lt;App&#x2F;&gt;, document.getElementById(&quot;root&quot;));</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://pic2.zhimg.com/80/v2-74bc4c6a8ed4f527620ffd0c5e3838ad_720w.jpg" alt="img"></p>
+<h1 id="三-在React中使用react-router-dom路由"><a href="#三-在React中使用react-router-dom路由" class="headerlink" title="三.在React中使用react-router-dom路由"></a>三.在React中使用react-router-dom路由</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>首先进入项目目录，使用npm安装react-router-dom：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install react-router-dom --save-dev <span class="comment">//这里可以使用cnpm代替npm命令</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><p>然后我们新建两个页面，分别命名为“home”和“detail”。在页面中编写如下代码：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Home</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;a&gt;去detail&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>home.js</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Home</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;a&gt;回到home&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>detail.js</p>
+<p>然后再新建一个路由组件，命名为“Router.js”，并编写如下代码：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;HashRouter, Route, Switch&#125; <span class="keyword">from</span> <span class="string">'react-router-dom'</span>;</span><br><span class="line"><span class="keyword">import</span> Home <span class="keyword">from</span> <span class="string">'../home'</span>;</span><br><span class="line"><span class="keyword">import</span> Detail <span class="keyword">from</span> <span class="string">'../detail'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> BasicRoute = <span class="function"><span class="params">()</span> =&gt;</span> (</span><br><span class="line">    &lt;HashRouter&gt;</span><br><span class="line">        &lt;Switch&gt;</span><br><span class="line">            &lt;Route exact path=<span class="string">"/"</span> component=&#123;Home&#125;/&gt;</span><br><span class="line">            &lt;Route exact path=<span class="string">"/detail"</span> component=&#123;Detail&#125;/&gt;</span><br><span class="line">        &lt;<span class="regexp">/Switch&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>HashRouter&gt;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> BasicRoute;</span><br></pre></td></tr></table></figure>
+
+<p>如上代码定义了一个纯路由组件，将两个页面组件Home和Detail使用Route组件包裹，外面套用Switch作路由匹配，当路由组件检测到地址栏与Route的path匹配时，就会自动加载响应的页面。<br> 然后在入口文件中——我这里指定的是index.js——编写如下代码：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span>;</span><br><span class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'./router/router'</span>;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Router/&gt;,</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>这里相当于向页面返回了一个路由组件。我们先运行项目看一下效果，在地址栏输入“<a href="https://links.jianshu.com/go?to=http%3A%2F%2Flocalhost%3A3000%2F%23%2F" target="_blank" rel="noopener">http://localhost:3000/#/</a>”：</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/6334988-218f06c2483c59ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/954/format/webp" alt="img"></p>
+<p>home.js</p>
+<p>输入“<a href="https://links.jianshu.com/go?to=http%3A%2F%2Flocalhost%3A3000%2F%23%2Fdetail" target="_blank" rel="noopener">http://localhost:3000/#/detail</a>”：</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/6334988-1acaaedd68e07674.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/954/format/webp" alt="img"></p>
+<p>detail.js</p>
+<h2 id="通过a标签跳转"><a href="#通过a标签跳转" class="headerlink" title="通过a标签跳转"></a>通过a标签跳转</h2><p>可以看到其实路由已经开始工作了，接下来我们再来做页面间的跳转。在home.js和detail.js中，我们修改如下代码：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Home</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">        render() &#123;</span><br><span class="line">            <span class="keyword">return</span> (</span><br><span class="line">                &lt;div&gt;</span><br><span class="line">                &lt;a href=<span class="string">'#/detail'</span>&gt;去detail&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>home.js</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Home</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;a href=<span class="string">'#/'</span>&gt;回到home&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>detail.js</p>
+<p>重新打包运行，在浏览器地址栏输入“<a href="https://links.jianshu.com/go?to=http%3A%2F%2Flocalhost%3A3000%2F" target="_blank" rel="noopener">http://localhost:3000/</a>”，试试看页面能否正常跳转。如果不能，请按步骤一步一步检查代码是否有误。以上是使用a标签的href进行页面间跳转，此外react-router-dom还提供了通过函数的方式跳转页面。</p>
+<h2 id="通过函数跳转"><a href="#通过函数跳转" class="headerlink" title="通过函数跳转"></a>通过函数跳转</h2><p>首先我们需要修改router.js中的两处代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">import</span> &#123;HashRouter, Route, Switch, hashHistory&#125; <span class="keyword">from</span> <span class="string">'react-router-dom'</span>;</span><br><span class="line">...</span><br><span class="line">&lt;HashRouter history=&#123;hashHistory&#125;&gt;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>然后在home.js中：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Home</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">        <span class="keyword">super</span>(props);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;a href=<span class="string">'#/detail'</span>&gt;去detail&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">                &lt;button onClick=&#123;() =&gt; this.props.history.push('detail')&#125;&gt;通过函数跳转&lt;/</span>button&gt;</span><br><span class="line">            &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        )</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>在a标签下面添加一个按钮并加上onClick事件，通过this.props.history.push这个函数跳转到detail页面。在路由组件中加入的代码就是将history这个对象注册到组件的props中去，然后就可以在子组件中通过props调用history的push方法跳转页面。</p>
+<p>很多场景下，我们还需要在页面跳转的同时传递参数，在react-router-dom中，同样提供了两种方式进行传参。</p>
+<h2 id="url传参"><a href="#url传参" class="headerlink" title="url传参"></a>url传参</h2><p>在router.js中，修改如下代码：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="tag">&lt;<span class="name">Route</span> <span class="attr">exact</span> <span class="attr">path</span>=<span class="string">"/detail/:id"</span> <span class="attr">component</span>=<span class="string">&#123;Detail&#125;/</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>然后修改detail.js，使用this.props.match.params获取url传过来的参数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">componentDidMount() &#123;</span><br><span class="line">    console.<span class="built_in">log</span>(<span class="keyword">this</span>.props.match.params);</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>在地址栏输入“<a href="https://links.jianshu.com/go?to=http%3A%2F%2Flocalhost%3A3000%2F%23%2Fdetail%2F3" target="_blank" rel="noopener">http://localhost:3000/#/detail/3</a>”，打开控制台：</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/6334988-28182a2ede7ea1f3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/421/format/webp" alt="img"></p>
+<p>可以看到传过去的id=3已经被获取到了。react-router-dom就是通过“/:”去匹配url传递的参数。</p>
+<h2 id="隐式传参"><a href="#隐式传参" class="headerlink" title="隐式传参"></a>隐式传参</h2><p>此外还可以通过push函数隐式传参。</p>
+<p>修改home.js代码如下：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Home</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">        <span class="keyword">super</span>(props);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;a href=<span class="string">'#/detail/3'</span>&gt;去detail&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">                    &lt;button onClick=&#123;() =&gt; this.props.history.push(&#123;</span></span><br><span class="line"><span class="regexp">                        pathname: '/</span>detail<span class="string">',</span></span><br><span class="line"><span class="string">                        state: &#123;</span></span><br><span class="line"><span class="string">                            id: 3</span></span><br><span class="line"><span class="string">                        &#125;</span></span><br><span class="line"><span class="string">                &#125;)&#125;&gt;通过函数跳转&lt;/button&gt;</span></span><br><span class="line"><span class="string">            &lt;/div&gt;</span></span><br><span class="line"><span class="string">        )</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>在detail.js中，就可以使用this.props.history.location.state获取home传过来的参数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">componentDidMount() &#123;</span><br><span class="line">    <span class="comment">//console.log(this.props.match.params);</span></span><br><span class="line">    console.<span class="built_in">log</span>(<span class="keyword">this</span>.props.history.location.state);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>跳转后打开控制台可以看到参数被打印：</p>
+<p><img src="https:////upload-images.jianshu.io/upload_images/6334988-e7b04222dd82d74f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/365/format/webp" alt="img"></p>
+<h2 id="其他函数"><a href="#其他函数" class="headerlink" title="其他函数"></a>其他函数</h2><h3 id="replace"><a href="#replace" class="headerlink" title="replace"></a>replace</h3><p>有些场景下，重复使用push或a标签跳转会产生死循环，为了避免这种情况出现，react-router-dom提供了replace。在可能会出现死循环的地方使用replace来跳转：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.props.history.replace(<span class="string">'/detail'</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="goBack"><a href="#goBack" class="headerlink" title="goBack"></a>goBack</h3><p>场景中需要返回上级页面的时候使用：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">this</span><span class="selector-class">.props</span><span class="selector-class">.history</span><span class="selector-class">.goBack</span>();</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="嵌套路由"><a href="#嵌套路由" class="headerlink" title="嵌套路由"></a>嵌套路由</h2><p>嵌套路由的适用场景还是比较多的，接下来就来介绍一下实现方法。<br> 首先在Vue中实现嵌套路由，只需要将配置文件写成children嵌套，然后在需要展示子路由的位置加上<router-view></router-view>即可。React中应该如何实现呢？其实原理和Vue类似，只需要在父级路由中包含子路由即可。这样说可能很多同学会一头雾水，直接上代码（不使用上面的例子）：<br> 首先定义父级组件MainLayout</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'./MainLayout.scss'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> &#123; Header, Sider, Content &#125; = Layout;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">MainLayout</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            &lt;div className=<span class="string">'main-layout'</span>&gt;</span><br><span class="line">                父组件</span><br><span class="line">            &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        );</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后定义子组件Home：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123;useState&#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;Modal, Select&#125; <span class="keyword">from</span> <span class="string">"antd"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;connect&#125; <span class="keyword">from</span> <span class="string">'react-redux'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;addCount&#125; <span class="keyword">from</span> <span class="string">'../../servers/home'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Home</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> [visible, setVisible] = useState(<span class="literal">false</span>);</span><br><span class="line">    <span class="keyword">const</span> &#123;<span class="attr">countNum</span>: &#123;count&#125;, dispatch&#125; = props;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            子组件</span><br><span class="line">        &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default Home;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后将它们添加进路由router.js，并且关联父子关系：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React from <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;HashRouter, Route, Switch&#125; from <span class="string">"react-router-dom"</span>;</span><br><span class="line"><span class="keyword">import</span> Home from <span class="string">'../pages/Home/Home'</span>;</span><br><span class="line"><span class="keyword">import</span> MainLayout from <span class="string">'../layout/MainLayout'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> BasicRouter = () =&gt; (</span><br><span class="line">    &lt;HashRouter&gt;</span><br><span class="line">        &lt;Switch&gt;</span><br><span class="line">            &lt;Route path=<span class="string">"/index"</span> component=&#123;</span><br><span class="line">                &lt;MainLayout&gt;</span><br><span class="line">                  &lt;Route exact path=<span class="string">"/"</span> component=&#123;Home&#125;/&gt;</span><br><span class="line">                  &lt;Route exact path=<span class="string">"/index"</span> component=&#123;Home&#125;/&gt;</span><br><span class="line">                  &lt;Route path=<span class="string">"/index/home"</span> component=&#123;Home&#125;/&gt;</span><br><span class="line">                &lt;/MainLayout&gt;</span><br><span class="line">             &#125;/&gt;</span><br><span class="line">        &lt;/Switch&gt;</span><br><span class="line">    &lt;/HashRouter&gt;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> BasicRouter;</span><br></pre></td></tr></table></figure>
+
+<p>在MainLayout中，修改如下代码：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'./MainLayout.scss'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> &#123; Header, Sider, Content &#125; = Layout;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">MainLayout</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            &lt;div className=<span class="string">'main-layout'</span>&gt;</span><br><span class="line">                &#123;<span class="keyword">this</span>.props.children&#125;</span><br><span class="line">            &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        );</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>如此，一个嵌套路由就完成了。</p>
+<h1 id="非脚手架搭建"><a href="#非脚手架搭建" class="headerlink" title="非脚手架搭建"></a>非脚手架搭建</h1><p>使用 React 的网页源码，结构大致如下。</p>
+<blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;script src=<span class="string">"../build/react.js"</span>&gt;&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">    &lt;script src="../</span>build/react-dom.js<span class="string">"&gt;&lt;/script&gt;</span></span><br><span class="line"><span class="string">    &lt;script src="</span>../build/browser.min.js<span class="string">"&gt;&lt;/script&gt;</span></span><br><span class="line"><span class="string">  &lt;/head&gt;</span></span><br><span class="line"><span class="string">  &lt;body&gt;</span></span><br><span class="line"><span class="string">    &lt;div id="</span>example<span class="string">"&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="string">    &lt;script type="</span>text/babel<span class="string">"&gt;</span></span><br><span class="line"><span class="string">      // ** Our code goes here! **</span></span><br><span class="line"><span class="string">		var names = ['Alice', 'Emily', 'Kate'];</span></span><br><span class="line"><span class="string">        var arr = [</span></span><br><span class="line"><span class="string">          &lt;h1&gt;Hello world!&lt;/h1&gt;,</span></span><br><span class="line"><span class="string">          &lt;h2&gt;React is awesome&lt;/h2&gt;,</span></span><br><span class="line"><span class="string">        ];</span></span><br><span class="line"><span class="string">        ReactDOM.render(</span></span><br><span class="line"><span class="string">          &lt;div&gt;</span></span><br><span class="line"><span class="string">            &lt;div&gt; &#123;</span></span><br><span class="line"><span class="string">                names.map(function (name) &#123;</span></span><br><span class="line"><span class="string">                  return &lt;div&gt;Hello, &#123;name&#125;!&lt;/div&gt;</span></span><br><span class="line"><span class="string">                &#125;)</span></span><br><span class="line"><span class="string">            &#125;&lt;/div&gt;</span></span><br><span class="line"><span class="string">            &lt;div&gt;&#123;arr&#125;&lt;/div&gt;</span></span><br><span class="line"><span class="string">          &lt;/div&gt;,</span></span><br><span class="line"><span class="string">          document.getElementById('example')</span></span><br><span class="line"><span class="string">        );</span></span><br><span class="line"><span class="string">    &lt;/script&gt;</span></span><br><span class="line"><span class="string">  &lt;/body&gt;</span></span><br><span class="line"><span class="string">&lt;/html&gt;</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<ul>
+<li><p>上面代码有两个地方需要注意。首先，最后一个 <code>&lt;script&gt;</code> 标签的 <code>type</code> 属性为 <code>text/babel</code> 。这是因为 React 独有的 JSX 语法，跟 JavaScript 不兼容。凡是使用 JSX 的地方，都要加上 <code>type=&quot;text/babel&quot;</code> 。</p>
+</li>
+<li><p>其次，上面代码一共用了三个库： <code>react.js</code> 、<code>react-dom.js</code> 和 <code>Browser.js</code> ，它们必须首先加载。其中，<code>react.js</code> 是 React 的核心库，<code>react-dom.js</code> 是提供与 DOM 相关的功能，<code>Browser.js</code> 的作用是将 JSX 语法转为 JavaScript 语法，这一步很消耗时间，实际上线的时候，应该将它放到服务器完成。</p>
+</li>
+</ul>
+<blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ babel src --out-dir build</span><br></pre></td></tr></table></figure>
+</blockquote>
+<ul>
+<li><p>上面命令可以将 <code>src</code> 子目录的 <code>js</code> 文件进行语法转换，转码后的文件全部放在 <code>build</code> 子目录。</p>
+</li>
+<li><p>HTML 语言直接写在 JavaScript 语言之中，不加任何引号，这就是 <a href="http://facebook.github.io/react/docs/displaying-data.html#jsx-syntax" target="_blank" rel="noopener">JSX 的语法</a>，它允许 HTML 与 JavaScript 的混写，遇到 HTML 标签（以 <code>&lt;</code> 开头），就用 HTML 规则解析；遇到代码块（以 <code>{</code> 开头），就用 JavaScript 规则解析。</p>
+</li>
+<li><p>JSX 允许直接在模板插入 JavaScript 变量。如果这个变量是一个数组，则会展开这个数组的所有成员</p>
+</li>
+</ul>
+<h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><p>React 允许将代码封装成组件（component），然后像插入普通 HTML 标签一样，在网页中插入这个组件。React.createClass 方法就用于生成一个组件类</p>
+<blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> HelloMessage = React.createClass(&#123;</span><br><span class="line">  render: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello &#123;this.props.name&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;HelloMessage name=<span class="string">"John"</span> /&gt;,</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'example'</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+</blockquote>
+<ul>
+<li><p>上面代码中，变量 <code>HelloMessage</code> 就是一个组件类。模板插入 <code>&lt;HelloMessage /&gt;</code> 时，会自动生成 <code>HelloMessage</code> 的一个实例（下文的”组件”都指组件类的实例）。所有组件类都必须有自己的 <code>render</code> 方法，用于输出组件。</p>
+</li>
+<li><p>注意，组件类的第一个字母必须大写，否则会报错，比如<code>HelloMessage</code>不能写成<code>helloMessage</code>。另外，组件类只能包含一个顶层标签，否则也会报错。</p>
+</li>
+<li><p>组件的用法与原生的 HTML 标签完全一致，可以任意加入属性，比如 <code>&lt;HelloMessage name=&quot;John&quot;&gt;</code> ，就是 <code>HelloMessage</code> 组件加入一个 <code>name</code> 属性，值为 <code>John</code>。组件的属性可以在组件类的 <code>this.props</code> 对象上获取，比如 <code>name</code> 属性就可以通过 <code>this.props.name</code> 读取。</p>
+</li>
+<li><p>添加组件属性，有一个地方需要注意，就是 <code>class</code> 属性需要写成 <code>className</code> ，<code>for</code> 属性需要写成 <code>htmlFor</code> ，这是因为 <code>class</code> 和 <code>for</code> 是 JavaScript 的保留字。</p>
+</li>
+</ul>
+<h2 id="props"><a href="#props" class="headerlink" title="props"></a>props</h2><ul>
+<li><code>this.props</code> 对象的属性与组件的属性一一对应，但是有一个例外，就是 <code>this.props.children</code> 属性。它表示组件的所有子节点。这种用法是属于react中的组件的组合：将一个组件写在另一个组件的内容中，然后在外层组件中通过 this.props.children来接收内容中的组件， 效果上类似vue中的插槽。</li>
+</ul>
+<blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> NotesList = React.createClass(&#123;</span><br><span class="line">  render: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;ol&gt;</span><br><span class="line">      &#123;</span><br><span class="line">        React.Children.map(<span class="keyword">this</span>.props.children, <span class="function"><span class="keyword">function</span> (<span class="params">child</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123;child&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>;</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">      &lt;<span class="regexp">/ol&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;);</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">ReactDOM.render(</span></span><br><span class="line"><span class="regexp">  &lt;NotesList&gt;</span></span><br><span class="line"><span class="regexp">    &lt;span&gt;hello&lt;/</span>span&gt;</span><br><span class="line">    &lt;span&gt;world&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>NotesList&gt;,</span><br><span class="line">  <span class="built_in">document</span>.body</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>上面代码的 <code>NoteList</code> 组件有两个 <code>span</code> 子节点，它们都可以通过 <code>this.props.children</code> 读取，运行结果如下。</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015033110.png" alt="img"></p>
+<p>这里需要注意， <code>this.props.children</code> 的值有三种可能：如果当前组件没有子节点，它就是 <code>undefined</code> ;如果有一个子节点，数据类型是 <code>object</code> ；如果有多个子节点，数据类型就是 <code>array</code> 。所以，处理 <code>this.props.children</code> 的时候要小心。</p>
+<p>React 提供一个工具方法 <a href="https://facebook.github.io/react/docs/top-level-api.html#react.children" target="_blank" rel="noopener"><code>React.Children</code></a> 来处理 <code>this.props.children</code> 。我们可以用 <code>React.Children.map</code> 来遍历子节点，而不用担心 <code>this.props.children</code> 的数据类型是 <code>undefined</code> 还是 <code>object</code>。更多的 <code>React.Children</code> 的方法，请参考<a href="https://facebook.github.io/react/docs/top-level-api.html#react.children" target="_blank" rel="noopener">官方文档</a>。</p>
+<h3 id="getDefaultProps-方法可以用来设置组件属性的默认值。"><a href="#getDefaultProps-方法可以用来设置组件属性的默认值。" class="headerlink" title="getDefaultProps 方法可以用来设置组件属性的默认值。"></a><code>getDefaultProps</code> 方法可以用来设置组件属性的默认值。</h3><blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> MyTitle = React.createClass(&#123;</span><br><span class="line">  getDefaultProps : <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      title : <span class="string">'Hello World'</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  render: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">     <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span> &#123;this.props.title&#125; <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;MyTitle /&gt;,</span><br><span class="line">  <span class="built_in">document</span>.body</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="获取真实的DOM节点"><a href="#获取真实的DOM节点" class="headerlink" title="获取真实的DOM节点"></a>获取真实的DOM节点</h2><p>组件并不是真实的 DOM 节点，而是存在于内存之中的一种数据结构，叫做虚拟 DOM （virtual DOM）。只有当它插入文档以后，才会变成真实的 DOM 。根据 React 的设计，所有的 DOM 变动，都先在虚拟 DOM 上发生，然后再将实际发生变动的部分，反映在真实 DOM上，这种算法叫做 <a href="http://calendar.perfplanet.com/2013/diff/" target="_blank" rel="noopener">DOM diff</a> ，它可以极大提高网页的性能表现。</p>
+<p>但是，有时需要从组件获取真实 DOM 的节点，这时就要用到 <code>ref</code> 属性（查看 <a href="https://github.com/ruanyf/react-demos/blob/master/demo07/index.html" target="_blank" rel="noopener">demo07</a> ）。</p>
+<blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> MyComponent = React.createClass(&#123;</span><br><span class="line">  handleClick: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.refs.myTextInput.focus();</span><br><span class="line">  &#125;,</span><br><span class="line">  render: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;input type=<span class="string">"text"</span> ref=<span class="string">"myTextInput"</span> /&gt;</span><br><span class="line">        &lt;input type=<span class="string">"button"</span> value=<span class="string">"Focus the text input"</span> onClick=&#123;<span class="keyword">this</span>.handleClick&#125; /&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;);</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">ReactDOM.render(</span></span><br><span class="line"><span class="regexp">  &lt;MyComponent /</span>&gt;,</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'example'</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>上面代码中，组件 <code>MyComponent</code> 的子节点有一个文本输入框，用于获取用户的输入。这时就必须获取真实的 DOM 节点，虚拟 DOM 是拿不到用户输入的。为了做到这一点，文本输入框必须有一个 <code>ref</code> 属性，然后 <code>this.refs.[refName]</code> 就会返回这个真实的 DOM 节点。</p>
+<p>需要注意的是，由于 <code>this.refs.[refName]</code> 属性获取的是真实 DOM ，所以必须等到虚拟 DOM 插入文档以后，才能使用这个属性，否则会报错。上面代码中，通过为组件指定 <code>Click</code> 事件的回调函数，确保了只有等到真实 DOM 发生 <code>Click</code> 事件之后，才会读取 <code>this.refs.[refName]</code> 属性。</p>
+<p>React 组件支持很多事件，除了 <code>Click</code> 事件以外，还有 <code>KeyDown</code> 、<code>Copy</code>、<code>Scroll</code> 等，完整的事件清单请查看<a href="http://facebook.github.io/react/docs/events.html#supported-events" target="_blank" rel="noopener">官方文档</a>。</p>
+<h2 id="this-state"><a href="#this-state" class="headerlink" title="this.state"></a>this.state</h2><p>组件免不了要与用户互动，React 的一大创新，就是将组件看成是一个状态机，一开始有一个初始状态，然后用户互动，导致状态变化，从而触发重新渲染 UI （查看 <a href="https://github.com/ruanyf/react-demos/blob/master/demo08/index.html" target="_blank" rel="noopener"><code>demo08</code></a> ）。</p>
+<blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> LikeButton = React.createClass(&#123;</span><br><span class="line">  getInitialState: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="attr">liked</span>: <span class="literal">false</span>&#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  handleClick: <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;<span class="attr">liked</span>: !<span class="keyword">this</span>.state.liked&#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">  render: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> text = <span class="keyword">this</span>.state.liked ? <span class="string">'like'</span> : <span class="string">'haven\'t liked'</span>;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;p onClick=&#123;<span class="keyword">this</span>.handleClick&#125;&gt;</span><br><span class="line">        You &#123;text&#125; <span class="keyword">this</span>. Click to toggle.</span><br><span class="line">      &lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;);</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">ReactDOM.render(</span></span><br><span class="line"><span class="regexp">  &lt;LikeButton /</span>&gt;,</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'example'</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>上面代码是一个 <code>LikeButton</code> 组件，它的 <code>getInitialState</code> 方法用于定义初始状态，也就是一个对象，这个对象可以通过 <code>this.state</code> 属性读取。当用户点击组件，导致状态变化，<code>this.setState</code> 方法就修改状态值，每次修改以后，自动调用 <code>this.render</code> 方法，再次渲染组件。</p>
+<p>由于 <code>this.props</code> 和 <code>this.state</code> 都用于描述组件的特性，可能会产生混淆。一个简单的区分方法是，<code>this.props</code> 表示那些一旦定义，就不再改变的特性，而 <code>this.state</code> 是会随着用户互动而产生变化的特性。</p>
+<h2 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h2><p>用户在表单填入的内容，属于用户跟组件的互动，所以不能用 <code>this.props</code> 读取（查看 <a href="https://github.com/ruanyf/react-demos/blob/master/demo09/index.html" target="_blank" rel="noopener"><code>demo9</code></a> ）。</p>
+<blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Input = React.createClass(&#123;</span><br><span class="line">  getInitialState: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="attr">value</span>: <span class="string">'Hello!'</span>&#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  handleChange: <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;<span class="attr">value</span>: event.target.value&#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">  render: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> value = <span class="keyword">this</span>.state.value;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;input type=<span class="string">"text"</span> value=&#123;value&#125; onChange=&#123;<span class="keyword">this</span>.handleChange&#125; /&gt;</span><br><span class="line">        &lt;p&gt;&#123;value&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">Input</span>/&gt;</span></span>, <span class="built_in">document</span>.body);</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>上面代码中，文本输入框的值，不能用 <code>this.props.value</code> 读取，而要定义一个 <code>onChange</code> 事件的回调函数，通过 <code>event.target.value</code> 读取用户输入的值。<code>textarea</code> 元素、<code>select</code>元素、<code>radio</code>元素都属于这种情况，更多介绍请参考<a href="http://facebook.github.io/react/docs/forms.html" target="_blank" rel="noopener">官方文档</a>。</p>
+<h2 id="组件的生命周期"><a href="#组件的生命周期" class="headerlink" title="组件的生命周期"></a>组件的生命周期</h2><p>组件的<a href="https://facebook.github.io/react/docs/working-with-the-browser.html#component-lifecycle" target="_blank" rel="noopener">生命周期</a>分成三个状态：</p>
+<blockquote>
+<ul>
+<li>Mounting：已插入真实 DOM</li>
+<li>Updating：正在被重新渲染</li>
+<li>Unmounting：已移出真实 DOM</li>
+</ul>
+</blockquote>
+<p>React 为每个状态都提供了两种处理函数，<code>will</code> 函数在进入状态之前调用，<code>did</code> 函数在进入状态之后调用，三种状态共计五种处理函数。</p>
+<blockquote>
+<ul>
+<li>componentWillMount()</li>
+<li>componentDidMount()</li>
+<li>componentWillUpdate(object nextProps, object nextState)</li>
+<li>componentDidUpdate(object prevProps, object prevState)</li>
+<li>componentWillUnmount()</li>
+</ul>
+</blockquote>
+<p>此外，React 还提供两种特殊状态的处理函数。</p>
+<blockquote>
+<ul>
+<li>componentWillReceiveProps(object nextProps)：已加载组件收到新的参数时调用</li>
+<li>shouldComponentUpdate(object nextProps, object nextState)：组件判断是否重新渲染时调用</li>
+</ul>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/react/" rel="tag"># react</a>
+          
+            <a href="/tags/%E8%84%9A%E6%89%8B%E6%9E%B6/" rel="tag"># 脚手架</a>
+          
+            <a href="/tags/create-react-app/" rel="tag"># create-react-app</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/02/03/vue%E4%B9%8Bvideojs%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="next" title="vue之videojs的使用">
+                <i class="fa fa-chevron-left"></i> vue之videojs的使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/02/24/ts%E4%B9%8B%E9%87%8D%E6%9E%84vue%E9%A1%B9%E7%9B%AE/" rel="prev" title="ts之重构vue项目">
+                ts之重构vue项目 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="Dali" />
+            
+              <p class="site-author-name" itemprop="name">Dali</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">153</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">73</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">154</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一-认识脚手架"><span class="nav-number">1.</span> <span class="nav-text">一. 认识脚手架</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-前端工程的复杂化"><span class="nav-number">1.1.</span> <span class="nav-text">1.1. 前端工程的复杂化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-脚手架是什么呢？"><span class="nav-number">1.2.</span> <span class="nav-text">1.2. 脚手架是什么呢？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-create-react-app"><span class="nav-number">2.</span> <span class="nav-text">二. create-react-app</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-安装相关的依赖"><span class="nav-number">2.1.</span> <span class="nav-text">2.1. 安装相关的依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-1-安装node"><span class="nav-number">2.2.</span> <span class="nav-text">2.1.1. 安装node</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-2-包管理工具"><span class="nav-number">2.3.</span> <span class="nav-text">2.1.2. 包管理工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-3-安装脚手架"><span class="nav-number">2.4.</span> <span class="nav-text">2.1.3. 安装脚手架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-创建React项目"><span class="nav-number">2.5.</span> <span class="nav-text">2.2. 创建React项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-1-创建React项目"><span class="nav-number">2.6.</span> <span class="nav-text">2.2.1. 创建React项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-2-目录结构分析"><span class="nav-number">2.7.</span> <span class="nav-text">2.2.2. 目录结构分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-3-webpack配置"><span class="nav-number">2.8.</span> <span class="nav-text">2.2.3. webpack配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-从零编写项目"><span class="nav-number">2.9.</span> <span class="nav-text">2.3. 从零编写项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-1-文件的删减"><span class="nav-number">2.10.</span> <span class="nav-text">2.3.1. 文件的删减</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-2-开始编写代码"><span class="nav-number">2.11.</span> <span class="nav-text">2.3.2. 开始编写代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三-在React中使用react-router-dom路由"><span class="nav-number">3.</span> <span class="nav-text">三.在React中使用react-router-dom路由</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">3.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本操作"><span class="nav-number">3.2.</span> <span class="nav-text">基本操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过a标签跳转"><span class="nav-number">3.3.</span> <span class="nav-text">通过a标签跳转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过函数跳转"><span class="nav-number">3.4.</span> <span class="nav-text">通过函数跳转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#url传参"><span class="nav-number">3.5.</span> <span class="nav-text">url传参</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隐式传参"><span class="nav-number">3.6.</span> <span class="nav-text">隐式传参</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他函数"><span class="nav-number">3.7.</span> <span class="nav-text">其他函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#replace"><span class="nav-number">3.7.1.</span> <span class="nav-text">replace</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#goBack"><span class="nav-number">3.7.2.</span> <span class="nav-text">goBack</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#嵌套路由"><span class="nav-number">3.8.</span> <span class="nav-text">嵌套路由</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#非脚手架搭建"><span class="nav-number">4.</span> <span class="nav-text">非脚手架搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#组件"><span class="nav-number">4.1.</span> <span class="nav-text">组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#props"><span class="nav-number">4.2.</span> <span class="nav-text">props</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#getDefaultProps-方法可以用来设置组件属性的默认值。"><span class="nav-number">4.2.1.</span> <span class="nav-text">getDefaultProps 方法可以用来设置组件属性的默认值。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取真实的DOM节点"><span class="nav-number">4.3.</span> <span class="nav-text">获取真实的DOM节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#this-state"><span class="nav-number">4.4.</span> <span class="nav-text">this.state</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单"><span class="nav-number">4.5.</span> <span class="nav-text">表单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件的生命周期"><span class="nav-number">4.6.</span> <span class="nav-text">组件的生命周期</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dali</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

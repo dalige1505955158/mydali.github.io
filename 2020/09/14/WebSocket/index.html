@@ -88,7 +88,7 @@
 <meta property="og:site_name" content="DaliBlogs">
 <meta property="og:description" content="什么是WebSocket首先需要明白webSocket的概念，下边是维基百科的解释  WebSocket是一种通信协议，可在单个TCP连接上进行全双工通信。WebSocket使得客户端和服务器之间的数据交换变得更加简单，允许服务端主动向客户端推送数据。在WebSocket API中，浏览器和服务器只需要完成一次握手，两者之间就可以建立持久性的连接，并进行双向数据传输。  首先，要明白WebSock">
 <meta property="article:published_time" content="2020-09-14T07:00:35.000Z">
-<meta property="article:modified_time" content="2020-09-21T06:51:55.005Z">
+<meta property="article:modified_time" content="2021-02-22T03:50:35.489Z">
 <meta property="article:author" content="Dali">
 <meta property="article:tag" content="WebSocket">
 <meta property="article:tag" content="案例">
@@ -404,8 +404,7 @@
 
 <h2 id="几种与服务端实时通信的方法"><a href="#几种与服务端实时通信的方法" class="headerlink" title="几种与服务端实时通信的方法"></a><strong>几种与服务端实时通信的方法</strong></h2><p>我们都知道，不使用WebSocket与服务器实时交互，一般有两种方法。AJAX轮询和Long Polling长轮询。</p>
 <h3 id="AJAX轮询"><a href="#AJAX轮询" class="headerlink" title="AJAX轮询"></a><strong>AJAX轮询</strong></h3><p>AJAX轮询也就是定时发送请求，也就是普通的客户端与服务端通信过程，只不过是无限循环发送，这样，可以保证服务端一旦有最新消息，就可以被客户端获取。</p>
-<h3 id="Long-Polling长轮询"><a href="#Long-Polling长轮询" class="headerlink" title="Long Polling长轮询"></a><strong>Long Polling长轮询</strong></h3><p>Long Polling长轮询是客户端和浏览器保持一个长连接，等服务端有消息返回，断开。<br>然后再重新连接，也是个循环的过程，无穷尽也。。。</p>
-<p>客户端发起一个Long Polling，服务端如果没有数据要返回的话，<br>会hold住请求，等到有数据，就会返回给客户端。客户端又会再次发起一次Long Polling，再重复一次上面的过程。</p>
+<h3 id="Long-Polling长轮询"><a href="#Long-Polling长轮询" class="headerlink" title="Long Polling长轮询"></a><strong>Long Polling长轮询</strong></h3><p>客户端发起一个Long Polling，服务端如果没有数据要返回的话，<br>会hold住请求，等到有数据，就会返回给客户端。客户端又会再次发起一次Long Polling，再重复一次上面的过程。</p>
 <h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a><strong>缺点</strong></h3><p>上边这两种方式都有个致命的弱点，开销太大，被动性。假设并发很高的话，这对服务端是个考验。<br>而WebSocket一次握手，持久连接，以及主动推送的特点可以解决上边的问题，又不至于损耗性能。</p>
 <h2 id="WebSocket连接过程"><a href="#WebSocket连接过程" class="headerlink" title="WebSocket连接过程"></a><strong>WebSocket连接过程</strong></h2><p>客户端发起HTTP握手，告诉服务端进行WebSocket协议通讯，并告知WebSocket协议版本。服务端确认协议版本，升级为WebSocket协议。之后如果有数据需要推送，会主动推送给客户端。</p>
 <p>连接开始时，客户端使用HTTP协议和服务端升级协议，升级完成后，后续数据交换遵循WebSocket协议。我们看看Request Headers</p>
@@ -596,7 +595,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">140</span>
+                  <span class="site-state-item-count">153</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -607,7 +606,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">69</span>
+                  <span class="site-state-item-count">73</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -618,7 +617,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">143</span>
+                  <span class="site-state-item-count">154</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

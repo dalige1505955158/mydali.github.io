@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="vue,性能优化," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="DaliBlogs" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="参考链接：https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;uJ5-O4d4DqR2sIQzDqKVQw 一、代码层面的优化1.1、v-if 和 v-show 区分使用场景v-if 是 真正 的条件渲染，因为它会确保在切换过程中条件块内的事件监听器和子组件适当地被销毁和重建；也是惰性的：如果在初始渲染时条件为假，则什么也不做——直到条件第一次变为真时，才会开始渲染条件块。 v-show 就简单">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue之性能优化">
+<meta property="og:url" content="http://yoursite.com/2021/03/17/vue%E4%B9%8B%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/index.html">
+<meta property="og:site_name" content="DaliBlogs">
+<meta property="og:description" content="参考链接：https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;uJ5-O4d4DqR2sIQzDqKVQw 一、代码层面的优化1.1、v-if 和 v-show 区分使用场景v-if 是 真正 的条件渲染，因为它会确保在切换过程中条件块内的事件监听器和子组件适当地被销毁和重建；也是惰性的：如果在初始渲染时条件为假，则什么也不做——直到条件第一次变为真时，才会开始渲染条件块。 v-show 就简单">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uuZnAApLr38mFVUApdS1l7pxWJBXQWCcpo02gia9Py9xx27CvQOnOmVEkJtKXibzcCCtJuRl9Ujwx3Q/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_gif/1NOXMW586uuZnAApLr38mFVUApdS1l7pTU6eP6ic6c4IT4h26QO5h8jkiaiajylBbRAuqyMtjs7zbGWOvoC1E2icEQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uuZnAApLr38mFVUApdS1l7p2GGE5klNlnnqE31bjibxSzmcrVe6HDXVILuicMUC0rycY4T8smKNXNvw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uuZnAApLr38mFVUApdS1l7pVB8h36MDeQMVnx3KGEjjCoP2aY0YmichWEED4z9rYpurYL3zwQjS2gA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="article:published_time" content="2021-03-17T07:09:58.000Z">
+<meta property="article:modified_time" content="2021-03-17T08:55:31.003Z">
+<meta property="article:author" content="Dali">
+<meta property="article:tag" content="vue">
+<meta property="article:tag" content="性能优化">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uuZnAApLr38mFVUApdS1l7pxWJBXQWCcpo02gia9Py9xx27CvQOnOmVEkJtKXibzcCCtJuRl9Ujwx3Q/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/03/17/vue之性能优化/"/>
+
+
+
+
+
+  <title>vue之性能优化 | DaliBlogs</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DaliBlogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/17/vue%E4%B9%8B%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">vue之性能优化</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-03-17T15:09:58+08:00">
+                2021-03-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>参考链接：<a href="https://mp.weixin.qq.com/s/uJ5-O4d4DqR2sIQzDqKVQw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/uJ5-O4d4DqR2sIQzDqKVQw</a></p>
+<h2 id="一、代码层面的优化"><a href="#一、代码层面的优化" class="headerlink" title="一、代码层面的优化"></a>一、代码层面的优化</h2><h3 id="1-1、v-if-和-v-show-区分使用场景"><a href="#1-1、v-if-和-v-show-区分使用场景" class="headerlink" title="1.1、v-if 和 v-show 区分使用场景"></a>1.1、v-if 和 v-show 区分使用场景</h3><p><strong>v-if</strong> 是 <strong>真正</strong> 的条件渲染，因为它会确保在切换过程中条件块内的事件监听器和子组件适当地被销毁和重建；也是<strong>惰性的</strong>：如果在初始渲染时条件为假，则什么也不做——直到条件第一次变为真时，才会开始渲染条件块。</p>
+<p><strong>v-show</strong> 就简单得多， 不管初始条件是什么，元素总是会被渲染，并且只是简单地基于 CSS 的 display 属性进行切换。</p>
+<p>所以，v-if 适用于在运行时很少改变条件，不需要频繁切换条件的场景；v-show 则适用于需要非常频繁切换条件的场景。</p>
+<a id="more"></a> 
+
+<h3 id="1-2、computed-和-watch-区分使用场景"><a href="#1-2、computed-和-watch-区分使用场景" class="headerlink" title="1.2、computed 和 watch 区分使用场景"></a>1.2、computed 和 watch 区分使用场景</h3><p><strong>computed：</strong> 是计算属性，依赖其它属性值，并且 computed 的值有缓存，只有它依赖的属性值发生改变，下一次获取 computed 的值时才会重新计算 computed 的值；</p>
+<p><strong>watch：</strong> 更多的是「观察」的作用，类似于某些数据的监听回调 ，每当监听的数据变化时都会执行回调进行后续操作；</p>
+<p><strong>运用场景：</strong></p>
+<ul>
+<li>当我们需要进行数值计算，并且依赖于其它数据时，应该使用 computed，因为可以利用 computed 的缓存特性，避免每次获取值时，都要重新计算；</li>
+<li>当我们需要在数据变化时执行异步或开销较大的操作时，应该使用 watch，使用 watch 选项允许我们执行异步操作 ( 访问一个 API )，限制我们执行该操作的频率，并在我们得到最终结果前，设置中间状态。这些都是计算属性无法做到的。</li>
+</ul>
+<h3 id="1-3、v-for-遍历必须为-item-添加-key，且避免同时使用-v-if"><a href="#1-3、v-for-遍历必须为-item-添加-key，且避免同时使用-v-if" class="headerlink" title="1.3、v-for 遍历必须为 item 添加 key，且避免同时使用 v-if"></a>1.3、v-for 遍历必须为 item 添加 key，且避免同时使用 v-if</h3><p><strong>（1）v-for 遍历必须为 item 添加 key</strong></p>
+<p>在列表数据进行遍历渲染时，需要为每一项 item 设置唯一 key 值，方便 Vue.js 内部机制精准找到该条列表数据。当 state 更新时，新的状态值和旧的状态值对比，较快地定位到 diff 。</p>
+<p><strong>（2）v-for 遍历避免同时使用 v-if</strong></p>
+<p>v-for 比 v-if 优先级高，如果每一次都需要遍历整个数组，将会影响速度，尤其是当之需要渲染很小一部分的时候，必要情况下应该替换成 computed 属性。</p>
+<p><strong>推荐：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li</span><br><span class="line">    v-for&#x3D;&quot;user in activeUsers&quot;</span><br><span class="line">    :key&#x3D;&quot;user.id&quot;&gt;</span><br><span class="line">    &#123;&#123; user.name &#125;&#125;</span><br><span class="line">  &lt;&#x2F;li&gt;</span><br><span class="line">&lt;&#x2F;ul&gt;</span><br><span class="line">computed: &#123;</span><br><span class="line">  activeUsers: function () &#123;</span><br><span class="line">    return this.users.filter(function (user) &#123;</span><br><span class="line"> return user.isActive</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p><strong>不推荐：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li</span><br><span class="line">    v-for&#x3D;&quot;user in users&quot;</span><br><span class="line">    v-if&#x3D;&quot;user.isActive&quot;</span><br><span class="line">    :key&#x3D;&quot;user.id&quot;&gt;</span><br><span class="line">    &#123;&#123; user.name &#125;&#125;</span><br><span class="line">  &lt;&#x2F;li&gt;</span><br><span class="line">&lt;&#x2F;ul&gt;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-4、长列表性能优化"><a href="#1-4、长列表性能优化" class="headerlink" title="1.4、长列表性能优化"></a>1.4、长列表性能优化</h3><p>Vue 会通过 Object.defineProperty 对数据进行劫持，来实现视图响应数据的变化，然而有些时候我们的组件就是纯粹的数据展示，不会有任何改变，我们就不需要 Vue 来劫持我们的数据，在大量数据展示的情况下，这能够很明显的减少组件初始化的时间，那如何禁止 Vue 劫持我们的数据呢？可以通过 Object.freeze 方法来冻结一个对象，一旦被冻结的对象就再也不能被修改了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  data: () &#x3D;&gt; (&#123;</span><br><span class="line">    users: &#123;&#125;</span><br><span class="line">  &#125;),</span><br><span class="line">  async created() &#123;</span><br><span class="line">    const users &#x3D; await axios.get(&quot;&#x2F;api&#x2F;users&quot;);</span><br><span class="line">    this.users &#x3D; Object.freeze(users);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-5、事件的销毁"><a href="#1-5、事件的销毁" class="headerlink" title="1.5、事件的销毁"></a>1.5、事件的销毁</h3><p>Vue 组件销毁时，会自动清理它与其它实例的连接，解绑它的全部指令及事件监听器，但是仅限于组件本身的事件。如果在 js 内使用 addEventListene 等方式是不会自动销毁的，我们需要在组件销毁时手动移除这些事件的监听，以免造成内存泄露，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">created() &#123;</span><br><span class="line">  addEventListener(&#39;click&#39;, this.click, false)</span><br><span class="line">&#125;,</span><br><span class="line">beforeDestroy() &#123;</span><br><span class="line">  removeEventListener(&#39;click&#39;, this.click, false)</span><br><span class="line">&#125;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-6、图片资源懒加载"><a href="#1-6、图片资源懒加载" class="headerlink" title="1.6、图片资源懒加载"></a>1.6、图片资源懒加载</h3><p>对于图片过多的页面，为了加速页面加载速度，所以很多时候我们需要将页面内未出现在可视区域内的图片先不做加载， 等到滚动到可视区域后再去加载。这样对于页面加载性能上会有很大的提升，也提高了用户体验。我们在项目中使用 Vue 的 vue-lazyload 插件：</p>
+<p>（1）安装插件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install vue-lazyload --save-dev</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>（2）在入口文件 man.js 中引入并使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import VueLazyload from &#39;vue-lazyload&#39;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>然后再 vue 中直接使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Vue.use(VueLazyload)</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>或者添加自定义选项</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Vue.use(VueLazyload, &#123;</span><br><span class="line">preLoad: 1.3,</span><br><span class="line">error: &#39;dist&#x2F;error.png&#39;,</span><br><span class="line">loading: &#39;dist&#x2F;loading.gif&#39;,</span><br><span class="line">attempt: 1</span><br><span class="line">&#125;)</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>（3）在 vue 文件中将 img 标签的 src 属性直接改为 v-lazy ，从而将图片显示方式更改为懒加载显示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;img v-lazy&#x3D;&quot;&#x2F;static&#x2F;img&#x2F;1.png&quot;&gt;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>以上为 vue-lazyload 插件的简单使用，如果要看插件的更多参数选项，可以查看 vue-lazyload 的 github 地址。</p>
+<h3 id="1-7、路由懒加载"><a href="#1-7、路由懒加载" class="headerlink" title="1.7、路由懒加载"></a>1.7、路由懒加载</h3><p>Vue 是单页面应用，可能会有很多的路由引入 ，这样使用 webpcak 打包后的文件很大，当进入首页时，加载的资源过多，页面会出现白屏的情况，不利于用户体验。如果我们能把不同路由对应的组件分割成不同的代码块，然后当路由被访问的时候才加载对应的组件，这样就更加高效了。这样会大大提高首屏显示的速度，但是可能其他的页面的速度就会降下来。</p>
+<p><strong>路由懒加载：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const Foo &#x3D; () &#x3D;&gt; import(&#39;.&#x2F;Foo.vue&#39;)</span><br><span class="line">const router &#x3D; new VueRouter(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123; path: &#39;&#x2F;foo&#39;, component: Foo &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-8、第三方插件的按需引入"><a href="#1-8、第三方插件的按需引入" class="headerlink" title="1.8、第三方插件的按需引入"></a>1.8、第三方插件的按需引入</h3><p>我们在项目中经常会需要引入第三方插件，如果我们直接引入整个插件，会导致项目的体积太大，我们可以借助 <code>babel-plugin-component</code> ，然后可以只引入需要的组件，以达到减小项目体积的目的。以下为项目中引入 element-ui 组件库为例：</p>
+<p>（1）首先，安装 <code>babel-plugin-component</code> ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install babel-plugin-component -D</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>（2）然后，将 .babelrc 修改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;presets&quot;: [[&quot;es2015&quot;, &#123; &quot;modules&quot;: false &#125;]],</span><br><span class="line">  &quot;plugins&quot;: [</span><br><span class="line">    [</span><br><span class="line">      &quot;component&quot;,</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;libraryName&quot;: &quot;element-ui&quot;,</span><br><span class="line">        &quot;styleLibraryName&quot;: &quot;theme-chalk&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>（3）在 main.js 中引入部分组件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &#39;vue&#39;;</span><br><span class="line">import &#123; Button, Select &#125; from &#39;element-ui&#39;;</span><br><span class="line"></span><br><span class="line"> Vue.use(Button)</span><br><span class="line"> Vue.use(Select)</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-9、优化无限列表性能"><a href="#1-9、优化无限列表性能" class="headerlink" title="1.9、优化无限列表性能"></a>1.9、优化无限列表性能</h3><p>如果你的应用存在非常长或者无限滚动的列表，那么需要采用 窗口化 的技术来优化性能，只需要渲染少部分区域的内容，减少重新渲染组件和创建 dom 节点的时间。你可以参考以下开源项目 vue-virtual-scroll-list 和 vue-virtual-scroller 来优化这种无限列表的场景的。</p>
+<h3 id="1-10、服务端渲染-SSR-or-预渲染"><a href="#1-10、服务端渲染-SSR-or-预渲染" class="headerlink" title="1.10、服务端渲染 SSR or 预渲染"></a>1.10、服务端渲染 SSR or 预渲染</h3><p>服务端渲染是指 Vue 在客户端将标签渲染成的整个 html 片段的工作在服务端完成，服务端形成的 html 片段直接返回给客户端这个过程就叫做服务端渲染。</p>
+<p><strong>（1）服务端渲染的优点：</strong></p>
+<ul>
+<li>更好的 SEO：因为 SPA 页面的内容是通过 Ajax 获取，而搜索引擎爬取工具并不会等待 Ajax 异步完成后再抓取页面内容，所以在 SPA 中是抓取不到页面通过 Ajax 获取到的内容；而 SSR 是直接由服务端返回已经渲染好的页面（数据已经包含在页面中），所以搜索引擎爬取工具可以抓取渲染好的页面；</li>
+<li>更快的内容到达时间（首屏加载更快）：SPA 会等待所有 Vue 编译后的 js 文件都下载完成后，才开始进行页面的渲染，文件下载等需要一定的时间等，所以首屏渲染需要一定的时间；SSR 直接由服务端渲染好页面直接返回显示，无需等待下载 js 文件及再去渲染等，所以 SSR 有更快的内容到达时间；</li>
+</ul>
+<p><strong>（2）服务端渲染的缺点：</strong></p>
+<ul>
+<li>更多的开发条件限制：例如服务端渲染只支持 beforCreate 和 created 两个钩子函数，这会导致一些外部扩展库需要特殊处理，才能在服务端渲染应用程序中运行；并且与可以部署在任何静态文件服务器上的完全静态单页面应用程序 SPA 不同，服务端渲染应用程序，需要处于 Node.js server 运行环境；</li>
+<li>更多的服务器负载：在 Node.js 中渲染完整的应用程序，显然会比仅仅提供静态文件的 server 更加大量占用CPU 资源，因此如果你预料在高流量环境下使用，请准备相应的服务器负载，并明智地采用缓存策略。</li>
+</ul>
+<p>如果你的项目的 SEO 和 首屏渲染是评价项目的关键指标，那么你的项目就需要服务端渲染来帮助你实现最佳的初始加载性能和 SEO，具体的 Vue SSR 如何实现，可以参考作者的另一篇文章《Vue SSR 踩坑之旅》。如果你的 Vue 项目只需改善少数营销页面（例如  <code>/， /about， /contac</code>t 等）的 SEO，那么你可能需要<strong>预渲染</strong>，在构建时 (build time) 简单地生成针对特定路由的静态 HTML 文件。优点是设置预渲染更简单，并可以将你的前端作为一个完全静态的站点，具体你可以使用 prerender-spa-plugin 就可以轻松地添加预渲染 。</p>
+<h2 id="二、Webpack-层面的优化"><a href="#二、Webpack-层面的优化" class="headerlink" title="二、Webpack 层面的优化"></a>二、Webpack 层面的优化</h2><h3 id="2-1、Webpack-对图片进行压缩"><a href="#2-1、Webpack-对图片进行压缩" class="headerlink" title="2.1、Webpack 对图片进行压缩"></a>2.1、Webpack 对图片进行压缩</h3><p>在 vue 项目中除了可以在 <code>webpack.base.conf.js</code> 中 url-loader 中设置 limit 大小来对图片处理，对小于 limit 的图片转化为 base64 格式，其余的不做操作。所以对有些较大的图片资源，在请求资源的时候，加载会很慢，我们可以用 <code>image-webpack-loader</code>来压缩图片：</p>
+<p>（1）首先，安装 image-webpack-loader ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install image-webpack-loader --save-dev</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>（2）然后，在 webpack.base.conf.js 中进行配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  test: &#x2F;\.(png|jpe?g|gif|svg)(\?.*)?$&#x2F;,</span><br><span class="line">  use:[</span><br><span class="line">    &#123;</span><br><span class="line">    loader: &#39;url-loader&#39;,</span><br><span class="line">    options: &#123;</span><br><span class="line">      limit: 10000,</span><br><span class="line">      name: utils.assetsPath(&#39;img&#x2F;[name].[hash:7].[ext]&#39;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      loader: &#39;image-webpack-loader&#39;,</span><br><span class="line">      options: &#123;</span><br><span class="line">        bypassOnDebug: true,</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2、减少-ES6-转为-ES5-的冗余代码"><a href="#2-2、减少-ES6-转为-ES5-的冗余代码" class="headerlink" title="2.2、减少 ES6 转为 ES5 的冗余代码"></a>2.2、减少 ES6 转为 ES5 的冗余代码</h3><p>Babel 插件会在将 ES6 代码转换成 ES5 代码时会注入一些辅助函数，例如下面的 ES6 代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">class HelloWebpack extends Component&#123;...&#125;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>这段代码再被转换成能正常运行的 ES5 代码时需要以下两个辅助函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">babel-runtime&#x2F;helpers&#x2F;createClass  &#x2F;&#x2F; 用于实现 class 语法</span><br><span class="line">babel-runtime&#x2F;helpers&#x2F;inherits  &#x2F;&#x2F; 用于实现 extends 语法</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>在默认情况下， Babel 会在每个输出文件中内嵌这些依赖的辅助函数代码，如果多个源代码文件都依赖这些辅助函数，那么这些辅助函数的代码将会出现很多次，造成代码冗余。为了不让这些辅助函数的代码重复出现，可以在依赖它们时通过 <code>require(&#39;babel-runtime/helpers/createClass&#39;)</code> 的方式导入，这样就能做到只让它们出现一次。<code>babel-plugin-transform-runtime</code> 插件就是用来实现这个作用的，将相关辅助函数进行替换成导入语句，从而减小 babel 编译出来的代码的文件大小。</p>
+<p>（1）首先，安装 <code>babel-plugin-transform-runtime</code> ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install babel-plugin-transform-runtime --save-dev</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>（2）然后，修改 .babelrc 配置文件为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;plugins&quot;: [</span><br><span class="line">    &quot;transform-runtime&quot;</span><br><span class="line">]</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>如果要看插件的更多详细内容，可以查看babel-plugin-transform-runtime 的 详细介绍。</p>
+<h3 id="2-3、提取公共代码"><a href="#2-3、提取公共代码" class="headerlink" title="2.3、提取公共代码"></a>2.3、提取公共代码</h3><p>如果项目中没有去将每个页面的第三方库和公共模块提取出来，则项目会存在以下问题：</p>
+<ul>
+<li>相同的资源被重复加载，浪费用户的流量和服务器的成本。</li>
+<li>每个页面需要加载的资源太大，导致网页首屏加载缓慢，影响用户体验。</li>
+</ul>
+<p>所以我们需要将多个页面的公共代码抽离成单独的文件，来优化以上问题 。Webpack 内置了专门用于提取多个Chunk 中的公共部分的插件 CommonsChunkPlugin，我们在项目中 CommonsChunkPlugin 的配置如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 所有在 package.json 里面依赖的包，都会被打包进 vendor.js 这个文件中。</span><br><span class="line">new webpack.optimize.CommonsChunkPlugin(&#123;</span><br><span class="line">  name: &#39;vendor&#39;,</span><br><span class="line">  minChunks: function(module, count) &#123;</span><br><span class="line">    return (</span><br><span class="line">      module.resource &amp;&amp;</span><br><span class="line">      &#x2F;\.js$&#x2F;.test(module.resource) &amp;&amp;</span><br><span class="line">      module.resource.indexOf(</span><br><span class="line">        path.join(__dirname, &#39;..&#x2F;node_modules&#39;)</span><br><span class="line">      ) &#x3D;&#x3D;&#x3D; 0</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;),</span><br><span class="line">&#x2F;&#x2F; 抽取出代码模块的映射关系</span><br><span class="line">new webpack.optimize.CommonsChunkPlugin(&#123;</span><br><span class="line">  name: &#39;manifest&#39;,</span><br><span class="line">  chunks: [&#39;vendor&#39;]</span><br><span class="line">&#125;)</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>如果要看插件的更多详细内容，可以查看 CommonsChunkPlugin 的 详细介绍。</p>
+<h3 id="2-4、模板预编译"><a href="#2-4、模板预编译" class="headerlink" title="2.4、模板预编译"></a>2.4、模板预编译</h3><p>当使用 DOM 内模板或 JavaScript 内的字符串模板时，模板会在运行时被编译为渲染函数。通常情况下这个过程已经足够快了，但对性能敏感的应用还是最好避免这种用法。</p>
+<p>预编译模板最简单的方式就是使用单文件组件——相关的构建设置会自动把预编译处理好，所以构建好的代码已经包含了编译出来的渲染函数而不是原始的模板字符串。</p>
+<p>如果你使用 webpack，并且喜欢分离 JavaScript 和模板文件，你可以使用 vue-template-loader，它也可以在构建过程中把模板文件转换成为 JavaScript 渲染函数。</p>
+<h3 id="2-5、提取组件的-CSS"><a href="#2-5、提取组件的-CSS" class="headerlink" title="2.5、提取组件的 CSS"></a>2.5、提取组件的 CSS</h3><p>当使用单文件组件时，组件内的 CSS 会以 style 标签的方式通过 JavaScript 动态注入。这有一些小小的运行时开销，如果你使用服务端渲染，这会导致一段 “无样式内容闪烁 (fouc) ” 。将所有组件的 CSS 提取到同一个文件可以避免这个问题，也会让 CSS 更好地进行压缩和缓存。</p>
+<p>查阅这个构建工具各自的文档来了解更多：</p>
+<ul>
+<li>webpack + vue-loader ( vue-cli 的 webpack 模板已经预先配置好)</li>
+<li>Browserify + vueify</li>
+<li>Rollup + rollup-plugin-vue</li>
+</ul>
+<h3 id="2-6、优化-SourceMap"><a href="#2-6、优化-SourceMap" class="headerlink" title="2.6、优化 SourceMap"></a>2.6、优化 SourceMap</h3><p>我们在项目进行打包后，会将开发中的多个文件代码打包到一个文件中，并且经过压缩、去掉多余的空格、babel编译化后，最终将编译得到的代码会用于线上环境，那么这样处理后的代码和源代码会有很大的差别，当有 bug的时候，我们只能定位到压缩处理后的代码位置，无法定位到开发环境中的代码，对于开发来说不好调式定位问题，因此 sourceMap 出现了，它就是为了解决不好调式代码问题的。</p>
+<p>SourceMap 的可选值如下（+ 号越多，代表速度越快，- 号越多，代表速度越慢, o 代表中等速度 ）</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uuZnAApLr38mFVUApdS1l7pxWJBXQWCcpo02gia9Py9xx27CvQOnOmVEkJtKXibzcCCtJuRl9Ujwx3Q/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片">1.png</p>
+<p><strong>开发环境推荐：cheap-module-eval-source-map</strong></p>
+<p><strong>生产环境推荐：cheap-module-source-map</strong></p>
+<p>原因如下：</p>
+<ul>
+<li><strong>cheap</strong>：源代码中的列信息是没有任何作用，因此我们打包后的文件不希望包含列相关信息，只有行信息能建立打包前后的依赖关系。因此不管是开发环境或生产环境，我们都希望添加 cheap 的基本类型来忽略打包前后的列信息；</li>
+<li><strong>module</strong> ：不管是开发环境还是正式环境，我们都希望能定位到bug的源代码具体的位置，比如说某个 Vue 文件报错了，我们希望能定位到具体的 Vue 文件，因此我们也需要 module 配置；</li>
+<li><strong>soure-map</strong> ：source-map 会为每一个打包后的模块生成独立的 soucemap 文件 ，因此我们需要增加source-map 属性；</li>
+<li><strong>eval-source-map</strong>：eval 打包代码的速度非常快，因为它不生成 map 文件，但是可以对 eval 组合使用 eval-source-map 使用会将 map 文件以 DataURL 的形式存在打包后的 js 文件中。在正式环境中不要使用 eval-source-map, 因为它会增加文件的大小，但是在开发环境中，可以试用下，因为他们打包的速度很快。</li>
+</ul>
+<h3 id="2-7、构建结果输出分析"><a href="#2-7、构建结果输出分析" class="headerlink" title="2.7、构建结果输出分析"></a>2.7、构建结果输出分析</h3><p>Webpack 输出的代码可读性非常差而且文件非常大，让我们非常头疼。为了更简单、直观地分析输出结果，社区中出现了许多可视化分析工具。这些工具以图形的方式将结果更直观地展示出来，让我们快速了解问题所在。接下来讲解我们在 Vue 项目中用到的分析工具：<code>webpack-bundle-analyzer</code> 。</p>
+<p>我们在项目中 <code>webpack.prod.conf.js</code> 进行配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if (config.build.bundleAnalyzerReport) &#123;</span><br><span class="line">  var BundleAnalyzerPlugin &#x3D;   require(&#39;webpack-bundle-analyzer&#39;).BundleAnalyzerPlugin;</span><br><span class="line">  webpackConfig.plugins.push(new BundleAnalyzerPlugin());</span><br><span class="line">&#125;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>执行 <code>$ npm run build \--report</code> 后生成分析报告如下：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/1NOXMW586uuZnAApLr38mFVUApdS1l7pTU6eP6ic6c4IT4h26QO5h8jkiaiajylBbRAuqyMtjs7zbGWOvoC1E2icEQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="图片">1.png</p>
+<h3 id="2-8、Vue-项目的编译优化"><a href="#2-8、Vue-项目的编译优化" class="headerlink" title="2.8、Vue 项目的编译优化"></a>2.8、Vue 项目的编译优化</h3><p>如果你的 Vue 项目使用 Webpack 编译，需要你喝一杯咖啡的时间，那么也许你需要对项目的 Webpack 配置进行优化，提高 Webpack 的构建效率。具体如何进行 Vue 项目的 Webpack 构建优化，可以参考作者的另一篇文章《 Vue 项目 Webpack 优化实践》</p>
+<h2 id="三、基础的-Web-技术优化"><a href="#三、基础的-Web-技术优化" class="headerlink" title="三、基础的 Web 技术优化"></a>三、基础的 Web 技术优化</h2><h3 id="3-1、开启-gzip-压缩"><a href="#3-1、开启-gzip-压缩" class="headerlink" title="3.1、开启 gzip 压缩"></a>3.1、开启 gzip 压缩</h3><p>gzip 是 GNUzip 的缩写，最早用于 UNIX 系统的文件压缩。HTTP 协议上的 gzip 编码是一种用来改进 web 应用程序性能的技术，web 服务器和客户端（浏览器）必须共同支持 gzip。目前主流的浏览器，Chrome，firefox，IE等都支持该协议。常见的服务器如 Apache，Nginx，IIS 同样支持，gzip 压缩效率非常高，通常可以达到 70% 的压缩率，也就是说，如果你的网页有 30K，压缩之后就变成了 9K 左右</p>
+<p>以下我们以服务端使用我们熟悉的 express 为例，开启 gzip 非常简单，相关步骤如下：</p>
+<ul>
+<li>安装：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install compression --save</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>添加代码逻辑：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var compression &#x3D; require(&#39;compression&#39;);</span><br><span class="line">var app &#x3D; express();</span><br><span class="line">app.use(compression())</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>重启服务，观察网络面板里面的 response header，如果看到如下红圈里的字段则表明 gzip 开启成功 ：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uuZnAApLr38mFVUApdS1l7p2GGE5klNlnnqE31bjibxSzmcrVe6HDXVILuicMUC0rycY4T8smKNXNvw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片">1.png</p>
+</li>
+</ul>
+<h3 id="3-2、浏览器缓存"><a href="#3-2、浏览器缓存" class="headerlink" title="3.2、浏览器缓存"></a>3.2、浏览器缓存</h3><p>为了提高用户加载页面的速度，对静态资源进行缓存是非常必要的，根据是否需要重新向服务器发起请求来分类，将 HTTP 缓存规则分为两大类（强制缓存，对比缓存），如果对缓存机制还不是了解很清楚的，可以参考作者写的关于 HTTP 缓存的文章《深入理解HTTP缓存机制及原理》，这里不再赘述。</p>
+<h3 id="3-3、CDN-的使用"><a href="#3-3、CDN-的使用" class="headerlink" title="3.3、CDN 的使用"></a>3.3、CDN 的使用</h3><p>浏览器从服务器上下载 CSS、js 和图片等文件时都要和服务器连接，而大部分服务器的带宽有限，如果超过限制，网页就半天反应不过来。而 CDN 可以通过不同的域名来加载文件，从而使下载文件的并发连接数大大增加，且CDN 具有更好的可用性，更低的网络延迟和丢包率 。</p>
+<h3 id="3-4、使用-Chrome-Performance-查找性能瓶颈"><a href="#3-4、使用-Chrome-Performance-查找性能瓶颈" class="headerlink" title="3.4、使用 Chrome Performance 查找性能瓶颈"></a>3.4、使用 Chrome Performance 查找性能瓶颈</h3><p>Chrome 的 Performance 面板可以录制一段时间内的 js 执行细节及时间。使用 Chrome 开发者工具分析页面性能的步骤如下。</p>
+<ol>
+<li>打开 Chrome 开发者工具，切换到 Performance 面板</li>
+<li>点击 Record 开始录制</li>
+<li>刷新页面或展开某个节点</li>
+<li>点击 Stop 停止录制</li>
+</ol>
+<p><img src="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uuZnAApLr38mFVUApdS1l7pVB8h36MDeQMVnx3KGEjjCoP2aY0YmichWEED4z9rYpurYL3zwQjS2gA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vue/" rel="tag"># vue</a>
+          
+            <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag"># 性能优化</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/03/16/vue%E4%B9%8B%E8%A7%A3%E5%86%B3vue-cli%E6%89%93%E5%8C%85%E5%90%8E%E5%8D%95%E4%B8%AA%E6%96%87%E4%BB%B6%E8%BF%87%E5%A4%A7%E7%9A%84%E9%97%AE%E9%A2%98/" rel="next" title="vue之解决vue-cli打包后单个文件过大的问题">
+                <i class="fa fa-chevron-left"></i> vue之解决vue-cli打包后单个文件过大的问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/03/17/js%E4%B9%8B%E5%86%B7%E9%97%A8%E5%A5%BD%E7%94%A8%E6%96%B9%E6%B3%95%E5%90%88%E9%9B%86/" rel="prev" title="js之冷门好用方法合集">
+                js之冷门好用方法合集 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="Dali" />
+            
+              <p class="site-author-name" itemprop="name">Dali</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">153</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">73</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">154</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、代码层面的优化"><span class="nav-number">1.</span> <span class="nav-text">一、代码层面的优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1、v-if-和-v-show-区分使用场景"><span class="nav-number">1.1.</span> <span class="nav-text">1.1、v-if 和 v-show 区分使用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2、computed-和-watch-区分使用场景"><span class="nav-number">1.2.</span> <span class="nav-text">1.2、computed 和 watch 区分使用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3、v-for-遍历必须为-item-添加-key，且避免同时使用-v-if"><span class="nav-number">1.3.</span> <span class="nav-text">1.3、v-for 遍历必须为 item 添加 key，且避免同时使用 v-if</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4、长列表性能优化"><span class="nav-number">1.4.</span> <span class="nav-text">1.4、长列表性能优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5、事件的销毁"><span class="nav-number">1.5.</span> <span class="nav-text">1.5、事件的销毁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6、图片资源懒加载"><span class="nav-number">1.6.</span> <span class="nav-text">1.6、图片资源懒加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7、路由懒加载"><span class="nav-number">1.7.</span> <span class="nav-text">1.7、路由懒加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-8、第三方插件的按需引入"><span class="nav-number">1.8.</span> <span class="nav-text">1.8、第三方插件的按需引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-9、优化无限列表性能"><span class="nav-number">1.9.</span> <span class="nav-text">1.9、优化无限列表性能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-10、服务端渲染-SSR-or-预渲染"><span class="nav-number">1.10.</span> <span class="nav-text">1.10、服务端渲染 SSR or 预渲染</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、Webpack-层面的优化"><span class="nav-number">2.</span> <span class="nav-text">二、Webpack 层面的优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1、Webpack-对图片进行压缩"><span class="nav-number">2.1.</span> <span class="nav-text">2.1、Webpack 对图片进行压缩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2、减少-ES6-转为-ES5-的冗余代码"><span class="nav-number">2.2.</span> <span class="nav-text">2.2、减少 ES6 转为 ES5 的冗余代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3、提取公共代码"><span class="nav-number">2.3.</span> <span class="nav-text">2.3、提取公共代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4、模板预编译"><span class="nav-number">2.4.</span> <span class="nav-text">2.4、模板预编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5、提取组件的-CSS"><span class="nav-number">2.5.</span> <span class="nav-text">2.5、提取组件的 CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6、优化-SourceMap"><span class="nav-number">2.6.</span> <span class="nav-text">2.6、优化 SourceMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7、构建结果输出分析"><span class="nav-number">2.7.</span> <span class="nav-text">2.7、构建结果输出分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-8、Vue-项目的编译优化"><span class="nav-number">2.8.</span> <span class="nav-text">2.8、Vue 项目的编译优化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、基础的-Web-技术优化"><span class="nav-number">3.</span> <span class="nav-text">三、基础的 Web 技术优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1、开启-gzip-压缩"><span class="nav-number">3.1.</span> <span class="nav-text">3.1、开启 gzip 压缩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2、浏览器缓存"><span class="nav-number">3.2.</span> <span class="nav-text">3.2、浏览器缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3、CDN-的使用"><span class="nav-number">3.3.</span> <span class="nav-text">3.3、CDN 的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4、使用-Chrome-Performance-查找性能瓶颈"><span class="nav-number">3.4.</span> <span class="nav-text">3.4、使用 Chrome Performance 查找性能瓶颈</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dali</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

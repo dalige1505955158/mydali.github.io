@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="es6,js,代码片段,reduce," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="DaliBlogs" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="*1、all * (important)如果数组所有元素满足函数条件，则返回true。调用时，如果省略第二个参数，则默认传递布尔值。 1234const all &#x3D; (arr, fn &#x3D; Boolean) &#x3D;&gt; arr.every(fn);all([4, 2, 3], x &#x3D;&gt; x &gt; 1); &#x2F;&#x2F; trueall([1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js之84个常用的JS代码片段">
+<meta property="og:url" content="http://yoursite.com/2021/03/15/js%E4%B9%8B84%E4%B8%AA%E5%B8%B8%E7%94%A8%E7%9A%84JS%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/index.html">
+<meta property="og:site_name" content="DaliBlogs">
+<meta property="og:description" content="*1、all * (important)如果数组所有元素满足函数条件，则返回true。调用时，如果省略第二个参数，则默认传递布尔值。 1234const all &#x3D; (arr, fn &#x3D; Boolean) &#x3D;&gt; arr.every(fn);all([4, 2, 3], x &#x3D;&gt; x &gt; 1); &#x2F;&#x2F; trueall([1">
+<meta property="article:published_time" content="2021-03-15T05:06:58.000Z">
+<meta property="article:modified_time" content="2021-03-15T10:28:22.015Z">
+<meta property="article:author" content="Dali">
+<meta property="article:tag" content="es6">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="代码片段">
+<meta property="article:tag" content="reduce">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/03/15/js之84个常用的JS代码片段/"/>
+
+
+
+
+
+  <title>js之84个常用的JS代码片段 | DaliBlogs</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DaliBlogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/15/js%E4%B9%8B84%E4%B8%AA%E5%B8%B8%E7%94%A8%E7%9A%84JS%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">js之84个常用的JS代码片段</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-03-15T13:06:58+08:00">
+                2021-03-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1、all-important"><a href="#1、all-important" class="headerlink" title="*1、all * (important)"></a>*<em>1、all *</em> (important)</h2><p>如果数组所有元素满足函数条件，则返回true。调用时，如果省略第二个参数，则默认传递布尔值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const all &#x3D; (arr, fn &#x3D; Boolean) &#x3D;&gt; arr.every(fn);</span><br><span class="line"></span><br><span class="line">all([4, 2, 3], x &#x3D;&gt; x &gt; 1); &#x2F;&#x2F; true</span><br><span class="line">all([1, 2, 3]); &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h2 id="2、allEqual-important"><a href="#2、allEqual-important" class="headerlink" title="2、allEqual (important)"></a><strong>2、allEqual</strong> (important)</h2><p>判断数组中的元素是否都相等</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const allEqual &#x3D; arr &#x3D;&gt; arr.every(val &#x3D;&gt; val &#x3D;&#x3D;&#x3D; arr[0]);</span><br><span class="line"></span><br><span class="line">allEqual([1, 2, 3, 4, 5, 6]); &#x2F;&#x2F; false</span><br><span class="line">allEqual([1, 1, 1, 1]); &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、approximatelyEqual"><a href="#3、approximatelyEqual" class="headerlink" title="3、approximatelyEqual"></a><strong>3、approximatelyEqual</strong></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const approximatelyEqual &#x3D; (v1, v2, epsilon &#x3D; 0.001) &#x3D;&gt; Math.abs(v1 - v2) &lt; epsilon;</span><br><span class="line"></span><br><span class="line">approximatelyEqual(Math.PI &#x2F; 2.0, 1.5708); &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+
+<h2 id="4、arrayToCSV"><a href="#4、arrayToCSV" class="headerlink" title="4、arrayToCSV"></a><strong>4、arrayToCSV</strong></h2><p>此段代码将没有逗号或双引号的元素转换成带有逗号分隔符的字符串即CSV格式识别的形式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const arrayToCSV &#x3D; (arr, delimiter &#x3D; &#39;,&#39;) &#x3D;&gt;</span><br><span class="line">  arr.map(v &#x3D;&gt; v.map(x &#x3D;&gt; &#96;&quot;$&#123;x&#125;&quot;&#96;).join(delimiter)).join(&#39;\n&#39;);</span><br><span class="line">  </span><br><span class="line">arrayToCSV([[&#39;a&#39;, &#39;b&#39;], [&#39;c&#39;, &#39;d&#39;]]); &#x2F;&#x2F; &#39;&quot;a&quot;,&quot;b&quot;\n&quot;c&quot;,&quot;d&quot;&#39;</span><br><span class="line">arrayToCSV([[&#39;a&#39;, &#39;b&#39;], [&#39;c&#39;, &#39;d&#39;]], &#39;;&#39;); &#x2F;&#x2F; &#39;&quot;a&quot;;&quot;b&quot;\n&quot;c&quot;;&quot;d&quot;&#39;</span><br></pre></td></tr></table></figure>
+
+<h2 id="5、arrayToHtmlList"><a href="#5、arrayToHtmlList" class="headerlink" title="5、arrayToHtmlList"></a><strong>5、arrayToHtmlList</strong></h2><p>此段代码将数组元素转换成<li>标记，并将此元素添加至给定的ID元素标记内。</li></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const arrayToHtmlList &#x3D; (arr, listID) &#x3D;&gt;</span><br><span class="line">  (el &#x3D;&gt; (</span><br><span class="line">    (el &#x3D; document.querySelector(&#39;#&#39; + listID)),</span><br><span class="line">    (el.innerHTML +&#x3D; arr.map(item &#x3D;&gt; &#96;&lt;li&gt;$&#123;item&#125;&lt;&#x2F;li&gt;&#96;).join(&#39;&#39;))</span><br><span class="line">  ))();</span><br><span class="line">  </span><br><span class="line">arrayToHtmlList([&#39;item 1&#39;, &#39;item 2&#39;], &#39;myListID&#39;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="6、attempt"><a href="#6、attempt" class="headerlink" title="6、attempt"></a><strong>6、attempt</strong></h2><p>此段代码执行一个函数，将剩余的参数传回函数当参数，返回相应的结果，并能捕获异常。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const attempt &#x3D; (fn, ...args) &#x3D;&gt; &#123;</span><br><span class="line">  try &#123;</span><br><span class="line">    return fn(...args);</span><br><span class="line">  &#125; catch (e) &#123;</span><br><span class="line">    return e instanceof Error ? e : new Error(e);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">var elements &#x3D; attempt(function(selector) &#123;</span><br><span class="line">  return document.querySelectorAll(selector);</span><br><span class="line">&#125;, &#39;&gt;_&gt;&#39;);</span><br><span class="line">if (elements instanceof Error) elements &#x3D; [];</span><br><span class="line">&#x2F;&#x2F; elements &#x3D; []</span><br></pre></td></tr></table></figure>
+
+<h2 id="7、average-important"><a href="#7、average-important" class="headerlink" title="7、average (important)"></a><strong>7、average</strong> (important)</h2><p>此段代码返回两个或多个数的平均数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const average &#x3D; (...nums) &#x3D;&gt; nums.reduce((acc, val) &#x3D;&gt; acc + val, 0) &#x2F; nums.length;</span><br><span class="line">average(...[1, 2, 3]); &#x2F;&#x2F; 2</span><br><span class="line">average(1, 2, 3); &#x2F;&#x2F; 2</span><br></pre></td></tr></table></figure>
+
+<h2 id="8、averageBy-important"><a href="#8、averageBy-important" class="headerlink" title="8、averageBy (important)"></a><strong>8、averageBy</strong> (important)</h2><p>求对象数组的属性之和，一个 map()函数和 reduce()函数结合的例子，此函数先通过 map() 函数将对象转换成数组，然后在调用reduce()函数进行累加，然后根据数组长度返回平均值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const averageBy &#x3D; (arr, fn) &#x3D;&gt;</span><br><span class="line">  arr.map(typeof fn &#x3D;&#x3D;&#x3D; &#39;function&#39; ? fn : val &#x3D;&gt; val[fn]).reduce((acc, val) &#x3D;&gt; acc + val, 0) &#x2F;</span><br><span class="line">  arr.length;</span><br><span class="line">  </span><br><span class="line">averageBy([&#123; n: 4 &#125;, &#123; n: 2 &#125;, &#123; n: 8 &#125;, &#123; n: 6 &#125;], o &#x3D;&gt; o.n); &#x2F;&#x2F; 5</span><br><span class="line">averageBy([&#123; n: 4 &#125;, &#123; n: 2 &#125;, &#123; n: 8 &#125;, &#123; n: 6 &#125;], &#39;n&#39;); &#x2F;&#x2F; 5</span><br></pre></td></tr></table></figure>
+
+<h2 id="9、bifurcate"><a href="#9、bifurcate" class="headerlink" title="9、bifurcate"></a><strong>9、bifurcate</strong></h2><p>此函数包含两个参数，类型都为数组，依据第二个参数的真假条件，将一个参数的数组进行分组，条件为真的放入第一个数组，其它的放入第二个数组。这里运用了Array.prototype.reduce() 和 Array.prototype.push() 相结合的形式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const bifurcate &#x3D; (arr, filter) &#x3D;&gt;</span><br><span class="line">  arr.reduce((acc, val, i) &#x3D;&gt; (acc[filter[i] ? 0 : 1].push(val), acc), [[], []]);</span><br><span class="line">bifurcate([&#39;beep&#39;, &#39;boop&#39;, &#39;foo&#39;, &#39;bar&#39;], [true, true, false, true]);</span><br><span class="line">&#x2F;&#x2F; [ [&#39;beep&#39;, &#39;boop&#39;, &#39;bar&#39;], [&#39;foo&#39;] ]</span><br></pre></td></tr></table></figure>
+
+<h2 id="10、bifurcateBy-important"><a href="#10、bifurcateBy-important" class="headerlink" title="10、bifurcateBy (important)"></a><strong>10、bifurcateBy</strong> (important)</h2><p>此段代码将数组按照指定的函数逻辑进行分组，满足函数条件的逻辑为真，放入第一个数组中，其它不满足的放入第二个数组 。</p>
+<p>这里运用了Array.prototype.reduce() 和 Array.prototype.push() 相结合的形式，基于函数过滤逻辑，通过 Array.prototype.push() 函数将其添加到数组中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const bifurcateBy &#x3D; (arr, fn) &#x3D;&gt;</span><br><span class="line">  arr.reduce((acc, val, i) &#x3D;&gt; (acc[fn(val, i) ? 0 : 1].push(val), acc), [[], []]);</span><br><span class="line">  </span><br><span class="line">bifurcateBy([&#39;beep&#39;, &#39;boop&#39;, &#39;foo&#39;, &#39;bar&#39;], x &#x3D;&gt; x[0] &#x3D;&#x3D;&#x3D; &#39;b&#39;);</span><br><span class="line">&#x2F;&#x2F; [ [&#39;beep&#39;, &#39;boop&#39;, &#39;bar&#39;], [&#39;foo&#39;] ]</span><br></pre></td></tr></table></figure>
+
+<h2 id="11、bottomVisible-important"><a href="#11、bottomVisible-important" class="headerlink" title="11、bottomVisible (important)"></a><strong>11、bottomVisible (important)</strong></h2><p>用于检测页面是否滚动到页面底部。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const bottomVisible &#x3D; () &#x3D;&gt;</span><br><span class="line">  document.documentElement.clientHeight + window.scrollY &gt;&#x3D;</span><br><span class="line">  (document.documentElement.scrollHeight || document.documentElement.clientHeight);</span><br><span class="line"></span><br><span class="line">bottomVisible(); &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+
+<h2 id="12、byteSize"><a href="#12、byteSize" class="headerlink" title="12、byteSize"></a><strong>12、byteSize</strong></h2><p>此代码返回字符串的字节长度。这里用到了Blob对象，Blob（Binary Large Object）对象代表了一段二进制数据，提供了一系列操作接口。其他操作二进制数据的API（比如File对象），都是建立在Blob对象基础上的，继承了它的属性和方法。生成Blob对象有两种方法：一种是使用Blob构造函数，另一种是对现有的Blob对象使用slice方法切出一部分。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const byteSize &#x3D; str &#x3D;&gt; new Blob([str]).size;</span><br><span class="line"></span><br><span class="line">byteSize(&#39;😀&#39;); &#x2F;&#x2F; 4</span><br><span class="line">byteSize(&#39;Hello World&#39;); &#x2F;&#x2F; 11</span><br></pre></td></tr></table></figure>
+
+<h2 id="13、capitalize-important"><a href="#13、capitalize-important" class="headerlink" title="13、capitalize (important)"></a><strong>13、capitalize</strong> (important)</h2><p>将字符串的首字母转成大写,这里主要运用到了ES6的展开语法在数组中的运用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const capitalize &#x3D; ([first, ...rest]) &#x3D;&gt;</span><br><span class="line">  first.toUpperCase() + rest.join(&#39;&#39;);</span><br><span class="line">  </span><br><span class="line">capitalize(&#39;fooBar&#39;); &#x2F;&#x2F; &#39;FooBar&#39;</span><br><span class="line">capitalize(&#39;fooBar&#39;, true); &#x2F;&#x2F; &#39;FooBar&#39;</span><br></pre></td></tr></table></figure>
+
+<h2 id="14、capitalizeEveryWord-important"><a href="#14、capitalizeEveryWord-important" class="headerlink" title="14、capitalizeEveryWord (important)"></a><strong>14、capitalizeEveryWord</strong> (important)</h2><p>将一个句子中每个单词首字母转换成大写字母，这里中要运用了正则表达式进行替换。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const capitalizeEveryWord &#x3D; str &#x3D;&gt; str.replace(&#x2F;\b[a-z]&#x2F;g, char &#x3D;&gt; char.toUpperCase());</span><br><span class="line"></span><br><span class="line">capitalizeEveryWord(&#39;hello world!&#39;); &#x2F;&#x2F; &#39;Hello World!&#39;</span><br></pre></td></tr></table></figure>
+
+<h2 id="15、castArray-important"><a href="#15、castArray-important" class="headerlink" title="15、castArray (important)"></a><strong>15、castArray</strong> (important)</h2><p>此段代码将非数值的值转换成数组对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const castArray &#x3D; val &#x3D;&gt; (Array.isArray(val) ? val : [val]);</span><br><span class="line"></span><br><span class="line">castArray(&#39;foo&#39;); &#x2F;&#x2F; [&#39;foo&#39;]</span><br><span class="line">castArray([1]); &#x2F;&#x2F; [1]</span><br></pre></td></tr></table></figure>
+
+<h2 id="16、compact"><a href="#16、compact" class="headerlink" title="16、compact"></a><strong>16、compact</strong></h2><p>将数组中移除值为 false 的内容。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const compact &#x3D; arr &#x3D;&gt; arr.filter(Boolean);</span><br><span class="line"></span><br><span class="line">compact([0, 1, false, 2, &#39;&#39;, 3, &#39;a&#39;, &#39;e&#39; * 23, NaN, &#39;s&#39;, 34]);</span><br><span class="line">&#x2F;&#x2F; [ 1, 2, 3, &#39;a&#39;, &#39;s&#39;, 34 ]</span><br></pre></td></tr></table></figure>
+
+<h2 id="17、countOccurrences-important"><a href="#17、countOccurrences-important" class="headerlink" title="17、countOccurrences (important)"></a><strong>17、countOccurrences (important)</strong></h2><p>统计数组中某个值出现的次数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const countOccurrences &#x3D; (arr, val) &#x3D;&gt; arr.reduce((a, v) &#x3D;&gt; (v &#x3D;&#x3D;&#x3D; val ? a + 1 : a), 0);</span><br><span class="line">countOccurrences([1, 1, 2, 1, 2, 3], 1); &#x2F;&#x2F; 3</span><br></pre></td></tr></table></figure>
+
+<h2 id="18、Create-Directory"><a href="#18、Create-Directory" class="headerlink" title="18、Create Directory"></a><strong>18、Create Directory</strong></h2><p>此代码段使用 existSync() 检查目录是否存在，然后使用 mkdirSync() 创建目录（如果不存在）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const fs &#x3D; require(&#39;fs&#39;);</span><br><span class="line">const createDirIfNotExists &#x3D; dir &#x3D;&gt; (!fs.existsSync(dir) ? fs.mkdirSync(dir) : undefined);</span><br><span class="line">createDirIfNotExists(&#39;test&#39;);</span><br><span class="line">&#x2F;&#x2F; creates the directory &#39;test&#39;, if it doesn&#39;t exist</span><br></pre></td></tr></table></figure>
+
+<h2 id="19、currentURL"><a href="#19、currentURL" class="headerlink" title="19、currentURL"></a><strong>19、currentURL</strong></h2><p>返回当前访问的 URL 地址。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const currentURL &#x3D; () &#x3D;&gt; window.location.href;</span><br><span class="line"></span><br><span class="line">currentURL(); &#x2F;&#x2F; &#39;https:&#x2F;&#x2F;medium.com&#x2F;@fatosmorina&#39;</span><br></pre></td></tr></table></figure>
+
+<h2 id="20、dayOfYear-important"><a href="#20、dayOfYear-important" class="headerlink" title="20、dayOfYear (important)"></a><strong>20、dayOfYear</strong> (important)</h2><p>返回当前是今年的第几天</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const dayOfYear &#x3D; date &#x3D;&gt;</span><br><span class="line">  Math.floor((date - new Date(date.getFullYear(), 0, 0)) &#x2F; 1000 &#x2F; 60 &#x2F; 60 &#x2F; 24);</span><br><span class="line"></span><br><span class="line">dayOfYear(new Date()); &#x2F;&#x2F; 272</span><br></pre></td></tr></table></figure>
+
+<h2 id="21、decapitalize-important"><a href="#21、decapitalize-important" class="headerlink" title="21、decapitalize (important)"></a><strong>21、decapitalize (important)</strong></h2><p>将字符串的首字母转换成小写字母。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const decapitalize &#x3D; ([first, ...rest]) &#x3D;&gt;</span><br><span class="line">  first.toLowerCase() + rest.join(&#39;&#39;)</span><br><span class="line"></span><br><span class="line">decapitalize(&#39;FooBar&#39;); &#x2F;&#x2F; &#39;fooBar&#39;</span><br></pre></td></tr></table></figure>
+
+<h2 id="22、deepFlatten-important"><a href="#22、deepFlatten-important" class="headerlink" title="22、deepFlatten (important)"></a><strong>22、deepFlatten</strong> (important)</h2><p>通过递归的形式，将多维数组展平成一维数组。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const deepFlatten &#x3D; arr &#x3D;&gt; [].concat(...arr.map(v &#x3D;&gt; (Array.isArray(v) ? deepFlatten(v) : v)));</span><br><span class="line"></span><br><span class="line">deepFlatten([1, [2], [[3], 4], 5]); &#x2F;&#x2F; [1,2,3,4,5]</span><br></pre></td></tr></table></figure>
+
+<h2 id="23、default-important"><a href="#23、default-important" class="headerlink" title="23、default (important)"></a>23、default (important)</h2><p>去重对象的属性，如果对象中含有重复的属性，以前面的为准。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const defaults &#x3D; (obj, ...defs) &#x3D;&gt; Object.assign(&#123;&#125;, obj, ...defs.reverse(), obj);</span><br><span class="line"></span><br><span class="line">defaults(&#123; a: 1 &#125;, &#123; b: 2 &#125;, &#123; b: 6 &#125;, &#123; a: 3 &#125;); &#x2F;&#x2F; &#123; a: 1, b: 2 &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="24、defer"><a href="#24、defer" class="headerlink" title="24、defer"></a><strong>24、defer</strong></h1><p>延迟函数的调用，即异步调用函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const defer &#x3D; (fn, ...args) &#x3D;&gt; setTimeout(fn, 1, ...args);</span><br><span class="line"></span><br><span class="line">defer(console.log, &#39;a&#39;), console.log(&#39;b&#39;);</span><br><span class="line">&#x2F;&#x2F; logs &#39;b&#39; then &#39;a&#39;</span><br></pre></td></tr></table></figure>
+
+<h1 id="25、degreesToRads"><a href="#25、degreesToRads" class="headerlink" title="25、degreesToRads"></a><strong>25、degreesToRads</strong></h1><p>此段代码将标准的度数，转换成弧度。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const degreesToRads &#x3D; deg &#x3D;&gt; (deg * Math.PI) &#x2F; 180.0;</span><br><span class="line"></span><br><span class="line">degreesToRads(90.0); &#x2F;&#x2F; ~1.5708</span><br></pre></td></tr></table></figure>
+
+<h1 id="26、difference-important"><a href="#26、difference-important" class="headerlink" title="26、difference (important)"></a><strong>26、difference</strong> (important)</h1><p>此段代码查找两个给定数组的差异，查找出前者数组在后者数组中不存在元素。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const difference &#x3D; (a, b) &#x3D;&gt; &#123;</span><br><span class="line">  const s &#x3D; new Set(b);</span><br><span class="line">  return a.filter(x &#x3D;&gt; !s.has(x));</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">difference([1, 2, 3], [1, 2, 4]); &#x2F;&#x2F; [3]</span><br></pre></td></tr></table></figure>
+
+<h1 id="27、differenceBy-important"><a href="#27、differenceBy-important" class="headerlink" title="27、differenceBy (important)"></a><strong>27、differenceBy</strong> (important)</h1><p>数组对象，通过给定的函数来处理需要对比差异的数组，查找出前者数组在后者数组中不存在元素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const differenceBy &#x3D; (a, b, fn) &#x3D;&gt; &#123;</span><br><span class="line">  const s &#x3D; new Set(b.map(fn));</span><br><span class="line">  return a.filter(x &#x3D;&gt; !s.has(fn(x)));</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">differenceBy([2.1, 1.2], [2.3, 3.4], Math.floor); &#x2F;&#x2F; [1.2]</span><br><span class="line">differenceBy([&#123; x: 2 &#125;, &#123; x: 1 &#125;], [&#123; x: 1 &#125;], v &#x3D;&gt; v.x); &#x2F;&#x2F; [ &#123; x: 2 &#125; ]</span><br></pre></td></tr></table></figure>
+
+<h1 id="28、differenceWith-important"><a href="#28、differenceWith-important" class="headerlink" title="28、differenceWith (important)"></a><strong>28、differenceWith</strong> (important)</h1><p>此段代码按照给定函数逻辑筛选需要对比差异的数组，查找出前者数组在后者数组中不存在元素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const differenceWith &#x3D; (arr, val, comp) &#x3D;&gt; arr.filter(a &#x3D;&gt; val.findIndex(b &#x3D;&gt; comp(a, b)) &#x3D;&#x3D;&#x3D; -1);</span><br><span class="line"></span><br><span class="line">differenceWith([1, 1.2, 1.5, 3, 0], [1.9, 3, 0], (a, b) &#x3D;&gt; Math.round(a) &#x3D;&#x3D;&#x3D; Math.round(b));</span><br><span class="line">&#x2F;&#x2F; [1, 1.2]</span><br></pre></td></tr></table></figure>
+
+<h1 id="29、digitize"><a href="#29、digitize" class="headerlink" title="29、digitize"></a><strong>29、digitize</strong></h1><p>将输入的数字拆分成单个数字组成的数组。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const digitize &#x3D; n &#x3D;&gt; [...&#96;$&#123;n&#125;&#96;].map(i &#x3D;&gt; parseInt(i));</span><br><span class="line"></span><br><span class="line">digitize(431); &#x2F;&#x2F; [4, 3, 1]</span><br></pre></td></tr></table></figure>
+
+<h1 id="30、distance"><a href="#30、distance" class="headerlink" title="30、distance"></a><strong>30、distance</strong></h1><p>计算两点之间的距离</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const distance &#x3D; (x0, y0, x1, y1) &#x3D;&gt; Math.hypot(x1 - x0, y1 - y0);</span><br><span class="line"></span><br><span class="line">distance(1, 1, 2, 3); &#x2F;&#x2F; 2.23606797749979</span><br></pre></td></tr></table></figure>
+
+<h1 id="31、drop-important"><a href="#31、drop-important" class="headerlink" title="31、drop (important)"></a><strong>31、drop</strong> (important)</h1><p>此段代码将给定的数组从左边开始删除 n 个元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const drop &#x3D; (arr, n &#x3D; 1) &#x3D;&gt; arr.slice(n);</span><br><span class="line"></span><br><span class="line">drop([1, 2, 3]); &#x2F;&#x2F; [2,3]</span><br><span class="line">drop([1, 2, 3], 2); &#x2F;&#x2F; [3]</span><br><span class="line">drop([1, 2, 3], 42); &#x2F;&#x2F; []</span><br></pre></td></tr></table></figure>
+
+<h1 id="32、dropRight"><a href="#32、dropRight" class="headerlink" title="32、dropRight"></a><strong>32、dropRight</strong></h1><p>此段代码将给定的数组从右边开始删除 n 个元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const dropRight &#x3D; (arr, n &#x3D; 1) &#x3D;&gt; arr.slice(0, -n);</span><br><span class="line"></span><br><span class="line">dropRight([1, 2, 3]); &#x2F;&#x2F; [1,2]</span><br><span class="line">dropRight([1, 2, 3], 2); &#x2F;&#x2F; [1]</span><br><span class="line">dropRight([1, 2, 3], 42); &#x2F;&#x2F; []</span><br></pre></td></tr></table></figure>
+
+<h1 id="33、dropRightWhile"><a href="#33、dropRightWhile" class="headerlink" title="33、dropRightWhile"></a><strong>33、dropRightWhile</strong></h1><p>此段代码将给定的数组按照给定的函数条件从右开始删除，直到当前元素满足函数条件为True时，停止删除，并返回数组剩余元素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const dropRightWhile &#x3D; (arr, func) &#x3D;&gt; &#123;</span><br><span class="line">  while (arr.length &gt; 0 &amp;&amp; !func(arr[arr.length - 1])) arr &#x3D; arr.slice(0, -1);</span><br><span class="line">  return arr;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">dropRightWhile([1, 2, 3, 4], n &#x3D;&gt; n &lt; 3); &#x2F;&#x2F; [1, 2]</span><br></pre></td></tr></table></figure>
+
+<h1 id="34、dropWhile-important"><a href="#34、dropWhile-important" class="headerlink" title="34、dropWhile (important)"></a><strong>34、dropWhile</strong> (important)</h1><p>按照给的的函数条件筛选数组，不满足函数条件的将从数组中移除。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const dropWhile &#x3D; (arr, func) &#x3D;&gt; &#123;</span><br><span class="line">  while (arr.length &gt; 0 &amp;&amp; !func(arr[0])) arr &#x3D; arr.slice(1);</span><br><span class="line">  return arr;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">dropWhile([1, 2, 3, 4], n &#x3D;&gt; n &gt;&#x3D; 3); &#x2F;&#x2F; [3,4]</span><br></pre></td></tr></table></figure>
+
+<h1 id="35、elementContains"><a href="#35、elementContains" class="headerlink" title="35、elementContains"></a><strong>35、elementContains</strong></h1><p>接收两个DOM元素对象参数，判断后者是否是前者的子元素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const elementContains &#x3D; (parent, child) &#x3D;&gt; parent !&#x3D;&#x3D; child &amp;&amp; parent.contains(child);</span><br><span class="line"></span><br><span class="line">elementContains(document.querySelector(&#39;head&#39;), document.querySelector(&#39;title&#39;)); &#x2F;&#x2F; true</span><br><span class="line">elementContains(document.querySelector(&#39;body&#39;), document.querySelector(&#39;body&#39;)); &#x2F;&#x2F; false</span><br></pre></td></tr></table></figure>
+
+<h1 id="36、filterNonUnique-important"><a href="#36、filterNonUnique-important" class="headerlink" title="36、filterNonUnique (important)"></a><strong>36、filterNonUnique</strong> (important)</h1><p>移除数组中重复的元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const filterNonUnique &#x3D; arr &#x3D;&gt; [ …new Set(arr)];</span><br><span class="line">filterNonUnique([1, 2, 2, 3, 4, 4, 5]); </span><br><span class="line">&#x2F;&#x2F; [1, 2, 3, 4, 5]</span><br></pre></td></tr></table></figure>
+
+<h1 id="37、findKey-important"><a href="#37、findKey-important" class="headerlink" title="37、findKey (important)"></a><strong>37、findKey</strong> (important)</h1><p>按照给定的函数条件，查找第一个满足条件对象的键值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const findKey &#x3D; (obj, fn) &#x3D;&gt; Object.keys(obj).find(key &#x3D;&gt; fn(obj[key], key, obj));</span><br><span class="line"></span><br><span class="line">findKey(</span><br><span class="line">  &#123;</span><br><span class="line">    barney: &#123; age: 36, active: true &#125;,</span><br><span class="line">    fred: &#123; age: 40, active: false &#125;,</span><br><span class="line">    pebbles: &#123; age: 1, active: true &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  o &#x3D;&gt; o[&#39;active&#39;]</span><br><span class="line">);</span><br><span class="line">&#x2F;&#x2F; &#39;barney&#39;</span><br></pre></td></tr></table></figure>
+
+<h1 id="38、findLast-important"><a href="#38、findLast-important" class="headerlink" title="38、findLast (important)"></a><strong>38、findLast</strong> (important)</h1><p>按照给定的函数条件筛选数组，将最后一个满足条件的元素进行删除。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const findLast &#x3D; (arr, fn) &#x3D;&gt; arr.filter(fn).pop();</span><br><span class="line"></span><br><span class="line">findLast([1, 2, 3, 4], n &#x3D;&gt; n % 2 &#x3D;&#x3D;&#x3D; 1); &#x2F;&#x2F; 3</span><br></pre></td></tr></table></figure>
+
+<h1 id="39、flatten-important"><a href="#39、flatten-important" class="headerlink" title="39、flatten (important)"></a><strong>39、flatten</strong> (important)</h1><p>按照指定数组的深度，将嵌套数组进行展平。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const flatten &#x3D; (arr, depth &#x3D; 1) &#x3D;&gt;</span><br><span class="line">  arr.reduce((a, v) &#x3D;&gt; a.concat(depth &gt; 1 &amp;&amp; Array.isArray(v) ? flatten(v, depth - 1) : v), []);</span><br><span class="line"></span><br><span class="line">flatten([1, [2], 3, 4]); &#x2F;&#x2F; [1, 2, 3, 4]</span><br><span class="line">flatten([1, [2, [3, [4, 5], 6], 7], 8], 2); &#x2F;&#x2F; [1, 2, 3, [4, 5], 6, 7, 8]</span><br></pre></td></tr></table></figure>
+
+<h1 id="40、forEachRight"><a href="#40、forEachRight" class="headerlink" title="40、forEachRight"></a><strong>40、forEachRight</strong></h1><p>按照给定的函数条件，从数组的右边往左依次进行执行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const forEachRight &#x3D; (arr, callback) &#x3D;&gt;</span><br><span class="line">  arr</span><br><span class="line">    .slice(0)</span><br><span class="line">    .reverse()</span><br><span class="line">    .forEach(callback);</span><br><span class="line">    </span><br><span class="line">forEachRight([1, 2, 3, 4], val &#x3D;&gt; console.log(val)); &#x2F;&#x2F; &#39;4&#39;, &#39;3&#39;, &#39;2&#39;, &#39;1&#39;</span><br></pre></td></tr></table></figure>
+
+<h1 id="41、forOwn"><a href="#41、forOwn" class="headerlink" title="41、forOwn"></a><strong>41、forOwn</strong></h1><p>此段代码按照给定的函数条件，支持三个参数作为输入（值、键、对象本身），进行迭代对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const forOwn &#x3D; (obj, fn) &#x3D;&gt; Object.keys(obj).forEach(key &#x3D;&gt; fn(obj[key], key, obj));</span><br><span class="line">forOwn(&#123; foo: &#39;bar&#39;, a: 1 &#125;, v &#x3D;&gt; console.log(v));</span><br><span class="line">&#x2F;&#x2F; &#39;bar&#39;, 1</span><br></pre></td></tr></table></figure>
+
+<h1 id="42、functionName"><a href="#42、functionName" class="headerlink" title="42、functionName"></a><strong>42、functionName</strong></h1><p>此段代码输出函数的名称。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const functionName &#x3D; fn &#x3D;&gt; (console.debug(fn.name), fn);</span><br><span class="line"></span><br><span class="line">functionName(Math.max); &#x2F;&#x2F; max (logged in debug channel of console)</span><br></pre></td></tr></table></figure>
+
+<h1 id="43、getColonTimeFromDate"><a href="#43、getColonTimeFromDate" class="headerlink" title="43、getColonTimeFromDate"></a><strong>43、getColonTimeFromDate</strong></h1><p>此段代码从Date对象里获取当前时间。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const getColonTimeFromDate &#x3D; date &#x3D;&gt; date.toTimeString().slice(0, 8);</span><br><span class="line">getColonTimeFromDate(new Date()); &#x2F;&#x2F; &quot;08:38:00&quot;</span><br></pre></td></tr></table></figure>
+
+<h1 id="44、getDaysDiffBetweenDates-important"><a href="#44、getDaysDiffBetweenDates-important" class="headerlink" title="44、getDaysDiffBetweenDates (important)"></a><strong>44、getDaysDiffBetweenDates</strong> (important)</h1><p>此段代码返回两个日期之间相差多少天。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const getDaysDiffBetweenDates &#x3D; (dateInitial, dateFinal) &#x3D;&gt;</span><br><span class="line">  (dateFinal - dateInitial) &#x2F; (1000 * 3600 * 24);</span><br><span class="line">  </span><br><span class="line">getDaysDiffBetweenDates(new Date(&#39;2019-01-13&#39;), new Date(&#39;2019-01-15&#39;)); &#x2F;&#x2F; 2</span><br></pre></td></tr></table></figure>
+
+<h1 id="45、getStyle"><a href="#45、getStyle" class="headerlink" title="45、getStyle"></a><strong>45、getStyle</strong></h1><p>此代码返回DOM元素节点对应的属性值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const getStyle &#x3D; (el, ruleName) &#x3D;&gt; getComputedStyle(el)[ruleName];</span><br><span class="line"></span><br><span class="line">getStyle(document.querySelector(&#39;p&#39;), &#39;font-size&#39;); &#x2F;&#x2F; &#39;16px&#39;</span><br></pre></td></tr></table></figure>
+
+<h1 id="46、getType-important"><a href="#46、getType-important" class="headerlink" title="46、getType (important)"></a><strong>46、getType</strong> (important)</h1><p>此段代码的主要功能就是返回数据的类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const getType &#x3D; v &#x3D;&gt;</span><br><span class="line">  v &#x3D;&#x3D;&#x3D; undefined ? &#39;undefined&#39; : v &#x3D;&#x3D;&#x3D; null ? &#39;null&#39; : v.constructor.name.toLowerCase();</span><br><span class="line">  </span><br><span class="line">getType(new Set([1, 2, 3])); &#x2F;&#x2F; &#39;set&#39;</span><br></pre></td></tr></table></figure>
+
+<h1 id="47、hasClass"><a href="#47、hasClass" class="headerlink" title="47、hasClass"></a><strong>47、hasClass</strong></h1><p>此段代码返回DOM元素是否包含指定的Class样式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const hasClass &#x3D; (el, className) &#x3D;&gt; el.classList.contains(className);</span><br><span class="line">hasClass(document.querySelector(&#39;p.special&#39;), &#39;special&#39;); &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+
+<h1 id="48、head"><a href="#48、head" class="headerlink" title="48、head"></a><strong>48、head</strong></h1><p>此段代码输出数组的第一个元素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const head &#x3D; arr &#x3D;&gt; arr[0];</span><br><span class="line"></span><br><span class="line">head([1, 2, 3]); &#x2F;&#x2F; 1</span><br></pre></td></tr></table></figure>
+
+<h1 id="49、hide"><a href="#49、hide" class="headerlink" title="49、hide"></a><strong>49、hide</strong></h1><p>此段代码隐藏指定的DOM元素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const hide &#x3D; (...el) &#x3D;&gt; [...el].forEach(e &#x3D;&gt; (e.style.display &#x3D; &#39;none&#39;));</span><br><span class="line"></span><br><span class="line">hide(document.querySelectorAll(&#39;img&#39;)); &#x2F;&#x2F; Hides all &lt;img&gt; elements on the page</span><br></pre></td></tr></table></figure>
+
+<h1 id="50、httpsRedirect"><a href="#50、httpsRedirect" class="headerlink" title="50、httpsRedirect"></a><strong>50、httpsRedirect</strong></h1><p>此段代码的功能就是将http网址重定向https网址。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const httpsRedirect &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">  if (location.protocol !&#x3D;&#x3D; &#39;https:&#39;) location.replace(&#39;https:&#x2F;&#x2F;&#39; + location.href.split(&#39;&#x2F;&#x2F;&#39;)[1]);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">httpsRedirect(); </span><br><span class="line">&#x2F;&#x2F; If you are on http:&#x2F;&#x2F;mydomain.com, you are redirected to https:&#x2F;&#x2F;mydomain.com</span><br></pre></td></tr></table></figure>
+
+<h1 id="51、indexOfAll-important"><a href="#51、indexOfAll-important" class="headerlink" title="51、indexOfAll (important)"></a><strong>51、indexOfAll</strong> (important)</h1><p>此代码可以返回数组中某个值对应的所有索引值，如果不包含该值，则返回一个空数组。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const indexOfAll &#x3D; (arr, val) &#x3D;&gt; arr.reduce((acc, el, i) &#x3D;&gt; (el &#x3D;&#x3D;&#x3D; val ? [...acc, i] : acc), []);</span><br><span class="line"></span><br><span class="line">indexOfAll([1, 2, 3, 1, 2, 3], 1); &#x2F;&#x2F; [0,3]</span><br><span class="line">indexOfAll([1, 2, 3], 4); &#x2F;&#x2F; []</span><br></pre></td></tr></table></figure>
+
+<h1 id="52、initial-important"><a href="#52、initial-important" class="headerlink" title="52、initial (important)"></a><strong>52、initial</strong> (important)</h1><p>此段代码返回数组中除最后一个元素的所有元素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const initial &#x3D; arr &#x3D;&gt; arr.slice(0, -1);</span><br><span class="line"></span><br><span class="line">initial([1, 2, 3]); &#x2F;&#x2F; [1,2]const initial &#x3D; arr &#x3D;&gt; arr.slice(0, -1);</span><br><span class="line">initial([1, 2, 3]); &#x2F;&#x2F; [1,2]</span><br></pre></td></tr></table></figure>
+
+<h1 id="53、insertAfter"><a href="#53、insertAfter" class="headerlink" title="53、insertAfter"></a><strong>53、insertAfter</strong></h1><p>此段代码的功能主要是在给定的DOM节点后插入新的节点内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const insertAfter &#x3D; (el, htmlString) &#x3D;&gt; el.insertAdjacentHTML(&#39;afterend&#39;, htmlString);</span><br><span class="line"></span><br><span class="line">insertAfter(document.getElementById(&#39;myId&#39;), &#39;&lt;p&gt;after&lt;&#x2F;p&gt;&#39;); &#x2F;&#x2F; &lt;div id&#x3D;&quot;myId&quot;&gt;...&lt;&#x2F;div&gt; &lt;p&gt;after&lt;&#x2F;p&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="54、insertBefore"><a href="#54、insertBefore" class="headerlink" title="54、insertBefore"></a><strong>54、insertBefore</strong></h1><p>此段代码的功能主要是在给定的DOM节点前插入新的节点内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const insertBefore &#x3D; (el, htmlString) &#x3D;&gt; el.insertAdjacentHTML(&#39;beforebegin&#39;, htmlString);</span><br><span class="line"></span><br><span class="line">insertBefore(document.getElementById(&#39;myId&#39;), &#39;&lt;p&gt;before&lt;&#x2F;p&gt;&#39;); &#x2F;&#x2F; &lt;p&gt;before&lt;&#x2F;p&gt; &lt;div id&#x3D;&quot;myId&quot;&gt;...&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="55、intersection-important"><a href="#55、intersection-important" class="headerlink" title="55、intersection (important)"></a><strong>55、intersection</strong> (important)</h1><p>此段代码返回两个数组元素之间的交集。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const intersection &#x3D; (a, b) &#x3D;&gt; &#123;</span><br><span class="line">  const s &#x3D; new Set(b);</span><br><span class="line">  return a.filter(x &#x3D;&gt; s.has(x));</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">intersection([1, 2, 3], [4, 3, 2]); &#x2F;&#x2F; [2, 3]</span><br></pre></td></tr></table></figure>
+
+<h1 id="56、intersectionBy-important"><a href="#56、intersectionBy-important" class="headerlink" title="56、intersectionBy (important)"></a><strong>56、intersectionBy</strong> (important)</h1><p>按照给定的函数处理需要对比的数组元素，然后根据处理后的数组，找出交集，最后从第一个数组中将对应的元素输出。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const intersectionBy &#x3D; (a, b, fn) &#x3D;&gt; &#123;</span><br><span class="line">  const s &#x3D; new Set(b.map(fn));</span><br><span class="line">  return a.filter(x &#x3D;&gt; s.has(fn(x)));</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">intersectionBy([2.1, 1.2], [2.3, 3.4], Math.floor); &#x2F;&#x2F; [2.1]</span><br></pre></td></tr></table></figure>
+
+<h1 id="57、intersectionBy"><a href="#57、intersectionBy" class="headerlink" title="57、intersectionBy"></a><strong>57、intersectionBy</strong></h1><p>按照给定的函数对比两个数组的差异，然后找出交集，最后从第一个数组中将对应的元素输出。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const intersectionWith &#x3D; (a, b, comp) &#x3D;&gt; a.filter(x &#x3D;&gt; b.findIndex(y &#x3D;&gt; comp(x, y)) !&#x3D;&#x3D; -1);</span><br><span class="line"></span><br><span class="line">intersectionWith([1, 1.2, 1.5, 3, 0], [1.9, 3, 0, 3.9], (a, b) &#x3D;&gt; Math.round(a) &#x3D;&#x3D;&#x3D; Math.round(b)); &#x2F;&#x2F; [1.5, 3, 0]</span><br></pre></td></tr></table></figure>
+
+<h1 id="58、is"><a href="#58、is" class="headerlink" title="58、is"></a><strong>58、is</strong></h1><p>此段代码用于判断数据是否为指定的数据类型，如果是则返回true。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">const is &#x3D; (type, val) &#x3D;&gt; ![, null].includes(val) &amp;&amp; val.constructor &#x3D;&#x3D;&#x3D; type;</span><br><span class="line"></span><br><span class="line">is(Array, [1]); &#x2F;&#x2F; true</span><br><span class="line">is(ArrayBuffer, new ArrayBuffer()); &#x2F;&#x2F; true</span><br><span class="line">is(Map, new Map()); &#x2F;&#x2F; true</span><br><span class="line">is(RegExp, &#x2F;.&#x2F;g); &#x2F;&#x2F; true</span><br><span class="line">is(Set, new Set()); &#x2F;&#x2F; true</span><br><span class="line">is(WeakMap, new WeakMap()); &#x2F;&#x2F; true</span><br><span class="line">is(WeakSet, new WeakSet()); &#x2F;&#x2F; true</span><br><span class="line">is(String, &#39;&#39;); &#x2F;&#x2F; true</span><br><span class="line">is(String, new String(&#39;&#39;)); &#x2F;&#x2F; true</span><br><span class="line">is(Number, 1); &#x2F;&#x2F; true</span><br><span class="line">is(Number, new Number(1)); &#x2F;&#x2F; true</span><br><span class="line">is(Boolean, true); &#x2F;&#x2F; true</span><br><span class="line">is(Boolean, new Boolean(true)); &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+
+<h1 id="59、isAfterDate-important"><a href="#59、isAfterDate-important" class="headerlink" title="59、isAfterDate (important)"></a><strong>59、isAfterDate</strong> (important)</h1><p>接收两个日期类型的参数，判断前者的日期是否晚于后者的日期。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const isAfterDate &#x3D; (dateA, dateB) &#x3D;&gt; dateA &gt; dateB;</span><br><span class="line"></span><br><span class="line">isAfterDate(new Date(2010, 10, 21), new Date(2010, 10, 20)); &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+
+<h1 id="60、isAnagram"><a href="#60、isAnagram" class="headerlink" title="60、isAnagram"></a><strong>60、isAnagram</strong></h1><p>用于检测两个单词是否相似。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const isAnagram &#x3D; (str1, str2) &#x3D;&gt; &#123;</span><br><span class="line">  const normalize &#x3D; str &#x3D;&gt;</span><br><span class="line">    str</span><br><span class="line">      .toLowerCase()</span><br><span class="line">      .replace(&#x2F;[^a-z0-9]&#x2F;gi, &#39;&#39;)</span><br><span class="line">      .split(&#39;&#39;)</span><br><span class="line">      .sort()</span><br><span class="line">      .join(&#39;&#39;);</span><br><span class="line">  return normalize(str1) &#x3D;&#x3D;&#x3D; normalize(str2);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">isAnagram(&#39;iceman&#39;, &#39;cinema&#39;); &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+
+<h1 id="61、isArrayLike"><a href="#61、isArrayLike" class="headerlink" title="61、isArrayLike"></a><strong>61、isArrayLike</strong></h1><p>此段代码用于检测对象是否为类数组对象,是否可迭代。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const isArrayLike &#x3D; obj &#x3D;&gt; obj !&#x3D; null &amp;&amp; typeof obj[Symbol.iterator] &#x3D;&#x3D;&#x3D; &#39;function&#39;;</span><br><span class="line"></span><br><span class="line">isArrayLike(document.querySelectorAll(&#39;.className&#39;)); &#x2F;&#x2F; true</span><br><span class="line">isArrayLike(&#39;abc&#39;); &#x2F;&#x2F; true</span><br><span class="line">isArrayLike(null); &#x2F;&#x2F; false</span><br></pre></td></tr></table></figure>
+
+<h1 id="62、isBeforeDate"><a href="#62、isBeforeDate" class="headerlink" title="62、isBeforeDate"></a><strong>62、isBeforeDate</strong></h1><p>接收两个日期类型的参数，判断前者的日期是否早于后者的日期。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const isBeforeDate &#x3D; (dateA, dateB) &#x3D;&gt; dateA &lt; dateB;</span><br><span class="line"></span><br><span class="line">isBeforeDate(new Date(2010, 10, 20), new Date(2010, 10, 21)); &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+
+<h1 id="63、isBoolean"><a href="#63、isBoolean" class="headerlink" title="63、isBoolean"></a><strong>63、isBoolean</strong></h1><p>此段代码用于检查参数是否为布尔类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const isBoolean &#x3D; val &#x3D;&gt; typeof val &#x3D;&#x3D;&#x3D; &#39;boolean&#39;;</span><br><span class="line">isBoolean(null); &#x2F;&#x2F; false</span><br><span class="line">isBoolean(false); &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+
+<h1 id="64、getColonTimeFromDate"><a href="#64、getColonTimeFromDate" class="headerlink" title="64、getColonTimeFromDate"></a><strong>64、getColonTimeFromDate</strong></h1><p>用于判断程序运行环境是否在浏览器，这有助于避免在node环境运行前端模块时出错。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const isBrowser &#x3D; () &#x3D;&gt; ![typeof window, typeof document].includes(&#39;undefined&#39;);</span><br><span class="line"></span><br><span class="line">isBrowser(); &#x2F;&#x2F; true (browser)</span><br><span class="line">isBrowser(); &#x2F;&#x2F; false (Node)</span><br></pre></td></tr></table></figure>
+
+<h1 id="65、isBrowserTabFocused"><a href="#65、isBrowserTabFocused" class="headerlink" title="65、isBrowserTabFocused"></a><strong>65、isBrowserTabFocused</strong></h1><p>用于判断当前页面是否处于活动状态（显示状态）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const isBrowserTabFocused &#x3D; () &#x3D;&gt; !document.hidden;</span><br><span class="line">isBrowserTabFocused(); &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+
+<h1 id="66、isLowerCase"><a href="#66、isLowerCase" class="headerlink" title="66、isLowerCase"></a><strong>66、isLowerCase</strong></h1><p>用于判断当前字符串是否都为小写。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const isLowerCase &#x3D; str &#x3D;&gt; str &#x3D;&#x3D;&#x3D; str.toLowerCase();</span><br><span class="line"></span><br><span class="line">isLowerCase(&#39;abc&#39;); &#x2F;&#x2F; true</span><br><span class="line">isLowerCase(&#39;a3@$&#39;); &#x2F;&#x2F; true</span><br><span class="line">isLowerCase(&#39;Ab4&#39;); &#x2F;&#x2F; false</span><br></pre></td></tr></table></figure>
+
+<h1 id="67、isNil"><a href="#67、isNil" class="headerlink" title="67、isNil"></a><strong>67、isNil</strong></h1><p>用于判断当前变量的值是否为 null 或 undefined 类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const isNil &#x3D; val &#x3D;&gt; val &#x3D;&#x3D;&#x3D; undefined || val &#x3D;&#x3D;&#x3D; null;</span><br><span class="line"></span><br><span class="line">isNil(null); &#x2F;&#x2F; true</span><br><span class="line">isNil(undefined); &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+
+<h1 id="68、isNull"><a href="#68、isNull" class="headerlink" title="68、isNull"></a><strong>68、isNull</strong></h1><p>用于判断当前变量的值是否为 null 类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const isNull &#x3D; val &#x3D;&gt; val &#x3D;&#x3D;&#x3D; null;</span><br><span class="line"></span><br><span class="line">isNull(null); &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+
+<h1 id="69、isNumber"><a href="#69、isNumber" class="headerlink" title="69、isNumber"></a><strong>69、isNumber</strong></h1><p>用于检查当前的值是否为数字类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function isNumber(n) &#123;</span><br><span class="line">    return !isNaN(parseFloat(n)) &amp;&amp; isFinite(n);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">isNumber(&#39;1&#39;); &#x2F;&#x2F; false</span><br><span class="line">isNumber(1); &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+
+<h1 id="70、isObject"><a href="#70、isObject" class="headerlink" title="70、isObject"></a><strong>70、isObject</strong></h1><p>用于判断参数的值是否是对象，这里运用了Object 构造函数创建一个对象包装器，如果是对象类型，将会原值返回。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const isObject &#x3D; obj &#x3D;&gt; obj &#x3D;&#x3D;&#x3D; Object(obj);</span><br><span class="line"></span><br><span class="line">isObject([1, 2, 3, 4]); &#x2F;&#x2F; true</span><br><span class="line">isObject([]); &#x2F;&#x2F; true</span><br><span class="line">isObject([&#39;Hello!&#39;]); &#x2F;&#x2F; true</span><br><span class="line">isObject(&#123; a: 1 &#125;); &#x2F;&#x2F; true</span><br><span class="line">isObject(&#123;&#125;); &#x2F;&#x2F; true</span><br><span class="line">isObject(true); &#x2F;&#x2F; false</span><br></pre></td></tr></table></figure>
+
+<h1 id="71、isObjectLike"><a href="#71、isObjectLike" class="headerlink" title="71、isObjectLike"></a><strong>71、isObjectLike</strong></h1><p>用于检查参数的值是否为null以及类型是否为对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const isObjectLike &#x3D; val &#x3D;&gt; val !&#x3D;&#x3D; null &amp;&amp; typeof val &#x3D;&#x3D;&#x3D; &#39;object&#39;;</span><br><span class="line"></span><br><span class="line">isObjectLike(&#123;&#125;); &#x2F;&#x2F; true</span><br><span class="line">isObjectLike([1, 2, 3]); &#x2F;&#x2F; true</span><br><span class="line">isObjectLike(x &#x3D;&gt; x); &#x2F;&#x2F; false</span><br><span class="line">isObjectLike(null); &#x2F;&#x2F; false</span><br></pre></td></tr></table></figure>
+
+<h1 id="72、isPlainObject"><a href="#72、isPlainObject" class="headerlink" title="72、isPlainObject"></a><strong>72、isPlainObject</strong></h1><p>此代码段检查参数的值是否是由Object构造函数创建的对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const isPlainObject &#x3D; val &#x3D;&gt; !!val &amp;&amp; typeof val &#x3D;&#x3D;&#x3D; &#39;object&#39; &amp;&amp; val.constructor &#x3D;&#x3D;&#x3D; Object;</span><br><span class="line"></span><br><span class="line">isPlainObject(&#123; a: 1 &#125;); &#x2F;&#x2F; true</span><br><span class="line">isPlainObject(new Map()); &#x2F;&#x2F; false</span><br></pre></td></tr></table></figure>
+
+<h1 id="73、isPromiseLike"><a href="#73、isPromiseLike" class="headerlink" title="73、isPromiseLike"></a><strong>73、isPromiseLike</strong></h1><p>用于检查当前的对象是否类似Promise函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">onst isPromiseLike &#x3D; obj &#x3D;&gt;</span><br><span class="line">  obj !&#x3D;&#x3D; null &amp;&amp;</span><br><span class="line">  (typeof obj &#x3D;&#x3D;&#x3D; &#39;object&#39; || typeof obj &#x3D;&#x3D;&#x3D; &#39;function&#39;) &amp;&amp;</span><br><span class="line">  typeof obj.then &#x3D;&#x3D;&#x3D; &#39;function&#39;;</span><br><span class="line">  </span><br><span class="line">isPromiseLike(&#123;</span><br><span class="line">  then: function() &#123;</span><br><span class="line">    return &#39;&#39;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;); &#x2F;&#x2F; true</span><br><span class="line">isPromiseLike(null); &#x2F;&#x2F; false</span><br><span class="line">isPromiseLike(&#123;&#125;); &#x2F;&#x2F; false</span><br></pre></td></tr></table></figure>
+
+<h1 id="74、isSameDate-important"><a href="#74、isSameDate-important" class="headerlink" title="74、isSameDate (important)"></a><strong>74、isSameDate</strong> (important)</h1><p>用于判断给定的两个日期是否是同一天。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const isSameDate &#x3D; (dateA, dateB) &#x3D;&gt; dateA.toISOString() &#x3D;&#x3D;&#x3D; dateB.toISOString();</span><br><span class="line"></span><br><span class="line">isSameDate(new Date(2010, 10, 20), new Date(2010, 10, 20)); &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+
+<h1 id="75、isString"><a href="#75、isString" class="headerlink" title="75、isString"></a><strong>75、isString</strong></h1><p>用于检查当前的值是否为字符串类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const isString &#x3D; val &#x3D;&gt; typeof val &#x3D;&#x3D;&#x3D; &#39;string&#39;;</span><br><span class="line"></span><br><span class="line">isString(&#39;10&#39;); &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+
+<h1 id="76、isSymbol"><a href="#76、isSymbol" class="headerlink" title="76、isSymbol"></a><strong>76、isSymbol</strong></h1><p>用于判断参数的值是否是 Symbol 类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const isSymbol &#x3D; val &#x3D;&gt; typeof val &#x3D;&#x3D;&#x3D; &#39;symbol&#39;;</span><br><span class="line"></span><br><span class="line">isSymbol(Symbol(&#39;x&#39;)); &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+
+<h1 id="77、isUndefined"><a href="#77、isUndefined" class="headerlink" title="77、isUndefined"></a><strong>77、isUndefined</strong></h1><p>用于判断参数的类型是否是 Undefined 类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const isUndefined &#x3D; val &#x3D;&gt; val &#x3D;&#x3D;&#x3D; undefined;</span><br><span class="line"></span><br><span class="line">isUndefined(undefined); &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+
+<h1 id="78、isUpperCase"><a href="#78、isUpperCase" class="headerlink" title="78、isUpperCase"></a><strong>78、isUpperCase</strong></h1><p>用于判断当前字符串的字母是否都为大写。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const isUpperCase &#x3D; str &#x3D;&gt; str &#x3D;&#x3D;&#x3D; str.toUpperCase();</span><br><span class="line"></span><br><span class="line">isUpperCase(&#39;ABC&#39;); &#x2F;&#x2F; true</span><br><span class="line">isLowerCase(&#39;A3@$&#39;); &#x2F;&#x2F; true</span><br><span class="line">isLowerCase(&#39;aB4&#39;); &#x2F;&#x2F; false</span><br></pre></td></tr></table></figure>
+
+<h1 id="79、isValidJSON"><a href="#79、isValidJSON" class="headerlink" title="79、isValidJSON"></a><strong>79、isValidJSON</strong></h1><p>用于判断给定的字符串是否是 JSON 字符串。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const isValidJSON &#x3D; str &#x3D;&gt; &#123;</span><br><span class="line">  try &#123;</span><br><span class="line">    JSON.parse(str);</span><br><span class="line">    return true;</span><br><span class="line">  &#125; catch (e) &#123;</span><br><span class="line">    return false;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">isValidJSON(&#39;&#123;&quot;name&quot;:&quot;Adam&quot;,&quot;age&quot;:20&#125;&#39;); &#x2F;&#x2F; true</span><br><span class="line">isValidJSON(&#39;&#123;&quot;name&quot;:&quot;Adam&quot;,age:&quot;20&quot;&#125;&#39;); &#x2F;&#x2F; false</span><br><span class="line">isValidJSON(null); &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+
+<h1 id="80、last"><a href="#80、last" class="headerlink" title="80、last"></a><strong>80、last</strong></h1><p>此函数功能返回数组的最后一个元素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const last &#x3D; arr &#x3D;&gt; arr[arr.length - 1];</span><br><span class="line"></span><br><span class="line">last([1, 2, 3]); &#x2F;&#x2F; 3</span><br></pre></td></tr></table></figure>
+
+<h1 id="81、matches"><a href="#81、matches" class="headerlink" title="81、matches"></a><strong>81、matches</strong></h1><p>此函数功能用于比较两个对象，以确定第一个对象是否包含与第二个对象相同的属性与值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const matches &#x3D; (obj, source) &#x3D;&gt;</span><br><span class="line">  Object.keys(source).every(key &#x3D;&gt; obj.hasOwnProperty(key) &amp;&amp; obj[key] &#x3D;&#x3D;&#x3D; source[key]);</span><br><span class="line">  </span><br><span class="line">matches(&#123; age: 25, hair: &#39;long&#39;, beard: true &#125;, &#123; hair: &#39;long&#39;, beard: true &#125;); &#x2F;&#x2F; true</span><br><span class="line">matches(&#123; hair: &#39;long&#39;, beard: true &#125;, &#123; age: 25, hair: &#39;long&#39;, beard: true &#125;); &#x2F;&#x2F; false</span><br></pre></td></tr></table></figure>
+
+<h1 id="82、maxDate"><a href="#82、maxDate" class="headerlink" title="82、maxDate"></a><strong>82、maxDate</strong></h1><p>此代码段查找日期数组中最大的日期进行输出。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const maxDate &#x3D; (...dates) &#x3D;&gt; new Date(Math.max.apply(null, ...dates));</span><br><span class="line"></span><br><span class="line">const array &#x3D; [</span><br><span class="line">  new Date(2017, 4, 13),</span><br><span class="line">  new Date(2018, 2, 12),</span><br><span class="line">  new Date(2016, 0, 10),</span><br><span class="line">  new Date(2016, 0, 9)</span><br><span class="line">];</span><br><span class="line">maxDate(array); &#x2F;&#x2F; 2018-03-11T22:00:00.000Z</span><br></pre></td></tr></table></figure>
+
+<h1 id="83、maxN"><a href="#83、maxN" class="headerlink" title="83、maxN"></a><strong>83、maxN</strong></h1><p>此段代码输出数组中前 n 位最大的数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const maxN &#x3D; (arr, n &#x3D; 1) &#x3D;&gt; [...arr].sort((a, b) &#x3D;&gt; b - a).slice(0, n);</span><br><span class="line"></span><br><span class="line">maxN([1, 2, 3]); &#x2F;&#x2F; [3]</span><br><span class="line">maxN([1, 2, 3], 2); &#x2F;&#x2F; [3,2]</span><br></pre></td></tr></table></figure>
+
+<h1 id="84、minDate"><a href="#84、minDate" class="headerlink" title="84、minDate"></a><strong>84、minDate</strong></h1><p>此代码段查找日期数组中最早的日期进行输出。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const minDate &#x3D; (...dates) &#x3D;&gt; new Date(Math.min.apply(null, ...dates));</span><br><span class="line"></span><br><span class="line">const array &#x3D; [</span><br><span class="line">  new Date(2017, 4, 13),</span><br><span class="line">  new Date(2018, 2, 12),</span><br><span class="line">  new Date(2016, 0, 10),</span><br><span class="line">  new Date(2016, 0, 9)</span><br><span class="line">];</span><br><span class="line">minDate(array); &#x2F;&#x2F; 2016-01-08T22:00:00.000Z</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/es6/" rel="tag"># es6</a>
+          
+            <a href="/tags/js/" rel="tag"># js</a>
+          
+            <a href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag"># 代码片段</a>
+          
+            <a href="/tags/reduce/" rel="tag"># reduce</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/03/04/vue%E4%B9%8B%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA6%E4%B8%AA%E8%BE%93%E5%85%A5%E6%A1%86%E7%9A%84%E9%AA%8C%E8%AF%81%E7%A0%81%E8%BE%93%E5%85%A5%E7%BB%84%E4%BB%B6/" rel="next" title="vue之实现一个6个输入框的验证码输入组件">
+                <i class="fa fa-chevron-left"></i> vue之实现一个6个输入框的验证码输入组件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/03/16/vue%E4%B9%8B%E8%A7%A3%E5%86%B3vue-cli%E6%89%93%E5%8C%85%E5%90%8E%E5%8D%95%E4%B8%AA%E6%96%87%E4%BB%B6%E8%BF%87%E5%A4%A7%E7%9A%84%E9%97%AE%E9%A2%98/" rel="prev" title="vue之解决vue-cli打包后单个文件过大的问题">
+                vue之解决vue-cli打包后单个文件过大的问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="Dali" />
+            
+              <p class="site-author-name" itemprop="name">Dali</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">153</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">73</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">154</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、all-important"><span class="nav-number">1.</span> <span class="nav-text">*1、all * (important)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、allEqual-important"><span class="nav-number">2.</span> <span class="nav-text">2、allEqual (important)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、approximatelyEqual"><span class="nav-number">3.</span> <span class="nav-text">3、approximatelyEqual</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、arrayToCSV"><span class="nav-number">4.</span> <span class="nav-text">4、arrayToCSV</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、arrayToHtmlList"><span class="nav-number">5.</span> <span class="nav-text">5、arrayToHtmlList</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、attempt"><span class="nav-number">6.</span> <span class="nav-text">6、attempt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7、average-important"><span class="nav-number">7.</span> <span class="nav-text">7、average (important)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8、averageBy-important"><span class="nav-number">8.</span> <span class="nav-text">8、averageBy (important)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9、bifurcate"><span class="nav-number">9.</span> <span class="nav-text">9、bifurcate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10、bifurcateBy-important"><span class="nav-number">10.</span> <span class="nav-text">10、bifurcateBy (important)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11、bottomVisible-important"><span class="nav-number">11.</span> <span class="nav-text">11、bottomVisible (important)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12、byteSize"><span class="nav-number">12.</span> <span class="nav-text">12、byteSize</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13、capitalize-important"><span class="nav-number">13.</span> <span class="nav-text">13、capitalize (important)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14、capitalizeEveryWord-important"><span class="nav-number">14.</span> <span class="nav-text">14、capitalizeEveryWord (important)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15、castArray-important"><span class="nav-number">15.</span> <span class="nav-text">15、castArray (important)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16、compact"><span class="nav-number">16.</span> <span class="nav-text">16、compact</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17、countOccurrences-important"><span class="nav-number">17.</span> <span class="nav-text">17、countOccurrences (important)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#18、Create-Directory"><span class="nav-number">18.</span> <span class="nav-text">18、Create Directory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19、currentURL"><span class="nav-number">19.</span> <span class="nav-text">19、currentURL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20、dayOfYear-important"><span class="nav-number">20.</span> <span class="nav-text">20、dayOfYear (important)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#21、decapitalize-important"><span class="nav-number">21.</span> <span class="nav-text">21、decapitalize (important)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22、deepFlatten-important"><span class="nav-number">22.</span> <span class="nav-text">22、deepFlatten (important)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#23、default-important"><span class="nav-number">23.</span> <span class="nav-text">23、default (important)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#24、defer"><span class="nav-number"></span> <span class="nav-text">24、defer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#25、degreesToRads"><span class="nav-number"></span> <span class="nav-text">25、degreesToRads</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#26、difference-important"><span class="nav-number"></span> <span class="nav-text">26、difference (important)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#27、differenceBy-important"><span class="nav-number"></span> <span class="nav-text">27、differenceBy (important)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#28、differenceWith-important"><span class="nav-number"></span> <span class="nav-text">28、differenceWith (important)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#29、digitize"><span class="nav-number"></span> <span class="nav-text">29、digitize</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#30、distance"><span class="nav-number"></span> <span class="nav-text">30、distance</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#31、drop-important"><span class="nav-number"></span> <span class="nav-text">31、drop (important)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#32、dropRight"><span class="nav-number"></span> <span class="nav-text">32、dropRight</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#33、dropRightWhile"><span class="nav-number"></span> <span class="nav-text">33、dropRightWhile</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#34、dropWhile-important"><span class="nav-number"></span> <span class="nav-text">34、dropWhile (important)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#35、elementContains"><span class="nav-number"></span> <span class="nav-text">35、elementContains</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#36、filterNonUnique-important"><span class="nav-number"></span> <span class="nav-text">36、filterNonUnique (important)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#37、findKey-important"><span class="nav-number"></span> <span class="nav-text">37、findKey (important)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#38、findLast-important"><span class="nav-number"></span> <span class="nav-text">38、findLast (important)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#39、flatten-important"><span class="nav-number"></span> <span class="nav-text">39、flatten (important)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#40、forEachRight"><span class="nav-number"></span> <span class="nav-text">40、forEachRight</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#41、forOwn"><span class="nav-number"></span> <span class="nav-text">41、forOwn</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#42、functionName"><span class="nav-number"></span> <span class="nav-text">42、functionName</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#43、getColonTimeFromDate"><span class="nav-number"></span> <span class="nav-text">43、getColonTimeFromDate</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#44、getDaysDiffBetweenDates-important"><span class="nav-number"></span> <span class="nav-text">44、getDaysDiffBetweenDates (important)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#45、getStyle"><span class="nav-number"></span> <span class="nav-text">45、getStyle</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#46、getType-important"><span class="nav-number"></span> <span class="nav-text">46、getType (important)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#47、hasClass"><span class="nav-number"></span> <span class="nav-text">47、hasClass</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#48、head"><span class="nav-number"></span> <span class="nav-text">48、head</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#49、hide"><span class="nav-number"></span> <span class="nav-text">49、hide</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#50、httpsRedirect"><span class="nav-number"></span> <span class="nav-text">50、httpsRedirect</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#51、indexOfAll-important"><span class="nav-number"></span> <span class="nav-text">51、indexOfAll (important)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#52、initial-important"><span class="nav-number"></span> <span class="nav-text">52、initial (important)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#53、insertAfter"><span class="nav-number"></span> <span class="nav-text">53、insertAfter</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#54、insertBefore"><span class="nav-number"></span> <span class="nav-text">54、insertBefore</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#55、intersection-important"><span class="nav-number"></span> <span class="nav-text">55、intersection (important)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#56、intersectionBy-important"><span class="nav-number"></span> <span class="nav-text">56、intersectionBy (important)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#57、intersectionBy"><span class="nav-number"></span> <span class="nav-text">57、intersectionBy</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#58、is"><span class="nav-number"></span> <span class="nav-text">58、is</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#59、isAfterDate-important"><span class="nav-number"></span> <span class="nav-text">59、isAfterDate (important)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#60、isAnagram"><span class="nav-number"></span> <span class="nav-text">60、isAnagram</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#61、isArrayLike"><span class="nav-number"></span> <span class="nav-text">61、isArrayLike</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#62、isBeforeDate"><span class="nav-number"></span> <span class="nav-text">62、isBeforeDate</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#63、isBoolean"><span class="nav-number"></span> <span class="nav-text">63、isBoolean</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#64、getColonTimeFromDate"><span class="nav-number"></span> <span class="nav-text">64、getColonTimeFromDate</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#65、isBrowserTabFocused"><span class="nav-number"></span> <span class="nav-text">65、isBrowserTabFocused</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#66、isLowerCase"><span class="nav-number"></span> <span class="nav-text">66、isLowerCase</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#67、isNil"><span class="nav-number"></span> <span class="nav-text">67、isNil</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#68、isNull"><span class="nav-number"></span> <span class="nav-text">68、isNull</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#69、isNumber"><span class="nav-number"></span> <span class="nav-text">69、isNumber</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#70、isObject"><span class="nav-number"></span> <span class="nav-text">70、isObject</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#71、isObjectLike"><span class="nav-number"></span> <span class="nav-text">71、isObjectLike</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#72、isPlainObject"><span class="nav-number"></span> <span class="nav-text">72、isPlainObject</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#73、isPromiseLike"><span class="nav-number"></span> <span class="nav-text">73、isPromiseLike</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#74、isSameDate-important"><span class="nav-number"></span> <span class="nav-text">74、isSameDate (important)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#75、isString"><span class="nav-number"></span> <span class="nav-text">75、isString</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#76、isSymbol"><span class="nav-number"></span> <span class="nav-text">76、isSymbol</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#77、isUndefined"><span class="nav-number"></span> <span class="nav-text">77、isUndefined</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#78、isUpperCase"><span class="nav-number"></span> <span class="nav-text">78、isUpperCase</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#79、isValidJSON"><span class="nav-number"></span> <span class="nav-text">79、isValidJSON</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#80、last"><span class="nav-number"></span> <span class="nav-text">80、last</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#81、matches"><span class="nav-number"></span> <span class="nav-text">81、matches</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#82、maxDate"><span class="nav-number"></span> <span class="nav-text">82、maxDate</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#83、maxN"><span class="nav-number"></span> <span class="nav-text">83、maxN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#84、minDate"><span class="nav-number"></span> <span class="nav-text">84、minDate</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dali</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ts," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="DaliBlogs" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="vue项目中使用ts（typescript）入门教程1、引入Typescript12npm install vue-class-component vue-property-decorator --savenpm install ts-loader typescript tslint tslint-loader tslint-config-standard --save-dev   vue-cla">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ts之重构vue项目">
+<meta property="og:url" content="http://yoursite.com/2021/02/24/ts%E4%B9%8B%E9%87%8D%E6%9E%84vue%E9%A1%B9%E7%9B%AE/index.html">
+<meta property="og:site_name" content="DaliBlogs">
+<meta property="og:description" content="vue项目中使用ts（typescript）入门教程1、引入Typescript12npm install vue-class-component vue-property-decorator --savenpm install ts-loader typescript tslint tslint-loader tslint-config-standard --save-dev   vue-cla">
+<meta property="article:published_time" content="2021-02-24T09:02:13.000Z">
+<meta property="article:modified_time" content="2021-02-24T09:53:02.247Z">
+<meta property="article:author" content="Dali">
+<meta property="article:tag" content="ts">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/02/24/ts之重构vue项目/"/>
+
+
+
+
+
+  <title>ts之重构vue项目 | DaliBlogs</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DaliBlogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/24/ts%E4%B9%8B%E9%87%8D%E6%9E%84vue%E9%A1%B9%E7%9B%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ts之重构vue项目</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-24T17:02:13+08:00">
+                2021-02-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ts/" itemprop="url" rel="index">
+                    <span itemprop="name">ts</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ts/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="vue项目中使用ts（typescript）入门教程"><a href="#vue项目中使用ts（typescript）入门教程" class="headerlink" title="vue项目中使用ts（typescript）入门教程"></a>vue项目中使用ts（typescript）入门教程</h3><h3 id="1、引入Typescript"><a href="#1、引入Typescript" class="headerlink" title="1、引入Typescript"></a>1、引入Typescript</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install vue-<span class="class"><span class="keyword">class</span>-<span class="title">component</span> <span class="title">vue</span>-<span class="title">property</span>-<span class="title">decorator</span> --<span class="title">save</span></span></span><br><span class="line"><span class="class"><span class="title">npm</span> <span class="title">install</span> <span class="title">ts</span>-<span class="title">loader</span> <span class="title">typescript</span> <span class="title">tslint</span> <span class="title">tslint</span>-<span class="title">loader</span> <span class="title">tslint</span>-<span class="title">config</span>-<span class="title">standard</span> --<span class="title">save</span>-<span class="title">dev</span></span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>vue-class-component</code>：扩展vue支持typescript，将原有的vue语法通过声明的方式来支持ts</li>
+<li><code>vue-property-decorator</code>：基于vue-class-component扩展更多装饰器</li>
+<li><code>ts-loader</code>：让webpack能够识别ts文件</li>
+<li><code>tslint-loader</code>：tslint用来约束文件编码</li>
+<li><code>tslint-config-standard</code>： tslint 配置 standard风格的约束</li>
+</ul>
+<h3 id="2、配置文件"><a href="#2、配置文件" class="headerlink" title="2、配置文件"></a>2、配置文件</h3><h4 id="webpack配置"><a href="#webpack配置" class="headerlink" title="webpack配置"></a>webpack配置</h4><p>根据项目的不同配置的地方不同，如果是vue cli 3.0创建的项目需要在vue.config.js中配置，如果是3.0以下版本的话，需要webpack.base.conf中配置。(以下说明是在webpack.base.conf文件中更改)</p>
+<ol>
+<li>在resolve.extensions中增加.ts，目的是在代码中引入ts文件不用写.ts后缀</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">resolve: &#123;</span><br><span class="line">  extensions: [<span class="string">'.js'</span>, <span class="string">'.vue'</span>, <span class="string">'.json'</span>, <span class="string">'.ts'</span>],</span><br><span class="line">  alias: &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>在module.rules中增加ts的rules</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>: &#123;</span><br><span class="line">   rules: [</span><br><span class="line">     &#123;</span><br><span class="line">       test: <span class="regexp">/\.ts$/</span>,</span><br><span class="line">       exclude: <span class="regexp">/node_modules/</span>,</span><br><span class="line">       enforce: <span class="string">'pre'</span>,</span><br><span class="line">       loader: <span class="string">'tslint-loader'</span></span><br><span class="line">     &#125;,</span><br><span class="line">     &#123;</span><br><span class="line">       test: <span class="regexp">/\.tsx?$/</span>,</span><br><span class="line">       loader: <span class="string">'ts-loader'</span>,</span><br><span class="line">       exclude: <span class="regexp">/node_modules/</span>,</span><br><span class="line">       options: &#123;</span><br><span class="line">         appendTsSuffixTo: [<span class="regexp">/\.vue$/</span>]</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;</span><br><span class="line">   ]</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>tsconfig.json配置<br>ts-loader会检索文件中的tsconfig.json.以其中的规则来解析ts文件，详细的配置可以参考<a href="https://www.tslang.cn/docs/handbook/tsconfig-json.html" target="_blank" rel="noopener">https://www.tslang.cn/docs/handbook/tsconfig-json.html</a><br>贴上测试项目tsconfig.json文件</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="comment">// 编译选项</span></span><br><span class="line">  <span class="string">"compilerOptions"</span>: &#123;</span><br><span class="line">    <span class="comment">// 输出目录</span></span><br><span class="line">    <span class="string">"outDir"</span>: <span class="string">"./output"</span>,</span><br><span class="line">    <span class="comment">// 是否包含可以用于 debug 的 sourceMap</span></span><br><span class="line">    <span class="string">"sourceMap"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="comment">// 以严格模式解析</span></span><br><span class="line">    <span class="string">"strict"</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="comment">// 采用的模块系统</span></span><br><span class="line">    <span class="string">"module"</span>: <span class="string">"esnext"</span>,</span><br><span class="line">    <span class="comment">// 如何处理模块</span></span><br><span class="line">    <span class="string">"moduleResolution"</span>: <span class="string">"node"</span>,</span><br><span class="line">    <span class="comment">// 编译输出目标 ES 版本</span></span><br><span class="line">    <span class="string">"target"</span>: <span class="string">"es5"</span>,</span><br><span class="line">    <span class="comment">// 允许从没有设置默认导出的模块中默认导入</span></span><br><span class="line">    <span class="string">"allowSyntheticDefaultImports"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="comment">// 将每个文件作为单独的模块</span></span><br><span class="line">    <span class="string">"isolatedModules"</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="comment">// 启用装饰器</span></span><br><span class="line">    <span class="string">"experimentalDecorators"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="comment">// 启用设计类型元数据（用于反射）</span></span><br><span class="line">    <span class="string">"emitDecoratorMetadata"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="comment">// 在表达式和声明上有隐含的any类型时报错</span></span><br><span class="line">    <span class="string">"noImplicitAny"</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="comment">// 不是函数的所有返回路径都有返回值时报错。</span></span><br><span class="line">    <span class="string">"noImplicitReturns"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="comment">// 从 tslib 导入外部帮助库: 比如__extends，__rest等</span></span><br><span class="line">    <span class="string">"importHelpers"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="comment">// 编译过程中打印文件名</span></span><br><span class="line">    <span class="string">"listFiles"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="comment">// 移除注释</span></span><br><span class="line">    <span class="string">"removeComments"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">"suppressImplicitAnyIndexErrors"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="comment">// 允许编译javascript文件</span></span><br><span class="line">    <span class="string">"allowJs"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="comment">// 解析非相对模块名的基准目录</span></span><br><span class="line">    <span class="string">"baseUrl"</span>: <span class="string">"./"</span>,</span><br><span class="line">    <span class="comment">// 指定特殊模块的路径</span></span><br><span class="line">    <span class="string">"paths"</span>: &#123;</span><br><span class="line">      <span class="string">"jquery"</span>: [</span><br><span class="line">        <span class="string">"node_modules/jquery/dist/jquery"</span></span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 编译过程中需要引入的库文件的列表</span></span><br><span class="line">    <span class="string">"lib"</span>: [</span><br><span class="line">      <span class="string">"dom"</span>,</span><br><span class="line">      <span class="string">"es2015"</span>,</span><br><span class="line">      <span class="string">"es2015.promise"</span></span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>tslint.json配置<br>在目录中新增tslint.json文件，由于我们前面安装了tslint-config-standard，所以可以直接用tslint-config-standard中规则，文件如下:</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"extends"</span>: <span class="string">"tslint-config-standard"</span>,</span><br><span class="line">  <span class="string">"globals"</span>: &#123;</span><br><span class="line">    <span class="string">"require"</span>: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、让项目识别-ts"><a href="#3、让项目识别-ts" class="headerlink" title="3、让项目识别.ts"></a>3、让项目识别.ts</h3><p>由于 TypeScript 默认并不支持 *.vue 后缀的文件，所以在 vue 项目中引入的时候需要创建一个 vue-shim.d.ts 文件，放在根目录下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">declare <span class="built_in">module</span> <span class="string">'*.vue'</span> &#123;</span><br><span class="line">  <span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span>;</span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">default</span> Vue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4、实际应用"><a href="#4、实际应用" class="headerlink" title="4、实际应用"></a>4、实际应用</h3><p>回顾下我们日常工作中常用的vue的东西</p>
+<ul>
+<li>data() 中定义数据</li>
+<li>子组件通过props接受父组件传来的值</li>
+<li>子组件通过$emit给父组件传递信息</li>
+<li>通过watch来进行观察数据</li>
+<li>通过computed计算属性</li>
+<li>vue组件的生命周期方法</li>
+<li>路由以及vuex<br> 这一篇章将根据<strong>vue-class-component</strong>以及<strong>vue-property-decorator</strong>来说明除了路由以及vuex的使用方法，通过通过vue写ts有两种方法，一种是和原有写法类似的还有一种是基于类的写法。以下所有的写法都是基于类的写法</li>
+</ul>
+<h4 id="data-中定义数据"><a href="#data-中定义数据" class="headerlink" title="data()中定义数据"></a>data()中定义数据</h4><p>前面说过了，装饰器class将类的原型中的数据直接挂在相对应的原有vue方法中，但是data除外，data只直接将非装饰器以及非方法的直接放在data()中 ，所以我们定义的时候只需要这样做即可</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="title">extends</span> <span class="title">Vue</span> &#123;</span></span><br><span class="line"> <span class="keyword">public</span> message1: <span class="built_in">string</span> = <span class="string">"asd"</span></span><br><span class="line"> <span class="keyword">public</span> message2: <span class="built_in">string</span> = <span class="string">"asd1"</span>;</span><br><span class="line"> <span class="keyword">public</span> message3: <span class="built_in">string</span> = <span class="string">"asd2"</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="props传值"><a href="#props传值" class="headerlink" title="props传值"></a>props传值</h4><p>props的话就没有data那么舒服了，因为他需要使用装饰器了，写法如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@Prop(&#123;</span><br><span class="line">   type: Number,</span><br><span class="line">   default: 1,</span><br><span class="line">   required: false</span><br><span class="line"> &#125;)</span><br><span class="line"> propA?: number</span><br><span class="line"> &#x2F;&#x2F;会最终转换成</span><br><span class="line"> props:&#123;</span><br><span class="line">      propA:&#39;&#39;</span><br><span class="line"> &#125;</span><br><span class="line"> @Prop()</span><br><span class="line"> propB:string</span><br></pre></td></tr></table></figure>
+
+<p>如果没有默认值的建议使用可选属性？来定义，这样避免报错。</p>
+<h4 id="emit传值"><a href="#emit传值" class="headerlink" title="$emit传值"></a>$emit传值</h4><p>$emit传值涉及到两部分，一个是父组件定义的方法，一个是子组件触发。当前emit有三种方法<br> 首先子组件的写法</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"test-container"</span>&gt;</span></span><br><span class="line">    &#123;&#123;message&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"点击触发父级方法"</span> @<span class="attr">click</span>=<span class="string">"bindSend"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"点击触发父级方法"</span> @<span class="attr">click</span>=<span class="string">"handleSend"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"点击触发父级方法"</span> @<span class="attr">click</span>=<span class="string">"bindSend2"</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;Hello&gt;&lt;/Hello&gt; --&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">lang</span>=<span class="string">"ts"</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> &#123; Component, Prop, Vue, Watch, Emit &#125; <span class="keyword">from</span> <span class="string">"vue-property-decorator"</span>;</span></span><br><span class="line"><span class="actionscript"><span class="comment">// 注明此类为一个vue组件</span></span></span><br><span class="line">@Component(&#123;&#125;)</span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Vue</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">  <span class="comment">// 第一种</span></span></span><br><span class="line">  @Emit()</span><br><span class="line"><span class="actionscript">  <span class="keyword">private</span> bindSend():string&#123;</span></span><br><span class="line"><span class="actionscript">      <span class="keyword">return</span> <span class="keyword">this</span>.message</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="actionscript"> <span class="comment">// 第二种</span></span></span><br><span class="line">  @Emit()</span><br><span class="line"><span class="actionscript">  <span class="keyword">private</span> bindSend1(msg:string)&#123;</span></span><br><span class="line"><span class="actionscript">      <span class="comment">// 如果不处理可以不写下面的，会自动将参数回传</span></span></span><br><span class="line"><span class="actionscript">      msg += <span class="string">'love'</span>;</span></span><br><span class="line"><span class="actionscript">      <span class="keyword">return</span> msg;</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="actionscript">  <span class="comment">//原有放在methods中的方法平铺出来</span></span></span><br><span class="line"><span class="actionscript">  <span class="keyword">public</span> handleSend():<span class="keyword">void</span> &#123;</span></span><br><span class="line"><span class="actionscript">      <span class="keyword">this</span>.bindSend1(<span class="keyword">this</span>.message);</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="actionscript">  <span class="comment">// 第三种</span></span></span><br><span class="line"><span class="actionscript">  <span class="comment">// 这里的emit中的参数是表明父级通过什么接受，类似以前的$emit('父级定义的方法')</span></span></span><br><span class="line"><span class="actionscript">  @Emit(<span class="string">'test'</span>)</span></span><br><span class="line"><span class="actionscript">  <span class="keyword">private</span> bindSend2()&#123;</span></span><br><span class="line"><span class="actionscript">      <span class="keyword">return</span> <span class="string">'这个可以用test接受'</span>;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>父组件的接收代码,这里父组件懒得换成ts写法了，意思到了就行了（哈哈）</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Test</span> <span class="attr">:propA</span>=<span class="string">"propA"</span> @<span class="attr">bind-send</span> = <span class="string">"bindSend"</span> @<span class="attr">bind-send1</span> = <span class="string">'handleSend1'</span> @<span class="attr">test</span> = <span class="string">'handleSend2'</span>&gt;</span><span class="tag">&lt;/<span class="name">Test</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="actionscript">  name: <span class="string">'App'</span>,</span></span><br><span class="line">  components: &#123;</span><br><span class="line"><span class="javascript">    Test:<span class="function"><span class="params">()</span>=&gt;</span><span class="keyword">import</span>(<span class="string">'./components/test.vue'</span>)</span></span><br><span class="line">  &#125;,</span><br><span class="line">  data()&#123;</span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> &#123;&#125;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    bindSend(val) &#123;</span><br><span class="line"><span class="javascript">      <span class="built_in">console</span>.log(<span class="string">'子集触发了emit方法'</span> +val);</span></span><br><span class="line">    &#125;,</span><br><span class="line">    handleSend1(val) &#123;</span><br><span class="line"><span class="javascript">      <span class="built_in">console</span>.log(<span class="string">'子集触发了emit方法'</span> +val);</span></span><br><span class="line">    &#125;,</span><br><span class="line">    handleSend2(val) &#123;</span><br><span class="line"><span class="javascript">       <span class="built_in">console</span>.log(<span class="string">'子集触发了emit方法'</span> +val);</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果我们需要传多个值的话，我们怎么弄呢？来一起看看源码的实现你就知道了</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">Emit</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">_target, propertyKey, descriptor</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> key = hyphenate(propertyKey);</span><br><span class="line">        <span class="keyword">var</span> original = descriptor.value;</span><br><span class="line">        descriptor.value = <span class="function"><span class="keyword">function</span> <span class="title">emitter</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> _this = <span class="keyword">this</span>;</span><br><span class="line">            <span class="keyword">var</span> args = [];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">var</span> _i = <span class="number">0</span>; _i &lt; <span class="built_in">arguments</span>.length; _i++) &#123;</span><br><span class="line">                args[_i] = <span class="built_in">arguments</span>[_i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">var</span> emit = <span class="function"><span class="keyword">function</span> (<span class="params">returnValue</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">var</span> emitName = event || key;</span><br><span class="line">                <span class="keyword">if</span> (returnValue === <span class="literal">undefined</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (args.length === <span class="number">0</span>) &#123;</span><br><span class="line">                        _this.$emit(emitName);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (args.length === <span class="number">1</span>) &#123;</span><br><span class="line">                        _this.$emit(emitName, args[<span class="number">0</span>]);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> &#123;</span><br><span class="line">                        _this.$emit.apply(_this, [emitName].concat(args));</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">if</span> (args.length === <span class="number">0</span>) &#123;</span><br><span class="line">                        _this.$emit(emitName, returnValue);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (args.length === <span class="number">1</span>) &#123;</span><br><span class="line">                        _this.$emit(emitName, returnValue, args[<span class="number">0</span>]);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> &#123;</span><br><span class="line">                        _this.$emit.apply(_this, [emitName, returnValue].concat(args));</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;;</span><br><span class="line">            <span class="keyword">var</span> returnValue = original.apply(<span class="keyword">this</span>, args);</span><br><span class="line">            <span class="keyword">if</span> (isPromise(returnValue)) &#123;</span><br><span class="line">                returnValue.then(emit);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                emit(returnValue);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> returnValue;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过源码我们可以发现有两种方法，如果在方法中也就是</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Emit()</span></span><br><span class="line"> <span class="keyword">private</span> bindSend1(msg:string)&#123;</span><br><span class="line">     <span class="comment">// 如果不处理可以不写下面的，会自动将参数回传</span></span><br><span class="line">     msg += <span class="string">'love'</span>;</span><br><span class="line">     <span class="keyword">return</span> msg;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过return返回的方式话的话只会取args[0]，所以这种情况建议直接以一个对象或者数组方式传递<br> 上面说到了给父组件传值的时候可以只通过参数，而不需要return,那么源码中可以看到<strong>var returnValue = original.apply(this, args);</strong>所以我们也可以这样来传</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Emit()</span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="title">bindSend1</span>(<span class="params">msg:<span class="keyword">string</span>,love:<span class="keyword">string</span></span>)</span>&#123;&#125;</span><br><span class="line">  <span class="comment">//原有放在methods中的方法平铺出来</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">handleSend</span>(<span class="params"></span>):<span class="keyword">void</span></span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.bindSend1(<span class="keyword">this</span>.message,<span class="string">'love'</span>);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>父组件中接受数据</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">handleSend1(<span class="keyword">val</span>,val1) &#123;</span><br><span class="line">  console.log(<span class="string">'子集触发了emit方法'</span> +<span class="keyword">val</span> + val1);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="watch观察数据"><a href="#watch观察数据" class="headerlink" title="watch观察数据"></a>watch观察数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;原有的watch属性</span><br><span class="line">  @Watch(&#39;propA&#39;,&#123;</span><br><span class="line">      deep:true</span><br><span class="line">  &#125;)</span><br><span class="line">  test(newValue:string,oldValue:string)&#123;</span><br><span class="line">      console.log(&#39;propA值改变了&#39; + newValue);</span><br><span class="line">  &#125;</span><br><span class="line">&#x2F;&#x2F;会被转化成</span><br><span class="line">watch：&#123;</span><br><span class="line">  propA：handler(newValue,oldValue)&#123;</span><br><span class="line">      this.test(newValue,oldValue);</span><br><span class="line">  &#125;,</span><br><span class="line">  deep:true</span><br><span class="line">&#125;</span><br><span class="line">test方法会被转化到methods中</span><br></pre></td></tr></table></figure>
+
+<h4 id="computed计算属性"><a href="#computed计算属性" class="headerlink" title="computed计算属性"></a>computed计算属性</h4><p>在前面<strong>vue-class-component</strong>介绍里面我们提到过Component怎么处理数据的</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (descriptor.<span class="keyword">get</span> || descriptor.<span class="keyword">set</span>) &#123;</span><br><span class="line">            <span class="comment">// 如果存在get和set,则为计算属性</span></span><br><span class="line">   (options.computed || (options.computed = &#123;&#125;))[key] = &#123;</span><br><span class="line">      <span class="keyword">get</span>: descriptor.<span class="keyword">get</span>,</span><br><span class="line">       <span class="keyword">set</span>: descriptor.<span class="keyword">set</span></span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>所以我们在写计算属性的时候只需要按照以下方法写即可</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">get</span> <span class="title">computedMsg</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">'这里是计算属性'</span> + <span class="keyword">this</span>.message;</span><br><span class="line"> &#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">set</span> <span class="title">computedMsg</span>(<span class="params">message:<span class="keyword">string</span></span>)</span>&#123;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="vue组件的生命周期方法"><a href="#vue组件的生命周期方法" class="headerlink" title="vue组件的生命周期方法"></a>vue组件的生命周期方法</h4><p>和以前一样使用即可</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ts/" rel="tag"># ts</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/02/20/react%E4%B9%8B%E8%84%9A%E6%89%8B%E6%9E%B6%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE/" rel="next" title="react之脚手架搭建项目">
+                <i class="fa fa-chevron-left"></i> react之脚手架搭建项目
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/03/01/icons-index/" rel="prev" title="'./icons/index'">
+                './icons/index' <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="Dali" />
+            
+              <p class="site-author-name" itemprop="name">Dali</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">153</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">73</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">154</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#vue项目中使用ts（typescript）入门教程"><span class="nav-number">1.</span> <span class="nav-text">vue项目中使用ts（typescript）入门教程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1、引入Typescript"><span class="nav-number">2.</span> <span class="nav-text">1、引入Typescript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、配置文件"><span class="nav-number">3.</span> <span class="nav-text">2、配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#webpack配置"><span class="nav-number">3.1.</span> <span class="nav-text">webpack配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、让项目识别-ts"><span class="nav-number">4.</span> <span class="nav-text">3、让项目识别.ts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、实际应用"><span class="nav-number">5.</span> <span class="nav-text">4、实际应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#data-中定义数据"><span class="nav-number">5.1.</span> <span class="nav-text">data()中定义数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#props传值"><span class="nav-number">5.2.</span> <span class="nav-text">props传值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#emit传值"><span class="nav-number">5.3.</span> <span class="nav-text">$emit传值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#watch观察数据"><span class="nav-number">5.4.</span> <span class="nav-text">watch观察数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#computed计算属性"><span class="nav-number">5.5.</span> <span class="nav-text">computed计算属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vue组件的生命周期方法"><span class="nav-number">5.6.</span> <span class="nav-text">vue组件的生命周期方法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dali</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

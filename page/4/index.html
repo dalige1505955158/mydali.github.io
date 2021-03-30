@@ -294,7 +294,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/25/react%E4%B9%8B%E4%BA%95%E5%AD%97%E6%A3%8B/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/28/flex/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Dali">
@@ -313,7 +313,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/09/25/react%E4%B9%8B%E4%BA%95%E5%AD%97%E6%A3%8B/" itemprop="url">react之井字棋</a></h1>
+                <a class="post-title-link" href="/2020/10/28/flex/" itemprop="url">flex</a></h1>
         
 
         <div class="post-meta">
@@ -325,8 +325,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-25T13:18:36+08:00">
-                2020-09-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-28T08:57:15+08:00">
+                2020-10-28
               </time>
             
 
@@ -335,28 +335,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index">
-                    <span itemprop="name">react</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -386,14 +364,30 @@
 
       
         
-          <p>见下文</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/09/25/react%E4%B9%8B%E4%BA%95%E5%AD%97%E6%A3%8B/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <p>父级属性</p>
+<h3 id="flex-direction"><a href="#flex-direction" class="headerlink" title="flex-direction"></a>flex-direction</h3><p>![clipboard (10)](flex.assets/clipboard (10).png)</p>
+<h3 id="justify-content"><a href="#justify-content" class="headerlink" title="justify-content"></a>justify-content</h3><p>![clipboard (11)](flex.assets/clipboard (11).png)</p>
+<h3 id="flex-wrap"><a href="#flex-wrap" class="headerlink" title="flex-wrap"></a>flex-wrap</h3><p>![clipboard (12)](flex.assets/clipboard (12).png)</p>
+<h3 id="align-items-stretch在子项没有高度才能使用-，在子项为单行的时候有效"><a href="#align-items-stretch在子项没有高度才能使用-，在子项为单行的时候有效" class="headerlink" title="align-items(stretch在子项没有高度才能使用)，在子项为单行的时候有效"></a>align-items(stretch在子项没有高度才能使用)，在子项为单行的时候有效</h3><p>![clipboard (13)](flex.assets/clipboard (13).png)</p>
+<h3 id="align-content-适用于多行"><a href="#align-content-适用于多行" class="headerlink" title="align-content(适用于多行)"></a>align-content(适用于多行)</h3><p>![clipboard (14)](flex.assets/clipboard (14).png)</p>
+<p>区别</p>
+<p>![clipboard (15)](flex.assets/clipboard (15).png)</p>
+<h3 id="flex-flow"><a href="#flex-flow" class="headerlink" title="flex-flow"></a>flex-flow</h3><p>![clipboard (16)](flex.assets/clipboard (16).png)</p>
+<p>子级属性</p>
+<h3 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h3><p>![clipboard (17)](flex.assets/clipboard (17).png)</p>
+<h3 id="align-self"><a href="#align-self" class="headerlink" title="align-self"></a>align-self</h3><p>![clipboard (18)](flex.assets/clipboard (18).png)</p>
+<h3 id="order"><a href="#order" class="headerlink" title="order"></a>order</h3><p>![clipboard (19)](flex.assets/clipboard (19).png)</p>
+<p><strong>flex布局如何左对齐并且间距相同</strong>(适用于少于一行排满的个数或者多余一行但是少于两行)</p>
+<p>给item的父类加一个伪类，如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.top-list</span><span class="selector-pseudo">::after</span>&#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">20%</span>;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">""</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>height一定要给0；width和item的width一致；conten给空即可</strong></p>
+<p>改变布局方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">justify-content: space-between;</span><br><span class="line">改后</span><br><span class="line">align-content: flex-start;</span><br></pre></td></tr></table></figure>
+
+
+          
         
       
     </div>
@@ -440,7 +434,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/25/js%E4%B9%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%8E%9F%E5%9E%8B%E5%AE%9E%E4%BE%8B/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/20/js%E4%B9%8B%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D%E6%96%B9%E6%B3%95%E5%90%88%E9%9B%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Dali">
@@ -459,7 +453,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/09/25/js%E4%B9%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%8E%9F%E5%9E%8B%E5%AE%9E%E4%BE%8B/" itemprop="url">js之构造函数原型实例</a></h1>
+                <a class="post-title-link" href="/2020/10/20/js%E4%B9%8B%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D%E6%96%B9%E6%B3%95%E5%90%88%E9%9B%86/" itemprop="url">js之深拷贝和浅拷贝方法合集</a></h1>
         
 
         <div class="post-meta">
@@ -471,8 +465,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-25T10:05:09+08:00">
-                2020-09-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-20T17:37:37+08:00">
+                2020-10-20
               </time>
             
 
@@ -532,15 +526,11 @@
 
       
         
-          <p>首先用构造函数（一会解释什么叫做构造函数）的方法创建一个对象</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> M=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">this</span>.name=<span class="string">'123'</span>&#125;   <span class="comment">//ƒ ()&#123;this.name='123'&#125;</span></span><br><span class="line"><span class="keyword">var</span> a1=<span class="keyword">new</span> M()  <span class="comment">//M &#123;name: "123"&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(a1.name)  <span class="comment">//123</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>构造函数：</strong>现在M就是构造函数，因为他被new过了！–在js中，只要是被new过的函数都被成为构造函数。</p>
-<p><strong>实例对象：</strong>现在a1就叫做实例，因为他是被new出来的！–在js中，只要是被new出来的对象都叫做实例对象。也叫实例。</p>
-<p><strong>原型对象：</strong>现在M.prototype就是原型对象，构造函数函数被创建出来的时候，天生就带一个prototype属性，而这个属性里面的东西就叫原型对象。</p>
+          <h2 id="js中的堆和栈"><a href="#js中的堆和栈" class="headerlink" title="js中的堆和栈"></a><a href="https://www.cnblogs.com/cherishnow/p/10901586.html" target="_blank" rel="noopener">js中的堆和栈</a></h2><h3 id="一-栈和堆"><a href="#一-栈和堆" class="headerlink" title="一.栈和堆"></a>一.栈和堆</h3><p>栈(stack)：栈会自动分配内存空间，会自动释放，存放基本类型，简单的数据段，占据固定大小的空间。（基本类型：String，Number，Boolean，Null，Undefined）<br>堆(heap)：动态分配的内存，大小不定也不会自动释放，存放引用类型，指那些可能由多个值构成的对象，保存在堆内存中，包含引用类型的变量，实际上保存的不是变量本身，而是指向该对象的指针。（引用类型：Function，Array，Object）</p>
+<h3 id="二-区别"><a href="#二-区别" class="headerlink" title="二.区别"></a>二.区别</h3><p>栈：所有在方法中定义的变量都是放在栈内存中，随着方法的执行结束，这个方法的内存栈也自然销毁。<br>优点：存取速度比堆快，仅次于直接位于CPU中的寄存器，数据可以共享；<br>缺点：存在栈中的数据大小与生存期必须是确定的，缺乏灵活性。<br>堆：堆内存中的对象不会随方法的结束而销毁，即使方法结束后，这个对象还可能被另一个引用变量所引用(参数传递)。创建对象是为了反复利用，这个对象将被保存到运行时数据区。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/09/25/js%E4%B9%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%8E%9F%E5%9E%8B%E5%AE%9E%E4%BE%8B/#more" rel="contents">
+            <a class="btn" href="/2020/10/20/js%E4%B9%8B%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D%E6%96%B9%E6%B3%95%E5%90%88%E9%9B%86/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -591,7 +581,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/23/webpack4%E6%9C%80%E5%85%A8%E8%A7%A3%E6%9E%90/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/10/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E4%BA%92%E7%9B%B8%E8%B7%B3%E8%BD%AC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Dali">
@@ -610,7 +600,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/09/23/webpack4%E6%9C%80%E5%85%A8%E8%A7%A3%E6%9E%90/" itemprop="url">webpack4最全解析</a></h1>
+                <a class="post-title-link" href="/2020/10/10/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E4%BA%92%E7%9B%B8%E8%B7%B3%E8%BD%AC/" itemprop="url">小程序开发之互相跳转</a></h1>
         
 
         <div class="post-meta">
@@ -622,8 +612,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-23T19:21:53+08:00">
-                2020-09-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-10T15:42:12+08:00">
+                2020-10-10
               </time>
             
 
@@ -645,8 +635,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/webpack4/" itemprop="url" rel="index">
-                    <span itemprop="name">webpack4</span>
+                  <a href="/categories/soft/" itemprop="url" rel="index">
+                    <span itemprop="name">soft</span>
                   </a>
                 </span>
 
@@ -683,10 +673,13 @@
 
       
         
-          <h4 id="命令合集"><a href="#命令合集" class="headerlink" title="命令合集"></a>命令合集</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">webpack-cli可以让我们在命令行里输入webpack相关命令</span><br><span class="line"></span><br><span class="line">本地安装webpack webpack-cli</span><br><span class="line">npm webpack webpack-cli -D </span><br><span class="line"></span><br><span class="line">生成默认的packpage.json</span><br><span class="line">npm init -y</span><br><span class="line"></span><br><span class="line">查看旧的版本号</span><br><span class="line">npm info webpack</span><br><span class="line"></span><br><span class="line">全局安装翻译某个js</span><br><span class="line">webpack index.js</span><br><span class="line"></span><br><span class="line">本地安装翻译某个js</span><br><span class="line">npx webpack index.js</span><br><span class="line"></span><br><span class="line">查看本地安装的webpack</span><br><span class="line">npx webpack -v </span><br><span class="line"></span><br><span class="line">更改配置文件(由默认的webpack.config.js改成webpackconfig.js)</span><br><span class="line">npx webpack --config webpackconfig.js</span><br></pre></td></tr></table></figure>
+          <p><a href="https://www.cnblogs.com/wangmaoling/p/11764651.html" target="_blank" rel="noopener">微信小程序与内嵌webview之间来回跳转的几点总结，以及二维码的使用</a></p>
+<p>截止到发稿小程序支持的功能，后续如果小程序更新在完善文稿。</p>
+<h3 id="小程序可以内嵌组件跳转到h5页面"><a href="#小程序可以内嵌组件跳转到h5页面" class="headerlink" title="小程序可以内嵌组件跳转到h5页面"></a>小程序可以内嵌组件跳转到h5页面</h3><p>\1. 小程序可以内嵌组件跳转到h5页面，前提是在小程序后台配置相应的业务域名。新打开的h5页面会替代小程序组件内的其它组件，即为h5不能与小程序组件共存显示在屏幕上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;web-view src&#x3D;&quot;&#123;&#123;content&#125;&#125;&quot;&gt;&lt;&#x2F;web-view&gt;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/09/23/webpack4%E6%9C%80%E5%85%A8%E8%A7%A3%E6%9E%90/#more" rel="contents">
+            <a class="btn" href="/2020/10/10/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E4%BA%92%E7%9B%B8%E8%B7%B3%E8%BD%AC/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -737,7 +730,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/23/js%E4%B9%8BMath/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/10/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E4%B8%8B%E8%BD%BD%E4%BF%9D%E5%AD%98%E5%9B%BE%E7%89%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Dali">
@@ -756,7 +749,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/09/23/js%E4%B9%8BMath/" itemprop="url">js之Math</a></h1>
+                <a class="post-title-link" href="/2020/10/10/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E4%B8%8B%E8%BD%BD%E4%BF%9D%E5%AD%98%E5%9B%BE%E7%89%87/" itemprop="url">小程序开发之下载保存图片</a></h1>
         
 
         <div class="post-meta">
@@ -768,8 +761,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-23T14:33:58+08:00">
-                2020-09-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-10T15:15:19+08:00">
+                2020-10-10
               </time>
             
 
@@ -791,8 +784,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Math/" itemprop="url" rel="index">
-                    <span itemprop="name">Math</span>
+                  <a href="/categories/soft/" itemprop="url" rel="index">
+                    <span itemprop="name">soft</span>
                   </a>
                 </span>
 
@@ -829,10 +822,10 @@
 
       
         
-          <h2 id="Math-对象方法"><a href="#Math-对象方法" class="headerlink" title="Math 对象方法"></a>Math 对象方法</h2>
+          <h3 id="下载pdf"><a href="#下载pdf" class="headerlink" title="下载pdf"></a>下载pdf</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">downloadFile: function(e) &#123;</span><br><span class="line">    let url &#x3D; e.currentTarget.dataset.url;</span><br><span class="line">    wx.downloadFile(&#123;</span><br><span class="line">        url: url,</span><br><span class="line">        success: function(res) &#123;</span><br><span class="line">            var filePath &#x3D; res.tempFilePath;</span><br><span class="line">            wx.openDocument(&#123;</span><br><span class="line">                filePath: filePath,</span><br><span class="line">                fileType:&quot;pdf&quot;,&#x2F;&#x2F;必填</span><br><span class="line">                success: function(res) &#123;</span><br><span class="line">                    console.log(&#39;打开文档成功&#39;)</span><br><span class="line">                &#125;,</span><br><span class="line">                fail: function(res) &#123;</span><br><span class="line">                    console.log(res);</span><br><span class="line">                &#125;,</span><br><span class="line">                complete: function(res) &#123;</span><br><span class="line">                    console.log(res);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;,</span><br><span class="line">        fail: function(res) &#123;</span><br><span class="line">            console.log(&#39;文件下载失败&#39;);</span><br><span class="line">        &#125;,</span><br><span class="line">        complete: function(res) &#123;&#125;,</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/09/23/js%E4%B9%8BMath/#more" rel="contents">
+            <a class="btn" href="/2020/10/10/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E4%B8%8B%E8%BD%BD%E4%BF%9D%E5%AD%98%E5%9B%BE%E7%89%87/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -883,7 +876,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/23/vue%E4%B9%8B%E6%83%AF%E6%80%A7%E6%BB%9A%E5%8A%A8%E5%8A%A8%E6%95%88/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/09/js%E4%B9%8BloadshJs/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Dali">
@@ -902,7 +895,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/09/23/vue%E4%B9%8B%E6%83%AF%E6%80%A7%E6%BB%9A%E5%8A%A8%E5%8A%A8%E6%95%88/" itemprop="url">vue之惯性滚动动效</a></h1>
+                <a class="post-title-link" href="/2020/10/09/js%E4%B9%8BloadshJs/" itemprop="url">js之loadshJs</a></h1>
         
 
         <div class="post-meta">
@@ -914,8 +907,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-23T13:31:19+08:00">
-                2020-09-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-09T17:54:03+08:00">
+                2020-10-09
               </time>
             
 
@@ -924,28 +917,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue/" itemprop="url" rel="index">
-                    <span itemprop="name">vue</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -975,10 +946,12 @@
 
       
         
-          <p>见下文</p>
+          <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Lodash是一个著名的javascript原生库，不需要引入其他第三方依赖。是一个意在提高开发者效率,提高JS原生方法性能的JS库。简单的说就是，很多方法lodash已经帮你写好了，直接调用就行，不用自己费尽心思去写了，而且可以统一方法的一致性。Lodash使用了一个简单的 _ 符号，就像Jquery的 $ 一样，十分简洁。<br> 类似的还有Underscore.js和Lazy.js</p>
+<h4 id="支持"><a href="#支持" class="headerlink" title="支持"></a>支持</h4><p>chrome 43往上<br> Firefox 38往上<br> IE 6-11<br> MS Edge<br> Safari 5往上<br> （几乎涵盖现在市面上可以见到的大部分浏览器）</p>
+<h4 id="如何安装"><a href="#如何安装" class="headerlink" title="如何安装"></a>如何安装</h4>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/09/23/vue%E4%B9%8B%E6%83%AF%E6%80%A7%E6%BB%9A%E5%8A%A8%E5%8A%A8%E6%95%88/#more" rel="contents">
+            <a class="btn" href="/2020/10/09/js%E4%B9%8BloadshJs/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1029,7 +1002,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/22/%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8A%E4%BC%A0github/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E9%98%BF%E6%8B%89%E4%B8%81%E7%BB%9F%E8%AE%A1%E5%B9%B3%E5%8F%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Dali">
@@ -1048,7 +1021,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/09/22/%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8A%E4%BC%A0github/" itemprop="url">本地文件夹上传github</a></h1>
+                <a class="post-title-link" href="/2020/10/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E9%98%BF%E6%8B%89%E4%B8%81%E7%BB%9F%E8%AE%A1%E5%B9%B3%E5%8F%B0/" itemprop="url">小程序开发之阿拉丁统计平台</a></h1>
         
 
         <div class="post-meta">
@@ -1060,8 +1033,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-22T18:12:50+08:00">
-                2020-09-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-09T10:58:52+08:00">
+                2020-10-09
               </time>
             
 
@@ -1083,8 +1056,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/github/" itemprop="url" rel="index">
-                    <span itemprop="name">github</span>
+                  <a href="/categories/soft/" itemprop="url" rel="index">
+                    <span itemprop="name">soft</span>
                   </a>
                 </span>
 
@@ -1121,616 +1094,589 @@
 
       
         
-          <p>首先你需要一个github账号，所有还没有的话先去注册吧！</p>
-<p><a href="https://github.com/" target="_blank" rel="noopener">https://github.com/</a></p>
-<p>我们使用git需要先安装git工具，这里给出下载地址，下载后一路直接安装即可：</p>
-<p><a href="https://git-for-windows.github.io/" target="_blank" rel="noopener">https://git-for-windows.github.io/</a></p>
-<p>1.进入Github首页，点击New repository新建一个项目</p>
-<p><img src="http://images2015.cnblogs.com/blog/913913/201608/913913-20160823164154526-418441991.png" alt="img"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/09/22/%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8A%E4%BC%A0github/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/22/webpack%E5%B8%B8%E8%A7%81loader%E5%92%8Cplugins/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dali">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DaliBlogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/22/webpack%E5%B8%B8%E8%A7%81loader%E5%92%8Cplugins/" itemprop="url">webpack常见loader和plugins</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-22T16:48:58+08:00">
-                2020-09-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/webpack/" itemprop="url" rel="index">
-                    <span itemprop="name">webpack</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="常用webpack插件"><a href="#常用webpack插件" class="headerlink" title="常用webpack插件"></a>常用webpack插件</h3><p><strong>注意：插件的引入都在webpack.config.js中</strong></p>
-<h4 id="live-server-必须全局安装，命令直接使用"><a href="#live-server-必须全局安装，命令直接使用" class="headerlink" title="live-server (必须全局安装，命令直接使用)"></a>live-server (必须全局安装，命令直接使用)</h4><p>一款npm工具，全局npm i -g live-server后，项目目录使用live-server命令行命令便可直接在浏览器中预览（默认找index.html，其他请自行带上文件名空格后跟在后面），并且自动全局监听实时更新</p>
-<p>1.新建一个文件夹（最好英文），执行npm init命令；</p>
-<p>2.生成package.json文件后，执行npm install -g live-server命令；</p>
-<p>3.安装完成后，就可以执行live-server命令启动；</p>
-<p>设置快捷方式如下：</p>
-<p>1.找到package.json文件，然后找到”script”，写入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;server&quot;:&quot;live-server .&#x2F;port&#x3D;9090&quot;</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/09/22/webpack%E5%B8%B8%E8%A7%81loader%E5%92%8Cplugins/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/21/webpack3%E6%9C%80%E5%85%A8%E8%A7%A3%E6%9E%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dali">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DaliBlogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/21/webpack3%E6%9C%80%E5%85%A8%E8%A7%A3%E6%9E%90/" itemprop="url">webpack3最全解析</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-21T17:29:49+08:00">
-                2020-09-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/webpack3/" itemprop="url" rel="index">
-                    <span itemprop="name">webpack3</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="开始（以3-X版本为例，内容有过时的还没更新）"><a href="#开始（以3-X版本为例，内容有过时的还没更新）" class="headerlink" title="开始（以3.X版本为例，内容有过时的还没更新）"></a>开始（以3.X版本为例，内容有过时的还没更新）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;新建文件夹</span><br><span class="line">mkdir webpack_demo</span><br><span class="line">cd webpack_demo</span><br><span class="line">&#x2F;&#x2F;全局安装webpack</span><br><span class="line">npm install -g webpack@3.6.0</span><br><span class="line">&#x2F;&#x2F;初始化生成package.json</span><br><span class="line">npm init </span><br><span class="line">&#x2F;&#x2F;开发时依赖</span><br><span class="line">npm install --save-dev webpack@3.6.0</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/09/21/webpack3%E6%9C%80%E5%85%A8%E8%A7%A3%E6%9E%90/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/21/H5%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%B0%83%E8%AF%95%E5%85%A8%E6%94%BB%E7%95%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dali">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DaliBlogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/21/H5%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%B0%83%E8%AF%95%E5%85%A8%E6%94%BB%E7%95%A5/" itemprop="url">H5移动端调试全攻略</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-21T09:59:13+08:00">
-                2020-09-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%B0%83%E8%AF%95/" itemprop="url" rel="index">
-                    <span itemprop="name">移动端调试</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="H5-移动端调试全攻略"><a href="#H5-移动端调试全攻略" class="headerlink" title="H5 移动端调试全攻略"></a>H5 移动端调试全攻略</h2><h3 id="一、概要"><a href="#一、概要" class="headerlink" title="一、概要"></a>一、概要</h3><p>因为移动端操作系统分为 <code>iOS</code> 和 <code>Android</code> 两派，所以本文的调试技巧也会按照不同的系统来区分。寻找最合适高效的方式，才能让你事半功倍。</p>
-<blockquote>
-<p>文章会列举目前适合移动端调试的多种方案，快来选择你的最佳实践吧！</p>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/09/21/H5%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%B0%83%E8%AF%95%E5%85%A8%E6%94%BB%E7%95%A5/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dali">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DaliBlogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86/" itemprop="url">vue之上拉加载原理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-16T14:20:24+08:00">
-                2020-09-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue/" itemprop="url" rel="index">
-                    <span itemprop="name">vue</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h1><p>贴上效果展示：<br><img src="https://mmbiz.qpic.cn/mmbiz_gif/1NOXMW586usqMUQjWlJXNU83Pxk8DicribgBBbuvZ13dRfOBLsInRicV51f90TJDiblOfwq1LuN27vTaqssPfF5NeQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
-<h1 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h1><p>样式方面不多赘述，滚动区域是给固定高度，设置 <code>overflow-y: auto</code> 来实现。</p>
-<p>接下来看看js方面的实现，其实也很简单，触发的条件是：<code>可视高度</code> + <code>滚动距离</code> &gt;= <code>实际高度</code> 。例子我会使用<code>vue</code>来实现，和原生实现是一样的。</p>
-<ul>
-<li>可视高度(offsetHeight)：通过 <code>dom</code> 的 <code>offsetHeight</code> 获得，表示区域固定的高度。这里我推荐通过 <code>getBoundingClientRect()</code> 来获取高度，因为使用前者会引起浏览器回流，造成一些性能问题。</li>
-<li>滚动高度(scrollTop)：滚动事件中通过 <code>e.target.scrollTop</code> 获取，表示滚动条距离顶部的px</li>
-<li>实际高度(scrollHeight)：通过 <code>dom</code> 的 <code>scrollHeight</code> 获得，表示区域内所有内容的高度（包括滚动距离），也就是实际高度</li>
+          <h3 id="关键步骤："><a href="#关键步骤：" class="headerlink" title="关键步骤："></a><strong>关键步骤：</strong></h3><ul>
+<li>注册/登录统计平台</li>
+<li>创建小程序</li>
+<li>接入SDK</li>
+<li>检测SDK</li>
+<li>集成成功</li>
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/09/16/vue%E4%B9%8B%E4%B8%8A%E6%8B%89%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86/#more" rel="contents">
+            <a class="btn" href="/2020/10/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E9%98%BF%E6%8B%89%E4%B8%81%E7%BB%9F%E8%AE%A1%E5%B9%B3%E5%8F%B0/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/30/js%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95%E4%B9%8Bsort/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/30/js%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95%E4%B9%8Bsort/" itemprop="url">js数组方法之sort</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-30T11:16:57+08:00">
+                2020-09-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><strong>总之：return -1 和return b-a是降序</strong></p>
+<p><strong>总之：return 1 和return a-b是升序</strong></p>
+<p><strong><code>sort()</code></strong> 方法用于对数组的元素进行排序,并返回数组。默认排序顺序是根据字符串<strong><code>Unicode</code></strong>码点。<br>语法：arrayObject.sort(sortby)；参数sortby可选。规定排序顺序。必须是函数。<br>注：如果调用该方法时没有使用参数，将按字母顺序对数组中的元素进行排序，说得更精确点，是按照字符编码的顺序进行排序。要实现这一点，首先应把数组的元素都转换成字符串（如有必要），以便进行比较。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/09/30/js%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95%E4%B9%8Bsort/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/29/js%E4%B9%8B%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/29/js%E4%B9%8B%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/" itemprop="url">js之防抖和节流</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-29T15:55:43+08:00">
+                2020-09-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="防抖"><a href="#防抖" class="headerlink" title="防抖"></a>防抖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在事件被触发n秒后再执行回调，如果在这n秒内又被触发，则重新计时。</span><br></pre></td></tr></table></figure>
+
+<p>举个例子：<br> 当鼠标移动到一个div上时，div的内容一直在更新，如果不用防抖处理，效果如下图</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var mydiv &#x3D; document.getElementById(&#39;mydiv&#39;);</span><br><span class="line">       let count &#x3D; 0;</span><br><span class="line">       function myEvent()&#123;</span><br><span class="line">           mydiv.innerText &#x3D; count++;</span><br><span class="line">       &#125;</span><br><span class="line">       mydiv.addEventListener(&#39;mouseover&#39;, function(event)&#123;</span><br><span class="line">           myEvent();</span><br><span class="line">       &#125;);</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/09/29/js%E4%B9%8B%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/29/js%E4%B9%8B%E5%BF%AB%E9%80%9F%E7%90%86%E8%A7%A3i%E9%97%AD%E5%8C%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/29/js%E4%B9%8B%E5%BF%AB%E9%80%9F%E7%90%86%E8%A7%A3i%E9%97%AD%E5%8C%85/" itemprop="url">js之快速理解i闭包</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-29T15:34:52+08:00">
+                2020-09-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 累加器</span><br><span class="line">function counter() &#123;</span><br><span class="line">  &#x2F;&#x2F; 秒数</span><br><span class="line">  let second &#x3D; 0;</span><br><span class="line"></span><br><span class="line">  function doCounter() &#123;</span><br><span class="line">    &#x2F;&#x2F; 到达10秒后停止</span><br><span class="line">    if (second &#x3D;&#x3D;&#x3D; 10) &#123;</span><br><span class="line">      clearInterval(recordSecond);</span><br><span class="line">      console.log(&#39;计时结束!&#39;);</span><br><span class="line">      return;</span><br><span class="line">    &#125;</span><br><span class="line">    second +&#x3D; 1;</span><br><span class="line">    console.log(&#96;$&#123;second&#125;秒&#96;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return doCounter;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 得到累加器</span><br><span class="line">const doCounterFn &#x3D; counter();</span><br><span class="line"></span><br><span class="line">const recordSecond &#x3D; setInterval(function () &#123;</span><br><span class="line">  &#x2F;&#x2F; 调用累加器</span><br><span class="line">  doCounterFn();</span><br><span class="line">&#125;, 1000);</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/09/29/js%E4%B9%8B%E5%BF%AB%E9%80%9F%E7%90%86%E8%A7%A3i%E9%97%AD%E5%8C%85/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/28/es6%E4%B9%8BarrayFrom/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/28/es6%E4%B9%8BarrayFrom/" itemprop="url">es6之arrayFrom</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-28T10:43:20+08:00">
+                2020-09-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/es6/" itemprop="url" rel="index">
+                    <span itemprop="name">es6</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Array.from()方法就是将一个类数组对象或者可遍历对象转换成一个真正的数组。</p>
+<p>　　那么什么是类数组对象呢？所谓类数组对象，最基本的要求就是具有length属性的对象。</p>
+<p>　　1、将类数组对象转换为真正数组：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let arrayLike &#x3D; &#123;</span><br><span class="line">    0: &#39;tom&#39;, </span><br><span class="line">    1: &#39;65&#39;,</span><br><span class="line">    2: &#39;男&#39;,</span><br><span class="line">    3: [&#39;jane&#39;,&#39;john&#39;,&#39;Mary&#39;],</span><br><span class="line">    &#39;length&#39;: 4</span><br><span class="line">&#125;</span><br><span class="line">let arr &#x3D; Array.from(arrayLike)</span><br><span class="line">console.log(arr) &#x2F;&#x2F; [&#39;tom&#39;,&#39;65&#39;,&#39;男&#39;,[&#39;jane&#39;,&#39;john&#39;,&#39;Mary&#39;]]</span><br></pre></td></tr></table></figure>
+
+<p>　　那么，如果将上面代码中length属性去掉呢？实践证明，答案会是一个长度为0的空数组。</p>
+<p>　　这里将代码再改一下，就是具有length属性，但是对象的属性名不再是数字类型的，而是其他字符串型的，代码如下：</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/09/28/es6%E4%B9%8BarrayFrom/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1772,7 +1718,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/5/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/3/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/5/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -1822,7 +1768,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">140</span>
+                  <span class="site-state-item-count">153</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1833,7 +1779,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">69</span>
+                  <span class="site-state-item-count">73</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1844,7 +1790,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">143</span>
+                  <span class="site-state-item-count">154</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
