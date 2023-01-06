@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Nginx," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="DaliBlogs" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Nginx的产生Nginx 同 Apache 一样都是一种 Web 服务器。基于 REST 架构风格，以统一资源描述符（Uniform Resources Identifier）URI 或者统一资源定位符（Uniform Resources Locator）URL 作为沟通依据，通过 HTTP 协议提供各种网络服务。 然而，这些服务器在设计之初受到当时环境的局限，例如当时的用户规模，网络带宽，产品">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nginx是啥能干啥">
+<meta property="og:url" content="http://yoursite.com/2021/05/31/nginx%E6%98%AF%E5%95%A5%E8%83%BD%E5%B9%B2%E5%95%A5/index.html">
+<meta property="og:site_name" content="DaliBlogs">
+<meta property="og:description" content="Nginx的产生Nginx 同 Apache 一样都是一种 Web 服务器。基于 REST 架构风格，以统一资源描述符（Uniform Resources Identifier）URI 或者统一资源定位符（Uniform Resources Locator）URL 作为沟通依据，通过 HTTP 协议提供各种网络服务。 然而，这些服务器在设计之初受到当时环境的局限，例如当时的用户规模，网络带宽，产品">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-30187b1f1a0dbf307c2a9121e00ad4ef_720w.png">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c6c634ec69f54d5ab76644d8dd78b0c2~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp">
+<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a91e7a373df14e90891e6f4f62a629d7~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-4e575379981c2b33d35e83828b23fe2f_720w.webp">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-0951372e22a6314b1e9b520b3cd6b3b6_720w.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-b24eb2b29b48f59883232a58392ddae3_720w.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-d21393745de9c470934575ef76cefd29_720w.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-ec3208d1ea659d126fe2a008ec5ae927_720w.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-b418e69a42a65f033cfdf3b80b988d83_720w.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-bec9b433b145d892b4eddfaf5b2aee1e_720w.jpg">
+<meta property="article:published_time" content="2021-05-31T03:00:06.000Z">
+<meta property="article:modified_time" content="2022-04-11T03:31:14.289Z">
+<meta property="article:author" content="Dali">
+<meta property="article:tag" content="Nginx">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.zhimg.com/80/v2-30187b1f1a0dbf307c2a9121e00ad4ef_720w.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/05/31/nginx是啥能干啥/"/>
+
+
+
+
+
+  <title>nginx是啥能干啥 | DaliBlogs</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DaliBlogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/05/31/nginx%E6%98%AF%E5%95%A5%E8%83%BD%E5%B9%B2%E5%95%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">nginx是啥能干啥</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-05-31T11:00:06+08:00">
+                2021-05-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">Nginx</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Nginx的产生"><a href="#Nginx的产生" class="headerlink" title="Nginx的产生"></a><strong>Nginx的产生</strong></h2><p>Nginx 同 Apache 一样都是一种 Web 服务器。基于 REST 架构风格，以统一资源描述符（Uniform Resources Identifier）URI 或者统一资源定位符（Uniform Resources Locator）URL 作为沟通依据，通过 HTTP 协议提供各种网络服务。</p>
+<p>然而，这些服务器在设计之初受到当时环境的局限，例如当时的用户规模，网络带宽，产品特点等局限并且各自的定位和发展都不尽相同。这也使得各个 Web 服务器有着各自鲜明的特点。</p>
+<p>Apache 的发展时期很长，而且是毫无争议的世界第一大服务器。它有着很多优点：稳定、开源、跨平台等等。</p>
+<p>它出现的时间太长了，它兴起的年代，互联网产业远远比不上现在。所以它被设计为一个重量级的。</p>
+<p>它不支持高并发的服务器。在 Apache 上运行数以万计的并发访问，会导致服务器消耗大量内存。</p>
+<p>操作系统对其进行进程或线程间的切换也消耗了大量的 CPU 资源，导致 HTTP 请求的平均响应速度降低。</p>
+<p>这些都决定了 Apache 不可能成为高性能 Web 服务器，轻量级高并发服务器 Nginx 就应运而生了。</p>
+<p>俄罗斯的工程师 Igor Sysoev，他在为 Rambler Media 工作期间，使用 C 语言开发了 Nginx。</p>
+<p>Nginx 作为 Web 服务器一直为 Rambler Media 提供出色而又稳定的服务。然后呢，Igor Sysoev 将 Nginx 代码开源，并且赋予自由软件许可证。</p>
+<a id="more"></a>
+
+<p><strong>由于以下这几点，所以，Nginx 火了：</strong></p>
+<ul>
+<li>Nginx 使用基于事件驱动架构，使得其可以支持数以百万级别的 TCP 连接。</li>
+<li>高度的模块化和自由软件许可证使得第三方模块层出不穷（这是个开源的时代啊）。</li>
+<li>Nginx 是一个跨平台服务器，可以运行在 Linux、Windows、FreeBSD、Solaris、AIX、Mac OS 等操作系统上。</li>
+<li>这些优秀的设计带来的极大的稳定性。</li>
+</ul>
+<h2 id="Nginx-基本概念"><a href="#Nginx-基本概念" class="headerlink" title="Nginx 基本概念"></a><strong>Nginx 基本概念</strong></h2><h3 id="01正向代理与反向代理"><a href="#01正向代理与反向代理" class="headerlink" title="01正向代理与反向代理"></a><strong>01正向代理与反向代理</strong></h3><p>为了便于理解，首先先来了解一下一些基础知识，nginx是一个高性能的反向代理服务器那么什么是反向代理呢？</p>
+<p>代理是在服务器和客户端之间假设的一层服务器，代理将接收客户端的请求并将它转发给服务器，然后将服务端的响应转发给客户端。</p>
+<p>不管是正向代理还是反向代理，实现的都是上面的功能。</p>
+<p>如果你对OSI 七层模型与 TCP/IP 四层模型不是很熟悉可以再回顾下</p>
+<p><img src="https://pic1.zhimg.com/80/v2-30187b1f1a0dbf307c2a9121e00ad4ef_720w.png" alt="img"></p>
+<blockquote>
+<p><strong>正向代理</strong></p>
+</blockquote>
+<p>正向代理（forward）意思是一个位于客户端和原始服务器 (origin server) 之间的服务器，为了从原始服务器取得内容，客户端向代理发送一个请求并指定目标 (原始服务器)，然后代理向原始服务器转交请求并将获得的内容返回给客户端。</p>
+<p>正向代理是为我们服务的，即为客户端服务的，客户端可以根据正向代理访问到它本身无法访问到的服务器资源。</p>
+<p>正向代理对我们是透明的，对服务端是非透明的，即服务端并不知道自己收到的是来自代理的访问还是来自真实客户端的访问。</p>
+<blockquote>
+<p><strong>反向代理</strong></p>
+</blockquote>
+<p>反向代理（Reverse Proxy）方式是指以代理服务器来接受 internet 上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给 internet 上请求连接的客户端，此时代理服务器对外就表现为一个反向代理服务器。</p>
+<p>反向代理是为服务端服务的，反向代理可以帮助服务器接收来自客户端的请求，帮助服务器做请求转发，负载均衡等。</p>
+<p>反向代理对服务端是透明的，对我们是非透明的，即我们并不知道自己访问的是代理服务器，而服务器知道反向代理在为他服务。</p>
+<blockquote>
+<p><strong>举例说明</strong></p>
+</blockquote>
+<p>在正向代理中，我向你打电话，你能看到向你打电话的电话号码，由电话号码知道是我给你打的，那么此时我用<code>虚拟电话</code>给你打过去，你看到的不再是我的手机号，而是<code>虚拟号码</code>,你便不知道是我给你打的，这种行为变叫做”反向代理”。</p>
+<h3 id="02负载均衡"><a href="#02负载均衡" class="headerlink" title="02负载均衡"></a><strong>02负载均衡</strong></h3><p>如果请求数过大，单个服务器解决不了，我们增加服务器的数量，然后将请求分发到各个服务器上，将原先请求集中到单个服务器的情况改为请求分发到多个服务器上，就是负载均衡。这单个服务器就是<strong>反向代理服务器</strong>，而端口号就是这些服务器的工号。</p>
+<p>Upstream 指定后端服务器地址列表，在 server 中拦截响应请求，并将请求转发到 Upstream 中配置的服务器列表。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">upstream balanceServer &#123;</span><br><span class="line">    server 10.1.22.33:12345;</span><br><span class="line">    server 10.1.22.34:12345;</span><br><span class="line"></span><br><span class="line">    server 10.1.22.35:12345;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123; </span><br><span class="line">    server_name  fe.server.com;</span><br><span class="line">    listen 80;</span><br><span class="line">    location &#x2F;api &#123;</span><br><span class="line">        proxy_pass http:&#x2F;&#x2F;balanceServer;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c6c634ec69f54d5ab76644d8dd78b0c2~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp?" alt="image.png"></p>
+<p>上面的配置只是指定了 nginx 需要转发的服务端列表，并没有指定分配策略。</p>
+<p>默认情况下采用的是轮询策略，将所有客户端请求轮询分配给服务端。这种策略是可以正常工作的，但是如果其中某一台服务器压力太大，出现延迟，会影响所有分配在这台服务器下的用户。</p>
+<p><strong>Nginx支持的负载均衡调度算法方式如下：</strong></p>
+<p><strong>weight轮询(默认，常用)：</strong>接收到的请求按照权重分配到不同的后端服务器，即使在使用过程中，某一台后端服务器宕机，Nginx会自动将该服务器剔除出队列，请求受理情况不会受到任何影响。这种方式下，可以给不同的后端服务器设置一个权重值(weight)，用于调整不同的服务器上请求的分配率；权重数据越大，被分配到请求的几率越大；该权重值，主要是针对实际工作环境中不同的后端服务器硬件配置进行调整的。ip_hash（常用）：每个请求按照发起客户端的ip的hash结果进行匹配，这样的算法下一个固定ip地址的客户端总会访问到同一个后端服务器，这也在一定程度上解决了集群部署环境下session共享的问题。</p>
+<p><strong>fair：</strong>智能调整调度算法，动态的根据后端服务器的请求处理到响应的时间进行均衡分配，响应时间短处理效率高的服务器分配到请求的概率高，响应时间长处理效率低的服务器分配到的请求少；结合了前两者的优点的一种调度算法。但是需要注意的是Nginx默认不支持fair算法，如果要使用这种调度算法，请安装upstream_fair模块。url_hash：按照访问的url的hash结果分配请求，每个请求的url会指向后端固定的某个服务器，可以在Nginx作为静态服务器的情况下提高缓存效率。同样要注意Nginx默认不支持这种调度算法，要使用的话需要安装Nginx的hash软件包。</p>
+<h3 id="03动静分离"><a href="#03动静分离" class="headerlink" title="03动静分离"></a><strong>03动静分离</strong></h3><p>为了加快服务器的解析速度，可以把动态页面和静态页面交给不同的服务器来解析，加快解析速度，降低原来单个服务器的压力。、</p>
+<img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a91e7a373df14e90891e6f4f62a629d7~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp?" alt="image.png" style="zoom:25%;">
+
+<h3 id="04Nginx常用命令"><a href="#04Nginx常用命令" class="headerlink" title="04Nginx常用命令"></a><strong>04Nginx常用命令</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># 快速关闭Nginx，可能不保存相关信息，并迅速终止web服务</span><br><span class="line">nginx -s stop</span><br><span class="line"># 平稳关闭Nginx，保存相关信息，有安排的结束web服务</span><br><span class="line">nginx -s quit</span><br><span class="line"># 因改变了Nginx相关配置，需要重新加载配置而重载</span><br><span class="line">nginx -s reload</span><br><span class="line"># 重新打开日志文件</span><br><span class="line">nginx -s reopen</span><br><span class="line"># 为 Nginx 指定一个配置文件，来代替缺省的</span><br><span class="line">nginx -c filename</span><br><span class="line"># 不运行，而仅仅测试配置文件。nginx 将检查配置文件的语法的正确性，并尝试打开配置文件中所引用到的文件</span><br><span class="line">nginx -t</span><br><span class="line">#  显示 nginx 的版本</span><br><span class="line">nginx -v</span><br><span class="line"># 显示 nginx 的版本，编译器版本和配置参数</span><br><span class="line">nginx -V</span><br><span class="line"># 格式换显示 nginx 配置参数</span><br><span class="line">2&gt;&amp;1 nginx -V | xargs -n1</span><br><span class="line">2&gt;&amp;1 nginx -V | xargs -n1 | grep lua</span><br></pre></td></tr></table></figure>
+
+<h2 id="为什么选择Nginx"><a href="#为什么选择Nginx" class="headerlink" title="为什么选择Nginx"></a><strong>为什么选择Nginx</strong></h2><p>Nginx是一款自由的、开源的、高性能的HTTP服务器和反向代理服务器；同时也是一个IMAP、POP3、SMTP代理服务器；Nginx可以作为一个HTTP服务器进行网站的发布处理，另外Nginx可以作为反向代理进行负载均衡的实现。在Nginx网站上，其功能包括：</p>
+<ul>
+<li>HTTP和HTTPS（TLS / SSL / SNI）</li>
+<li>超快速的Web服务器用于静态内容</li>
+<li>FastCGI，WSGI，SCGI用于动态内容</li>
+<li>具有负载平衡和缓存功能的加速Web代理</li>
+<li>不间断实时二进制升级和配置</li>
+<li>压缩和内容过滤器</li>
+<li>虚拟主机</li>
+<li>FLV和MP4的媒体流</li>
+<li>带宽和连接策略</li>
+<li>全面的访问控制</li>
+<li>自定义日志</li>
+<li>嵌入式脚本</li>
+<li>带有TLS的SMTP / IMAP / POP3的邮件代理</li>
+<li>逻辑，灵活，可扩展的配置</li>
+<li>在Linux，FreeBSD，Mac OS X，Solaris和Windows上运行</li>
+</ul>
+<p><strong>Nginx有如下优势：</strong></p>
+<h3 id="01IO多路复用epoll（IO复用）"><a href="#01IO多路复用epoll（IO复用）" class="headerlink" title="01IO多路复用epoll（IO复用）"></a><strong>01IO多路复用epoll（IO复用）</strong></h3><p>如何理解呢？举个例子吧！</p>
+<p>有A、B、C三个老师，他们都遇到一个难题，要帮助一个班级的学生解决课堂作业。 老师A采用从第一排开始一个学生一个学生轮流解答的方式去回答问题，老师A浪费了很多时间，并且有的学生作业还没有完成呢，老师就来了，反反复复效率极慢。</p>
+<p>老师B是一个忍者，他发现老师A的方法行不通，于是他使用了影分身术，分身出好几个自己同一时间去帮好几个同学回答问题，最后还没回答完，老师B消耗光了能量累倒了。</p>
+<p>老师C比较精明，他告诉学生，谁完成了作业举手，有举手的同学他才去指导问题，他让学生主动发声，分开了“并发”。</p>
+<p>这个老师C就是Nginx。</p>
+<h3 id="02轻量级"><a href="#02轻量级" class="headerlink" title="02轻量级"></a><strong>02轻量级</strong></h3><ul>
+<li>功能模块少 - Nginx仅保留了HTTP需要的模块，其他都用插件的方式，后天添加</li>
+<li>代码模块化 - 更适合二次开发，如阿里巴巴Tengine</li>
+</ul>
+<h3 id="03CPU亲和"><a href="#03CPU亲和" class="headerlink" title="03CPU亲和"></a><strong>03CPU亲和</strong></h3><p>把CPU核心和Nginx工作进程绑定，把每个worker进程固定在一个CPU上执行，减少切换CPU的cache miss，从而提高性能。</p>
+<p> <strong>Nginx配置</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#打开主配置文件，若你是用lnmp环境安装</span><br><span class="line">vim &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf</span><br><span class="line"></span><br><span class="line">----------------------------------------</span><br><span class="line"></span><br><span class="line">user                    #设置nginx服务的系统使用用户</span><br><span class="line">worker_processes        #工作进程数 一般情况与CPU核数保持一致</span><br><span class="line">error_log               #nginx的错误日志</span><br><span class="line">pid                     #nginx启动时的pid</span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections    #每个进程允许最大连接数</span><br><span class="line">    use                   #nginx使用的内核模型</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们使用 nginx 的 http 服务，在配置文件 nginx.conf 中的 http 区域内，配置无数个 server ，每一个 server 对应这一个虚拟主机或者域名。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    ... ...        #后面再详细介绍 http 配置项目</span><br><span class="line">    </span><br><span class="line">    server &#123;</span><br><span class="line">        listen 80                          #监听端口;</span><br><span class="line">        server_name localhost              #地址</span><br><span class="line">        </span><br><span class="line">        location &#x2F; &#123;                       #访问首页路径</span><br><span class="line">            root &#x2F;xxx&#x2F;xxx&#x2F;index.html       #默认目录</span><br><span class="line">            index index.html index.htm     #默认文件</span><br><span class="line">        &#125;        </span><br><span class="line">        </span><br><span class="line">        error_page  500 504   &#x2F;50x.html    #当出现以上状态码时从新定义到50x.html</span><br><span class="line">        location &#x3D; &#x2F;50x.html &#123;             #当访问50x.html时</span><br><span class="line">            root &#x2F;xxx&#x2F;xxx&#x2F;html             #50x.html 页面所在位置</span><br><span class="line">        &#125;        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    server &#123;</span><br><span class="line">        ... ... </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一个 server 可以出现多个 location ，我们对不同的访问路径进行不同情况的配置。</p>
+<p>我们再来看看 http 的配置详情</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    sendfile  on                  #高效传输文件的模式 一定要开启</span><br><span class="line">    keepalive_timeout   65        #客户端服务端请求超时时间</span><br><span class="line">    log_format  main   XXX        #定义日志格式 代号为main</span><br><span class="line">    access_log  &#x2F;usr&#x2F;local&#x2F;access.log  main     #日志保存地址 格式代码 main</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>下面是 nginx 一些配置中常用的内置全局变量，你可以在配置的任何位置使用它们。</p>
+<p><img src="https://pic4.zhimg.com/80/v2-4e575379981c2b33d35e83828b23fe2f_720w.webp" alt="img"></p>
+<h2 id="Nginx的Master-Worker模式"><a href="#Nginx的Master-Worker模式" class="headerlink" title="Nginx的Master-Worker模式"></a>Nginx的Master-Worker模式</h2><p><img src="https://pic3.zhimg.com/80/v2-0951372e22a6314b1e9b520b3cd6b3b6_720w.jpg" alt="img"></p>
+<p>nginx进程</p>
+<p>启动Nginx后，其实就是在80端口启动了Socket服务进行监听，如图所示，Nginx涉及Master进程和Worker进程。</p>
+<p><img src="https://pic4.zhimg.com/80/v2-b24eb2b29b48f59883232a58392ddae3_720w.jpg" alt="img"></p>
+<p>Master-Worker模式</p>
+<p><img src="https://pic2.zhimg.com/80/v2-d21393745de9c470934575ef76cefd29_720w.jpg" alt="img"></p>
+<p>nginx.conf</p>
+<p>Master进程的作用是？</p>
+<p><strong>读取并验证配置文件nginx.conf；管理worker进程；</strong></p>
+<p>Worker进程的作用是？</p>
+<p><strong>每一个Worker进程都维护一个线程（避免线程切换），处理连接和请求；注意Worker进程的个数由配置文件决定，一般和CPU个数相关（有利于进程切换），配置几个就有几个Worker进程。</strong></p>
+<h2 id="思考：Nginx如何做到热部署？"><a href="#思考：Nginx如何做到热部署？" class="headerlink" title="思考：Nginx如何做到热部署？"></a>思考：Nginx如何做到热部署？</h2><p>所谓热部署，就是配置文件nginx.conf修改后，不需要stop Nginx，不需要中断请求，就能让配置文件生效！（nginx -s reload 重新加载/nginx -t检查配置/nginx -s stop）</p>
+<p>通过上文我们已经知道worker进程负责处理具体的请求，那么如果想达到热部署的效果，可以想象：</p>
+<p>方案一：</p>
+<p>修改配置文件nginx.conf后，主进程master负责推送给woker进程更新配置信息，woker进程收到信息后，更新进程内部的线程信息。（有点valatile的味道）</p>
+<p>方案二：</p>
+<p>修改配置文件nginx.conf后，重新生成新的worker进程，当然会以新的配置进行处理请求，而且新的请求必须都交给新的worker进程，至于老的worker进程，等把那些以前的请求处理完毕后，kill掉即可。</p>
+<p>Nginx采用的就是方案二来达到热部署的！</p>
+<h2 id="思考：Nginx如何做到高并发下的高效处理？"><a href="#思考：Nginx如何做到高并发下的高效处理？" class="headerlink" title="思考：Nginx如何做到高并发下的高效处理？"></a>思考：Nginx如何做到高并发下的高效处理？</h2><p>上文已经提及Nginx的worker进程个数与CPU绑定、worker进程内部包含一个线程高效回环处理请求，这的确有助于效率，但这是不够的。</p>
+<p><strong>作为专业的程序员，我们可以开一下脑洞：BIO/NIO/AIO、异步/同步、阻塞/非阻塞…</strong></p>
+<p>要同时处理那么多的请求，要知道，有的请求需要发生IO，可能需要很长时间，如果等着它，就会拖慢worker的处理速度。</p>
+<p><strong>Nginx采用了Linux的epoll模型，epoll模型基于事件驱动机制，它可以监控多个事件是否准备完毕，如果OK，那么放入epoll队列中，这个过程是异步的。worker只需要从epoll队列循环处理即可。</strong></p>
+<h2 id="思考：Nginx挂了怎么办？"><a href="#思考：Nginx挂了怎么办？" class="headerlink" title="思考：Nginx挂了怎么办？"></a>思考：Nginx挂了怎么办？</h2><p>Nginx既然作为入口网关，很重要，如果出现单点问题，显然是不可接受的。</p>
+<p>答案是：<strong>Keepalived+Nginx实现高可用</strong>。</p>
+<p>Keepalived是一个高可用解决方案，主要是用来防止服务器单点发生故障，可以通过和Nginx配合来实现Web服务的高可用。（其实，Keepalived不仅仅可以和Nginx配合，还可以和很多其他服务配合）</p>
+<p>Keepalived+Nginx实现高可用的思路：</p>
+<p>第一：请求不要直接打到Nginx上，应该先通过Keepalived（这就是所谓虚拟IP，VIP）</p>
+<p>第二：Keepalived应该能监控Nginx的生命状态（提供一个用户自定义的脚本，定期检查Nginx进程状态，进行权重变化,，从而实现Nginx故障切换）</p>
+<p><img src="https://pic4.zhimg.com/80/v2-ec3208d1ea659d126fe2a008ec5ae927_720w.jpg" alt="img"></p>
+<p>Keepalived+Nginx</p>
+<h2 id="我们的主战场：nginx-conf"><a href="#我们的主战场：nginx-conf" class="headerlink" title="我们的主战场：nginx.conf"></a>我们的主战场：nginx.conf</h2><p>很多时候，在开发、测试环境下，我们都得自己去配置Nginx，就是去配置nginx.conf。</p>
+<p>nginx.conf是典型的分段配置文件，下面我们来分析下。</p>
+<h2 id="虚拟主机"><a href="#虚拟主机" class="headerlink" title="虚拟主机"></a>虚拟主机</h2><p><img src="https://pic4.zhimg.com/80/v2-b418e69a42a65f033cfdf3b80b988d83_720w.jpg" alt="img"></p>
+<p>http的server段</p>
+<p><img src="https://pic3.zhimg.com/80/v2-bec9b433b145d892b4eddfaf5b2aee1e_720w.jpg" alt="img"></p>
+<p>访问结果</p>
+<p>其实这是把Nginx作为web server来处理静态资源。</p>
+<p><strong>第一：location可以进行正则匹配，应该注意正则的几种形式以及优先级。（这里不展开）</strong></p>
+<p><strong>第二：Nginx能够提高速度的其中一个特性就是：动静分离，就是把静态资源放到Nginx上，由Nginx管理，动态请求转发给后端。</strong></p>
+<p><strong>第三：我们可以在Nginx下把静态资源、日志文件归属到不同域名下（也即是目录），这样方便管理维护。</strong></p>
+<p><strong>第四：Nginx可以进行IP访问控制，有些电商平台，就可以在Nginx这一层，做一下处理，内置一个黑名单模块，那么就不必等请求通过Nginx达到后端在进行拦截，而是直接在Nginx这一层就处理掉。</strong></p>
+<h2 id="反向代理【proxy-pass】"><a href="#反向代理【proxy-pass】" class="headerlink" title="反向代理【proxy_pass】"></a>反向代理【proxy_pass】</h2><p>所谓反向代理，很简单，其实就是在location这一段配置中的root替换成<strong>proxy_pass</strong>即可。root说明是静态资源，可以由Nginx进行返回；而proxy_pass说明是动态请求，需要进行转发，比如代理到Tomcat上。</p>
+<p>反向代理，上面已经说了，过程是透明的，比如说request -&gt; Nginx -&gt; Tomcat，那么对于Tomcat而言，请求的IP地址就是Nginx的地址，而非真实的request地址，这一点需要注意。不过好在Nginx不仅仅可以反向代理请求，还可以由用户<strong>自定义设置HTTP HEADER</strong>。</p>
+<h2 id="负载均衡【upstream】"><a href="#负载均衡【upstream】" class="headerlink" title="负载均衡【upstream】"></a>负载均衡【upstream】</h2><p>上面的反向代理中，我们通过proxy_pass来指定Tomcat的地址，很显然我们只能指定一台Tomcat地址，那么我们如果想指定多台来达到负载均衡呢？</p>
+<p>第一，通过<strong>upstream</strong>来定义一组Tomcat，并指定负载策略（IPHASH、加权论调、最少连接），健康检查策略（Nginx可以监控这一组Tomcat的状态）等。</p>
+<p>第二，将proxy_pass替换成upstream指定的值即可。</p>
+<p><strong>负载均衡可能带来的问题？</strong></p>
+<p>负载均衡所带来的明显的问题是，一个请求，可以到A server，也可以到B server，这完全不受我们的控制，当然这也不是什么问题，只是我们得注意的是：<strong>用户状态的保存问题，如Session会话信息，不能在保存到服务器上。</strong></p>
+<h2 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h2><p>缓存，是Nginx提供的，可以加快访问速度的机制，说白了，在配置上就是一个开启，同时指定目录，让缓存可以存储到磁盘上。具体配置，大家可以参考Nginx官方文档，这里就不在展开了。</p>
+<p>转载自</p>
+<p><a href="https://link.zhihu.com/?target=https%3A//mp.weixin.qq.com/s/XoqGvYBabW8YBl9xEeNYZw">Nginx详解</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/34943332" target="_blank" rel="noopener">地球的外星人君：8分钟带你深入浅出搞懂Nginx</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Nginx/" rel="tag"># Nginx</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/05/27/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%B8%A9%E5%9D%91/" rel="next" title="移动端踩坑">
+                <i class="fa fa-chevron-left"></i> 移动端踩坑
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/05/31/nginx%E5%92%8Cjenkins%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%81%B0%E5%BA%A6%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83/" rel="prev" title="nginx和jenkins搭建一个灰度测试环境">
+                nginx和jenkins搭建一个灰度测试环境 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="Dali" />
+            
+              <p class="site-author-name" itemprop="name">Dali</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">175</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">163</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx的产生"><span class="nav-number">1.</span> <span class="nav-text">Nginx的产生</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx-基本概念"><span class="nav-number">2.</span> <span class="nav-text">Nginx 基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#01正向代理与反向代理"><span class="nav-number">2.1.</span> <span class="nav-text">01正向代理与反向代理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#02负载均衡"><span class="nav-number">2.2.</span> <span class="nav-text">02负载均衡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#03动静分离"><span class="nav-number">2.3.</span> <span class="nav-text">03动静分离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#04Nginx常用命令"><span class="nav-number">2.4.</span> <span class="nav-text">04Nginx常用命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么选择Nginx"><span class="nav-number">3.</span> <span class="nav-text">为什么选择Nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#01IO多路复用epoll（IO复用）"><span class="nav-number">3.1.</span> <span class="nav-text">01IO多路复用epoll（IO复用）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#02轻量级"><span class="nav-number">3.2.</span> <span class="nav-text">02轻量级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#03CPU亲和"><span class="nav-number">3.3.</span> <span class="nav-text">03CPU亲和</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx的Master-Worker模式"><span class="nav-number">4.</span> <span class="nav-text">Nginx的Master-Worker模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思考：Nginx如何做到热部署？"><span class="nav-number">5.</span> <span class="nav-text">思考：Nginx如何做到热部署？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思考：Nginx如何做到高并发下的高效处理？"><span class="nav-number">6.</span> <span class="nav-text">思考：Nginx如何做到高并发下的高效处理？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思考：Nginx挂了怎么办？"><span class="nav-number">7.</span> <span class="nav-text">思考：Nginx挂了怎么办？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我们的主战场：nginx-conf"><span class="nav-number">8.</span> <span class="nav-text">我们的主战场：nginx.conf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟主机"><span class="nav-number">9.</span> <span class="nav-text">虚拟主机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反向代理【proxy-pass】"><span class="nav-number">10.</span> <span class="nav-text">反向代理【proxy_pass】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#负载均衡【upstream】"><span class="nav-number">11.</span> <span class="nav-text">负载均衡【upstream】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存"><span class="nav-number">12.</span> <span class="nav-text">缓存</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dali</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

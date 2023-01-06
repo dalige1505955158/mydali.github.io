@@ -99,7 +99,7 @@
 <meta property="og:image" content="https://exp-picture.cdn.bcebos.com/46a92de039723d0334c30e32bb486143d6d457bd.jpg?x-bce-process=image%252Fresize%252Cm_lfit%252Cw_500%252Climit_1">
 <meta property="og:image" content="https://images2018.cnblogs.com/blog/1418466/201808/1418466-20180810112625596-2103906128.png">
 <meta property="article:published_time" content="2020-09-27T03:04:09.000Z">
-<meta property="article:modified_time" content="2020-10-30T05:26:11.980Z">
+<meta property="article:modified_time" content="2022-11-30T10:31:16.720Z">
 <meta property="article:author" content="Dali">
 <meta property="article:tag" content="vue">
 <meta property="article:tag" content="axios">
@@ -420,6 +420,10 @@
 <p>5.get请求只URL编码，post支持多种编码方式</p>
 <p>6.get请求的记录会留在历史记录中，post请求不会留在历史记录</p>
 <p>7.get只支持ASCII字符，post没有字符类型限制</p>
+<h3 id="GET请求长度有限制吗？"><a href="#GET请求长度有限制吗？" class="headerlink" title="GET请求长度有限制吗？"></a>GET请求长度有限制吗？</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">HTTP RFC规范中并没有规定GET请求的URI长度,但是在主流的用户代理浏览器和应用服务器中对GET请求却做出限制或者相关的可配置：</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Chrome（谷歌）的url长度限制超过8182个字符返回本文开头时列出的错误。</span><br><span class="line"></span><br><span class="line">IE浏览器（Microsoft Internet Explorer） 对url长度限制是2083（2K+53），超过这个限制，则自动截断（若是form提交则提交按钮不起作用）。</span><br><span class="line"></span><br><span class="line">Apache能接受url长度限制为8192字符</span><br><span class="line"></span><br><span class="line">tomcat中通过较多的Connector参数控制url长度限制：</span><br><span class="line">maxParameterCount：GET和POST请求参数个数，默认是10000</span><br><span class="line">maxPostSize：POST请求数据最大值</span><br><span class="line"></span><br><span class="line">nginx可以通过修改配置来改变url请求串的url长度限制：</span><br><span class="line">client_header_buffer_size 默认值：1k</span><br><span class="line">large_client_header_buffers默认值：4 8k</span><br><span class="line"></span><br><span class="line">大多数浏览器的限制在2k-8k之间，更老的版本浏览器甚至只支持255 bytes。</span><br></pre></td></tr></table></figure>
+
+
+
 <h3 id="什么是GET和POST请求"><a href="#什么是GET和POST请求" class="headerlink" title="什么是GET和POST请求"></a>什么是GET和POST请求</h3><p>GET：向指定路径资源发送请求，通常用于获取数据</p>
 <p>POST：向指定路径资源提交数据进行处理请求，通常用于提交表单或者上传文件</p>
 <h3 id="GET和POST请求的区别"><a href="#GET和POST请求的区别" class="headerlink" title="GET和POST请求的区别"></a>GET和POST请求的区别</h3><p>1，GET一般是从服务器上获取数据，POST是向服务器提交数据。</p>
@@ -597,7 +601,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">153</span>
+                  <span class="site-state-item-count">175</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -608,7 +612,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">73</span>
+                  <span class="site-state-item-count">76</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -619,7 +623,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">154</span>
+                  <span class="site-state-item-count">163</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -659,7 +663,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是GET和POST请求"><span class="nav-number">1.</span> <span class="nav-text">什么是GET和POST请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GET和POST请求的区别"><span class="nav-number">2.</span> <span class="nav-text">GET和POST请求的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Content-Type"><span class="nav-number">3.</span> <span class="nav-text">Content-Type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#axios发送GET请求"><span class="nav-number">4.</span> <span class="nav-text">axios发送GET请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#axios发送POST请求"><span class="nav-number">5.</span> <span class="nav-text">axios发送POST请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#axios通过POST传文件"><span class="nav-number">6.</span> <span class="nav-text">axios通过POST传文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#八大请求方式"><span class="nav-number">7.</span> <span class="nav-text">八大请求方式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#GET请求长度有限制吗？"><span class="nav-number">1.</span> <span class="nav-text">GET请求长度有限制吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是GET和POST请求"><span class="nav-number">2.</span> <span class="nav-text">什么是GET和POST请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GET和POST请求的区别"><span class="nav-number">3.</span> <span class="nav-text">GET和POST请求的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Content-Type"><span class="nav-number">4.</span> <span class="nav-text">Content-Type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#axios发送GET请求"><span class="nav-number">5.</span> <span class="nav-text">axios发送GET请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#axios发送POST请求"><span class="nav-number">6.</span> <span class="nav-text">axios发送POST请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#axios通过POST传文件"><span class="nav-number">7.</span> <span class="nav-text">axios通过POST传文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#八大请求方式"><span class="nav-number">8.</span> <span class="nav-text">八大请求方式</span></a></li></ol></div>
             
 
           </div>
@@ -679,7 +683,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

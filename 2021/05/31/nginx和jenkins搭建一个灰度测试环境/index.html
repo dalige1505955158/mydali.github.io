@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Nginx,jenkins,灰度发布,金丝雀发布," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="DaliBlogs" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="引言灰度发布，又称金丝雀发布。  金丝雀发布这一术语源于煤矿工人把笼养的金丝雀带入矿井的传统。矿工通过金丝雀来了解矿井中一氧化碳的浓度，如果一氧化碳的浓度过高，金丝雀就会中毒，从而使矿工知道应该立刻撤离。——《DevOps实践指南》  对应到软件开中，则是指在发布新的产品特性时通过少量的用户试点确认新特性没有问题，确保无误后推广到更大的用户使用群体。 集成灰度发布的流水线在DevOps中是一个非常">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nginx和jenkins搭建一个灰度测试环境">
+<meta property="og:url" content="http://yoursite.com/2021/05/31/nginx%E5%92%8Cjenkins%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%81%B0%E5%BA%A6%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83/index.html">
+<meta property="og:site_name" content="DaliBlogs">
+<meta property="og:description" content="引言灰度发布，又称金丝雀发布。  金丝雀发布这一术语源于煤矿工人把笼养的金丝雀带入矿井的传统。矿工通过金丝雀来了解矿井中一氧化碳的浓度，如果一氧化碳的浓度过高，金丝雀就会中毒，从而使矿工知道应该立刻撤离。——《DevOps实践指南》  对应到软件开中，则是指在发布新的产品特性时通过少量的用户试点确认新特性没有问题，确保无误后推广到更大的用户使用群体。 集成灰度发布的流水线在DevOps中是一个非常">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF56a9MwWzRibLLXlXXm6geY3OT0h8Ul6opHtcbpdDn1r1ib9vicFbB2QIdmQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF56tQxNRR5xA1624FxMeZpLne8d5h8ibA1bjS3ug5kaxeoj0Cutccic71dg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF56FwicSjJIRtgqq4u0g4aOPHzwmSnDNQhKlC14D7Z6PaFLTUg4rwXic52w/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF5684Bx7PCKUPd9d54FicIXXj2ialUeNhFibHaHRwGt7OyG0lGtlqSLECRCQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF56liaKEpVh7ljVmVLmHoh9uicOZDy0WIpEYjQqukcFyZTNDwgkdhA4JRGw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF5688FftJQWtvcv4RMgDojzOQnJgnsEzkKB6GyghxE7ZbuFZkX2Fy6d5A/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF56urAPRWZ8xXzIIA1DYuSR4jKkheXlKm42rHhXqO3NLqjsSw8W8pmQsQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF56epffyZraorh1sQm6Z7TwiaAAsLx1Q7NAYp3jGAWWYibkTUn9HIw7VlXw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF56oiaW7YENLaria8DZ9tTbfUY363T2GEN9arquwtAI9kbqSibUgA3vzDnng/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF56pnMHvXXhlAIMBpJOpJJVuvJpoBM0bKykcfdY1zYib68SzDOVtibXjSbw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF56ZUXCJ2IMzkCYu3NPz6U8qbPlp1uvUrU0Xqm8UhfHooCm3sHOiaftVLw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF56KibVZDcGRG8Dl4QGvV2lhvAW75Hg63lDrFLfj2pgSmkrZYdIr9l3icng/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF56ia2vZDRM9EdVJkyWhW9lpiabacKXibatKybfmPOJrM7frDVNV8L1IgDlA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF56SCibqPvIHiba2GW42IEgkRTqFYLSdiaiaoOD0j6St4u75ALsQsCZUJSMBA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF56mpPDw4gI6eNNzs4YhKqOv3vic7lq45GdxSvYXEhiavH7uXsXRXZ8FZFg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF56PLnXtzSRtBcj1J6F85bKGh95nKjOJETyibzFUj7QC2XQJjFjQxXGP6Q/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF563Xso7eb4LeQaBjsnBKuvBrNUyLraibiaIsogwzZPURYvibP30jiaA50N8w/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="article:published_time" content="2021-05-31T03:06:12.000Z">
+<meta property="article:modified_time" content="2021-05-31T03:34:37.990Z">
+<meta property="article:author" content="Dali">
+<meta property="article:tag" content="Nginx">
+<meta property="article:tag" content="jenkins">
+<meta property="article:tag" content="灰度发布">
+<meta property="article:tag" content="金丝雀发布">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF56a9MwWzRibLLXlXXm6geY3OT0h8Ul6opHtcbpdDn1r1ib9vicFbB2QIdmQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/05/31/nginx和jenkins搭建一个灰度测试环境/"/>
+
+
+
+
+
+  <title>nginx和jenkins搭建一个灰度测试环境 | DaliBlogs</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DaliBlogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/05/31/nginx%E5%92%8Cjenkins%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%81%B0%E5%BA%A6%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">nginx和jenkins搭建一个灰度测试环境</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-05-31T11:06:12+08:00">
+                2021-05-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%81%B0%E5%BA%A6%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index">
+                    <span itemprop="name">灰度测试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>灰度发布，又称金丝雀发布。</p>
+<blockquote>
+<p>金丝雀发布这一术语源于煤矿工人把笼养的金丝雀带入矿井的传统。矿工通过金丝雀来了解矿井中一氧化碳的浓度，如果一氧化碳的浓度过高，金丝雀就会中毒，从而使矿工知道应该立刻撤离。——《DevOps实践指南》</p>
+</blockquote>
+<p>对应到软件开中，则是指在发布新的产品特性时通过少量的用户试点确认新特性没有问题，确保无误后推广到更大的用户使用群体。</p>
+<p>集成灰度发布的流水线在DevOps中是一个非常重要的工具和高效的实践，然而笔者在入职以前对流水线和灰度发布知之甚少。在了解一个新东西时，先从逻辑上打通所有的关键环节，然后再完成一个最简单的Demo，对于我们来说是比较有意思的学习路径，因此便有了这篇文章。</p>
+<p>本文理论内容较少，主要是从零到一的搭建流程实践，适合对工程化感兴趣的初级前端开发者。</p>
+<a id="more"></a>
+
+<h1 id="01-服务器准备"><a href="#01-服务器准备" class="headerlink" title="01 服务器准备"></a>01 服务器准备</h1><h2 id="获取服务器"><a href="#获取服务器" class="headerlink" title="获取服务器"></a>获取服务器</h2><p>上面提到，灰度发布是通过少量的用户试点来验证新功能有没有问题。所以要保证有两批用户能在同一时间体验到不同的功能。这就要求我们准备两台服务器，分别部署不同的代码版本。</p>
+<p>如果你已经有了一台服务器，也可以通过在不同端口部署服务的方式来模拟两台服务器。如果你还一台服务器都没有，那么可以参考这个过程购买两台云服务器，如果是按需购买，完成本文的Demo，大概要花费20块钱。</p>
+<p>获取云服务器教程：github.com/TerminatorS…</p>
+<h2 id="工具安装"><a href="#工具安装" class="headerlink" title="工具安装"></a>工具安装</h2><h3 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h3><p>首先，确保你的服务器上已经安装了git，如果没有的话使用以下命令进行安装，安装好了以后生成ssh 公钥，放到你的github 里，后面拉取代码的时候会用到。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install git</span><br></pre></td></tr></table></figure>
+
+<h3 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h3><p>如果你的服务器没有Nginx，先按照以下操作进行安装，Linux 下安装Nginx非常简单：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install nginx</span><br></pre></td></tr></table></figure>
+
+<p>安装完了，在终端输入nginx -t检查一下是否安装成功。如果安装成功，它会显示Nginx 配置文件的状态，以及位置。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF56a9MwWzRibLLXlXXm6geY3OT0h8Ul6opHtcbpdDn1r1ib9vicFbB2QIdmQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>此时nginx还没有启动，在终端中输入<code>nginx</code> 或<code>nginx \-s reload</code> 命令即可启动，此时看到的nginx相关进程如下，表明已经启动成功。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF56tQxNRR5xA1624FxMeZpLne8d5h8ibA1bjS3ug5kaxeoj0Cutccic71dg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>在浏览器里访问你的服务器公网IP，如果能看到下面的页面说明Nginx 可以正常工作。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF56FwicSjJIRtgqq4u0g4aOPHzwmSnDNQhKlC14D7Z6PaFLTUg4rwXic52w/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<h3 id="Jenkins-耗时比较久"><a href="#Jenkins-耗时比较久" class="headerlink" title="Jenkins (耗时比较久)"></a>Jenkins (耗时比较久)</h3><p>第一次接触Jenkins 可能会有很多疑问，Jenkins 是什么？能完成什么事情？我为什么要使用Jenkins 等诸如此类。很难讲清楚Jenkins 是什么东西，所以这里简单介绍一下Jenkins 可以做什么。简单来讲，你在任何一台服务器上进行的任何操作命令，Jenkins 都可以帮你完成，只要你提前在Jenkins上创建好任务，指定任务内容和触发时机，比如定时触发或者在特定的情况下触发。</p>
+<p>（1）安装</p>
+<p>Jenkins稳定版本list：pkg.jenkins-ci.org/redhat-stab…</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 科学上网会快一些，记得留意网站上java和jenkins版本匹配信息，别下错了</span><br><span class="line">wget http:&#x2F;&#x2F;pkg.jenkins-ci.org&#x2F;redhat-stable&#x2F;jenkins-2.204.5-1.1.noarch.rpm</span><br><span class="line">rpm -ivh jenkins-2.204.5-1.1.noarch.rpm</span><br></pre></td></tr></table></figure>
+
+<p>修改Jenkins端口，不冲突可不修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; line 56 JENKINS_PORT</span><br><span class="line">vi &#x2F;etc&#x2F;sysconfig&#x2F;jenkins</span><br></pre></td></tr></table></figure>
+
+<p>（2）启动</p>
+<p>启动jenkins</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">service jenkins start&#x2F;stop&#x2F;restart</span><br><span class="line">&#x2F;&#x2F; 密码位置</span><br><span class="line">&#x2F;var&#x2F;lib&#x2F;jenkins&#x2F;secrets&#x2F;initialAdminPassword</span><br></pre></td></tr></table></figure>
+
+<p>（3）访问</p>
+<p>访问服务器的8080端口，输入从上述位置获取的密码，点击继续</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF5684Bx7PCKUPd9d54FicIXXj2ialUeNhFibHaHRwGt7OyG0lGtlqSLECRCQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>创建一个账户然后登录</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF56liaKEpVh7ljVmVLmHoh9uicOZDy0WIpEYjQqukcFyZTNDwgkdhA4JRGw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>看到Jenkins 已就绪的页面表示安装已经完成，服务器准备工作到此结束。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF5688FftJQWtvcv4RMgDojzOQnJgnsEzkKB6GyghxE7ZbuFZkX2Fy6d5A/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<h1 id="02-代码准备"><a href="#02-代码准备" class="headerlink" title="02 代码准备"></a>02 代码准备</h1><h2 id="准备两份代码"><a href="#准备两份代码" class="headerlink" title="准备两份代码"></a>准备两份代码</h2><p>因为要做灰度部署，所以需要准备两份不一样的代码，以验证我们实施的灰度操作是否生效。这里选择使用Angular 的Angular-CLI 来创建代码。创建的项目并不简洁，但是胜在操作简单。我们一次性把两份代码准备好，简化开发侧工作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 安装angular-cli，前提是已经安装了node，如果没有node真的要去自行百度了...</span><br><span class="line">npm install -g @angular&#x2F;cli</span><br><span class="line">&#x2F;&#x2F; 快速创建一个新项目，一路回车</span><br><span class="line">ng new canaryDemocd canaryDemo</span><br><span class="line">&#x2F;&#x2F; 运行完这个命令后访问http:&#x2F;&#x2F;localhost:4200 查看页面信息</span><br><span class="line">ng serve</span><br></pre></td></tr></table></figure>
+
+<p>访问localhost 的4200 端口查看页面，然后把项目根目录下src 中的index.html 的title 改成A-CanaryDemo，可以看到页面会进行实时地刷新。在这个例子中，我们用title 来标识灰度发布过程中两边不同的服务需要部署的代码。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF56urAPRWZ8xXzIIA1DYuSR4jKkheXlKm42rHhXqO3NLqjsSw8W8pmQsQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>接下来，我们进行两次打包，两次打包的title 分别为A-CanaryDemo 和 B-CanaryDemo， 把这两个文件夹放好备用，作为一会灰度发布的新老代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng build --prod</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF56epffyZraorh1sQm6Z7TwiaAAsLx1Q7NAYp3jGAWWYibkTUn9HIw7VlXw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<h2 id="配置Nginx"><a href="#配置Nginx" class="headerlink" title="配置Nginx"></a>配置Nginx</h2><p>在上述完成Nginx 的安装操作时，我们访问服务器的IP 看到的是Nginx 的页面，现在我们想访问到自己的页面，首先把上面打包得到的A-CanaryDemo 发送到两台服务器上任意位置，这里我们把它放到/var/canaryDemo。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 将A-CanaryDemo 文件夹复制到你的公网服务器上，xx部分是你的服务器公网ip</span><br><span class="line">scp -r .&#x2F;dist&#x2F;A-CanaryDemo root@xx.xx.xx.xx:&#x2F;var&#x2F;canaryDemo</span><br></pre></td></tr></table></figure>
+
+<p>去服务器上/var 的位置上看一下，是否已经有了这个文件，如果有了的话，接着到下一步。即修改Nginx 配置把访问该服务器IP 的请求转发到我们刚刚上传上来的页面上。上面提到过可以通过nginx -t 这个命令来查看Nginx 配置文件的位置，在这一步，我们要去编辑那个文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi &#x2F;etc&#x2F;nginx&#x2F;nginx.conf</span><br></pre></td></tr></table></figure>
+
+<p>修改47-50行添加下图相关的内容，即将访问到该服务器IP 的流量转发到/var/canaryDemo 下的index.html.</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF56oiaW7YENLaria8DZ9tTbfUY363T2GEN9arquwtAI9kbqSibUgA3vzDnng/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>修改完毕，保存退出，重启一下nginx</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure>
+
+<p>这时候去访问我们服务器的IP 地址可以看到页面已经变成了刚刚我们在本地改的页面，而且title 确实是A-CanaryDemo。两台服务器都操作完成后，两边都可以访问到title 为A-CanaryDemo 的页面。此时的状态相当于生产环境已经在提供稳定服务的两台机器。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF56pnMHvXXhlAIMBpJOpJJVuvJpoBM0bKykcfdY1zYib68SzDOVtibXjSbw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<h1 id="03-定义灰度策略"><a href="#03-定义灰度策略" class="headerlink" title="03 定义灰度策略"></a>03 定义灰度策略</h1><p>接下来，我们要开始进行灰度发布的部分，在进行相关操作之前，我们需要定义一个灰度策略，即满足什么情况下的流量会走到灰度边，而其他流量走向正常边。这里为了简单起见，我们使用名字为canary 的cookie 来区分，如果检测到这个cookie 的值为devui，就访问灰度边机器，否则就访问正常边机器。按照此规则配置Nginx 结果如下，此处分别使用11.11.11.11和22.22.22.22代表两台服务器的IP地址：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"># Canary Deployment</span><br><span class="line">map $COOKIE_canary $group &#123;</span><br><span class="line">  # canary account</span><br><span class="line">  ~*devui$ server_canary;</span><br><span class="line">  default server_default;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">upstream server_canary &#123;</span><br><span class="line">  # 两台机器的IP，第一台设置端口号8000是为了防止nginx转发出现死循环导致页面报错</span><br><span class="line">  server 11.11.11.11:8000 weight&#x3D;1 max_fails&#x3D;1 fail_timeout&#x3D;30s;</span><br><span class="line">  server 22.22.22.22 weight&#x3D;1 max_fails&#x3D;1 fail_timeout&#x3D;30s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">upstream server_default &#123;</span><br><span class="line">  server 11.11.11.11:8000 weight&#x3D;2 max_fails&#x3D;1 fail_timeout&#x3D;30s;</span><br><span class="line">  server 22.22.22.22 weight&#x3D;2 max_fails&#x3D;1 fail_timeout&#x3D;30s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 相应地，要配置8000端口的转发规则，8000端口默认不开启访问，需要去云服务器控制台安全组新增8000</span><br><span class="line">server &#123;</span><br><span class="line">  listen 8000;</span><br><span class="line">  server_name _;</span><br><span class="line">  root &#x2F;var&#x2F;canaryDemo;</span><br><span class="line"></span><br><span class="line">  # Load configuration files for the default server block.</span><br><span class="line">  include &#x2F;etc&#x2F;nginx&#x2F;default.d&#x2F;*.conf;</span><br><span class="line"></span><br><span class="line">  location &#x2F; &#123;</span><br><span class="line">    root &#x2F;var&#x2F;canaryDemo;</span><br><span class="line">    index index.html;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">  listen 80 default_server;</span><br><span class="line">  listen [::]:80 default_server;</span><br><span class="line">  server_name _;</span><br><span class="line">  # root &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html;</span><br><span class="line">  root &#x2F;var&#x2F;canaryDemo;</span><br><span class="line"></span><br><span class="line">  # Load configuration files for the default server block.</span><br><span class="line">  include &#x2F;etc&#x2F;nginx&#x2F;default.d&#x2F;*.conf;</span><br><span class="line"></span><br><span class="line">  location &#x2F; &#123;</span><br><span class="line">    proxy_pass http:&#x2F;&#x2F;$group;</span><br><span class="line">    # root &#x2F;var&#x2F;canaryDemo;</span><br><span class="line">    # index index.html;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  error_page 404 &#x2F;404.html;</span><br><span class="line">    location &#x3D; &#x2F;40x.html &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  error_page 500 502 503 504 &#x2F;50x.html;</span><br><span class="line">  location &#x3D; &#x2F;50x.h</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此时，灰度流量和正常流量都会随机分配到AB两边的机器。下面，我们通过建立Jenkins 任务执行Nginx 文件修改的方式实现灰度发布。</p>
+<h1 id="04-实现灰度发布"><a href="#04-实现灰度发布" class="headerlink" title="04 实现灰度发布"></a>04 实现灰度发布</h1><h2 id="流程梳理"><a href="#流程梳理" class="headerlink" title="流程梳理"></a>流程梳理</h2><p>在创建用于实现灰度发布的Jenkins任务之前我们先梳理一下要达到灰度发布的目标需要哪几个任务，以及每个任务负责完成什么事情。灰度发布一般遵循这样的流程（假设我们有AB两台服务器用于提供生产环境的服务，我们称之为AB边）：</p>
+<p>（1）新代码部署到A边</p>
+<p>（2）符合灰度策略的小部分流量切到A边，剩余大部分流量仍去往B边</p>
+<p>（3）手动验证A边功能是否正常可用</p>
+<p>（4）验证无误后，大部分流量转到A边，灰度流量去往B边</p>
+<p>（5）手动验证B边功能是否正常可用</p>
+<p>（6）验证无误后，流量像往常一样均分到AB边</p>
+<h2 id="任务拆解"><a href="#任务拆解" class="headerlink" title="任务拆解"></a>任务拆解</h2><p>通过上述的拆解，我们得出灰度发布的6个步骤，其中（3）和（5）是需要手动验证的环节，所以我们以这两个任务为分割点，建立三个Jenkins 任务（Jenkins 任务建立在A 边机器上）如下：</p>
+<p>（1）Canary_A（灰度测试A），这个任务又包含两个部分，更新A边的代码，然后修改流量分发策略使得灰度流量到达A，其他流量到达B</p>
+<p>（2）Canary_AB（上线A灰度测试B），更新B边代码，灰度流量达到B，其他流量到达A</p>
+<p>（3）Canary_B（上线B），所有流量均分到AB</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF56ZUXCJ2IMzkCYu3NPz6U8qbPlp1uvUrU0Xqm8UhfHooCm3sHOiaftVLw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<h2 id="创建任务"><a href="#创建任务" class="headerlink" title="创建任务"></a>创建任务</h2><p>先按照任务拆解部分的设定创建三个FreeStyle 类型的Jenkins 任务，记得使用英文名字，中文名字后面建文件夹比较麻烦。任务详情信息可以不填，直接保存就好，下一步我们再来配置每个任务的具体信息。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF56KibVZDcGRG8Dl4QGvV2lhvAW75Hg63lDrFLfj2pgSmkrZYdIr9l3icng/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<h2 id="配置任务"><a href="#配置任务" class="headerlink" title="配置任务"></a>配置任务</h2><p>现在已经创建好了三个任务，先点击进入每一个任务进行一次空的构建（否则后面可能导致修改后的构建任务无法启动），然后我们来对每个任务进行详细的配置。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF56ia2vZDRM9EdVJkyWhW9lpiabacKXibatKybfmPOJrM7frDVNV8L1IgDlA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>现代前端项目都要进行构建打包这一步。但是廉价的云服务器在完成构建方面有些力不从心，CPU 经常爆表。<strong>所以我们在这里把打包出得出的生产包纳入git 管理，每次的代码更新会同步最新的生产包到github，因此Jenkins 任务把生产包拉下来，放在指定位置即可完成一次新代码的部署。</strong></p>
+<p>这一步操作，其实我们在之前就已经完成了，我们在上面打了两份tilte 不一样的生产包，此时可以派上用场了。</p>
+<p>首先来配置灰度测试A，这个任务内容上面也基本讲清楚了，首先要关联该任务到远程的github 仓库（需要手动创建一个，存放上面打包的B-CanaryDemo，并命名为dist）让它知道可以去哪里拉取最新代码。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF56SCibqPvIHiba2GW42IEgkRTqFYLSdiaiaoOD0j6St4u75ALsQsCZUJSMBA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>执行一次构建任务（在git fetch 那一步耗时不稳定，有时比较久），然后点击本次构建进去查看Console Output，可以确定执行Jenkins 任务的位置是位于服务器上的/var/lib/jenkins/workspace/Canary_A</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF56mpPDw4gI6eNNzs4YhKqOv3vic7lq45GdxSvYXEhiavH7uXsXRXZ8FZFg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF56PLnXtzSRtBcj1J6F85bKGh95nKjOJETyibzFUj7QC2XQJjFjQxXGP6Q/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>继续编辑灰度测试A 任务，添加build shell，也就是每次任务执行时要执行的命令：</p>
+<p>（1）先拉取最新的代码</p>
+<p>（2）把代码根目录下的dist目录复制到部署代码的位置，这里我们指定的位置是/var/canaryDemo</p>
+<p>（3）<strong>修改Nginx 配置</strong>使灰度流量到达A边</p>
+<p>就步骤（3）而言，修改灰度流量的方式其实就是<strong>选择性注释Nginx 配置文件</strong>中的内容，注释方式如下即可实现灰度测试A。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">upstream server_canary &#123;</span><br><span class="line">  # 灰度流量访问A 边</span><br><span class="line">  server 11.11.11.11:8080 weight&#x3D;1 max_fails&#x3D;1 fail_timeout&#x3D;30s;</span><br><span class="line">  # server 22.22.22.22 weight&#x3D;1 max_fails&#x3D;1 fail_timeout&#x3D;30s;</span><br><span class="line">&#125;</span><br><span class="line">upstream server_default &#123;</span><br><span class="line">  # 正常流量访问B 边，为了在修改文件的时候把这段的配置和上面的server_canary 区分开，我们把这里的weight 设为2</span><br><span class="line">  # server 11.11.11.11:8080 weight&#x3D;2 max_fails&#x3D;1 fail_timeout&#x3D;30s;</span><br><span class="line">  server 22.22.22.22 weight&#x3D;2 max_fails&#x3D;1 fail_timeout&#x3D;30s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这一步填写的shell 命令在使用jenkins 用户执行时可能会遇到权限问题，可以先用root 用户登录，把/var 目录的归属改为jenkins 用户，/etc/nginx/ngix.conf也需要新增可写权限。由此，最终得到的shell 命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git pull</span><br><span class="line">rm -rf &#x2F;var&#x2F;canaryDemo</span><br><span class="line">scp -r dist &#x2F;var&#x2F;canaryDemo</span><br><span class="line">sed -i &#39;s&#x2F;server 22.22.22.22 weight&#x3D;1&#x2F;# server 22.22.22.22 weight&#x3D;1&#x2F;&#39; &#x2F;etc&#x2F;nginx&#x2F;nginx.conf</span><br><span class="line">sed -i &#39;s&#x2F;server 11.11.11.11:8000 weight&#x3D;2&#x2F;# server 11.11.11.11:8000 weight&#x3D;2&#x2F;&#39; &#x2F;etc&#x2F;nginx&#x2F;nginx.conf</span><br><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz/1NOXMW586uvRITHTOwVf0IJ7EYGrwF563Xso7eb4LeQaBjsnBKuvBrNUyLraibiaIsogwzZPURYvibP30jiaA50N8w/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>灰度测试A 任务内容配置完成，接下来依次配置上线A 灰度测试B 和上线B。</p>
+<p>灰度测试B 的要执行的任务是把最新的代码拉到A 边（因为我们的Jenkins 任务都是建立在A 边的），复制dist 下的代码到B 边Nginx 指定访问位置，然后修改A 边Nginx 配置，使灰度流量到达B 边。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">git pull</span><br><span class="line">rm -rf canaryDemo</span><br><span class="line">mv dist canaryDemo</span><br><span class="line">scp -r canaryDemo root@xx.xx.xx.xx:&#x2F;var</span><br><span class="line">sed -i &#39;s&#x2F;# server 22.22.22.22 weight&#x3D;1&#x2F;server 22.22.22.22 weight&#x3D;1&#x2F;&#39; &#x2F;etc&#x2F;nginx&#x2F;nginx.conf</span><br><span class="line">sed -i &#39;s&#x2F;# server 11.11.11.11:8000 weight&#x3D;2&#x2F;server 11.11.11.11:8000 weight&#x3D;2&#x2F;&#39; &#x2F;etc&#x2F;nginx&#x2F;nginx.conf</span><br><span class="line">sed -i &#39;s&#x2F;server 22.22.22.22 weight&#x3D;2&#x2F;# server 22.22.22.22 weight&#x3D;2&#x2F;&#39; &#x2F;etc&#x2F;nginx&#x2F;nginx.conf</span><br><span class="line">sed -i &#39;s&#x2F;server 11.11.11.11:8000 weight&#x3D;1&#x2F;# server 11.11.11.11:8000 weight&#x3D;1&#x2F;&#39; &#x2F;etc&#x2F;nginx&#x2F;nginx.conf</span><br><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure>
+
+<p>这一步的任务内容涉及到从A 边服务器向B 边服务器发送代码，这个过程一般来说需要输入B 边服务器的密码。我们想要做到免密发送，因此要通过把A 边机器<del>/.ssh/id_rsa.pub 中的内容添加到B 边服务器</del>/.ssh/authorized_keys 中使得A 获得免密像B 发送文件的权限。</p>
+<p>上线B 则是通过取消对A 边Nginx 配置的注释使所有流量均分到AB 边.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sed -i &#39;s&#x2F;# server 22.22.22.22 weight&#x3D;2&#x2F;server 22.22.22.22 weight&#x3D;2&#x2F;&#39; &#x2F;etc&#x2F;nginx&#x2F;nginx.conf</span><br><span class="line">sed -i &#39;s&#x2F;# server 11.11.11.11:8000 weight&#x3D;1&#x2F;server 11.11.11.11:8000 weight&#x3D;1&#x2F;&#39; &#x2F;etc&#x2F;nginx&#x2F;nginx.conf</span><br><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure>
+
+<p>至此，我们就从零到一搭建了一个灰度发布环境。在代码更新后，通过手动执行Jenkins 任务的方式实现灰度部署和手工测试，保证新功能平滑上线。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本文从服务器准备、代码准备、灰度策略制定和实现灰度发布四个方面介绍了从零搭建一个灰度发布环境的必备流程。灰度发布的核心其实就是通过对Nginx 文件的修改实现流量的定向分发。内容颇为简单，但是从零到一的整个流程操作下来还是比较繁琐，希望各位看官能够有所收获。</p>
+<p>另外，这只是一个最简易的Demo，在真正的DevOps 开发过程中，还需要集成编译构建、代码检查、安全扫描和自动化测试用例等其他操作，期待后续团队的其他成员进行更多的专项扩展！</p>
+<p>转载自 <a href="https://mp.weixin.qq.com/s/R-e47j8qozr38tcr6Ntdhg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/R-e47j8qozr38tcr6Ntdhg</a></p>
+<p>jenkin详解 <a href="https://blog.csdn.net/miss1181248983/article/details/82840006" target="_blank" rel="noopener">https://blog.csdn.net/miss1181248983/article/details/82840006</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Nginx/" rel="tag"># Nginx</a>
+          
+            <a href="/tags/jenkins/" rel="tag"># jenkins</a>
+          
+            <a href="/tags/%E7%81%B0%E5%BA%A6%E5%8F%91%E5%B8%83/" rel="tag"># 灰度发布</a>
+          
+            <a href="/tags/%E9%87%91%E4%B8%9D%E9%9B%80%E5%8F%91%E5%B8%83/" rel="tag"># 金丝雀发布</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/05/31/nginx%E6%98%AF%E5%95%A5%E8%83%BD%E5%B9%B2%E5%95%A5/" rel="next" title="nginx是啥能干啥">
+                <i class="fa fa-chevron-left"></i> nginx是啥能干啥
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/06/09/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/" rel="prev" title="浏览器缓存那些事儿">
+                浏览器缓存那些事儿 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="Dali" />
+            
+              <p class="site-author-name" itemprop="name">Dali</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">175</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">163</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#01-服务器准备"><span class="nav-number">2.</span> <span class="nav-text">01 服务器准备</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#获取服务器"><span class="nav-number">2.1.</span> <span class="nav-text">获取服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工具安装"><span class="nav-number">2.2.</span> <span class="nav-text">工具安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Git"><span class="nav-number">2.2.1.</span> <span class="nav-text">Git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx"><span class="nav-number">2.2.2.</span> <span class="nav-text">Nginx</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jenkins-耗时比较久"><span class="nav-number">2.2.3.</span> <span class="nav-text">Jenkins (耗时比较久)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#02-代码准备"><span class="nav-number">3.</span> <span class="nav-text">02 代码准备</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备两份代码"><span class="nav-number">3.1.</span> <span class="nav-text">准备两份代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置Nginx"><span class="nav-number">3.2.</span> <span class="nav-text">配置Nginx</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#03-定义灰度策略"><span class="nav-number">4.</span> <span class="nav-text">03 定义灰度策略</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#04-实现灰度发布"><span class="nav-number">5.</span> <span class="nav-text">04 实现灰度发布</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#流程梳理"><span class="nav-number">5.1.</span> <span class="nav-text">流程梳理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#任务拆解"><span class="nav-number">5.2.</span> <span class="nav-text">任务拆解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建任务"><span class="nav-number">5.3.</span> <span class="nav-text">创建任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置任务"><span class="nav-number">5.4.</span> <span class="nav-text">配置任务</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dali</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

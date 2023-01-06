@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="DaliBlogs" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="前言 vue简洁好用体现在很多个地方，比如其内置了32+修饰符，可以很方便我们阻止冒泡、阻止默认事件、鼠标事件处理、系统键盘事件等等，让我们可以快速搞定业务，简直不要太方便噢！！！  耽误您15分钟您可以收获：  32+修饰符（包括事件修饰符、鼠标修饰符、表单修饰符、系统修饰符等等）的含义和使用 如何利用webpack动态注册vue路由，再也不手写路由配置啦！  文章中例子都放在了github源码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue之详解修饰符">
+<meta property="og:url" content="http://yoursite.com/2022/08/19/vue%E4%B9%8B%E8%AF%A6%E8%A7%A3%E4%BF%AE%E9%A5%B0%E7%AC%A6/index.html">
+<meta property="og:site_name" content="DaliBlogs">
+<meta property="og:description" content="前言 vue简洁好用体现在很多个地方，比如其内置了32+修饰符，可以很方便我们阻止冒泡、阻止默认事件、鼠标事件处理、系统键盘事件等等，让我们可以快速搞定业务，简直不要太方便噢！！！  耽误您15分钟您可以收获：  32+修饰符（包括事件修饰符、鼠标修饰符、表单修饰符、系统修饰符等等）的含义和使用 如何利用webpack动态注册vue路由，再也不手写路由配置啦！  文章中例子都放在了github源码">
+<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8bf9f3a07bf044f5881e196fd7730933~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9ff757d8a0904f4da77b1051dc8031cc~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0579937404114ec980e61572d3a531d5~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0579937404114ec980e61572d3a531d5~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/28fb4c8aa950422cb2f511f20476a579~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7dea152299474fc88099267b0f7b15a5~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/61c3bf9555d641b29114dc0e10eb1785~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c8de542cfc0144f39dbf8a24fd4831b1~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/717d4ff341384f8ab33416ff8f0d76c0~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c8de542cfc0144f39dbf8a24fd4831b1~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a6d99f414f654945ab9043abcd054cba~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d01328f0b77f4e3aa1692ed16b9bd152~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d1de2e0c2b314a56b4b55dba7dadfdb8~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2150bffbed4645b394cd73107561b127~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7dce732756c448aca45849780f94b15d~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b9f9b0c4660e41bca611a709ce33ac58~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d466428966a048d7a05694c1c35c88e4~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/24f12d21b93b4b66abb85dea2af7df06~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a643f046b61e48df888a58896530ac83~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4c0ac271083645fd85f9ffc374237852~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3d3bae674a03413e98f298a40409115f~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0e3d35fcece64eebb3ba9d2950516aef~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f1efec75b8744eb3b5eac560609b0850~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/dcef40ea05a24c47b8d7b3ae43794e6d~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="article:published_time" content="2022-08-19T02:00:53.000Z">
+<meta property="article:modified_time" content="2022-08-19T10:32:37.767Z">
+<meta property="article:author" content="Dali">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8bf9f3a07bf044f5881e196fd7730933~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2022/08/19/vue之详解修饰符/"/>
+
+
+
+
+
+  <title>vue之详解修饰符 | DaliBlogs</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DaliBlogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/08/19/vue%E4%B9%8B%E8%AF%A6%E8%A7%A3%E4%BF%AE%E9%A5%B0%E7%AC%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">vue之详解修饰符</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-08-19T10:00:53+08:00">
+                2022-08-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p>vue简洁好用体现在很多个地方，比如其内置了32+修饰符，可以很方便我们阻止冒泡、阻止默认事件、鼠标事件处理、系统键盘事件等等，让我们可以快速搞定业务，简直不要太方便噢！！！</p>
+</blockquote>
+<p>耽误您15分钟您可以收获：</p>
+<ol>
+<li>32+修饰符（包括事件修饰符、鼠标修饰符、表单修饰符、系统修饰符等等）的含义和使用</li>
+<li>如何利用webpack动态注册vue路由，再也不手写路由配置啦！</li>
+</ol>
+<p>文章中例子都放在了<a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fqianlongo%2Fvue-demos">github源码</a>上，也可以点击<a href="https://link.juejin.cn?target=https%3A%2F%2Fqianlongo.github.io%2Fvue-demos%2Fdist%2Findex.html%23%2Fhome">直接看例子</a></p>
+<h1 id="如何动态注册路由？"><a href="#如何动态注册路由？" class="headerlink" title="如何动态注册路由？"></a>如何动态注册路由？</h1><blockquote>
+<p>文中的每个修饰符例子都由一个页面承载，聪明的你肯定不想手动引入几十个.vue文件并配置路由.</p>
+</blockquote>
+<blockquote>
+<p>有什么办法可以帮我们自动完成路由注册呢？</p>
+</blockquote>
+<h2 id="1-文件目录结构"><a href="#1-文件目录结构" class="headerlink" title="1. 文件目录结构"></a>1. 文件目录结构</h2><blockquote>
+<p>目录结构（已去除其他文件目录）大概如下</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">├── package.json</span><br><span class="line">└── src</span><br><span class="line">    ├── App.vue</span><br><span class="line">    ├── main.js</span><br><span class="line">    ├── router.js</span><br><span class="line">    └── views</span><br><span class="line">        ├── About.vue</span><br><span class="line">        ├── Home.vue</span><br><span class="line">        └── modifiers</span><br><span class="line">            ├── capture.vue</span><br><span class="line">            ├── once.vue</span><br><span class="line">            ├── order.vue</span><br><span class="line">            ├── passive.vue</span><br><span class="line">            ├── prevent.vue</span><br><span class="line">            ├── self.vue</span><br><span class="line">            └── stop.vue</span><br><span class="line">            └── ...</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-期望的路由配置"><a href="#2-期望的路由配置" class="headerlink" title="2. 期望的路由配置"></a>2. 期望的路由配置</h2><blockquote>
+<p>最终给到<code>vue-router</code>的配置大概长下面这个样子，每个配置最重要的部分分别是<code>path</code>、<code>name</code>和<code>component</code></p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">"path"</span>: <span class="string">"/home"</span>,</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"home"</span>,</span><br><span class="line">    <span class="string">"component"</span>: &#123;</span><br><span class="line">      <span class="string">"name"</span>: <span class="string">"Home"</span>,</span><br><span class="line">      <span class="string">"methods"</span>: &#123;&#125;,</span><br><span class="line">      <span class="string">"staticRenderFns"</span>: [],</span><br><span class="line">      <span class="string">"_compiled"</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="string">"_scopeId"</span>: <span class="string">"data-v-fae5bece"</span>,</span><br><span class="line">      <span class="string">"beforeCreate"</span>: [</span><br><span class="line">        <span class="literal">null</span></span><br><span class="line">      ],</span><br><span class="line">      <span class="string">"beforeDestroy"</span>: [</span><br><span class="line">        <span class="literal">null</span></span><br><span class="line">      ],</span><br><span class="line">      <span class="string">"__file"</span>: <span class="string">"src/views/Home.vue"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">"path"</span>: <span class="string">"/modifiers/capture"</span>,</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"modifiersCapture"</span>,</span><br><span class="line">    <span class="string">"component"</span>: &#123;</span><br><span class="line">      <span class="string">"name"</span>: <span class="string">"capture"</span>,</span><br><span class="line">      <span class="string">"methods"</span>: &#123;&#125;,</span><br><span class="line">      <span class="string">"staticRenderFns"</span>: [],</span><br><span class="line">      <span class="string">"_compiled"</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="string">"_scopeId"</span>: <span class="string">"data-v-63b4eeee"</span>,</span><br><span class="line">      <span class="string">"beforeCreate"</span>: [</span><br><span class="line">        <span class="literal">null</span></span><br><span class="line">      ],</span><br><span class="line">      <span class="string">"beforeDestroy"</span>: [</span><br><span class="line">        <span class="literal">null</span></span><br><span class="line">      ],</span><br><span class="line">      <span class="string">"__file"</span>: <span class="string">"src/views/modifiers/capture.vue"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  ... <span class="comment">// 其他路由配置</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-require-context实现动态注册路由"><a href="#3-require-context实现动态注册路由" class="headerlink" title="3. require.context实现动态注册路由"></a>3. require.context实现动态注册路由</h2><blockquote>
+<p>借助<a href="https://link.juejin.cn?target=https%3A%2F%2Fwebpack.docschina.org%2Fguides%2Fdependency-management%2F">webpack require.context </a>的能力，可以非常方便地实现上面目录到路由配置的映射工作，源码如下</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> registerRoutes = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> contextInfo = <span class="built_in">require</span>.context(<span class="string">'./views'</span>, <span class="literal">true</span>, /.vue$/)</span><br><span class="line">  <span class="keyword">const</span> routes = contextInfo.keys().map(<span class="function">(<span class="params">filePath</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// filePath 形如 ./Home.vue、./modifiers/capture.vue</span></span><br><span class="line">    <span class="comment">// path我们希望是/home、/modifiers/capture</span></span><br><span class="line">    <span class="comment">// 所以需要把开头的./和.vue都替换为空</span></span><br><span class="line">    <span class="keyword">const</span> path = filePath.toLowerCase().replace(<span class="regexp">/^\.|\.vue/g</span>, <span class="string">''</span>)</span><br><span class="line">    <span class="comment">// name的话将/home、/modifiers/capture转成小驼峰即可</span></span><br><span class="line">    <span class="comment">// 把开头的/先替换掉，再把第一个/后的单词变成大写就可以了</span></span><br><span class="line">    <span class="keyword">const</span> name = path.replace(<span class="regexp">/^\//</span>, <span class="string">''</span>).replace(<span class="regexp">/\/(\w)/</span>, ($<span class="number">0</span>, $<span class="number">1</span>) =&gt; $<span class="number">1.</span>toUpperCase())</span><br><span class="line">    <span class="comment">// 通过require去读取.vue文件内容</span></span><br><span class="line">    <span class="keyword">const</span> component = <span class="built_in">require</span>(<span class="string">`./views<span class="subst">$&#123;filePath.replace(<span class="regexp">/^\./</span>, <span class="string">''</span>)&#125;</span>`</span>).default</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      path,</span><br><span class="line">      name,</span><br><span class="line">      component</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> routes</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong></p>
+<blockquote>
+<p>经过上面的简单处理，动态注册路由就完成啦！您也可以点击<a href="https://link.juejin.cn?target=https%3A%2F%2Fqianlongo.github.io%2Fvue-demos%2Fdist%2Findex.html%23%2Fhome">vue-demos</a>查看效果</p>
+</blockquote>
+<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8bf9f3a07bf044f5881e196fd7730933~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?" alt="dynamic-router.gif"></p>
+<h1 id="事件修饰符"><a href="#事件修饰符" class="headerlink" title="事件修饰符"></a>事件修饰符</h1><h2 id="1-阻止冒泡的两种方式"><a href="#1-阻止冒泡的两种方式" class="headerlink" title="1. 阻止冒泡的两种方式"></a>1. 阻止冒泡的两种方式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"parent"</span> @click=<span class="string">"onClickParent"</span>&gt;</span><br><span class="line">    我是爸爸</span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"child"</span> @click=<span class="string">"onClickChild"</span>&gt;</span><br><span class="line">      我是儿子</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt; </span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default &#123;</span></span><br><span class="line"><span class="regexp">  name: 'stop',</span></span><br><span class="line"><span class="regexp">  methods: &#123;</span></span><br><span class="line"><span class="regexp">    onClickParent () &#123;</span></span><br><span class="line"><span class="regexp">      console.log('我是爸爸')</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    onClickChild () &#123;</span></span><br><span class="line"><span class="regexp">      console.log('我是儿子')</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">复制代码</span></span><br></pre></td></tr></table></figure>
+
+<p>点<strong>击子节点</strong>的时候因为事件冒泡的缘故不仅会打印出<code>我是儿子</code>还会打印<code>我是爸爸</code>。有什么办法可以阻止子节点的<strong>事件冒泡</strong>呢？</p>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9ff757d8a0904f4da77b1051dc8031cc~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?" alt="stop2.gif"></p>
+<h3 id="1-stop"><a href="#1-stop" class="headerlink" title="1 .stop"></a>1 .stop</h3><blockquote>
+<p>只要加.stop修饰符即可，阻止事件冒泡的及简方式，很方便是不是。</p>
+</blockquote>
+<p>当添加上<code>.stop</code>修饰符时，只会出现<code>我是儿子</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"parent"</span> @click=<span class="string">"onClickParent"</span>&gt;</span><br><span class="line">    我是爸爸</span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"child"</span> @click.stop=<span class="string">"onClickChild"</span>&gt;</span><br><span class="line">      我是儿子</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt; </span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">复制代码</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0579937404114ec980e61572d3a531d5~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?" alt="stop.gif"></p>
+<h3 id="2-event-stopPropagation"><a href="#2-event-stopPropagation" class="headerlink" title="2. event.stopPropagation"></a>2. event.stopPropagation</h3><blockquote>
+<p>当然了，我们也可以通过调用<code>event.stopPropagation</code>来阻止冒泡。不过更加推荐修饰符的做法，这样你的函数会更加专注在逻辑处理上，而不用关心DOM事件细节</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">'stop'</span>,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    onClickChild (event) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'我是儿子'</span>)</span><br><span class="line">      event.stopPropagation()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0579937404114ec980e61572d3a531d5~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?" alt="stop.gif"></p>
+<h2 id="2-阻止默认事件的两种方式"><a href="#2-阻止默认事件的两种方式" class="headerlink" title="2. 阻止默认事件的两种方式"></a>2. 阻止默认事件的两种方式</h2><blockquote>
+<p>vue中阻止冒泡有两种方式，那阻止默认事件呢？</p>
+</blockquote>
+<h3 id="1-prevent"><a href="#1-prevent" class="headerlink" title="1 .prevent"></a>1 .prevent</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"prevent"</span>&gt;</span><br><span class="line">    &lt;a href=<span class="string">"https://juejin.cn/"</span> @click=<span class="string">"onNoPrevent"</span>&gt;点击跳转掘金&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">    &lt;br /</span>&gt;</span><br><span class="line">    &lt;br /&gt;</span><br><span class="line">    &lt;a href=<span class="string">"https://juejin.cn/"</span> @click.prevent=<span class="string">"onPrevent"</span>&gt;阻止默认事件，无法跳转掘金&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default &#123;</span></span><br><span class="line"><span class="regexp">  name: 'prevent',</span></span><br><span class="line"><span class="regexp">  methods: &#123;</span></span><br><span class="line"><span class="regexp">    onNoPrevent () &#123;</span></span><br><span class="line"><span class="regexp">      console.log('未阻止默认事件')</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    onPrevent () &#123;</span></span><br><span class="line"><span class="regexp">      console.log('阻止默认事件')</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">复制代码</span></span><br></pre></td></tr></table></figure>
+
+<p>只要添加<code>.prevent</code>轻松实现阻止默认事件</p>
+<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/28fb4c8aa950422cb2f511f20476a579~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?" alt="prevent.gif"></p>
+<h3 id="2-event-preventDefault"><a href="#2-event-preventDefault" class="headerlink" title="2.event.preventDefault()"></a>2.event.preventDefault()</h3><blockquote>
+<p>和阻止冒泡一样，我们也可以通过调用事件对象的<code>preventDefault</code>方法来阻止默认事件</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">'prevent'</span>,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    onPrevent (event) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'阻止默认事件'</span>)</span><br><span class="line">      event.preventDefault()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-capture"><a href="#3-capture" class="headerlink" title="3 .capture"></a>3 .capture</h2><blockquote>
+<p>默认情况下，事件流是以<code>冒泡</code>(由里向外)的形式传递的，如果想以<code>捕获（由外向里）</code>的形式应该怎么办呢？</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"capture parent"</span> @click.capture=<span class="string">"onClickParent"</span>&gt;</span><br><span class="line">    父节点</span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"child"</span> @click.capture=<span class="string">"onClickChild"</span>&gt;自节点&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default &#123;</span></span><br><span class="line"><span class="regexp">  name: 'capture',</span></span><br><span class="line"><span class="regexp">  methods: &#123;</span></span><br><span class="line"><span class="regexp">    onClickParent () &#123;</span></span><br><span class="line"><span class="regexp">      console.log('我是父节点')</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    onClickChild () &#123;</span></span><br><span class="line"><span class="regexp">      console.log('我是子节点')</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">复制代码</span></span><br></pre></td></tr></table></figure>
+
+<p>不加<code>catpture</code>修饰符，点击<strong>子节点</strong>会陆续打印我是父节点以及我是子节点，加了之后，则是反过来了</p>
+<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7dea152299474fc88099267b0f7b15a5~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?" alt="capture.gif"></p>
+<h2 id="4-self"><a href="#4-self" class="headerlink" title="4 .self"></a>4 .self</h2><blockquote>
+<p>只有当<code>event.target</code>是当前元素自身时才会触发事件回调函数</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"self"</span> @click.self=<span class="string">"onClickSelf"</span>&gt;</span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"inner"</span> @click=<span class="string">"onClickInner"</span>&gt;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default &#123;</span></span><br><span class="line"><span class="regexp">  name: 'self',</span></span><br><span class="line"><span class="regexp">  methods: &#123;</span></span><br><span class="line"><span class="regexp">    onClickSelf () &#123;</span></span><br><span class="line"><span class="regexp">      console.log('我是self节点')</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    onClickInner () &#123;</span></span><br><span class="line"><span class="regexp">      console.log('我是inner节点')</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">复制代码</span></span><br></pre></td></tr></table></figure>
+
+<p>不加<code>self</code>修饰符的话，点击<code>inner</code>节点也会触发<code>self</code>的事件，加了之后只有触发事件的元素本身是<code>self</code>，才会打印出<code>我是self节点</code></p>
+<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/61c3bf9555d641b29114dc0e10eb1785~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?" alt="self.gif"></p>
+<h2 id="暂停一下：修饰符的顺序如何理解？"><a href="#暂停一下：修饰符的顺序如何理解？" class="headerlink" title="暂停一下：修饰符的顺序如何理解？"></a>暂停一下：修饰符的顺序如何理解？</h2><blockquote>
+<p>已经回顾了4个修饰符，单独使用的时候很容易理解，但是注意官网有这么一句话</p>
+</blockquote>
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c8de542cfc0144f39dbf8a24fd4831b1~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?" alt="image.png"></p>
+<p><strong>怎么理解呢？我们来看两个栗子</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"order"</span>&gt;</span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"order-0"</span>&gt;</span><br><span class="line">      &lt;a href=<span class="string">"https://juejin.cn/"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"order-parent"</span> @click.self.prevent=<span class="string">"onClickParent"</span>&gt;</span><br><span class="line">        我是父节点，会跳转掘金</span><br><span class="line">        &lt;br /&gt;</span><br><span class="line">        &lt;span <span class="class"><span class="keyword">class</span></span>=<span class="string">"order-child"</span> @click=<span class="string">"onClickChild"</span>&gt;</span><br><span class="line">          我是子节点</span><br><span class="line">        &lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>a&gt;</span><br><span class="line">      &lt;hr /&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;div class="order-2"&gt;</span></span><br><span class="line"><span class="regexp">      &lt;a href="https:/</span><span class="regexp">/juejin.cn/</span><span class="string">" class="</span>order-parent<span class="string">" @click.prevent.self="</span>onClickParent<span class="string">"&gt;</span></span><br><span class="line"><span class="string">        我是父节点，无法跳转掘金</span></span><br><span class="line"><span class="string">        &lt;br /&gt;</span></span><br><span class="line"><span class="string">        &lt;span class="</span>order-child<span class="string">" @click="</span>onClickChild<span class="string">"&gt;</span></span><br><span class="line"><span class="string">          我是子节点</span></span><br><span class="line"><span class="string">        &lt;/span&gt;</span></span><br><span class="line"><span class="string">      &lt;/a&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">  &lt;/div&gt; </span></span><br><span class="line"><span class="string">&lt;/template&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">export default &#123;</span></span><br><span class="line"><span class="string">  name: 'order',</span></span><br><span class="line"><span class="string">  methods: &#123;</span></span><br><span class="line"><span class="string">    onClickParent () &#123;</span></span><br><span class="line"><span class="string">      console.log('我是父节点')</span></span><br><span class="line"><span class="string">    &#125;,</span></span><br><span class="line"><span class="string">    onClickChild () &#123;</span></span><br><span class="line"><span class="string">      console.log('我是子节点')</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">复制代码</span></span><br></pre></td></tr></table></figure>
+
+<p>您可以猜一下，上面的代码会发生什么，以下三点是可以明确的？</p>
+<ol>
+<li>首先可以明确的是点击上面和下面的子节点都不会触发父节点的点击事件</li>
+<li>点击下面的父节点会打印出<strong>我是父节点</strong>，但是<strong>不会跳转掘金</strong></li>
+<li>点击上面的父节点<strong>会</strong>打印出<strong>我是父节点</strong>,<strong>也不会跳转掘金</strong></li>
+</ol>
+<p>但是点击上面的子节点，父节点会不会跳转至掘金呢？答案是<strong>会</strong></p>
+<p><strong>为什么？</strong></p>
+<p><code>a@click.self.prevent=&quot;onClickParent&quot;</code>的意思是当点击的元素是a元素本身时，会阻止默认事件（可以解释3，不会发生跳转），并且执行<code>onClickParent</code>回调。</p>
+<p>而点击span元素时，由于冒泡的缘故，点击事件会传递给a，但是此时a会判断出该事件不是由自身触发的也就<code>不会阻止默认事件</code>(此时也就发生跳转了)，当然也不会触发<code>onClickParent</code>回调</p>
+<p>同理来我们分析一下<code>a@click.prevent.self=&quot;onClickParent&quot;</code></p>
+<p>不管是子节点还是自身点击，都是先阻止默认事件，只有当触发点击事件是a元素本身时才会执行<code>onClickParent</code>回调函数。</p>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/717d4ff341384f8ab33416ff8f0d76c0~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?" alt="order.gif"></p>
+<p><strong>回过头看，你理解事件的顺序含义了吗？</strong></p>
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c8de542cfc0144f39dbf8a24fd4831b1~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?" alt="image.png"></p>
+<h2 id="5-once"><a href="#5-once" class="headerlink" title="5. once"></a>5. once</h2><blockquote>
+<p>顾名思义，事件只会触发一次</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"once"</span> @click.once=<span class="string">"onClickOnce"</span>&gt;</span><br><span class="line">    只触发一次</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">'once'</span>,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    onClickOnce () &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'once，我只会触发一次点击事件回调'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>触发一次点击之后，任我再怎么点，回调怎也不会触发了。</p>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a6d99f414f654945ab9043abcd054cba~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?" alt="once.gif"></p>
+<h2 id="6-native"><a href="#6-native" class="headerlink" title="6 .native"></a>6 .native</h2><blockquote>
+<p>我们知道在自定义组件上，只能监听自定义事件，一些原生事件（比如click）是没有办法直接触发的，但是使用<code>.native</code>修饰符可以帮我们办到这点</p>
+</blockquote>
+<p><strong>native.vue</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"native-custom"</span>&gt;</span><br><span class="line">    &lt;input type=<span class="string">"text"</span> @keydown=<span class="string">"onKeydown"</span>&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">'nativeCustom'</span>,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    onKeydown () &#123;</span><br><span class="line">      <span class="keyword">this</span>.$emit(<span class="string">'onKeydown'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p><strong>custom.vue</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"native"</span>&gt;</span><br><span class="line">    &lt;!-- 加上.native之后原生事件才得以监听成功 --&gt;</span><br><span class="line">    &lt;NativeCustom @onKeydown=<span class="string">"onKeydown"</span> @click.native=<span class="string">"onClick"</span> /&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> NativeCustom <span class="keyword">from</span> <span class="string">'../../components/native.vue'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">'native'</span>,</span><br><span class="line">  components: &#123;</span><br><span class="line">    NativeCustom</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    onKeydown () &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'onKeydown'</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    onClick () &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'onClick'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d01328f0b77f4e3aa1692ed16b9bd152~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?" alt="native.gif"></p>
+<h2 id="7-passive"><a href="#7-passive" class="headerlink" title="7 .passive"></a>7 .passive</h2><blockquote>
+<p>vue对应 <a href="https://link.juejin.cn?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FEventTarget%2FaddEventListener%23Parameters"><code>addEventListener</code> 中的 <code>passive</code> 选项</a>提供了 <code>.passive</code> 修饰符</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 滚动事件的默认行为 (即滚动行为) 将会立即触发 --&gt;</span> </span><br><span class="line"><span class="comment">&lt;!-- 而不会等待 `onScroll` 完成 --&gt;</span> </span><br><span class="line"><span class="comment">&lt;!-- 这其中包含 `event.preventDefault()` 的情况 --&gt;</span> </span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-on:scroll.passive</span>=<span class="string">"onScroll"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p><strong>这个修饰符对于滚动性能的提升，一直没找到合适的例子，跪求广大掘友有例子啊</strong></p>
+<p><strong>这个修饰符对于滚动性能的提升，一直没找到合适的例子，跪求广大掘友有例子啊</strong></p>
+<p><strong>这个修饰符对于滚动性能的提升，一直没找到合适的例子，跪求广大掘友有例子啊</strong></p>
+<h1 id="v-bind修饰符"><a href="#v-bind修饰符" class="headerlink" title="v-bind修饰符"></a>v-bind修饰符</h1><h2 id="8-sync"><a href="#8-sync" class="headerlink" title="8 .sync"></a>8 .sync</h2><blockquote>
+<p>当我们想要在<code>父组件</code>和<code>子组件</code>之间对某个属性值进行双向绑定时,有什么便捷的方式？是的只要<code>.sync</code>修饰符即可办到</p>
+</blockquote>
+<p><strong>父组件</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"sync-parent"</span>&gt;</span><br><span class="line">    我是父组件: &#123;&#123; text &#125;&#125;</span><br><span class="line">    &lt;Child :text.sync=<span class="string">"text"</span> /&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Child <span class="keyword">from</span> <span class="string">'./child.vue'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">'SyncParent'</span>,</span><br><span class="line">  data () &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      text: <span class="string">'parent'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  components: &#123;</span><br><span class="line">    Child,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p><strong>子组件</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"child"</span>&gt;</span><br><span class="line">    我是子组件: </span><br><span class="line">    &lt;input type=<span class="string">"text"</span> v-model=<span class="string">"value"</span> @input=<span class="string">"onInput"</span>&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">'child'</span>,</span><br><span class="line">  props: &#123;</span><br><span class="line">    text: &#123;</span><br><span class="line">      type: <span class="built_in">String</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  data () &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      value: <span class="keyword">this</span>.text</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    onInput () &#123;</span><br><span class="line">      <span class="comment">// 注意这里，必须是update:xxx的形式xxx即属性prop</span></span><br><span class="line">      <span class="keyword">this</span>.$emit(<span class="string">'update:text'</span>, <span class="keyword">this</span>.value)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d1de2e0c2b314a56b4b55dba7dadfdb8~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?" alt="sync.gif"></p>
+<h2 id="9-camel"><a href="#9-camel" class="headerlink" title="9 .camel"></a>9 .camel</h2><blockquote>
+<p><code>.camel</code> 修饰符允许在使用 DOM 模板时将 <code>v-bind</code> property 名称驼峰化，例如 SVG 的 <code>viewBox</code> property：</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;svg :view-box.camel=<span class="string">"viewBox"</span>&gt;&lt;<span class="regexp">/svg&gt;</span></span><br><span class="line"><span class="regexp">复制代码</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="10-prop"><a href="#10-prop" class="headerlink" title="10 .prop"></a>10 .prop</h2><blockquote>
+<p>关于.prop修饰符官网只有这句话 <code>.prop</code> 作为一个 DOM property 绑定而不是作为 attribute 绑定。`。</p>
+</blockquote>
+<p><strong>有啥作用？</strong></p>
+<ol>
+<li>通过自定义属性存储变量，避免暴露数据</li>
+<li>防止污染 HTML 结构</li>
+</ol>
+<p>比如有以下代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"prop"</span>&gt;</span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"prop-item"</span> :my-name=<span class="string">"prop"</span>&gt;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ 最终变成了 &lt;div my-name="hello prop" class="prop-item"&gt;&lt;/</span>div&gt;</span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"prop-item"</span> :my-name.prop=<span class="string">"prop2"</span>&gt;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ 最终变成了&lt;div class="prop-item"&gt;&lt;/</span>div&gt;</span><br><span class="line">    &lt;button @click=<span class="string">"onGetResult"</span>&gt;获取结果&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default &#123;</span></span><br><span class="line"><span class="regexp">  name: 'prop',</span></span><br><span class="line"><span class="regexp">  data () &#123;</span></span><br><span class="line"><span class="regexp">    return &#123;</span></span><br><span class="line"><span class="regexp">      prop: 'hello prop',</span></span><br><span class="line"><span class="regexp">      prop2: 'hello prop2'</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">  methods: &#123;</span></span><br><span class="line"><span class="regexp">    onGetResult () &#123;</span></span><br><span class="line"><span class="regexp">      const $refProp = this.$refs.prop</span></span><br><span class="line"><span class="regexp">      const $refProp2 = this.$refs.prop2</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">      console.log($refProp.getAttribute('my-name')) /</span><span class="regexp">/ hello prop</span></span><br><span class="line"><span class="regexp">      console.log($refProp2.getAttribute('my-name')) /</span><span class="regexp">/ null</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">复制代码</span></span><br></pre></td></tr></table></figure>
+
+<p>从示例上可以看出未使用<code>.prop</code>修饰符的<code>my-name</code>属性会绑定到dom节点的attribute，从而出现暴露的情况。</p>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2150bffbed4645b394cd73107561b127~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?" alt="prop.gif"></p>
+<h1 id="鼠标修饰符"><a href="#鼠标修饰符" class="headerlink" title="鼠标修饰符"></a>鼠标修饰符</h1><blockquote>
+<p>当咱们想监听用户点击了<code>左键</code>、<code>右键</code>或者<code>中键</code>时也有修饰符可以快捷使用，分别是<code>.left</code>、<code>.right</code>、<code>middle</code>，来看个例子试试</p>
+</blockquote>
+<p>根据<a href="https://link.juejin.cn?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FAPI%2FMouseEvent%2Fbutton">MDN MouseEvent.button</a>，介绍。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7dce732756c448aca45849780f94b15d~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?" alt="image.png"></p>
+<p>在最外层<code>div.mouse</code>监听<code>mousedown</code>事件，看下用户点击的是鼠标哪个键，三个<code>button</code>分别用三个修饰符快捷方式监听<code>左键</code>、<code>中键</code>、<code>右键</code>并打印出<code>left</code>、<code>middle</code>、<code>right</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"mouse"</span> @mousedown=<span class="string">"onMousedown"</span>&gt;</span><br><span class="line">    &lt;button @click.left=<span class="string">"onClickBtn('left')"</span>&gt;left&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">    &lt;button @click.middle="onClickBtn('middle')"&gt;middle&lt;/</span>button&gt;</span><br><span class="line">    &lt;button @click.right=<span class="string">"onClickBtn('right')"</span>&gt;right&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default &#123;</span></span><br><span class="line"><span class="regexp">  name: 'mouse',</span></span><br><span class="line"><span class="regexp">  mounted () &#123;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">  methods: &#123;</span></span><br><span class="line"><span class="regexp">    onClickBtn (msg) &#123;</span></span><br><span class="line"><span class="regexp">      console.log(msg)</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    onMousedown (event) &#123;</span></span><br><span class="line"><span class="regexp">      const mosueMsgMap = &#123;</span></span><br><span class="line"><span class="regexp">        0: '鼠标左键',</span></span><br><span class="line"><span class="regexp">        1: '鼠标中键',</span></span><br><span class="line"><span class="regexp">        2: '鼠标右键'</span></span><br><span class="line"><span class="regexp">      &#125;</span></span><br><span class="line"><span class="regexp">      console.log('点击了', mosueMsgMap[event.button])</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">复制代码</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>没有带鼠标回来，中键点击暂时不能演示，后续会补上</strong></p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b9f9b0c4660e41bca611a709ce33ac58~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?" alt="mouse.gif"></p>
+<h2 id="11-left"><a href="#11-left" class="headerlink" title="11 .left"></a>11 .left</h2><blockquote>
+<p>同上例子，监听鼠标左键点击</p>
+</blockquote>
+<h2 id="12-right"><a href="#12-right" class="headerlink" title="12 .right"></a>12 .right</h2><blockquote>
+<p>同上例子，监听鼠标右键点击</p>
+</blockquote>
+<h2 id="13-middle"><a href="#13-middle" class="headerlink" title="13 .middle"></a>13 .middle</h2><blockquote>
+<p>同上例子，监听鼠标中键点击</p>
+</blockquote>
+<h1 id="表单相关修饰符"><a href="#表单相关修饰符" class="headerlink" title="表单相关修饰符"></a>表单相关修饰符</h1><h2 id="14-trim"><a href="#14-trim" class="headerlink" title="14 .trim"></a>14 .trim</h2><blockquote>
+<p>对于输入的内容，希望可以<code>过滤首尾空格</code>应该怎么做呢？</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"trim"</span>&gt;</span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"trim-item"</span>&gt;</span><br><span class="line">      &lt;input type=<span class="string">"text"</span> v-model=<span class="string">"name"</span>&gt;</span><br><span class="line">      &lt;p&gt;用户名：&lt;span&gt;&#123;&#123; name &#125;&#125;&lt;<span class="regexp">/span&gt;&lt;/</span>p&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;div class="trim-item"&gt;</span></span><br><span class="line"><span class="regexp">      &lt;input type="text" v-model.trim="name2"&gt;</span></span><br><span class="line"><span class="regexp">      &lt;p&gt;用户名2：&lt;span&gt;&#123;&#123; name2 &#125;&#125;&lt;/</span>span&gt;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">'trim'</span>,</span><br><span class="line">  data () &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      name: <span class="string">''</span>,</span><br><span class="line">      name2: <span class="string">''</span>,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  watch: &#123;</span><br><span class="line">    name (newVal) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">`'----<span class="subst">$&#123;newVal&#125;</span>----'`</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    name2 (newVal) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">`'----<span class="subst">$&#123;newVal&#125;</span>----'`</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p><strong>.trim修饰符可以很方便做到</strong></p>
+<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d466428966a048d7a05694c1c35c88e4~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?" alt="trim.gif"></p>
+<h2 id="15-lazy"><a href="#15-lazy" class="headerlink" title="15 .lazy"></a>15 .lazy</h2><blockquote>
+<p><code>v-model</code>大家都很熟悉，默认情况下，每次<code>input事件</code>触发的时候都会将输入框的值与其绑定的数据进行实时同步。但是如果想要实现光标离开的时候再更新数据如何实现呢？</p>
+</blockquote>
+<p><strong>思路1：</strong> 绑定change事件，在事件回调中手动获取target的值</p>
+<p><strong>思路2：</strong> 直接使用<code>.lazy</code>修饰符即可达到效果</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"lazy"</span>&gt;</span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"lazy-item"</span>&gt;</span><br><span class="line">      &lt;input type=<span class="string">"text"</span> v-model=<span class="string">"text"</span>&gt;</span><br><span class="line">      &lt;p&gt;无.lazy: &#123;&#123; text &#125;&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"lazy-item"</span>&gt;</span><br><span class="line">      &lt;input type=<span class="string">"text"</span> v-model.lazy=<span class="string">"text2"</span>&gt;</span><br><span class="line">      &lt;p&gt;.lazy: &#123;&#123; text2 &#125;&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">'lazy'</span>,</span><br><span class="line">  data () &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      text: <span class="string">''</span>,</span><br><span class="line">      text2: <span class="string">''</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>可以看到添加了.lazy修饰符之后，第二个输入框输入的值不会实时反应在下面，而是光标离开实，<code>text2</code>的数据才更新了</p>
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/24f12d21b93b4b66abb85dea2af7df06~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?" alt="lazy.gif"></p>
+<h2 id="16-number"><a href="#16-number" class="headerlink" title="16 .number"></a>16 .number</h2><blockquote>
+<p>我们知道<code>input</code>输入框的<code>type</code>哪怕是<code>number</code>得到的值的类型也是<code>string</code>，如果我们想直接拿到<code>number</code>类型的数据，有不想麻烦的手动转换应该怎么办呢？</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"number"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"number-item"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>无.number <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"number"</span> <span class="attr">v-model</span>=<span class="string">"number"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"number-item"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>type:text .number <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model.number</span>=<span class="string">"number1"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"number-item"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>type:number .number <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"number"</span> <span class="attr">v-model.number</span>=<span class="string">"number2"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  name: 'lazy',</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      number: 0,</span><br><span class="line">      number1: '',</span><br><span class="line">      number2: '',</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  watch: &#123;</span><br><span class="line">    number (newVal) &#123;</span><br><span class="line">      console.log(typeof newVal, newVal)</span><br><span class="line">    &#125;,</span><br><span class="line">    number1 (newVal) &#123;</span><br><span class="line">      console.log(typeof newVal, newVal)</span><br><span class="line">    &#125;,</span><br><span class="line">    number2 (newVal) &#123;</span><br><span class="line">      console.log(typeof newVal, newVal)</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>第一个输入框的类型是number，但是得到的值是string</li>
+<li>第二个输入框的类型是text,但是添加了number修饰符，得到的值可以是number（如果这个值无法被 <code>parseFloat()</code> 解析，则会返回原始的值。）</li>
+<li>第三个输入框的类型是number，最后得到的值也是number</li>
+</ol>
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a643f046b61e48df888a58896530ac83~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?" alt="number.gif"></p>
+<h1 id="系统修饰符"><a href="#系统修饰符" class="headerlink" title="系统修饰符"></a>系统修饰符</h1><blockquote>
+<p>当点击事件或者键盘事件需要系统键同时按下才触发时<code>.ctrl</code>、<code>.alt</code>、<code>.shift</code>、<code>.meta</code>可以帮大忙噢！</p>
+</blockquote>
+<p><strong>如下代码</strong></p>
+<ol>
+<li>全局监听keydown事件，尝试看<code>.ctrl</code>、<code>.alt</code>、<code>.shift</code>、<code>.meta</code>是否被按下</li>
+<li>分别给四个按钮加上 <code>.ctrl</code>、<code>.alt</code>、<code>.shift</code>、<code>.meta</code>修饰符并配合点击事件，验证是否同时按下指定按键，再点击才会生效</li>
+</ol>
+<p><strong>注明：电脑ctrl键 + 点击估计和浏览器快捷配置冲突了，导致没触发</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"system"</span>&gt;</span><br><span class="line">    &lt;p&gt;&#123;&#123; msg &#125;&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">    &lt;div class="buttons"&gt;</span></span><br><span class="line"><span class="regexp">      &lt;button @click.ctrl="onClickButon('ctrl')"&gt;ctrl&lt;/</span>button&gt;</span><br><span class="line">      &lt;button @click.alt=<span class="string">"onClickButon('alt')"</span>&gt;alt&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">      &lt;button @click.shift="onClickButon('shift')"&gt;shift&lt;/</span>button&gt;</span><br><span class="line">      &lt;button @click.meta=<span class="string">"onClickButon('meta')"</span>&gt;meta&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;  </span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">'system'</span>,</span><br><span class="line">  data () &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      msg: <span class="string">''</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted () &#123;</span><br><span class="line">    <span class="keyword">this</span>.onListenSystemKeyDown()</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    onListenSystemKeyDown () &#123;</span><br><span class="line">      <span class="built_in">document</span>.addEventListener(<span class="string">'keydown'</span>, (event) =&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> msg = <span class="string">'按下了'</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (event.ctrlKey) &#123;</span><br><span class="line">          msg += <span class="string">'ctrl键'</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (event.altKey) &#123;</span><br><span class="line">          msg += <span class="string">'alt键'</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (event.shiftKey) &#123;</span><br><span class="line">          msg += <span class="string">'shift键'</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (event.metaKey) &#123;</span><br><span class="line">          msg += <span class="string">'meta键'</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          msg += <span class="string">'其他键'</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">this</span>.msg = msg</span><br><span class="line">      &#125;, <span class="literal">false</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    onClickButon (key) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">`只有同时按下<span class="subst">$&#123;key&#125;</span>键，点击事件才会发生`</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4c0ac271083645fd85f9ffc374237852~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?" alt="system.gif"></p>
+<h2 id="17-ctrl"><a href="#17-ctrl" class="headerlink" title="17 .ctrl"></a>17 .ctrl</h2><blockquote>
+<p>仅在按下ctrl按键时才触发鼠标或键盘事件的监听器，详细例子请看上面</p>
+</blockquote>
+<h2 id="18-alt"><a href="#18-alt" class="headerlink" title="18 .alt"></a>18 .alt</h2><blockquote>
+<p>仅在按下alt按键时才触发鼠标或键盘事件的监听器，详细例子请看上面</p>
+</blockquote>
+<h2 id="19-shift"><a href="#19-shift" class="headerlink" title="19 .shift"></a>19 .shift</h2><blockquote>
+<p>仅在按下shift按键时才触发鼠标或键盘事件的监听器，详细例子请看上面</p>
+</blockquote>
+<h2 id="20-meta"><a href="#20-meta" class="headerlink" title="20 .meta"></a>20 .meta</h2><blockquote>
+<p>仅在按下meta按键时才触发鼠标或键盘事件的监听器，详细例子请看上面</p>
+</blockquote>
+<h2 id="21-exact"><a href="#21-exact" class="headerlink" title="21 .exact"></a>21 .exact</h2><blockquote>
+<p>严格来说这<code>.exact</code>不属于系统修饰符，只是上面例子的写法有一个现象，同时按下几个系统修饰键（例如alt和shift）既可以触发<code>.alt</code>也可以触发<code>.shift</code>。</p>
+</blockquote>
+<p>还是用上面的例子，看一下下面的gif, 此时我同时按下了alt和shift，对应的两个事件都可以触发</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3d3bae674a03413e98f298a40409115f~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?" alt="system2.gif"></p>
+<ol>
+<li><strong>只想某个系统修饰键按下时才触发点击</strong></li>
+<li><strong>没有任何系统修饰符被按下的时候才触发点击</strong></li>
+</ol>
+<p>要实现上面的需求<code>.exact</code>就派上用场了，用上面的例子稍作改造</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"extra"</span>&gt;</span><br><span class="line">    &lt;p&gt;&#123;&#123; msg &#125;&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">    &lt;div class="buttons"&gt;</span></span><br><span class="line"><span class="regexp">      &lt;button @click.ctrl.exact="onClickButon('ctrl')"&gt;ctrl&lt;/</span>button&gt;</span><br><span class="line">      &lt;button @click.alt.exact=<span class="string">"onClickButon('alt')"</span>&gt;alt&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">      &lt;button @click.shift.exact="onClickButon('shift')"&gt;shift&lt;/</span>button&gt;</span><br><span class="line">      &lt;button @click.meta.exact=<span class="string">"onClickButon('meta')"</span>&gt;meta&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">      &lt;button @click.exact="onClickButon('非系统键')"&gt;非系统键&lt;/</span>button&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;  </span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default &#123;</span></span><br><span class="line"><span class="regexp">  name: 'extra',</span></span><br><span class="line"><span class="regexp">  data () &#123;</span></span><br><span class="line"><span class="regexp">    return &#123;</span></span><br><span class="line"><span class="regexp">      msg: ''</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">  mounted () &#123;</span></span><br><span class="line"><span class="regexp">    this.onListenSystemKeyDown()</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">  methods: &#123;</span></span><br><span class="line"><span class="regexp">    onListenSystemKeyDown () &#123;</span></span><br><span class="line"><span class="regexp">      document.addEventListener('keydown', (event) =&gt; &#123;</span></span><br><span class="line"><span class="regexp">        let msg = '按下了'</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">        if (event.ctrlKey) &#123;</span></span><br><span class="line"><span class="regexp">          msg += 'ctrl键'</span></span><br><span class="line"><span class="regexp">        &#125; else if (event.altKey) &#123;</span></span><br><span class="line"><span class="regexp">          msg += 'alt键'</span></span><br><span class="line"><span class="regexp">        &#125; else if (event.shiftKey) &#123;</span></span><br><span class="line"><span class="regexp">          msg += 'shift键'</span></span><br><span class="line"><span class="regexp">        &#125; else if (event.metaKey) &#123;</span></span><br><span class="line"><span class="regexp">          msg += 'meta键'</span></span><br><span class="line"><span class="regexp">        &#125; else &#123;</span></span><br><span class="line"><span class="regexp">          msg += '其他键'</span></span><br><span class="line"><span class="regexp">        &#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">        this.msg = msg</span></span><br><span class="line"><span class="regexp">      &#125;, false)</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    onClickButon (key) &#123;</span></span><br><span class="line"><span class="regexp">      console.log(`只有同时按下$&#123;key&#125;键，点击事件才会发生`)</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">复制代码</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0e3d35fcece64eebb3ba9d2950516aef~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?" alt="extra.gif"></p>
+<h1 id="按键修饰符"><a href="#按键修饰符" class="headerlink" title="按键修饰符"></a>按键修饰符</h1><blockquote>
+<p>在监听键盘事件时，我们经常需要检查详细的按键再执行对应的逻辑，vue也为我们内置了至少11+的按键修饰符。</p>
+</blockquote>
+<p>如下代码，我们分别给<code>enter</code>、<code>tab</code>、<code>delete</code>等按键指定了<code>keydown</code>事件，当在指定的输入框中按下指定的键盘，会打印出<code>enter</code>、<code>tab</code>、<code>delete</code>等，其他按键在输入框中无法触发该console</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"key-modifiers"</span>&gt;</span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"key-modifiers-item"</span>&gt;</span><br><span class="line">      enter:</span><br><span class="line">      &lt;input type=<span class="string">"text"</span> @keydown.enter=<span class="string">"onKeydown('enter')"</span>&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;div class="key-modifiers-item"&gt;</span></span><br><span class="line"><span class="regexp">      tab:</span></span><br><span class="line"><span class="regexp">      &lt;input type="text" @keydown.tab="onKeydown('tab')"&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;  </span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"key-modifiers-item"</span>&gt;</span><br><span class="line">      <span class="keyword">delete</span>:</span><br><span class="line">      &lt;input type=<span class="string">"text"</span> @keydown.delete=<span class="string">"onKeydown('delete')"</span>&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;  </span></span><br><span class="line"><span class="regexp">    &lt;div class="key-modifiers-item"&gt;</span></span><br><span class="line"><span class="regexp">      esc:</span></span><br><span class="line"><span class="regexp">      &lt;input type="text" @keydown.esc="onKeydown('esc')"&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;  </span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"key-modifiers-item"</span>&gt;</span><br><span class="line">      space:</span><br><span class="line">      &lt;input type=<span class="string">"text"</span> @keydown.space=<span class="string">"onKeydown('space')"</span>&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt; </span></span><br><span class="line"><span class="regexp">    &lt;div class="key-modifiers-item"&gt;</span></span><br><span class="line"><span class="regexp">      up:</span></span><br><span class="line"><span class="regexp">      &lt;input type="text" @keydown.up="onKeydown('up')"&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;  </span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"key-modifiers-item"</span>&gt;</span><br><span class="line">      down:</span><br><span class="line">      &lt;input type=<span class="string">"text"</span> @keydown.down=<span class="string">"onKeydown('down')"</span>&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt; </span></span><br><span class="line"><span class="regexp">    &lt;div class="key-modifiers-item"&gt;</span></span><br><span class="line"><span class="regexp">      left:</span></span><br><span class="line"><span class="regexp">      &lt;input type="text" @keydown.left="onKeydown('left')"&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;  </span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"key-modifiers-item"</span>&gt;</span><br><span class="line">      right:</span><br><span class="line">      &lt;input type=<span class="string">"text"</span> @keydown.right=<span class="string">"onKeydown('right')"</span>&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;  </span></span><br><span class="line"><span class="regexp">    </span></span><br><span class="line"><span class="regexp">    &lt;div class="key-modifiers-item"&gt;</span></span><br><span class="line"><span class="regexp">      page-down:</span></span><br><span class="line"><span class="regexp">      &lt;input type="text" @keydown.page-down="onKeydown('page-down')"&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;  </span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"key-modifiers-item"</span>&gt;</span><br><span class="line">      page-up:</span><br><span class="line">      &lt;input type=<span class="string">"text"</span> @keydown.page-up=<span class="string">"onKeydown('page-up')"</span>&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;  </span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default &#123;</span></span><br><span class="line"><span class="regexp">  name: 'keyModifiers',</span></span><br><span class="line"><span class="regexp">  methods: &#123;</span></span><br><span class="line"><span class="regexp">    onKeydown (keyName) &#123;</span></span><br><span class="line"><span class="regexp">      console.log(keyName)</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">复制代码</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f1efec75b8744eb3b5eac560609b0850~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?" alt="key-modifiers.gif"></p>
+<h2 id="22-enter"><a href="#22-enter" class="headerlink" title="22 .enter"></a>22 .enter</h2><blockquote>
+<p>在按下enter按键时才触发鼠标或键盘事件的监听器，详细例子请看上面</p>
+</blockquote>
+<h2 id="23-tab"><a href="#23-tab" class="headerlink" title="23 .tab"></a>23 .tab</h2><blockquote>
+<p>在按下tab按键时才触发鼠标或键盘事件的监听器，详细例子请看上面</p>
+</blockquote>
+<h2 id="24-delete"><a href="#24-delete" class="headerlink" title="24 .delete"></a>24 .delete</h2><blockquote>
+<p>在按下delete按键时才触发鼠标或键盘事件的监听器，详细例子请看上面</p>
+</blockquote>
+<h2 id="25-esc"><a href="#25-esc" class="headerlink" title="25 .esc"></a>25 .esc</h2><blockquote>
+<p>在按下esc按键时才触发鼠标或键盘事件的监听器，详细例子请看上面</p>
+</blockquote>
+<h2 id="26-space"><a href="#26-space" class="headerlink" title="26 .space"></a>26 .space</h2><blockquote>
+<p>在按下space按键时才触发鼠标或键盘事件的监听器，详细例子请看上面</p>
+</blockquote>
+<h2 id="27-up"><a href="#27-up" class="headerlink" title="27 .up"></a>27 .up</h2><blockquote>
+<p>在按下up按键时才触发鼠标或键盘事件的监听器，详细例子请看上面</p>
+</blockquote>
+<h2 id="28-down"><a href="#28-down" class="headerlink" title="28 .down"></a>28 .down</h2><blockquote>
+<p>在按下down按键时才触发鼠标或键盘事件的监听器，详细例子请看上面</p>
+</blockquote>
+<h2 id="29-left"><a href="#29-left" class="headerlink" title="29 .left"></a>29 .left</h2><blockquote>
+<p>在按下left按键时才触发鼠标或键盘事件的监听器，详细例子请看上面</p>
+</blockquote>
+<h2 id="30-right"><a href="#30-right" class="headerlink" title="30 .right"></a>30 .right</h2><blockquote>
+<p>在按下right按键时才触发鼠标或键盘事件的监听器，详细例子请看上面</p>
+</blockquote>
+<h2 id="31-page-down"><a href="#31-page-down" class="headerlink" title="31 .page-down"></a>31 .page-down</h2><blockquote>
+<p>在按下(fn + down)按键时才触发鼠标或键盘事件的监听器，详细例子请看上面</p>
+</blockquote>
+<h2 id="32-page-up"><a href="#32-page-up" class="headerlink" title="32 .page-up"></a>32 .page-up</h2><blockquote>
+<p>在按下(fn + up)按键时才触发鼠标或键盘事件的监听器，详细例子请看上面</p>
+</blockquote>
+<h1 id="如何自定义按键修饰符"><a href="#如何自定义按键修饰符" class="headerlink" title="如何自定义按键修饰符"></a>如何自定义按键修饰符</h1><blockquote>
+<p>vue本身给我们内置了很多实用的按键修饰符，大部分情况下可以满足我们的日常需求了，那么有没有办法可以自定义按键修饰符呢？</p>
+</blockquote>
+<p>通过以下配置即可定义一个属于我们自己的按键修饰符, 比如我们定义q为按下q的快捷键。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Vue.config.keyCodes = &#123;</span><br><span class="line">  q: <span class="number">81</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"custom"</span>&gt;</span><br><span class="line">  &lt;input type=<span class="string">"text"</span> @keydown.q=<span class="string">"f1Keydown"</span>&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default &#123;</span></span><br><span class="line"><span class="regexp">  name: 'custom',</span></span><br><span class="line"><span class="regexp">  methods: &#123;</span></span><br><span class="line"><span class="regexp">    f1Keydown () &#123;</span></span><br><span class="line"><span class="regexp">      console.log('按下了q')</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">复制代码</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/dcef40ea05a24c47b8d7b3ae43794e6d~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?" alt="custom.gif"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/08/15/vue-config-js%E8%AF%A6%E8%A7%A3/" rel="next" title="vue.config.js详解">
+                <i class="fa fa-chevron-left"></i> vue.config.js详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/08/22/vue%E4%B9%8B%E4%BD%BF%E7%94%A8vue-cli4-0%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/" rel="prev" title="vue之使用vue-cli4.0项目搭建">
+                vue之使用vue-cli4.0项目搭建 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="Dali" />
+            
+              <p class="site-author-name" itemprop="name">Dali</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">175</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">163</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何动态注册路由？"><span class="nav-number">2.</span> <span class="nav-text">如何动态注册路由？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-文件目录结构"><span class="nav-number">2.1.</span> <span class="nav-text">1. 文件目录结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-期望的路由配置"><span class="nav-number">2.2.</span> <span class="nav-text">2. 期望的路由配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-require-context实现动态注册路由"><span class="nav-number">2.3.</span> <span class="nav-text">3. require.context实现动态注册路由</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事件修饰符"><span class="nav-number">3.</span> <span class="nav-text">事件修饰符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-阻止冒泡的两种方式"><span class="nav-number">3.1.</span> <span class="nav-text">1. 阻止冒泡的两种方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-stop"><span class="nav-number">3.1.1.</span> <span class="nav-text">1 .stop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-event-stopPropagation"><span class="nav-number">3.1.2.</span> <span class="nav-text">2. event.stopPropagation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-阻止默认事件的两种方式"><span class="nav-number">3.2.</span> <span class="nav-text">2. 阻止默认事件的两种方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-prevent"><span class="nav-number">3.2.1.</span> <span class="nav-text">1 .prevent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-event-preventDefault"><span class="nav-number">3.2.2.</span> <span class="nav-text">2.event.preventDefault()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-capture"><span class="nav-number">3.3.</span> <span class="nav-text">3 .capture</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-self"><span class="nav-number">3.4.</span> <span class="nav-text">4 .self</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#暂停一下：修饰符的顺序如何理解？"><span class="nav-number">3.5.</span> <span class="nav-text">暂停一下：修饰符的顺序如何理解？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-once"><span class="nav-number">3.6.</span> <span class="nav-text">5. once</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-native"><span class="nav-number">3.7.</span> <span class="nav-text">6 .native</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-passive"><span class="nav-number">3.8.</span> <span class="nav-text">7 .passive</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#v-bind修饰符"><span class="nav-number">4.</span> <span class="nav-text">v-bind修饰符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-sync"><span class="nav-number">4.1.</span> <span class="nav-text">8 .sync</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-camel"><span class="nav-number">4.2.</span> <span class="nav-text">9 .camel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-prop"><span class="nav-number">4.3.</span> <span class="nav-text">10 .prop</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#鼠标修饰符"><span class="nav-number">5.</span> <span class="nav-text">鼠标修饰符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#11-left"><span class="nav-number">5.1.</span> <span class="nav-text">11 .left</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-right"><span class="nav-number">5.2.</span> <span class="nav-text">12 .right</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-middle"><span class="nav-number">5.3.</span> <span class="nav-text">13 .middle</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#表单相关修饰符"><span class="nav-number">6.</span> <span class="nav-text">表单相关修饰符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#14-trim"><span class="nav-number">6.1.</span> <span class="nav-text">14 .trim</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-lazy"><span class="nav-number">6.2.</span> <span class="nav-text">15 .lazy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-number"><span class="nav-number">6.3.</span> <span class="nav-text">16 .number</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#系统修饰符"><span class="nav-number">7.</span> <span class="nav-text">系统修饰符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#17-ctrl"><span class="nav-number">7.1.</span> <span class="nav-text">17 .ctrl</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#18-alt"><span class="nav-number">7.2.</span> <span class="nav-text">18 .alt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19-shift"><span class="nav-number">7.3.</span> <span class="nav-text">19 .shift</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20-meta"><span class="nav-number">7.4.</span> <span class="nav-text">20 .meta</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#21-exact"><span class="nav-number">7.5.</span> <span class="nav-text">21 .exact</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#按键修饰符"><span class="nav-number">8.</span> <span class="nav-text">按键修饰符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#22-enter"><span class="nav-number">8.1.</span> <span class="nav-text">22 .enter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#23-tab"><span class="nav-number">8.2.</span> <span class="nav-text">23 .tab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#24-delete"><span class="nav-number">8.3.</span> <span class="nav-text">24 .delete</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#25-esc"><span class="nav-number">8.4.</span> <span class="nav-text">25 .esc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#26-space"><span class="nav-number">8.5.</span> <span class="nav-text">26 .space</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#27-up"><span class="nav-number">8.6.</span> <span class="nav-text">27 .up</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#28-down"><span class="nav-number">8.7.</span> <span class="nav-text">28 .down</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#29-left"><span class="nav-number">8.8.</span> <span class="nav-text">29 .left</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#30-right"><span class="nav-number">8.9.</span> <span class="nav-text">30 .right</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#31-page-down"><span class="nav-number">8.10.</span> <span class="nav-text">31 .page-down</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#32-page-up"><span class="nav-number">8.11.</span> <span class="nav-text">32 .page-up</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何自定义按键修饰符"><span class="nav-number">9.</span> <span class="nav-text">如何自定义按键修饰符</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dali</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

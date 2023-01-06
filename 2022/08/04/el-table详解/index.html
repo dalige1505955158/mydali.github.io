@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="DaliBlogs" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="数据源 1234567891011121314151617tableData: [&amp;#123;        date: &#39;2016-05-02&#39;,        name: &#39;王小虎&#39;,        address: &#39;上海市普陀区金沙江路 1518 弄&#39;    &amp;#125;, &amp;#123;        date: &#39;2016-05-0">
+<meta property="og:type" content="article">
+<meta property="og:title" content="el-table详解">
+<meta property="og:url" content="http://yoursite.com/2022/08/04/el-table%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:site_name" content="DaliBlogs">
+<meta property="og:description" content="数据源 1234567891011121314151617tableData: [&amp;#123;        date: &#39;2016-05-02&#39;,        name: &#39;王小虎&#39;,        address: &#39;上海市普陀区金沙江路 1518 弄&#39;    &amp;#125;, &amp;#123;        date: &#39;2016-05-0">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/8415d4ee6d354330894dc68eb84bb568.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA54mb5YWI5qOu5a6255qE54mb5aW2,size_19,color_FFFFFF,t_70,g_se,x_16">
+<meta property="article:published_time" content="2022-08-04T02:15:29.000Z">
+<meta property="article:modified_time" content="2022-08-04T09:20:54.738Z">
+<meta property="article:author" content="Dali">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/8415d4ee6d354330894dc68eb84bb568.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA54mb5YWI5qOu5a6255qE54mb5aW2,size_19,color_FFFFFF,t_70,g_se,x_16">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2022/08/04/el-table详解/"/>
+
+
+
+
+
+  <title>el-table详解 | DaliBlogs</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DaliBlogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/08/04/el-table%E8%AF%A6%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">el-table详解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-08-04T10:15:29+08:00">
+                2022-08-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>数据源</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">tableData: [&#123;</span><br><span class="line">        date: &#39;2016-05-02&#39;,</span><br><span class="line">        name: &#39;王小虎&#39;,</span><br><span class="line">        address: &#39;上海市普陀区金沙江路 1518 弄&#39;</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        date: &#39;2016-05-04&#39;,</span><br><span class="line">        name: &#39;王小虎&#39;,</span><br><span class="line">        address: &#39;上海市普陀区金沙江路 1517 弄&#39;</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        date: &#39;2016-05-01&#39;,</span><br><span class="line">        name: &#39;王小虎&#39;,</span><br><span class="line">        address: &#39;上海市普陀区金沙江路 1519 弄&#39;</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        date: &#39;2016-05-03&#39;,</span><br><span class="line">        name: &#39;王小虎&#39;,</span><br><span class="line">        address: &#39;上海市普陀区金沙江路 1516 弄&#39;</span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure>
+
+<h2 id="最基础版表格"><a href="#最基础版表格" class="headerlink" title="最基础版表格"></a>最基础版表格</h2><p>prop：接口字段</p>
+<p>label：列名称</p>
+<p>width：列宽</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table :data&#x3D;&quot;tableData&quot; style&#x3D;&quot;width: 100%&quot;&gt;</span><br><span class="line">    &lt;el-table-column prop&#x3D;&quot;date&quot; label&#x3D;&quot;日期&quot; width&#x3D;&quot;180&quot;&gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">    &lt;el-table-column prop&#x3D;&quot;name&quot; label&#x3D;&quot;姓名&quot; width&#x3D;&quot;180&quot;&gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">    &lt;el-table-column prop&#x3D;&quot;address&quot; label&#x3D;&quot;地址&quot;&gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">&lt;&#x2F;el-table&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="样式处理"><a href="#样式处理" class="headerlink" title="样式处理"></a>样式处理</h2><h3 id="居中"><a href="#居中" class="headerlink" title="居中"></a>居中</h3><h4 id="统一设置所有表头居中"><a href="#统一设置所有表头居中" class="headerlink" title="统一设置所有表头居中"></a>统一设置所有表头居中</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table :header-cell-style&#x3D;&quot;&#123;&#39;text-align&#39;:&#39;center&#39;&#125;&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="某一列的表头居中"><a href="#某一列的表头居中" class="headerlink" title="某一列的表头居中"></a>某一列的表头居中</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table-column label&#x3D;&quot;Date&quot; prop&#x3D;&quot;date&quot; header-align&#x3D;&quot;center&quot;&gt;&lt;&#x2F;el-table-column&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="某一列除表头以外的内容都居中"><a href="#某一列除表头以外的内容都居中" class="headerlink" title="某一列除表头以外的内容都居中"></a>某一列除表头以外的内容都居中</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table-column label&#x3D;&quot;Date&quot; prop&#x3D;&quot;date&quot; align&#x3D;&quot;center&quot;&gt;&lt;&#x2F;el-table-column&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="斑马纹-stripe"><a href="#斑马纹-stripe" class="headerlink" title="斑马纹(stripe)"></a>斑马纹(stripe)</h3><p><code>stripe</code>属性可以创建带斑马纹的表格。它接受一个<code>Boolean</code>，默认为<code>false</code>，设置为<code>true</code>即为启用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table :data&#x3D;&quot;tableData&quot; stripe style&#x3D;&quot;width: 100%&quot;&gt; 或</span><br><span class="line">&lt;el-table :data&#x3D;&quot;tableData&quot; :stripe&#x3D;&quot;true&quot; style&#x3D;&quot;width: 100%&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="带边框-border"><a href="#带边框-border" class="headerlink" title="带边框(border)"></a>带边框(border)</h3><p>默认情况下，Table 组件是不具有竖直方向的边框的，如果需要，可以使用<code>border</code>属性，它接受一个<code>Boolean</code>，设置为<code>true</code>即可启用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table :data&#x3D;&quot;tableData&quot; border style&#x3D;&quot;width: 100%&quot;&gt; 或</span><br><span class="line">&lt;el-table :data&#x3D;&quot;tableData&quot; :border&#x3D;&quot;true&quot; style&#x3D;&quot;width: 100%&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="每一行带不同状态表格-row-class-name-gt-success-warning"><a href="#每一行带不同状态表格-row-class-name-gt-success-warning" class="headerlink" title="每一行带不同状态表格(row-class-name =&gt; success,warning)"></a>每一行带不同状态表格(row-class-name =&gt; success,warning)</h3><p>解释：可将表格内容 highlight 显示，方便区分「成功、信息、警告、危险」等内容。</p>
+<p>方法：可以通过指定 Table 组件的 <code>row-class-name</code> 属性来为 Table 中的某一行添加 class，表明该行处于某种状态。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table :data&#x3D;&quot;tableData&quot; :row-class-name&#x3D;&quot;tableRowClassName&quot; style&#x3D;&quot;width: 100%&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">  .el-table .warning-row &#123;</span><br><span class="line">    background: oldlace;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  .el-table .success-row &#123;</span><br><span class="line">    background: #f0f9eb;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line"></span><br><span class="line">methods: &#123;</span><br><span class="line">    tableRowClassName(&#123;row, rowIndex&#125;) &#123;</span><br><span class="line">    if (rowIndex &#x3D;&#x3D;&#x3D; 1) &#123;</span><br><span class="line">    	return &#39;warning-row&#39;;</span><br><span class="line">    &#125; else if (rowIndex &#x3D;&#x3D;&#x3D; 3) &#123;</span><br><span class="line">    	return &#39;success-row&#39;;</span><br><span class="line">    &#125;</span><br><span class="line">    return &#39;&#39;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改某一个列表头的颜色-label-class-name"><a href="#修改某一个列表头的颜色-label-class-name" class="headerlink" title="修改某一个列表头的颜色(label-class-name)"></a>修改某一个列表头的颜色(label-class-name)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table-column</span><br><span class="line">  prop&#x3D;&quot;name&quot;</span><br><span class="line">  label&#x3D;&quot;姓名&quot;</span><br><span class="line">  width&#x3D;&quot;180&quot;</span><br><span class="line">  header-align&#x3D;&quot;center&quot;</span><br><span class="line">  align&#x3D;&quot;center&quot;</span><br><span class="line">  label-class-name&#x3D;&quot;changeLabelClass&quot;</span><br><span class="line">&gt;&lt;&#x2F;el-table-column&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang&#x3D;&quot;scss&quot;&gt;</span><br><span class="line">.table-row-report &#123;</span><br><span class="line">  height: 80px;</span><br><span class="line">  color: #000;</span><br><span class="line">  font-weight: 600;</span><br><span class="line">  th &#123;</span><br><span class="line">    background-color: #fff !important;</span><br><span class="line">    &amp;:nth-child(2n) &#123;</span><br><span class="line">      background-color: #ddd !important;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  th.changeLabelClass &#123;</span><br><span class="line">    background: cadetblue !important;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/8415d4ee6d354330894dc68eb84bb568.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA54mb5YWI5qOu5a6255qE54mb5aW2,size_19,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
+<h2 id="功能处理"><a href="#功能处理" class="headerlink" title="功能处理"></a>功能处理</h2><h3 id="对后端返回数据额外处理的两种方式-formatter-template"><a href="#对后端返回数据额外处理的两种方式-formatter-template" class="headerlink" title="对后端返回数据额外处理的两种方式(formatter/template)"></a>对后端返回数据额外处理的两种方式(formatter/template)</h3><h4 id="formatter"><a href="#formatter" class="headerlink" title="formatter"></a>formatter</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table-column prop&#x3D;&quot;address&quot; label&#x3D;&quot;地址&quot; :formatter&#x3D;&quot;formatter&quot;&gt;&lt;&#x2F;el-table-column&gt;</span><br><span class="line">        </span><br><span class="line"> methods: &#123;</span><br><span class="line">        formatter(row, column) &#123;</span><br><span class="line">            return row.address + &#39;12121&#39;;</span><br><span class="line">        &#125;,</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="template"><a href="#template" class="headerlink" title="template"></a>template</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table-column prop&#x3D;&quot;address&quot; label&#x3D;&quot;地址&quot;&gt;</span><br><span class="line">    &lt;template slot-scope&#x3D;&quot;scope&quot;&gt;</span><br><span class="line">    	&#123;&#123;scope.row.address + &#39;12121&#39;&#125;&#125;</span><br><span class="line">    &lt;&#x2F;template&gt;</span><br><span class="line">&lt;&#x2F;el-table-column&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="show-overflow-tooltip和tooltip-effect"><a href="#show-overflow-tooltip和tooltip-effect" class="headerlink" title="show-overflow-tooltip和tooltip-effect"></a>show-overflow-tooltip和tooltip-effect</h3><p>默认情况下若内容过多会折行显示，若需要单行显示可以使用<code>show-overflow-tooltip</code>属性，它接受一个<code>Boolean</code>，为<code>true</code>时多余的内容会在 hover 时以 tooltip 的形式显示出来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table-column prop&#x3D;&quot;address&quot; label&#x3D;&quot;地址&quot; show-overflow-tooltip&gt;&lt;&#x2F;el-table-column&gt;</span><br></pre></td></tr></table></figure>
+
+<p>tooltip-effect有dark/light两个值，控制tooltip背景与字体的颜色</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table :data&#x3D;&quot;tableData&quot; tooltip-effect&#x3D;&quot;dark&quot; tyle&#x3D;&quot;width: 100%&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="增加索引列-type-”index”-默认从1开始"><a href="#增加索引列-type-”index”-默认从1开始" class="headerlink" title="增加索引列(type=”index”,默认从1开始)"></a>增加索引列(type=”index”,默认从1开始)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table-column type&#x3D;&quot;index&quot; width&#x3D;&quot;150&quot;&gt;&lt;&#x2F;el-table-column&gt;</span><br></pre></td></tr></table></figure>
+
+<p>通过给 <code>type=index</code> 的列传入 <code>index</code> 属性，可以自定义索引。该属性传入数字时，将作为索引的起始值。也可以传入一个方法，它提供当前行的行号（从 <code>0</code> 开始）作为参数，返回值将作为索引展示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table-column type&#x3D;&quot;index&quot; :index&#x3D;&quot;indexMethod&quot;&gt;&lt;&#x2F;el-table-column&gt;</span><br><span class="line"></span><br><span class="line">methods: &#123;</span><br><span class="line">      indexMethod(index) &#123;</span><br><span class="line">        return index * 2;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="固定表头-height"><a href="#固定表头-height" class="headerlink" title="固定表头(height)"></a>固定表头(height)</h3><p>只要在<code>el-table</code>元素中定义了<code>height</code>属性，即可实现固定表头的表格，而不需要额外的代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table :data&#x3D;&quot;tableData&quot; height&#x3D;&quot;250&quot; style&#x3D;&quot;width: 100%&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="固定列-fixed"><a href="#固定列-fixed" class="headerlink" title="固定列(fixed)"></a>固定列(<code>fixed</code>)</h3><p>横向内容过多时，可选择固定列。固定列需要使用<code>fixed</code>属性，它接受 Boolean 值或者<code>left``right</code>，表示左边固定还是右边固定。</p>
+<p>fixed为默认值是true的时候用的是left值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table :data&#x3D;&quot;tableData&quot; style&#x3D;&quot;width: 100%&quot;&gt;</span><br><span class="line">    &lt;el-table-column fixed prop&#x3D;&quot;date&quot; label&#x3D;&quot;日期&quot; width&#x3D;&quot;150&quot;&gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">    &lt;el-table-column prop&#x3D;&quot;name&quot; label&#x3D;&quot;姓名&quot; width&#x3D;&quot;120&quot;&gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">    &lt;el-table-column fixed&#x3D;&quot;right&quot; prop&#x3D;&quot;province&quot; label&#x3D;&quot;省份&quot; width&#x3D;&quot;120&quot;&gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">&lt;&#x2F;el-table&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="多级表头-嵌套el-table-column"><a href="#多级表头-嵌套el-table-column" class="headerlink" title="多级表头(嵌套el-table-column)"></a>多级表头(嵌套el-table-column)</h3><p>只需要在 el-table-column 里面嵌套 el-table-column，就可以实现多级表头。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table :data&#x3D;&quot;tableData&quot; style&#x3D;&quot;width: 100%&quot;&gt;</span><br><span class="line">        &lt;el-table-column prop&#x3D;&quot;date&quot; label&#x3D;&quot;日期&quot; width&#x3D;&quot;150&quot;&gt;</span><br><span class="line">        &lt;&#x2F;el-table-column&gt;</span><br><span class="line">        &lt;el-table-column label&#x3D;&quot;配送信息&quot;&gt;</span><br><span class="line">            &lt;el-table-column prop&#x3D;&quot;name&quot; label&#x3D;&quot;姓名&quot; width&#x3D;&quot;120&quot;&gt;</span><br><span class="line">            &lt;&#x2F;el-table-column&gt;</span><br><span class="line">            &lt;el-table-column label&#x3D;&quot;地址&quot;&gt;</span><br><span class="line">                &lt;el-table-column prop&#x3D;&quot;province&quot; label&#x3D;&quot;省份&quot; width&#x3D;&quot;120&quot;&gt;</span><br><span class="line">                &lt;&#x2F;el-table-column&gt;</span><br><span class="line">                &lt;el-table-column prop&#x3D;&quot;city&quot; label&#x3D;&quot;市区&quot; width&#x3D;&quot;120&quot;&gt;</span><br><span class="line">                &lt;&#x2F;el-table-column&gt;</span><br><span class="line">                &lt;el-table-column prop&#x3D;&quot;address&quot; label&#x3D;&quot;地址&quot; width&#x3D;&quot;300&quot;&gt;</span><br><span class="line">                &lt;&#x2F;el-table-column&gt;</span><br><span class="line">                &lt;el-table-column prop&#x3D;&quot;zip&quot; label&#x3D;&quot;邮编&quot; width&#x3D;&quot;120&quot;&gt;</span><br><span class="line">                &lt;&#x2F;el-table-column&gt;</span><br><span class="line">            &lt;&#x2F;el-table-column&gt;</span><br><span class="line">        &lt;&#x2F;el-table-column&gt;</span><br><span class="line">&lt;&#x2F;el-table&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="单选-选中某一行，取消选择某一行"><a href="#单选-选中某一行，取消选择某一行" class="headerlink" title="单选,选中某一行，取消选择某一行"></a>单选,选中某一行，取消选择某一行</h3><p>Table 组件提供了单选的支持，只需要配置<code>highlight-current-row</code>属性即可实现单选。之后由<code>current-change</code>事件来管理选中时触发的事件，它会传入<code>currentRow</code>，<code>oldCurrentRow</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table</span><br><span class="line">    ref&#x3D;&quot;singleTable&quot;</span><br><span class="line">    :data&#x3D;&quot;tableData&quot;</span><br><span class="line">    highlight-current-row</span><br><span class="line">    @current-change&#x3D;&quot;handleCurrentChange&quot;</span><br><span class="line">    style&#x3D;&quot;width: 100%&quot;&gt;</span><br><span class="line">&lt;&#x2F;el-table&gt;</span><br><span class="line"></span><br><span class="line">&lt;div style&#x3D;&quot;margin-top: 20px&quot;&gt;</span><br><span class="line">    &lt;el-button @click&#x3D;&quot;setCurrent(tableData[1])&quot;&gt;选中第二行&lt;&#x2F;el-button&gt;</span><br><span class="line">    &lt;el-button @click&#x3D;&quot;setCurrent()&quot;&gt;取消选择&lt;&#x2F;el-button&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">methods: &#123;</span><br><span class="line">      setCurrent(row) &#123;</span><br><span class="line">        this.$refs.singleTable.setCurrentRow(row);</span><br><span class="line">      &#125;,</span><br><span class="line">      handleCurrentChange(val) &#123;</span><br><span class="line">        this.currentRow &#x3D; val;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="多选-选中某些行，取消选择某些行-选择多行数据时使用-Checkbox"><a href="#多选-选中某些行，取消选择某些行-选择多行数据时使用-Checkbox" class="headerlink" title="多选,选中某些行，取消选择某些行(选择多行数据时使用 Checkbox)"></a>多选,选中某些行，取消选择某些行(选择多行数据时使用 Checkbox)</h3><p>实现多选非常简单: 手动添加一个<code>el-table-column</code>，设<code>type</code>属性为<code>selection</code>即可，之后由<code>selection-change</code>事件来管理选中时触发的事件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"> &lt;el-table</span><br><span class="line">    ref&#x3D;&quot;multipleTable&quot;</span><br><span class="line">    :data&#x3D;&quot;tableData&quot;</span><br><span class="line">    tooltip-effect&#x3D;&quot;dark&quot;</span><br><span class="line">    style&#x3D;&quot;width: 100%&quot;</span><br><span class="line">    @selection-change&#x3D;&quot;handleSelectionChange&quot;&gt;</span><br><span class="line">	&lt;el-table-column type&#x3D;&quot;selection&quot; width&#x3D;&quot;55&quot;&gt;&lt;&#x2F;el-table-column&gt;</span><br><span class="line">&lt;&#x2F;el-table&gt;</span><br><span class="line">&lt;div style&#x3D;&quot;margin-top: 20px&quot;&gt;</span><br><span class="line">    &lt;el-button @click&#x3D;&quot;toggleSelection([tableData[1], tableData[2]])&quot;&gt;切换第二、第三行的选中状态&lt;&#x2F;el-button&gt;</span><br><span class="line">    &lt;el-button @click&#x3D;&quot;toggleSelection()&quot;&gt;取消选择&lt;&#x2F;el-button&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line"> methods: &#123;</span><br><span class="line">      toggleSelection(rows) &#123;</span><br><span class="line">        if (rows) &#123;</span><br><span class="line">          rows.forEach(row &#x3D;&gt; &#123;</span><br><span class="line">            this.$refs.multipleTable.toggleRowSelection(row);</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          this.$refs.multipleTable.clearSelection();</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      handleSelectionChange(val) &#123;</span><br><span class="line">        this.multipleSelection &#x3D; val;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="排序-根据表格的日期，中文姓名排序"><a href="#排序-根据表格的日期，中文姓名排序" class="headerlink" title="排序(根据表格的日期，中文姓名排序)"></a>排序(根据表格的日期，中文姓名排序)</h3><p>对表格进行排序，可快速查找或对比数据</p>
+<p>在列中设置<code>sortable</code>属性即可实现以该列为基准的排序，接受一个<code>Boolean</code>，默认为<code>false</code>。可以通过 Table 的<code>default-sort</code>属性设置默认的排序列和排序顺序。可以使用<code>sort-method</code>或者<code>sort-by</code>使用自定义的排序规则。如果需要后端排序，需将<code>sortable</code>设置为<code>custom</code>，同时在 Table 上监听<code>sort-change</code>事件，在事件回调中可以获取当前排序的字段名和排序顺序，从而向接口请求排序后的表格数据。</p>
+<p><code>default-sort</code>=&gt; 默认的排序列的 prop 和顺序。它的<code>prop</code>属性指定默认的排序的列，<code>order</code>指定默认排序的顺序</p>
+<p><code>order</code>有两个值，ascending=&gt;升序, descending=&gt;降序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table</span><br><span class="line">    :data&#x3D;&quot;tableData&quot;</span><br><span class="line">    style&#x3D;&quot;width: 100%&quot;</span><br><span class="line">    :default-sort &#x3D; &quot;&#123;prop: &#39;date&#39;, order: &#39;descending&#39;&#125;&quot;</span><br><span class="line">    &gt;</span><br><span class="line">    &lt;el-table-column</span><br><span class="line">      prop&#x3D;&quot;date&quot;</span><br><span class="line">      label&#x3D;&quot;日期&quot;</span><br><span class="line">      sortable</span><br><span class="line">      width&#x3D;&quot;180&quot;&gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">  &lt;&#x2F;el-table&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="筛选"><a href="#筛选" class="headerlink" title="筛选"></a>筛选</h3><p>对表格进行筛选，可快速查找到自己想看的数据。</p>
+<p>在列中设置<code>filters``filter-method</code>属性即可开启该列的筛选，filters 是一个数组，<code>filter-method</code>是一个方法，它用于决定某些数据是否显示，会传入三个参数：<code>value</code>, <code>row</code> 和 <code>column</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-button @click&#x3D;&quot;resetDateFilter&quot;&gt;清除日期过滤器&lt;&#x2F;el-button&gt;</span><br><span class="line">  &lt;el-button @click&#x3D;&quot;clearFilter&quot;&gt;清除所有过滤器&lt;&#x2F;el-button&gt;</span><br><span class="line">  &lt;el-table</span><br><span class="line">    ref&#x3D;&quot;filterTable&quot;</span><br><span class="line">    :data&#x3D;&quot;tableData&quot;</span><br><span class="line">    style&#x3D;&quot;width: 100%&quot;&gt;</span><br><span class="line">    &lt;el-table-column</span><br><span class="line">      prop&#x3D;&quot;date&quot;</span><br><span class="line">      label&#x3D;&quot;日期&quot;</span><br><span class="line">      sortable</span><br><span class="line">      width&#x3D;&quot;180&quot;</span><br><span class="line">      column-key&#x3D;&quot;date&quot;</span><br><span class="line">      :filters&#x3D;&quot;[&#123;text: &#39;2016-05-01&#39;, value: &#39;2016-05-01&#39;&#125;, &#123;text: &#39;2016-05-02&#39;, value: &#39;2016-05-02&#39;&#125;, &#123;text: &#39;2016-05-03&#39;, value: &#39;2016-05-03&#39;&#125;, &#123;text: &#39;2016-05-04&#39;, value: &#39;2016-05-04&#39;&#125;]&quot;</span><br><span class="line">      :filter-method&#x3D;&quot;filterHandler&quot;</span><br><span class="line">    &gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">    &lt;el-table-column</span><br><span class="line">      prop&#x3D;&quot;name&quot;</span><br><span class="line">      label&#x3D;&quot;姓名&quot;</span><br><span class="line">      width&#x3D;&quot;180&quot;&gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">    &lt;el-table-column</span><br><span class="line">      prop&#x3D;&quot;address&quot;</span><br><span class="line">      label&#x3D;&quot;地址&quot;</span><br><span class="line">      :formatter&#x3D;&quot;formatter&quot;&gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">    &lt;el-table-column</span><br><span class="line">      prop&#x3D;&quot;tag&quot;</span><br><span class="line">      label&#x3D;&quot;标签&quot;</span><br><span class="line">      width&#x3D;&quot;100&quot;</span><br><span class="line">      :filters&#x3D;&quot;[&#123; text: &#39;家&#39;, value: &#39;家&#39; &#125;, &#123; text: &#39;公司&#39;, value: &#39;公司&#39; &#125;]&quot;</span><br><span class="line">      :filter-method&#x3D;&quot;filterTag&quot;</span><br><span class="line">      filter-placement&#x3D;&quot;bottom-end&quot;&gt;</span><br><span class="line">      &lt;template slot-scope&#x3D;&quot;scope&quot;&gt;</span><br><span class="line">        &lt;el-tag</span><br><span class="line">          :type&#x3D;&quot;scope.row.tag &#x3D;&#x3D;&#x3D; &#39;家&#39; ? &#39;primary&#39; : &#39;success&#39;&quot;</span><br><span class="line">          disable-transitions&gt;&#123;&#123;scope.row.tag&#125;&#125;&lt;&#x2F;el-tag&gt;</span><br><span class="line">      &lt;&#x2F;template&gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">  &lt;&#x2F;el-table&gt;</span><br><span class="line">  </span><br><span class="line">  methods: &#123;</span><br><span class="line">      resetDateFilter() &#123;</span><br><span class="line">        this.$refs.filterTable.clearFilter(&#39;date&#39;);</span><br><span class="line">      &#125;,</span><br><span class="line">      clearFilter() &#123;</span><br><span class="line">        this.$refs.filterTable.clearFilter();</span><br><span class="line">      &#125;,</span><br><span class="line">      formatter(row, column) &#123;</span><br><span class="line">        return row.address;</span><br><span class="line">      &#125;,</span><br><span class="line">      filterTag(value, row) &#123;</span><br><span class="line">        return row.tag &#x3D;&#x3D;&#x3D; value;</span><br><span class="line">      &#125;,</span><br><span class="line">      filterHandler(value, row, column) &#123;</span><br><span class="line">        const property &#x3D; column[&#39;property&#39;];</span><br><span class="line">        return row[property] &#x3D;&#x3D;&#x3D; value;</span><br><span class="line">      &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="展开行"><a href="#展开行" class="headerlink" title="展开行"></a>展开行</h3><p>当行内容过多并且不想显示横向滚动条时，可以使用 Table 展开行功能</p>
+<p>通过设置 type=”expand” 和 <code>Scoped slot</code> 可以开启展开行功能，<code>el-table-column</code> 的模板会被渲染成为展开行的内容，展开行可访问的属性与使用自定义列模板时的 <code>Scoped slot</code> 相同。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table</span><br><span class="line">    :data&#x3D;&quot;tableData&quot;</span><br><span class="line">    style&#x3D;&quot;width: 100%&quot;&gt;</span><br><span class="line">    &lt;el-table-column type&#x3D;&quot;expand&quot;&gt;</span><br><span class="line">      &lt;template slot-scope&#x3D;&quot;props&quot;&gt;</span><br><span class="line">        &lt;el-form label-position&#x3D;&quot;left&quot; inline class&#x3D;&quot;demo-table-expand&quot;&gt;</span><br><span class="line">          &lt;el-form-item label&#x3D;&quot;商品名称&quot;&gt;</span><br><span class="line">            &lt;span&gt;&#123;&#123; props.row.name &#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;el-form-item&gt;</span><br><span class="line">          &lt;el-form-item label&#x3D;&quot;所属店铺&quot;&gt;</span><br><span class="line">            &lt;span&gt;&#123;&#123; props.row.shop &#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;el-form-item&gt;</span><br><span class="line">          &lt;el-form-item label&#x3D;&quot;商品 ID&quot;&gt;</span><br><span class="line">            &lt;span&gt;&#123;&#123; props.row.id &#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;el-form-item&gt;</span><br><span class="line">          &lt;el-form-item label&#x3D;&quot;店铺 ID&quot;&gt;</span><br><span class="line">            &lt;span&gt;&#123;&#123; props.row.shopId &#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;el-form-item&gt;</span><br><span class="line">          &lt;el-form-item label&#x3D;&quot;商品分类&quot;&gt;</span><br><span class="line">            &lt;span&gt;&#123;&#123; props.row.category &#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;el-form-item&gt;</span><br><span class="line">          &lt;el-form-item label&#x3D;&quot;店铺地址&quot;&gt;</span><br><span class="line">            &lt;span&gt;&#123;&#123; props.row.address &#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;el-form-item&gt;</span><br><span class="line">          &lt;el-form-item label&#x3D;&quot;商品描述&quot;&gt;</span><br><span class="line">            &lt;span&gt;&#123;&#123; props.row.desc &#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">          &lt;&#x2F;el-form-item&gt;</span><br><span class="line">        &lt;&#x2F;el-form&gt;</span><br><span class="line">      &lt;&#x2F;template&gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">    &lt;el-table-column</span><br><span class="line">      label&#x3D;&quot;商品 ID&quot;</span><br><span class="line">      prop&#x3D;&quot;id&quot;&gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">    &lt;el-table-column</span><br><span class="line">      label&#x3D;&quot;商品名称&quot;</span><br><span class="line">      prop&#x3D;&quot;name&quot;&gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">    &lt;el-table-column</span><br><span class="line">      label&#x3D;&quot;描述&quot;</span><br><span class="line">      prop&#x3D;&quot;desc&quot;&gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">  &lt;&#x2F;el-table&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="树形数据与懒加载"><a href="#树形数据与懒加载" class="headerlink" title="树形数据与懒加载"></a>树形数据与懒加载</h3><p>支持树类型的数据的显示。当 row 中包含 <code>children</code> 字段时，被视为树形数据。渲染树形数据时，必须要指定 <code>row-key</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table</span><br><span class="line">    :data&#x3D;&quot;tableData&quot;</span><br><span class="line">    style&#x3D;&quot;width: 100%;margin-bottom: 20px;&quot;</span><br><span class="line">    row-key&#x3D;&quot;id&quot;</span><br><span class="line">    border</span><br><span class="line">    default-expand-all  &#x2F;&#x2F;默认展开所有</span><br><span class="line">    :tree-props&#x3D;&quot;&#123;children: &#39;children&#39;&#125;&quot;&gt;</span><br><span class="line">    &lt;el-table-column</span><br><span class="line">      prop&#x3D;&quot;date&quot;</span><br><span class="line">      label&#x3D;&quot;日期&quot;</span><br><span class="line">      sortable</span><br><span class="line">      width&#x3D;&quot;180&quot;&gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">    &lt;el-table-column</span><br><span class="line">      prop&#x3D;&quot;name&quot;</span><br><span class="line">      label&#x3D;&quot;姓名&quot;</span><br><span class="line">      sortable</span><br><span class="line">      width&#x3D;&quot;180&quot;&gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">    &lt;el-table-column</span><br><span class="line">      prop&#x3D;&quot;address&quot;</span><br><span class="line">      label&#x3D;&quot;地址&quot;&gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">  &lt;&#x2F;el-table&gt;</span><br></pre></td></tr></table></figure>
+
+<p>支持子节点数据异步加载。设置 Table 的 <code>lazy</code> 属性为 true 与加载函数 <code>load</code> 。通过指定 row 中的 <code>hasChildren</code> 字段来指定哪些行是包含子节点。<code>children</code> 与 <code>hasChildren</code> 都可以通过 <code>tree-props</code> 配置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table</span><br><span class="line">    :data&#x3D;&quot;tableData1&quot;</span><br><span class="line">    style&#x3D;&quot;width: 100%&quot;</span><br><span class="line">    row-key&#x3D;&quot;id&quot;</span><br><span class="line">    border</span><br><span class="line">    lazy</span><br><span class="line">    :load&#x3D;&quot;load&quot;</span><br><span class="line">    :tree-props&#x3D;&quot;&#123;children: &#39;children&#39;, hasChildren: &#39;hasChildren&#39;&#125;&quot;&gt;</span><br><span class="line">    &lt;el-table-column</span><br><span class="line">      prop&#x3D;&quot;date&quot;</span><br><span class="line">      label&#x3D;&quot;日期&quot;</span><br><span class="line">      width&#x3D;&quot;180&quot;&gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">    &lt;el-table-column</span><br><span class="line">      prop&#x3D;&quot;name&quot;</span><br><span class="line">      label&#x3D;&quot;姓名&quot;</span><br><span class="line">      width&#x3D;&quot;180&quot;&gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">    &lt;el-table-column</span><br><span class="line">      prop&#x3D;&quot;address&quot;</span><br><span class="line">      label&#x3D;&quot;地址&quot;&gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">  &lt;&#x2F;el-table&gt;</span><br><span class="line">  </span><br><span class="line">  tableData1: [&#123;</span><br><span class="line">          id: 1,</span><br><span class="line">          date: &#39;2016-05-02&#39;,</span><br><span class="line">          name: &#39;王小虎&#39;,</span><br><span class="line">          address: &#39;上海市普陀区金沙江路 1518 弄&#39;</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">          id: 2,</span><br><span class="line">          date: &#39;2016-05-04&#39;,</span><br><span class="line">          name: &#39;王小虎&#39;,</span><br><span class="line">          address: &#39;上海市普陀区金沙江路 1517 弄&#39;</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">          id: 3,</span><br><span class="line">          date: &#39;2016-05-01&#39;,</span><br><span class="line">          name: &#39;王小虎&#39;,</span><br><span class="line">          address: &#39;上海市普陀区金沙江路 1519 弄&#39;,</span><br><span class="line">          hasChildren: true</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">          id: 4,</span><br><span class="line">          date: &#39;2016-05-03&#39;,</span><br><span class="line">          name: &#39;王小虎&#39;,</span><br><span class="line">          address: &#39;上海市普陀区金沙江路 1516 弄&#39;</span><br><span class="line">&#125;]</span><br><span class="line"></span><br><span class="line">methods: &#123;</span><br><span class="line">      load(tree, treeNode, resolve) &#123;</span><br><span class="line">        setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">          resolve([</span><br><span class="line">            &#123;</span><br><span class="line">              id: 31,</span><br><span class="line">              date: &#39;2016-05-01&#39;,</span><br><span class="line">              name: &#39;王小虎&#39;,</span><br><span class="line">              address: &#39;上海市普陀区金沙江路 1519 弄&#39;</span><br><span class="line">            &#125;, &#123;</span><br><span class="line">              id: 32,</span><br><span class="line">              date: &#39;2016-05-01&#39;,</span><br><span class="line">              name: &#39;王小虎&#39;,</span><br><span class="line">              address: &#39;上海市普陀区金沙江路 1519 弄&#39;</span><br><span class="line">            &#125;</span><br><span class="line">          ])</span><br><span class="line">        &#125;, 1000)</span><br><span class="line">      &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<h3 id="自定义表头及搜索表格内容"><a href="#自定义表头及搜索表格内容" class="headerlink" title="自定义表头及搜索表格内容"></a>自定义表头及搜索表格内容</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table</span><br><span class="line">	&#x2F;&#x2F;过滤表格的数据</span><br><span class="line">    :data&#x3D;&quot;tableData.filter(data &#x3D;&gt; !search || data.name.toLowerCase().includes(search.toLowerCase()))&quot;</span><br><span class="line">    style&#x3D;&quot;width: 100%&quot;&gt;</span><br><span class="line">    &lt;el-table-column</span><br><span class="line">      label&#x3D;&quot;Date&quot;</span><br><span class="line">      prop&#x3D;&quot;date&quot;&gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">    &lt;el-table-column</span><br><span class="line">      label&#x3D;&quot;Name&quot;</span><br><span class="line">      prop&#x3D;&quot;name&quot;&gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">    &lt;el-table-column</span><br><span class="line">      align&#x3D;&quot;right&quot;&gt;</span><br><span class="line">      &#x2F;&#x2F;自定义表头部分</span><br><span class="line">      &lt;template slot&#x3D;&quot;header&quot; slot-scope&#x3D;&quot;scope&quot;&gt;</span><br><span class="line">        &lt;el-input</span><br><span class="line">          v-model&#x3D;&quot;search&quot;</span><br><span class="line">          size&#x3D;&quot;mini&quot;</span><br><span class="line">          placeholder&#x3D;&quot;输入关键字搜索&quot;&#x2F;&gt;</span><br><span class="line">      &lt;&#x2F;template&gt;</span><br><span class="line">      &#x2F;&#x2F;单元格内容部分</span><br><span class="line">      &lt;template slot-scope&#x3D;&quot;scope&quot;&gt;</span><br><span class="line">        &lt;el-button</span><br><span class="line">          size&#x3D;&quot;mini&quot;</span><br><span class="line">          @click&#x3D;&quot;handleEdit(scope.$index, scope.row)&quot;&gt;Edit&lt;&#x2F;el-button&gt;</span><br><span class="line">        &lt;el-button</span><br><span class="line">          size&#x3D;&quot;mini&quot;</span><br><span class="line">          type&#x3D;&quot;danger&quot;</span><br><span class="line">          @click&#x3D;&quot;handleDelete(scope.$index, scope.row)&quot;&gt;Delete&lt;&#x2F;el-button&gt;</span><br><span class="line">      &lt;&#x2F;template&gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">  &lt;&#x2F;el-table&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="表尾合计行-在最后一行显示统计数据"><a href="#表尾合计行-在最后一行显示统计数据" class="headerlink" title="表尾合计行(在最后一行显示统计数据)"></a>表尾合计行(在最后一行显示统计数据)</h3><p>将<code>show-summary</code>设置为<code>true</code>就会在表格尾部展示合计行。默认情况下，对于合计行，第一列不进行数据求合操作，而是显示「合计」二字（可通过<code>sum-text</code>配置），其余列会将本列所有数值进行求合操作，并显示出来。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table</span><br><span class="line">    :data&#x3D;&quot;tableData&quot;</span><br><span class="line">    border</span><br><span class="line">    show-summary</span><br><span class="line">    style&#x3D;&quot;width: 100%&quot;&gt;</span><br><span class="line">    &lt;el-table-column</span><br><span class="line">      prop&#x3D;&quot;id&quot;</span><br><span class="line">      label&#x3D;&quot;ID&quot;</span><br><span class="line">      width&#x3D;&quot;180&quot;&gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">    &lt;el-table-column</span><br><span class="line">      prop&#x3D;&quot;name&quot;</span><br><span class="line">      label&#x3D;&quot;姓名&quot;&gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">    &lt;el-table-column</span><br><span class="line">      prop&#x3D;&quot;amount1&quot;</span><br><span class="line">      sortable</span><br><span class="line">      label&#x3D;&quot;数值 1&quot;&gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">    &lt;el-table-column</span><br><span class="line">      prop&#x3D;&quot;amount2&quot;</span><br><span class="line">      sortable</span><br><span class="line">      label&#x3D;&quot;数值 2&quot;&gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">    &lt;el-table-column</span><br><span class="line">      prop&#x3D;&quot;amount3&quot;</span><br><span class="line">      sortable</span><br><span class="line">      label&#x3D;&quot;数值 3&quot;&gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">  &lt;&#x2F;el-table&gt;</span><br></pre></td></tr></table></figure>
+
+<p>当然，你也可以定义自己的合计逻辑。使用<code>summary-method</code>并传入一个方法，返回一个数组，这个数组中的各项就会显示在合计行的各列中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table</span><br><span class="line">    :data&#x3D;&quot;tableData&quot;</span><br><span class="line">    border</span><br><span class="line">    height&#x3D;&quot;200&quot;</span><br><span class="line">    :summary-method&#x3D;&quot;getSummaries&quot;</span><br><span class="line">    show-summary</span><br><span class="line">    style&#x3D;&quot;width: 100%; margin-top: 20px&quot;&gt;</span><br><span class="line">    &lt;el-table-column</span><br><span class="line">      prop&#x3D;&quot;id&quot;</span><br><span class="line">      label&#x3D;&quot;ID&quot;</span><br><span class="line">      width&#x3D;&quot;180&quot;&gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">    &lt;el-table-column</span><br><span class="line">      prop&#x3D;&quot;name&quot;</span><br><span class="line">      label&#x3D;&quot;姓名&quot;&gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">    &lt;el-table-column</span><br><span class="line">      prop&#x3D;&quot;amount1&quot;</span><br><span class="line">      label&#x3D;&quot;数值 1（元）&quot;&gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">    &lt;el-table-column</span><br><span class="line">      prop&#x3D;&quot;amount2&quot;</span><br><span class="line">      label&#x3D;&quot;数值 2（元）&quot;&gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">    &lt;el-table-column</span><br><span class="line">      prop&#x3D;&quot;amount3&quot;</span><br><span class="line">      label&#x3D;&quot;数值 3（元）&quot;&gt;</span><br><span class="line">    &lt;&#x2F;el-table-column&gt;</span><br><span class="line">  &lt;&#x2F;el-table&gt;</span><br><span class="line">  </span><br><span class="line">  methods: &#123;</span><br><span class="line">      getSummaries(param) &#123;</span><br><span class="line">        const &#123; columns, data &#125; &#x3D; param;</span><br><span class="line">        const sums &#x3D; [];</span><br><span class="line">        columns.forEach((column, index) &#x3D;&gt; &#123;</span><br><span class="line">          if (index &#x3D;&#x3D;&#x3D; 0) &#123;</span><br><span class="line">            sums[index] &#x3D; &#39;总价&#39;;</span><br><span class="line">            return;</span><br><span class="line">          &#125;</span><br><span class="line">          const values &#x3D; data.map(item &#x3D;&gt; Number(item[column.property]));</span><br><span class="line">          if (!values.every(value &#x3D;&gt; isNaN(value))) &#123;</span><br><span class="line">            sums[index] &#x3D; values.reduce((prev, curr) &#x3D;&gt; &#123;</span><br><span class="line">              const value &#x3D; Number(curr);</span><br><span class="line">              if (!isNaN(value)) &#123;</span><br><span class="line">                return prev + curr;</span><br><span class="line">              &#125; else &#123;</span><br><span class="line">                return prev;</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;, 0);</span><br><span class="line">            sums[index] +&#x3D; &#39; 元&#39;;</span><br><span class="line">          &#125; else &#123;</span><br><span class="line">            sums[index] &#x3D; &#39;N&#x2F;A&#39;;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        return sums;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="合并行或列"><a href="#合并行或列" class="headerlink" title="合并行或列"></a>合并行或列</h3><p>多行或多列共用一个数据时，可以合并行或列。</p>
+<p>通过给<code>table</code>传入<code>span-method</code>方法可以实现合并行或列，方法的参数是一个对象，里面包含当前行<code>row</code>、当前列<code>column</code>、当前行号<code>rowIndex</code>、当前列号<code>columnIndex</code>四个属性。该函数可以返回一个包含两个元素的数组，第一个元素代表<code>rowspan</code>，第二个元素代表<code>colspan</code>。 也可以返回一个键名为<code>rowspan</code>和<code>colspan</code>的对象。</p>
+<p>数据源</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">tableData: [&#123;</span><br><span class="line">          id: &#39;12987122&#39;,</span><br><span class="line">          name: &#39;王小虎&#39;,</span><br><span class="line">          amount1: &#39;234&#39;,</span><br><span class="line">          amount2: &#39;3.2&#39;,</span><br><span class="line">          amount3: 10</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">          id: &#39;12987123&#39;,</span><br><span class="line">          name: &#39;王小虎&#39;,</span><br><span class="line">          amount1: &#39;165&#39;,</span><br><span class="line">          amount2: &#39;4.43&#39;,</span><br><span class="line">          amount3: 12</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">          id: &#39;12987124&#39;,</span><br><span class="line">          name: &#39;王小虎&#39;,</span><br><span class="line">          amount1: &#39;324&#39;,</span><br><span class="line">          amount2: &#39;1.9&#39;,</span><br><span class="line">          amount3: 9</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">          id: &#39;12987125&#39;,</span><br><span class="line">          name: &#39;王小虎&#39;,</span><br><span class="line">          amount1: &#39;621&#39;,</span><br><span class="line">          amount2: &#39;2.2&#39;,</span><br><span class="line">          amount3: 17</span><br><span class="line">        &#125;, &#123;</span><br><span class="line">          id: &#39;12987126&#39;,</span><br><span class="line">          name: &#39;王小虎&#39;,</span><br><span class="line">          amount1: &#39;539&#39;,</span><br><span class="line">          amount2: &#39;4.1&#39;,</span><br><span class="line">          amount3: 15</span><br><span class="line">        &#125;]</span><br></pre></td></tr></table></figure>
+
+<h4 id="合并列"><a href="#合并列" class="headerlink" title="合并列"></a>合并列</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table</span><br><span class="line">      :data&#x3D;&quot;tableData&quot;</span><br><span class="line">      :span-method&#x3D;&quot;arraySpanMethod&quot;</span><br><span class="line">      border</span><br><span class="line">      style&#x3D;&quot;width: 100%&quot;&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;id&quot;</span><br><span class="line">        label&#x3D;&quot;ID&quot;</span><br><span class="line">        width&#x3D;&quot;180&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;name&quot;</span><br><span class="line">        label&#x3D;&quot;姓名&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;amount1&quot;</span><br><span class="line">        sortable</span><br><span class="line">        label&#x3D;&quot;数值 1&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;amount2&quot;</span><br><span class="line">        sortable</span><br><span class="line">        label&#x3D;&quot;数值 2&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;amount3&quot;</span><br><span class="line">        sortable</span><br><span class="line">        label&#x3D;&quot;数值 3&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">&lt;&#x2F;el-table&gt;</span><br><span class="line"></span><br><span class="line">methods: &#123;</span><br><span class="line">      arraySpanMethod(&#123; row, column, rowIndex, columnIndex &#125;) &#123;</span><br><span class="line">      &#x2F;&#x2F;索引从0开发，所以以下操作是针对奇数行</span><br><span class="line">        if (rowIndex % 2 &#x3D;&#x3D;&#x3D; 0) &#123;</span><br><span class="line">        &#x2F;&#x2F;第一列占据一行两列</span><br><span class="line">          if (columnIndex &#x3D;&#x3D;&#x3D; 0) &#123;</span><br><span class="line">            return [1, 2];</span><br><span class="line">          &#125; else if (columnIndex &#x3D;&#x3D;&#x3D; 1) &#123;</span><br><span class="line">         &#x2F;&#x2F;第二列占据0行0列，消失</span><br><span class="line">            return [0, 0];</span><br><span class="line">          &#125;</span><br><span class="line">         &#x2F;&#x2F;合并列成功</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="合并行"><a href="#合并行" class="headerlink" title="合并行"></a>合并行</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table</span><br><span class="line">      :data&#x3D;&quot;tableData&quot;</span><br><span class="line">      :span-method&#x3D;&quot;objectSpanMethod&quot;</span><br><span class="line">      border</span><br><span class="line">      style&#x3D;&quot;width: 100%; margin-top: 20px&quot;&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;id&quot;</span><br><span class="line">        label&#x3D;&quot;ID&quot;</span><br><span class="line">        width&#x3D;&quot;180&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;name&quot;</span><br><span class="line">        label&#x3D;&quot;姓名&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;amount1&quot;</span><br><span class="line">        label&#x3D;&quot;数值 1（元）&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;amount2&quot;</span><br><span class="line">        label&#x3D;&quot;数值 2（元）&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">      &lt;el-table-column</span><br><span class="line">        prop&#x3D;&quot;amount3&quot;</span><br><span class="line">        label&#x3D;&quot;数值 3（元）&quot;&gt;</span><br><span class="line">      &lt;&#x2F;el-table-column&gt;</span><br><span class="line">&lt;&#x2F;el-table&gt;</span><br><span class="line"></span><br><span class="line">methods: &#123;</span><br><span class="line">      objectSpanMethod(&#123; row, column, rowIndex, columnIndex &#125;) &#123;</span><br><span class="line">      &#x2F;&#x2F;只针对第一列</span><br><span class="line">        if (columnIndex &#x3D;&#x3D;&#x3D; 0) &#123;</span><br><span class="line">        &#x2F;&#x2F;奇数行</span><br><span class="line">          if (rowIndex % 2 &#x3D;&#x3D;&#x3D; 0) &#123;</span><br><span class="line">            return &#123;</span><br><span class="line">              rowspan: 2,</span><br><span class="line">              colspan: 1</span><br><span class="line">            &#125;;</span><br><span class="line">          &#125; else &#123;</span><br><span class="line">            return &#123;</span><br><span class="line">              rowspan: 0,</span><br><span class="line">              colspan: 0</span><br><span class="line">            &#125;;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="Table属性"><a href="#Table属性" class="headerlink" title="Table属性"></a><strong>Table属性</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">[1]data：显示的数据</span><br><span class="line">[2]height：Table的高度，默认为自动高度。如果height为number类型，单位px；如果height为string类型，则这个高度会设置为Table的style.height的值，Table的高度会受控于外部样式</span><br><span class="line">[3]max-height：Table的最大高度。合法的值为数字或者单位为px的高度</span><br><span class="line">[4]stripe：是否为斑马纹table</span><br><span class="line">[5]border：是否带有纵向边框</span><br><span class="line">[6]size：Table的尺寸</span><br><span class="line">[7]fit：列的宽度是否自撑开</span><br><span class="line">[8]show-header：是否显示表头</span><br><span class="line">[9]highlight-current-row：是否要高亮当前行</span><br><span class="line">[10]current-row-key：当前行的key，只写属性</span><br><span class="line">[11]row-class-name：行的className的回调方法，也可以使用字符串为所有行设置一个固定的className。</span><br><span class="line">[12]row-style：行的style的回调方法，也可以使用一个固定的Object为所有行设置一样的Style。</span><br><span class="line">[13]cell-class-name：单元格的className的回调方法，也可以使用字符串为所有单元格设置一个固定的className。</span><br><span class="line">[14]cell-style：单元格的style的回调方法，也可以使用一个固定的Object为所有单元格设置一样的Style。</span><br><span class="line">[15]header-row-class-name：表头行的className的回调方法，也可以使用字符串为所有表头行设置一个固定的className。</span><br><span class="line">[16]header-row-style：表头行的style的回调方法，也可以使用一个固定的Object为所有表头行设置一样的Style。</span><br><span class="line">[17]header-cell-class-name：表头单元格的className的回调方法，也可以使用字符串为所有表头单元格设置一个固定的className。</span><br><span class="line">[18]header-cell-style：表头单元格的style的回调方法，也可以使用一个固定的Object为所有表头单元格设置一样的Style。</span><br><span class="line">[19]row-key：行数据的Key，用来优化Table的渲染；在使用reserve-selection功能与显示树形数据时，该属性是必填的。类型为String时，支持多层访问：user.info.id，但不支持user.info[0].id，此种情况请使用Function。</span><br><span class="line">[20]empty-text：空数据时显示的文本内容，也可以通过slot&#x3D;&quot;empty&quot;设置</span><br><span class="line">[21]default-expand-all：是否默认展开所有行，当Table包含展开行存在或者为树形表格时有效</span><br><span class="line">[22]expand-row-keys：可以通过该属性设置Table目前的展开行，需要设置row-key属性才能使用，该属性为展开行的keys数组。</span><br><span class="line">[23]default-sort：默认的排序列的prop和顺序。它的prop属性指定默认的排序的列，order指定默认排序的顺序</span><br><span class="line">[24]tooltip-effect：tooltipeffect属性</span><br><span class="line">[25]show-summary：是否在表尾显示合计行</span><br><span class="line">[26]sum-text：合计行第一列的文本</span><br><span class="line">[27]summary-method：自定义的合计计算方法</span><br><span class="line">[28]span-method：合并行或列的计算方法</span><br><span class="line">[29]select-on-indeterminate：在多选表格中，当仅有部分行被选中时，点击表头的多选框时的行为。若为true，则选中所有行；若为false，则取消选择所有行</span><br><span class="line">[30]indent：展示树形数据时，树节点的缩进</span><br><span class="line">[31]lazy：是否懒加载子节点数据</span><br><span class="line">[32]load：加载子节点数据的函数，lazy为true时生效，函数第二个参数包含了节点的层级信息</span><br><span class="line">[33]tree-props：渲染嵌套数据的配置选项</span><br></pre></td></tr></table></figure>
+
+<h3 id="Table事件"><a href="#Table事件" class="headerlink" title="Table事件"></a><strong>Table事件</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[1]select：当用户手动勾选数据行的Checkbox时触发的事件</span><br><span class="line">[2]select-all：当用户手动勾选全选Checkbox时触发的事件</span><br><span class="line">[3]selection-change：当选择项发生变化时会触发该事件</span><br><span class="line">[4]cell-mouse-enter：当单元格hover进入时会触发该事件</span><br><span class="line">[5]cell-mouse-leave：当单元格hover退出时会触发该事件</span><br><span class="line">[6]cell-click：当某个单元格被点击时会触发该事件</span><br><span class="line">[7]cell-dblclick：当某个单元格被双击击时会触发该事件</span><br><span class="line">[8]row-click：当某一行被点击时会触发该事件</span><br><span class="line">[9]row-contextmenu：当某一行被鼠标右键点击时会触发该事件</span><br><span class="line">[10]row-dblclick：当某一行被双击时会触发该事件</span><br><span class="line">[11]row-click：当某一行被点击时会触发该事件</span><br><span class="line">[12]row-contextmenu：当某一行被鼠标右键点击时会触发该事件</span><br><span class="line">[13]row-dblclick：当某一行被双击时会触发该事件</span><br><span class="line">[14]header-click：当某一列的表头被点击时会触发该事件</span><br><span class="line">[15]header-contextmenu：当某一列的表头被鼠标右键点击时触发该事件</span><br><span class="line">[16]sort-change：当表格的排序条件发生变化的时候会触发该事件</span><br><span class="line">[17]filter-change：当表格的筛选条件发生变化的时候会触发该事件，参数的值是一个对象，对象的key是column的columnKey，对应的value为用户选择的筛选条件的数组。</span><br><span class="line">[18]current-change：当表格的当前行发生变化的时候会触发该事件，如果要高亮当前行，请打开表格的highlight-current-row属性</span><br><span class="line">[19]header-dragend：当拖动表头改变了列的宽度的时候会触发该事件</span><br><span class="line">[20]expand-change：当用户对某一行展开或者关闭的时候会触发该事件[展开行时，回调的第二个参数为expandedRows；树形表格时第二参数为expanded]</span><br></pre></td></tr></table></figure>
+
+<h3 id="Table方法"><a href="#Table方法" class="headerlink" title="Table方法"></a><strong>Table方法</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[1]clearSelection：用于多选表格，清空用户的选择</span><br><span class="line">[2]toggleRowSelection：用于多选表格，切换某一行的选中状态，如果使用了第二个参数，则是设置这一行选中与否[selected为true则选中]</span><br><span class="line">[3]toggleAllSelection：用于多选表格，切换所有行的选中状态</span><br><span class="line">[4]toggleRowExpansion：用于可展开表格与树形表格，切换某一行的展开状态，如果使用了第二个参数，则是设置这一行展开与否[expanded为true则展开]</span><br><span class="line">[5]setCurrentRow：用于单选表格，设定某一行为选中行，如果调用时不加参数，则会取消目前高亮行的选中状态</span><br><span class="line">[6]clearSort：用于清空排序条件，数据会恢复成未排序的状态</span><br><span class="line">[7]clearFilter：不传入参数时用于清空所有过滤条件，数据会恢复成未过滤的状态，也可传入由columnKey组成的数组以清除指定列的过滤条件</span><br><span class="line">[8]doLayout：对Table进行重新布局。当Table或其祖先元素由隐藏切换为显示时，可能需要调用此方法</span><br><span class="line">[9]sort：手动对Table进行排序。参数prop属性指定排序列，order指定排序顺序</span><br></pre></td></tr></table></figure>
+
+<h2 id="与form表单一起用"><a href="#与form表单一起用" class="headerlink" title="与form表单一起用"></a>与form表单一起用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;el-form class&#x3D;&quot;form&quot; :model&#x3D;&quot;bindForm&quot; ref&#x3D;&quot;ruleForm&quot;&gt;</span><br><span class="line">            &lt;el-table height&#x3D;&quot;500&quot; ref&#x3D;&quot;multipleTable&quot; :data&#x3D;&quot;bindForm.bindList&quot; tooltip-effect&#x3D;&quot;dark&quot; style&#x3D;&quot;width: 99%&quot; empty-text&#x3D;&quot;暂无绑定用户&quot;&gt;</span><br><span class="line">                &lt;el-table-column :render-header&#x3D;&quot;(h, obj) &#x3D;&gt; renderHeader(h, obj, &#39;姓名&#39;)&quot; min-width&#x3D;&quot;100&quot;&gt;</span><br><span class="line">                    &lt;template slot-scope&#x3D;&quot;scope&quot;&gt;</span><br><span class="line">                        &lt;el-form-item :prop&#x3D;&quot;&#96;bindList[$&#123;scope.$index&#125;].nickName&#96;&quot; :rules&#x3D;&quot;rules.nickName&quot;&gt;</span><br><span class="line">                            &lt;el-input v-model&#x3D;&quot;scope.row.nickName&quot; placeholder&#x3D;&quot;请输入内容&quot;&gt;&lt;&#x2F;el-input&gt;</span><br><span class="line">                        &lt;&#x2F;el-form-item&gt;</span><br><span class="line">                    &lt;&#x2F;template&gt;</span><br><span class="line">                &lt;&#x2F;el-table-column&gt;</span><br><span class="line">                &lt;el-table-column :render-header&#x3D;&quot;(h, obj) &#x3D;&gt; renderHeader(h, obj, &#39;职务&#39;)&quot; min-width&#x3D;&quot;130&quot;&gt;</span><br><span class="line">                    &lt;template slot-scope&#x3D;&quot;scope&quot;&gt;</span><br><span class="line">                        &lt;el-form-item :prop&#x3D;&quot;&#96;bindList[$&#123;scope.$index&#125;].paymentScenes&#96;&quot; :rules&#x3D;&quot;rules.paymentScenes&quot;&gt;</span><br><span class="line">                            &lt;el-select v-model&#x3D;&quot;scope.row.paymentScenes&quot; multiple collapse-tags placeholder&#x3D;&quot;请选择支付场景&quot;&gt;</span><br><span class="line">                                &lt;el-option v-for&#x3D;&quot;item in paymentSceneList&quot; :key&#x3D;&quot;item.value&quot; :label&#x3D;&quot;item.label&quot; :value&#x3D;&quot;item.value&quot;&gt;</span><br><span class="line">                                &lt;&#x2F;el-option&gt;</span><br><span class="line">                            &lt;&#x2F;el-select&gt;</span><br><span class="line">                        &lt;&#x2F;el-form-item&gt;</span><br><span class="line">                    &lt;&#x2F;template&gt;</span><br><span class="line">                &lt;&#x2F;el-table-column&gt;</span><br><span class="line">                &lt;el-table-column&gt;</span><br><span class="line">                    &lt;template slot-scope&#x3D;&quot;scope&quot;&gt;</span><br><span class="line">                        &lt;el-form-item :prop&#x3D;&quot;&#96;bindList[$&#123;scope.$index&#125;].sex&#96;&quot;&gt;</span><br><span class="line">                            &lt;el-input v-model&#x3D;&quot;scope.row.sex&quot; placeholder&#x3D;&quot;请输入性别&quot;&gt;&lt;&#x2F;el-input&gt;</span><br><span class="line">                        &lt;&#x2F;el-form-item&gt;</span><br><span class="line">                    &lt;&#x2F;template&gt;</span><br><span class="line">                &lt;&#x2F;el-table-column&gt;</span><br><span class="line">                &lt;el-table-column label&#x3D;&quot;操作&quot; min-width&#x3D;&quot;80&quot;&gt;</span><br><span class="line">                    &lt;template slot-scope&#x3D;&quot;scope&quot;&gt;</span><br><span class="line">                        &lt;el-form-item&gt;</span><br><span class="line">                            &lt;el-button @click&#x3D;&quot;add&quot;&gt;新增&lt;&#x2F;el-button&gt;</span><br><span class="line">                            &lt;el-button @click&#x3D;&quot;sub(scope.$index)&quot;&gt;删除&lt;&#x2F;el-button&gt;</span><br><span class="line">                        &lt;&#x2F;el-form-item&gt;</span><br><span class="line">                    &lt;&#x2F;template&gt;</span><br><span class="line">                &lt;&#x2F;el-table-column&gt;</span><br><span class="line">            &lt;&#x2F;el-table&gt;</span><br><span class="line">            &lt;div class&#x3D;&quot;save&quot;&gt;</span><br><span class="line">                &lt;el-button type&#x3D;&quot;primary&quot; @click&#x3D;&quot;save&quot;&gt;保存&lt;&#x2F;el-button&gt;</span><br><span class="line">            &lt;&#x2F;div&gt;</span><br><span class="line">        &lt;&#x2F;el-form&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">    data() &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            &#x2F;&#x2F; 支付场景数据</span><br><span class="line">            paymentSceneList: [</span><br><span class="line">                &#123; label: &#39;图书管理员&#39;, value: 1 &#125;,</span><br><span class="line">                &#123; label: &#39;物业管理员&#39;, value: 2 &#125;,</span><br><span class="line">                &#123; label: &#39;宿舍管理员&#39;, value: 3 &#125;,</span><br><span class="line">                &#123; label: &#39;教室管理员&#39;, value: 4 &#125;</span><br><span class="line">            ],</span><br><span class="line">            &#x2F;&#x2F; 此处必须是这样的数据类型，才能够校验成功</span><br><span class="line">            bindForm: &#123;</span><br><span class="line">                bindList: []</span><br><span class="line">            &#125;,</span><br><span class="line">            &#x2F;&#x2F; 支付场景是否开启的状态值</span><br><span class="line">            STATUS: &#123;</span><br><span class="line">                OPEN: 1, &#x2F;&#x2F; 开启</span><br><span class="line">                CLOSE: 0 &#x2F;&#x2F; 不开启</span><br><span class="line">            &#125;,</span><br><span class="line">            rules: &#123;</span><br><span class="line">                nickName: [</span><br><span class="line">                    &#123;</span><br><span class="line">                        required: true,</span><br><span class="line">                        message: &#39;姓名不可为空&#39;,</span><br><span class="line">                        trigger: [&#39;blur&#39;, &#39;change&#39;]</span><br><span class="line">                    &#125;</span><br><span class="line">                ],</span><br><span class="line">                paymentScenes: [</span><br><span class="line">                    &#123;</span><br><span class="line">                        type: &#39;array&#39;,</span><br><span class="line">                        required: true,</span><br><span class="line">                        trigger: [&#39;blur&#39;, &#39;change&#39;],</span><br><span class="line">                        message: &#39;职务不可为空&#39;</span><br><span class="line">                    &#125;</span><br><span class="line">                ]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    mounted() &#123;</span><br><span class="line">        this.bindForm.bindList.push(&#123;</span><br><span class="line">            nickName: &#39;&#39;,</span><br><span class="line">            sex: &#39;&#39;,</span><br><span class="line">            paymentScenes: []</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        &#x2F;**</span><br><span class="line">         * 渲染表头 表头增加必填项*</span><br><span class="line">         * str自定义传入参数 为表头名称</span><br><span class="line">        *&#x2F;</span><br><span class="line">        &#x2F;&#x2F; eslint-disable-next-line</span><br><span class="line">        renderHeader(h, &#123; column, $index &#125;, str) &#123;</span><br><span class="line">            return h(&#39;span&#39;, [</span><br><span class="line">                h(&#39;span&#39;, &#123; style: &#123; color: &#39;#f56c6c&#39; &#125; &#125;, [&#39;*&#39;]),</span><br><span class="line">                h(&#39;span&#39;, &#123;&#125;, [str])</span><br><span class="line">            ]);</span><br><span class="line">        &#125;,</span><br><span class="line">        add() &#123;</span><br><span class="line">            this.bindForm.bindList.push(&#123;</span><br><span class="line">                nickName: &#39;&#39;,</span><br><span class="line">                sex: &#39;&#39;,</span><br><span class="line">                paymentScenes: []</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;,</span><br><span class="line">        sub(index) &#123;</span><br><span class="line">            this.bindForm.bindList.splice(index, 1);</span><br><span class="line">        &#125;,</span><br><span class="line">        save() &#123;</span><br><span class="line">            this.$refs.ruleForm.validate((valid) &#x3D;&gt; &#123;</span><br><span class="line">                if (valid) &#123;</span><br><span class="line">                    &#x2F;&#x2F; 通过校验时</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/02/25/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83%E6%96%87%E6%A1%A3/" rel="next" title="前端开发规范文档">
+                <i class="fa fa-chevron-left"></i> 前端开发规范文档
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/08/15/vue-config-js%E8%AF%A6%E8%A7%A3/" rel="prev" title="vue.config.js详解">
+                vue.config.js详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="Dali" />
+            
+              <p class="site-author-name" itemprop="name">Dali</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">175</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">163</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#最基础版表格"><span class="nav-number">1.</span> <span class="nav-text">最基础版表格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样式处理"><span class="nav-number">2.</span> <span class="nav-text">样式处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#居中"><span class="nav-number">2.1.</span> <span class="nav-text">居中</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#统一设置所有表头居中"><span class="nav-number">2.1.1.</span> <span class="nav-text">统一设置所有表头居中</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#某一列的表头居中"><span class="nav-number">2.1.2.</span> <span class="nav-text">某一列的表头居中</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#某一列除表头以外的内容都居中"><span class="nav-number">2.1.3.</span> <span class="nav-text">某一列除表头以外的内容都居中</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#斑马纹-stripe"><span class="nav-number">2.2.</span> <span class="nav-text">斑马纹(stripe)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#带边框-border"><span class="nav-number">2.3.</span> <span class="nav-text">带边框(border)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#每一行带不同状态表格-row-class-name-gt-success-warning"><span class="nav-number">2.4.</span> <span class="nav-text">每一行带不同状态表格(row-class-name &#x3D;&gt; success,warning)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改某一个列表头的颜色-label-class-name"><span class="nav-number">2.5.</span> <span class="nav-text">修改某一个列表头的颜色(label-class-name)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#功能处理"><span class="nav-number">3.</span> <span class="nav-text">功能处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对后端返回数据额外处理的两种方式-formatter-template"><span class="nav-number">3.1.</span> <span class="nav-text">对后端返回数据额外处理的两种方式(formatter&#x2F;template)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#formatter"><span class="nav-number">3.1.1.</span> <span class="nav-text">formatter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#template"><span class="nav-number">3.1.2.</span> <span class="nav-text">template</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#show-overflow-tooltip和tooltip-effect"><span class="nav-number">3.2.</span> <span class="nav-text">show-overflow-tooltip和tooltip-effect</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增加索引列-type-”index”-默认从1开始"><span class="nav-number">3.3.</span> <span class="nav-text">增加索引列(type&#x3D;”index”,默认从1开始)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#固定表头-height"><span class="nav-number">3.4.</span> <span class="nav-text">固定表头(height)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#固定列-fixed"><span class="nav-number">3.5.</span> <span class="nav-text">固定列(fixed)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多级表头-嵌套el-table-column"><span class="nav-number">3.6.</span> <span class="nav-text">多级表头(嵌套el-table-column)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单选-选中某一行，取消选择某一行"><span class="nav-number">3.7.</span> <span class="nav-text">单选,选中某一行，取消选择某一行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多选-选中某些行，取消选择某些行-选择多行数据时使用-Checkbox"><span class="nav-number">3.8.</span> <span class="nav-text">多选,选中某些行，取消选择某些行(选择多行数据时使用 Checkbox)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排序-根据表格的日期，中文姓名排序"><span class="nav-number">3.9.</span> <span class="nav-text">排序(根据表格的日期，中文姓名排序)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#筛选"><span class="nav-number">3.10.</span> <span class="nav-text">筛选</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#展开行"><span class="nav-number">3.11.</span> <span class="nav-text">展开行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#树形数据与懒加载"><span class="nav-number">3.12.</span> <span class="nav-text">树形数据与懒加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义表头及搜索表格内容"><span class="nav-number">3.13.</span> <span class="nav-text">自定义表头及搜索表格内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表尾合计行-在最后一行显示统计数据"><span class="nav-number">3.14.</span> <span class="nav-text">表尾合计行(在最后一行显示统计数据)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#合并行或列"><span class="nav-number">3.15.</span> <span class="nav-text">合并行或列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#合并列"><span class="nav-number">3.15.1.</span> <span class="nav-text">合并列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#合并行"><span class="nav-number">3.15.2.</span> <span class="nav-text">合并行</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Table属性"><span class="nav-number">4.1.</span> <span class="nav-text">Table属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Table事件"><span class="nav-number">4.2.</span> <span class="nav-text">Table事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Table方法"><span class="nav-number">4.3.</span> <span class="nav-text">Table方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#与form表单一起用"><span class="nav-number">5.</span> <span class="nav-text">与form表单一起用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dali</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

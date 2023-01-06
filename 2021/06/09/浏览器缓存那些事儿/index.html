@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="浏览器缓存," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="DaliBlogs" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="在前端性能优化的方式中，最重要的当然是缓存了，使用好了缓存，对项目有很大的帮助。比如我们访问网页时，使用网页后退功能，会发现加载的非常快，体验感很好，这就是缓存的力量。 什么是缓存呢？ 当我们第一次访问网站的时候，比如 juejin.cn，电脑会把网站上的图片和数据下载到电脑上，当我们再次访问该网站的时候，网站就会从电脑中直接加载出来，这就是缓存。 缓存有哪些好处？ \1. 缓解服务器压力，不用每">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器缓存那些事儿">
+<meta property="og:url" content="http://yoursite.com/2021/06/09/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/index.html">
+<meta property="og:site_name" content="DaliBlogs">
+<meta property="og:description" content="在前端性能优化的方式中，最重要的当然是缓存了，使用好了缓存，对项目有很大的帮助。比如我们访问网页时，使用网页后退功能，会发现加载的非常快，体验感很好，这就是缓存的力量。 什么是缓存呢？ 当我们第一次访问网站的时候，比如 juejin.cn，电脑会把网站上的图片和数据下载到电脑上，当我们再次访问该网站的时候，网站就会从电脑中直接加载出来，这就是缓存。 缓存有哪些好处？ \1. 缓解服务器压力，不用每">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/pfCCZhlbMQTa3jqibNjSs3IyOFcZc7w4GRA41cQkiaUBowbibeKCicEyXmDOibd4obBg0YibnhOG1TyLS1XCibbNgXpwA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/pfCCZhlbMQTa3jqibNjSs3IyOFcZc7w4Ge2M4gZBlxdVaIBeM1nZTKEWJb0lZCIM7OblA90FKXdiaCKYNXB3rV6w/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/pfCCZhlbMQTa3jqibNjSs3IyOFcZc7w4GBicZrW6HHJGOdmHPhxFibaog60ufRBbIXwN3USoEncTxpaBhPoYiaHZrQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/pfCCZhlbMQTa3jqibNjSs3IyOFcZc7w4GD80NuS66ZINhYHTwHdF20nwMboibG50j5dSOzwuzHHlyicoeOSvXiaXLg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/pfCCZhlbMQTa3jqibNjSs3IyOFcZc7w4GKjyyCnwZaHUpfzHqNLpG5uNKZGeRRDtLt7r6icyKdHGBiadPnkTFibhKw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/pfCCZhlbMQTa3jqibNjSs3IyOFcZc7w4GULShqbbJp7kswIj1OnPub7ib0CZZZ2j2hPdNmXXdNYw4WwI1ZVca2wA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/pfCCZhlbMQTa3jqibNjSs3IyOFcZc7w4GuV1eDTshH4Bw4tpOdUKORwYFjw2AqkvyDnibvYVcboDug5AfhDWEMzw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/pfCCZhlbMQTa3jqibNjSs3IyOFcZc7w4Gd8150SYO5nnlOW2BP96KGiaINxaI0yNu4yZ4bpYOIrNb6nyp7URI4ZQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/pfCCZhlbMQTa3jqibNjSs3IyOFcZc7w4G1597usLPNrtgrr3S1xYYILDpDOgYJaVYicAn2AWoU5vPfseeYRv6ofg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/pfCCZhlbMQTa3jqibNjSs3IyOFcZc7w4GjbpvNGAZ2NFxL0kYIVBT2oIJnsLyClDUlFliapJiafJuEUNVpwZ5ZOyQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/pfCCZhlbMQTa3jqibNjSs3IyOFcZc7w4GuDq5Hyv08JaVkWE0yftzQtPPnbLEliaz4ibhZzGBIewuIZ3dDicTA7lWg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz/pfCCZhlbMQTa3jqibNjSs3IyOFcZc7w4Gjejic7ibMqZabLpcECpjSWH81c4iacIyN6JlK1yf8fgVxJHObGHaN70Mw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="article:published_time" content="2021-06-09T10:02:12.000Z">
+<meta property="article:modified_time" content="2021-06-09T10:18:29.181Z">
+<meta property="article:author" content="Dali">
+<meta property="article:tag" content="浏览器缓存">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mmbiz.qpic.cn/mmbiz_png/pfCCZhlbMQTa3jqibNjSs3IyOFcZc7w4GRA41cQkiaUBowbibeKCicEyXmDOibd4obBg0YibnhOG1TyLS1XCibbNgXpwA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/06/09/浏览器缓存那些事儿/"/>
+
+
+
+
+
+  <title>浏览器缓存那些事儿 | DaliBlogs</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DaliBlogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/09/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">浏览器缓存那些事儿</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-09T18:02:12+08:00">
+                2021-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98/" itemprop="url" rel="index">
+                    <span itemprop="name">浏览器缓存</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在前端性能优化的方式中，最重要的当然是缓存了，使用好了缓存，对项目有很大的帮助。比如我们访问网页时，使用网页后退功能，会发现加载的非常快，体验感很好，这就是缓存的力量。</p>
+<p><strong>什么是缓存呢？</strong></p>
+<p>当我们第一次访问网站的时候，比如 juejin.cn，电脑会把网站上的图片和数据下载到电脑上，当我们再次访问该网站的时候，网站就会从电脑中直接加载出来，这就是缓存。</p>
+<p><strong>缓存有哪些好处？</strong></p>
+<p>\1. 缓解服务器压力，不用每次都去请求某些数据了。</p>
+<p>2.提升性能，打开本地资源肯定会比请求服务器来的快。</p>
+<p>3.减少带宽消耗，当我们使用缓存时，只会产生很小的网络消耗，至于为什么打开本地资源也会产生网络消耗，下面会有说明。</p>
+<p><strong>Web缓存种类：</strong> 数据库缓存，CDN缓存，代理服务器缓存，浏览器缓存。（<em>CDN</em>的全称是Content Delivery Network，即内容分发网络。）</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/pfCCZhlbMQTa3jqibNjSs3IyOFcZc7w4GRA41cQkiaUBowbibeKCicEyXmDOibd4obBg0YibnhOG1TyLS1XCibbNgXpwA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>所谓浏览器缓存其实就是指在本地使用的计算机中开辟一个内存区，同时也开辟一个硬盘区作为数据传输的缓冲区，然后用这个缓冲区来暂时保存用户以前访问过的信息。</p>
+<p><strong>浏览器缓存过程：</strong> 强缓存，协商缓存。</p>
+<p><strong>浏览器缓存位置一般分为四类：</strong> Service Worker–&gt;Memory Cache–&gt;Disk Cache–&gt;Push Cache。</p>
+<h2 id="1-强缓存"><a href="#1-强缓存" class="headerlink" title="1. 强缓存"></a>1. 强缓存</h2><p>强缓存是当我们访问URL的时候，不会向服务器发送请求，直接从缓存中读取资源，但是会返回200的状态码。</p>
+<p><strong>如何设置强缓存？</strong></p>
+<p>我们第一次进入页面，请求服务器，然后服务器进行应答，浏览器会根据response Header来判断是否对资源进行缓存，如果响应头中expires、pragma或者cache-control字段，代表这是强缓存，浏览器就会把资源缓存在memory cache 或 disk cache中。</p>
+<p>第二次请求时，浏览器判断请求参数，如果符合强缓存条件就直接返回状态码200，从本地缓存中拿数据。否则把响应参数存在request header请求头中，看是否符合协商缓存，符合则返回状态码304，不符合则服务器会返回全新资源。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/pfCCZhlbMQTa3jqibNjSs3IyOFcZc7w4Ge2M4gZBlxdVaIBeM1nZTKEWJb0lZCIM7OblA90FKXdiaCKYNXB3rV6w/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<h3 id="expires"><a href="#expires" class="headerlink" title="expires"></a>expires</h3><p>是HTTP1.0控制网页缓存的字段，值为一个时间戳，准确来讲是格林尼治时间，服务器返回该请求结果缓存的到期时间，意思是，再次发送请求时，如果未超过过期时间，直接使用该缓存，如果过期了则重新请求。</p>
+<p>有个缺点，就是它判断是否过期是用本地时间来判断的，本地时间是可以自己修改的。</p>
+<h3 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h3><p>是HTTP1.1中控制网页缓存的字段，当Cache-Control都存在时，Cache-Control优先级更高，主要取值为：</p>
+<p>public：资源客户端和服务器都可以缓存。</p>
+<p>privite：资源只有客户端可以缓存。</p>
+<p>no-cache：客户端缓存资源，但是是否缓存需要经过协商缓存来验证。</p>
+<p>no-store：不使用缓存。</p>
+<p>max-age：缓存保质期。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz/pfCCZhlbMQTa3jqibNjSs3IyOFcZc7w4GBicZrW6HHJGOdmHPhxFibaog60ufRBbIXwN3USoEncTxpaBhPoYiaHZrQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>Cache-Control使用了max-age相对时间，解决了expires的问题。</p>
+<h3 id="pragma"><a href="#pragma" class="headerlink" title="pragma"></a>pragma</h3><p>这个是HTTP1.0中禁用网页缓存的字段，其取值为no-cache，和Cache-Control的no-cache效果一样。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/pfCCZhlbMQTa3jqibNjSs3IyOFcZc7w4GD80NuS66ZINhYHTwHdF20nwMboibG50j5dSOzwuzHHlyicoeOSvXiaXLg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<h2 id="2-缓存位置"><a href="#2-缓存位置" class="headerlink" title="2. 缓存位置"></a>2. 缓存位置</h2><p>上面我们说，强缓存我们会把资源房放到memory cache 和 disk cache中，那什么资源放在memory cache，什么资源放在disk cache中？</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz/pfCCZhlbMQTa3jqibNjSs3IyOFcZc7w4GKjyyCnwZaHUpfzHqNLpG5uNKZGeRRDtLt7r6icyKdHGBiadPnkTFibhKw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>存存储图像和网页等资源主要缓存在disk cache，操作系统缓存文件等资源大部分都会缓存在memory cache中。具体操作浏览器自动分配，看谁的资源利用率不高就分给谁。</p>
+<p>可以看到memory cache请求时间都是0ms，这个是不是太神奇了，这方面我来梳理下。</p>
+<p>查找浏览器缓存时会按顺序查找: Service Worker–&gt;Memory Cache–&gt;Disk Cache–&gt;Push Cache。</p>
+<h3 id="1-Service-Worker"><a href="#1-Service-Worker" class="headerlink" title="1. Service Worker"></a>1. Service Worker</h3><p>是运行在浏览器背后的独立线程，一般可以用来实现缓存功能。使用 Service Worker的话，传输协议必须为 HTTPS。因为 Service Worker 中涉及到请求拦截，所以必须使用 HTTPS 协议来保障安全。Service Worker 的缓存与浏览器其他内建的缓存机制不同，它可以让我们自由控制缓存哪些文件、如何匹配缓存、如何读取缓存，并且缓存是持续性的。</p>
+<h3 id="2-Memory-Cache"><a href="#2-Memory-Cache" class="headerlink" title="2. Memory Cache"></a>2. Memory Cache</h3><p>内存中的缓存，主要包含的是当前中页面中已经抓取到的资源，例如页面上已经下载的样式、脚本、图片等。读取内存中的数据肯定比磁盘快，内存缓存虽然读取高效，可是缓存持续性很短，会随着进程的释放而释放。一旦我们关闭 Tab 页面，内存中的缓存也就被释放了。</p>
+<h3 id="3-Disk-Cache"><a href="#3-Disk-Cache" class="headerlink" title="3. Disk Cache"></a>3. Disk Cache</h3><p>存储在硬盘中的缓存，读取速度慢点，但是什么都能存储到磁盘中，比之 Memory Cache 胜在容量和存储时效性上。</p>
+<p>在所有浏览器缓存中，Disk Cache 覆盖面基本是最大的。它会根据 HTTP Herder 中的字段判断哪些资源需要缓存，哪些资源可以不请求直接使用，哪些资源已经过期需要重新请求。并且即使在跨站点的情况下，相同地址的资源一旦被硬盘缓存下来，就不会再次去请求数据。绝大部分的缓存都来自 Disk Cache。</p>
+<p>memory cache 要比 disk cache 快的多。举个例子：从远程 web 服务器直接提取访问文件可能需要500毫秒(半秒)，那么磁盘访问可能需要10-20毫秒，而内存访问只需要100纳秒，更高级的还有 L1缓存访问(最快和最小的 CPU 缓存)只需要0.5纳秒。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/pfCCZhlbMQTa3jqibNjSs3IyOFcZc7w4GULShqbbJp7kswIj1OnPub7ib0CZZZ2j2hPdNmXXdNYw4WwI1ZVca2wA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>很神奇的，我们又看到了一个prefetch cache，这个又是什么呢?</p>
+<p><strong>prefetch cache(预取缓存)</strong></p>
+<p>link标签上带了prefetch，再次加载会出现。</p>
+<p>prefetch是预加载的一种方式，被标记为prefetch的资源，将会被浏览器在空闲时间加载。</p>
+<h3 id="4-Push-Cache"><a href="#4-Push-Cache" class="headerlink" title="4. Push Cache"></a>4. Push Cache</h3><p>Push Cache（推送缓存）是 HTTP/2 中的内容，当以上三种缓存都没有命中时，它才会被使用。它只在会话（Session）中存在，一旦会话结束就被释放，并且缓存时间也很短暂，在Chrome浏览器中只有5分钟左右，同时它也并非严格执行HTTP头中的缓存指令。</p>
+<h3 id="5-CPU、内存、硬盘"><a href="#5-CPU、内存、硬盘" class="headerlink" title="5. CPU、内存、硬盘"></a>5. CPU、内存、硬盘</h3><p>这里提到了硬盘，内存，可能有些小伙伴对硬盘，内存没什么直观的概念。</p>
+<p>CPU、内存、硬盘都是计算机的主要组成部分。</p>
+<p>CPU：中央处理单元(CntralPocessingUit)的缩写，也叫处理器，是计算机的运算核心和控制核心。电脑靠CPU来运算、控制。让电脑的各个部件顺利工作，起到协调和控制作用。</p>
+<p>硬盘：存储资料和软件等数据的设备，有容量大，断电数据不丢失的特点。</p>
+<p>内存：负责硬盘等硬件上的数据与CPU之间数据交换处理。特点是体积小，速度快，有电可存，无电清空，即电脑在开机状态时内存中可存储数据，关机后将自动清空其中的所有数据。</p>
+<h2 id="3-协商缓存"><a href="#3-协商缓存" class="headerlink" title="3. 协商缓存"></a>3. 协商缓存</h2><p>协商缓存就是强缓存失效后，浏览器携带缓存标识向服务器发送请求，由服务器根据缓存标识来决定是否使用缓存的过程。</p>
+<p>主要有以下两种情况：</p>
+<p>协商缓存生效，返回304</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz/pfCCZhlbMQTa3jqibNjSs3IyOFcZc7w4GuV1eDTshH4Bw4tpOdUKORwYFjw2AqkvyDnibvYVcboDug5AfhDWEMzw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>协商缓存失效，返回200和请求结果</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz/pfCCZhlbMQTa3jqibNjSs3IyOFcZc7w4Gd8150SYO5nnlOW2BP96KGiaINxaI0yNu4yZ4bpYOIrNb6nyp7URI4ZQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p><strong>如何设置协商缓存？</strong></p>
+<h3 id="Last-Modified-If-Modified-Since"><a href="#Last-Modified-If-Modified-Since" class="headerlink" title="Last-Modified / If-Modified-Since"></a>Last-Modified / If-Modified-Since</h3><p>Last-Modified是服务器响应请求时，返回该资源文件在服务器最后被修改的时间。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz/pfCCZhlbMQTa3jqibNjSs3IyOFcZc7w4G1597usLPNrtgrr3S1xYYILDpDOgYJaVYicAn2AWoU5vPfseeYRv6ofg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>If-Modified-Since则是客户端再次发起该请求时，携带上次请求返回的Last-Modified值，通过此字段值告诉服务器该资源上次请求返回的最后被修改时间。服务器收到该请求，发现请求头含有If-Modified-Since字段，则会根据If-Modified-Since的字段值与该资源在服务器的最后被修改时间做对比，若服务器的资源最后被修改时间大于If-Modified-Since的字段值，则重新返回资源，状态码为200；否则则返回304，代表资源无更新，可继续使用缓存文件。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz/pfCCZhlbMQTa3jqibNjSs3IyOFcZc7w4GjbpvNGAZ2NFxL0kYIVBT2oIJnsLyClDUlFliapJiafJuEUNVpwZ5ZOyQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<h3 id="Etag-If-None-Match"><a href="#Etag-If-None-Match" class="headerlink" title="Etag / If-None-Match"></a>Etag / If-None-Match</h3><p>Etag是服务器响应请求时，返回当前资源文件的一个唯一标识(由服务器生成)。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz/pfCCZhlbMQTa3jqibNjSs3IyOFcZc7w4GuDq5Hyv08JaVkWE0yftzQtPPnbLEliaz4ibhZzGBIewuIZ3dDicTA7lWg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>If-None-Match是客户端再次发起该请求时，携带上次请求返回的唯一标识Etag值，通过此字段值告诉服务器该资源上次请求返回的唯一标识值。服务器收到该请求后，发现该请求头中含有If-None-Match，则会根据If-None-Match的字段值与该资源在服务器的Etag值做对比，一致则返回304，代表资源无更新，继续使用缓存文件；不一致则重新返回资源文件，状态码为200。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz/pfCCZhlbMQTa3jqibNjSs3IyOFcZc7w4Gjejic7ibMqZabLpcECpjSWH81c4iacIyN6JlK1yf8fgVxJHObGHaN70Mw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<blockquote>
+<p>Etag / If-None-Match优先级高于Last-Modified / If-Modified-Since，同时存在则只有Etag / If-None-Match生效。</p>
+</blockquote>
+<h2 id="4-缓存方案"><a href="#4-缓存方案" class="headerlink" title="4. 缓存方案"></a>4. 缓存方案</h2><p>目前的项目大多使用这种缓存方案的：</p>
+<ul>
+<li>HTML: 协商缓存；</li>
+<li>css、js、图片：强缓存，文件名带上hash。</li>
+</ul>
+<h2 id="5-强缓存与协商缓存的区别"><a href="#5-强缓存与协商缓存的区别" class="headerlink" title="5. 强缓存与协商缓存的区别"></a>5. 强缓存与协商缓存的区别</h2><p>\1. 强缓存不发请求到服务器，所以有时候资源更新了浏览器还不知道，但是协商缓存会发请求到服务器，所以资源是否更新，服务器肯定知道。</p>
+<p>\2. 大部分web服务器都默认开启协商缓存。</p>
+<h2 id="6-刷新对于强缓存和协商缓存的影响"><a href="#6-刷新对于强缓存和协商缓存的影响" class="headerlink" title="6. 刷新对于强缓存和协商缓存的影响"></a>6. 刷新对于强缓存和协商缓存的影响</h2><p>\1. 当ctrl+f5强制刷新网页时，直接从服务器加载，跳过强缓存和协商缓存。</p>
+<p>\2. 当f5刷新网页时，跳过强缓存，但是会检查协商缓存。</p>
+<p>\3. 浏览器地址栏中写入URL，回车 浏览器发现缓存中有这个文件了，不用继续请求了，直接去缓存拿。（最快）</p>
+<p>转载自：<a href="https://mp.weixin.qq.com/s/C5XHTdLxSe9mo94yUaxFjA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/C5XHTdLxSe9mo94yUaxFjA</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98/" rel="tag"># 浏览器缓存</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/05/31/nginx%E5%92%8Cjenkins%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%81%B0%E5%BA%A6%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83/" rel="next" title="nginx和jenkins搭建一个灰度测试环境">
+                <i class="fa fa-chevron-left"></i> nginx和jenkins搭建一个灰度测试环境
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/06/10/js%E4%B9%8B%E5%A3%B0%E6%98%8E%E5%8F%98%E9%87%8Fval-let-const/" rel="prev" title="js之声明变量val/let/const">
+                js之声明变量val/let/const <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="Dali" />
+            
+              <p class="site-author-name" itemprop="name">Dali</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">175</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">163</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-强缓存"><span class="nav-number">1.</span> <span class="nav-text">1. 强缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#expires"><span class="nav-number">1.1.</span> <span class="nav-text">expires</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache-Control"><span class="nav-number">1.2.</span> <span class="nav-text">Cache-Control</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pragma"><span class="nav-number">1.3.</span> <span class="nav-text">pragma</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-缓存位置"><span class="nav-number">2.</span> <span class="nav-text">2. 缓存位置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Service-Worker"><span class="nav-number">2.1.</span> <span class="nav-text">1. Service Worker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Memory-Cache"><span class="nav-number">2.2.</span> <span class="nav-text">2. Memory Cache</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Disk-Cache"><span class="nav-number">2.3.</span> <span class="nav-text">3. Disk Cache</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Push-Cache"><span class="nav-number">2.4.</span> <span class="nav-text">4. Push Cache</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-CPU、内存、硬盘"><span class="nav-number">2.5.</span> <span class="nav-text">5. CPU、内存、硬盘</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-协商缓存"><span class="nav-number">3.</span> <span class="nav-text">3. 协商缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Last-Modified-If-Modified-Since"><span class="nav-number">3.1.</span> <span class="nav-text">Last-Modified &#x2F; If-Modified-Since</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Etag-If-None-Match"><span class="nav-number">3.2.</span> <span class="nav-text">Etag &#x2F; If-None-Match</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-缓存方案"><span class="nav-number">4.</span> <span class="nav-text">4. 缓存方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-强缓存与协商缓存的区别"><span class="nav-number">5.</span> <span class="nav-text">5. 强缓存与协商缓存的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-刷新对于强缓存和协商缓存的影响"><span class="nav-number">6.</span> <span class="nav-text">6. 刷新对于强缓存和协商缓存的影响</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dali</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="vue,内存泄漏," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="DaliBlogs" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="参考链接：https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;UZ_zSwi21LY2udpT0BhX5g 不知道在座的各位有没有被问到过这样一个问题：如果页面卡顿，你觉得可能是什么原因造成的？有什么办法锁定原因并解决吗？ 这是一个非常宽泛而又有深度的问题，他涉及到很多的页面性能优化问题，我依稀还记得当初面试被问到这个问题时我是这么回答的：  先会检查是否是网络请求太多，导致数据返回较慢，可以适">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue之内存泄漏及解决方案">
+<meta property="og:url" content="http://yoursite.com/2021/04/07/vue%E4%B9%8B%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/index.html">
+<meta property="og:site_name" content="DaliBlogs">
+<meta property="og:description" content="参考链接：https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;UZ_zSwi21LY2udpT0BhX5g 不知道在座的各位有没有被问到过这样一个问题：如果页面卡顿，你觉得可能是什么原因造成的？有什么办法锁定原因并解决吗？ 这是一个非常宽泛而又有深度的问题，他涉及到很多的页面性能优化问题，我依稀还记得当初面试被问到这个问题时我是这么回答的：  先会检查是否是网络请求太多，导致数据返回较慢，可以适">
+<meta property="og:image" content="https://mmbiz.qpic.cn/sz_mmbiz_jpg/gMvNo9rxo40Jm8n8icgTko5QVs956D4lsibs1Qw1eAaYS4lqubNaYK8lia0EggkSvNAWaa7osPfzZJm5BbqG6wo2Q/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/sz_mmbiz_gif/gMvNo9rxo40Jm8n8icgTko5QVs956D4ls3b4rQZ3GUOiaZIQoeZUmRdRJ2VMIFl9reibPx73C1eaqbbk6IKjwFV9Q/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/sz_mmbiz_jpg/gMvNo9rxo40Jm8n8icgTko5QVs956D4lskwfS3AarYP6DJuWa5K2ux4AQrgicLT83IfdDR5T34ibr8R3DDEsvvhgg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/sz_mmbiz_gif/gMvNo9rxo40Jm8n8icgTko5QVs956D4lsdqpZVEhlMObym0SIakvQY7tUuGnGMIHia3QKZ3HrTgVl2wFcHCsCn8g/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/sz_mmbiz_gif/gMvNo9rxo40Jm8n8icgTko5QVs956D4ls13mCc8zUJzuNgZu1J6hV38ExgicbBYJP6vmQkfKxbs4BjRc6OlVYQug/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="article:published_time" content="2021-04-07T05:40:25.000Z">
+<meta property="article:modified_time" content="2021-04-07T07:57:04.724Z">
+<meta property="article:author" content="Dali">
+<meta property="article:tag" content="vue">
+<meta property="article:tag" content="内存泄漏">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mmbiz.qpic.cn/sz_mmbiz_jpg/gMvNo9rxo40Jm8n8icgTko5QVs956D4lsibs1Qw1eAaYS4lqubNaYK8lia0EggkSvNAWaa7osPfzZJm5BbqG6wo2Q/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/04/07/vue之内存泄漏及解决方案/"/>
+
+
+
+
+
+  <title>vue之内存泄漏及解决方案 | DaliBlogs</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DaliBlogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/07/vue%E4%B9%8B%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">vue之内存泄漏及解决方案</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-07T13:40:25+08:00">
+                2021-04-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>参考链接：<a href="https://mp.weixin.qq.com/s/UZ_zSwi21LY2udpT0BhX5g" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/UZ_zSwi21LY2udpT0BhX5g</a></p>
+<p>不知道在座的各位有没有被问到过这样一个问题：<strong>如果页面卡顿，你觉得可能是什么原因造成的？有什么办法锁定原因并解决吗？</strong></p>
+<p>这是一个非常宽泛而又有深度的问题，他涉及到很多的页面性能优化问题，我依稀还记得当初面试被问到这个问题时我是这么回答的：</p>
+<ol>
+<li>先会检查是否是网络请求太多，导致数据返回较慢，可以适当做一些缓存</li>
+<li>也有可能是某块资源的bundle太大，可以考虑拆分一下</li>
+<li>然后排查一下js代码，是不是某处有过多循环导致占用主线程时间过长</li>
+<li>浏览器某帧渲染的东西太多，导致的卡顿</li>
+<li>在页面渲染过程中，可能有很多重复的重排重绘</li>
+<li>emmmmmm….不知道了</li>
+</ol>
+<p>后来了解到了，感官上的长时间运行页面卡顿也有可能是因为<strong>内存泄漏</strong>引起的</p>
+<a id="more"></a>
+
+<h2 id="1内存泄漏的定义"><a href="#1内存泄漏的定义" class="headerlink" title="1内存泄漏的定义"></a>1内存泄漏的定义</h2><p>那什么是内存泄漏呢？借助别的大佬给出的定义，内存泄漏就是指由于疏忽或者程序的某些错误造成未能释放已经不再使用的内存的情况。简单来讲就是假设某个变量占用100M的内存，而你又用不到这个变量，但是这个变量没有被手动的回收或自动回收，即仍然占用100M的内存空间，这就是一种内存的浪费，即内存泄漏</p>
+<h2 id="2JS的数据存储"><a href="#2JS的数据存储" class="headerlink" title="2JS的数据存储"></a>2JS的数据存储</h2><p><code>JavaScript</code>的内存空间分为<strong>栈内存</strong>和<strong>堆内存</strong>，前者用来存放一些简单变量，后者用来存放复杂对象</p>
+<ul>
+<li>简单变量指的是JS的基本数据类型，例如：<code>String</code>、<code>Number</code>、<code>Boolean</code>、<code>null</code>、<code>undefined</code>、<code>Symbol</code>、<code>BigInt</code></li>
+<li>复杂对象指的是JS的引用数据类型，例如：<code>Object</code>、<code>Array</code>、<code>Function</code>…</li>
+</ul>
+<h2 id="3JS垃圾回收机制"><a href="#3JS垃圾回收机制" class="headerlink" title="3JS垃圾回收机制"></a>3JS垃圾回收机制</h2><p>根据内存泄漏的定义，有些变量或数据不再被使用或不需要了，那么它就是垃圾变量或垃圾数据，如果其一直保存在内存中，最终可能会导致内存占用过多的情况。那么此时就需要对这些垃圾数据进行回收，这里引入了<strong>垃圾回收机制</strong>的概念</p>
+<p>垃圾回收的机制分为<strong>手动</strong>和<strong>自动</strong>两种</p>
+<p>例如<code>C/C++</code>采用的就是手动回收的机制，即先用代码为某个变量分配一定的内存，然后在不需要了后，再用代码手动释放掉内存</p>
+<p>而<code>JavaScript</code>采用的则是自动回收的机制，即我们不需要关心何时为变量分配多大的内存，也不需要关心何时去释放内存，因为这一切都是自动的。但这不表示我们不需要关心内存的管理！！！！否则也不会有本文讨论的内存泄露了</p>
+<p>接下来就讲一下<code>JavaScript</code>的垃圾回收机制</p>
+<p>结论：</p>
+<ol>
+<li><code>JavaScript</code>的垃圾回收机制是自动执行的，并且会通过标记来识别并清除垃圾数据</li>
+<li>在离开局部作用域后，若该作用域内的变量没有被外部作用域所引用，则在后续会被清除</li>
+</ol>
+<p><strong>补充：</strong> <code>JavaScript</code>的垃圾回收机制有着很多的步骤，上述只讲到了<code>标记-清除</code>，其实还有其它的过程，这里简单介绍一下就不展开讨论了。例如：<code>标记-整理</code>，在清空部分垃圾数据后释放了一定的内存空间后会可能会留下大面积的不连续内存片段，导致后续可能无法为某些对象分配连续内存，此时需要整理一下内存空间；<code>交替执行</code>，因为<code>JavaScript</code>是运行在主线程上的，所以执行垃圾回收机制时会暂停<code>js</code>的运行，若垃圾回收执行时间过长，则会给用户带来明显的卡顿现象，所以垃圾回收机制会被分成一个个的小任务，穿插在<code>js</code>任务之中，即交替执行，尽可能得保证不会带来明显的卡顿感</p>
+<h2 id="4Chrome-devTools查看内存情况"><a href="#4Chrome-devTools查看内存情况" class="headerlink" title="4Chrome devTools查看内存情况"></a>4Chrome devTools查看内存情况</h2><p>在了解一些常见的内存泄漏的场景之前，先简单介绍一下如何使用<code>Chrome</code>的开发者工具来查看<code>js</code>内存情况</p>
+<p>首先打开<code>Chrome</code>的无痕模式，这样做的目的是为了屏蔽掉<code>Chrome</code>插件对我们之后测试内存占用情况的影响</p>
+<p>然后打开<code>开发者工具</code>，找到<code>Performance</code>这一栏，可以看到其内部带着一些功能按钮，例如：开始录制按钮；刷新页面按钮；清空记录按钮；记录并可视化js内存、节点、事件监听器按钮；触发垃圾回收机制按钮等等</p>
+<p><img src="https://mmbiz.qpic.cn/sz_mmbiz_jpg/gMvNo9rxo40Jm8n8icgTko5QVs956D4lsibs1Qw1eAaYS4lqubNaYK8lia0EggkSvNAWaa7osPfzZJm5BbqG6wo2Q/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>简单录制一下百度页面，看看我们能获得什么，如下动图所示：</p>
+<p><img src="https://mmbiz.qpic.cn/sz_mmbiz_gif/gMvNo9rxo40Jm8n8icgTko5QVs956D4ls3b4rQZ3GUOiaZIQoeZUmRdRJ2VMIFl9reibPx73C1eaqbbk6IKjwFV9Q/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>从上图中我们可以看到，在页面从零到加载完成这个过程中<code>JS Heap（js堆内存）</code>、<code>documents（文档）</code>、<code>Nodes（DOM节点）</code>、<code>Listeners（监听器）</code>、<code>GPU memory（GPU内存）</code>的最低值、最高值以及随时间的走势曲线，这也是我们主要关注的点</p>
+<p>再来看看开发者工具中的<code>Memory</code>一栏，其主要是用于记录页面堆内存的具体情况以及<code>js</code>堆内存随加载时间线动态的分配情况</p>
+<p><img src="https://mmbiz.qpic.cn/sz_mmbiz_jpg/gMvNo9rxo40Jm8n8icgTko5QVs956D4lskwfS3AarYP6DJuWa5K2ux4AQrgicLT83IfdDR5T34ibr8R3DDEsvvhgg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>堆快照就像照相机一样，能记录你当前页面的堆内存情况，每快照一次就会产生一条快照记录，如图所示：</p>
+<p><img src="https://mmbiz.qpic.cn/sz_mmbiz_gif/gMvNo9rxo40Jm8n8icgTko5QVs956D4lsdqpZVEhlMObym0SIakvQY7tUuGnGMIHia3QKZ3HrTgVl2wFcHCsCn8g/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>如上图所示，刚开始执行了一次快照，记录了当时堆内存空间占用为<code>13.9MB</code>，然后我们点击了页面中某些按钮，又执行一次快照，记录了当时堆内存空间占用为<code>13.4MB</code>。并且点击对应的快照记录，能看到当时所有内存中的变量情况（结构、占总占用内存的百分比…）</p>
+<p>然后我们还可以看一下页面动态的内存变化情况，如图所示：</p>
+<p><img src="https://mmbiz.qpic.cn/sz_mmbiz_gif/gMvNo9rxo40Jm8n8icgTko5QVs956D4ls13mCc8zUJzuNgZu1J6hV38ExgicbBYJP6vmQkfKxbs4BjRc6OlVYQug/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>在开始记录后，我们可以看到图中右上角有起伏的蓝色与灰色的柱形图，其中<strong>蓝色</strong>表示当前时间线下占用着的内存；<strong>灰色</strong>表示之前占用的内存空间已被清除释放。</p>
+<p>从上图过程来看，我们可以看到刚开始处于的<code>tab</code>所对应显示的页面中占用了一定的堆内存空间，成蓝色柱形，在点击别的<code>tab</code>后，原<code>tab</code>对应的内容消失，并且原来蓝色的柱形变成灰色（表示原占用的内存空间得到了释放），同时新<code>tab</code>所对应显示的页面也占用了一定的堆内存空间。因此后续我们就可以针对这个图来查看内存的占用与清除情况</p>
+<h2 id="5内存泄漏的场景"><a href="#5内存泄漏的场景" class="headerlink" title="5内存泄漏的场景"></a>5内存泄漏的场景</h2><p>那么到底有哪些情况会出现<strong>内存泄漏</strong>的情况呢？这里列举了常见的几种：</p>
+<h3 id="1-闭包使用不当引起内存泄漏"><a href="#1-闭包使用不当引起内存泄漏" class="headerlink" title="1.闭包使用不当引起内存泄漏"></a>1.闭包使用不当引起内存泄漏</h3><p>原因：闭包可以读取函数内部的变量，然后让这些变量始终保存在内存中。如果在使用结束后没有将局部变量清除，就可能导致内存泄露。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="string">"I'm a"</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(a);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>解决：将事件处理函数定义在外部，解除闭包，或者在定义事件处理函数的外部函数中。<br> 比如：在循环中的函数表达式，能复用最好放到循环外面。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> k = <span class="number">0</span>; k &lt; <span class="number">10</span>; k++) &#123;</span><br><span class="line">  <span class="keyword">var</span> t = <span class="function"><span class="keyword">function</span> (<span class="params">a</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 创建了10次  函数对象。</span></span><br><span class="line">    <span class="built_in">console</span>.log(a)</span><br><span class="line">  &#125;</span><br><span class="line">  t(k)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">t</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(a)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> k = <span class="number">0</span>; k &lt; <span class="number">10</span>; k++) &#123;</span><br><span class="line">  t(k)</span><br><span class="line">&#125;</span><br><span class="line">t = <span class="literal">null</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-全局变量"><a href="#2-全局变量" class="headerlink" title="2.全局变量"></a>2.全局变量</h3><p>由于 js 对未声明变量的处理方式是在全局对象上创建该变量的引用。如果在浏览器中，全局对象就是 window 对象。变量在窗口关闭或重新刷新页面之前都不会被释放，如果未声明的变量缓存大量的数据，就会导致内存泄露。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 未声明变量</span></span><br><span class="line">function <span class="function"><span class="keyword">fn</span></span>() &#123;</span><br><span class="line">  a = <span class="symbol">'global</span> variable'</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">fn</span></span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用 this 创建的变量(this 的指向是 window)。</span></span><br><span class="line">function <span class="function"><span class="keyword">fn</span></span>() &#123;</span><br><span class="line">  this.a = <span class="symbol">'global</span> variable'</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">fn</span></span>()</span><br></pre></td></tr></table></figure>
+
+<p>解决方法：</p>
+<ul>
+<li>避免创建全局变量</li>
+<li>使用严格模式,在 JavaScript 文件头部或者函数的顶部加上 use strict。</li>
+</ul>
+<h3 id="3-分离的DOM节点"><a href="#3-分离的DOM节点" class="headerlink" title="3.分离的DOM节点"></a>3.分离的DOM节点</h3><p>原因：虽然别的地方删除了，但是对象中还存在对 dom 的引用。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在对象中引用DOM</span></span><br><span class="line"><span class="keyword">var</span> elements = &#123;</span><br><span class="line">  btn: <span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>),</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomeThing</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  elements.btn.click()</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeBtn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 将body中的btn移除, 也就是移除 DOM树中的btn</span></span><br><span class="line">  <span class="built_in">document</span>.body.removeChild(<span class="built_in">document</span>.getElementById(<span class="string">'button'</span>))</span><br><span class="line">  <span class="comment">// 但是此时全局变量elements还是保留了对btn的引用, btn还是存在于内存中,不能被GC回收</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>解决方法：手动删除<code>elements.btn = null</code></p>
+<h3 id="4-控制台的打印"><a href="#4-控制台的打印" class="headerlink" title="4.控制台的打印"></a>4.控制台的打印</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 如果在开发环境下，打印变量obj</span><br><span class="line">if(isDev) &#123;</span><br><span class="line">    console.log(obj)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-遗忘的定时器"><a href="#5-遗忘的定时器" class="headerlink" title="5.遗忘的定时器"></a>5.遗忘的定时器</h3><p>定时器中有 dom 的引用，即使 dom 删除了，但是定时器还在，所以内存中还是有这个 dom。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定时器</span></span><br><span class="line"><span class="keyword">var</span> serverData = loadData()</span><br><span class="line">setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> renderer = <span class="built_in">document</span>.getElementById(<span class="string">'renderer'</span>)</span><br><span class="line">  <span class="keyword">if</span> (renderer) &#123;</span><br><span class="line">    renderer.innerHTML = <span class="built_in">JSON</span>.stringify(serverData)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;, <span class="number">5000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 观察者模式</span></span><br><span class="line"><span class="keyword">var</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>)</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">onClick</span>(<span class="params">element</span>) </span>&#123;</span><br><span class="line">  element.innerHTMl = <span class="string">"I'm innerHTML"</span></span><br><span class="line">&#125;</span><br><span class="line">btn.addEventListener(<span class="string">'click'</span>, onClick)</span><br></pre></td></tr></table></figure>
+
+<p>解决方法：</p>
+<ul>
+<li>手动删除定时器和 dom。</li>
+<li>removeEventListener 移除事件监听</li>
+</ul>
+<p>接下来介绍一下各种情况，并尝试用刚才讲到的两种方法来捕捉问题所在</p>
+<h2 id="vue-中容易出现内存泄露的几种情况"><a href="#vue-中容易出现内存泄露的几种情况" class="headerlink" title="vue 中容易出现内存泄露的几种情况"></a>vue 中容易出现内存泄露的几种情况</h2><p>在 Vue SPA 开发应用，那么就更要当心内存泄漏的问题。因为在 SPA 的设计中，用户使用它时是不需要刷新浏览器的，所以 JavaScript 应用需要自行清理组件来确保垃圾回收以预期的方式生效。因此开发过程中，你需要时刻警惕内存泄漏的问题。</p>
+<h3 id="1-全局变量造成的内存泄露"><a href="#1-全局变量造成的内存泄露" class="headerlink" title="1. 全局变量造成的内存泄露"></a>1. 全局变量造成的内存泄露</h3><p>声明的全局变量在切换页面的时候没有清空</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"home"</span>&gt;</span>这里是首页<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">    mounted() &#123;</span><br><span class="line"><span class="javascript">      <span class="built_in">window</span>.test = &#123;</span></span><br><span class="line"><span class="actionscript">        <span class="comment">// 此处在全局window对象中引用了本页面的dom对象</span></span></span><br><span class="line"><span class="actionscript">        name: <span class="string">'home'</span>,</span></span><br><span class="line"><span class="javascript">        node: <span class="built_in">document</span>.getElementById(<span class="string">'home'</span>),</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>解决方案:在页面卸载的时候顺便处理掉该引用。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">destroyed () &#123;</span><br><span class="line">  <span class="built_in">window</span>.test = <span class="keyword">null</span> <span class="comment">// 页面卸载的时候解除引用</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id><a href="#" class="headerlink" title></a></h5><h3 id="2-监听在-window-body-等事件没有解绑"><a href="#2-监听在-window-body-等事件没有解绑" class="headerlink" title="2. 监听在 window/body 等事件没有解绑"></a>2. 监听在 window/body 等事件没有解绑</h3><p>特别注意 window.addEventListener 之类的时间监听</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"home"</span>&gt;</span>这里是首页<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">  mounted () &#123;</span><br><span class="line"><span class="javascript">    <span class="built_in">window</span>.addEventListener(<span class="string">'resize'</span>, <span class="keyword">this</span>.func) <span class="comment">// window对象引用了home页面的方法</span></span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>解决方法:在页面销毁的时候，顺便解除引用，释放内存</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mounted () &#123;</span><br><span class="line">  <span class="built_in">window</span>.addEventListener(<span class="string">'resize'</span>, <span class="keyword">this</span>.func)</span><br><span class="line">&#125;,</span><br><span class="line">beforeDestroy () &#123;</span><br><span class="line">  <span class="built_in">window</span>.removeEventListener(<span class="string">'resize'</span>, <span class="keyword">this</span>.func)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-绑在-EventBus-的事件没有解绑"><a href="#3-绑在-EventBus-的事件没有解绑" class="headerlink" title="3. 绑在 EventBus 的事件没有解绑"></a>3. 绑在 EventBus 的事件没有解绑</h3><p>举个例子</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"home"</span>&gt;</span>这里是首页<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">  mounted () &#123;</span><br><span class="line"><span class="actionscript">   <span class="keyword">this</span>.$EventBus.$on(<span class="string">'homeTask'</span>, res =&gt; <span class="keyword">this</span>.func(res))</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>解决方法:在页面卸载的时候也可以考虑解除引用</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mounted () &#123;</span><br><span class="line"> <span class="keyword">this</span>.$EventBus.$on(<span class="string">'homeTask'</span>, res =&gt; <span class="keyword">this</span>.func(res))</span><br><span class="line">&#125;,</span><br><span class="line">destroyed () &#123;</span><br><span class="line"> <span class="keyword">this</span>.$EventBus.$off()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-Echarts"><a href="#4-Echarts" class="headerlink" title="4. Echarts"></a>4. Echarts</h3><p>每一个图例在没有数据的时候它会创建一个定时器去渲染气泡，页面切换后，echarts 图例是销毁了，但是这个 echarts 的实例还在内存当中，同时它的气泡渲染定时器还在运行。这就导致 Echarts 占用 CPU 高，导致浏览器卡顿，当数据量比较大时甚至浏览器崩溃。<br> 解决方法：加一个 beforeDestroy()方法释放该页面的 chart 资源，我也试过使用 dispose()方法，但是 dispose 销毁这个图例，图例是不存在了，但图例的 resize()方法会启动，则会报没有 resize 这个方法，而 clear()方法则是清空图例数据，不影响图例的 resize，而且能够释放内存，切换的时候就很顺畅了。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">beforeDestroy () &#123;</span><br><span class="line">  <span class="keyword">this</span>.chart.clear()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-v-if-指令产生的内存泄露"><a href="#5-v-if-指令产生的内存泄露" class="headerlink" title="5. v-if 指令产生的内存泄露"></a>5. v-if 指令产生的内存泄露</h3><p>v-if 绑定到 false 的值，但是实际上 dom 元素在隐藏的时候没有被真实的释放掉。<br> 比如下面的示例中，我们加载了一个带有非常多选项的选择框，然后我们用到了一个显示/隐藏按钮，通过一个 v-if 指令从虚拟 DOM 中添加或移除它。这个示例的问题在于这个 v-if 指令会从 DOM 中移除父级元素，但是我们并没有清除由 Choices.js 新添加的 DOM 片段，从而导致了内存泄漏。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">v-if</span>=<span class="string">"showChoices"</span> @<span class="attr">click</span>=<span class="string">"hide"</span>&gt;</span>Hide<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">v-if</span>=<span class="string">"!showChoices"</span> @<span class="attr">click</span>=<span class="string">"show"</span>&gt;</span>Show<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-if</span>=<span class="string">"showChoices"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"choices-single-default"</span>&gt;</span><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">    data() &#123;</span><br><span class="line"><span class="actionscript">      <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="actionscript">        showChoices: <span class="literal">true</span>,</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line"><span class="actionscript">    mounted: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">      <span class="keyword">this</span>.initializeChoices()</span></span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line"><span class="actionscript">      initializeChoices: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> list = []</span></span><br><span class="line"><span class="actionscript">        <span class="comment">// 我们来为选择框载入很多选项，这样的话它会占用大量的内存</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span></span><br><span class="line">          list.push(&#123;</span><br><span class="line"><span class="actionscript">            label: <span class="string">'Item '</span> + i,</span></span><br><span class="line">            value: i,</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;</span><br><span class="line"><span class="actionscript">        <span class="keyword">new</span> Choices(<span class="string">'#choices-single-default'</span>, &#123;</span></span><br><span class="line"><span class="actionscript">          searchEnabled: <span class="literal">true</span>,</span></span><br><span class="line"><span class="actionscript">          removeItemButton: <span class="literal">true</span>,</span></span><br><span class="line">          choices: list,</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;,</span><br><span class="line"><span class="actionscript">      show: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.showChoices = <span class="literal">true</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">this</span>.$nextTick(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="actionscript">          <span class="keyword">this</span>.initializeChoices()</span></span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;,</span><br><span class="line"><span class="actionscript">      hide: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.showChoices = <span class="literal">false</span></span></span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在上述的示例中，我们可以用 hide() 方法在将选择框从 DOM 中移除之前做一些清理工作，来解决内存泄露问题。为了做到这一点，我们会在 Vue 实例的数据对象中保留一个属性，并会使用 Choices API 中的 destroy() 方法将其清除。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &lt;button v-<span class="keyword">if</span>=<span class="string">"showChoices"</span> @click=<span class="string">"hide"</span>&gt;Hide&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">  &lt;button v-if="!showChoices" @click="show"&gt;Show&lt;/</span>button&gt;</span><br><span class="line">  &lt;div v-<span class="keyword">if</span>=<span class="string">"showChoices"</span>&gt;</span><br><span class="line">    &lt;select id=<span class="string">"choices-single-default"</span>&gt;&lt;<span class="regexp">/select&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">  export default &#123;</span></span><br><span class="line"><span class="regexp">    data() &#123;</span></span><br><span class="line"><span class="regexp">      return &#123;</span></span><br><span class="line"><span class="regexp">        showChoices: true,</span></span><br><span class="line"><span class="regexp">        choicesSelect: null</span></span><br><span class="line"><span class="regexp">      &#125;</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    mounted: function () &#123;</span></span><br><span class="line"><span class="regexp">      this.initializeChoices()</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    methods: &#123;</span></span><br><span class="line"><span class="regexp">      initializeChoices: function () &#123;</span></span><br><span class="line"><span class="regexp">        let list = []</span></span><br><span class="line"><span class="regexp">        for (let i = 0; i &lt; 1000; i++) &#123;</span></span><br><span class="line"><span class="regexp">          list.push(&#123;</span></span><br><span class="line"><span class="regexp">            label: 'Item ' + i,</span></span><br><span class="line"><span class="regexp">            value: i,</span></span><br><span class="line"><span class="regexp">          &#125;)</span></span><br><span class="line"><span class="regexp">        &#125;</span></span><br><span class="line"><span class="regexp">         /</span><span class="regexp">/ 在我们的 Vue 实例的数据对象中设置一个 `choicesSelect` 的引用</span></span><br><span class="line"><span class="regexp">        this.choicesSelect = new Choices("#choices-single-default", &#123;</span></span><br><span class="line"><span class="regexp">          searchEnabled: true,</span></span><br><span class="line"><span class="regexp">          removeItemButton: true,</span></span><br><span class="line"><span class="regexp">          choices: list,</span></span><br><span class="line"><span class="regexp">        &#125;)</span></span><br><span class="line"><span class="regexp">      &#125;,</span></span><br><span class="line"><span class="regexp">      show: function () &#123;</span></span><br><span class="line"><span class="regexp">        this.showChoices = true</span></span><br><span class="line"><span class="regexp">        this.$nextTick(() =&gt; &#123;</span></span><br><span class="line"><span class="regexp">          this.initializeChoices()</span></span><br><span class="line"><span class="regexp">        &#125;)</span></span><br><span class="line"><span class="regexp">      &#125;,</span></span><br><span class="line"><span class="regexp">      hide: function () &#123;</span></span><br><span class="line"><span class="regexp">        /</span><span class="regexp">/ 现在我们可以让 Choices 使用这个引用，从 DOM 中移除这些元素之前进行清理工作</span></span><br><span class="line"><span class="regexp">        this.choicesSelect.destroy()</span></span><br><span class="line"><span class="regexp">        this.showChoices = false</span></span><br><span class="line"><span class="regexp">      &#125;,</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="6-ES6-防止内存泄漏"><a href="#6-ES6-防止内存泄漏" class="headerlink" title="6.ES6 防止内存泄漏"></a>6.ES6 防止内存泄漏</h3><p>前面说过，及时清除引用非常重要。但是，你不可能记得那么多，有时候一疏忽就忘了，所以才有那么多内存泄漏。</p>
+<p>ES6 考虑到这点，推出了两种新的数据结构：weakset 和 weakmap 。他们对值的引用都是不计入垃圾回收机制的，也就是说，如果其他对象都不再引用该对象，那么垃圾回收机制会自动回收该对象所占用的内存。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> wm = <span class="keyword">new</span> WeakMap()</span><br><span class="line"><span class="keyword">const</span> element = <span class="built_in">document</span>.getElementById(<span class="string">'example'</span>)</span><br><span class="line">vm.<span class="keyword">set</span>(element, <span class="string">'something'</span>)</span><br><span class="line">vm.<span class="keyword">get</span>(element)</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，先新建一个 Weakmap 实例。然后，将一个 DOM 节点作为键名存入该实例，并将一些附加信息作为键值，一起存放在 WeakMap 里面。这时，WeakMap 里面对 element 的引用就是弱引用，不会被计入垃圾回收机制。<br> 注册监听事件的 listener 对象很适合用 WeakMap 来实现。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 代码1</span></span><br><span class="line">ele.addEventListener(<span class="string">'click'</span>, handler, <span class="literal">false</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 代码2</span></span><br><span class="line"><span class="keyword">const</span> listener = <span class="keyword">new</span> WeakMap()</span><br><span class="line">listener.<span class="keyword">set</span>(ele, handler)</span><br><span class="line">ele.addEventListener(<span class="string">'click'</span>, listener.<span class="keyword">get</span>(ele), <span class="literal">false</span>)</span><br></pre></td></tr></table></figure>
+
+<p>代码 2 比起代码 1 的好处是：由于监听函数是放在 WeakMap 里面，一旦 dom 对象 ele 消失，与它绑定的监听函数 handler 也会自动消失。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vue/" rel="tag"># vue</a>
+          
+            <a href="/tags/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/" rel="tag"># 内存泄漏</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/03/30/mysql%E7%9A%84%E7%AE%80%E5%8D%95%E7%94%A8%E6%B3%95/" rel="next" title="mysql的简单用法">
+                <i class="fa fa-chevron-left"></i> mysql的简单用法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/05/27/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%B8%A9%E5%9D%91/" rel="prev" title="移动端踩坑">
+                移动端踩坑 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="Dali" />
+            
+              <p class="site-author-name" itemprop="name">Dali</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">175</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">163</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1内存泄漏的定义"><span class="nav-number">1.</span> <span class="nav-text">1内存泄漏的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2JS的数据存储"><span class="nav-number">2.</span> <span class="nav-text">2JS的数据存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3JS垃圾回收机制"><span class="nav-number">3.</span> <span class="nav-text">3JS垃圾回收机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4Chrome-devTools查看内存情况"><span class="nav-number">4.</span> <span class="nav-text">4Chrome devTools查看内存情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5内存泄漏的场景"><span class="nav-number">5.</span> <span class="nav-text">5内存泄漏的场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-闭包使用不当引起内存泄漏"><span class="nav-number">5.1.</span> <span class="nav-text">1.闭包使用不当引起内存泄漏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-全局变量"><span class="nav-number">5.2.</span> <span class="nav-text">2.全局变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-分离的DOM节点"><span class="nav-number">5.3.</span> <span class="nav-text">3.分离的DOM节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-控制台的打印"><span class="nav-number">5.4.</span> <span class="nav-text">4.控制台的打印</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-遗忘的定时器"><span class="nav-number">5.5.</span> <span class="nav-text">5.遗忘的定时器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-中容易出现内存泄露的几种情况"><span class="nav-number">6.</span> <span class="nav-text">vue 中容易出现内存泄露的几种情况</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-全局变量造成的内存泄露"><span class="nav-number">6.1.</span> <span class="nav-text">1. 全局变量造成的内存泄露</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#"><span class="nav-number">6.1.0.1.</span> <span class="nav-text"></span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-监听在-window-body-等事件没有解绑"><span class="nav-number">6.2.</span> <span class="nav-text">2. 监听在 window&#x2F;body 等事件没有解绑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-绑在-EventBus-的事件没有解绑"><span class="nav-number">6.3.</span> <span class="nav-text">3. 绑在 EventBus 的事件没有解绑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Echarts"><span class="nav-number">6.4.</span> <span class="nav-text">4. Echarts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-v-if-指令产生的内存泄露"><span class="nav-number">6.5.</span> <span class="nav-text">5. v-if 指令产生的内存泄露</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-ES6-防止内存泄漏"><span class="nav-number">6.6.</span> <span class="nav-text">6.ES6 防止内存泄漏</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dali</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

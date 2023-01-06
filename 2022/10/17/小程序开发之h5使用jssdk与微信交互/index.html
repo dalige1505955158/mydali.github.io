@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="DaliBlogs" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="小程序嵌套h5（h5引用微信api,以vue为例）问题：van-uploader组件在h5内嵌在小程序中，有的安卓手机获取不到filelist，偶尔还会报错，所以使用wxapi交互 需要一个公众号，但是不用非要跟当前小程序绑定，最好绑定 公众号配置项： appId是否正确&#x3D;》获取后端签名的接口，需要后端自己去拿这个appId，前端不需要 ip白名单&#x3D;》公网Ip地址，（https:&#x2F;&#x2F;www.bai">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小程序开发之h5使用jssdk与微信交互">
+<meta property="og:url" content="http://yoursite.com/2022/10/17/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8Bh5%E4%BD%BF%E7%94%A8jssdk%E4%B8%8E%E5%BE%AE%E4%BF%A1%E4%BA%A4%E4%BA%92/index.html">
+<meta property="og:site_name" content="DaliBlogs">
+<meta property="og:description" content="小程序嵌套h5（h5引用微信api,以vue为例）问题：van-uploader组件在h5内嵌在小程序中，有的安卓手机获取不到filelist，偶尔还会报错，所以使用wxapi交互 需要一个公众号，但是不用非要跟当前小程序绑定，最好绑定 公众号配置项： appId是否正确&#x3D;》获取后端签名的接口，需要后端自己去拿这个appId，前端不需要 ip白名单&#x3D;》公网Ip地址，（https:&#x2F;&#x2F;www.bai">
+<meta property="og:image" content="http://yoursite.com/2022/10/17/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8Bh5%E4%BD%BF%E7%94%A8jssdk%E4%B8%8E%E5%BE%AE%E4%BF%A1%E4%BA%A4%E4%BA%92/image-20221017140053429.png">
+<meta property="og:image" content="http://yoursite.com/2022/10/17/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8Bh5%E4%BD%BF%E7%94%A8jssdk%E4%B8%8E%E5%BE%AE%E4%BF%A1%E4%BA%A4%E4%BA%92/image-20221017140121533.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/e3d2e8fc296fd72e22c7cb9919d1b57d.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/99c069fc12396569084777b48a4e6f6d.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/3c2f5acd030444c39541b1d506d2280e.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAcnJycnJveV9IYQ==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="article:published_time" content="2022-10-17T05:52:44.000Z">
+<meta property="article:modified_time" content="2022-10-17T08:18:57.200Z">
+<meta property="article:author" content="Dali">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2022/10/17/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8Bh5%E4%BD%BF%E7%94%A8jssdk%E4%B8%8E%E5%BE%AE%E4%BF%A1%E4%BA%A4%E4%BA%92/image-20221017140053429.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2022/10/17/小程序开发之h5使用jssdk与微信交互/"/>
+
+
+
+
+
+  <title>小程序开发之h5使用jssdk与微信交互 | DaliBlogs</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DaliBlogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/10/17/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8Bh5%E4%BD%BF%E7%94%A8jssdk%E4%B8%8E%E5%BE%AE%E4%BF%A1%E4%BA%A4%E4%BA%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">小程序开发之h5使用jssdk与微信交互</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-10-17T13:52:44+08:00">
+                2022-10-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="小程序嵌套h5（h5引用微信api-以vue为例）"><a href="#小程序嵌套h5（h5引用微信api-以vue为例）" class="headerlink" title="小程序嵌套h5（h5引用微信api,以vue为例）"></a>小程序嵌套h5（h5引用微信api,以vue为例）</h3><p><strong>问题：van-uploader组件在h5内嵌在小程序中，有的安卓手机获取不到filelist，偶尔还会报错，所以使用wxapi交互</strong></p>
+<p>需要一个公众号，但是不用非要跟当前小程序绑定，最好绑定</p>
+<p><strong>公众号配置项：</strong></p>
+<p>appId是否正确=》获取后端签名的接口，需要后端自己去拿这个appId，前端不需要</p>
+<p>ip白名单=》公网Ip地址，（<a href="https://www.baidu.com/#/login，ip其实是192.168.104）" target="_blank" rel="noopener">https://www.baidu.com/#/login，ip其实是192.168.104）</a></p>
+<p>js接口安全域名=》页面地址#号之前的部分，(<a href="https://www.baidu.com" target="_blank" rel="noopener">https://www.baidu.com</a>)</p>
+<p>1.index.html引入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;https:&#x2F;&#x2F;res.wx.qq.com&#x2F;open&#x2F;js&#x2F;jweixin-1.6.0.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>2.在公众号！！！里 前端配置js接口安全域名 后台地址需要配置白名单<br>3.可以全局使用window.wx</p>
+<p>4.如果这样引入不了，还可以使用以下方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">1，下载对应的组件包</span><br><span class="line"></span><br><span class="line">    cnpm install weixin-js-sdk</span><br><span class="line"></span><br><span class="line">2,在vue的main中引入并将其挂在到vue实例上</span><br><span class="line"></span><br><span class="line">    import wx from &#39;weixin-js-sdk&#39;</span><br><span class="line"></span><br><span class="line">    Vue.prototype.wx &#x3D; wx</span><br><span class="line"></span><br><span class="line">3，各个组件中如果需要使用的话</span><br><span class="line"></span><br><span class="line">    输出一下this.wx就可以知道是否能掉到wx的API了</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>具体实现：</strong></p>
+<pre><code>html
+&lt;template v-if=&quot;isMiniprogram&quot;&gt;
+                        &lt;div style=&quot;display:flex&quot;&gt;
+                            &lt;div class=&quot;info_label&quot; style=&quot;margin-right:5px&quot;&gt;添加图片&lt;/div&gt;
+                            &lt;div style=&quot;display:flex;margin-top: 16px;&quot;&gt;
+                                &lt;div v-for=&quot;(item,index) in imgArr&quot; class=&quot;imgbox&quot;&gt;
+                                    &lt;img :src=&quot;item&quot; alt=&quot;&quot;&gt;
+                                    &lt;!-- &lt;img src=&quot;../../../static/imgs/58c384fcc065019585868d40b340b7df.jpg&quot; alt=&quot;&quot;&gt; --&gt;
+                                    &lt;div @click=&quot;removeImage(index)&quot; class=&quot;van-uploader__preview-delete wx_van-uploader&quot;&gt;&lt;i class=&quot;van-icon van-icon-cross van-uploader__preview-delete-icon&quot;&gt;&lt;/i&gt;&lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;div @click=&quot;chooseImage&quot; v-if=&quot;imgArr.length&lt;3&quot; class=&quot;imgbox carmera&quot;&gt;
+                                    &lt;van-icon name=&quot;photograph&quot; /&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/template&gt;
+                    &lt;template v-else&gt;
+                        &lt;div class=&quot;info_label&quot;&gt;添加图片&lt;/div&gt;
+                        &lt;van-uploader v-model=&quot;fileList&quot; @before-read=&quot;&quot; style=&quot;margin-top:16px&quot; :max-count=&quot;3&quot; accept=&quot;image/jpeg,image/jpg,image/png&quot; :after-read=&quot;afterRead&quot;
+                            @delete=&quot;removeImg&quot; /&gt;
+                    &lt;/template&gt;
+
+js
+//判断是否是小程序环境
+mounted() {
+        var ua = navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == &quot;micromessenger&quot;) {
+            this.isMiniprogram = true
+            // Toast.fail(&apos;在小程序内&apos;);
+            return true;
+        } else {
+            this.isMiniprogram = false
+            // Toast.fail(&apos;不在小程序内&apos;);
+            return false;
+        }
+},
+
+//微信环境配置
+getConfigValue(){
+        let signLink = location.href.split(&apos;#&apos;)[0];
+            this.$http.get(&apos;/miniProgram/signature&apos;, { params: { wxUrl: signLink } }).then(res =&gt; {
+                const configValue = res.data.data || {}
+                window.wx.config(
+                    {
+                        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                        appId: configValue.appId, // 必填，公众号的唯一标识公众号公众号公众号
+                        timestamp: configValue.timestamp, // 必填，生成签名的时间戳
+                        nonceStr: configValue.noncestr, // 必填，生成签名的随机串
+                        signature: configValue.signature, 
+                        // 必填，签名，见附录1n，校验地址https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign
+                        jsApiList: [&apos;chooseImage&apos;] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                    }
+                );
+                window.wx.ready(() =&gt; {
+                    console.log(&quot;配置成功&quot;)
+                });
+                window.wx.error((res) =&gt; {
+                    console.log(&quot;配置失败&quot;, res)
+                })
+            })
+}，
+
+    //微信摄像头
+    chooseImage=()=&gt;{
+        window.wx.chooseImage({
+            count: 1, //默认9
+            sizeType: [&apos;compressed&apos;,&apos;original&apos;], //可以指定是原图还是压缩图，默认二者都有
+            sourceType: [&apos;camera&apos;,&apos;album&apos;], //从相册选择
+            success:  req=&gt; {
+                console.log(&apos;img&apos;,req.localIds[0].toString())
+                //转64
+                window.wx.getLocalImgData({
+                    localId: req.localIds[0].toString(),
+                    success: res=&gt; {
+                        const localData = res.localData;
+                        let imageBase64 = &apos;&apos;;
+                        if (localData.indexOf(&apos;data:image&apos;) == 0) {
+                            //苹果的直接赋值，默认生成&apos;data:image/jpeg;base64,&apos;的头部拼接
+                            imageBase64 = localData;
+                        } else {
+                            //安卓的坑！在拼接前需要对localData进行换行符的全局替换
+                            imageBase64 = &apos;data:image/jpeg;base64,&apos; + localData.replace(/\n/g, &apos;&apos;);
+                        }
+                        this.setState({
+                            loading: true,
+                            englishEnd: false,
+                        })
+                        this.imgArr.push(imageBase64)//页面图片显示
+                        let file = {
+                            file: this.base64toFile(imageBase64)
+                        }
+                        this.fileList.push(file)//file文件对象集合
+                        this.afterRead(file)//调用接口
+                    }
+                });
+                // imgToBase64(res)
+            }
+        })
+    }
+
+    //转formdata格式
+    base64toFile(data) {
+            const dataArr = data.split(&quot;,&quot;);
+            const byteString = atob(dataArr[1]);
+            const options = {
+                type: &quot;image/jpeg&quot;,
+                endings: &quot;native&quot;
+            };
+            const u8Arr = new Uint8Array(byteString.length);
+            for (let i = 0; i &lt; byteString.length; i++) {
+                u8Arr[i] = byteString.charCodeAt(i);
+            }
+            return new File([u8Arr], &quot;我的图片.jpg&quot;, options);//返回文件流
+
+        },
+
+    //上传
+    afterRead(file) {
+            console.log(&apos;file000000&apos;,file)
+            let that = this;
+            this.isLoading = true;
+            const config = {
+                headers: {
+                    &quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded&quot;,
+                    &quot;buildId&quot;: localStorage.buildId
+                }
+            };
+            var urlData = getSignature({ appid: localStorage.phone, buildId: parseInt(localStorage.buildId) });
+            var url = &apos;/colorImage/uploadOtherImage?appid=&apos; + localStorage.phone + &apos;&amp;signature=&apos; + urlData.signature + &apos;&amp;buildId=&apos; + parseInt(localStorage.buildId);
+            const formData = new FormData();
+            formData.append(&apos;file&apos;, file.file);
+            axios.post(url, formData, config)
+                .then(function (res) {
+                    console.log(&quot;上传成功&quot;, that.fileList)
+                    that.isLoading = false;
+                    if (res.data &amp;&amp; res.data.errorCode == 0) {
+                        that.fileList[that.fileList.length - 1].imgUrl = res.data.data;
+                    } else {
+                        Toast.fail(&apos;上传失败&apos;);
+                    }
+                }).catch = () =&gt; {
+                    console.log(&quot;上传成功&quot;, that.fileList)
+                    that.isLoading = false
+                    Toast.fail(&apos;上传失败&apos;);
+                }
+        },
+        //删除图片
+        removeImg(e) {
+            console.log(&quot;remove&quot;, e, this.fileList)
+        },
+        removeImage(idx){
+            this.imgArr.splice(idx, 1)
+            this.fileList.splice(idx,1)
+        },</code></pre><p>图解：</p>
+<p><img src="/2022/10/17/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8Bh5%E4%BD%BF%E7%94%A8jssdk%E4%B8%8E%E5%BE%AE%E4%BF%A1%E4%BA%A4%E4%BA%92/image-20221017140053429.png" alt="image-20221017140053429"></p>
+<p><img src="/2022/10/17/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8Bh5%E4%BD%BF%E7%94%A8jssdk%E4%B8%8E%E5%BE%AE%E4%BF%A1%E4%BA%A4%E4%BA%92/image-20221017140121533.png" alt="image-20221017140121533"></p>
+<h3 id="wx-config-报错-invalid-url-domain-及-invalid-signature-错误原因及解决方式"><a href="#wx-config-报错-invalid-url-domain-及-invalid-signature-错误原因及解决方式" class="headerlink" title="wx.config 报错 invalid url domain 及 invalid signature 错误原因及解决方式"></a>wx.config 报错 invalid url domain 及 invalid signature 错误原因及解决方式</h3><p><a href="https://blog.csdn.net/weixin_44622984/article/details/125160631" target="_blank" rel="noopener">https://blog.csdn.net/weixin_44622984/article/details/125160631</a></p>
+<p>一、 invalid url domain<br>当报错invalid url domain时 其实离成功不远了，错误原因也很直白，就是url并没有在公众号设置里正确绑定，需要重点检查几个东西</p>
+<ol>
+<li><p>appid 是否是公众号appid（查看在 微信公众平台-&gt; 登陆公众号后台 -&gt; 基本配置-&gt; 开发者ID（AppID））</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/e3d2e8fc296fd72e22c7cb9919d1b57d.png" alt="1654567224(1).jpg"></p>
+</li>
+</ol>
+<ol start="2">
+<li>域名绑定是否正确（查看在 微信公众平台-&gt; 登陆公众号后台 -&gt; 公众号设置-&gt; 功能设置 -&gt; JS接口安全域名）</li>
+</ol>
+<p>注意：在域名绑定时，请确定绑定域名与你H5进行wx.config发起域名一致，http与https一致</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/99c069fc12396569084777b48a4e6f6d.png" alt="image.png"></p>
+<p>二、invalid signature</p>
+<p><a href="https://blog.csdn.net/rrrrroy_Ha/article/details/122689217?spm=1001.2101.3001.6650.1&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-122689217-blog-111398257.pc_relevant_aa_2&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-122689217-blog-111398257.pc_relevant_aa_2&amp;utm_relevant_index=2" target="_blank" rel="noopener">https://blog.csdn.net/rrrrroy_Ha/article/details/122689217?spm=1001.2101.3001.6650.1&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-122689217-blog-111398257.pc_relevant_aa_2&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-122689217-blog-111398257.pc_relevant_aa_2&amp;utm_relevant_index=2</a></p>
+<p><img src="https://img-blog.csdnimg.cn/3c2f5acd030444c39541b1d506d2280e.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAcnJycnJveV9IYQ==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
+<p>我将以自己的理解总结下：</p>
+<p>需要在公众号的开发者账号下设置js接口安全域名，只填域名即可，不用带http://或https://。<br>生成signature的方式最好由后台提供接口，需要传递url参数。如果前端路由是hash模式，需要传递“#”之前的内容，如果是history模式，传递当前路径的全路径即可。encodeURIComponent(location.href.split(‘#’)[0]) 就可满足。注意如果前端转码，则接口一定要解码。wx.config在进入系统后执行一次即可，无需每个页面都config。<br>wx.config中个别属性要注意大小写，如nonceStr，timestamp等。<br>确保2中的url是动态获取的，官网也在【6】中提及，有同事配置时其他都正确，就是把config的url固定写死了，也会配置失败。<br>像操作菜单项的功能，一定要在测试环境中运行检查，不要在开发环境下，而且一定要把测试地址发到（随便的）公众号下，通过点击公众号下的地址测试才可能看到效果。<br>如果以上都没问题，尝试验证signature是否正确，看看接口的逻辑是不是写错了。<br>二、还有“permission denied”的情况，最好是检查一下config下jsApiList参数和官网提供api名称是否一致。</p>
+<p>如果是invalid signature 后又提示的 permission denied，那属于没config成功，参考【一】中的思路检查即可。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/10/10/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E8%A7%A3%E5%86%B3h5%E7%BC%93%E5%AD%98/" rel="next" title="小程序开发之解决h5缓存">
+                <i class="fa fa-chevron-left"></i> 小程序开发之解决h5缓存
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/12/13/vue%E4%B9%8B%E6%96%87%E4%BB%B6%E9%A2%84%E8%A7%88/" rel="prev" title="vue之文件预览">
+                vue之文件预览 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="Dali" />
+            
+              <p class="site-author-name" itemprop="name">Dali</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">175</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">163</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#小程序嵌套h5（h5引用微信api-以vue为例）"><span class="nav-number">1.</span> <span class="nav-text">小程序嵌套h5（h5引用微信api,以vue为例）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wx-config-报错-invalid-url-domain-及-invalid-signature-错误原因及解决方式"><span class="nav-number">2.</span> <span class="nav-text">wx.config 报错 invalid url domain 及 invalid signature 错误原因及解决方式</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dali</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

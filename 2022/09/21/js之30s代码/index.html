@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="DaliBlogs" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="快速获取数组中的最大和最小值1234const nums &#x3D; [2, 4, 6, 8, 1, 3, 5, 7];Math.max(...nums); &#x2F;&#x2F; 8Math.min(...nums); &#x2F;&#x2F; 1  console拓展用法12345678910111213141516171819202122&#x2F;&#x2F;来计算一段代码执行了多少次">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js之30s代码">
+<meta property="og:url" content="http://yoursite.com/2022/09/21/js%E4%B9%8B30s%E4%BB%A3%E7%A0%81/index.html">
+<meta property="og:site_name" content="DaliBlogs">
+<meta property="og:description" content="快速获取数组中的最大和最小值1234const nums &#x3D; [2, 4, 6, 8, 1, 3, 5, 7];Math.max(...nums); &#x2F;&#x2F; 8Math.min(...nums); &#x2F;&#x2F; 1  console拓展用法12345678910111213141516171819202122&#x2F;&#x2F;来计算一段代码执行了多少次">
+<meta property="article:published_time" content="2022-09-21T03:26:17.000Z">
+<meta property="article:modified_time" content="2022-09-23T10:14:04.398Z">
+<meta property="article:author" content="Dali">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2022/09/21/js之30s代码/"/>
+
+
+
+
+
+  <title>js之30s代码 | DaliBlogs</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DaliBlogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/09/21/js%E4%B9%8B30s%E4%BB%A3%E7%A0%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">js之30s代码</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-09-21T11:26:17+08:00">
+                2022-09-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="快速获取数组中的最大和最小值"><a href="#快速获取数组中的最大和最小值" class="headerlink" title="快速获取数组中的最大和最小值"></a>快速获取数组中的最大和最小值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const nums &#x3D; [2, 4, 6, 8, 1, 3, 5, 7];</span><br><span class="line"></span><br><span class="line">Math.max(...nums); &#x2F;&#x2F; 8</span><br><span class="line">Math.min(...nums); &#x2F;&#x2F; 1</span><br></pre></td></tr></table></figure>
+
+<h3 id="console拓展用法"><a href="#console拓展用法" class="headerlink" title="console拓展用法"></a>console拓展用法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;来计算一段代码执行</span><br><span class="line">了多少次。</span><br><span class="line">console.count()</span><br><span class="line">Array.from(&#123; length: 4 &#125;).forEach(</span><br><span class="line">  () &#x3D;&gt; console.count(&#39;items&#39;)  &#x2F;&#x2F; Call the counter labelled &#39;items&#39;</span><br><span class="line">);</span><br><span class="line">&#x2F;*</span><br><span class="line">  items: 1</span><br><span class="line">  items: 2</span><br><span class="line">  items: 3</span><br><span class="line">  items: 4</span><br><span class="line">*&#x2F;</span><br><span class="line">console.countReset(&#39;items&#39;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;仅在断言失败时（即，当第一个参数为 时）将某些内容记录为错误false，否则完全跳过日志。</span><br><span class="line">console.assert()</span><br><span class="line">const value &#x3D; 10;</span><br><span class="line">console.assert(value &#x3D;&#x3D;&#x3D; 10, &#39;Value is not 10!&#39;); &#x2F;&#x2F; Nothing is logged</span><br><span class="line">console.assert(value &#x3D;&#x3D;&#x3D; 20, &#39;Value is not 20!&#39;); &#x2F;&#x2F; Logs &quot;Value is not 20!&quot;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用-JavaScript-漂亮地打印-JSON-对象"><a href="#使用-JavaScript-漂亮地打印-JSON-对象" class="headerlink" title="使用 JavaScript 漂亮地打印 JSON 对象"></a>使用 JavaScript 漂亮地打印 JSON 对象</h3><p>正如您在此示例中所看到的， 的第三个参数<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify" target="_blank" rel="noopener"><code>JSON.stringify()</code></a>是缩进对象每个级别的空格数。此外，您可以使用第二个参数来指定替换函数。如果您想为某些类型的值或特定的键值对提供自定义格式，这可以派上用场。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">const obj &#x3D; &#123;</span><br><span class="line">  id: 1182,</span><br><span class="line">  username: &#39;johnsmith&#39;,</span><br><span class="line">  active: true,</span><br><span class="line">  emails: [&#39;johnsmith@mysite.com&#39;, &#39;contact@johnsmi.th&#39;],</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">console.log(JSON.stringify(obj, null, 4))</span><br><span class="line"></span><br><span class="line">进阶版</span><br><span class="line">const obj &#x3D; &#123;</span><br><span class="line">  id: 1182,</span><br><span class="line">  username: &#39;johnsmith&#39;,</span><br><span class="line">  active: true,</span><br><span class="line">  emails: [&#39;johnsmith@mysite.com&#39;, &#39;contact@johnsmi.th&#39;],</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const replacer &#x3D; (key, value) &#x3D;&gt; &#123;</span><br><span class="line">  if (key &#x3D;&#x3D;&#x3D; &#39;id&#39;) return value.toString(16);</span><br><span class="line">  if (key &#x3D;&#x3D;&#x3D; &#39;username&#39;) return &#96;@$&#123;value&#125;&#96;;</span><br><span class="line">  if (key &#x3D;&#x3D;&#x3D; &#39;emails&#39;) return &#96;$&#123;value[0]&#125; +$&#123;value.length - 1&#125; more&#96;;</span><br><span class="line">  return value;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">console.log(JSON.stringify(obj, replacer, 2))</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="如何获取基础-URL？"><a href="#如何获取基础-URL？" class="headerlink" title="如何获取基础 URL？"></a><strong>如何获取基础 URL？</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const getBaseURL &#x3D; url &#x3D;&gt; url.replace(&#x2F;[?#].*$&#x2F;, &#39;&#39;);</span><br><span class="line"></span><br><span class="line">getBaseURL(&#39;http:&#x2F;&#x2F;url.com&#x2F;page?name&#x3D;Adam&amp;surname&#x3D;Smith&#39;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="解析-cookie-‘foo-bar-equation-E-3Dmc-5E2’"><a href="#解析-cookie-‘foo-bar-equation-E-3Dmc-5E2’" class="headerlink" title="解析 cookie(‘foo=bar; equation=E%3Dmc%5E2’)"></a>解析 cookie(‘foo=bar; equation=E%3Dmc%5E2’)</h3><ul>
+<li>用于<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split" target="_blank" rel="noopener"><code>String.prototype.split()</code></a>将键值对彼此分开。</li>
+<li>使用<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map" target="_blank" rel="noopener"><code>Array.prototype.map()</code></a>and<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split" target="_blank" rel="noopener"><code>String.prototype.split()</code></a>将每对中的键与值分开。</li>
+<li>使用<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce" target="_blank" rel="noopener"><code>Array.prototype.reduce()</code></a>and<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURIComponent" target="_blank" rel="noopener"><code>decodeURIComponent()</code></a>创建一个包含所有键值对的对象。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const parseCookie &#x3D; str &#x3D;&gt;</span><br><span class="line">  str</span><br><span class="line">    .split(&#39;;&#39;)</span><br><span class="line">    .map(v &#x3D;&gt; v.split(&#39;&#x3D;&#39;))</span><br><span class="line">    .reduce((acc, v) &#x3D;&gt; &#123;</span><br><span class="line">      acc[decodeURIComponent(v[0].trim())] &#x3D; decodeURIComponent(v[1].trim());</span><br><span class="line">      return acc;</span><br><span class="line">    &#125;, &#123;&#125;);</span><br><span class="line">parseCookie(&#39;foo&#x3D;bar; equation&#x3D;E%3Dmc%5E2&#39;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="如何判断网址是否为绝对网址-绝对路径？"><a href="#如何判断网址是否为绝对网址-绝对路径？" class="headerlink" title="如何判断网址是否为绝对网址/绝对路径？"></a><strong>如何判断网址是否为绝对网址/绝对路径？</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const isAbsoluteURL &#x3D; str &#x3D;&gt; &#x2F;^[a-z][a-z0-9+.-]*:&#x2F;.test(str);</span><br><span class="line"></span><br><span class="line">isAbsoluteURL(&#39;https:&#x2F;&#x2F;google.com&#39;); &#x2F;&#x2F; true</span><br><span class="line">isAbsoluteURL(&#39;ftp:&#x2F;&#x2F;www.myserver.net&#39;); &#x2F;&#x2F; true</span><br><span class="line">isAbsoluteURL(&#39;&#x2F;foo&#x2F;bar&#39;); &#x2F;&#x2F; false</span><br></pre></td></tr></table></figure>
+
+<h3 id="如何获取URL参数作为对象？"><a href="#如何获取URL参数作为对象？" class="headerlink" title="如何获取URL参数作为对象？"></a><strong>如何获取URL参数作为对象？</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const getURLParameters &#x3D; url &#x3D;&gt;</span><br><span class="line">  (url.match(&#x2F;([^?&#x3D;&amp;]+)(&#x3D;([^&amp;]*))&#x2F;g) || []).reduce(</span><br><span class="line">    (a, v) &#x3D;&gt; (</span><br><span class="line">      (a[v.slice(0, v.indexOf(&#39;&#x3D;&#39;))] &#x3D; v.slice(v.indexOf(&#39;&#x3D;&#39;) + 1)), a</span><br><span class="line">    ),</span><br><span class="line">    &#123;&#125;</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">getURLParameters(&#39;google.com&#39;); &#x2F;&#x2F; &#123;&#125;</span><br><span class="line">getURLParameters(&#39;http:&#x2F;&#x2F;url.com&#x2F;page?name&#x3D;Adam&amp;surname&#x3D;Smith&#39;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="如何平滑滚动元素进入视图？"><a href="#如何平滑滚动元素进入视图？" class="headerlink" title="如何平滑滚动元素进入视图？"></a><strong>如何平滑滚动元素进入视图？</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const smoothScroll &#x3D; element &#x3D;&gt;</span><br><span class="line">  document.querySelector(element).scrollIntoView(&#123;</span><br><span class="line">    behavior: &#39;smooth&#39;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">smoothScroll(&#39;#fooBar&#39;); &#x2F;&#x2F; scrolls smoothly to the element with the id fooBar</span><br><span class="line">smoothScroll(&#39;.fooBar&#39;); &#x2F;&#x2F; scrolls smoothly to the first element with a class of fooBar</span><br></pre></td></tr></table></figure>
+
+<h3 id="如何生成UUID-通用唯一识别码-？"><a href="#如何生成UUID-通用唯一识别码-？" class="headerlink" title="如何生成UUID(通用唯一识别码)？"></a><strong>如何生成UUID(</strong>通用唯一识别码<strong>)？</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const UUIDGeneratorBrowser &#x3D; () &#x3D;&gt;</span><br><span class="line">  ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(&#x2F;[018]&#x2F;g, c &#x3D;&gt;</span><br><span class="line">    (</span><br><span class="line">      c ^</span><br><span class="line">      (crypto.getRandomValues(new Uint8Array(1))[0] &amp; (15 &gt;&gt; (c &#x2F; 4)))</span><br><span class="line">    ).toString(16)</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">UUIDGeneratorBrowser();</span><br></pre></td></tr></table></figure>
+
+<h3 id="如何获取选中的文本？"><a href="#如何获取选中的文本？" class="headerlink" title="如何获取选中的文本？"></a><strong>如何获取选中的文本？</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const getSelectedText &#x3D; () &#x3D;&gt; window.getSelection().toString();</span><br><span class="line"></span><br><span class="line">getSelectedText();</span><br></pre></td></tr></table></figure>
+
+<h3 id="如何将文本复制到剪贴板？"><a href="#如何将文本复制到剪贴板？" class="headerlink" title="如何将文本复制到剪贴板？"></a><strong>如何将文本复制到剪贴板？</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const copyToClipboard &#x3D; str &#x3D;&gt; &#123;</span><br><span class="line">  if (navigator &amp;&amp; navigator.clipboard &amp;&amp; navigator.clipboard.writeText)</span><br><span class="line">    return navigator.clipboard.writeText(str);</span><br><span class="line">  return Promise.reject(&#39;The Clipboard API is not available.&#39;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="如何切换全屏模式？"><a href="#如何切换全屏模式？" class="headerlink" title="如何切换全屏模式？"></a><strong>如何切换全屏模式？</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const fullscreen &#x3D; (mode &#x3D; true, el &#x3D; &#39;body&#39;) &#x3D;&gt;</span><br><span class="line">  mode</span><br><span class="line">    ? document.querySelector(el).requestFullscreen()</span><br><span class="line">    : document.exitFullscreen();</span><br><span class="line"></span><br><span class="line">fullscreen(); &#x2F;&#x2F; Opens &#96;body&#96; in fullscreen mode</span><br><span class="line">fullscreen(false); &#x2F;&#x2F; Exits fullscreen mode</span><br></pre></td></tr></table></figure>
+
+<h3 id="如何给-HTML-元素添加样式？"><a href="#如何给-HTML-元素添加样式？" class="headerlink" title="如何给 HTML 元素添加样式？"></a><strong>如何给 HTML 元素添加样式？</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const addStyles &#x3D; (el, styles) &#x3D;&gt; Object.assign(el.style, styles);</span><br><span class="line"></span><br><span class="line">addStyles(document.getElementById(&#39;my-element&#39;), &#123;</span><br><span class="line">  background: &#39;red&#39;,</span><br><span class="line">  color: &#39;#ffff00&#39;,</span><br><span class="line">  fontSize: &#39;3rem&#39;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="如何检测Caps-Lock是否开启-大写锁定-？"><a href="#如何检测Caps-Lock是否开启-大写锁定-？" class="headerlink" title="如何检测Caps Lock是否开启(大写锁定)？"></a><strong>如何检测Caps Lock是否开启(大写锁定)？</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;form&gt;</span><br><span class="line">  &lt;label for&#x3D;&quot;username&quot;&gt;Username:&lt;&#x2F;label&gt;</span><br><span class="line">  &lt;input id&#x3D;&quot;username&quot; name&#x3D;&quot;username&quot;&gt;</span><br><span class="line"></span><br><span class="line">  &lt;label for&#x3D;&quot;password&quot;&gt;Password:&lt;&#x2F;label&gt;</span><br><span class="line">  &lt;input id&#x3D;&quot;password&quot; name&#x3D;&quot;password&quot; type&#x3D;&quot;password&quot;&gt;</span><br><span class="line">  &lt;span id&#x3D;&quot;password-message&quot; style&#x3D;&quot;display: none&quot;&gt;Caps Lock is on&lt;&#x2F;span&gt;</span><br><span class="line">&lt;&#x2F;form&gt;</span><br><span class="line">const el &#x3D; document.getElementById(&#39;password&#39;);</span><br><span class="line">const msg &#x3D; document.getElementById(&#39;password-message&#39;);</span><br><span class="line"></span><br><span class="line">el.addEventListener(&#39;keyup&#39;, e &#x3D;&gt; &#123;</span><br><span class="line">  msg.style &#x3D; e.getModifierState(&#39;CapsLock&#39;)</span><br><span class="line">    ? &#39;display: block&#39;</span><br><span class="line">    : &#39;display: none&#39;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="如何查看日期是否有效？"><a href="#如何查看日期是否有效？" class="headerlink" title="如何查看日期是否有效？"></a><strong>如何查看日期是否有效？</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const isDateValid &#x3D; (...val) &#x3D;&gt; !Number.isNaN(new Date(...val).valueOf());</span><br><span class="line"></span><br><span class="line">isDateValid(&#39;December 17, 1995 03:24:00&#39;); &#x2F;&#x2F; true</span><br><span class="line">isDateValid(&#39;1995-12-17T03:24:00&#39;); &#x2F;&#x2F; true</span><br><span class="line">isDateValid(&#39;1995-12-17 T03:24:00&#39;); &#x2F;&#x2F; false</span><br><span class="line">isDateValid(&#39;Duck&#39;); &#x2F;&#x2F; false</span><br><span class="line">isDateValid(1995, 11, 17); &#x2F;&#x2F; true</span><br><span class="line">isDateValid(1995, 11, 17, &#39;Duck&#39;); &#x2F;&#x2F; false</span><br><span class="line">isDateValid(&#123;&#125;); &#x2F;&#x2F; false</span><br></pre></td></tr></table></figure>
+
+<h3 id="确保一个函数只被调用一次。"><a href="#确保一个函数只被调用一次。" class="headerlink" title="确保一个函数只被调用一次。"></a>确保一个函数只被调用一次。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const once &#x3D; fn &#x3D;&gt; &#123;</span><br><span class="line">  let called &#x3D; false;</span><br><span class="line">  return function(...args) &#123;</span><br><span class="line">    if (called) return;</span><br><span class="line">    called &#x3D; true;</span><br><span class="line">    return fn.apply(this, args);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line">const startApp &#x3D; function(event) &#123;</span><br><span class="line">  console.log(this, event); &#x2F;&#x2F; document.body, MouseEvent</span><br><span class="line">&#125;;</span><br><span class="line">document.body.addEventListener(&#39;click&#39;, once(startApp));</span><br><span class="line">&#x2F;&#x2F; only runs &#96;startApp&#96; once upon click</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="实现sleep方法的两种方式"><a href="#实现sleep方法的两种方式" class="headerlink" title="实现sleep方法的两种方式"></a>实现sleep方法的两种方式</h3><p>不建议版本一：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const sleepSync &#x3D; (ms) &#x3D;&gt; &#123;</span><br><span class="line">  const end &#x3D; new Date().getTime() + ms;</span><br><span class="line">  while (new Date().getTime() &lt; end) &#123; &#x2F;* do nothing *&#x2F; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const printNums &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">  console.log(1);</span><br><span class="line">  sleepSync(500);</span><br><span class="line">  console.log(2);</span><br><span class="line">  console.log(3);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">printNums(); &#x2F;&#x2F; Logs: 1, 2, 3 (2 and 3 log after 500ms)</span><br></pre></td></tr></table></figure>
+
+<p>强烈建议版本二：promise</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const sleep &#x3D; (ms) &#x3D;&gt;</span><br><span class="line">  new Promise(resolve &#x3D;&gt; setTimeout(resolve, ms));</span><br><span class="line"></span><br><span class="line">const printNums &#x3D; async() &#x3D;&gt; &#123;</span><br><span class="line">  console.log(1);</span><br><span class="line">  await sleep(500);</span><br><span class="line">  console.log(2);</span><br><span class="line">  console.log(3);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">printNums(); &#x2F;&#x2F; Logs: 1, 2, 3 (2 and 3 log after 500ms)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="浅拷贝，克隆数组的几种方式"><a href="#浅拷贝，克隆数组的几种方式" class="headerlink" title="浅拷贝，克隆数组的几种方式"></a>浅拷贝，克隆数组的几种方式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">扩展运算符</span><br><span class="line">ES6 引入了扩展运算符 ( ...)，它提供了可能是创建数组的浅层克隆的最简单和最常用的方法。</span><br><span class="line">let x &#x3D; [1, 2, 3, 4];</span><br><span class="line">let y &#x3D; [...x];</span><br><span class="line"></span><br><span class="line">数组.from()</span><br><span class="line">Array.from()有一个非常强大的 API，可以用于许多不同的事情，包括创建一个数组的副本。</span><br><span class="line">let x &#x3D; [1, 2, 3, 4];</span><br><span class="line">let y &#x3D; Array.from(x);</span><br><span class="line"></span><br><span class="line">Array.prototype.slice()</span><br><span class="line">与扩展运算符类似，Array.prototype.slice()可用于创建数组的浅拷贝。</span><br><span class="line">let x &#x3D; [1, 2, 3, 4];</span><br><span class="line">let y &#x3D; x.slice();</span><br><span class="line"></span><br><span class="line">Array.prototype.map()</span><br><span class="line">研究一个更非正统的选项，Array.prototype.map()可用于将数组的每个元素映射到自身以创建一个新数组。</span><br><span class="line">let x &#x3D; [1, 2, 3, 4];</span><br><span class="line">let y &#x3D; x.map(i &#x3D;&gt; i);</span><br><span class="line"></span><br><span class="line">Array.prototype.filter()</span><br><span class="line">类似地，Array.prototype.filter()可用于返回true每个元素，从而生成一个包含所有原始数组元素的新数组。</span><br><span class="line">let x &#x3D; [1, 2, 3, 4];</span><br><span class="line">let y &#x3D; x.filter(() &#x3D;&gt; true);</span><br><span class="line"></span><br><span class="line">对象.assign()</span><br><span class="line">最后，Object.assign()可以以与创建对象克隆完全相同的方式使用，但用于数组。</span><br><span class="line">let x &#x3D; [1, 2, 3, 4];</span><br><span class="line">let y &#x3D; Object.assign([], x);</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="如何比较-JavaScript-中的两个对象？"><a href="#如何比较-JavaScript-中的两个对象？" class="headerlink" title="如何比较 JavaScript 中的两个对象？"></a>如何比较 JavaScript 中的两个对象？</h3><p><strong>即使两个不同的对象可以具有相同的属性和相等的值，但在使用松散或严格相等运算符 (<code>==</code>或<code>===</code>) 进行比较时，它们不会被视为相等。这是因为 JavaScript 中的数组和对象是通过引用进行比较的。这与按值比较的原始值不同。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const a &#x3D; &#123; name: &#39;John&#39;, age: 26 &#125;;</span><br><span class="line">const b &#x3D; &#123; name: &#39;John&#39;, age: 26 &#125;;</span><br><span class="line"></span><br><span class="line">a &#x3D;&#x3D;&#x3D; b; &#x2F;&#x2F; false</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="平等比较-JSON-stringify"><a href="#平等比较-JSON-stringify" class="headerlink" title="平等比较 JSON.stringify()"></a>平等比较 JSON.stringify()</h4><p>经常作为解决这个问题的方法出现。虽然它在某些情况下很有用，但比较序列化的字符串可能有其自身的缺陷。其中最常见的与导致相同序列化字符串的相似但不相等的值有关。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const equals &#x3D; (a, b) &#x3D;&gt; JSON.stringify(a) &#x3D;&#x3D;&#x3D; JSON.stringify(b);</span><br><span class="line"></span><br><span class="line">const a &#x3D; &#123; name: &#39;John&#39;, age: 26 &#125;;</span><br><span class="line">const b &#x3D; &#123; name: &#39;John&#39;, age: 26 &#125;;</span><br><span class="line"></span><br><span class="line">equals(a, b); &#x2F;&#x2F; true</span><br><span class="line"></span><br><span class="line">const c &#x3D; &#123; name: &#39;John&#39; &#125;;</span><br><span class="line">const d &#x3D; &#123; name: &#39;John&#39;, age: undefined &#125;;</span><br><span class="line"></span><br><span class="line">equals(c, d); &#x2F;&#x2F; true, should be false</span><br></pre></td></tr></table></figure>
+
+<h4 id="深度平等比较"><a href="#深度平等比较" class="headerlink" title="深度平等比较"></a>深度平等比较</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">const equals &#x3D; (a, b) &#x3D;&gt; &#123;</span><br><span class="line">  if (a &#x3D;&#x3D;&#x3D; b) return true;</span><br><span class="line">  if (a instanceof Date &amp;&amp; b instanceof Date)</span><br><span class="line">    return a.getTime() &#x3D;&#x3D;&#x3D; b.getTime();</span><br><span class="line">  if (!a || !b || (typeof a !&#x3D;&#x3D; &#39;object&#39; &amp;&amp; typeof b !&#x3D;&#x3D; &#39;object&#39;))</span><br><span class="line">    return a &#x3D;&#x3D;&#x3D; b;</span><br><span class="line">  if (a.prototype !&#x3D;&#x3D; b.prototype) return false;</span><br><span class="line">  const keys &#x3D; Object.keys(a);</span><br><span class="line">  if (keys.length !&#x3D;&#x3D; Object.keys(b).length) return false;</span><br><span class="line">  return keys.every(k &#x3D;&gt; equals(a[k], b[k]));</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const a &#x3D; &#123; name: &#39;John&#39;, age: 26 &#125;;</span><br><span class="line">const b &#x3D; &#123; name: &#39;John&#39;, age: 26 &#125;;</span><br><span class="line"></span><br><span class="line">equals(a, b); &#x2F;&#x2F; true</span><br><span class="line"></span><br><span class="line">const c &#x3D; &#123; name: &#39;John&#39; &#125;;</span><br><span class="line">const d &#x3D; &#123; name: &#39;John&#39;, age: undefined &#125;;</span><br><span class="line"></span><br><span class="line">equals(c, d); &#x2F;&#x2F; false</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="如何检查-JavaScript-数组是否包含特定值？"><a href="#如何检查-JavaScript-数组是否包含特定值？" class="headerlink" title="如何检查 JavaScript 数组是否包含特定值？"></a>如何检查 JavaScript 数组是否包含特定值？</h3><h4 id="纯数组"><a href="#纯数组" class="headerlink" title="纯数组"></a>纯数组</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const array &#x3D; [1, 2, 3, 4, 5];</span><br><span class="line"></span><br><span class="line">array.includes(3); &#x2F;&#x2F; true</span><br><span class="line">array.includes(6); &#x2F;&#x2F; false</span><br><span class="line">array.includes(3, 3); &#x2F;&#x2F; false</span><br></pre></td></tr></table></figure>
+
+<h4 id="数组对象"><a href="#数组对象" class="headerlink" title="数组对象"></a>数组对象</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const array &#x3D; [&#123; a: 1 &#125;, &#123; a: 2 &#125;, &#123; a: 3 &#125;];</span><br><span class="line"></span><br><span class="line">const equals &#x3D; (a, b) &#x3D;&gt; Object.keys(a).every(key &#x3D;&gt; a[key] &#x3D;&#x3D;&#x3D; b[key]);</span><br><span class="line"></span><br><span class="line">array.some(item &#x3D;&gt; equals(item, &#123; a: 2 &#125;)); &#x2F;&#x2F; true</span><br><span class="line">array.some(item &#x3D;&gt; equals(item, &#123; a: 4 &#125;)); &#x2F;&#x2F; false</span><br></pre></td></tr></table></figure>
+
+<h3 id="如何使用async-await-promise避免异步数组循环中出现的问题"><a href="#如何使用async-await-promise避免异步数组循环中出现的问题" class="headerlink" title="如何使用async/await /promise避免异步数组循环中出现的问题"></a>如何使用async/await /promise避免异步数组循环中出现的问题</h3><h4 id="依次执行"><a href="#依次执行" class="headerlink" title="依次执行"></a>依次执行</h4><p><code>async</code>在对数组元素执行异步操作时，与<code>for</code>（或）循环结合<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of" target="_blank" rel="noopener"><code>for...of</code></a>可能是最直接的选择。<code>await</code>在循环内使用<code>for</code>将导致代码停止并等待异步操作完成后再继续。这意味着所有的 Promise 都将按顺序运行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">const asyncUppercase &#x3D; item &#x3D;&gt;</span><br><span class="line">  new Promise(resolve &#x3D;&gt;</span><br><span class="line">    setTimeout(</span><br><span class="line">      () &#x3D;&gt; resolve(item.toUpperCase()),</span><br><span class="line">      Math.floor(Math.random() * 1000)</span><br><span class="line">    )</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">const uppercaseItems &#x3D; async () &#x3D;&gt; &#123;</span><br><span class="line">  const items &#x3D; [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];</span><br><span class="line">  for (item of items) &#123;</span><br><span class="line">    const uppercaseItem &#x3D; await asyncUppercase(item);</span><br><span class="line">    console.log(uppercaseItem);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  console.log(&#39;Items processed&#39;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">uppercaseItems();</span><br><span class="line">&#x2F;&#x2F; LOGS: &#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;Items processed&#39;</span><br></pre></td></tr></table></figure>
+
+<h4 id="并行"><a href="#并行" class="headerlink" title="并行"></a>并行</h4><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all" target="_blank" rel="noopener"><code>Promise.all()</code></a>为数组上的异步循环提供了另一种选择。与前一个的主要区别<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all" target="_blank" rel="noopener"><code>Promise.all()</code></a>在于并行执行所有异步操作。这意味着承诺将无序执行，这在某些情况下可能是一个问题。大多数情况下，这是我首选的解决方案，因为希望 Promise 按顺序执行是非常罕见的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">const asyncUppercase &#x3D; item &#x3D;&gt;</span><br><span class="line">  new Promise(resolve &#x3D;&gt;</span><br><span class="line">    setTimeout(</span><br><span class="line">      () &#x3D;&gt; resolve(item.toUpperCase()),</span><br><span class="line">      Math.floor(Math.random() * 1000)</span><br><span class="line">    )</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">const uppercaseItems &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">  const items &#x3D; [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];</span><br><span class="line">  return Promise.all(</span><br><span class="line">    items.map(async item &#x3D;&gt; &#123;</span><br><span class="line">      const uppercaseItem &#x3D; await asyncUppercase(item);</span><br><span class="line">      console.log(uppercaseItem);</span><br><span class="line">    &#125;)</span><br><span class="line">  ).then(() &#x3D;&gt; &#123;</span><br><span class="line">    console.log(&#39;Items processed&#39;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line">&#x2F;&#x2F; LOGS: &#39;A&#39;, &#39;C&#39;, &#39;B&#39;, &#39;Items processed&#39;</span><br></pre></td></tr></table></figure>
+
+<h4 id="forEach不适用"><a href="#forEach不适用" class="headerlink" title="forEach不适用"></a>forEach不适用</h4><p>不幸的是，数组方法（例如）<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach" target="_blank" rel="noopener"><code>Array.prototype.forEach()</code></a>不适用于<code>async</code>/ <code>await</code>。唯一可行的解决方案是使用<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all" target="_blank" rel="noopener"><code>Promise.all()</code></a>前面示例中所示的方法。使用<code>async</code>回调<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach" target="_blank" rel="noopener"><code>Array.prototype.forEach()</code></a>将导致其余代码执行并且不等待异步操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">const asyncUppercase &#x3D; item &#x3D;&gt;</span><br><span class="line">  new Promise(resolve &#x3D;&gt;</span><br><span class="line">    setTimeout(</span><br><span class="line">      () &#x3D;&gt; resolve(item.toUpperCase()),</span><br><span class="line">      Math.floor(Math.random() * 1000)</span><br><span class="line">    )</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">const uppercaseItems &#x3D; async () &#x3D;&gt; &#123;</span><br><span class="line">  const items &#x3D; [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];</span><br><span class="line">  await items.forEach(async item &#x3D;&gt; &#123;</span><br><span class="line">    const uppercaseItem &#x3D; await asyncUppercase(item);</span><br><span class="line">    console.log(uppercaseItem);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  console.log(&#39;Items processed&#39;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">uppercaseItems();</span><br><span class="line">&#x2F;&#x2F; LOGS: &#39;&#39;Items processed&#39;, &#39;B&#39;, &#39;A&#39;, &#39;C&#39;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用类-class，定义一个树形结构，并封装一些方法"><a href="#使用类-class，定义一个树形结构，并封装一些方法" class="headerlink" title="使用类/class，定义一个树形结构，并封装一些方法"></a>使用类/class，定义一个树形结构，并封装一些方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">class TreeNode &#123;</span><br><span class="line">  constructor(key, value &#x3D; key, parent &#x3D; null) &#123;</span><br><span class="line">    this.key &#x3D; key;</span><br><span class="line">    this.value &#x3D; value;</span><br><span class="line">    this.parent &#x3D; parent;</span><br><span class="line">    this.children &#x3D; [];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  get isLeaf() &#123;</span><br><span class="line">    return this.children.length &#x3D;&#x3D;&#x3D; 0;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  get hasChildren() &#123;</span><br><span class="line">    return !this.isLeaf;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Tree &#123;</span><br><span class="line">  constructor(key, value &#x3D; key) &#123;</span><br><span class="line">    this.root &#x3D; new TreeNode(key, value);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  *preOrderTraversal(node &#x3D; this.root) &#123;</span><br><span class="line">    yield node;</span><br><span class="line">    if (node.children.length) &#123;</span><br><span class="line">      for (let child of node.children) &#123;</span><br><span class="line">        yield* this.preOrderTraversal(child);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  *postOrderTraversal(node &#x3D; this.root) &#123;</span><br><span class="line">    if (node.children.length) &#123;</span><br><span class="line">      for (let child of node.children) &#123;</span><br><span class="line">        yield* this.postOrderTraversal(child);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    yield node;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  insert(parentNodeKey, key, value &#x3D; key) &#123;</span><br><span class="line">    for (let node of this.preOrderTraversal()) &#123;</span><br><span class="line">      if (node.key &#x3D;&#x3D;&#x3D; parentNodeKey) &#123;</span><br><span class="line">        node.children.push(new TreeNode(key, value, node));</span><br><span class="line">        return true;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return false;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  remove(key) &#123;</span><br><span class="line">    for (let node of this.preOrderTraversal()) &#123;</span><br><span class="line">      const filtered &#x3D; node.children.filter(c &#x3D;&gt; c.key !&#x3D;&#x3D; key);</span><br><span class="line">      if (filtered.length !&#x3D;&#x3D; node.children.length) &#123;</span><br><span class="line">        node.children &#x3D; filtered;</span><br><span class="line">        return true;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return false;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  find(key) &#123;</span><br><span class="line">    for (let node of this.preOrderTraversal()) &#123;</span><br><span class="line">      if (node.key &#x3D;&#x3D;&#x3D; key) return node;</span><br><span class="line">    &#125;</span><br><span class="line">    return undefined;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>用 a<code>class</code>为初始化适当的、和属性创建一个。</li>
+<li>定义一个<code>isLeaf</code>  getter，用于<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/length" target="_blank" rel="noopener"><code>Array.prototype.length</code></a>检查是否<code>children</code>为空。</li>
+<li>定义一个<code>hasChildren</code>  getter，也就是getter的反面<code>isLeaf</code>。</li>
+<li>用 a<code>class</code>为树创建一个初始化树的。</li>
+<li>定义一个<code>preOrderTraversal()</code>按顺序遍历树的生成器方法，使用<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/yield*" target="_blank" rel="noopener"><code>yield*</code></a>语法将遍历委托给自身。</li>
+<li>定义一个<code>postOrderTraversal()</code>以后序遍历树的生成器方法，使用<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/yield*" target="_blank" rel="noopener"><code>yield*</code></a>语法将遍历委托给自身。</li>
+<li>定义一个<code>insert()</code>方法，该方法使用该<code>preOrderTraversal()</code>方法并向树<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push" target="_blank" rel="noopener"><code>Array.prototype.push()</code></a>中添加一个新方法。<code>TreeNode</code></li>
+<li>定义一个<code>remove()</code>方法，该方法使用该<code>preOrderTraversal()</code>方法并从树<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter" target="_blank" rel="noopener"><code>Array.prototype.filter()</code></a>中删除一个。<code>TreeNode</code></li>
+<li>定义一个<code>find()</code>方法，该方法使用该<code>preOrderTraversal()</code>方法检索树中的给定节点。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/08/22/vue%E4%B9%8B%E4%BD%BF%E7%94%A8vue-cli4-0%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/" rel="next" title="vue之使用vue-cli4.0项目搭建">
+                <i class="fa fa-chevron-left"></i> vue之使用vue-cli4.0项目搭建
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/10/10/%E7%9A%84%E7%BC%93%E5%AD%98%E9%97%AE%E9%A2%98/" rel="prev" title="的缓存问题">
+                的缓存问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="Dali" />
+            
+              <p class="site-author-name" itemprop="name">Dali</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">175</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">163</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#快速获取数组中的最大和最小值"><span class="nav-number">1.</span> <span class="nav-text">快速获取数组中的最大和最小值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#console拓展用法"><span class="nav-number">2.</span> <span class="nav-text">console拓展用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-JavaScript-漂亮地打印-JSON-对象"><span class="nav-number">3.</span> <span class="nav-text">使用 JavaScript 漂亮地打印 JSON 对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何获取基础-URL？"><span class="nav-number">4.</span> <span class="nav-text">如何获取基础 URL？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解析-cookie-‘foo-bar-equation-E-3Dmc-5E2’"><span class="nav-number">5.</span> <span class="nav-text">解析 cookie(‘foo&#x3D;bar; equation&#x3D;E%3Dmc%5E2’)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何判断网址是否为绝对网址-绝对路径？"><span class="nav-number">6.</span> <span class="nav-text">如何判断网址是否为绝对网址&#x2F;绝对路径？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何获取URL参数作为对象？"><span class="nav-number">7.</span> <span class="nav-text">如何获取URL参数作为对象？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何平滑滚动元素进入视图？"><span class="nav-number">8.</span> <span class="nav-text">如何平滑滚动元素进入视图？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何生成UUID-通用唯一识别码-？"><span class="nav-number">9.</span> <span class="nav-text">如何生成UUID(通用唯一识别码)？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何获取选中的文本？"><span class="nav-number">10.</span> <span class="nav-text">如何获取选中的文本？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何将文本复制到剪贴板？"><span class="nav-number">11.</span> <span class="nav-text">如何将文本复制到剪贴板？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何切换全屏模式？"><span class="nav-number">12.</span> <span class="nav-text">如何切换全屏模式？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何给-HTML-元素添加样式？"><span class="nav-number">13.</span> <span class="nav-text">如何给 HTML 元素添加样式？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何检测Caps-Lock是否开启-大写锁定-？"><span class="nav-number">14.</span> <span class="nav-text">如何检测Caps Lock是否开启(大写锁定)？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何查看日期是否有效？"><span class="nav-number">15.</span> <span class="nav-text">如何查看日期是否有效？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#确保一个函数只被调用一次。"><span class="nav-number">16.</span> <span class="nav-text">确保一个函数只被调用一次。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现sleep方法的两种方式"><span class="nav-number">17.</span> <span class="nav-text">实现sleep方法的两种方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浅拷贝，克隆数组的几种方式"><span class="nav-number">18.</span> <span class="nav-text">浅拷贝，克隆数组的几种方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何比较-JavaScript-中的两个对象？"><span class="nav-number">19.</span> <span class="nav-text">如何比较 JavaScript 中的两个对象？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#平等比较-JSON-stringify"><span class="nav-number">19.1.</span> <span class="nav-text">平等比较 JSON.stringify()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#深度平等比较"><span class="nav-number">19.2.</span> <span class="nav-text">深度平等比较</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何检查-JavaScript-数组是否包含特定值？"><span class="nav-number">20.</span> <span class="nav-text">如何检查 JavaScript 数组是否包含特定值？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#纯数组"><span class="nav-number">20.1.</span> <span class="nav-text">纯数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数组对象"><span class="nav-number">20.2.</span> <span class="nav-text">数组对象</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何使用async-await-promise避免异步数组循环中出现的问题"><span class="nav-number">21.</span> <span class="nav-text">如何使用async&#x2F;await &#x2F;promise避免异步数组循环中出现的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#依次执行"><span class="nav-number">21.1.</span> <span class="nav-text">依次执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并行"><span class="nav-number">21.2.</span> <span class="nav-text">并行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#forEach不适用"><span class="nav-number">21.3.</span> <span class="nav-text">forEach不适用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用类-class，定义一个树形结构，并封装一些方法"><span class="nav-number">22.</span> <span class="nav-text">使用类&#x2F;class，定义一个树形结构，并封装一些方法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dali</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

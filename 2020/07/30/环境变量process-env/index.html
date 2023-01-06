@@ -81,20 +81,38 @@
 
 
 
-<meta name="description" content="最近系统接入了公司的单点登录，为了登陆成功后再跳回系统的主页面，又申请了测试和沙箱的域名（之前都是直接用IP登的），本地开发是配置的host。接入之后发现了一个非常麻烦的点就是给单点登录传的跳转地址每次都要修改，开发的时候要写成开发的域名，测试的时候要改成测试的域名，进沙箱的时候要改成跳转沙箱的域名，上线的时候又要改成线上的域名。特别是在测试阶段，开发测试来回切换，不胜其烦。于是就想把它写成配置文">
+<meta name="description" content="前言沙箱Sandboxie(又叫沙箱、沙盘)即是一个虚拟系统程序，允许你在沙盘环境中运行浏览器或其他程序，因此运行所产生的变化可以随后删除。它创造了一个类似沙盒的独立作业环境，在其内部运行的程序并不能对硬盘产生永久性的影响。 在网络安全中，沙箱指在隔离环境中，用以测试不受信任的文件或应用程序等行为的工具。 单点登录单点登录（Single Sign On），简称为 SSO，是比较流行的企业业务整合的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="环境变量process.env">
 <meta property="og:url" content="http://yoursite.com/2020/07/30/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8Fprocess-env/index.html">
 <meta property="og:site_name" content="DaliBlogs">
-<meta property="og:description" content="最近系统接入了公司的单点登录，为了登陆成功后再跳回系统的主页面，又申请了测试和沙箱的域名（之前都是直接用IP登的），本地开发是配置的host。接入之后发现了一个非常麻烦的点就是给单点登录传的跳转地址每次都要修改，开发的时候要写成开发的域名，测试的时候要改成测试的域名，进沙箱的时候要改成跳转沙箱的域名，上线的时候又要改成线上的域名。特别是在测试阶段，开发测试来回切换，不胜其烦。于是就想把它写成配置文">
+<meta property="og:description" content="前言沙箱Sandboxie(又叫沙箱、沙盘)即是一个虚拟系统程序，允许你在沙盘环境中运行浏览器或其他程序，因此运行所产生的变化可以随后删除。它创造了一个类似沙盒的独立作业环境，在其内部运行的程序并不能对硬盘产生永久性的影响。 在网络安全中，沙箱指在隔离环境中，用以测试不受信任的文件或应用程序等行为的工具。 单点登录单点登录（Single Sign On），简称为 SSO，是比较流行的企业业务整合的">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-d90fac2d5dfc5f60be2fffaa181ffa0b_720w.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-534f458ff54c3f6a7b81c868b3bda666_720w.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-8bf2f43531c16e0f574377c8b395dd45_720w.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-3a3b778610af8c52a4ca768f28324c78_720w.jpg">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191227155333224.png">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5262488-8d77f226c73186e9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/862/format/webp">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191227154317476.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191227154307708.png">
+<meta property="og:image" content="https://img2018.cnblogs.com/blog/735803/201911/735803-20191121132153395-2114413287.png">
+<meta property="og:image" content="https://img2018.cnblogs.com/blog/735803/201911/735803-20191121133648339-516645299.png">
+<meta property="og:image" content="https://img2018.cnblogs.com/blog/735803/201911/735803-20191121142432253-1598242033.png">
+<meta property="og:image" content="https://img2018.cnblogs.com/blog/735803/201911/735803-20191121134757831-788898169.png">
+<meta property="og:image" content="https://img2018.cnblogs.com/blog/735803/201911/735803-20191121140227202-1838207446.png">
+<meta property="og:image" content="https://img2018.cnblogs.com/blog/735803/201911/735803-20191121140048590-279787724.png">
+<meta property="og:image" content="https://img2018.cnblogs.com/blog/735803/201911/735803-20191121141720445-1437628374.png">
+<meta property="og:image" content="https://img2018.cnblogs.com/blog/735803/201911/735803-20191121141158232-772091668.png">
+<meta property="og:image" content="https://img2018.cnblogs.com/blog/735803/201911/735803-20191121143756254-434826322.png">
+<meta property="og:image" content="https://img2018.cnblogs.com/blog/735803/201911/735803-20191121143424381-1096466483.png">
+<meta property="og:image" content="https://img2018.cnblogs.com/blog/735803/201911/735803-20191121143523836-1605555201.png">
 <meta property="article:published_time" content="2020-07-30T08:19:53.000Z">
-<meta property="article:modified_time" content="2020-09-22T10:16:51.608Z">
+<meta property="article:modified_time" content="2021-05-26T05:24:13.288Z">
 <meta property="article:author" content="Dali">
 <meta property="article:tag" content="环境变量">
 <meta property="article:tag" content="process-env">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/5262488-8d77f226c73186e9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/862/format/webp">
+<meta name="twitter:image" content="https://pic4.zhimg.com/80/v2-d90fac2d5dfc5f60be2fffaa181ffa0b_720w.jpg">
 
 
 
@@ -390,11 +408,28 @@
       
 
       
-        <p>最近系统接入了公司的单点登录，为了登陆成功后再跳回系统的主页面，又申请了测试和沙箱的域名（之前都是直接用IP登的），本地开发是配置的host。接入之后发现了一个非常麻烦的点就是给单点登录传的跳转地址每次都要修改，开发的时候要写成开发的域名，测试的时候要改成测试的域名，进沙箱的时候要改成跳转沙箱的域名，上线的时候又要改成线上的域名。特别是在测试阶段，开发测试来回切换，不胜其烦。<br>于是就想把它写成配置文件，根据不同环境加载不同的配置，这样就不用来回改了。这个时候，process.env就跳入了脑海，叫嚣着，终于该我出场啦！！</p>
-<h4 id="扒一扒process-env"><a href="#扒一扒process-env" class="headerlink" title="扒一扒process.env"></a>扒一扒process.env</h4><p>process对象是全局变量，它提供当前node.js的有关信息，以及控制当前node.js的有关进程。因为是全局变量，它对于node应用程序是始终可用的，无需require()。<br>既然process都是一个对象了，env自然是它的一个属性，这个属性返回包含用户环境信息的对象。在终端输入node后，在输入process.env可以看到打印出来的信息。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="沙箱"><a href="#沙箱" class="headerlink" title="沙箱"></a>沙箱</h3><p>Sandboxie(又叫沙箱、沙盘)即是一个虚拟系统程序，允许你在沙盘环境中运行浏览器或其他程序，因此运行所产生的变化可以随后删除。它创造了一个类似沙盒的独立作业环境，在其内部运行的程序并不能对硬盘产生永久性的影响。 在网络安全中，沙箱指在隔离环境中，用以测试不受信任的文件或应用程序等行为的工具。</p>
+<h3 id="单点登录"><a href="#单点登录" class="headerlink" title="单点登录"></a>单点登录</h3><p>单点登录（Single Sign On），简称为 SSO，是比较流行的企业业务整合的解决方案之一。SSO的定义是在多个<a href="https://baike.baidu.com/item/应用/3994271" target="_blank" rel="noopener">应用</a>系统中，用户只需要登录一次就可以访问所有相互信任的应用系统。</p>
+<p>最近系统接入了公司的单点登录，为了登陆成功后再跳回系统的主页面，又申请了测试和沙箱的域名（之前都是直接用IP登的），本地开发是配置的host。接入之后发现了一个非常麻烦的点就是给单点登录传的跳转地址每次都要修改，开发的时候要写成开发的域名，测试的时候要改成测试的域名，进沙箱的时候要改成跳转沙箱的域名，上线的时候又要改成线上的域名。特别是在测试阶段，开发测试来回切换，不胜其烦。<br>于是就想把它写成配置文件，根据不同环境加载不同的配置，这样就不用来回改了。这个时候，process.env就跳入了脑海，叫嚣着，终于该我出场啦！！</p>
+<h2 id="process-env"><a href="#process-env" class="headerlink" title="process.env"></a>process.env</h2><h3 id="终端打印"><a href="#终端打印" class="headerlink" title="终端打印"></a>终端打印</h3><p>process对象是全局变量，它提供当前node.js的有关信息，以及控制当前node.js的有关进程。因为是全局变量，它对于node应用程序是始终可用的，无需require()。<br>既然process都是一个对象了，env自然是它的一个属性，这个属性返回包含用户环境信息的对象。</p>
+<p>在终端输入node后，在输入process.env可以看到打印出来的信息。</p>
+<h3 id="浏览器打印"><a href="#浏览器打印" class="headerlink" title="浏览器打印"></a>浏览器打印</h3><p>那为什么打印process.env.NODE_ENV和process.env，发现：</p>
+<p><img src="https://pic4.zhimg.com/80/v2-d90fac2d5dfc5f60be2fffaa181ffa0b_720w.jpg" alt="img"></p>
+<p>process.env.NODE_ENV的值为development ！！！</p>
+<p>process.env直接抛错，原因是process未定义（因为确实未定义）</p>
+<p>由此可以判断出，在浏览器端，process.env.NODE_ENV这句并不是走的常规对象调用的方式，而是被作为整体替换掉了，后面找到了<a href="https://link.zhihu.com/?target=https%3A//webpack.js.org/plugins/environment-plugin/">webpack类似说法</a></p>
+<p>为了验证此猜测，我们再用打包后的vue.js进行调试：</p>
+<p><img src="https://pic3.zhimg.com/80/v2-534f458ff54c3f6a7b81c868b3bda666_720w.jpg" alt="img">vue.js 开发环境源码</p>
+<p>可以看到process.env.NODE_ENV确实被替换成development了</p>
+<p>结论：vue源码中的一下node变量如process.env.NODE_ENV等，在浏览器中运行之前已经被替换成了别的值，只有在调试时开启sourcemap才能看到源变量，这一步工作可能是打包工具做的。</p>
+<p>为了进一步验证，继续查阅资料，终于找到端倪：Vue使用了rollup-plugin-replace插件进行了替换处理</p>
+<p><img src="https://pic2.zhimg.com/80/v2-8bf2f43531c16e0f574377c8b395dd45_720w.jpg" alt="img"></p>
+<p>其构建生成的readme文件中亦有相关信息</p>
+<p><img src="https://pic1.zhimg.com/80/v2-3a3b778610af8c52a4ca768f28324c78_720w.jpg" alt="img"></p>
+<p>至此，Vue函数中的疑惑基本解开，至于插件是如何替换的，后面在做调研，终于可以继续看源码了！！！</p>
 <a id="more"></a>
 
-<h4 id="主角出场-process-env-NODE-ENV"><a href="#主角出场-process-env-NODE-ENV" class="headerlink" title="主角出场 process.env.NODE_ENV"></a>主角出场 process.env.NODE_ENV</h4><p>NODE_ENV不是process.env对象上原有的属性，它是我们自己添加上去的一个环境变量，用来确定当前所处的开发阶段。一般生产阶段设为production，开发阶段设为develop，然后在脚本中读取process.env.NODE_ENV。<br>运行脚本时，可以这样改变环境变量, 在package.json文件的scripts里面添加命令：</p>
+<h2 id="process-env-NODE-ENV"><a href="#process-env-NODE-ENV" class="headerlink" title="process.env.NODE_ENV"></a>process.env.NODE_ENV</h2><h3 id="Vuecli3以下的vue版本使用cross-env去设置变量"><a href="#Vuecli3以下的vue版本使用cross-env去设置变量" class="headerlink" title="Vuecli3以下的vue版本使用cross-env去设置变量"></a>Vuecli3以下的vue版本使用cross-env去设置变量</h3><p>NODE_ENV不是process.env对象上原有的属性，它是我们自己添加上去的一个环境变量，用来确定当前所处的开发阶段。一般生产阶段设为production，开发阶段设为development，然后在脚本中读取process.env.NODE_ENV。<br>运行脚本时，可以这样改变环境变量, 在package.json文件的scripts里面添加命令：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NODE_ENV&#x3D;production node build.js</span><br></pre></td></tr></table></figure>
 
 <p>但是这个命令使用Windows的同学拉下代码后就报错了，因为Windows上面设置的方式不一样：</p>
@@ -406,21 +441,97 @@
 <p>接下来我们就可以通过cross-env来设置了</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cross-env NODE_ENV&#x3D;production node build.js</span><br></pre></td></tr></table></figure>
 
+<p>拿生产环境举例<br>config文件夹下新增生产环境prd.env.js</p>
+<p><img src="https://img-blog.csdnimg.cn/20191227155333224.png" alt="在这里插入图片描述"></p>
+<p>以prd为例</p>
+<pre><code>NODE_ENV: &apos;&quot;production&quot;&apos;,
+ENV_CONFIG:&apos;&quot;prd&quot;&apos;,
+BASE_API: &apos;&quot;&quot;&apos;,//
+ADMIN_API: &apos;&quot;&quot;&apos;//</code></pre><p>比如想设置打包prd环境，那么脚本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;prod&quot;: &quot;cross-env NODE_ENV&#x3D;production env-config&#x3D;prod&quot;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+
+
 <p>这样设置之后，我们可以在脚本中使用process.env.NODE_ENV了，但是不能在模块中使用，要想在模块当中直接使用，我们还需要一些配置</p>
-<h5 id="DefinePlugin"><a href="#DefinePlugin" class="headerlink" title="DefinePlugin"></a>DefinePlugin</h5><p>DefinePlugin可以定义一些全局变量，让我们在模块当中直接使用，不用做任何声明。</p>
+<p>DefinePlugin可以定义一些全局变量，让我们在模块当中直接使用，不用做任何声明。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const webpack &#x3D; require(&#39;webpack&#39;);</span><br><span class="line"></span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">    entry: &#123;</span><br><span class="line">        app: &#39;.&#x2F;src&#x2F;app&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        path: &#39;dist&#39;,</span><br><span class="line">        filename: &#39;bundle.js&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins: [</span><br><span class="line">        new webpack.DefinePlugin(&#123;</span><br><span class="line">           &#39;process.env.NODE_ENV&#39;:  &#39;production&#39;</span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <p>当我们直接这样定义的时候，编译后是这个样子的</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/5262488-8d77f226c73186e9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/862/format/webp" alt="img"></p>
-<p>bundle.png</p>
 <p>DefinePlugin直接将内容替换了，而不是一个字符串，所以我们经常这样定义：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">new webpack.DefinePlugin(&#123;</span><br><span class="line">      &#39;process.env.NODE_ENV&#39;: JSON.stringify(process.env.NODE_ENV)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
 <p>这样就可以直接使用啦_<br>现在我们要在模块中根据环境变量来配置不同的url了</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">let url &#x3D; &#39;&#39;;</span><br><span class="line"> if (process.env.NODE_ENV &#x3D;&#x3D;&#x3D; &#39;testing&#39;) &#123;</span><br><span class="line">   url &#x3D; &#39;http:&#x2F;&#x2F;my.test.cn&#39;;</span><br><span class="line"> &#125; else if (process.env.alpord &#x3D;&#x3D;&#x3D; &#39;alpord&#39;) &#123;</span><br><span class="line">   url &#x3D; &#39;http:&#x2F;&#x2F;my.alpord.cn&#39;;</span><br><span class="line"> &#125; else if (process.env.NODE_ENV &#x3D;&#x3D;&#x3D; &#39;production&#39;) &#123;</span><br><span class="line">   url &#x3D; &#39;http:&#x2F;&#x2F;my.product.cn&#39;;</span><br><span class="line"> &#125; else &#123;</span><br><span class="line">   url &#x3D; &#39;http:&#x2F;&#x2F;my.develop.cn&#39;;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
-<p>这只是简单列了一下process.env.NODE_ENV的用法，大家知道怎么用就好啦</p>
+
+
+<h3 id="Vuecli3-0设置环境变量"><a href="#Vuecli3-0设置环境变量" class="headerlink" title="Vuecli3.0设置环境变量"></a>Vuecli3.0设置环境变量</h3><p>以开发环境说明(一般脚手架已经配置好，默认3种模式，请继续往下看)</p>
+<p>运行脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;dev&quot;: &quot;cross-env node build&#x2F;dev-server.js&quot;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>config中的dev.env.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">    NODE_ENV: &#39;&quot;development&quot;&#39;,</span><br><span class="line">    BASE_API: &#39;&quot;&#x2F;api&quot;&#39;,</span><br><span class="line">	ADMIN_API: &#39;&quot;&#x2F;api&#x2F;admin&quot;&#39;&#x2F;&#x2F; admin服务地址</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在webpack.dev.conf.js中DefinePlugin创建process.env全局变量</p>
+<p><img src="https://img-blog.csdnimg.cn/20191227154317476.png" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20191227154307708.png" alt="在这里插入图片描述"></p>
+<p>其中的config文件夹内就是不同的环境变量，比如上述的dev.env.js<br>这个时候在main.js中打印process.env.NODE_ENV就可以获取到值</p>
+<h3 id="Vuecli4-0配置环境变量"><a href="#Vuecli4-0配置环境变量" class="headerlink" title="Vuecli4.0配置环境变量"></a>Vuecli4.0配置环境变量</h3><p>开发项目时，经常会需要在不同环境中切换。那么我们如何配置不同的环境变量呢？</p>
+<p>为了更加方便消化本文章，建议先看下官方文档：</p>
+<p><a href="https://cli.vuejs.org/zh/guide/mode-and-env.html" target="_blank" rel="noopener">环境变量和模式</a></p>
+<p>看完官方的文档如果还没有明白，可以参考本文。</p>
+<p>在vue-cli 构建的项目中，默认有3种模式，如下图：</p>
+<p><img src="https://img2018.cnblogs.com/blog/735803/201911/735803-20191121132153395-2114413287.png" alt="img"></p>
+<p>我个人的理解就是：</p>
+<p>你执行npm run serve时，对应的环境就是开发环境；</p>
+<p>你执行npm run build时，对应的环境就是生产环境。</p>
+<p>如果你开发的项目中，不止该3种，该咋整呢？像在我开发的项目中，就有本地环境(local)、开发环境(development)、测试环境(devtest)、预发布环境(beta)、生产环境(production)。请记住我括号里面的英文。</p>
+<p>来，左边跟我一起画个龙，在你右边儿画一道彩虹<del>画完了，开始进入主题了</del></p>
+<h4 id="1-创建不同环境变量文件"><a href="#1-创建不同环境变量文件" class="headerlink" title="1.创建不同环境变量文件"></a>1.创建不同环境变量文件</h4><p><img src="https://img2018.cnblogs.com/blog/735803/201911/735803-20191121133648339-516645299.png" alt="img"></p>
+<p>关于文件名：必须以如下方式命名，不要乱起名，也无需专门手动控制加载哪个文件</p>
+<p>　　.env 全局默认配置文件，不论什么环境都会加载合并</p>
+<p>　　.env.development 开发环境下的配置文件</p>
+<p>　　.env.production 生产环境下的配置文件</p>
+<p>如官方文档所说，通过为.env文件增加后缀来设置某个模式下特有的环境变量。我这里有5个环境，所以配置了5个.env文件。如下图：</p>
+<p> <img src="https://img2018.cnblogs.com/blog/735803/201911/735803-20191121142432253-1598242033.png" alt="img"></p>
+<h4 id="2-给-env文件添加内容"><a href="#2-给-env文件添加内容" class="headerlink" title="2.给.env文件添加内容"></a>2.给.env文件添加内容</h4><p>基本格式如下：</p>
+<p>除了NODE_ENV其他属性名必须以VUE_APP_开头，比如VUE_APP_XXX</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NODE_ENV&#x3D;环境名称</span><br><span class="line">VUE_APP_URL&#x3D;对应的环境地址</span><br></pre></td></tr></table></figure>
+
+<p>如我本地环境的配置就如下图所示：</p>
+<p><img src="https://img2018.cnblogs.com/blog/735803/201911/735803-20191121134757831-788898169.png" alt="img"></p>
+<p>我本地是用的easy-mock模拟的数据，所以配置的地址是mock接口地址。</p>
+<h4 id="3-在package-json中添加不同环境对应的执行语句"><a href="#3-在package-json中添加不同环境对应的执行语句" class="headerlink" title="3.在package.json中添加不同环境对应的执行语句"></a>3.在package.json中添加不同环境对应的执行语句</h4><p><img src="https://img2018.cnblogs.com/blog/735803/201911/735803-20191121140227202-1838207446.png" alt="img"></p>
+<p> 如官方文档所说，可以通过传递 –mode 来配置不同的模式。我自己的项目配置如下图：</p>
+<p><img src="https://img2018.cnblogs.com/blog/735803/201911/735803-20191121140048590-279787724.png" alt="img"></p>
+<p>请注意我配置文件中的 <strong>serve</strong> 与 <strong>build</strong> 。</p>
+<h4 id="4-使用"><a href="#4-使用" class="headerlink" title="4.使用"></a>4.使用</h4><p>文件已创建好，配置语句也已写好。怎么用它呢？</p>
+<p>首页你需要哪个环境，就执行哪个环境的命令语句。</p>
+<p>比如我现在需要local环境，就执行 npm run local-serve 。如下图所示：</p>
+<p><img src="https://img2018.cnblogs.com/blog/735803/201911/735803-20191121141720445-1437628374.png" alt="img"></p>
+<p>然后通过 process.env.NODE_ENV 获取环境名；通过 process.env.VUE_APP_URL 获取环境对应的url。</p>
+<p>比如我们在axios请求中，就可以把它的baseURL设置为 process.env.VUE_APP_URL ，如下图所示：</p>
+<p><img src="https://img2018.cnblogs.com/blog/735803/201911/735803-20191121141158232-772091668.png" alt="img"></p>
+<p>后面的”/web”是根据我自己接口来的，你别也写个”/web”。</p>
+<p>如果你不确定你自己现在是在哪个环境变量下，可以  console.log(“当前环境变量：”+process.env.NODE_ENV) 和  console.log(“当前环境路径：”+process.env.VUE_APP_URL) 看下。</p>
+<p>像我的项目中就是下面这2个东东：</p>
+<p><img src="https://img2018.cnblogs.com/blog/735803/201911/735803-20191121143756254-434826322.png" alt="img"></p>
+<p>输出的内容就是.env.local文件里面配置的环境变量。</p>
+<p>为了更好的理解，我们再执行一条语句， npm run serve ,看看此时的环境变量是哪个？</p>
+<p><img src="https://img2018.cnblogs.com/blog/735803/201911/735803-20191121143424381-1096466483.png" alt="img"></p>
+<p>为什么呢？</p>
+<p>因为 npm run serve 默认指向.env.developement，我在里面配置的环境就是上面输出的内容。.env.developement的配置如下图：</p>
+<p><img src="https://img2018.cnblogs.com/blog/735803/201911/735803-20191121143523836-1605555201.png" alt="img"></p>
+<p><strong>总而言之就是，你需要哪个环境变量，就 【npm run 对应的环境变量】 就完事了！</strong></p>
+<h2 id="延申-cli3-0获取版本号version和更新时间"><a href="#延申-cli3-0获取版本号version和更新时间" class="headerlink" title="延申  cli3.0获取版本号version和更新时间"></a>延申  cli3.0获取版本号version和更新时间</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">prod.env.js</span><br><span class="line"></span><br><span class="line">const version &#x3D; require(&#39;..&#x2F;package.json&#39;).version</span><br><span class="line">const date &#x3D; Date.now()</span><br><span class="line"></span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">    NODE_ENV: &#39;&quot;production&quot;&#39;,</span><br><span class="line">    &#x2F;&#x2F; BASE_API: &#39;&quot;http:&#x2F;&#x2F;api.baby-care.ipzoe.com&#x2F;&quot;&#39;,</span><br><span class="line">    assetsPublicPath:&quot;..&#x2F;..&#x2F;&quot;,</span><br><span class="line">    BASE_API: &#39;&quot;&quot;&#39;,</span><br><span class="line">    VERSION: &#96;&quot;$&#123;version&#125;&quot;&#96;,</span><br><span class="line">    DATE: &#96;&quot;$&#123;date&#125;&quot;&#96;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dev.env.js</span><br><span class="line">var merge &#x3D; require(&#39;webpack-merge&#39;)</span><br><span class="line">var prodEnv &#x3D; require(&#39;.&#x2F;prod.env&#39;)</span><br><span class="line">const version &#x3D; require(&#39;..&#x2F;package.json&#39;).version</span><br><span class="line">const date &#x3D; Date.now()</span><br><span class="line"></span><br><span class="line">module.exports &#x3D; merge(prodEnv, &#123;</span><br><span class="line">    NODE_ENV: &#39;&quot;development&quot;&#39;,</span><br><span class="line">    &#x2F;&#x2F; BASE_API: &#39;&quot;http:&#x2F;&#x2F;api.baby-care.ipzoe.com&#x2F;&quot;&#39;,</span><br><span class="line">    BASE_API: &#39;&quot;&quot;&#39;,</span><br><span class="line">    VERSION: &#96;&quot;$&#123;version&#125;&quot;&#96;,</span><br><span class="line">    DATE: &#96;&quot;$&#123;date&#125;&quot;&#96;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
 <p>参考链接 <a href="https://www.jianshu.com/p/c8f9c61c2f20" target="_blank" rel="noopener">https://www.jianshu.com/p/c8f9c61c2f20</a></p>
+<p>​                 <a href="https://www.cnblogs.com/sese/p/11905402.html" target="_blank" rel="noopener">https://www.cnblogs.com/sese/p/11905402.html</a></p>
 
       
     </div>
@@ -546,7 +657,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">153</span>
+                  <span class="site-state-item-count">175</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -557,7 +668,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">73</span>
+                  <span class="site-state-item-count">76</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -568,7 +679,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">154</span>
+                  <span class="site-state-item-count">163</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -608,7 +719,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#扒一扒process-env"><span class="nav-number">1.</span> <span class="nav-text">扒一扒process.env</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主角出场-process-env-NODE-ENV"><span class="nav-number">2.</span> <span class="nav-text">主角出场 process.env.NODE_ENV</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#DefinePlugin"><span class="nav-number">2.1.</span> <span class="nav-text">DefinePlugin</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#沙箱"><span class="nav-number">1.1.</span> <span class="nav-text">沙箱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单点登录"><span class="nav-number">1.2.</span> <span class="nav-text">单点登录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#process-env"><span class="nav-number">2.</span> <span class="nav-text">process.env</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#终端打印"><span class="nav-number">2.1.</span> <span class="nav-text">终端打印</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器打印"><span class="nav-number">2.2.</span> <span class="nav-text">浏览器打印</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#process-env-NODE-ENV"><span class="nav-number">3.</span> <span class="nav-text">process.env.NODE_ENV</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Vuecli3以下的vue版本使用cross-env去设置变量"><span class="nav-number">3.1.</span> <span class="nav-text">Vuecli3以下的vue版本使用cross-env去设置变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vuecli3-0设置环境变量"><span class="nav-number">3.2.</span> <span class="nav-text">Vuecli3.0设置环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vuecli4-0配置环境变量"><span class="nav-number">3.3.</span> <span class="nav-text">Vuecli4.0配置环境变量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-创建不同环境变量文件"><span class="nav-number">3.3.1.</span> <span class="nav-text">1.创建不同环境变量文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-给-env文件添加内容"><span class="nav-number">3.3.2.</span> <span class="nav-text">2.给.env文件添加内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-在package-json中添加不同环境对应的执行语句"><span class="nav-number">3.3.3.</span> <span class="nav-text">3.在package.json中添加不同环境对应的执行语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-使用"><span class="nav-number">3.3.4.</span> <span class="nav-text">4.使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#延申-cli3-0获取版本号version和更新时间"><span class="nav-number">4.</span> <span class="nav-text">延申  cli3.0获取版本号version和更新时间</span></a></li></ol></div>
             
 
           </div>
@@ -628,7 +739,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

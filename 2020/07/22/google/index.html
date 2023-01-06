@@ -100,8 +100,10 @@
 <meta property="og:image" content="http://yoursite.com/2020/07/22/google/image-20200914112312655.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190516212308883.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjUxOTEzNw==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190516212358116.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjUxOTEzNw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/43a4882a64374e3eb3e492380c248ae6~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp">
+<meta property="og:image" content="http://yoursite.com/2020/07/22/google/Snipaste_2021-04-23_15-43-28.png">
 <meta property="article:published_time" content="2020-07-22T07:35:53.000Z">
-<meta property="article:modified_time" content="2021-02-19T10:22:57.529Z">
+<meta property="article:modified_time" content="2022-05-05T03:48:10.291Z">
 <meta property="article:author" content="Dali">
 <meta property="article:tag" content="soft">
 <meta property="article:tag" content="浏览器">
@@ -482,14 +484,106 @@
 <h4 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h4><blockquote>
 <p>json-handle</p>
 <p>postwoman</p>
+<p>Console Importer  //用来在控制台直接安装<code>npm</code>包</p>
 </blockquote>
 <h4 id="清空控制台"><a href="#清空控制台" class="headerlink" title="清空控制台"></a>清空控制台</h4><p> console.clear</p>
 <h4 id="t参数支持换行"><a href="#t参数支持换行" class="headerlink" title="\t参数支持换行"></a>\t参数支持换行</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">console.log(JSON.stringify(&#123; alpha: &#39;A&#39;, beta: &#39;B&#39; &#125;, null, &#39;\t&#39;));</span><br><span class="line">&#x2F;&#x2F; Result:</span><br><span class="line">&#123;</span><br><span class="line">	&quot;alpha&quot;: &quot;A&quot;,</span><br><span class="line">	&quot;beta&quot;: &quot;B&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h4 id="一键重新发起请求"><a href="#一键重新发起请求" class="headerlink" title="一键重新发起请求"></a>一键重新发起请求</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">选中Network</span><br><span class="line">点击Fetch&#x2F;XHR</span><br><span class="line">选择要重新发送的请求</span><br><span class="line">右键选择Replay XHR</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="修改入参重新发起"><a href="#修改入参重新发起" class="headerlink" title="修改入参重新发起"></a><strong>修改入参</strong>重新发起</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">选中Network</span><br><span class="line">点击Fetch&#x2F;XHR</span><br><span class="line">选择Copy as fetch</span><br><span class="line">控制台粘贴代码</span><br><span class="line">修改参数，回车搞定</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="复制JavaScript变量"><a href="#复制JavaScript变量" class="headerlink" title="复制JavaScript变量"></a>复制JavaScript变量</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">使用copy函数，将对象作为入参执行即可</span><br><span class="line">var obj&#x3D;[&#123;id:1&#125;,&#123;id:1&#125;,&#123;id:1&#125;]</span><br><span class="line">copy(obj)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="控制台获取Elements面板选中的元素"><a href="#控制台获取Elements面板选中的元素" class="headerlink" title="控制台获取Elements面板选中的元素"></a>控制台获取Elements面板选中的元素</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">通过Elements选择要调试的元素</span><br><span class="line">控制台直接用$0访问</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="将网页中超出一屏的内容也截下来"><a href="#将网页中超出一屏的内容也截下来" class="headerlink" title="将网页中超出一屏的内容也截下来"></a>将网页中超出一屏的内容也截下来</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">准备好需要截屏的内容</span><br><span class="line">cmd&#x2F;ctrl + shift + p 执行Command命令</span><br><span class="line">输入Capture full size screenshot 按下回车</span><br><span class="line"></span><br><span class="line">如果要截取选中的部分元素呢 ???</span><br><span class="line">答案也很简单，第三步输入Capture node screenshot即可</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="一键展开所有DOM元素"><a href="#一键展开所有DOM元素" class="headerlink" title="一键展开所有DOM元素"></a>一键展开所有DOM元素</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">按住opt&#x2F;alt键 + click（需要展开的最外层元素）</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="控制台引用上一次执行的结果"><a href="#控制台引用上一次执行的结果" class="headerlink" title="控制台引用上一次执行的结果"></a>控制台引用上一次执行的结果</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#39;fatfish&#39;.split(&#39;&#39;).reverse().join(&#39;&#39;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 第1步</span><br><span class="line">$_.split(&#39;&#39;)</span><br><span class="line">[&#39;h&#39;, &#39;s&#39;, &#39;i&#39;, &#39;f&#39;, &#39;t&#39;, &#39;a&#39;, &#39;f&#39;]</span><br><span class="line">&#x2F;&#x2F; 第2步</span><br><span class="line">$_.reverse() &#x2F;&#x2F; [&#39;h&#39;, &#39;s&#39;, &#39;i&#39;, &#39;f&#39;, &#39;t&#39;, &#39;a&#39;, &#39;f&#39;]</span><br><span class="line">&#x2F;&#x2F; 第3步</span><br><span class="line">$_.join(&#39;&#39;) &#x2F;&#x2F; hsiftaf</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="快速切换主题"><a href="#快速切换主题" class="headerlink" title="快速切换主题"></a>快速切换主题</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cmd&#x2F;ctrl + shift + p 执行Command命令</span><br><span class="line">输入Switch to dark theme或者Switch to light theme进行主题切换</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="“-“和”-“选择器"><a href="#“-“和”-“选择器" class="headerlink" title="“$“和”$$“选择器"></a>“<code>$</code>“和”<code>$$</code>“选择器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">在控制台使用document.querySelector和document.querySelectorAll选择当前页面的元素是最常见的需求了，不过着实有点太长了，咱们可以使用$和$$替代。</span><br><span class="line">$只读取一个，$$读取所有</span><br><span class="line"></span><br><span class="line">$(&#39;body&#39;)</span><br><span class="line">$(&#39;div&#39;)</span><br><span class="line">$$(&#39;div&#39;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="i直接在控制台安装npm包"><a href="#i直接在控制台安装npm包" class="headerlink" title="$i直接在控制台安装npm包"></a><code>$i</code>直接在控制台安装npm包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">你遇到过这个场景吗？有时候想使用比如dayjs或者lodash的某个API，但是又不想去官网查，如果可以在控制台直接试出来就好了。</span><br><span class="line">Console Importer 就是这么一个插件，用来在控制台直接安装npm包。</span><br><span class="line"></span><br><span class="line">安装Console Importer插件</span><br><span class="line">$i(&#39;name&#39;)安装npm包</span><br><span class="line"></span><br><span class="line">$i(&#39;dayjs&#39;)</span><br><span class="line">dayjs(new Date()).formate(&#39;YYYY-MM-DD HH:mm:ss&#39;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Add-conditional-breakpoint条件断点的妙用"><a href="#Add-conditional-breakpoint条件断点的妙用" class="headerlink" title="Add conditional breakpoint条件断点的妙用"></a>Add conditional breakpoint条件断点的妙用</h4><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/43a4882a64374e3eb3e492380c248ae6~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="img"></p>
+<p>参考自：<a href="https://juejin.cn/post/7085135692568723492" target="_blank" rel="noopener">https://juejin.cn/post/7085135692568723492</a></p>
 <h4 id="追加："><a href="#追加：" class="headerlink" title="追加："></a>追加：</h4><p>8个Chrome面板内容</p>
 <p><a href="https://mp.weixin.qq.com/s/-1jf4c7bYhbn-zKVr74hrw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/-1jf4c7bYhbn-zKVr74hrw</a></p>
 <p>最详细的解释</p>
 <p><a href="https://blog.csdn.net/weixin_40876986/article/details/89703977" target="_blank" rel="noopener">https://blog.csdn.net/weixin_40876986/article/details/89703977</a></p>
+<h3 id="关于浏览器快捷搜索那些事"><a href="#关于浏览器快捷搜索那些事" class="headerlink" title="关于浏览器快捷搜索那些事"></a>关于浏览器快捷搜索那些事</h3><p>搜索浏览器所有标签和收藏，不用挨个点开</p>
+<p>Vimium插件下载 </p>
+<p>搜索电脑系统中的文件</p>
+<p>mac系统   command+空格键<br>window系统  推荐Everything 软件</p>
+<p>使用浏览器搜索引擎设置，快速实现搜索</p>
+<p><img src="/2020/07/22/google/Snipaste_2021-04-23_15-43-28.png" alt="Snipaste_2021-04-23_15-43-28"></p>
+<p>使用方法：g + tab键 + 关键字</p>
+<p>其他举例</p>
+<ul>
+<li>微信公众号文章搜索</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 搜索引擎</span><br><span class="line">微信</span><br><span class="line"># 关键字</span><br><span class="line">we</span><br><span class="line"># 网址格式（用“%s”代替搜索字词）</span><br><span class="line">https:&#x2F;&#x2F;weixin.sogou.com&#x2F;weixin?type&#x3D;2&amp;query&#x3D;%s</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>翻译中文</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 搜索引擎</span><br><span class="line">翻译成中文</span><br><span class="line">#关键字</span><br><span class="line">cn</span><br><span class="line">#网址格式（用“%s”代替搜索字词）</span><br><span class="line">https:&#x2F;&#x2F;translate.google.cn&#x2F;#view&#x3D;home&amp;op&#x3D;translate&amp;sl&#x3D;en&amp;tl&#x3D;zh-CN&amp;text&#x3D;%s</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>翻译英文</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 搜索引擎</span><br><span class="line">翻译成英文</span><br><span class="line"># 关键字</span><br><span class="line">en</span><br><span class="line">#网址格式（用“%s”代替搜索字词）</span><br><span class="line">https:&#x2F;&#x2F;translate.google.cn&#x2F;#view&#x3D;home&amp;op&#x3D;translate&amp;sl&#x3D;zh-CN&amp;tl&#x3D;en&amp;text&#x3D;%s</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>在url输入框中提高搜索效率的小tips</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">*  精准搜索&#96;&quot;&quot;&#96;（例如：“a1ert is not defined”）</span><br><span class="line"></span><br><span class="line">*  &#96;intitle&#96;或者&#96;intext&#96; （例如：intext 面试）</span><br><span class="line"></span><br><span class="line">*  搜索排除&#96;-&#96;（例如：“a1ert is not defined” -csdn.net）</span><br><span class="line"></span><br><span class="line">*  filetype:pdf javascript（搜索包含javascript的PDF文件，还有filetype:ppt，filetype:doc等格式的文件）</span><br><span class="line"></span><br><span class="line">*  使用&#96;cache:&#96;从浏览器中寻找被删除的文件（例如：cache:https:&#x2F;&#x2F;www.axihe.com&#x2F;anbang&#x2F;chat&#x2F;2020&#x2F;learn-self.html）</span><br><span class="line"></span><br><span class="line">*  在指定站点搜索 &#96;site:domain&#96;（例如：site:axihe.com 面试题）</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>搜索时间</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">## 搜索纽约当前时间</span><br><span class="line">Time in NYC</span><br><span class="line">## 搜索迪拜当前时间</span><br><span class="line">time in dibai</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>日出时间和日落时间</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">## 日出时间</span><br><span class="line">sunrise: NYC</span><br><span class="line">## 日落时间</span><br><span class="line">sundown: NYC</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查找区块链汇率</li>
+</ul>
+<p>这个是搜索某个币，值多少钱使用的；</p>
+<p>比如我要搜索 100ETH 值多少 USD</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## 100以太坊等于多少美元100 eth to usd## 100比特币等于多少人民币100 BTC to cn## 100以太坊等于多少比特币100 eth to btc</span><br></pre></td></tr></table></figure>
+
+<p>参考链接</p>
+<p><a href="https://www.axihe.com/anbang/chat/2020/search.html#%E5%85%AC%E4%BC%97%E5%8F%B7%E5%86%85%E5%AE%B9%E5%BF%AB%E9%80%9F%E6%90%9C%E7%B4%A2-%E5%BE%88%E5%A4%9A%E4%BA%BA%E4%B8%8D%E7%9F%A5%E9%81%93%E8%BF%98%E5%8F%AF%E4%BB%A5%E8%BF%99%E4%B9%88%E7%94%A8" target="_blank" rel="noopener">https://www.axihe.com/anbang/chat/2020/search.html#%E5%85%AC%E4%BC%97%E5%8F%B7%E5%86%85%E5%AE%B9%E5%BF%AB%E9%80%9F%E6%90%9C%E7%B4%A2-%E5%BE%88%E5%A4%9A%E4%BA%BA%E4%B8%8D%E7%9F%A5%E9%81%93%E8%BF%98%E5%8F%AF%E4%BB%A5%E8%BF%99%E4%B9%88%E7%94%A8</a></p>
 
       
     </div>
@@ -615,7 +709,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">153</span>
+                  <span class="site-state-item-count">175</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -626,7 +720,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">73</span>
+                  <span class="site-state-item-count">76</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -637,7 +731,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">154</span>
+                  <span class="site-state-item-count">163</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -677,7 +771,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#你不知道的隐藏快捷方式"><span class="nav-number">1.</span> <span class="nav-text">你不知道的隐藏快捷方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#曾经，在线调伪类样式困扰过你？"><span class="nav-number">1.1.</span> <span class="nav-text">曾经，在线调伪类样式困扰过你？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#联调接口失败时，后台老哥总管你要response？"><span class="nav-number">1.2.</span> <span class="nav-text">联调接口失败时，后台老哥总管你要response？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#你还一层层展开dom？Alt-Click"><span class="nav-number">1.3.</span> <span class="nav-text">你还一层层展开dom？Alt + Click</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#是不是报错了，你才去打断点？"><span class="nav-number">1.4.</span> <span class="nav-text">是不是报错了，你才去打断点？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#你是不是经常想不起来，在哪绑定事件的？"><span class="nav-number">1.5.</span> <span class="nav-text">你是不是经常想不起来，在哪绑定事件的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#你是不是打断点时还要去改代码？"><span class="nav-number">1.6.</span> <span class="nav-text">你是不是打断点时还要去改代码？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#看dom层级的最直观的方式？"><span class="nav-number">1.7.</span> <span class="nav-text">看dom层级的最直观的方式？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查一些特定的请求，过滤器Filter用过吗？"><span class="nav-number">1.8.</span> <span class="nav-text">查一些特定的请求，过滤器Filter用过吗？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在Elements面板调整dom结构很不方便？"><span class="nav-number">1.9.</span> <span class="nav-text">在Elements面板调整dom结构很不方便？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#想知道，某图片加载的代码在哪？Initiator！！"><span class="nav-number">1.10.</span> <span class="nav-text">想知道，某图片加载的代码在哪？Initiator！！</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不想加载某个文件了？"><span class="nav-number">1.11.</span> <span class="nav-text">不想加载某个文件了？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#滚动元素到视图"><span class="nav-number">1.12.</span> <span class="nav-text">滚动元素到视图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#预设移动端设备"><span class="nav-number">1.13.</span> <span class="nav-text">预设移动端设备</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#预设网络状况"><span class="nav-number">1.14.</span> <span class="nav-text">预设网络状况</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#捕获快照"><span class="nav-number">1.15.</span> <span class="nav-text">捕获快照</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#捕获局部快照"><span class="nav-number">1.16.</span> <span class="nav-text">捕获局部快照</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#快速清空站点缓存"><span class="nav-number">1.17.</span> <span class="nav-text">快速清空站点缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更改调试面板主题"><span class="nav-number">1.18.</span> <span class="nav-text">更改调试面板主题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#手动改定位信息"><span class="nav-number">1.19.</span> <span class="nav-text">手动改定位信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#浏览器复制console-log打印的对象"><span class="nav-number">1.20.</span> <span class="nav-text">浏览器复制console.log打印的对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插件"><span class="nav-number">1.21.</span> <span class="nav-text">插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#清空控制台"><span class="nav-number">1.22.</span> <span class="nav-text">清空控制台</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#t参数支持换行"><span class="nav-number">1.23.</span> <span class="nav-text">\t参数支持换行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#追加："><span class="nav-number">1.24.</span> <span class="nav-text">追加：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#你不知道的隐藏快捷方式"><span class="nav-number">1.</span> <span class="nav-text">你不知道的隐藏快捷方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#曾经，在线调伪类样式困扰过你？"><span class="nav-number">1.1.</span> <span class="nav-text">曾经，在线调伪类样式困扰过你？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#联调接口失败时，后台老哥总管你要response？"><span class="nav-number">1.2.</span> <span class="nav-text">联调接口失败时，后台老哥总管你要response？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#你还一层层展开dom？Alt-Click"><span class="nav-number">1.3.</span> <span class="nav-text">你还一层层展开dom？Alt + Click</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#是不是报错了，你才去打断点？"><span class="nav-number">1.4.</span> <span class="nav-text">是不是报错了，你才去打断点？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#你是不是经常想不起来，在哪绑定事件的？"><span class="nav-number">1.5.</span> <span class="nav-text">你是不是经常想不起来，在哪绑定事件的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#你是不是打断点时还要去改代码？"><span class="nav-number">1.6.</span> <span class="nav-text">你是不是打断点时还要去改代码？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#看dom层级的最直观的方式？"><span class="nav-number">1.7.</span> <span class="nav-text">看dom层级的最直观的方式？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查一些特定的请求，过滤器Filter用过吗？"><span class="nav-number">1.8.</span> <span class="nav-text">查一些特定的请求，过滤器Filter用过吗？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在Elements面板调整dom结构很不方便？"><span class="nav-number">1.9.</span> <span class="nav-text">在Elements面板调整dom结构很不方便？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#想知道，某图片加载的代码在哪？Initiator！！"><span class="nav-number">1.10.</span> <span class="nav-text">想知道，某图片加载的代码在哪？Initiator！！</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不想加载某个文件了？"><span class="nav-number">1.11.</span> <span class="nav-text">不想加载某个文件了？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#滚动元素到视图"><span class="nav-number">1.12.</span> <span class="nav-text">滚动元素到视图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#预设移动端设备"><span class="nav-number">1.13.</span> <span class="nav-text">预设移动端设备</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#预设网络状况"><span class="nav-number">1.14.</span> <span class="nav-text">预设网络状况</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#捕获快照"><span class="nav-number">1.15.</span> <span class="nav-text">捕获快照</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#捕获局部快照"><span class="nav-number">1.16.</span> <span class="nav-text">捕获局部快照</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#快速清空站点缓存"><span class="nav-number">1.17.</span> <span class="nav-text">快速清空站点缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更改调试面板主题"><span class="nav-number">1.18.</span> <span class="nav-text">更改调试面板主题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#手动改定位信息"><span class="nav-number">1.19.</span> <span class="nav-text">手动改定位信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#浏览器复制console-log打印的对象"><span class="nav-number">1.20.</span> <span class="nav-text">浏览器复制console.log打印的对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插件"><span class="nav-number">1.21.</span> <span class="nav-text">插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#清空控制台"><span class="nav-number">1.22.</span> <span class="nav-text">清空控制台</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#t参数支持换行"><span class="nav-number">1.23.</span> <span class="nav-text">\t参数支持换行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一键重新发起请求"><span class="nav-number">1.24.</span> <span class="nav-text">一键重新发起请求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改入参重新发起"><span class="nav-number">1.25.</span> <span class="nav-text">修改入参重新发起</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复制JavaScript变量"><span class="nav-number">1.26.</span> <span class="nav-text">复制JavaScript变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#控制台获取Elements面板选中的元素"><span class="nav-number">1.27.</span> <span class="nav-text">控制台获取Elements面板选中的元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将网页中超出一屏的内容也截下来"><span class="nav-number">1.28.</span> <span class="nav-text">将网页中超出一屏的内容也截下来</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一键展开所有DOM元素"><span class="nav-number">1.29.</span> <span class="nav-text">一键展开所有DOM元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#控制台引用上一次执行的结果"><span class="nav-number">1.30.</span> <span class="nav-text">控制台引用上一次执行的结果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#快速切换主题"><span class="nav-number">1.31.</span> <span class="nav-text">快速切换主题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#“-“和”-“选择器"><span class="nav-number">1.32.</span> <span class="nav-text">“$“和”$$“选择器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#i直接在控制台安装npm包"><span class="nav-number">1.33.</span> <span class="nav-text">$i直接在控制台安装npm包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Add-conditional-breakpoint条件断点的妙用"><span class="nav-number">1.34.</span> <span class="nav-text">Add conditional breakpoint条件断点的妙用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#追加："><span class="nav-number">1.35.</span> <span class="nav-text">追加：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于浏览器快捷搜索那些事"><span class="nav-number">2.</span> <span class="nav-text">关于浏览器快捷搜索那些事</span></a></li></ol></div>
             
 
           </div>
@@ -697,7 +791,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

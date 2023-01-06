@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="DaliBlogs" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="参考链接：https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;NZdmV-FKJxzahyeCneLWjw 打印表格console.table()方法将对象&#x2F;数组打印为格式整齐的表格。 123456console.table(&amp;#123;  &#39;Time Stamp&#39;: new Date().getTime(),  &#39;OS&#39;: navigator[&#39;plat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="console的拓展用法">
+<meta property="og:url" content="http://yoursite.com/2023/01/05/console%E7%9A%84%E6%8B%93%E5%B1%95%E7%94%A8%E6%B3%95/index.html">
+<meta property="og:site_name" content="DaliBlogs">
+<meta property="og:description" content="参考链接：https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;NZdmV-FKJxzahyeCneLWjw 打印表格console.table()方法将对象&#x2F;数组打印为格式整齐的表格。 123456console.table(&amp;#123;  &#39;Time Stamp&#39;: new Date().getTime(),  &#39;OS&#39;: navigator[&#39;plat">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/ibugX3Hm3p4oAoool2dL1ICjHZ58mia3KWfO8qjeIBibhXn7eHunVFEVjrVLKHicgcA3GmPAUywQABQeceZJ1nWe5A/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/ibugX3Hm3p4oAoool2dL1ICjHZ58mia3KW598IgzUp87x1vbQQMGM2G6xp5WHP4wKY4r7hoNM7kr8HRibll8XtCMg/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/ibugX3Hm3p4oAoool2dL1ICjHZ58mia3KW1iaRJ6tcCYlibia5GM8h9Jib2oQRicj5icfJiabeHsLbibIrck62dsex8yjg6Q/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/ibugX3Hm3p4oAoool2dL1ICjHZ58mia3KWl9wWyeUKA6cg18GCZrSIs2fVywleLbjqm97MyicgxLQefSqslfskLSg/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/ibugX3Hm3p4oAoool2dL1ICjHZ58mia3KWpQB0oO7mqg7LDCmqfFMtga6tLpG2fELR1Y0wgDzpRNKqKbpDziaFnSw/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/ibugX3Hm3p4oAoool2dL1ICjHZ58mia3KWIQhAsvJpt0zdpfFyhH9icibgndTmwVd5k1K8QibplIRHFD2P36fbc3lZw/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/ibugX3Hm3p4oAoool2dL1ICjHZ58mia3KWicbsyosRJTmnJ790tPicys0lNecfGCzMR4jia7kh1L1xjX0WicVpEuVd4g/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/ibugX3Hm3p4oAoool2dL1ICjHZ58mia3KWrWzXHsC4MWqU6YPUKarndfyvEzFXQd0iapJyGQzFNevwgIuL7qgoq9Q/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/ibugX3Hm3p4oAoool2dL1ICjHZ58mia3KWFTqxFINeOgSd7KqZprmRUmCNxibCApIzYoAnm8dAib1xxMjicYb6DicTJw/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="article:published_time" content="2023-01-05T09:54:19.000Z">
+<meta property="article:modified_time" content="2023-01-05T09:55:54.240Z">
+<meta property="article:author" content="Dali">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mmbiz.qpic.cn/mmbiz_png/ibugX3Hm3p4oAoool2dL1ICjHZ58mia3KWfO8qjeIBibhXn7eHunVFEVjrVLKHicgcA3GmPAUywQABQeceZJ1nWe5A/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2023/01/05/console的拓展用法/"/>
+
+
+
+
+
+  <title>console的拓展用法 | DaliBlogs</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DaliBlogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/01/05/console%E7%9A%84%E6%8B%93%E5%B1%95%E7%94%A8%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">console的拓展用法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-01-05T17:54:19+08:00">
+                2023-01-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>参考链接：<a href="https://mp.weixin.qq.com/s/NZdmV-FKJxzahyeCneLWjw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/NZdmV-FKJxzahyeCneLWjw</a></p>
+<h2 id="打印表格"><a href="#打印表格" class="headerlink" title="打印表格"></a>打印表格</h2><p><code>console.table()</code>方法将对象/数组打印为格式整齐的表格。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">console.table(&#123;</span><br><span class="line">  &#39;Time Stamp&#39;: new Date().getTime(),</span><br><span class="line">  &#39;OS&#39;: navigator[&#39;platform&#39;],</span><br><span class="line">  &#39;Browser&#39;: navigator[&#39;appCodeName&#39;],</span><br><span class="line">  &#39;Language&#39;: navigator[&#39;language&#39;],</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/ibugX3Hm3p4oAoool2dL1ICjHZ58mia3KWfO8qjeIBibhXn7eHunVFEVjrVLKHicgcA3GmPAUywQABQeceZJ1nWe5A/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<h2 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h2><p>使用<code>console.group()</code>可将相关的控制台语句与可折叠章节组合在一起。</p>
+<p>你可以选择通过传递字符串作为参数来为章节指定标题。可以在控制台中折叠和展开章节，但默认情况下也可以使用<code>groupCollapsed</code>取代<code>group</code>来折叠章节。你还可以在章节内嵌套子章节，但务必记住使用<code>groupEnd</code>关闭每个组。</p>
+<p>以下示例将输出一个打开的包含一些信息的章节。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">console.group(&#39;URL Info&#39;);</span><br><span class="line">  console.log(&#39;Protocol&#39;, window.location.protocol);</span><br><span class="line">  console.log(&#39;Host&#39;, window.origin);</span><br><span class="line">  console.log(&#39;Path&#39;, window.location.pathname);</span><br><span class="line">  console.groupCollapsed(&#39;Meta Info&#39;);</span><br><span class="line">    console.log(&#39;Date Fetched&#39;, new Date().getTime());</span><br><span class="line">    console.log(&#39;OS&#39;, navigator[&#39;platform&#39;]);</span><br><span class="line">    console.log(&#39;Browser&#39;, navigator[&#39;appCodeName&#39;]);</span><br><span class="line">    console.log(&#39;Language&#39;, navigator[&#39;language&#39;]);</span><br><span class="line">  console.groupEnd();</span><br><span class="line">console.groupEnd();</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/ibugX3Hm3p4oAoool2dL1ICjHZ58mia3KW598IgzUp87x1vbQQMGM2G6xp5WHP4wKY4r7hoNM7kr8HRibll8XtCMg/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<h2 id="带样式的日志输出"><a href="#带样式的日志输出" class="headerlink" title="带样式的日志输出"></a>带样式的日志输出</h2><p>可以使用一些基本的CSS来设置日志输出的样式，例如颜色、字体、文本样式和大小。</p>
+<p>例如，尝试运行以下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">console.log(</span><br><span class="line">  &#39;%cHello World!&#39;,</span><br><span class="line">  &#39;color: #f709bb; font-family: sans-serif; text-decoration: underline;&#39;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>得到输出如下：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/ibugX3Hm3p4oAoool2dL1ICjHZ58mia3KW1iaRJ6tcCYlibia5GM8h9Jib2oQRicj5icfJiabeHsLbibIrck62dsex8yjg6Q/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>很酷吧？但是还可以做更多事情！</p>
+<p>比如说改变字体，样式，背景颜色，添加阴影和曲线……</p>
+<h2 id="时间"><a href="#时间" class="headerlink" title="时间"></a>时间</h2><p>另一种常见的调试技术是计算程序执行时间，以跟踪操作所需的时间。这可以通过使用<code>console.time()</code>启动计时器并传入标签，然后通过相同的标签使用<code>console.timeEnd()</code>结束计时器来实现。甚至还可以使用<code>console.timeLog()</code>在长时间运行的操作中添加标记。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">console.time(&quot;concatenation&quot;);</span><br><span class="line">let output &#x3D; &quot;&quot;;</span><br><span class="line">for (var i &#x3D; 1; i &lt;&#x3D; 1e6; i++) &#123;</span><br><span class="line">  output +&#x3D; i;</span><br><span class="line">&#125;</span><br><span class="line">console.timeEnd(&quot;concatenation&quot;);</span><br><span class="line">concatenation: 1206ms - timer ended</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/ibugX3Hm3p4oAoool2dL1ICjHZ58mia3KWl9wWyeUKA6cg18GCZrSIs2fVywleLbjqm97MyicgxLQefSqslfskLSg/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>还有一个非标准方法——<code>console.timeStamp()</code>，在性能选项卡中添加标记，因此可以将代码中的点与时间轴中记录的其他事件（如绘制和布局事件）相关联。</p>
+<h2 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h2><p>如果你只想在发生错误或特定条件为真/假时登录到控制台，那么可以使用<code>console.assert()</code>来完成，除非第一个参数为<code>false</code>，否则不会将任何内容记录到控制台。</p>
+<p>第一个参数是要检查的布尔条件，后跟0或要打印的多个数据点，最后一个参数是要输出的消息。例如<code>console.assert(false, &#39;Value was false&#39;)</code>将输出消息，因为第一个参数是<code>false</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const errorMsg &#x3D; &#39;the # is not even&#39;;</span><br><span class="line">for (let num &#x3D; 2; num &lt;&#x3D; 5; num++) &#123;</span><br><span class="line">  console.log(&#96;the # is $&#123;num&#125;&#96;);</span><br><span class="line">  console.assert(num % 2 &#x3D;&#x3D;&#x3D; 0, &#123; num &#125;, errorMsg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/ibugX3Hm3p4oAoool2dL1ICjHZ58mia3KWpQB0oO7mqg7LDCmqfFMtga6tLpG2fELR1Y0wgDzpRNKqKbpDziaFnSw/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<h2 id="计数"><a href="#计数" class="headerlink" title="计数"></a>计数</h2><p>还在手动递增数字进行日志记录吗？<code>console.count()</code>可帮助用于跟踪某些内容的执行次数，或代码块的输入频率。</p>
+<p>你可以选择为计数器指定一个标签，以便管理多个计数器并使输出更清晰。</p>
+<p>计数器将始终从1开始。你可以随时使用<code>console.countReset()</code>重置计数器，该函数也接受可选的标签参数。</p>
+<p>以下代码最终值将为8。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const numbers &#x3D; [1, 2, 3, 30, 69, 120, 240, 420];</span><br><span class="line">numbers.forEach((name) &#x3D;&gt; &#123;</span><br><span class="line">  console.count();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>下面是标记计数器的示例输出。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/ibugX3Hm3p4oAoool2dL1ICjHZ58mia3KWIQhAsvJpt0zdpfFyhH9icibgndTmwVd5k1K8QibplIRHFD2P36fbc3lZw/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>如果使用值，则不会传入标签，而是为每个条件值提供一个单独的计数器。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">console.count(NaN);         &#x2F;&#x2F; NaN: 1</span><br><span class="line">console.count(NaN+3);       &#x2F;&#x2F; NaN: 2</span><br><span class="line">console.count(1&#x2F;0);         &#x2F;&#x2F; Infinity: 1</span><br><span class="line">console.count(String(1&#x2F;0)); &#x2F;&#x2F; Infinity: 2</span><br></pre></td></tr></table></figure>
+
+<h2 id="堆栈跟踪"><a href="#堆栈跟踪" class="headerlink" title="堆栈跟踪"></a>堆栈跟踪</h2><p>在JavaScript中，我们经常会用到深度嵌套的方法和对象。你可以使用<code>console.trace()</code>遍历堆栈跟踪，并输出调用了哪些方法。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/ibugX3Hm3p4oAoool2dL1ICjHZ58mia3KWicbsyosRJTmnJ790tPicys0lNecfGCzMR4jia7kh1L1xjX0WicVpEuVd4g/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>还可以选择将数据与堆栈跟踪一起输出。</p>
+<h2 id="dir"><a href="#dir" class="headerlink" title="dir"></a>dir</h2><p>如果将大型对象记录到控制台，则可能会变得难以读取。幸而我们可以通过<code>console.dir()</code>方法以可扩展的树结构进行格式化。</p>
+<p>以下是目录样式控制台输出的示例：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/ibugX3Hm3p4oAoool2dL1ICjHZ58mia3KWrWzXHsC4MWqU6YPUKarndfyvEzFXQd0iapJyGQzFNevwgIuL7qgoq9Q/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>你还可以使用<code>console.dirxml()</code>以类似的方式打印基于XML或HTML的树。</p>
+<h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><p>你可能在应用中设置了一些日志记录，且在开发过程中依赖这些日志记录，但不希望用户看到。用<code>console.debug()</code>替换日志语句就可以做到这一点，它的功能与<code>console.log</code>完全相同，但可以被大多数构建系统所删除，或者在生产模式下运行时被禁用。</p>
+<h2 id="日志级别"><a href="#日志级别" class="headerlink" title="日志级别"></a>日志级别</h2><p>注意到浏览器控制台中有若干过滤器（信息、警告和错误）了吗？它们允许你更改记录数据的详细程度。要使用这些过滤器，只需切换日志语句即可：</p>
+<ul>
+<li><code>console.info()</code> - 用于记录通知消息，通常包括一个小的“i”和或蓝色背景</li>
+<li><code>console.warn()</code> - 用于记录警告或非严重错误信息，通常包括三角感叹号和或黄色背景</li>
+<li><code>console.error()</code> - 用于记录可能影响功能的错误信息，通常包括圆形感叹号和或红色背景</li>
+</ul>
+<p>在生产环境中运行时，Node.js中不同的日志级别会写入不同的流，例如<code>error()</code>会写入<code>stderr</code>，而日志输出会写入<code>stdout</code>，但在开发中它们都会如常出现在控制台中。</p>
+<h2 id="多值日志"><a href="#多值日志" class="headerlink" title="多值日志"></a>多值日志</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console&#96;对象上的大多数函数接受多个参数，因此你可以添加标签到输出，或一次打印多个数据点，例如：&#96;console.log(&#39;User: &#39;, user.name);</span><br></pre></td></tr></table></figure>
+
+<p>但是，打印多个标记值的更简单方法是使用对象解构。例如，如果有三个变量（<code>x</code>、<code>y</code>和<code>z</code>），那么可以将它们记录为一个用大括号括起来的对象，这样就能输出每个变量的名称和值——如<code>console.log( { x, y, z } );</code></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/ibugX3Hm3p4oAoool2dL1ICjHZ58mia3KWFTqxFINeOgSd7KqZprmRUmCNxibCApIzYoAnm8dAib1xxMjicYb6DicTJw/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<h2 id="日志字符串格式"><a href="#日志字符串格式" class="headerlink" title="日志字符串格式"></a>日志字符串格式</h2><p>如果需要输出格式化的字符串，可以使用C语言样式的printf格式修饰符来实现。</p>
+<p>支持的格式修饰符有：</p>
+<ul>
+<li><code>%s</code> - 字符串或转换为字符串的任何其他类型</li>
+<li><code>%d</code> / <code>%i</code> - 整数</li>
+<li><code>%f</code> - 浮点数</li>
+<li><code>%o</code> - 使用最佳格式</li>
+<li><code>%O</code> - 使用默认格式</li>
+<li><code>%c</code> - 使用自定义格式</li>
+</ul>
+<p>例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(&quot;Hello %s, welcome to the year %d!&quot;, &quot;Alicia&quot;, new Date().getFullYear());</span><br><span class="line">&#x2F;&#x2F; Hello Alicia, welcome to the year 2022!</span><br></pre></td></tr></table></figure>
+
+<p>当然，你也可以使用模板文字来实现相同的目的，如果是较短的字符串，可能更容易阅读。</p>
+<h2 id="清除"><a href="#清除" class="headerlink" title="清除"></a>清除</h2><p>最后，当查找事件的输出时，你可能希望删除页面首次加载时记录到控制台的所有内容。这可以通过<code>console.clear()</code>来完成，它将清除所有内容，不会重置任何数据。</p>
+<p>通常还可以通过单击Bin图标来清除控制台，以及使用筛选器文本输入进行搜索。</p>
+<h2 id="特殊浏览器方法"><a href="#特殊浏览器方法" class="headerlink" title="特殊浏览器方法"></a>特殊浏览器方法</h2><p>直接在浏览器控制台中运行代码时，还可以访问速记方法，这些方法对于调试、自动化和测试非常有用。</p>
+<p>其中最有用的是：</p>
+<ul>
+<li><code>$()</code> - <code>Document.querySelector()</code>的简写（选择DOM元素，jQuery-style！）</li>
+<li><code>$$()</code> - 与上面相同，但<code>selectAll</code>用于在数组中返回多个元素时使用</li>
+<li><code>$_</code> - 返回上次计算表达式的值</li>
+<li><code>$0</code> - 返回最近选择的DOM元素（在检查器中）</li>
+<li><code>$1...$4</code> - 也可用于抓取以前选择的UI元素</li>
+<li><code>$x()</code> - 允许你使用Xpath查询选择DOM元素</li>
+<li><code>keys()</code>和<code>values()</code> - <code>Object.getKeys()</code>的简写，将返回包含<code>obj</code>键或值的数组</li>
+<li><code>copy()</code> - 将内容复制到剪贴板</li>
+<li><code>monitorEvents()</code> - 每次触发给定事件时运行命令</li>
+<li>对于某些常见的控制台命令（如<code>console.table()</code>），你不需要键入前面的<code>console</code>，只需运行<code>table()</code></li>
+</ul>
+<blockquote>
+<p>警告！这些只能在开发工具控制台中工作，在代码中不起作用！</p>
+</blockquote>
+<p>最后再快速介绍一些最佳实践…</p>
+<ul>
+<li>定义lint规则，以防止任何<code>console.log</code>语句合并到主分支中</li>
+<li>编写包装函数来处理日志记录，这样你就可以根据环境启用/禁用调试日志，也可以使用适当的日志级别，以及应用任何格式。这也可集成到第三方日志记录服务，只需在一个位置进行代码更新即可</li>
+<li>切勿记录任何敏感信息，任何已安装的扩展程序都可以捕获浏览器日志，因此并不安全</li>
+<li>始终使用正确的日志级别（如info、warn、error）来简化筛选和禁用</li>
+<li>遵循一致的格式，以便在需要时可以由计算机解析日志</li>
+<li>日志消息应简短、有意义</li>
+<li>在日志中包含上下文或类别</li>
+<li>不要过度使用，只记录有用的信息</li>
+</ul>
+<p><strong>欢迎<code>长按图片加刷碗智为好友，定时分享 Vue React Ts 等。</code></strong></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2023/01/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B9%8B%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/" rel="next" title="计算机之网络是怎样连接的">
+                <i class="fa fa-chevron-left"></i> 计算机之网络是怎样连接的
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="Dali" />
+            
+              <p class="site-author-name" itemprop="name">Dali</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">175</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">163</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#打印表格"><span class="nav-number">1.</span> <span class="nav-text">打印表格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分组"><span class="nav-number">2.</span> <span class="nav-text">分组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#带样式的日志输出"><span class="nav-number">3.</span> <span class="nav-text">带样式的日志输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#时间"><span class="nav-number">4.</span> <span class="nav-text">时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#断言"><span class="nav-number">5.</span> <span class="nav-text">断言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计数"><span class="nav-number">6.</span> <span class="nav-text">计数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#堆栈跟踪"><span class="nav-number">7.</span> <span class="nav-text">堆栈跟踪</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dir"><span class="nav-number">8.</span> <span class="nav-text">dir</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调试"><span class="nav-number">9.</span> <span class="nav-text">调试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日志级别"><span class="nav-number">10.</span> <span class="nav-text">日志级别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多值日志"><span class="nav-number">11.</span> <span class="nav-text">多值日志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日志字符串格式"><span class="nav-number">12.</span> <span class="nav-text">日志字符串格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#清除"><span class="nav-number">13.</span> <span class="nav-text">清除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特殊浏览器方法"><span class="nav-number">14.</span> <span class="nav-text">特殊浏览器方法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dali</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

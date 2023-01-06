@@ -88,7 +88,7 @@
 <meta property="og:site_name" content="DaliBlogs">
 <meta property="og:description" content="父级属性 flex-direction![clipboard (10)](flex.assets&#x2F;clipboard (10).png) justify-content![clipboard (11)](flex.assets&#x2F;clipboard (11).png) flex-wrap![clipboard (12)](flex.assets&#x2F;clipboard (12).png) align-i">
 <meta property="article:published_time" content="2020-10-28T00:57:15.059Z">
-<meta property="article:modified_time" content="2020-11-04T06:03:16.735Z">
+<meta property="article:modified_time" content="2022-07-04T07:13:31.694Z">
 <meta property="article:author" content="Dali">
 <meta name="twitter:card" content="summary">
 
@@ -382,8 +382,19 @@
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.top-list</span><span class="selector-pseudo">::after</span>&#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">20%</span>;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">""</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>height一定要给0；width和item的width一致；conten给空即可</strong></p>
+<p> 一行摆放四个左对齐代码示例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;ul-2&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;item&quot;&gt;1&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;item&quot;&gt;2&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;item&quot;&gt;2&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;item&quot;&gt;2&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;item&quot;&gt;2&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;item&quot;&gt;2&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;item&quot;&gt;2&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;item&quot;&gt;2&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;item&quot;&gt;2&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;item&quot;&gt;2&lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang&#x3D;&quot;scss&quot;&gt;</span><br><span class="line">.ul-2 &#123;</span><br><span class="line">  display: flex;</span><br><span class="line">  &#x2F;* justify-content: center; *&#x2F;</span><br><span class="line">  flex-wrap: wrap;</span><br><span class="line">&#125;</span><br><span class="line">.ul-2:after &#123;</span><br><span class="line">  content: &#39;&#39;;</span><br><span class="line">  flex: auto;</span><br><span class="line">&#125;</span><br><span class="line">.ul-2 .item &#123;</span><br><span class="line">  margin-right: calc(4% &#x2F; 3);</span><br><span class="line">  width: 24%;</span><br><span class="line">  height: 40px;</span><br><span class="line">  line-height: 40px;</span><br><span class="line">  text-align: center;</span><br><span class="line">  color: #fff;</span><br><span class="line">  background-color: #2a7600;</span><br><span class="line">  list-style: none;</span><br><span class="line">  margin-bottom: 20px;</span><br><span class="line">  &amp;:nth-child(4n+4)&#123;</span><br><span class="line">      margin-right: 0;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+
+
 <p>改变布局方式</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">justify-content: space-between;</span><br><span class="line">改后</span><br><span class="line">align-content: flex-start;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="最后一个左对齐布局"><a href="#最后一个左对齐布局" class="headerlink" title="最后一个左对齐布局"></a>最后一个左对齐布局</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">.average_box &#123;</span><br><span class="line">    display: flex;</span><br><span class="line">    flex-wrap: wrap;</span><br><span class="line"></span><br><span class="line">    &amp;::after &#123;</span><br><span class="line">        content: &quot;&quot;;</span><br><span class="line">        flex: auto;</span><br><span class="line">        width: 24%;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .add_item &#123;</span><br><span class="line">        width: 24%;</span><br><span class="line">        margin-right: calc(4% &#x2F; 3);</span><br><span class="line"></span><br><span class="line">        &amp;:nth-child(4n) &#123;</span><br><span class="line">            margin-right: 0;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
       
@@ -419,7 +430,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/10/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AE%BE%E7%BD%AE%E7%9B%B8%E5%85%B3/" rel="prev" title="计算机设置相关">
+              <a href="/2020/10/29/win10%E8%AE%BE%E7%BD%AE%E4%B8%8E%E6%8A%80%E5%B7%A7/" rel="prev" title="计算机设置相关">
                 计算机设置相关 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -502,7 +513,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">153</span>
+                  <span class="site-state-item-count">175</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -513,7 +524,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">73</span>
+                  <span class="site-state-item-count">76</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -524,7 +535,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">154</span>
+                  <span class="site-state-item-count">163</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -564,7 +575,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#flex-direction"><span class="nav-number">1.</span> <span class="nav-text">flex-direction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#justify-content"><span class="nav-number">2.</span> <span class="nav-text">justify-content</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex-wrap"><span class="nav-number">3.</span> <span class="nav-text">flex-wrap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#align-items-stretch在子项没有高度才能使用-，在子项为单行的时候有效"><span class="nav-number">4.</span> <span class="nav-text">align-items(stretch在子项没有高度才能使用)，在子项为单行的时候有效</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#align-content-适用于多行"><span class="nav-number">5.</span> <span class="nav-text">align-content(适用于多行)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex-flow"><span class="nav-number">6.</span> <span class="nav-text">flex-flow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex"><span class="nav-number">7.</span> <span class="nav-text">flex</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#align-self"><span class="nav-number">8.</span> <span class="nav-text">align-self</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#order"><span class="nav-number">9.</span> <span class="nav-text">order</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#flex-direction"><span class="nav-number">1.</span> <span class="nav-text">flex-direction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#justify-content"><span class="nav-number">2.</span> <span class="nav-text">justify-content</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex-wrap"><span class="nav-number">3.</span> <span class="nav-text">flex-wrap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#align-items-stretch在子项没有高度才能使用-，在子项为单行的时候有效"><span class="nav-number">4.</span> <span class="nav-text">align-items(stretch在子项没有高度才能使用)，在子项为单行的时候有效</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#align-content-适用于多行"><span class="nav-number">5.</span> <span class="nav-text">align-content(适用于多行)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex-flow"><span class="nav-number">6.</span> <span class="nav-text">flex-flow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex"><span class="nav-number">7.</span> <span class="nav-text">flex</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#align-self"><span class="nav-number">8.</span> <span class="nav-text">align-self</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#order"><span class="nav-number">9.</span> <span class="nav-text">order</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后一个左对齐布局"><span class="nav-number">10.</span> <span class="nav-text">最后一个左对齐布局</span></a></li></ol></div>
             
 
           </div>
@@ -584,7 +595,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

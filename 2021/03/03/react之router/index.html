@@ -81,18 +81,21 @@
 
 
 
-<meta name="description" content="一、基本用法React Router 安装命令如下。  1$ npm install -S react-router  使用时，路由器Router就是React的一个组件。  12import &amp;#123; Router &amp;#125; from &#39;react-router&#39;;render(&lt;Router&#x2F;&gt;, document.getElementById(&#39;app&#39;));">
+<meta name="description" content="一、基本用法小白上手：https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s?__biz&#x3D;MzI5NTY1MDUyOQ&#x3D;&#x3D;&amp;mid&#x3D;2247494854&amp;idx&#x3D;1&amp;sn&#x3D;b744c0cfbd200f831476e48f77c82156&amp;chksm&#x3D;ec52f948db25705e98777012ba9777ad7d67f6bf88b5167d7c2fcd8c03d4">
 <meta property="og:type" content="article">
 <meta property="og:title" content="react之router">
 <meta property="og:url" content="http://yoursite.com/2021/03/03/react%E4%B9%8Brouter/index.html">
 <meta property="og:site_name" content="DaliBlogs">
-<meta property="og:description" content="一、基本用法React Router 安装命令如下。  1$ npm install -S react-router  使用时，路由器Router就是React的一个组件。  12import &amp;#123; Router &amp;#125; from &#39;react-router&#39;;render(&lt;Router&#x2F;&gt;, document.getElementById(&#39;app&#39;));">
+<meta property="og:description" content="一、基本用法小白上手：https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s?__biz&#x3D;MzI5NTY1MDUyOQ&#x3D;&#x3D;&amp;mid&#x3D;2247494854&amp;idx&#x3D;1&amp;sn&#x3D;b744c0cfbd200f831476e48f77c82156&amp;chksm&#x3D;ec52f948db25705e98777012ba9777ad7d67f6bf88b5167d7c2fcd8c03d4">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-2d6273ea206335e0c47501012a97a286_1440w.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-5f497fbd146305dbb5dc7331c5ad66ec_1440w.jpg">
 <meta property="article:published_time" content="2021-03-03T02:07:42.000Z">
-<meta property="article:modified_time" content="2021-03-03T10:08:57.259Z">
+<meta property="article:modified_time" content="2022-07-28T02:47:50.459Z">
 <meta property="article:author" content="Dali">
 <meta property="article:tag" content="react">
 <meta property="article:tag" content="router">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic3.zhimg.com/80/v2-2d6273ea206335e0c47501012a97a286_1440w.jpg">
 
 
 
@@ -388,7 +391,8 @@
       
 
       
-        <h2 id="一、基本用法"><a href="#一、基本用法" class="headerlink" title="一、基本用法"></a>一、基本用法</h2><p>React Router 安装命令如下。</p>
+        <h2 id="一、基本用法"><a href="#一、基本用法" class="headerlink" title="一、基本用法"></a>一、基本用法</h2><p>小白上手：<a href="https://mp.weixin.qq.com/s?__biz=MzI5NTY1MDUyOQ==&amp;mid=2247494854&amp;idx=1&amp;sn=b744c0cfbd200f831476e48f77c82156&amp;chksm=ec52f948db25705e98777012ba9777ad7d67f6bf88b5167d7c2fcd8c03d4879446b40e87fb4e&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">https://mp.weixin.qq.com/s?__biz=MzI5NTY1MDUyOQ==&amp;mid=2247494854&amp;idx=1&amp;sn=b744c0cfbd200f831476e48f77c82156&amp;chksm=ec52f948db25705e98777012ba9777ad7d67f6bf88b5167d7c2fcd8c03d4879446b40e87fb4e&amp;scene=21#wechat_redirect</a></p>
+<p>React Router 安装命令如下。</p>
 <blockquote>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -S react-router</span><br></pre></td></tr></table></figure>
 </blockquote>
@@ -589,6 +593,26 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Home = withRouter(</span><br><span class="line">  React.createClass(&#123;</span><br><span class="line">    componentDidMount() &#123;</span><br><span class="line">      <span class="keyword">this</span>.props.router.setRouteLeaveHook(</span><br><span class="line">        <span class="keyword">this</span>.props.route, </span><br><span class="line">        <span class="keyword">this</span>.routerWillLeave</span><br><span class="line">      )</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    routerWillLeave(nextLocation) &#123;</span><br><span class="line">      <span class="comment">// 返回 false 会继续停留当前页面，</span></span><br><span class="line">      <span class="comment">// 否则，返回一个字符串，会显示给用户，让其自己决定</span></span><br><span class="line">      <span class="keyword">if</span> (!<span class="keyword">this</span>.state.isSaved)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'确认要离开？'</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 </blockquote>
 <p>上面代码中，<code>setRouteLeaveHook</code>方法为<code>Leave</code>钩子指定<code>routerWillLeave</code>函数。该方法如果返回<code>false</code>，将阻止路由的切换，否则就返回一个字符串，提示用户决定是否要切换。</p>
+<h2 id="十三、传参的两种方式"><a href="#十三、传参的两种方式" class="headerlink" title="十三、传参的两种方式"></a>十三、传参的两种方式</h2><p>参考链接：<a href="https://zhuanlan.zhihu.com/p/511853235" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/511853235</a></p>
+<h3 id="1-params方式（参数不丢失，需要配置路由匹配方式）"><a href="#1-params方式（参数不丢失，需要配置路由匹配方式）" class="headerlink" title="1. params方式（参数不丢失，需要配置路由匹配方式）"></a>1. params方式（参数不丢失，需要配置路由匹配方式）</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.props.history.push(&#123; <span class="attr">pathname</span>:<span class="string">`/user/<span class="subst">$&#123;id&#125;</span>`</span>&#125;) <span class="comment">// 编程事书写</span></span><br><span class="line">&lt;Route path=<span class="string">"/user/:id"</span> component=&#123;UserDetail&#125; /&gt; <span class="comment">// 路由配置</span></span><br><span class="line"><span class="keyword">this</span>.props.match.params.id <span class="comment">// 获取路由参数</span></span><br></pre></td></tr></table></figure>
+
+<p><strong><em>缺点：当需要传递的参数较多时，比较繁琐，有时需要使用json字符串处理传递，由于参数是拼接在路径上，安全较低。（一般常用在传递某个数据唯一标识即可）\</em></strong></p>
+<h3 id="2-search方式（参数不丢失，也是推荐使用的）"><a href="#2-search方式（参数不丢失，也是推荐使用的）" class="headerlink" title="2. search方式（参数不丢失，也是推荐使用的）"></a>2. search方式（参数不丢失，也是推荐使用的）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">this.props.history.push(&#123;</span><br><span class="line">  pathname: &#96;&#x2F;user&#96;,</span><br><span class="line">   search: &#96;?id&#x3D;$&#123;id&#125;&amp;name&#x3D;$&#123;name&#125;&#96;</span><br><span class="line"> &#125;);</span><br><span class="line">&#x2F;&#x2F; 获取方式 1、通过nodejs中的qs模块解析，2、通过js字符串分割方式</span><br></pre></td></tr></table></figure>
+
+<p><strong><em>缺点：当需要传递的参数较多时，比较繁琐，有时需要使用json字符串处理传递，由于参数是拼接在路径上，安全较低。（一般常用在传递某个数据唯一标识即可）</em></strong></p>
+<p><strong><em>案例：</em></strong></p>
+<p><img src="https://pic3.zhimg.com/80/v2-2d6273ea206335e0c47501012a97a286_1440w.jpg" alt="img">该图片为react项目中的路由配置文件</p>
+<p><img src="https://pic1.zhimg.com/80/v2-5f497fbd146305dbb5dc7331c5ad66ec_1440w.jpg" alt="img">点击编辑按钮跳转到对应的页面传值方式</p>
+<h3 id="3-query方式（参数可能会丢失）"><a href="#3-query方式（参数可能会丢失）" class="headerlink" title="3. query方式（参数可能会丢失）"></a>3. query方式（参数可能会丢失）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 两种方式</span><br><span class="line">&#x2F;&#x2F; 第一种通过Link标签形式传递 &lt;Link to&#x3D;&#123;&#123; path : &quot;&#x2F;userDetai&quot; , query : &#123; id:id &#125;&#125;&#125;&gt;</span><br><span class="line">&#x2F;&#x2F; 第二种：通过编程式，如下：</span><br><span class="line">     this.props.history.push(&#123; pathname: &quot;&#x2F;userDetai&quot;,query: &#123; id:id &#125;&#125;);</span><br><span class="line">&#x2F;&#x2F; 获取方式: this.props.location.query.name</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-state方式（参数可能会丢失）"><a href="#4-state方式（参数可能会丢失）" class="headerlink" title="4. state方式（参数可能会丢失）"></a>4. state方式（参数可能会丢失）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">this.props.history.push(&#123;</span><br><span class="line">   pathname: &#96;&#x2F;user&#96;,</span><br><span class="line">   state: &#123;</span><br><span class="line">     id: id</span><br><span class="line">   &#125;,</span><br><span class="line"> &#125;);</span><br><span class="line">this.props.location.state.id &#x2F;&#x2F; 获取方式</span><br></pre></td></tr></table></figure>
+
+<p><strong><em>缺点：当需要传递的参数较多时，比较繁琐，有时需要使用json字符串处理传递，不会暴露给用户，比较安全。</em></strong></p>
+<p><strong><em>可能丢失案例？</em></strong></p>
+<p><strong><em>当项目入口文件使用&lt;</em></strong>BrowserRouter<strong><em>&gt;&lt;</em></strong>/BrowserRouter&gt;进行包裹时，所传递参数<strong>刷新后不会丢失</strong>。</p>
+<p>当项目入口文件使用<HashRouter></HashRouter>进行包裹时，所传递的参数<strong>刷新后会丢失</strong></p>
+<h3 id="5-使用Route标签进行传递"><a href="#5-使用Route标签进行传递" class="headerlink" title="5. 使用Route标签进行传递"></a>5. 使用Route标签进行传递</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Route path=<span class="string">"/user"</span> render=&#123;(routeProps) =&gt; ( <span class="xml"><span class="tag">&lt;<span class="name">UserDetail&#123;...routeProps&#125;</span> <span class="attr">id</span>=<span class="string">&#123;id&#125;</span> /&gt;</span></span>) /&gt;</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -714,7 +738,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">153</span>
+                  <span class="site-state-item-count">175</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -725,7 +749,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">73</span>
+                  <span class="site-state-item-count">76</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -736,7 +760,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">154</span>
+                  <span class="site-state-item-count">163</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -776,7 +800,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、基本用法"><span class="nav-number">1.</span> <span class="nav-text">一、基本用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、嵌套路由"><span class="nav-number">2.</span> <span class="nav-text">二、嵌套路由</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、-path-属性"><span class="nav-number">3.</span> <span class="nav-text">三、 path 属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、通配符"><span class="nav-number">4.</span> <span class="nav-text">四、通配符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、IndexRoute-组件"><span class="nav-number">5.</span> <span class="nav-text">五、IndexRoute 组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、Redirect-组件"><span class="nav-number">6.</span> <span class="nav-text">六、Redirect 组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、IndexRedirect-组件"><span class="nav-number">7.</span> <span class="nav-text">七、IndexRedirect 组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八、Link"><span class="nav-number">8.</span> <span class="nav-text">八、Link</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#九、IndexLink"><span class="nav-number">9.</span> <span class="nav-text">九、IndexLink</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十、histroy-属性"><span class="nav-number">10.</span> <span class="nav-text">十、histroy 属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十一、表单处理"><span class="nav-number">11.</span> <span class="nav-text">十一、表单处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十二、路由的钩子"><span class="nav-number">12.</span> <span class="nav-text">十二、路由的钩子</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、基本用法"><span class="nav-number">1.</span> <span class="nav-text">一、基本用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、嵌套路由"><span class="nav-number">2.</span> <span class="nav-text">二、嵌套路由</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、-path-属性"><span class="nav-number">3.</span> <span class="nav-text">三、 path 属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、通配符"><span class="nav-number">4.</span> <span class="nav-text">四、通配符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、IndexRoute-组件"><span class="nav-number">5.</span> <span class="nav-text">五、IndexRoute 组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、Redirect-组件"><span class="nav-number">6.</span> <span class="nav-text">六、Redirect 组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、IndexRedirect-组件"><span class="nav-number">7.</span> <span class="nav-text">七、IndexRedirect 组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八、Link"><span class="nav-number">8.</span> <span class="nav-text">八、Link</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#九、IndexLink"><span class="nav-number">9.</span> <span class="nav-text">九、IndexLink</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十、histroy-属性"><span class="nav-number">10.</span> <span class="nav-text">十、histroy 属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十一、表单处理"><span class="nav-number">11.</span> <span class="nav-text">十一、表单处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十二、路由的钩子"><span class="nav-number">12.</span> <span class="nav-text">十二、路由的钩子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十三、传参的两种方式"><span class="nav-number">13.</span> <span class="nav-text">十三、传参的两种方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-params方式（参数不丢失，需要配置路由匹配方式）"><span class="nav-number">13.1.</span> <span class="nav-text">1. params方式（参数不丢失，需要配置路由匹配方式）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-search方式（参数不丢失，也是推荐使用的）"><span class="nav-number">13.2.</span> <span class="nav-text">2. search方式（参数不丢失，也是推荐使用的）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-query方式（参数可能会丢失）"><span class="nav-number">13.3.</span> <span class="nav-text">3. query方式（参数可能会丢失）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-state方式（参数可能会丢失）"><span class="nav-number">13.4.</span> <span class="nav-text">4. state方式（参数可能会丢失）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-使用Route标签进行传递"><span class="nav-number">13.5.</span> <span class="nav-text">5. 使用Route标签进行传递</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -796,7 +820,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
