@@ -294,6 +294,324 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/01/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/02/01/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" itemprop="url">浏览器的垃圾回收</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-01T10:45:49+08:00">
+                2021-02-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9B%9E%E6%94%B6%E5%9E%83%E5%9C%BE/" itemprop="url" rel="index">
+                    <span itemprop="name">浏览器回收垃圾</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>参考链接</p>
+<p><a href="https://mp.weixin.qq.com/s/iZDB6RiQHB_KNvZK5jvz-Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/iZDB6RiQHB_KNvZK5jvz-Q</a></p>
+<h1 id="面试题1：浏览器怎么进行垃圾回收？"><a href="#面试题1：浏览器怎么进行垃圾回收？" class="headerlink" title="面试题1：浏览器怎么进行垃圾回收？"></a>面试题1：浏览器怎么进行垃圾回收？</h1><p>从三个点来回答什么是垃圾、如何捡垃圾、什么时候捡垃圾。</p>
+<ol>
+<li><p>什么是垃圾</p>
+<p>不再需要，即为垃圾</p>
+<p>全局变量随时可能用到，所以一定不是垃圾</p>
+</li>
+<li><p>如何捡垃圾（遍历算法）</p>
+<p>标记空间中「可达」值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- 从根节点（Root）出发，遍历所有的对象。</span><br><span class="line">- 可以遍历到的对象，是可达的（reachable）。</span><br><span class="line">- 没有被遍历到的对象，不可达的（unreachable）</span><br></pre></td></tr></table></figure>
+
+<p>回收「不可达」的值所占据的内存。</p>
+<p>做内存整理。</p>
+</li>
+<li><p>什么时候捡垃圾</p>
+<p>前端有其特殊性，垃圾回收的时候会造成页面卡顿。</p>
+<p>分代收集、增量收集、闲时收集。</p>
+</li>
+</ol>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/02/01/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/01/js%E4%B9%8B%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/02/01/js%E4%B9%8B%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD/" itemprop="url">js之图片懒加载</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-01T09:48:03+08:00">
+                2021-02-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>参考链接 </p>
+<p><a href="https://mp.weixin.qq.com/s/wsaB9pT75msm9usT9i3Xig" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/wsaB9pT75msm9usT9i3Xig</a></p>
+<p>window.innerHeight和document.documentElement.clientHeight区别(window.innerHeight和clentWidth同理)</p>
+<p><strong>1.window.innerHeight属于BOM（浏览器对象模型），而document.documentElement.clientHeight则属于文档对象模型</strong></p>
+<p><strong>2.window.innerHeight获取的高度包含横向滚动条，而document.documentElement.clientHeight不包含横向滚动条</strong></p>
+<h2 id="基于原生-js-实现图片懒加载"><a href="#基于原生-js-实现图片懒加载" class="headerlink" title="基于原生 js 实现图片懒加载"></a>基于原生 js 实现图片懒加载</h2><h4 id="document-documentElement-clientHeight"><a href="#document-documentElement-clientHeight" class="headerlink" title="document.documentElement.clientHeight"></a>document.documentElement.clientHeight</h4><p>获取屏幕可视区域的高度。</p>
+<h4 id="element-offsetTop"><a href="#element-offsetTop" class="headerlink" title="element.offsetTop"></a>element.offsetTop</h4><p>获取元素相对于文档顶部的高度。</p>
+<h4 id="document-documentElement-scrollTop"><a href="#document-documentElement-scrollTop" class="headerlink" title="document.documentElement.scrollTop"></a>document.documentElement.scrollTop</h4><p>获取浏览器窗口顶部与文档顶部之间的距离，也就是滚动条滚动的距离。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/02/01/js%E4%B9%8B%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/21/34%E6%9D%A1%E6%88%91%E8%83%BD%E5%91%8A%E8%AF%89%E4%BD%A0%E7%9A%84Vue%E4%B9%8B%E5%AE%9E%E6%93%8D%E7%AF%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1505,301 +1823,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/30/Xftp5%E4%B9%8B%E5%88%9D%E8%A7%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dali">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DaliBlogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/10/30/Xftp5%E4%B9%8B%E5%88%9D%E8%A7%81/" itemprop="url">Xftp5之初见</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-30T10:37:26+08:00">
-                2020-10-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ftp/" itemprop="url" rel="index">
-                    <span itemprop="name">ftp</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Xftp是一个功能强大的<a href="https://baike.baidu.com/item/SFTP/1184182" target="_blank" rel="noopener">SFTP</a>、<a href="https://baike.baidu.com/item/FTP/13839" target="_blank" rel="noopener">FTP</a> 文件传输软件。使用了 Xftp 以后，Windows 用户能安全地在 Linux 和 Windows之间传输文件。</p>
-<h3 id="Xftp5软件使用详解"><a href="#Xftp5软件使用详解" class="headerlink" title="Xftp5软件使用详解"></a>Xftp5软件使用详解</h3><p>一、首先运行Xftp5，然后导航栏上面有个小加号，点击进去。</p>
-<p><img src="https://images2018.cnblogs.com/blog/1126989/201808/1126989-20180831103255255-1718023639.png" alt="img"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/10/30/Xftp5%E4%B9%8B%E5%88%9D%E8%A7%81/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/30/xshell%E4%B9%8B%E5%88%9D%E8%A7%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dali">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DaliBlogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/10/30/xshell%E4%B9%8B%E5%88%9D%E8%A7%81/" itemprop="url">xshell之初见</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-30T10:24:42+08:00">
-                2020-10-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Xshell/" itemprop="url" rel="index">
-                    <span itemprop="name">Xshell</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="Xshell概述"><a href="#Xshell概述" class="headerlink" title="Xshell概述"></a>Xshell概述</h3><p>Xshell软件的介绍百度上太多，也凸显不出重点，大家不能很好地理解，这里简要概况一下。</p>
-<p>Xshell是一个强大的安全终端模拟软件，可以在Windows界面下用来访问远端不同系统下的服务器，从而比较好的达到远程控制终端的目的，比如说用Xshell（地点在上海）连接远程Linux服务器系统（地点在北京），只需要在Xshell中输入Linux服务器系统的IP地址，这样就可以将远程（北京）的Linux服务器系统连接到Xshell（上海）了，实现了远程的模拟控制。直白点说，就是在上海的Xshell可以控制远在北京的Linux服务器系统，通过Linux命令实现需要完成的功能。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/10/30/xshell%E4%B9%8B%E5%88%9D%E8%A7%81/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1854,7 +1877,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">175</span>
+                  <span class="site-state-item-count">177</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1876,7 +1899,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">163</span>
+                  <span class="site-state-item-count">165</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

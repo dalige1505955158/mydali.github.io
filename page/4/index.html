@@ -294,6 +294,315 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/04/vue%E4%B9%8B%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA6%E4%B8%AA%E8%BE%93%E5%85%A5%E6%A1%86%E7%9A%84%E9%AA%8C%E8%AF%81%E7%A0%81%E8%BE%93%E5%85%A5%E7%BB%84%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/03/04/vue%E4%B9%8B%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA6%E4%B8%AA%E8%BE%93%E5%85%A5%E6%A1%86%E7%9A%84%E9%AA%8C%E8%AF%81%E7%A0%81%E8%BE%93%E5%85%A5%E7%BB%84%E4%BB%B6/" itemprop="url">vue之实现一个6个输入框的验证码输入组件</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-03-04T14:17:27+08:00">
+                2021-03-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>要实现的功能：</p>
+<p>完全和单输入框一样的操作，甚至可以插入覆盖：<br>1，限制输入数字<br>2，正常输入<br>3，backspace删除<br>4，paste任意位置粘贴输入<br>5，光标选中一个数字，滚轮可以微调数字大小，限制0-9<br>6，123|456 自动覆盖光标后输入的字符，此时光标在3后，继续输入111，会得到123111，而不用手动删除456<br>7，封装成vue单文件组件，方便任意调用。</p>
+<p>最终效果如图：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/eXCSRjyNYcbLW2rcSXrkU3CUXfoWZQLvFvY0icKjdEfJBRsjVVqxYYiceb3DeiaVXbkkn3b8CbEnicBMXfM4Mvoabw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p>模板代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;input-box&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;input-content&quot; @keydown&#x3D;&quot;keydown&quot; @keyup&#x3D;&quot;keyup&quot; @paste&#x3D;&quot;paste&quot; @mousewheel&#x3D;&quot;mousewheel&quot;</span><br><span class="line">        @input&#x3D;&quot;inputEvent&quot;&gt;</span><br><span class="line">      &lt;input max&#x3D;&quot;9&quot; min&#x3D;&quot;0&quot; maxlength&#x3D;&quot;1&quot; data-index&#x3D;&quot;0&quot; v-model.trim.number&#x3D;&quot;input[0]&quot; type&#x3D;&quot;number&quot;</span><br><span class="line">          ref&#x3D;&quot;firstinput&quot;&#x2F;&gt;</span><br><span class="line">      &lt;input max&#x3D;&quot;9&quot; min&#x3D;&quot;0&quot; maxlength&#x3D;&quot;1&quot; data-index&#x3D;&quot;1&quot; v-model.trim.number&#x3D;&quot;input[1]&quot; type&#x3D;&quot;number&quot;&#x2F;&gt;</span><br><span class="line">      &lt;input max&#x3D;&quot;9&quot; min&#x3D;&quot;0&quot; maxlength&#x3D;&quot;1&quot; data-index&#x3D;&quot;2&quot; v-model.trim.number&#x3D;&quot;input[2]&quot; type&#x3D;&quot;number&quot;&#x2F;&gt;</span><br><span class="line">      &lt;input max&#x3D;&quot;9&quot; min&#x3D;&quot;0&quot; maxlength&#x3D;&quot;1&quot; data-index&#x3D;&quot;3&quot; v-model.trim.number&#x3D;&quot;input[3]&quot; type&#x3D;&quot;number&quot;&#x2F;&gt;</span><br><span class="line">      &lt;input max&#x3D;&quot;9&quot; min&#x3D;&quot;0&quot; maxlength&#x3D;&quot;1&quot; data-index&#x3D;&quot;4&quot; v-model.trim.number&#x3D;&quot;input[4]&quot; type&#x3D;&quot;number&quot;&#x2F;&gt;</span><br><span class="line">      &lt;input max&#x3D;&quot;9&quot; min&#x3D;&quot;0&quot; maxlength&#x3D;&quot;1&quot; data-index&#x3D;&quot;5&quot; v-model.trim.number&#x3D;&quot;input[5]&quot; type&#x3D;&quot;number&quot;&#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure>
+
+<p>实现了键盘的keydown/keyup/paste/input和鼠标滚轮mousewheel事件<br>使用了6个输入框的方案来实现。</p>
+<p>样式部分：使用了scss模式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;style scoped&gt;</span><br><span class="line">  .input-box &#123;</span><br><span class="line">    .input-content &#123;</span><br><span class="line">      width: 512px;</span><br><span class="line">      height: 60px;</span><br><span class="line">      display: flex;</span><br><span class="line">      align-items: center;</span><br><span class="line">      justify-content: space-between;</span><br><span class="line"></span><br><span class="line">      input &#123;</span><br><span class="line">        color: inherit;</span><br><span class="line">        font-family: inherit;</span><br><span class="line">        border: 0;</span><br><span class="line">        outline: 0;</span><br><span class="line">        border-bottom: 1px solid #919191;</span><br><span class="line">        height: 60px;</span><br><span class="line">        width: 60px;</span><br><span class="line">        font-size: 44px;</span><br><span class="line">        text-align: center;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    input::-webkit-outer-spin-button,</span><br><span class="line">    input::-webkit-inner-spin-button &#123;</span><br><span class="line">      appearance: none;</span><br><span class="line">      margin: 0;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>具体实现逻辑：主要实现以上几个键盘事件操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">  export default &#123;</span><br><span class="line">    data() &#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        &#x2F;&#x2F; 存放粘贴进来的数字</span><br><span class="line">        pasteResult: [],</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    props: [&#39;code&#39;],</span><br><span class="line">    computed: &#123;</span><br><span class="line">      input() &#123;</span><br><span class="line">        &#x2F;&#x2F; code 是父组件传进来的默认值，必须是6位长度的数组，这里就不再做容错判断处理</span><br><span class="line">        &#x2F;&#x2F; 最后空数组是默认值</span><br><span class="line">        return this.code || this.pasteResult.length &#x3D;&#x3D;&#x3D; 6 ? this.pasteResult : [&#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">      &#x2F;&#x2F; 解决一个输入框输入多个字符</span><br><span class="line">      inputEvent(e) &#123;</span><br><span class="line">        var index &#x3D; e.target.dataset.index * 1;</span><br><span class="line">        var el &#x3D; e.target;</span><br><span class="line">        this.$set(this.input, index, el.value.slice(0, 1))</span><br><span class="line">      &#125;,</span><br><span class="line">      keydown(e) &#123;</span><br><span class="line">        var index &#x3D; e.target.dataset.index * 1;</span><br><span class="line">        var el &#x3D; e.target;</span><br><span class="line">        if (e.key &#x3D;&#x3D;&#x3D; &#39;Backspace&#39;) &#123;</span><br><span class="line">          if (this.input[index].length &gt; 0) &#123;</span><br><span class="line">            this.$set(this.input, index, &#39;&#39;)</span><br><span class="line">          &#125; else &#123;</span><br><span class="line">            if (el.previousElementSibling) &#123;</span><br><span class="line">              el.previousElementSibling.focus()</span><br><span class="line">              this.$set(this.input, index - 1, &#39;&#39;)</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125; else if (e.key &#x3D;&#x3D;&#x3D; &#39;Delete&#39;) &#123;</span><br><span class="line">          if (this.input[index].length &gt; 0) &#123;</span><br><span class="line">            this.$set(this.input, index, &#39;&#39;)</span><br><span class="line">          &#125; else &#123;</span><br><span class="line">            if (el.nextElementSibling) &#123;</span><br><span class="line">              this.$set(this.input, index &#x3D; 1, &#39;&#39;)</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">          if (el.nextElementSibling) &#123;</span><br><span class="line">            el.nextElementSibling.focus()</span><br><span class="line">          &#125;</span><br><span class="line">        &#125; else if (e.key &#x3D;&#x3D;&#x3D; &#39;Home&#39;) &#123;</span><br><span class="line">          el.parentElement.children[0] &amp;&amp; el.parentElement.children[0].focus()</span><br><span class="line">        &#125; else if (e.key &#x3D;&#x3D;&#x3D; &#39;End&#39;) &#123;</span><br><span class="line">          el.parentElement.children[this.input.length - 1] &amp;&amp; el.parentElement.children[this.input.length - 1].focus()</span><br><span class="line">        &#125; else if (e.key &#x3D;&#x3D;&#x3D; &#39;ArrowLeft&#39;) &#123;</span><br><span class="line">          if (el.previousElementSibling) &#123;</span><br><span class="line">            el.previousElementSibling.focus()</span><br><span class="line">          &#125;</span><br><span class="line">        &#125; else if (e.key &#x3D;&#x3D;&#x3D; &#39;ArrowRight&#39;) &#123;</span><br><span class="line">          if (el.nextElementSibling) &#123;</span><br><span class="line">            el.nextElementSibling.focus()</span><br><span class="line">          &#125;</span><br><span class="line">        &#125; else if (e.key &#x3D;&#x3D;&#x3D; &#39;ArrowUp&#39;) &#123;</span><br><span class="line">          if (this.input[index] * 1 &lt; 9) &#123;</span><br><span class="line">            this.$set(this.input, index, (this.input[index] * 1 + 1).toString());</span><br><span class="line">          &#125;</span><br><span class="line">        &#125; else if (e.key &#x3D;&#x3D;&#x3D; &#39;ArrowDown&#39;) &#123;</span><br><span class="line">          if (this.input[index] * 1 &gt; 0) &#123;</span><br><span class="line">            this.$set(this.input, index, (this.input[index] * 1 - 1).toString());</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      keyup(e) &#123;</span><br><span class="line">        var index &#x3D; e.target.dataset.index * 1;</span><br><span class="line">        var el &#x3D; e.target;</span><br><span class="line">        if (&#x2F;Digit|Numpad&#x2F;i.test(e.code)) &#123;</span><br><span class="line">          this.$set(this.input, index, e.code.replace(&#x2F;Digit|Numpad&#x2F;i, &#39;&#39;));</span><br><span class="line">          el.nextElementSibling &amp;&amp; el.nextElementSibling.focus();</span><br><span class="line">          if (index &#x3D;&#x3D;&#x3D; 5) &#123;</span><br><span class="line">            if (this.input.join(&#39;&#39;).length &#x3D;&#x3D;&#x3D; 6) &#123;</span><br><span class="line">              document.activeElement.blur();</span><br><span class="line">              this.$emit(&#39;complete&#39;, this.input);</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          if (this.input[index] &#x3D;&#x3D;&#x3D; &#39;&#39;) &#123;</span><br><span class="line">            this.$set(this.input, index, &#39;&#39;);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      mousewheel(e) &#123;</span><br><span class="line">        var index &#x3D; e.target.dataset.index;</span><br><span class="line">        if (e.wheelDelta &gt; 0) &#123;</span><br><span class="line">          if (this.input[index] * 1 &lt; 9) &#123;</span><br><span class="line">            this.$set(this.input, index, (this.input[index] * 1 + 1).toString());</span><br><span class="line">          &#125;</span><br><span class="line">        &#125; else if (e.wheelDelta &lt; 0) &#123;</span><br><span class="line">          if (this.input[index] * 1 &gt; 0) &#123;</span><br><span class="line">            this.$set(this.input, index, (this.input[index] * 1 - 1).toString());</span><br><span class="line">          &#125;</span><br><span class="line">        &#125; else if (e.key &#x3D;&#x3D;&#x3D; &#39;Enter&#39;) &#123;</span><br><span class="line">          if (this.input.join(&#39;&#39;).length &#x3D;&#x3D;&#x3D; 6) &#123;</span><br><span class="line">            document.activeElement.blur();</span><br><span class="line">            this.$emit(&#39;complete&#39;, this.input);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      paste(e) &#123;</span><br><span class="line">        &#x2F;&#x2F; 当进行粘贴时</span><br><span class="line">        e.clipboardData.items[0].getAsString(str &#x3D;&gt; &#123;</span><br><span class="line">          if (str.toString().length &#x3D;&#x3D;&#x3D; 6) &#123;</span><br><span class="line">            this.pasteResult &#x3D; str.split(&#39;&#39;);</span><br><span class="line">            document.activeElement.blur();</span><br><span class="line">            this.$emit(&#39;complete&#39;, this.input);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    mounted() &#123;</span><br><span class="line">      &#x2F;&#x2F; 等待dom渲染完成，在执行focus,否则无法获取到焦点</span><br><span class="line">      this.$nextTick(() &#x3D;&gt; &#123;</span><br><span class="line">        this.$refs.firstinput.focus()</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/03/react%E4%B9%8Brouter/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dali">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DaliBlogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/03/03/react%E4%B9%8Brouter/" itemprop="url">react之router</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-03-03T10:07:42+08:00">
+                2021-03-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="一、基本用法"><a href="#一、基本用法" class="headerlink" title="一、基本用法"></a>一、基本用法</h2><p>小白上手：<a href="https://mp.weixin.qq.com/s?__biz=MzI5NTY1MDUyOQ==&amp;mid=2247494854&amp;idx=1&amp;sn=b744c0cfbd200f831476e48f77c82156&amp;chksm=ec52f948db25705e98777012ba9777ad7d67f6bf88b5167d7c2fcd8c03d4879446b40e87fb4e&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">https://mp.weixin.qq.com/s?__biz=MzI5NTY1MDUyOQ==&amp;mid=2247494854&amp;idx=1&amp;sn=b744c0cfbd200f831476e48f77c82156&amp;chksm=ec52f948db25705e98777012ba9777ad7d67f6bf88b5167d7c2fcd8c03d4879446b40e87fb4e&amp;scene=21#wechat_redirect</a></p>
+<p>React Router 安装命令如下。</p>
+<blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -S react-router</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>使用时，路由器<code>Router</code>就是React的一个组件。</p>
+<blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Router &#125; <span class="keyword">from</span> <span class="string">'react-router'</span>;</span><br><span class="line">render(<span class="xml"><span class="tag">&lt;<span class="name">Router</span>/&gt;</span></span>, <span class="built_in">document</span>.getElementById(<span class="string">'app'</span>));</span><br></pre></td></tr></table></figure>
+</blockquote>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/03/03/react%E4%B9%8Brouter/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/02/react%E4%B9%8Bhooks/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1537,324 +1846,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/01/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dali">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DaliBlogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2021/02/01/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" itemprop="url">浏览器的垃圾回收</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-01T10:45:49+08:00">
-                2021-02-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9B%9E%E6%94%B6%E5%9E%83%E5%9C%BE/" itemprop="url" rel="index">
-                    <span itemprop="name">浏览器回收垃圾</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>参考链接</p>
-<p><a href="https://mp.weixin.qq.com/s/iZDB6RiQHB_KNvZK5jvz-Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/iZDB6RiQHB_KNvZK5jvz-Q</a></p>
-<h1 id="面试题1：浏览器怎么进行垃圾回收？"><a href="#面试题1：浏览器怎么进行垃圾回收？" class="headerlink" title="面试题1：浏览器怎么进行垃圾回收？"></a>面试题1：浏览器怎么进行垃圾回收？</h1><p>从三个点来回答什么是垃圾、如何捡垃圾、什么时候捡垃圾。</p>
-<ol>
-<li><p>什么是垃圾</p>
-<p>不再需要，即为垃圾</p>
-<p>全局变量随时可能用到，所以一定不是垃圾</p>
-</li>
-<li><p>如何捡垃圾（遍历算法）</p>
-<p>标记空间中「可达」值。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- 从根节点（Root）出发，遍历所有的对象。</span><br><span class="line">- 可以遍历到的对象，是可达的（reachable）。</span><br><span class="line">- 没有被遍历到的对象，不可达的（unreachable）</span><br></pre></td></tr></table></figure>
-
-<p>回收「不可达」的值所占据的内存。</p>
-<p>做内存整理。</p>
-</li>
-<li><p>什么时候捡垃圾</p>
-<p>前端有其特殊性，垃圾回收的时候会造成页面卡顿。</p>
-<p>分代收集、增量收集、闲时收集。</p>
-</li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/02/01/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/01/js%E4%B9%8B%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Dali">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DaliBlogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2021/02/01/js%E4%B9%8B%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD/" itemprop="url">js之图片懒加载</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-01T09:48:03+08:00">
-                2021-02-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/js/" itemprop="url" rel="index">
-                    <span itemprop="name">js</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>参考链接 </p>
-<p><a href="https://mp.weixin.qq.com/s/wsaB9pT75msm9usT9i3Xig" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/wsaB9pT75msm9usT9i3Xig</a></p>
-<p>window.innerHeight和document.documentElement.clientHeight区别(window.innerHeight和clentWidth同理)</p>
-<p><strong>1.window.innerHeight属于BOM（浏览器对象模型），而document.documentElement.clientHeight则属于文档对象模型</strong></p>
-<p><strong>2.window.innerHeight获取的高度包含横向滚动条，而document.documentElement.clientHeight不包含横向滚动条</strong></p>
-<h2 id="基于原生-js-实现图片懒加载"><a href="#基于原生-js-实现图片懒加载" class="headerlink" title="基于原生 js 实现图片懒加载"></a>基于原生 js 实现图片懒加载</h2><h4 id="document-documentElement-clientHeight"><a href="#document-documentElement-clientHeight" class="headerlink" title="document.documentElement.clientHeight"></a>document.documentElement.clientHeight</h4><p>获取屏幕可视区域的高度。</p>
-<h4 id="element-offsetTop"><a href="#element-offsetTop" class="headerlink" title="element.offsetTop"></a>element.offsetTop</h4><p>获取元素相对于文档顶部的高度。</p>
-<h4 id="document-documentElement-scrollTop"><a href="#document-documentElement-scrollTop" class="headerlink" title="document.documentElement.scrollTop"></a>document.documentElement.scrollTop</h4><p>获取浏览器窗口顶部与文档顶部之间的距离，也就是滚动条滚动的距离。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/02/01/js%E4%B9%8B%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1909,7 +1900,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">175</span>
+                  <span class="site-state-item-count">177</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1931,7 +1922,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">163</span>
+                  <span class="site-state-item-count">165</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
